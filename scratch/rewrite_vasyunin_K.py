@@ -16,22 +16,40 @@ i = 0
 while i < len(lines):
     line = lines[i]
     
-    # Catch the definitions for obtuse angles and rewrite them!
+    # Catch the definitions for lower/upper bounds and rewrite non-primitives
     m_def_lower = re.match(r"^def cot_pi_(\d+)_" + str(k) + r"_lower\s*:\s*ℚ\s*:=", line)
     if m_def_lower:
         a = int(m_def_lower.group(1))
-        if a > k // 2:
-            a_acute = k - a
+        acute = a <= k // 2
+        a_acute = a if acute else k - a
+        g = math.gcd(a_acute, k)
+        a_prim = a_acute // g
+        k_prim = k // g
+        
+        if not acute:
             out.append(f"def cot_pi_{a}_{k}_lower : ℚ := - cot_pi_{a_acute}_{k}_upper\n")
+            i += 1
+            continue
+        elif g > 1:
+            out.append(f"def cot_pi_{a}_{k}_lower : ℚ := cot_pi_{a_prim}_{k_prim}_lower\n")
             i += 1
             continue
             
     m_def_upper = re.match(r"^def cot_pi_(\d+)_" + str(k) + r"_upper\s*:\s*ℚ\s*:=", line)
     if m_def_upper:
         a = int(m_def_upper.group(1))
-        if a > k // 2:
-            a_acute = k - a
+        acute = a <= k // 2
+        a_acute = a if acute else k - a
+        g = math.gcd(a_acute, k)
+        a_prim = a_acute // g
+        k_prim = k // g
+        
+        if not acute:
             out.append(f"def cot_pi_{a}_{k}_upper : ℚ := - cot_pi_{a_acute}_{k}_lower\n")
+            i += 1
+            continue
+        elif g > 1:
+            out.append(f"def cot_pi_{a}_{k}_upper : ℚ := cot_pi_{a_prim}_{k_prim}_upper\n")
             i += 1
             continue
 

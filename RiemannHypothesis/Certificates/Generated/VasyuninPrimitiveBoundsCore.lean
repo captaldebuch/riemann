@@ -10,6 +10,9 @@ import RiemannHypothesis.Certificates.Generated.CotangentBoundsK16_18
 import RiemannHypothesis.Certificates.Generated.CotangentBoundsK19_20
 import RiemannHypothesis.Certificates.Generated.CotangentBoundsK21
 import RiemannHypothesis.Certificates.Generated.CotangentBoundsK22
+import RiemannHypothesis.Certificates.Generated.CotangentBoundsK23
+import RiemannHypothesis.Certificates.Generated.CotangentBoundsK24
+import RiemannHypothesis.Certificates.Generated.CotangentBoundsK25
 import Mathlib.Tactic.Ring
 import Mathlib.Algebra.BigOperators.Intervals
 
@@ -4348,417 +4351,825 @@ theorem cot_pi_21_22_bounds :
 
 def cot_pi_1_23_lower : ℚ := 8191530170975963 / 1125899906842624
 def cot_pi_1_23_upper : ℚ := 8191530170975975 / 1125899906842624
-axiom cot_pi_1_23_bounds :
+theorem cot_pi_1_23_bounds :
   ((cot_pi_1_23_lower : ℚ) : ℝ) ≤ cotangentTermV 1 23 ∧
-  cotangentTermV 1 23 ≤ ((cot_pi_1_23_upper : ℚ) : ℝ)
+  cotangentTermV 1 23 ≤ ((cot_pi_1_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_1_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_1_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_1_23_upper]
 
 def cot_pi_2_23_lower : ℚ := 8036778790736929 / 2251799813685248
 def cot_pi_2_23_upper : ℚ := 8036778790736941 / 2251799813685248
-axiom cot_pi_2_23_bounds :
+theorem cot_pi_2_23_bounds :
   ((cot_pi_2_23_lower : ℚ) : ℝ) ≤ cotangentTermV 2 23 ∧
-  cotangentTermV 2 23 ≤ ((cot_pi_2_23_upper : ℚ) : ℝ)
+  cotangentTermV 2 23 ≤ ((cot_pi_2_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_2_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_2_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_2_23_upper]
 
 def cot_pi_3_23_lower : ℚ := 5184163122237167 / 2251799813685248
 def cot_pi_3_23_upper : ℚ := 5184163122237175 / 2251799813685248
-axiom cot_pi_3_23_bounds :
+theorem cot_pi_3_23_bounds :
   ((cot_pi_3_23_lower : ℚ) : ℝ) ≤ cotangentTermV 3 23 ∧
-  cotangentTermV 3 23 ≤ ((cot_pi_3_23_upper : ℚ) : ℝ)
+  cotangentTermV 3 23 ≤ ((cot_pi_3_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_3_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_3_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_3_23_upper]
 
 def cot_pi_4_23_lower : ℚ := 7405854071649573 / 4503599627370496
 def cot_pi_4_23_upper : ℚ := 7405854071649585 / 4503599627370496
-axiom cot_pi_4_23_bounds :
+theorem cot_pi_4_23_bounds :
   ((cot_pi_4_23_lower : ℚ) : ℝ) ≤ cotangentTermV 4 23 ∧
-  cotangentTermV 4 23 ≤ ((cot_pi_4_23_upper : ℚ) : ℝ)
+  cotangentTermV 4 23 ≤ ((cot_pi_4_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_4_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_4_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_4_23_upper]
 
 def cot_pi_5_23_lower : ℚ := 5535667589870151 / 4503599627370496
 def cot_pi_5_23_upper : ℚ := 5535667589870161 / 4503599627370496
-axiom cot_pi_5_23_bounds :
+theorem cot_pi_5_23_bounds :
   ((cot_pi_5_23_lower : ℚ) : ℝ) ≤ cotangentTermV 5 23 ∧
-  cotangentTermV 5 23 ≤ ((cot_pi_5_23_upper : ℚ) : ℝ)
+  cotangentTermV 5 23 ≤ ((cot_pi_5_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_5_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_5_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_5_23_upper]
 
 def cot_pi_6_23_lower : ℚ := 8412136872591781 / 9007199254740992
 def cot_pi_6_23_upper : ℚ := 8412136872591795 / 9007199254740992
-axiom cot_pi_6_23_bounds :
+theorem cot_pi_6_23_bounds :
   ((cot_pi_6_23_lower : ℚ) : ℝ) ≤ cotangentTermV 6 23 ∧
-  cotangentTermV 6 23 ≤ ((cot_pi_6_23_upper : ℚ) : ℝ)
+  cotangentTermV 6 23 ≤ ((cot_pi_6_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_6_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_6_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_6_23_upper]
 
 def cot_pi_7_23_lower : ℚ := 6357975504380591 / 9007199254740992
 def cot_pi_7_23_upper : ℚ := 6357975504380603 / 9007199254740992
-axiom cot_pi_7_23_bounds :
+theorem cot_pi_7_23_bounds :
   ((cot_pi_7_23_lower : ℚ) : ℝ) ≤ cotangentTermV 7 23 ∧
-  cotangentTermV 7 23 ≤ ((cot_pi_7_23_upper : ℚ) : ℝ)
+  cotangentTermV 7 23 ≤ ((cot_pi_7_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_7_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_7_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_7_23_upper]
 
 def cot_pi_8_23_lower : ℚ := 4667154468953517 / 9007199254740992
 def cot_pi_8_23_upper : ℚ := 4667154468953529 / 9007199254740992
-axiom cot_pi_8_23_bounds :
+theorem cot_pi_8_23_bounds :
   ((cot_pi_8_23_lower : ℚ) : ℝ) ≤ cotangentTermV 8 23 ∧
-  cotangentTermV 8 23 ≤ ((cot_pi_8_23_upper : ℚ) : ℝ)
+  cotangentTermV 8 23 ≤ ((cot_pi_8_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_8_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_8_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_8_23_upper]
 
 def cot_pi_9_23_lower : ℚ := 3201159384166939 / 9007199254740992
 def cot_pi_9_23_upper : ℚ := 800289846041737 / 2251799813685248
-axiom cot_pi_9_23_bounds :
+theorem cot_pi_9_23_bounds :
   ((cot_pi_9_23_lower : ℚ) : ℝ) ≤ cotangentTermV 9 23 ∧
-  cotangentTermV 9 23 ≤ ((cot_pi_9_23_upper : ℚ) : ℝ)
+  cotangentTermV 9 23 ≤ ((cot_pi_9_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_9_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_9_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_9_23_upper]
 
 def cot_pi_10_23_lower : ℚ := 1871717528857293 / 9007199254740992
 def cot_pi_10_23_upper : ℚ := 3743435057714601 / 18014398509481984
-axiom cot_pi_10_23_bounds :
+theorem cot_pi_10_23_bounds :
   ((cot_pi_10_23_lower : ℚ) : ℝ) ≤ cotangentTermV 10 23 ∧
-  cotangentTermV 10 23 ≤ ((cot_pi_10_23_upper : ℚ) : ℝ)
+  cotangentTermV 10 23 ≤ ((cot_pi_10_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_10_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_10_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_10_23_upper]
 
 def cot_pi_11_23_lower : ℚ := 4928874462402615 / 72057594037927936
 def cot_pi_11_23_upper : ℚ := 4928874462402713 / 72057594037927936
-axiom cot_pi_11_23_bounds :
+theorem cot_pi_11_23_bounds :
   ((cot_pi_11_23_lower : ℚ) : ℝ) ≤ cotangentTermV 11 23 ∧
-  cotangentTermV 11 23 ≤ ((cot_pi_11_23_upper : ℚ) : ℝ)
+  cotangentTermV 11 23 ≤ ((cot_pi_11_23_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_11_23_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_11_23_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_11_23_upper]
 
-def cot_pi_12_23_lower : ℚ := -2464437231201333 / 36028797018963968
-def cot_pi_12_23_upper : ℚ := -1232218615600653 / 18014398509481984
-axiom cot_pi_12_23_bounds :
+def cot_pi_12_23_lower : ℚ := - cot_pi_11_23_upper
+def cot_pi_12_23_upper : ℚ := - cot_pi_11_23_lower
+theorem cot_pi_12_23_bounds :
   ((cot_pi_12_23_lower : ℚ) : ℝ) ≤ cotangentTermV 12 23 ∧
-  cotangentTermV 12 23 ≤ ((cot_pi_12_23_upper : ℚ) : ℝ)
+  cotangentTermV 12 23 ≤ ((cot_pi_12_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 12 23 = - cotangentTermV 11 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_11_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_12_23_lower, cot_pi_11_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_12_23_upper, cot_pi_11_23_lower]
 
-def cot_pi_13_23_lower : ℚ := -3743435057714597 / 18014398509481984
-def cot_pi_13_23_upper : ℚ := -3743435057714569 / 18014398509481984
-axiom cot_pi_13_23_bounds :
+def cot_pi_13_23_lower : ℚ := - cot_pi_10_23_upper
+def cot_pi_13_23_upper : ℚ := - cot_pi_10_23_lower
+theorem cot_pi_13_23_bounds :
   ((cot_pi_13_23_lower : ℚ) : ℝ) ≤ cotangentTermV 13 23 ∧
-  cotangentTermV 13 23 ≤ ((cot_pi_13_23_upper : ℚ) : ℝ)
+  cotangentTermV 13 23 ≤ ((cot_pi_13_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 13 23 = - cotangentTermV 10 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_10_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_13_23_lower, cot_pi_10_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_13_23_upper, cot_pi_10_23_lower]
 
-def cot_pi_14_23_lower : ℚ := -6402318768333891 / 18014398509481984
-def cot_pi_14_23_upper : ℚ := -6402318768333871 / 18014398509481984
-axiom cot_pi_14_23_bounds :
+def cot_pi_14_23_lower : ℚ := - cot_pi_9_23_upper
+def cot_pi_14_23_upper : ℚ := - cot_pi_9_23_lower
+theorem cot_pi_14_23_bounds :
   ((cot_pi_14_23_lower : ℚ) : ℝ) ≤ cotangentTermV 14 23 ∧
-  cotangentTermV 14 23 ≤ ((cot_pi_14_23_upper : ℚ) : ℝ)
+  cotangentTermV 14 23 ≤ ((cot_pi_14_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 14 23 = - cotangentTermV 9 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_9_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_14_23_lower, cot_pi_9_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_14_23_upper, cot_pi_9_23_lower]
 
-def cot_pi_15_23_lower : ℚ := -4667154468953529 / 9007199254740992
-def cot_pi_15_23_upper : ℚ := -4667154468953503 / 9007199254740992
-axiom cot_pi_15_23_bounds :
+def cot_pi_15_23_lower : ℚ := - cot_pi_8_23_upper
+def cot_pi_15_23_upper : ℚ := - cot_pi_8_23_lower
+theorem cot_pi_15_23_bounds :
   ((cot_pi_15_23_lower : ℚ) : ℝ) ≤ cotangentTermV 15 23 ∧
-  cotangentTermV 15 23 ≤ ((cot_pi_15_23_upper : ℚ) : ℝ)
+  cotangentTermV 15 23 ≤ ((cot_pi_15_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 15 23 = - cotangentTermV 8 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_8_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_15_23_lower, cot_pi_8_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_15_23_upper, cot_pi_8_23_lower]
 
-def cot_pi_16_23_lower : ℚ := -6357975504380605 / 9007199254740992
-def cot_pi_16_23_upper : ℚ := -6357975504380583 / 9007199254740992
-axiom cot_pi_16_23_bounds :
+def cot_pi_16_23_lower : ℚ := - cot_pi_7_23_upper
+def cot_pi_16_23_upper : ℚ := - cot_pi_7_23_lower
+theorem cot_pi_16_23_bounds :
   ((cot_pi_16_23_lower : ℚ) : ℝ) ≤ cotangentTermV 16 23 ∧
-  cotangentTermV 16 23 ≤ ((cot_pi_16_23_upper : ℚ) : ℝ)
+  cotangentTermV 16 23 ≤ ((cot_pi_16_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 16 23 = - cotangentTermV 7 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_7_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_16_23_lower, cot_pi_7_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_16_23_upper, cot_pi_7_23_lower]
 
-def cot_pi_17_23_lower : ℚ := -2103034218147949 / 2251799813685248
-def cot_pi_17_23_upper : ℚ := -4206068436295879 / 4503599627370496
-axiom cot_pi_17_23_bounds :
+def cot_pi_17_23_lower : ℚ := - cot_pi_6_23_upper
+def cot_pi_17_23_upper : ℚ := - cot_pi_6_23_lower
+theorem cot_pi_17_23_bounds :
   ((cot_pi_17_23_lower : ℚ) : ℝ) ≤ cotangentTermV 17 23 ∧
-  cotangentTermV 17 23 ≤ ((cot_pi_17_23_upper : ℚ) : ℝ)
+  cotangentTermV 17 23 ≤ ((cot_pi_17_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 17 23 = - cotangentTermV 6 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_6_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_17_23_lower, cot_pi_6_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_17_23_upper, cot_pi_6_23_lower]
 
-def cot_pi_18_23_lower : ℚ := -2767833794935081 / 2251799813685248
-def cot_pi_18_23_upper : ℚ := -2767833794935071 / 2251799813685248
-axiom cot_pi_18_23_bounds :
+def cot_pi_18_23_lower : ℚ := - cot_pi_5_23_upper
+def cot_pi_18_23_upper : ℚ := - cot_pi_5_23_lower
+theorem cot_pi_18_23_bounds :
   ((cot_pi_18_23_lower : ℚ) : ℝ) ≤ cotangentTermV 18 23 ∧
-  cotangentTermV 18 23 ≤ ((cot_pi_18_23_upper : ℚ) : ℝ)
+  cotangentTermV 18 23 ≤ ((cot_pi_18_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 18 23 = - cotangentTermV 5 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_5_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_18_23_lower, cot_pi_5_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_18_23_upper, cot_pi_5_23_lower]
 
-def cot_pi_19_23_lower : ℚ := -925731758956199 / 562949953421312
-def cot_pi_19_23_upper : ℚ := -3702927035824777 / 2251799813685248
-axiom cot_pi_19_23_bounds :
+def cot_pi_19_23_lower : ℚ := - cot_pi_4_23_upper
+def cot_pi_19_23_upper : ℚ := - cot_pi_4_23_lower
+theorem cot_pi_19_23_bounds :
   ((cot_pi_19_23_lower : ℚ) : ℝ) ≤ cotangentTermV 19 23 ∧
-  cotangentTermV 19 23 ≤ ((cot_pi_19_23_upper : ℚ) : ℝ)
+  cotangentTermV 19 23 ≤ ((cot_pi_19_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 19 23 = - cotangentTermV 4 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_4_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_19_23_lower, cot_pi_4_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_19_23_upper, cot_pi_4_23_lower]
 
-def cot_pi_20_23_lower : ℚ := -5184163122237177 / 2251799813685248
-def cot_pi_20_23_upper : ℚ := -5184163122237153 / 2251799813685248
-axiom cot_pi_20_23_bounds :
+def cot_pi_20_23_lower : ℚ := - cot_pi_3_23_upper
+def cot_pi_20_23_upper : ℚ := - cot_pi_3_23_lower
+theorem cot_pi_20_23_bounds :
   ((cot_pi_20_23_lower : ℚ) : ℝ) ≤ cotangentTermV 20 23 ∧
-  cotangentTermV 20 23 ≤ ((cot_pi_20_23_upper : ℚ) : ℝ)
+  cotangentTermV 20 23 ≤ ((cot_pi_20_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 20 23 = - cotangentTermV 3 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_3_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_20_23_lower, cot_pi_3_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_20_23_upper, cot_pi_3_23_lower]
 
-def cot_pi_21_23_lower : ℚ := -8036778790736949 / 2251799813685248
-def cot_pi_21_23_upper : ℚ := -8036778790736863 / 2251799813685248
-axiom cot_pi_21_23_bounds :
+def cot_pi_21_23_lower : ℚ := - cot_pi_2_23_upper
+def cot_pi_21_23_upper : ℚ := - cot_pi_2_23_lower
+theorem cot_pi_21_23_bounds :
   ((cot_pi_21_23_lower : ℚ) : ℝ) ≤ cotangentTermV 21 23 ∧
-  cotangentTermV 21 23 ≤ ((cot_pi_21_23_upper : ℚ) : ℝ)
+  cotangentTermV 21 23 ≤ ((cot_pi_21_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 21 23 = - cotangentTermV 2 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_2_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_21_23_lower, cot_pi_2_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_21_23_upper, cot_pi_2_23_lower]
 
-def cot_pi_22_23_lower : ℚ := -8191530170976021 / 1125899906842624
-def cot_pi_22_23_upper : ℚ := -8191530170975857 / 1125899906842624
-axiom cot_pi_22_23_bounds :
+def cot_pi_22_23_lower : ℚ := - cot_pi_1_23_upper
+def cot_pi_22_23_upper : ℚ := - cot_pi_1_23_lower
+theorem cot_pi_22_23_bounds :
   ((cot_pi_22_23_lower : ℚ) : ℝ) ≤ cotangentTermV 22 23 ∧
-  cotangentTermV 22 23 ≤ ((cot_pi_22_23_upper : ℚ) : ℝ)
+  cotangentTermV 22 23 ≤ ((cot_pi_22_23_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 22 23 = - cotangentTermV 1 23 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_1_23_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_22_23_lower, cot_pi_1_23_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_22_23_upper, cot_pi_1_23_lower]
 
 def cot_pi_1_24_lower : ℚ := 8552058847916719 / 1125899906842624
 def cot_pi_1_24_upper : ℚ := 8552058847916731 / 1125899906842624
-axiom cot_pi_1_24_bounds :
+theorem cot_pi_1_24_bounds :
   ((cot_pi_1_24_lower : ℚ) : ℝ) ≤ cotangentTermV 1 24 ∧
-  cotangentTermV 1 24 ≤ ((cot_pi_1_24_upper : ℚ) : ℝ)
+  cotangentTermV 1 24 ≤ ((cot_pi_1_24_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_1_24_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_1_24_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_1_24_upper]
 
-def cot_pi_2_24_lower : ℚ := 8403831313147473 / 2251799813685248
-def cot_pi_2_24_upper : ℚ := 8403831313147485 / 2251799813685248
-axiom cot_pi_2_24_bounds :
+def cot_pi_2_24_lower : ℚ := cot_pi_1_12_lower
+def cot_pi_2_24_upper : ℚ := cot_pi_1_12_upper
+theorem cot_pi_2_24_bounds :
   ((cot_pi_2_24_lower : ℚ) : ℝ) ≤ cotangentTermV 2 24 ∧
-  cotangentTermV 2 24 ≤ ((cot_pi_2_24_upper : ℚ) : ℝ)
+  cotangentTermV 2 24 ≤ ((cot_pi_2_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 2 24 = cotangentTermV 1 12 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_12_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_2_24_lower, cot_pi_1_12_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_2_24_upper, cot_pi_1_12_upper]
 
-def cot_pi_3_24_lower : ℚ := 5436325649948131 / 2251799813685248
-def cot_pi_3_24_upper : ℚ := 5436325649948137 / 2251799813685248
-axiom cot_pi_3_24_bounds :
+def cot_pi_3_24_lower : ℚ := cot_pi_1_8_lower
+def cot_pi_3_24_upper : ℚ := cot_pi_1_8_upper
+theorem cot_pi_3_24_bounds :
   ((cot_pi_3_24_lower : ℚ) : ℝ) ≤ cotangentTermV 3 24 ∧
-  cotangentTermV 3 24 ≤ ((cot_pi_3_24_upper : ℚ) : ℝ)
+  cotangentTermV 3 24 ≤ ((cot_pi_3_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 3 24 = cotangentTermV 1 8 :=
+    cotangentTermV_gcd_reduce (g := 3) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_8_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_3_24_lower, cot_pi_1_8_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_3_24_upper, cot_pi_1_8_upper]
 
-def cot_pi_4_24_lower : ℚ := 1950115842888489 / 1125899906842624
-def cot_pi_4_24_upper : ℚ := 487528960722123 / 281474976710656
-axiom cot_pi_4_24_bounds :
+def cot_pi_4_24_lower : ℚ := cot_pi_1_6_lower
+def cot_pi_4_24_upper : ℚ := cot_pi_1_6_upper
+theorem cot_pi_4_24_bounds :
   ((cot_pi_4_24_lower : ℚ) : ℝ) ≤ cotangentTermV 4 24 ∧
-  cotangentTermV 4 24 ≤ ((cot_pi_4_24_upper : ℚ) : ℝ)
+  cotangentTermV 4 24 ≤ ((cot_pi_4_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 4 24 = cotangentTermV 1 6 :=
+    cotangentTermV_gcd_reduce (g := 4) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_6_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_4_24_lower, cot_pi_1_6_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_4_24_upper, cot_pi_1_6_upper]
 
 def cot_pi_5_24_lower : ℚ := 5869205303507425 / 4503599627370496
 def cot_pi_5_24_upper : ℚ := 5869205303507435 / 4503599627370496
-axiom cot_pi_5_24_bounds :
+theorem cot_pi_5_24_bounds :
   ((cot_pi_5_24_lower : ℚ) : ℝ) ≤ cotangentTermV 5 24 ∧
-  cotangentTermV 5 24 ≤ ((cot_pi_5_24_upper : ℚ) : ℝ)
+  cotangentTermV 5 24 ≤ ((cot_pi_5_24_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_5_24_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_5_24_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_5_24_upper]
 
-def cot_pi_6_24_lower : ℚ := 2251799813685247 / 2251799813685248
-def cot_pi_6_24_upper : ℚ := 2251799813685249 / 2251799813685248
-axiom cot_pi_6_24_bounds :
+def cot_pi_6_24_lower : ℚ := cot_pi_1_4_lower
+def cot_pi_6_24_upper : ℚ := cot_pi_1_4_upper
+theorem cot_pi_6_24_bounds :
   ((cot_pi_6_24_lower : ℚ) : ℝ) ≤ cotangentTermV 6 24 ∧
-  cotangentTermV 6 24 ≤ ((cot_pi_6_24_upper : ℚ) : ℝ)
+  cotangentTermV 6 24 ≤ ((cot_pi_6_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 6 24 = cotangentTermV 1 4 :=
+    cotangentTermV_gcd_reduce (g := 6) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_4_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_6_24_lower, cot_pi_1_4_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_6_24_upper, cot_pi_1_4_upper]
 
 def cot_pi_7_24_lower : ℚ := 431966692141671 / 562949953421312
 def cot_pi_7_24_upper : ℚ := 1727866768566687 / 2251799813685248
-axiom cot_pi_7_24_bounds :
+theorem cot_pi_7_24_bounds :
   ((cot_pi_7_24_lower : ℚ) : ℝ) ≤ cotangentTermV 7 24 ∧
-  cotangentTermV 7 24 ≤ ((cot_pi_7_24_upper : ℚ) : ℝ)
+  cotangentTermV 7 24 ≤ ((cot_pi_7_24_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_7_24_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_7_24_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_7_24_upper]
 
-def cot_pi_8_24_lower : ℚ := 5200308914369303 / 9007199254740992
-def cot_pi_8_24_upper : ℚ := 5200308914369315 / 9007199254740992
-axiom cot_pi_8_24_bounds :
+def cot_pi_8_24_lower : ℚ := cot_pi_1_3_lower
+def cot_pi_8_24_upper : ℚ := cot_pi_1_3_upper
+theorem cot_pi_8_24_bounds :
   ((cot_pi_8_24_lower : ℚ) : ℝ) ≤ cotangentTermV 8 24 ∧
-  cotangentTermV 8 24 ≤ ((cot_pi_8_24_upper : ℚ) : ℝ)
+  cotangentTermV 8 24 ≤ ((cot_pi_8_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 8 24 = cotangentTermV 1 3 :=
+    cotangentTermV_gcd_reduce (g := 8) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_3_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_8_24_lower, cot_pi_1_3_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_8_24_upper, cot_pi_1_3_upper]
 
-def cot_pi_9_24_lower : ℚ := 7461808180621101 / 18014398509481984
-def cot_pi_9_24_upper : ℚ := 7461808180621111 / 18014398509481984
-axiom cot_pi_9_24_bounds :
+def cot_pi_9_24_lower : ℚ := cot_pi_3_8_lower
+def cot_pi_9_24_upper : ℚ := cot_pi_3_8_upper
+theorem cot_pi_9_24_bounds :
   ((cot_pi_9_24_lower : ℚ) : ℝ) ≤ cotangentTermV 9 24 ∧
-  cotangentTermV 9 24 ≤ ((cot_pi_9_24_upper : ℚ) : ℝ)
+  cotangentTermV 9 24 ≤ ((cot_pi_9_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 9 24 = cotangentTermV 3 8 :=
+    cotangentTermV_gcd_reduce (g := 3) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_3_8_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_9_24_lower, cot_pi_3_8_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_9_24_upper, cot_pi_3_8_upper]
 
-def cot_pi_10_24_lower : ℚ := 301683970796757 / 1125899906842624
-def cot_pi_10_24_upper : ℚ := 2413471766374065 / 9007199254740992
-axiom cot_pi_10_24_bounds :
+def cot_pi_10_24_lower : ℚ := cot_pi_5_12_lower
+def cot_pi_10_24_upper : ℚ := cot_pi_5_12_upper
+theorem cot_pi_10_24_bounds :
   ((cot_pi_10_24_lower : ℚ) : ℝ) ≤ cotangentTermV 10 24 ∧
-  cotangentTermV 10 24 ≤ ((cot_pi_10_24_upper : ℚ) : ℝ)
+  cotangentTermV 10 24 ≤ ((cot_pi_10_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 10 24 = cotangentTermV 5 12 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_5_12_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_10_24_lower, cot_pi_5_12_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_10_24_upper, cot_pi_5_12_upper]
 
 def cot_pi_11_24_lower : ℚ := 1185820278153979 / 9007199254740992
 def cot_pi_11_24_upper : ℚ := 2371640556307983 / 18014398509481984
-axiom cot_pi_11_24_bounds :
+theorem cot_pi_11_24_bounds :
   ((cot_pi_11_24_lower : ℚ) : ℝ) ≤ cotangentTermV 11 24 ∧
-  cotangentTermV 11 24 ≤ ((cot_pi_11_24_upper : ℚ) : ℝ)
+  cotangentTermV 11 24 ≤ ((cot_pi_11_24_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_11_24_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_11_24_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_11_24_upper]
 
-def cot_pi_12_24_lower : ℚ := -488112137 / 9671406556917033397649408
-def cot_pi_12_24_upper : ℚ := 1671954447 / 9671406556917033397649408
-axiom cot_pi_12_24_bounds :
+def cot_pi_12_24_lower : ℚ := cot_pi_1_2_lower
+def cot_pi_12_24_upper : ℚ := cot_pi_1_2_upper
+theorem cot_pi_12_24_bounds :
   ((cot_pi_12_24_lower : ℚ) : ℝ) ≤ cotangentTermV 12 24 ∧
-  cotangentTermV 12 24 ≤ ((cot_pi_12_24_upper : ℚ) : ℝ)
+  cotangentTermV 12 24 ≤ ((cot_pi_12_24_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 12 24 = cotangentTermV 1 2 :=
+    cotangentTermV_gcd_reduce (g := 12) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_2_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_12_24_lower, cot_pi_1_2_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_12_24_upper, cot_pi_1_2_upper]
 
-def cot_pi_13_24_lower : ℚ := -2371640556307969 / 18014398509481984
-def cot_pi_13_24_upper : ℚ := -2371640556307951 / 18014398509481984
-axiom cot_pi_13_24_bounds :
+def cot_pi_13_24_lower : ℚ := - cot_pi_11_24_upper
+def cot_pi_13_24_upper : ℚ := - cot_pi_11_24_lower
+theorem cot_pi_13_24_bounds :
   ((cot_pi_13_24_lower : ℚ) : ℝ) ≤ cotangentTermV 13 24 ∧
-  cotangentTermV 13 24 ≤ ((cot_pi_13_24_upper : ℚ) : ℝ)
+  cotangentTermV 13 24 ≤ ((cot_pi_13_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 13 24 = - cotangentTermV 11 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_11_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_13_24_lower, cot_pi_11_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_13_24_upper, cot_pi_11_24_lower]
 
-def cot_pi_14_24_lower : ℚ := -4826943532748123 / 18014398509481984
-def cot_pi_14_24_upper : ℚ := -4826943532748105 / 18014398509481984
-axiom cot_pi_14_24_bounds :
+def cot_pi_14_24_lower : ℚ := - cot_pi_10_24_upper
+def cot_pi_14_24_upper : ℚ := - cot_pi_10_24_lower
+theorem cot_pi_14_24_bounds :
   ((cot_pi_14_24_lower : ℚ) : ℝ) ≤ cotangentTermV 14 24 ∧
-  cotangentTermV 14 24 ≤ ((cot_pi_14_24_upper : ℚ) : ℝ)
+  cotangentTermV 14 24 ≤ ((cot_pi_14_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 14 24 = - cotangentTermV 10 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_10_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_14_24_lower, cot_pi_10_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_14_24_upper, cot_pi_10_24_lower]
 
-def cot_pi_15_24_lower : ℚ := -1865452045155279 / 4503599627370496
-def cot_pi_15_24_upper : ℚ := -3730904090310541 / 9007199254740992
-axiom cot_pi_15_24_bounds :
+def cot_pi_15_24_lower : ℚ := - cot_pi_9_24_upper
+def cot_pi_15_24_upper : ℚ := - cot_pi_9_24_lower
+theorem cot_pi_15_24_bounds :
   ((cot_pi_15_24_lower : ℚ) : ℝ) ≤ cotangentTermV 15 24 ∧
-  cotangentTermV 15 24 ≤ ((cot_pi_15_24_upper : ℚ) : ℝ)
+  cotangentTermV 15 24 ≤ ((cot_pi_15_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 15 24 = - cotangentTermV 9 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_9_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_15_24_lower, cot_pi_9_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_15_24_upper, cot_pi_9_24_lower]
 
-def cot_pi_16_24_lower : ℚ := -2600154457184657 / 4503599627370496
-def cot_pi_16_24_upper : ℚ := -325019307148081 / 562949953421312
-axiom cot_pi_16_24_bounds :
+def cot_pi_16_24_lower : ℚ := - cot_pi_8_24_upper
+def cot_pi_16_24_upper : ℚ := - cot_pi_8_24_lower
+theorem cot_pi_16_24_bounds :
   ((cot_pi_16_24_lower : ℚ) : ℝ) ≤ cotangentTermV 16 24 ∧
-  cotangentTermV 16 24 ≤ ((cot_pi_16_24_upper : ℚ) : ℝ)
+  cotangentTermV 16 24 ≤ ((cot_pi_16_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 16 24 = - cotangentTermV 8 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_8_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_16_24_lower, cot_pi_8_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_16_24_upper, cot_pi_8_24_lower]
 
-def cot_pi_17_24_lower : ℚ := -53995836517709 / 70368744177664
-def cot_pi_17_24_upper : ℚ := -215983346070835 / 281474976710656
-axiom cot_pi_17_24_bounds :
+def cot_pi_17_24_lower : ℚ := - cot_pi_7_24_upper
+def cot_pi_17_24_upper : ℚ := - cot_pi_7_24_lower
+theorem cot_pi_17_24_bounds :
   ((cot_pi_17_24_lower : ℚ) : ℝ) ≤ cotangentTermV 17 24 ∧
-  cotangentTermV 17 24 ≤ ((cot_pi_17_24_upper : ℚ) : ℝ)
+  cotangentTermV 17 24 ≤ ((cot_pi_17_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 17 24 = - cotangentTermV 7 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_7_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_17_24_lower, cot_pi_7_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_17_24_upper, cot_pi_7_24_lower]
 
-def cot_pi_18_24_lower : ℚ := -2251799813685249 / 2251799813685248
-def cot_pi_18_24_upper : ℚ := -4503599627370491 / 4503599627370496
-axiom cot_pi_18_24_bounds :
+def cot_pi_18_24_lower : ℚ := - cot_pi_6_24_upper
+def cot_pi_18_24_upper : ℚ := - cot_pi_6_24_lower
+theorem cot_pi_18_24_bounds :
   ((cot_pi_18_24_lower : ℚ) : ℝ) ≤ cotangentTermV 18 24 ∧
-  cotangentTermV 18 24 ≤ ((cot_pi_18_24_upper : ℚ) : ℝ)
+  cotangentTermV 18 24 ≤ ((cot_pi_18_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 18 24 = - cotangentTermV 6 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_6_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_18_24_lower, cot_pi_6_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_18_24_upper, cot_pi_6_24_lower]
 
-def cot_pi_19_24_lower : ℚ := -1467301325876859 / 1125899906842624
-def cot_pi_19_24_upper : ℚ := -2934602651753709 / 2251799813685248
-axiom cot_pi_19_24_bounds :
+def cot_pi_19_24_lower : ℚ := - cot_pi_5_24_upper
+def cot_pi_19_24_upper : ℚ := - cot_pi_5_24_lower
+theorem cot_pi_19_24_bounds :
   ((cot_pi_19_24_lower : ℚ) : ℝ) ≤ cotangentTermV 19 24 ∧
-  cotangentTermV 19 24 ≤ ((cot_pi_19_24_upper : ℚ) : ℝ)
+  cotangentTermV 19 24 ≤ ((cot_pi_19_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 19 24 = - cotangentTermV 5 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_5_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_19_24_lower, cot_pi_5_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_19_24_upper, cot_pi_5_24_lower]
 
-def cot_pi_20_24_lower : ℚ := -7800463371553969 / 4503599627370496
-def cot_pi_20_24_upper : ℚ := -7800463371553939 / 4503599627370496
-axiom cot_pi_20_24_bounds :
+def cot_pi_20_24_lower : ℚ := - cot_pi_4_24_upper
+def cot_pi_20_24_upper : ℚ := - cot_pi_4_24_lower
+theorem cot_pi_20_24_bounds :
   ((cot_pi_20_24_lower : ℚ) : ℝ) ≤ cotangentTermV 20 24 ∧
-  cotangentTermV 20 24 ≤ ((cot_pi_20_24_upper : ℚ) : ℝ)
+  cotangentTermV 20 24 ≤ ((cot_pi_20_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 20 24 = - cotangentTermV 4 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_4_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_20_24_lower, cot_pi_4_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_20_24_upper, cot_pi_4_24_lower]
 
-def cot_pi_21_24_lower : ℚ := -5436325649948141 / 2251799813685248
-def cot_pi_21_24_upper : ℚ := -5436325649948111 / 2251799813685248
-axiom cot_pi_21_24_bounds :
+def cot_pi_21_24_lower : ℚ := - cot_pi_3_24_upper
+def cot_pi_21_24_upper : ℚ := - cot_pi_3_24_lower
+theorem cot_pi_21_24_bounds :
   ((cot_pi_21_24_lower : ℚ) : ℝ) ≤ cotangentTermV 21 24 ∧
-  cotangentTermV 21 24 ≤ ((cot_pi_21_24_upper : ℚ) : ℝ)
+  cotangentTermV 21 24 ≤ ((cot_pi_21_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 21 24 = - cotangentTermV 3 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_3_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_21_24_lower, cot_pi_3_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_21_24_upper, cot_pi_3_24_lower]
 
-def cot_pi_22_24_lower : ℚ := -2100957828286875 / 562949953421312
-def cot_pi_22_24_upper : ℚ := -525239457071713 / 140737488355328
-axiom cot_pi_22_24_bounds :
+def cot_pi_22_24_lower : ℚ := - cot_pi_2_24_upper
+def cot_pi_22_24_upper : ℚ := - cot_pi_2_24_lower
+theorem cot_pi_22_24_bounds :
   ((cot_pi_22_24_lower : ℚ) : ℝ) ≤ cotangentTermV 22 24 ∧
-  cotangentTermV 22 24 ≤ ((cot_pi_22_24_upper : ℚ) : ℝ)
+  cotangentTermV 22 24 ≤ ((cot_pi_22_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 22 24 = - cotangentTermV 2 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_2_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_22_24_lower, cot_pi_2_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_22_24_upper, cot_pi_2_24_lower]
 
-def cot_pi_23_24_lower : ℚ := -534503677994799 / 70368744177664
-def cot_pi_23_24_upper : ℚ := -4276029423958305 / 562949953421312
-axiom cot_pi_23_24_bounds :
+def cot_pi_23_24_lower : ℚ := - cot_pi_1_24_upper
+def cot_pi_23_24_upper : ℚ := - cot_pi_1_24_lower
+theorem cot_pi_23_24_bounds :
   ((cot_pi_23_24_lower : ℚ) : ℝ) ≤ cotangentTermV 23 24 ∧
-  cotangentTermV 23 24 ≤ ((cot_pi_23_24_upper : ℚ) : ℝ)
+  cotangentTermV 23 24 ≤ ((cot_pi_23_24_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 23 24 = - cotangentTermV 1 24 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_1_24_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_23_24_lower, cot_pi_1_24_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_23_24_upper, cot_pi_1_24_lower]
 
 def cot_pi_1_25_lower : ℚ := 8912415470506963 / 1125899906842624
 def cot_pi_1_25_upper : ℚ := 8912415470506977 / 1125899906842624
-axiom cot_pi_1_25_bounds :
+theorem cot_pi_1_25_bounds :
   ((cot_pi_1_25_lower : ℚ) : ℝ) ≤ cotangentTermV 1 25 ∧
-  cotangentTermV 1 25 ≤ ((cot_pi_1_25_upper : ℚ) : ℝ)
+  cotangentTermV 1 25 ≤ ((cot_pi_1_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_1_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_1_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_1_25_upper]
 
 def cot_pi_2_25_lower : ℚ := 8770181235083003 / 2251799813685248
 def cot_pi_2_25_upper : ℚ := 8770181235083015 / 2251799813685248
-axiom cot_pi_2_25_bounds :
+theorem cot_pi_2_25_bounds :
   ((cot_pi_2_25_lower : ℚ) : ℝ) ≤ cotangentTermV 2 25 ∧
-  cotangentTermV 2 25 ≤ ((cot_pi_2_25_upper : ℚ) : ℝ)
+  cotangentTermV 2 25 ≤ ((cot_pi_2_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_2_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_2_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_2_25_upper]
 
 def cot_pi_3_25_lower : ℚ := 2843698555860045 / 1125899906842624
 def cot_pi_3_25_upper : ℚ := 2843698555860049 / 1125899906842624
-axiom cot_pi_3_25_bounds :
+theorem cot_pi_3_25_bounds :
   ((cot_pi_3_25_lower : ℚ) : ℝ) ≤ cotangentTermV 3 25 ∧
-  cotangentTermV 3 25 ≤ ((cot_pi_3_25_upper : ℚ) : ℝ)
+  cotangentTermV 3 25 ≤ ((cot_pi_3_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_3_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_3_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_3_25_upper]
 
 def cot_pi_4_25_lower : ℚ := 4096008655322227 / 2251799813685248
 def cot_pi_4_25_upper : ℚ := 4096008655322233 / 2251799813685248
-axiom cot_pi_4_25_bounds :
+theorem cot_pi_4_25_bounds :
   ((cot_pi_4_25_lower : ℚ) : ℝ) ≤ cotangentTermV 4 25 ∧
-  cotangentTermV 4 25 ≤ ((cot_pi_4_25_upper : ℚ) : ℝ)
+  cotangentTermV 4 25 ≤ ((cot_pi_4_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_4_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_4_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_4_25_upper]
 
-def cot_pi_5_25_lower : ℚ := 6198673104153461 / 4503599627370496
-def cot_pi_5_25_upper : ℚ := 6198673104153469 / 4503599627370496
-axiom cot_pi_5_25_bounds :
+def cot_pi_5_25_lower : ℚ := cot_pi_1_5_lower
+def cot_pi_5_25_upper : ℚ := cot_pi_1_5_upper
+theorem cot_pi_5_25_bounds :
   ((cot_pi_5_25_lower : ℚ) : ℝ) ≤ cotangentTermV 5 25 ∧
-  cotangentTermV 5 25 ≤ ((cot_pi_5_25_upper : ℚ) : ℝ)
+  cotangentTermV 5 25 ≤ ((cot_pi_5_25_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 5 25 = cotangentTermV 1 5 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_5_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_5_25_lower, cot_pi_1_5_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_5_25_upper, cot_pi_1_5_upper]
 
 def cot_pi_6_25_lower : ℚ := 2397923247638305 / 2251799813685248
 def cot_pi_6_25_upper : ℚ := 2397923247638309 / 2251799813685248
-axiom cot_pi_6_25_bounds :
+theorem cot_pi_6_25_bounds :
   ((cot_pi_6_25_lower : ℚ) : ℝ) ≤ cotangentTermV 6 25 ∧
-  cotangentTermV 6 25 ≤ ((cot_pi_6_25_upper : ℚ) : ℝ)
+  cotangentTermV 6 25 ≤ ((cot_pi_6_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_6_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_6_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_6_25_upper]
 
 def cot_pi_7_25_lower : ℚ := 7451403255231407 / 9007199254740992
 def cot_pi_7_25_upper : ℚ := 7451403255231419 / 9007199254740992
-axiom cot_pi_7_25_bounds :
+theorem cot_pi_7_25_bounds :
   ((cot_pi_7_25_lower : ℚ) : ℝ) ≤ cotangentTermV 7 25 ∧
-  cotangentTermV 7 25 ≤ ((cot_pi_7_25_upper : ℚ) : ℝ)
+  cotangentTermV 7 25 ≤ ((cot_pi_7_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_7_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_7_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_7_25_upper]
 
 def cot_pi_8_25_lower : ℚ := 714517807985487 / 1125899906842624
 def cot_pi_8_25_upper : ℚ := 2858071231941955 / 4503599627370496
-axiom cot_pi_8_25_bounds :
+theorem cot_pi_8_25_bounds :
   ((cot_pi_8_25_lower : ℚ) : ℝ) ≤ cotangentTermV 8 25 ∧
-  cotangentTermV 8 25 ≤ ((cot_pi_8_25_upper : ℚ) : ℝ)
+  cotangentTermV 8 25 ≤ ((cot_pi_8_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_8_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_8_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_8_25_upper]
 
 def cot_pi_9_25_lower : ℚ := 8476932486085439 / 18014398509481984
 def cot_pi_9_25_upper : ℚ := 8476932486085459 / 18014398509481984
-axiom cot_pi_9_25_bounds :
+theorem cot_pi_9_25_bounds :
   ((cot_pi_9_25_lower : ℚ) : ℝ) ≤ cotangentTermV 9 25 ∧
-  cotangentTermV 9 25 ≤ ((cot_pi_9_25_upper : ℚ) : ℝ)
+  cotangentTermV 9 25 ≤ ((cot_pi_9_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_9_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_9_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_9_25_upper]
 
-def cot_pi_10_25_lower : ℚ := 2926616445759701 / 9007199254740992
-def cot_pi_10_25_upper : ℚ := 1463308222879853 / 4503599627370496
-axiom cot_pi_10_25_bounds :
+def cot_pi_10_25_lower : ℚ := cot_pi_2_5_lower
+def cot_pi_10_25_upper : ℚ := cot_pi_2_5_upper
+theorem cot_pi_10_25_bounds :
   ((cot_pi_10_25_lower : ℚ) : ℝ) ≤ cotangentTermV 10 25 ∧
-  cotangentTermV 10 25 ≤ ((cot_pi_10_25_upper : ℚ) : ℝ)
+  cotangentTermV 10 25 ≤ ((cot_pi_10_25_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 10 25 = cotangentTermV 2 5 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_2_5_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_10_25_lower, cot_pi_2_5_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_10_25_upper, cot_pi_2_5_upper]
 
 def cot_pi_11_25_lower : ℚ := 6872860605029247 / 36028797018963968
 def cot_pi_11_25_upper : ℚ := 6872860605029299 / 36028797018963968
-axiom cot_pi_11_25_bounds :
+theorem cot_pi_11_25_bounds :
   ((cot_pi_11_25_lower : ℚ) : ℝ) ≤ cotangentTermV 11 25 ∧
-  cotangentTermV 11 25 ≤ ((cot_pi_11_25_upper : ℚ) : ℝ)
+  cotangentTermV 11 25 ≤ ((cot_pi_11_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_11_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_11_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_11_25_upper]
 
 def cot_pi_12_25_lower : ℚ := 4533479551994797 / 72057594037927936
 def cot_pi_12_25_upper : ℚ := 4533479551994849 / 72057594037927936
-axiom cot_pi_12_25_bounds :
+theorem cot_pi_12_25_bounds :
   ((cot_pi_12_25_lower : ℚ) : ℝ) ≤ cotangentTermV 12 25 ∧
-  cotangentTermV 12 25 ≤ ((cot_pi_12_25_upper : ℚ) : ℝ)
+  cotangentTermV 12 25 ≤ ((cot_pi_12_25_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_12_25_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_12_25_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_12_25_upper]
 
-def cot_pi_13_25_lower : ℚ := -2266739775997415 / 36028797018963968
-def cot_pi_13_25_upper : ℚ := -2266739775997367 / 36028797018963968
-axiom cot_pi_13_25_bounds :
+def cot_pi_13_25_lower : ℚ := - cot_pi_12_25_upper
+def cot_pi_13_25_upper : ℚ := - cot_pi_12_25_lower
+theorem cot_pi_13_25_bounds :
   ((cot_pi_13_25_lower : ℚ) : ℝ) ≤ cotangentTermV 13 25 ∧
-  cotangentTermV 13 25 ≤ ((cot_pi_13_25_upper : ℚ) : ℝ)
+  cotangentTermV 13 25 ≤ ((cot_pi_13_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 13 25 = - cotangentTermV 12 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_12_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_13_25_lower, cot_pi_12_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_13_25_upper, cot_pi_12_25_lower]
 
-def cot_pi_14_25_lower : ℚ := -6872860605029267 / 36028797018963968
-def cot_pi_14_25_upper : ℚ := -6872860605029235 / 36028797018963968
-axiom cot_pi_14_25_bounds :
+def cot_pi_14_25_lower : ℚ := - cot_pi_11_25_upper
+def cot_pi_14_25_upper : ℚ := - cot_pi_11_25_lower
+theorem cot_pi_14_25_bounds :
   ((cot_pi_14_25_lower : ℚ) : ℝ) ≤ cotangentTermV 14 25 ∧
-  cotangentTermV 14 25 ≤ ((cot_pi_14_25_upper : ℚ) : ℝ)
+  cotangentTermV 14 25 ≤ ((cot_pi_14_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 14 25 = - cotangentTermV 11 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_11_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_14_25_lower, cot_pi_11_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_14_25_upper, cot_pi_11_25_lower]
 
-def cot_pi_15_25_lower : ℚ := -731654111439927 / 2251799813685248
-def cot_pi_15_25_upper : ℚ := -731654111439923 / 2251799813685248
-axiom cot_pi_15_25_bounds :
+def cot_pi_15_25_lower : ℚ := - cot_pi_10_25_upper
+def cot_pi_15_25_upper : ℚ := - cot_pi_10_25_lower
+theorem cot_pi_15_25_bounds :
   ((cot_pi_15_25_lower : ℚ) : ℝ) ≤ cotangentTermV 15 25 ∧
-  cotangentTermV 15 25 ≤ ((cot_pi_15_25_upper : ℚ) : ℝ)
+  cotangentTermV 15 25 ≤ ((cot_pi_15_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 15 25 = - cotangentTermV 10 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_10_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_15_25_lower, cot_pi_10_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_15_25_upper, cot_pi_10_25_lower]
 
-def cot_pi_16_25_lower : ℚ := -8476932486085453 / 18014398509481984
-def cot_pi_16_25_upper : ℚ := -8476932486085421 / 18014398509481984
-axiom cot_pi_16_25_bounds :
+def cot_pi_16_25_lower : ℚ := - cot_pi_9_25_upper
+def cot_pi_16_25_upper : ℚ := - cot_pi_9_25_lower
+theorem cot_pi_16_25_bounds :
   ((cot_pi_16_25_lower : ℚ) : ℝ) ≤ cotangentTermV 16 25 ∧
-  cotangentTermV 16 25 ≤ ((cot_pi_16_25_upper : ℚ) : ℝ)
+  cotangentTermV 16 25 ≤ ((cot_pi_16_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 16 25 = - cotangentTermV 9 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_9_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_16_25_lower, cot_pi_9_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_16_25_upper, cot_pi_9_25_lower]
 
-def cot_pi_17_25_lower : ℚ := -5716142463883907 / 9007199254740992
-def cot_pi_17_25_upper : ℚ := -5716142463883879 / 9007199254740992
-axiom cot_pi_17_25_bounds :
+def cot_pi_17_25_lower : ℚ := - cot_pi_8_25_upper
+def cot_pi_17_25_upper : ℚ := - cot_pi_8_25_lower
+theorem cot_pi_17_25_bounds :
   ((cot_pi_17_25_lower : ℚ) : ℝ) ≤ cotangentTermV 17 25 ∧
-  cotangentTermV 17 25 ≤ ((cot_pi_17_25_upper : ℚ) : ℝ)
+  cotangentTermV 17 25 ≤ ((cot_pi_17_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 17 25 = - cotangentTermV 8 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_8_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_17_25_lower, cot_pi_8_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_17_25_upper, cot_pi_8_25_lower]
 
-def cot_pi_18_25_lower : ℚ := -3725701627615709 / 4503599627370496
-def cot_pi_18_25_upper : ℚ := -232856351725981 / 281474976710656
-axiom cot_pi_18_25_bounds :
+def cot_pi_18_25_lower : ℚ := - cot_pi_7_25_upper
+def cot_pi_18_25_upper : ℚ := - cot_pi_7_25_lower
+theorem cot_pi_18_25_bounds :
   ((cot_pi_18_25_lower : ℚ) : ℝ) ≤ cotangentTermV 18 25 ∧
-  cotangentTermV 18 25 ≤ ((cot_pi_18_25_upper : ℚ) : ℝ)
+  cotangentTermV 18 25 ≤ ((cot_pi_18_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 18 25 = - cotangentTermV 7 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_7_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_18_25_lower, cot_pi_7_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_18_25_upper, cot_pi_7_25_lower]
 
-def cot_pi_19_25_lower : ℚ := -2397923247638311 / 2251799813685248
-def cot_pi_19_25_upper : ℚ := -599480811909575 / 562949953421312
-axiom cot_pi_19_25_bounds :
+def cot_pi_19_25_lower : ℚ := - cot_pi_6_25_upper
+def cot_pi_19_25_upper : ℚ := - cot_pi_6_25_lower
+theorem cot_pi_19_25_bounds :
   ((cot_pi_19_25_lower : ℚ) : ℝ) ≤ cotangentTermV 19 25 ∧
-  cotangentTermV 19 25 ≤ ((cot_pi_19_25_upper : ℚ) : ℝ)
+  cotangentTermV 19 25 ≤ ((cot_pi_19_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 19 25 = - cotangentTermV 6 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_6_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_19_25_lower, cot_pi_6_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_19_25_upper, cot_pi_6_25_lower]
 
-def cot_pi_20_25_lower : ℚ := -6198673104153469 / 4503599627370496
-def cot_pi_20_25_upper : ℚ := -6198673104153459 / 4503599627370496
-axiom cot_pi_20_25_bounds :
+def cot_pi_20_25_lower : ℚ := - cot_pi_5_25_upper
+def cot_pi_20_25_upper : ℚ := - cot_pi_5_25_lower
+theorem cot_pi_20_25_bounds :
   ((cot_pi_20_25_lower : ℚ) : ℝ) ≤ cotangentTermV 20 25 ∧
-  cotangentTermV 20 25 ≤ ((cot_pi_20_25_upper : ℚ) : ℝ)
+  cotangentTermV 20 25 ≤ ((cot_pi_20_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 20 25 = - cotangentTermV 5 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_5_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_20_25_lower, cot_pi_5_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_20_25_upper, cot_pi_5_25_lower]
 
-def cot_pi_21_25_lower : ℚ := -8192017310644469 / 4503599627370496
-def cot_pi_21_25_upper : ℚ := -8192017310644417 / 4503599627370496
-axiom cot_pi_21_25_bounds :
+def cot_pi_21_25_lower : ℚ := - cot_pi_4_25_upper
+def cot_pi_21_25_upper : ℚ := - cot_pi_4_25_lower
+theorem cot_pi_21_25_bounds :
   ((cot_pi_21_25_lower : ℚ) : ℝ) ≤ cotangentTermV 21 25 ∧
-  cotangentTermV 21 25 ≤ ((cot_pi_21_25_upper : ℚ) : ℝ)
+  cotangentTermV 21 25 ≤ ((cot_pi_21_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 21 25 = - cotangentTermV 4 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_4_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_21_25_lower, cot_pi_4_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_21_25_upper, cot_pi_4_25_lower]
 
-def cot_pi_22_25_lower : ℚ := -2843698555860053 / 1125899906842624
-def cot_pi_22_25_upper : ℚ := -1421849277930015 / 562949953421312
-axiom cot_pi_22_25_bounds :
+def cot_pi_22_25_lower : ℚ := - cot_pi_3_25_upper
+def cot_pi_22_25_upper : ℚ := - cot_pi_3_25_lower
+theorem cot_pi_22_25_bounds :
   ((cot_pi_22_25_lower : ℚ) : ℝ) ≤ cotangentTermV 22 25 ∧
-  cotangentTermV 22 25 ≤ ((cot_pi_22_25_upper : ℚ) : ℝ)
+  cotangentTermV 22 25 ≤ ((cot_pi_22_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 22 25 = - cotangentTermV 3 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_3_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_22_25_lower, cot_pi_3_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_22_25_upper, cot_pi_3_25_lower]
 
-def cot_pi_23_25_lower : ℚ := -4385090617541519 / 1125899906842624
-def cot_pi_23_25_upper : ℚ := -4385090617541471 / 1125899906842624
-axiom cot_pi_23_25_bounds :
+def cot_pi_23_25_lower : ℚ := - cot_pi_2_25_upper
+def cot_pi_23_25_upper : ℚ := - cot_pi_2_25_lower
+theorem cot_pi_23_25_bounds :
   ((cot_pi_23_25_lower : ℚ) : ℝ) ≤ cotangentTermV 23 25 ∧
-  cotangentTermV 23 25 ≤ ((cot_pi_23_25_upper : ℚ) : ℝ)
+  cotangentTermV 23 25 ≤ ((cot_pi_23_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 23 25 = - cotangentTermV 2 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_2_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_23_25_lower, cot_pi_2_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_23_25_upper, cot_pi_2_25_lower]
 
-def cot_pi_24_25_lower : ℚ := -4456207735253499 / 562949953421312
-def cot_pi_24_25_upper : ℚ := -4456207735253447 / 562949953421312
-axiom cot_pi_24_25_bounds :
+def cot_pi_24_25_lower : ℚ := - cot_pi_1_25_upper
+def cot_pi_24_25_upper : ℚ := - cot_pi_1_25_lower
+theorem cot_pi_24_25_bounds :
   ((cot_pi_24_25_lower : ℚ) : ℝ) ≤ cotangentTermV 24 25 ∧
-  cotangentTermV 24 25 ≤ ((cot_pi_24_25_upper : ℚ) : ℝ)
+  cotangentTermV 24 25 ≤ ((cot_pi_24_25_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 24 25 = - cotangentTermV 1 25 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_1_25_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_24_25_lower, cot_pi_1_25_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_24_25_upper, cot_pi_1_25_lower]
 
 def cot_pi_1_26_lower : ℚ := 1159077496681229 / 140737488355328
 def cot_pi_1_26_upper : ℚ := 2318154993362461 / 281474976710656
