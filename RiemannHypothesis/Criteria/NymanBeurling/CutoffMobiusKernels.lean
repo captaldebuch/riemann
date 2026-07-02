@@ -149,10 +149,10 @@ theorem chiRhoKernel_eq_explicit
 
 theorem baezDuarteKernel_eq_explicit
     (H_vasyunin : RH.Criteria.NymanBeurling.VasyuninGram.VasyuninBridgeLocalDebts)
-    {h k : ℕ} (_hh : 1 ≤ h) (_hk : 1 ≤ k) :
+    {h k : ℕ} (hh : 1 ≤ h) (hk : 1 ≤ k) :
     baezDuarteKernel h k = explicitBaezDuarteKernel h k := by
   unfold baezDuarteKernel explicitBaezDuarteKernel
-  rw [RH.Criteria.NymanBeurling.VasyuninGram.vasyuninBEntry_correct_of_local_debts H_vasyunin h k]
+  rw [RH.Criteria.NymanBeurling.VasyuninGram.vasyuninBEntry_correct_of_local_debts H_vasyunin h k hh hk]
   rfl
 
 noncomputable def explicitCutoffMobiusEnergyKernel (N : ℕ) : ℝ :=
