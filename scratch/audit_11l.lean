@@ -1,0 +1,4 @@
+import RiemannHypothesis.Criteria.NymanBeurling.CutoffMobiusKernels
+
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.baezDuarteCriterion_of_linear_dirichlet_and_quadratic_interaction_estimates
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.RH_of_linear_dirichlet_and_quadratic_interaction_estimates

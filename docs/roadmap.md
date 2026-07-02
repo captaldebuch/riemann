@@ -1,0 +1,44 @@
+# Riemann Hypothesis Formalization Roadmap
+
+This document outlines the five core mathematical strategies we are pursuing to formally prove the Riemann Hypothesis using Lean 4 and Aristotle, as well as the optimal sequence in which they will be executed.
+
+## 1. Quantum Chaos and Random Matrix Theory (The Hilbert-Pólya Strategy)
+*   **The Intuition:** Physicists have observed that the distribution of Riemann zeros mirrors the energy levels of classically chaotic quantum systems (the Gaussian Unitary Ensemble). Using Random Matrix Theory (RMT), researchers have successfully predicted the moments of the zeta function, matching numbers like 42 and 24,024 exactly. The Berry-Keating approach suggests that quantizing the classical Hamiltonian $H=xp$ could yield a self-adjoint operator whose spectrum corresponds to the zeros.
+*   **The Lean Technical Roadmap:** We will build a **Hilbert-Space Spectral Formalizer** within Lean 4. Because the Berry-Keating Hamiltonian relies on an inverted potential that is notoriously hard to make rigorous, the roadmap involves defining unbounded self-adjoint operators in Lean's `Mathlib.Analysis`. We will employ the **Aristotle API** to automatically translate physicist heuristics (like those found in RMT) into strict measure-theoretic bounds. By integrating SMT solvers (like Z3 or CVC5 via the `callZ3` Lean interface) as external oracles, the system will systematically search for an explicit operator definition that satisfies the commutativity and self-adjointness constraints demanded by Lean’s dependent type theory.
+
+## 2. Noncommutative Geometry and Weil's Quadratic Form
+*   **The Intuition:** Spearheaded by Alain Connes, this 2026 approach connects the zeros of the zeta function to information theory and the extremization of Weil's quadratic form. Connes demonstrated that optimizing this form using only primes less than 13 yields remarkable approximations to the first 50 zeros (up to $10^{-55}$ accuracy), suggesting a path to proving convergence of zeros from finite to infinite Euler products.
+*   **The Lean Technical Roadmap:** We will design a **Cross-Category Trace Compiler**. This Lean pipeline will use the Aristotle system's 200B+ parameter model to ingest Connes' trace formulas and map his noncommutative geometry framework onto Lean's algebraic geometry libraries. To handle the intense numerical precision required for the extremization procedure, we will invoke Lean's `norm_num` and `ring` tactics to generate machine-checked certificates for the local approximations of the zeros. The core roadmap goal is to force Aristotle to formally close the gap between the local finite-prime optimization results and the global infinite Euler product using strict inductive limits, avoiding the "global bookkeeping" traps that AI theorem provers often fail to resolve.
+
+## 3. Positivity Conditions and Integral Operator Traces (Li's Criterion)
+*   **The Intuition:** Li's criterion posits that the Riemann Hypothesis is true if and only if a specific sequence of numbers is always positive. Xian-Jin Li's highly scrutinized attempts to prove this rely on studying the trace of an integral operator on an $L^2$ space of complex-valued functions to establish Weil's positivity condition.
+*   **The Lean Technical Roadmap:** We will invent a **Rigorous Limits and Convergence Engine**. Because proofs in this domain (like those of Li and de Branges) historically fail due to delicate, unjustified assumptions about the absolute convergence of infinite sums and integrals, this Lean module will act as a strict gatekeeper. We will formalize $L^2$ functional spaces and integral operator traces in Lean. Whenever an AI or human attempts to swap an integral and a limit, or assert the positivity of a trace, Lean's type-checker will reject the step unless an explicit sequence of `rw` (rewrite) tactics strictly bounding the error terms is provided. We will use the Aristotle API's MCGS (Monte Carlo Graph Search) to actively search for mathematical counterexamples to the proposed asymptotic bounds.
+
+## 4. Equivalent Analytic Bounds (The De Bruijn-Newman Constant & Farey Sequences)
+*   **The Intuition:** The Riemann Hypothesis is mathematically equivalent to several rigid bounds, such as proving that the De Bruijn-Newman constant $\Lambda \le 0$ (currently bounded to $\Lambda \le 0.2$, with $0$ proven as the lower bound by Rodgers and Tao), or establishing specific bounds on the distribution of Farey sequences (by Franel and Landau) and the Mertens function.
+*   **The Lean Technical Roadmap:** We will implement a **Bounded Combinatorial Saturation Pipeline**. By mapping properties of Farey sequences and Mertens calculations into finite, bounded logic, we can leverage Lean's structural recursion over lists. The roadmap involves utilizing the Tseitin transformation to convert bounded number-theoretic constraints into Conjunctive Normal Form (CNF). We will then use Lean's native interfaces to First-Order Theorem Provers (like Vampire) and SAT solvers (like CaDiCaL) to exhaustively verify the bounds on the De Bruijn-Newman parameter space. If the solver finds a resolution refutation, Lean will import the proof trace and certify that the bounds cannot be violated, pushing the $\Lambda$ upper bound strictly to zero.
+
+## 5. 1-Dimensional Quasicrystals
+*   **The Intuition:** Freeman Dyson suggested that because the zeros of the zeta function form a distribution whose Fourier transform also has discrete support, they structurally behave like a 1-dimensional quasicrystal. Classifying these quasicrystals could provide a backdoor proof to the hypothesis.
+*   **The Lean Technical Roadmap:** We will create a **Fourier-Lattice Rewrite System**. Drawing inspiration from the Lean formalization of the "Wolfram Axiom" using equational logic and rewriting rules, we will encode the algebraic and topological constraints of 1D quasicrystals into Lean. The roadmap will utilize Lean's dependent types to define the discrete support of these distributions. We will then deploy automated lemma-generation via Aristotle to propose equivalence relations between known quasicrystal lattices and the distribution of prime gaps. By applying recursive `rewrite` tactics to the Fourier transforms of these lattices, Lean will mechanically verify whether the quasicrystal symmetries perfectly restrict the zeros to the critical line.
+
+---
+
+## Optimal Sequence of Proofs
+
+Based on our existing scaffolding and previous success with the Nyman-Beurling approximation and finite certificates, the optimal and most pragmatic sequence to approach the solution is:
+
+### 1. Scale the Positivity Conditions (Strategies 3 & 2)
+We already have the certificate pipeline for Li's Criterion / Nyman-Beurling. We must upgrade our Python pipeline to perform exact rational $LDL^T$ or Cholesky decomposition. Python will emit these rational matrices as exact witnesses (`RationalPSDWitness`), which Lean will algebraically verify using `norm_num` and `ring_nf`. This allows us to push finite approximations to extremely large $N$ with absolute formal certainty.
+
+### 2. Close the Infinite Convergence Gap (Strategies 2 & 3)
+Once we have massive finite certificates, we will build the **Cross-Category Trace Compiler** and the **Rigorous Limits and Convergence Engine**. Aristotle will mechanically search for the exact convergence bounds required to take the limit $N \to \infty$. By linking Weil's Quadratic Form and Connes' Trace Formula, we will formally prove that the local finite-prime optimization results map to the global infinite product.
+
+### 3. Bounded Combinatorial Saturation (Strategy 4)
+If the analytic limits in Step 2 encounter insurmountable bounds, we pivot to bounding the De Bruijn-Newman constant $\Lambda$. We map the properties of Farey sequences and Mertens calculations (derived from our finite certificates) into bounded logic. We invoke external SAT solvers (CaDiCaL, Z3) to exhaustively check CNF constraints. If a refutation is found, Lean imports the trace to formally push $\Lambda$ to $0$.
+
+### 4. Spectral Formalization & Quantum Chaos (Strategy 1)
+With the analytic bounds tightly constrained by Steps 1-3, we implement the **Hilbert-Space Spectral Formalizer**. We use the data gathered to constrain the properties of the elusive Berry-Keating self-adjoint operator $H=xp$. By combining Aristotle with Z3, Lean will systematically search for and verify an explicit operator definition whose spectrum matches the zeta zeros.
+
+### 5. Mechanical Lattice Symmetry (Strategy 5)
+To complete the global distribution proof, we construct the **Fourier-Lattice Rewrite System**. We encode 1D Quasicrystals and the Wolfram Axiom equational logic into Lean. Aristotle will generate equivalence relations between the quasicrystal lattices and the prime gaps, recursively rewriting the Fourier transforms to perfectly restrict all zeros to the critical line.

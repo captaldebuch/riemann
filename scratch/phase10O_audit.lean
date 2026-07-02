@@ -1,0 +1,12 @@
+import RiemannHypothesis.Criteria.NymanBeurling.Generated.VasyuninIntervalsN20
+import RiemannHypothesis.Certificates.Generated.NymanGramN10
+import RiemannHypothesis.Certificates.Generated.NymanGramN20
+import RiemannHypothesis.Certificates.Generated.NymanGramN50
+
+#print axioms RH.Criteria.NymanBeurling.VasyuninGram.vasyuninBEntry_12_eval
+#print axioms RH.Criteria.NymanBeurling.VasyuninGram.vasyuninBEntry_23_eval
+#print axioms RH.Criteria.NymanBeurling.VasyuninGram.vasyuninBEntry_37_eval
+
+#print axioms RH.Certificates.Generated.NymanGramN10.baezDuarteDistance_N10_bound
+#print axioms RH.Certificates.Generated.NymanGramN20.baezDuarteDistance_N20_bound
+#print axioms RH.Certificates.Generated.NymanGramN50.baezDuarteDistance_N50_bound

@@ -1,0 +1,5 @@
+import RiemannHypothesis.Criteria.NymanBeurling.AsymptoticEnergy
+
+#print axioms RH.Criteria.NymanBeurling.AsymptoticEnergy.BaezDuarteDistance_le_coefficientEnergy
+#print axioms RH.Criteria.NymanBeurling.AsymptoticEnergy.baezDuarteCriterion_of_log_controlled_coefficients
+#print axioms RH.Criteria.NymanBeurling.AsymptoticEnergy.baezDuarteCriterion_of_explicit_log_coefficient_theorem

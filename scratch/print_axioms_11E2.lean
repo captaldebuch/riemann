@@ -1,0 +1,5 @@
+import RiemannHypothesis.Criteria.NymanBeurling.CoefficientFamilies
+
+#print axioms RH.Criteria.NymanBeurling.CoefficientFamilies.distance_le_cutoffMobius_energy
+#print axioms RH.Criteria.NymanBeurling.CoefficientFamilies.cutoffMobiusCoefficientEnergy_eq_sum
+#print axioms RH.Criteria.NymanBeurling.CoefficientFamilies.baezDuarteCriterion_of_cutoffMobius_log_energy

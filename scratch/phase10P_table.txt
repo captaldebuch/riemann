@@ -1,0 +1,23 @@
+h k | gcd | type | current fallback | target transparent
+------------------------------------------------------------
+1 21 | gcd=1 | primitive | numeric_trust_1_21 | vasyuninBEntry_121_formula_bound
+2 21 | gcd=1 | primitive | numeric_trust_2_21 | vasyuninBEntry_221_formula_bound
+3 21 | gcd=3 | reducible | numeric_trust_3_21 | vasyuninBEntry_17_formula_bound
+4 21 | gcd=1 | primitive | numeric_trust_4_21 | vasyuninBEntry_421_formula_bound
+5 21 | gcd=1 | primitive | numeric_trust_5_21 | vasyuninBEntry_521_formula_bound
+6 21 | gcd=3 | reducible | numeric_trust_6_21 | vasyuninBEntry_27_formula_bound
+7 21 | gcd=7 | reducible | numeric_trust_7_21 | vasyuninBEntry_13_formula_bound
+8 21 | gcd=1 | primitive | numeric_trust_8_21 | vasyuninBEntry_821_formula_bound
+9 21 | gcd=3 | reducible | numeric_trust_9_21 | vasyuninBEntry_37_formula_bound
+10 21 | gcd=1 | primitive | numeric_trust_10_21 | vasyuninBEntry_1021_formula_bound
+11 21 | gcd=1 | primitive | numeric_trust_11_21 | vasyuninBEntry_1121_formula_bound
+12 21 | gcd=3 | reducible | numeric_trust_12_21 | vasyuninBEntry_47_formula_bound
+13 21 | gcd=1 | primitive | numeric_trust_13_21 | vasyuninBEntry_1321_formula_bound
+14 21 | gcd=7 | reducible | numeric_trust_14_21 | vasyuninBEntry_23_formula_bound
+15 21 | gcd=3 | reducible | numeric_trust_15_21 | vasyuninBEntry_57_formula_bound
+16 21 | gcd=1 | primitive | numeric_trust_16_21 | vasyuninBEntry_1621_formula_bound
+17 21 | gcd=1 | primitive | numeric_trust_17_21 | vasyuninBEntry_1721_formula_bound
+18 21 | gcd=3 | reducible | numeric_trust_18_21 | vasyuninBEntry_67_formula_bound
+19 21 | gcd=1 | primitive | numeric_trust_19_21 | vasyuninBEntry_1921_formula_bound
+20 21 | gcd=1 | primitive | numeric_trust_20_21 | vasyuninBEntry_2021_formula_bound
+... (and so on)

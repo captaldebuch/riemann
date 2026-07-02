@@ -1,0 +1,8 @@
+import RiemannHypothesis.Criteria.NymanBeurling.CutoffMobiusKernels
+
+open RH.Criteria.NymanBeurling.CutoffMobiusKernels
+
+#print axioms chiRhoKernel_eq_explicit
+#print axioms baezDuarteKernel_eq_explicit
+#print axioms cutoffMobiusEnergyKernel_eq_explicit
+#print axioms cutoffMobius_kernel_estimate_of_explicit

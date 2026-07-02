@@ -1,0 +1,5 @@
+import RiemannHypothesis.Criteria.NymanBeurling.CoefficientFamilies
+
+#print axioms RH.Criteria.NymanBeurling.CoefficientFamilies.distance_le_mobius_energy
+#print axioms RH.Criteria.NymanBeurling.CoefficientFamilies.mobiusCoefficientEnergy_eq_sum
+#print axioms RH.Criteria.NymanBeurling.CoefficientFamilies.baezDuarteCriterion_of_mobius_log_energy

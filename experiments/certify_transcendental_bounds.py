@@ -1,0 +1,235 @@
+import json
+import datetime
+import hashlib
+import os
+from fractions import Fraction
+
+try:
+    import flint
+    HAS_FLINT = True
+except ImportError:
+    HAS_FLINT = False
+    import mpmath
+
+# Target bounds we must imply
+TARGET_LOG_LOWER = Fraction(183787, 100000)
+TARGET_LOG_UPPER = Fraction(183788, 100000)
+TARGET_GAMMA_LOWER = Fraction(57721, 100000)
+TARGET_GAMMA_UPPER = Fraction(57722, 100000)
+
+import math
+
+def outward_round_lower(x_arb, denom=10**12):
+    guess_f = float(x_arb.lower())
+    num = math.floor(guess_f * denom)
+    while True:
+        q = flint.fmpq(num, denom)
+        if x_arb >= q:
+            return Fraction(num, denom)
+        num -= 1
+
+def outward_round_upper(x_arb, denom=10**12):
+    guess_f = float(x_arb.upper())
+    num = math.ceil(guess_f * denom)
+    while True:
+        q = flint.fmpq(num, denom)
+        if x_arb <= q:
+            return Fraction(num, denom)
+        num += 1
+
+def get_flint_bounds():
+    ctx = flint.ctx
+    ctx.prec = 128
+    
+    # log(2pi)
+    two_pi = flint.arb.pi() * 2
+    log_2pi = two_pi.log()
+    log_lower = outward_round_lower(log_2pi)
+    log_upper = outward_round_upper(log_2pi)
+    
+    # gamma
+    gamma = flint.arb.const_euler()
+    gamma_lower = outward_round_lower(gamma)
+    gamma_upper = outward_round_upper(gamma)
+    
+    # Arb rigorous assertions
+    assert log_lower <= log_upper
+    assert log_2pi >= flint.fmpq(log_lower.numerator, log_lower.denominator)
+    assert log_2pi <= flint.fmpq(log_upper.numerator, log_upper.denominator)
+    
+    assert gamma_lower <= gamma_upper
+    assert gamma >= flint.fmpq(gamma_lower.numerator, gamma_lower.denominator)
+    assert gamma <= flint.fmpq(gamma_upper.numerator, gamma_upper.denominator)
+    
+    return {
+        "backend": "python-flint (arb)",
+        "certified": True,
+        "log_2pi": (log_lower, log_upper),
+        "gamma": (gamma_lower, gamma_upper)
+    }
+
+def get_mpmath_bounds():
+    mpmath.mp.dps = 50
+    # compute log(2pi)
+    log_2pi = mpmath.log(2 * mpmath.pi)
+    # create artificial interval
+    eps = mpmath.mpf('1e-10')
+    log_lower = Fraction(str(log_2pi - eps))
+    log_upper = Fraction(str(log_2pi + eps))
+    
+    # gamma
+    gamma = mpmath.euler
+    gamma_lower = Fraction(str(gamma - eps))
+    gamma_upper = Fraction(str(gamma + eps))
+    
+    return {
+        "backend": "mpmath",
+        "certified": False,
+        "log_2pi": (log_lower, log_upper),
+        "gamma": (gamma_lower, gamma_upper)
+    }
+
+def audit_bounds(name, lower, upper, target_lower, target_upper):
+    assert lower <= upper, f"{name}: lower {lower} > upper {upper}"
+    assert target_lower <= lower, f"{name}: generated lower bound {lower} is too small to imply target {target_lower}"
+    assert upper <= target_upper, f"{name}: generated upper bound {upper} is too large to imply target {target_upper}"
+    # check that the bounds are not excessively wide
+    assert upper - lower < Fraction(1, 1000), f"{name}: generated bounds are too wide"
+
+def generate():
+    if HAS_FLINT:
+        print("Using certified python-flint (Arb) backend")
+        data = get_flint_bounds()
+    else:
+        print("WARNING: python-flint not found. Using uncertified mpmath backend.")
+        data = get_mpmath_bounds()
+        
+    log_lower, log_upper = data["log_2pi"]
+    gamma_lower, gamma_upper = data["gamma"]
+    
+    audit_bounds("log(2pi)", log_lower, log_upper, TARGET_LOG_LOWER, TARGET_LOG_UPPER)
+    audit_bounds("gamma", gamma_lower, gamma_upper, TARGET_GAMMA_LOWER, TARGET_GAMMA_UPPER)
+    
+    json_data = {
+        "backend": data["backend"],
+        "certified": data["certified"],
+        "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+        "constants": [
+            {
+                "name": "log_two_pi",
+                "expression": "Real.log (2 * Real.pi)",
+                "lower": [log_lower.numerator, log_lower.denominator],
+                "upper": [log_upper.numerator, log_upper.denominator]
+            },
+            {
+                "name": "euler_gamma",
+                "expression": "EulerGamma",
+                "lower": [gamma_lower.numerator, gamma_lower.denominator],
+                "upper": [gamma_upper.numerator, gamma_upper.denominator]
+            }
+        ]
+    }
+    
+    json_str = json.dumps(json_data, sort_keys=True)
+    json_hash = hashlib.sha256(json_str.encode('utf-8')).hexdigest()
+    json_data["hash"] = json_hash
+    
+    os.makedirs("RiemannHypothesis/Certificates/Generated", exist_ok=True)
+    
+    with open("RiemannHypothesis/Certificates/Generated/transcendental_bounds.json", "w") as f:
+        json.dump(json_data, f, indent=2)
+        
+    lean_code = f"""import Mathlib
+import Mathlib.NumberTheory.Harmonic.EulerMascheroni
+import RiemannHypothesis.Certificates.IntervalCertificate
+
+namespace RH.Certificates.Generated
+
+open RH.Certificates
+
+-- This file is auto-generated by experiments/certify_transcendental_bounds.py
+-- Backend: {data["backend"]}
+-- Certified: {data["certified"]}
+-- Hash: {json_hash}
+
+"""
+
+    lean_code += f"""
+def log_two_pi_lower : ℚ := {log_lower.numerator} / {log_lower.denominator}
+def log_two_pi_upper : ℚ := {log_upper.numerator} / {log_upper.denominator}
+def euler_gamma_lower : ℚ := {gamma_lower.numerator} / {gamma_lower.denominator}
+def euler_gamma_upper : ℚ := {gamma_upper.numerator} / {gamma_upper.denominator}
+"""
+
+    if HAS_FLINT:
+        lean_code += f"""
+axiom log_two_pi_certified_bounds :
+  ((log_two_pi_lower : ℚ) : ℝ) ≤ Real.log (2 * Real.pi) ∧
+  Real.log (2 * Real.pi) ≤ ((log_two_pi_upper : ℚ) : ℝ)
+
+noncomputable def log_two_pi_interval_external_cert : ExternalRealIntervalCertificate (Real.log (2 * Real.pi)) := {{
+  lower := log_two_pi_lower
+  upper := log_two_pi_upper
+  backend := .arb
+  lower_le_upper := by unfold log_two_pi_lower log_two_pi_upper; norm_num
+  certified_backend := trivial
+  certified := log_two_pi_certified_bounds
+}}
+
+axiom euler_gamma_certified_bounds :
+  ((euler_gamma_lower : ℚ) : ℝ) ≤ Real.eulerMascheroniConstant ∧
+  Real.eulerMascheroniConstant ≤ ((euler_gamma_upper : ℚ) : ℝ)
+
+noncomputable def euler_gamma_interval_external_cert : ExternalRealIntervalCertificate Real.eulerMascheroniConstant := {{
+  lower := euler_gamma_lower
+  upper := euler_gamma_upper
+  backend := .arb
+  lower_le_upper := by unfold euler_gamma_lower euler_gamma_upper; norm_num
+  certified_backend := trivial
+  certified := euler_gamma_certified_bounds
+}}
+"""
+    else:
+        lean_code += f"""
+def TrustedTranscendentalBounds :=
+  (((log_two_pi_lower : ℚ) : ℝ) ≤ Real.log (2 * Real.pi) ∧ Real.log (2 * Real.pi) ≤ ((log_two_pi_upper : ℚ) : ℝ)) ∧
+  (((euler_gamma_lower : ℚ) : ℝ) ≤ Real.eulerMascheroniConstant ∧ Real.eulerMascheroniConstant ≤ ((euler_gamma_upper : ℚ) : ℝ))
+
+axiom trust_mpmath_transcendental_bounds_for_experiment : TrustedTranscendentalBounds
+
+theorem log_two_pi_certified_bounds :
+  ((log_two_pi_lower : ℚ) : ℝ) ≤ Real.log (2 * Real.pi) ∧
+  Real.log (2 * Real.pi) ≤ ((log_two_pi_upper : ℚ) : ℝ) :=
+  trust_mpmath_transcendental_bounds_for_experiment.1
+
+theorem euler_gamma_certified_bounds :
+  ((euler_gamma_lower : ℚ) : ℝ) ≤ Real.eulerMascheroniConstant ∧
+  Real.eulerMascheroniConstant ≤ ((euler_gamma_upper : ℚ) : ℝ) :=
+  trust_mpmath_transcendental_bounds_for_experiment.2
+
+noncomputable def log_two_pi_uncertified_data : UncertifiedRealIntervalData (Real.log (2 * Real.pi)) := {{
+  lower := log_two_pi_lower
+  upper := log_two_pi_upper
+  backend := .mpmathUncertified
+  lower_le_upper := by unfold log_two_pi_lower log_two_pi_upper; norm_num
+}}
+
+noncomputable def euler_gamma_uncertified_data : UncertifiedRealIntervalData Real.eulerMascheroniConstant := {{
+  lower := euler_gamma_lower
+  upper := euler_gamma_upper
+  backend := .mpmathUncertified
+  lower_le_upper := by unfold euler_gamma_lower euler_gamma_upper; norm_num
+}}
+"""
+
+    lean_code += """
+end RH.Certificates.Generated
+"""
+
+    with open("RiemannHypothesis/Certificates/Generated/TranscendentalBoundsGenerated.lean", "w") as f:
+        f.write(lean_code)
+        
+    print("Successfully generated json and lean certificates.")
+
+if __name__ == "__main__":
+    generate()

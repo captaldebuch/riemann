@@ -1,0 +1,5 @@
+import RiemannHypothesis.Criteria.NymanBeurling.CutoffMobiusKernels
+
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.explicitQuadraticCenteredRemainder_eq_interaction_parts
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.quadratic_centered_estimate_of_interaction_estimates
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.centered_split_estimates_of_linear_and_quadratic

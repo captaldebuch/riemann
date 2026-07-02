@@ -1,0 +1,455 @@
+To turn this into **proof discovery**, the goal should not be “ask Aristotle to prove RH directly.” The realistic goal is:
+
+> Build a Lean environment where Aristotle searches for **new intermediate theorems** inside RH-equivalent frameworks, while Lean rejects every false convergence, positivity, spectral, or asymptotic step.
+
+Aristotle is useful because its reported architecture combines Lean proof search, informal lemma decomposition, Monte Carlo Graph Search, and formal feedback loops; but current research-level Lean theorem proving is still hard, as ArXivLean-style benchmarks show. So the discovery target should be **bridge lemmas**, not the final RH theorem in one jump. ([arXiv][1])
+
+## The central architecture
+
+You want a system with four layers:
+
+```lean
+RH theorem
+  ↑
+RH-equivalent criterion
+  ↑
+finite / quantitative / positivity criterion
+  ↑
+Lean-verifiable bridge lemmas discovered by Aristotle
+```
+
+The key idea is to formalize many RH-equivalent roads, then ask Aristotle:
+
+> “Find a new sufficient condition that implies this criterion, is weaker than known sufficient conditions, and can be attacked by existing Mathlib tools.”
+
+Lean already has important foundations for zeta and (L)-functions in Mathlib, including work formalizing Dirichlet (L)-functions, Dirichlet’s theorem, and a formal statement of RH. That gives you a real starting point rather than a fantasy foundation. ([arXiv][2])
+
+---
+
+# Avenue 1 — The RH-equivalence atlas
+
+First build a Lean “atlas” of RH-equivalent statements.
+
+Do not start with one proof strategy. Start with 10–20 equivalent formulations:
+
+1. classical zero-location RH;
+2. Li’s positivity criterion;
+3. Weil explicit-formula positivity;
+4. Nyman–Beurling / Báez-Duarte Hilbert-space closure;
+5. Lagarias criterion;
+6. de Branges-type Hilbert spaces of entire functions;
+7. Hilbert–Pólya spectral criterion;
+8. trace formula criterion;
+9. zero-density plus zero-free strengthening;
+10. positivity of truncated Weil forms.
+
+Li’s criterion, for example, converts RH into positivity of a sequence of Li coefficients, while the Nyman–Beurling–Báez-Duarte criterion converts RH into a closure problem in a Hilbert space. ([Wikipédia][3])
+
+The discovery mechanism is then:
+
+```lean
+theorem Criterion_A_implies_RH : CriterionA → RiemannHypothesis := by ...
+theorem Criterion_B_implies_Criterion_A : CriterionB → CriterionA := by ...
+theorem FiniteCriterion_implies_Criterion_B : FiniteCriterion → CriterionB := by ...
+```
+
+Aristotle searches for the **middle arrows**. If it cannot prove them, it mutates the statement: weaker assumptions, stronger conclusions, compact-support restrictions, extra integrability hypotheses, finite truncations, etc.
+
+This is how proof discovery becomes systematic.
+
+---
+
+# Avenue 2 — Finite-to-infinite positivity discovery
+
+Many RH approaches reduce to positivity of an infinite object:
+
+```lean
+∀ f, WeilQuadraticForm f ≥ 0
+```
+
+or
+
+```lean
+∀ n : ℕ, LiCoefficient n ≥ 0
+```
+
+or
+
+```lean
+χ ∈ closure span {ρ_a}
+```
+
+The discovery task is to find **finite conditions** that imply the infinite condition.
+
+Example target:
+
+```lean
+theorem finite_positivity_plus_tail_control_implies_RH :
+  FinitePositivity N →
+  TailBound N ε →
+  ε < CriticalMargin N →
+  RiemannHypothesis := by ...
+```
+
+This is where Lean + Aristotle could genuinely help. Aristotle can explore candidate inequalities, while Lean checks every limit, closure, and summability step. This is especially promising for Weil-form and Li-coefficient approaches, where the gap is often not conceptual but quantitative: one needs a positivity margin plus a rigorous tail bound.
+
+This is probably the best proof-discovery avenue.
+
+---
+
+# Avenue 3 — Certified semidefinite positivity search
+
+Turn positivity problems into finite matrix positivity problems.
+
+For a truncated Weil form, Nyman–Beurling Gram matrix, or Li-coefficient quadratic form, you can generate matrices:
+
+```lean
+def GramMatrix (N : ℕ) : Matrix (Fin N) (Fin N) ℚ := ...
+```
+
+Then ask:
+
+```lean
+theorem gram_positive :
+  PositiveSemidefinite (GramMatrix N) := by
+  exact certified_cholesky_certificate ...
+```
+
+The external search engine — Python, Julia, Sage, SDP solvers — proposes certificates. Lean verifies them exactly using rational arithmetic or interval arithmetic.
+
+The discovery loop becomes:
+
+1. generate finite positivity conjecture;
+2. search numerically for a certificate;
+3. convert certificate to exact rational data;
+4. Lean verifies the certificate;
+5. Aristotle tries to generalize from (N=10,20,50,\ldots) to all (N).
+
+This is strong because it does not ask the AI to hallucinate deep analysis. It asks the AI to recognize patterns in certified finite proofs.
+
+---
+
+# Avenue 4 — Nyman–Beurling / Báez-Duarte closure route
+
+This is one of the cleanest Lean-friendly RH roads.
+
+The RH becomes a Hilbert-space approximation problem: approximate a fixed function by a span of explicit fractional-part functions. Báez-Duarte proved a stronger integer-dilation version, making the criterion more discrete and therefore more formalization-friendly. ([arXiv][4])
+
+Discovery target:
+
+```lean
+theorem closure_from_rate :
+  ApproximationRate χ basis rate →
+  rate_tends_to_zero →
+  RiemannHypothesis := by ...
+```
+
+Then search for new approximation families:
+
+```lean
+def candidateApproximation (N : ℕ) : L2Function := ...
+```
+
+Aristotle can try to discover identities for inner products, Gram determinants, norm estimates, or monotonicity lemmas.
+
+This avenue is attractive because it converts RH into:
+
+```text
+analysis + Hilbert space geometry + explicit functions
+```
+
+rather than full zeta-function zero theory.
+
+---
+
+# Avenue 5 — Li-coefficient total positivity program
+
+Li’s criterion says RH is equivalent to positivity of all Li coefficients. ([Wikipédia][3])
+
+Instead of proving every coefficient positive one by one, search for a structural theorem:
+
+```lean
+theorem total_positivity_implies_li_positive :
+  TotalPositive Kernel →
+  ∀ n, 0 ≤ liCoefficient n := by ...
+```
+
+or:
+
+```lean
+theorem recurrence_preserves_positive :
+  GoodRecurrence liCoeff →
+  InitialSegmentPositive K →
+  ∀ n, 0 ≤ liCoeff n := by ...
+```
+
+The discovery task is to find a recurrence, kernel representation, or moment representation that forces positivity.
+
+This is a good Aristotle target because it can search among algebraic identities, generating functions, recurrence relations, and inequalities. Lean’s job is to prevent the usual failure: assuming positivity of a formal expansion outside its convergence domain.
+
+---
+
+# Avenue 6 — Spectral admissibility framework
+
+Instead of trying to guess the Hilbert–Pólya operator directly, define what an acceptable operator must satisfy.
+
+```lean
+structure AdmissibleRHSpectralOperator where
+  H : Type
+  hilbert : HilbertSpace ℂ H
+  T : UnboundedSelfAdjointOperator H
+  spectrum_matches_zeros : SpectralIdentity T completedZeta
+  trace_formula : ExplicitTraceFormula T
+```
+
+Then prove:
+
+```lean
+theorem admissible_operator_implies_RH :
+  AdmissibleRHSpectralOperator → RiemannHypothesis := by ...
+```
+
+The proof-discovery problem becomes:
+
+> Can Aristotle find weaker admissibility conditions that still imply RH?
+
+This matters because modern spectral ideas, including Weil-form and noncommutative-geometric approaches, often produce approximate or truncated operators rather than the final Hilbert–Pólya operator. Recent work continues to explore Weil quadratic forms and spectral approximations without claiming a proof of RH. ([arXiv][5])
+
+So the Lean question becomes:
+
+```lean
+ApproximateOperatorSequence → LimitSelfAdjointOperator → RH
+```
+
+The missing bridge is usually convergence of spectra, convergence of trace formulas, or preservation of positivity. That is precisely where Lean can help.
+
+---
+
+# Avenue 7 — Explicit formula kernel search
+
+The Weil explicit formula links primes and zeros through test functions. A proof-discovery engine can search for test-function classes where positivity becomes automatic.
+
+You define a family:
+
+```lean
+structure TestKernel where
+  φ : SchwartzFunction ℝ
+  fourier_positive : ∀ x, 0 ≤ fourier φ x
+  prime_side_bound : PrimeSideControlled φ
+  zero_side_identity : WeilFormula φ
+```
+
+Then Aristotle searches for kernels with unusually strong positivity properties.
+
+The discovery target is not:
+
+```lean
+prove RH
+```
+
+but:
+
+```lean
+theorem good_kernel_family_implies_weil_positivity :
+  ∃ K : KernelFamily, KernelDominatesAllTests K →
+  WeilPositivity := by ...
+```
+
+This is promising because it gives the AI a concrete playground: invent kernels, prove Fourier positivity, estimate prime sums, and try to dominate larger classes of test functions.
+
+---
+
+# Avenue 8 — Formal failure mining from old RH proof attempts
+
+This is underrated.
+
+Feed Aristotle failed RH attempts: de Branges-type positivity arguments, trace-formula arguments, Li-coefficient arguments, Hilbert–Pólya proposals, Connes-style finite approximations.
+
+For each one, generate:
+
+```lean
+theorem AttemptCore :
+  Assumption₁ → Assumption₂ → Assumption₃ → RiemannHypothesis := by ...
+```
+
+Then identify the exact unprovable assumption:
+
+```lean
+axiom MissingLemma : ...
+```
+
+Now ask Aristotle to mutate the missing lemma:
+
+```text
+Too strong? weaken conclusion.
+False? add compact support.
+Needs convergence? add absolute summability.
+Needs closure? add density assumption.
+Needs trace class? replace trace by regularized trace.
+```
+
+This turns failed proofs into a database of “near-miss lemmas.” The AI may not discover RH, but it may discover publishable corrections, partial theorems, or new equivalences.
+
+---
+
+# Avenue 9 — Counterexample-guided conjecture repair
+
+Every proposed lemma should be attacked before being trusted.
+
+For each Aristotle-generated lemma:
+
+```lean
+conjecture candidateLemma : P → Q
+```
+
+run three filters:
+
+1. **Lean type-checking:** is the statement even meaningful?
+2. **Finite counterexample search:** does it fail for small approximations?
+3. **Numerical stress tests:** does the inequality collapse near edge cases?
+
+If it fails, Aristotle repairs it:
+
+```text
+Original: ∀ f, Positivity f
+Repair 1: ∀ f ∈ Schwartz, Positivity f
+Repair 2: ∀ f ∈ Schwartz with compact support, Positivity f
+Repair 3: ∀ f with positive Fourier transform and decay condition, Positivity f
+```
+
+This is exactly how to turn AI from a proof generator into a conjecture-refinement engine.
+
+---
+
+# Avenue 10 — “Minimal missing theorem” extraction
+
+This is the most important meta-avenue.
+
+For every RH approach, ask Lean to produce a theorem of the form:
+
+```lean
+theorem RH_from_minimal_bridge :
+  BridgeLemma → RiemannHypothesis := by ...
+```
+
+Then Aristotle tries to make `BridgeLemma` as weak, clean, and isolated as possible.
+
+Example outputs could be:
+
+```text
+RH follows if the truncated Weil forms converge strongly and preserve positivity.
+RH follows if a certain Gram matrix distance in the Báez-Duarte criterion tends to zero.
+RH follows if Li coefficients satisfy a verified recurrence with positivity-preserving kernel.
+RH follows if an approximate spectral operator sequence converges in strong resolvent sense.
+```
+
+This is how you get genuine mathematical discovery: not necessarily RH, but precise new reductions.
+
+---
+
+# Practical Lean project structure
+
+I would organize it like this:
+
+```text
+RH/
+  Basic/
+    Zeta.lean
+    Xi.lean
+    CriticalStrip.lean
+
+  Criteria/
+    Li.lean
+    Weil.lean
+    NymanBeurling.lean
+    Lagarias.lean
+    Spectral.lean
+
+  Finite/
+    GramMatrices.lean
+    SDPVerification.lean
+    IntervalCertificates.lean
+    TailBounds.lean
+
+  Discovery/
+    BridgeLemmas.lean
+    FailedAttempts.lean
+    LemmaMutations.lean
+    MinimalAssumptions.lean
+
+  Experiments/
+    LiSearch.py
+    WeilKernelSearch.py
+    NymanGramSearch.py
+    SpectralApproximation.py
+```
+
+The Lean files contain the verified mathematics. The Python files generate conjectures and certificates. Aristotle sits between them, trying to fill `sorry`s, repair statements, and generalize finite patterns.
+
+---
+
+# The best first target
+
+I would not start with Hilbert–Pólya. Too much infrastructure.
+
+I would start with:
+
+## **Nyman–Beurling + finite Gram matrix certificates**
+
+Why?
+
+Because it is:
+
+1. RH-equivalent;
+2. Hilbert-space based;
+3. discrete in Báez-Duarte’s strengthened form;
+4. numerically explorable;
+5. suitable for finite-dimensional approximation;
+6. much more Lean-friendly than noncommutative geometry or quantum chaos.
+
+The first ambitious theorem would be:
+
+```lean
+theorem RH_from_verified_approximation_rate :
+  (∃ rate : ℕ → ℝ,
+    TendsToZero rate ∧
+    ∀ N, DistanceToNymanSubspace N ≤ rate N) →
+  RiemannHypothesis := by ...
+```
+
+Then the discovery task is:
+
+> Find a provable approximation rate.
+
+That is a real mathematical target.
+
+---
+
+# Final synthesis
+
+To convert the architecture into proof discovery, make Aristotle search for **new RH bridge lemmas**, not final proofs.
+
+The most promising large avenues are:
+
+1. RH-equivalence atlas;
+2. finite-to-infinite positivity;
+3. certified SDP / Gram matrix positivity;
+4. Nyman–Beurling–Báez-Duarte approximation;
+5. Li-coefficient positivity structures;
+6. spectral admissibility and operator limits;
+7. Weil explicit-formula kernel search;
+8. formal mining of failed RH attempts;
+9. counterexample-guided lemma repair;
+10. minimal missing-theorem extraction.
+
+The most realistic first serious program is:
+
+> **Formalize the Báez-Duarte/Nyman–Beurling criterion, generate finite Gram-matrix approximation certificates, and use Aristotle to discover a general approximation-rate theorem.**
+
+That is where Lean and Aristotle could plausibly move from proof checking to proof discovery.
+
+[1]: https://arxiv.org/html/2510.01346v1?utm_source=chatgpt.com "Aristotle: IMO-level Automated Theorem Proving"
+[2]: https://arxiv.org/abs/2503.00959?utm_source=chatgpt.com "Formalizing zeta and L-functions in Lean"
+[3]: https://en.wikipedia.org/wiki/Li%27s_criterion?utm_source=chatgpt.com "Li's criterion"
+[4]: https://arxiv.org/abs/math/0202141?utm_source=chatgpt.com "A strengthening of the Nyman-Beurling criterion for ..."
+[5]: https://arxiv.org/abs/2602.04022?utm_source=chatgpt.com "The Riemann Hypothesis: Past, Present and a Letter ..."

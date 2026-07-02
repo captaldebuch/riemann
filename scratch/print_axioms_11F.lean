@@ -1,0 +1,6 @@
+import RiemannHypothesis.Criteria.NymanBeurling.CutoffMobiusKernels
+
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.cutoffMobiusLinearTerm_eq_sum
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.cutoffMobiusQuadraticTerm_eq_double_sum
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.cutoffMobiusEnergy_eq_kernel
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.cutoffMobius_log_energy_of_kernel_estimate

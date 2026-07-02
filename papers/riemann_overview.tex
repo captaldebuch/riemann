@@ -1,0 +1,228 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{3}
+\SetWatermarkColor[gray]{0.92}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom*}[theorem]{Axiom (externally assumed)}
+
+\title{\textbf{DRAFT --- Under Review and Validation}\\[0.4em]
+A Lean~4 Scaffolding for Riemann Hypothesis Equivalences:\\
+\large Formal Criterion Infrastructure and Bridge Lemma Discovery}
+\author{Xavier Fresquet \and Gérard Biau\\[0.3em]
+\normalsize Sorbonne Université, Paris \& Abu Dhabi\\
+\normalsize \textit{Under review and validation --- not definitive results}}
+\date{June 2026 --- Preliminary version}
+
+\begin{document}
+\maketitle
+
+\begin{mdframed}[backgroundcolor=yellow!15, linecolor=orange!60, linewidth=1pt]
+\textbf{Notice.} This is a \textbf{draft} report.  Results are preliminary
+and under active review and validation by Biau \& Fresquet.  Nothing here
+should be read as a definitive mathematical claim.
+\end{mdframed}
+
+\vspace{1em}
+
+\begin{abstract}
+We describe a Lean~4 project that formalizes several classical equivalences of
+the Riemann Hypothesis (RH) and builds the infrastructure needed to search for
+bridge lemmas between them.  The project does \emph{not} prove RH, nor does it
+claim to be close to doing so.  Its aim is more modest: to provide a rigorous
+Lean environment in which (i) each equivalent formulation is stated with correct
+types, (ii) the logical chain from a certificate structure to RH is
+machine-checked, and (iii) the precise ``sorry'' gaps are recorded as honest
+targets for future proof search.
+\end{abstract}
+
+\section{Background}
+
+The Riemann Hypothesis asserts that every non-trivial zero $s$ of the Riemann
+zeta function $\zeta(s)$ satisfies $\mathrm{Re}(s) = \tfrac{1}{2}$.  Several
+classical criteria are known to be equivalent to RH:
+
+\begin{itemize}
+  \item \textbf{Nyman--Beurling--Báez-Duarte}: RH holds if and only if the
+        characteristic function $\chi_{(0,1)}$ belongs to the closure in
+        $L^2(0,1)$ of the span of the functions
+        $\rho_n(x) = \{n/x\}$ (fractional part), $n \geq 1$.
+  \item \textbf{Li's positivity criterion}: RH holds if and only if all Li
+        coefficients $\lambda_n \geq 0$.
+  \item \textbf{Weil explicit formula and positivity}: RH is equivalent to a
+        positivity condition on a certain Weil kernel functional.
+  \item \textbf{Hilbert--Pólya spectral criterion}: RH would follow from the
+        existence of a self-adjoint operator whose spectrum is the sequence of
+        imaginary parts of the non-trivial zeros.
+\end{itemize}
+
+\section{Lean Architecture}
+
+The project uses Lean~4 (v4.30.0) with Mathlib and is structured as a Lake
+library under \texttt{riemann/}:
+
+\begin{itemize}
+  \item \texttt{Basic/Zeta.lean} --- definitions of $\zeta(s)$, $\xi(s)$, and
+        the critical strip; bridged to Mathlib's \texttt{riemannZeta}.
+  \item \texttt{Basic/CriticalStrip.lean} --- the formal statement of RH as a
+        Lean \texttt{Prop}, zero symmetry, and the zero-free region near
+        $\mathrm{Re}(s) = 1$.
+  \item \texttt{Criteria/NymanBeurling.lean} --- the Nyman--Beurling--Báez-Duarte
+        criterion; certificate structures; the main bridge theorem
+        (sorry-free conditional chain).
+  \item \texttt{Criteria/Li.lean}, \texttt{Weil.lean}, \texttt{Spectral.lean}
+        --- Li, Weil, and Hilbert--Pólya criterion stubs.
+  \item \texttt{Finite/GramMatrices.lean}, \texttt{TailBounds.lean} ---
+        finite Gram certificates and transfer theorems.
+  \item \texttt{Discovery/BridgeLemmas.lean} --- candidate bridge lemmas as
+        sorry stubs for Aristotle.
+  \item \texttt{Discovery/FailedAttempts.lean} --- documented proof attempts
+        that did not work; a negative-result register.
+\end{itemize}
+
+\section{What Is Proved (Sorry-Free)}
+
+\subsection{Formal Criterion Statement}
+
+\begin{definition}[Riemann Hypothesis in Lean]
+\[
+  \texttt{RiemannHypothesis} \;:=\;
+  \forall s : \mathbb{C},\;
+  \texttt{isNontrivialZero}\;s \;\to\; \texttt{onCriticalLine}\;s.
+\]
+\end{definition}
+
+\subsection{Nyman--Beurling Certificate Chain}
+
+The key sorry-free contribution is a complete logical chain from a
+\emph{verified approximation rate} to RH, contingent on one externally assumed
+equivalence axiom.
+
+\begin{theorem}[Certificate implies Abstract Criterion (sorry-free)]
+  Let $v$ be a \texttt{VerifiedApproximationRate}: a sequence $r : \mathbb{N}
+  \to \mathbb{R}$ tending to $0$ together with, for every $N$, a certificate
+  that the approximation distance satisfies $\mathit{ApproximationDistance}(N)
+  \leq r(N)$.  Then the \emph{AbstractCriterion} holds (there exists a rate
+  function bounding the approximation distance that tends to zero).
+\end{theorem}
+
+\begin{theorem}[Main Bridge (sorry-free modulo one axiom)]
+  \label{thm:rh_bridge}
+  A \texttt{VerifiedApproximationRate} implies the Riemann Hypothesis.
+\end{theorem}
+
+Theorem~\ref{thm:rh_bridge} chains through:
+\[
+  \texttt{VerifiedApproximationRate}
+  \;\xrightarrow{\text{sorry-free}}\;
+  \texttt{AbstractCriterion}
+  \;\xrightarrow{\text{axiom}}\;
+  \texttt{RiemannHypothesis}.
+\]
+
+The axiom \texttt{nyman\_beurling\_implies\_rh} encodes the classical analytic
+equivalence.  It is quarantined and labeled; it is not presented as a Lean
+proof.
+
+\section{What Is Not Proved}
+
+\begin{remark}[ApproximationDistance is undefined]
+  The term \texttt{ApproximationDistance} is currently a sorry stub: the
+  actual $L^2$ distance from $\chi_{(0,1)}$ to the $N$-dimensional span in
+  $L^2(0,1)$ has not been formalized.  This is the next concrete target for
+  Mathlib integration (fractional parts, $L^2$ completions).
+\end{remark}
+
+\begin{remark}[Analytic criteria are axioms]
+  All four RH-equivalent criteria are either sorry stubs (Li, Weil, Spectral)
+  or backed by a single named axiom (Nyman--Beurling).  None of the
+  equivalences have been proved inside Lean; they are imported from the
+  mathematical literature as trusted external facts.
+\end{remark}
+
+\begin{remark}[Zero symmetry and zero-free region]
+  \texttt{zero\_symmetry} and \texttt{zero\_free\_near\_one} are sorry stubs;
+  the Mathlib \texttt{riemannZeta} API needs additional bridging lemmas to
+  discharge these.
+\end{remark}
+
+\section{Numerical Support}
+
+Three Python experiments provide numerical grounding:
+\begin{itemize}
+  \item \texttt{gram\_matrix\_search.py} --- computes Gram matrices for the
+        Nyman basis and searches for positive-semidefinite certificates.
+  \item \texttt{li\_coefficients.py} --- numerical computation and sign check
+        of Li coefficients $\lambda_n$ for $n \leq 100$.
+  \item \texttt{weil\_kernel\_search.py} --- candidate Weil kernel
+        constructions; numerical positivity checks.
+\end{itemize}
+None of these produce Lean proofs directly; they guide which sorry stubs are
+most promising to attack next.
+
+\section{Roadmap}
+
+Future development is planned along the following lines:
+
+\begin{enumerate}
+  \item \textbf{Formalize \texttt{ApproximationDistance}}: connect Lean's
+        \texttt{Int.fract} and Mathlib's $L^2$ spaces to define the Nyman
+        basis and compute the distance formally.
+  \item \textbf{Gram matrix certificates}: for small $N$, produce and verify
+        positive-semidefinite Gram matrices as Lean \texttt{decide}-level
+        certificates, giving a finite approximation guarantee.
+  \item \textbf{Tail bound transfer}: formalize the theorem that a sequence of
+        finite approximation guarantees, plus a verified tail bound, implies
+        the abstract criterion without any axiom.
+  \item \textbf{Li criterion infrastructure}: formalize Li's positivity
+        definition and bridge it to Mathlib's \texttt{riemannZeta} using the
+        functional equation.
+  \item \textbf{Aristotle bridge-lemma search}: send the sorry stubs in
+        \texttt{Discovery/BridgeLemmas.lean} to Aristotle one at a time;
+        record successes and failures in \texttt{FailedAttempts.lean}.
+  \item \textbf{Lean 4 / Mathlib upgrade path}: track Mathlib's growing
+        complex-analysis library; rebind stubs as the relevant lemmas become
+        available.
+\end{enumerate}
+
+\section{Next Update}
+
+The following items are planned for the next version of this report, once the
+experiment is complete:
+
+\begin{enumerate}
+  \item Replace the \texttt{ApproximationDistance} sorry stub with a proper
+        Lean definition using Mathlib's fractional-part and $L^2$ APIs.
+  \item Present Gram matrix certificates for $N = 5, 10, 20$ verified at the
+        Lean kernel level.
+  \item Report whether the tail-bound transfer theorem is proved or remains a
+        target; include its axiom footprint.
+  \item Include the Aristotle log: which stubs were filled, which failed, and
+        the tactic where each failure occurred.
+  \item Report progress on connecting the Li criterion to Mathlib's
+        \texttt{riemannZeta} functional equation.
+\end{enumerate}
+
+\section{Conclusion}
+
+This Lean~4 project demonstrates that a rigorous formal scaffold for
+RH-equivalent criteria can be built with modest effort, even without a proof
+of RH itself.  The value is not proximity to a proof but \emph{precision}: the
+exact sorry gaps record, in machine-checkable form, what the mathematical
+community currently does not know how to prove inside a formal system.  The
+sorry-free bridge theorem (Theorem~\ref{thm:rh_bridge}) shows that the logical
+chain from a certificate structure to RH type-checks cleanly, waiting only for
+the certificate construction itself.
+
+\end{document}

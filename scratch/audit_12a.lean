@@ -1,0 +1,4 @@
+import RiemannHypothesis.Criteria.NymanBeurling.CutoffMobiusKernels
+
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.baezDuarteKernel_eq_explicit
+#print axioms RH.Criteria.NymanBeurling.CutoffMobiusKernels.cutoffMobiusEnergyKernel_eq_explicit
