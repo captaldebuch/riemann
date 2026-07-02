@@ -2,6 +2,31 @@
 
 This document outlines the five core mathematical strategies we are pursuing to formally prove the Riemann Hypothesis using Lean 4 and Aristotle, as well as the optimal sequence in which they will be executed.
 
+> **Note (2026-07-02):** the mathematical strategy below predates the project's actual current
+> focus (see `AGENTS.md` and the Phase 10T/13 work in the repo history) — it's kept here as
+> historical context for the original broad exploration. The section immediately below,
+> "Multi-tool workflow," documents the process this project now actually follows and should be
+> read before starting any new work session, regardless of which strategy or phase you're on.
+
+## Multi-tool workflow
+
+This project is worked on by multiple AI tools (Gemini/Google Antigravity, Codex, Claude Code)
+in separate sessions, not simultaneously. On 2026-07-02, a session committed directly to `main`
+with a change that looked complete — "built, verified, committed" — but had silently changed the
+declared numeric value of several pre-existing constants, breaking other files that depended on
+those exact values. The tool's own self-report did not catch this; only an independent rebuild
+did. That incident, plus a separate one the same day where two sessions shared a build cache via
+a symlink and corrupted it, and two more where an agent's own uncommitted work was lost to a
+careless `git reset`, are the reason this workflow exists.
+
+**The short version:** one tool at a time, each on its own branch/worktree starting from the
+last verified tag, nothing reaches `main` without passing `./scripts/verify.sh`, and the next
+tool always starts from the newly tagged, verified point — never from an unreviewed branch.
+
+Full protocol, including exactly what `verify.sh` checks and why, lives in `AGENTS.md` under
+"Multi-tool coordination protocol" — that's the canonical version; this note just points to it
+so it isn't missed by a tool that only skims the roadmap.
+
 ## 1. Quantum Chaos and Random Matrix Theory (The Hilbert-Pólya Strategy)
 *   **The Intuition:** Physicists have observed that the distribution of Riemann zeros mirrors the energy levels of classically chaotic quantum systems (the Gaussian Unitary Ensemble). Using Random Matrix Theory (RMT), researchers have successfully predicted the moments of the zeta function, matching numbers like 42 and 24,024 exactly. The Berry-Keating approach suggests that quantizing the classical Hamiltonian $H=xp$ could yield a self-adjoint operator whose spectrum corresponds to the zeros.
 *   **The Lean Technical Roadmap:** We will build a **Hilbert-Space Spectral Formalizer** within Lean 4. Because the Berry-Keating Hamiltonian relies on an inverted potential that is notoriously hard to make rigorous, the roadmap involves defining unbounded self-adjoint operators in Lean's `Mathlib.Analysis`. We will employ the **Aristotle API** to automatically translate physicist heuristics (like those found in RMT) into strict measure-theoretic bounds. By integrating SMT solvers (like Z3 or CVC5 via the `callZ3` Lean interface) as external oracles, the system will systematically search for an explicit operator definition that satisfies the commutativity and self-adjointness constraints demanded by Lean’s dependent type theory.
