@@ -462,4 +462,57 @@ theorem summable_mittagLefflerSeriesTerms {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n 
   rw [heq] at hc
   rwa [Complex.summable_ofReal] at hc
 
+/-- **Term-by-term differentiation of the real Mittag-Leffler cotangent series.** This is the
+    main payoff of this section: at any real non-integer `x₀`, the series
+    `∑' n, (1/(x-(n+1)) + 1/(x+(n+1)))` is differentiable at `x₀` with derivative
+    `∑' n, (-(1/(x₀-(n+1))²) - 1/(x₀+(n+1))²)`, obtained by combining every ingredient built
+    above (`hasDerivAt_mittagLefflerTerm`, `mittagLefflerDeriv_uniform_bound`,
+    `summable_mittagLefflerUniformBound`, `summable_mittagLefflerSeriesTerms`) via Mathlib's
+    `hasDerivAt_tsum_of_isPreconnected`, applied on the open interval
+    `Set.Ioo (x₀ - ballRadius x₀ / 2) (x₀ + ballRadius x₀ / 2)`. -/
+theorem hasDerivAt_mittagLefflerSeries {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) :
+    HasDerivAt (fun x : ℝ => ∑' n : ℕ, (1 / (x - ((n:ℝ) + 1)) + 1 / (x + ((n:ℝ) + 1))))
+      (∑' n : ℕ, (-(1 / (x₀ - ((n:ℝ) + 1)) ^ 2) + -(1 / (x₀ + ((n:ℝ) + 1)) ^ 2))) x₀ := by
+  set δ' : ℝ := ballRadius x₀ / 2 with hδ'_def
+  have hδpos : 0 < δ' := by have := ballRadius_pos hx₀; rw [hδ'_def]; linarith
+  set t : Set ℝ := Set.Ioo (x₀ - δ') (x₀ + δ') with ht_def
+  have htopen : IsOpen t := isOpen_Ioo
+  have htconn : IsPreconnected t := isPreconnected_Ioo
+  have hx₀t : x₀ ∈ t := by rw [ht_def]; constructor <;> linarith
+  have hballmem : ∀ y ∈ t, |y - x₀| < δ' := by
+    intro y hy
+    rw [ht_def, Set.mem_Ioo] at hy
+    rw [abs_lt]; constructor <;> linarith [hy.1, hy.2]
+  have hg : ∀ (n : ℕ) (y : ℝ), y ∈ t →
+      HasDerivAt (fun z : ℝ => 1 / (z - ((n:ℝ)+1)) + 1 / (z + ((n:ℝ)+1)))
+        (-(1 / (y - ((n:ℝ)+1)) ^ 2) + -(1 / (y + ((n:ℝ)+1)) ^ 2)) y := by
+    intro n y hy
+    have hyball := hballmem y hy
+    have ha_pos : (0:ℝ) < (n:ℝ) + 1 := by positivity
+    apply hasDerivAt_mittagLefflerTerm
+    · -- y ≠ (n+1): since |y - (n+1)| ≥ δ' > 0 by half_ballRadius_le_dist
+      intro hcontra
+      have hdist := half_ballRadius_le_dist hx₀ hyball ((n:ℤ) + 1)
+      push_cast at hdist
+      rw [← hδ'_def, hcontra] at hdist
+      simp at hdist
+      linarith
+    · intro hcontra
+      have hdist := half_ballRadius_le_dist hx₀ hyball (-((n:ℤ) + 1))
+      push_cast at hdist
+      rw [← hδ'_def] at hdist
+      have : y - (-((n:ℝ)+1)) = y + ((n:ℝ)+1) := by ring
+      rw [this, hcontra] at hdist
+      simp at hdist
+      linarith
+  have hg' : ∀ (n : ℕ) (y : ℝ), y ∈ t →
+      ‖(-(1 / (y - ((n:ℝ)+1)) ^ 2) + -(1 / (y + ((n:ℝ)+1)) ^ 2))‖
+        ≤ mittagLefflerUniformBound x₀ n := by
+    intro n y hy
+    exact mittagLefflerDeriv_uniform_bound hx₀ (hballmem y hy) n
+  have hg0 : Summable (fun n : ℕ => 1 / (x₀ - ((n:ℝ)+1)) + 1 / (x₀ + ((n:ℝ)+1))) :=
+    summable_mittagLefflerSeriesTerms hx₀
+  exact hasDerivAt_tsum_of_isPreconnected (summable_mittagLefflerUniformBound x₀) htopen htconn
+    hg hg' hx₀t hg0 hx₀t
+
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
