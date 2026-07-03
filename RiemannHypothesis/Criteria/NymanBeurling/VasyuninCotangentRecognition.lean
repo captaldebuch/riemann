@@ -358,4 +358,92 @@ theorem half_ballRadius_le_dist {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠
     linarith [le_abs_self ((x₀ - (a:ℝ)) - (x₀ - y))]
   linarith
 
+-- ---------------------------------------------------------------------------
+-- 6. Assembling the global uniform bound and the term-by-term differentiation theorem.
+-- ---------------------------------------------------------------------------
+
+/-- The threshold index above which `mittagLefflerDeriv_far_bound`'s `4/n²`-comparison applies
+    uniformly on the half-radius ball around `x₀`. -/
+noncomputable def mittagLefflerThreshold (x₀ : ℝ) : ℕ :=
+  ⌈2 * (|x₀| + ballRadius x₀ / 2 + 1)⌉₊
+
+/-- The global uniform bound function: `8/δ²` for the finitely many "near" indices below the
+    threshold, and `8/(n+1)²` above it (which is where the far-field comparison bound
+    `mittagLefflerDeriv_far_bound` applies). Agrees with `8/(n+1)²` for all but finitely many
+    `n`, hence summable by comparison (`Summable.congr_cofinite`). -/
+noncomputable def mittagLefflerUniformBound (x₀ : ℝ) (n : ℕ) : ℝ :=
+  if n < mittagLefflerThreshold x₀ then 8 / (ballRadius x₀ / 2) ^ 2 else 8 / ((n:ℝ) + 1) ^ 2
+
+theorem summable_mittagLefflerUniformBound (x₀ : ℝ) :
+    Summable (mittagLefflerUniformBound x₀) := by
+  have hbase : Summable (fun n : ℕ => 8 / ((n:ℝ) + 1) ^ 2) := by
+    have h1 : Summable (fun n : ℕ => 1 / ((n:ℝ) + 1) ^ 2) := by
+      have := (Real.summable_one_div_nat_pow (p := 2)).mpr (by norm_num)
+      rw [← summable_nat_add_iff 1] at this
+      simpa using this
+    simpa using h1.mul_left 8
+  apply hbase.congr_cofinite
+  rw [Filter.EventuallyEq, Filter.eventually_cofinite]
+  apply Set.Finite.subset (Set.finite_Iio (mittagLefflerThreshold x₀))
+  intro n hn
+  simp only [Set.mem_setOf_eq, mittagLefflerUniformBound] at hn
+  simp only [Set.mem_Iio]
+  by_contra hge
+  push Not at hge
+  exact hn (by simp [not_lt.mpr hge])
+
+/-- The global uniform bound dominates every Mittag-Leffler derivative summand, for every `y`
+    in the half-radius ball around `x₀` and every `n : ℕ` at once — combining the "near" bound
+    `half_ballRadius_le_dist` (below the threshold) with the "far" bound
+    `mittagLefflerDeriv_far_bound` (at or above the threshold). -/
+theorem mittagLefflerDeriv_uniform_bound {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) {y : ℝ}
+    (hy : |y - x₀| < ballRadius x₀ / 2) (n : ℕ) :
+    ‖-(1 / (y - ((n:ℝ) + 1)) ^ 2) + -(1 / (y + ((n:ℝ) + 1)) ^ 2)‖
+      ≤ mittagLefflerUniformBound x₀ n := by
+  rw [Real.norm_eq_abs]
+  unfold mittagLefflerUniformBound
+  split_ifs with hcase
+  · set δ' : ℝ := ballRadius x₀ / 2 with hδ'_def
+    have hδpos : 0 < δ' := by
+      have := ballRadius_pos hx₀
+      rw [hδ'_def]; linarith
+    have h1 : δ' ≤ |y - ((n:ℝ) + 1)| := by
+      have := half_ballRadius_le_dist hx₀ hy ((n : ℤ) + 1)
+      push_cast at this
+      convert this using 3
+    have h2 : δ' ≤ |y + ((n:ℝ) + 1)| := by
+      have := half_ballRadius_le_dist hx₀ hy (-((n : ℤ) + 1))
+      push_cast at this
+      rw [show y - (-((n:ℝ)+1)) = y + ((n:ℝ)+1) by ring] at this
+      exact this
+    have hb1 : 1 / (y - ((n:ℝ) + 1)) ^ 2 ≤ 1 / δ' ^ 2 := by
+      apply one_div_le_one_div_of_le (by positivity)
+      rw [← sq_abs (y - ((n:ℝ)+1))]
+      exact pow_le_pow_left₀ hδpos.le h1 2
+    have hb2 : 1 / (y + ((n:ℝ) + 1)) ^ 2 ≤ 1 / δ' ^ 2 := by
+      apply one_div_le_one_div_of_le (by positivity)
+      rw [← sq_abs (y + ((n:ℝ)+1))]
+      exact pow_le_pow_left₀ hδpos.le h2 2
+    have hnn1 : (0:ℝ) ≤ 1 / (y - ((n:ℝ) + 1)) ^ 2 := by positivity
+    have hnn2 : (0:ℝ) ≤ 1 / (y + ((n:ℝ) + 1)) ^ 2 := by positivity
+    rw [abs_of_nonpos (by linarith)]
+    have hδsqpos : (0:ℝ) < δ' ^ 2 := by positivity
+    have h2le8 : (2:ℝ)/δ'^2 ≤ 8/δ'^2 := by gcongr; norm_num
+    have hsum : (1:ℝ)/δ'^2 + 1/δ'^2 = 2/δ'^2 := by ring
+    linarith [hb1, hb2, hsum]
+  · push Not at hcase
+    have hthr : (2:ℝ) * (|x₀| + ballRadius x₀ / 2 + 1) ≤ (n:ℝ) + 1 := by
+      have hceil : (mittagLefflerThreshold x₀ : ℝ)
+          ≤ (n : ℝ) := by exact_mod_cast hcase
+      have := Nat.le_ceil (2 * (|x₀| + ballRadius x₀ / 2 + 1))
+      unfold mittagLefflerThreshold at hceil
+      have hcast : (⌈2 * (|x₀| + ballRadius x₀ / 2 + 1)⌉₊ : ℝ)
+          ≥ 2 * (|x₀| + ballRadius x₀ / 2 + 1) := this
+      linarith
+    have hbound := mittagLefflerDeriv_far_bound (x₀ := x₀) (δ := ballRadius x₀ / 2) hy hthr
+    have hnn1 : (0:ℝ) ≤ 1 / (y - ((n:ℝ) + 1)) ^ 2 := by positivity
+    have hnn2 : (0:ℝ) ≤ 1 / (y + ((n:ℝ) + 1)) ^ 2 := by positivity
+    rw [abs_of_nonpos (by linarith)]
+    linarith
+
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
