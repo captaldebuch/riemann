@@ -743,22 +743,48 @@ theorem tsum_shifted_integrals_eq_cotangent_sum (h k : ℕ) (hne : h ≠ k) (hh 
       = vasyuninBEntry h k := by
   sorry
 
-/-- Assembling `debtFieldLHS_eq_tsum_shifted_integrals` and
-    `tsum_shifted_integrals_eq_cotangent_sum` gives exactly the target debt field
-    `interval_sum_add_tail_eq_cotangent_formula`. This
-    theorem is a trivial composition of the two above; it is NOT unconditionally proved, because
-    it inherits both (a) the documented integrability-near-zero and block-tiling `sorry`s
-    (transitively, via `debtFieldLHS_eq_tsum_shifted_integrals`) and (b) the central
-    cotangent-recognition `sorry` (`tsum_shifted_integrals_eq_cotangent_sum`) directly. It is
-    stated here to make explicit exactly how the decomposition of this session would discharge
-    `VasyuninBridgeLocalDebts.interval_sum_add_tail_eq_cotangent_formula` if all underlying
-    `sorry`s were closed. -/
+/-- Assembling `debtFieldLHS_eq_tsum_shifted_integrals` with an explicit hypothesis standing in
+    for `tsum_shifted_integrals_eq_cotangent_sum` (the central, still-open cotangent-recognition
+    debt) gives exactly the target debt field `interval_sum_add_tail_eq_cotangent_formula`.
+
+    CORRECTION (caught by `#print axioms`, not assumed): an earlier version of this doc-comment
+    claimed this theorem was "fully proved" once `H_cotangent_recognition` was made an explicit
+    hypothesis instead of a direct call to `tsum_shifted_integrals_eq_cotangent_sum`. That claim
+    was false — `debtFieldLHS_eq_tsum_shifted_integrals` itself *also* transitively depends on
+    `sorryAx`, via the other two open `sorry`s in this file (the integrability-near-zero lemma
+    `genIntegrandTransformed_integrableOn_Ioc01` and the block-tiling lemma
+    `transformedIntegral_eq_tsum_genBlockSetIntegral` inherits from it) — confirmed directly via
+    `#print axioms debtFieldLHS_eq_tsum_shifted_integrals`, which shows `sorryAx`.
+
+    So this theorem genuinely improves on the previous version in one specific way — the
+    cotangent-recognition dependency is now an explicit, visible hypothesis instead of a hidden
+    direct call — but it does *not* eliminate `sorryAx` from `#print axioms`, because two other,
+    separately-documented open `sorry`s remain baked into `debtFieldLHS_eq_tsum_shifted_integrals`.
+    Fully isolating all three would require parametrizing those as explicit hypotheses too, which
+    was not attempted here. -/
 theorem interval_sum_add_tail_eq_cotangent_formula_of_debts (h k : ℕ) (hne : h ≠ k) (hh : 0 < h)
-    (hk : 0 < k) :
+    (hk : 0 < k)
+    (H_cotangent_recognition :
+      (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+          Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
+            ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
+        = vasyuninBEntry h k) :
     (∑' m : ℕ, fractionalPartIntervalIntegral h k m) + fractionalPartTailIntegral h k
       = vasyuninBEntry h k := by
   rw [debtFieldLHS_eq_tsum_shifted_integrals h k hh hk]
-  exact tsum_shifted_integrals_eq_cotangent_sum h k hne hh hk
+  exact H_cotangent_recognition
+
+/-- The original, unconditional form of `interval_sum_add_tail_eq_cotangent_formula_of_debts`,
+    obtained by supplying `tsum_shifted_integrals_eq_cotangent_sum` directly. Kept as a separate
+    theorem so the `sorryAx` dependency is isolated here rather than in the hypothesis-based
+    version above — `#print axioms` on this one *should* show `sorryAx`, that is expected and
+    correct, since it is exactly as complete as the open cotangent-recognition debt. -/
+theorem interval_sum_add_tail_eq_cotangent_formula_unconditional (h k : ℕ) (hne : h ≠ k)
+    (hh : 0 < h) (hk : 0 < k) :
+    (∑' m : ℕ, fractionalPartIntervalIntegral h k m) + fractionalPartTailIntegral h k
+      = vasyuninBEntry h k :=
+  interval_sum_add_tail_eq_cotangent_formula_of_debts h k hne hh hk
+    (tsum_shifted_integrals_eq_cotangent_sum h k hne hh hk)
 
 -- ---------------------------------------------------------------------------
 -- 6. Main Theorem Replacement
