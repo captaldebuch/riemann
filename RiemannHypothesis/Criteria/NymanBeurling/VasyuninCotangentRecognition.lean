@@ -515,4 +515,61 @@ theorem hasDerivAt_mittagLefflerSeries {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : �
   exact hasDerivAt_tsum_of_isPreconnected (summable_mittagLefflerUniformBound x₀) htopen htconn
     hg hg' hx₀t hg0 hx₀t
 
+-- ---------------------------------------------------------------------------
+-- 7. The closed-form derivative of `π cot(π x) - 1/x`, and the final reflection identity.
+-- ---------------------------------------------------------------------------
+
+/-- The derivative of `x ↦ π * Real.cot (π * x) - 1/x` at a real non-integer `x₀`, computed
+    directly from `cot = cos/sin` via the quotient rule and chain rule (no series machinery). -/
+theorem hasDerivAt_cot_sub_inv {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) :
+    HasDerivAt (fun x : ℝ => π * Real.cot (π * x) - 1 / x)
+      (-(π ^ 2 / Real.sin (π * x₀) ^ 2) + 1 / x₀ ^ 2) x₀ := by
+  have hsin_ne : Real.sin (π * x₀) ≠ 0 := by
+    intro hcontra
+    rw [Real.sin_eq_zero_iff] at hcontra
+    obtain ⟨n, hn⟩ := hcontra
+    apply hx₀ n
+    have hπ : (π:ℝ) ≠ 0 := Real.pi_ne_zero
+    have hn' : (n:ℝ) * π = π * x₀ := hn
+    rw [mul_comm π x₀] at hn'
+    exact mul_right_cancel₀ hπ hn'
+  have hx₀_ne : x₀ ≠ 0 := fun h => hx₀ 0 (by simp [h])
+  have hsinderiv : HasDerivAt (fun x : ℝ => Real.sin (π * x)) (π * Real.cos (π * x₀)) x₀ := by
+    have hc := (Real.hasDerivAt_sin (π * x₀)).comp x₀
+      ((hasDerivAt_id x₀).const_mul π)
+    simp only [mul_one] at hc
+    convert hc using 1
+    ring
+  have hcosderiv : HasDerivAt (fun x : ℝ => Real.cos (π * x)) (-(π * Real.sin (π * x₀))) x₀ := by
+    have hc := (Real.hasDerivAt_cos (π * x₀)).comp x₀
+      ((hasDerivAt_id x₀).const_mul π)
+    simp only [mul_one] at hc
+    convert hc using 1
+    ring
+  have hcot : HasDerivAt (fun x : ℝ => Real.cos (π * x) / Real.sin (π * x))
+      ((-(π * Real.sin (π * x₀)) * Real.sin (π * x₀) - Real.cos (π * x₀) * (π * Real.cos (π * x₀)))
+        / Real.sin (π * x₀) ^ 2) x₀ :=
+    hcosderiv.div hsinderiv hsin_ne
+  have hcoteq : (fun x : ℝ => π * Real.cot (π * x))
+      = (fun x : ℝ => π * (Real.cos (π * x) / Real.sin (π * x))) := by
+    funext x; rw [Real.cot_eq_cos_div_sin]
+  have hpicot : HasDerivAt (fun x : ℝ => π * Real.cot (π * x))
+      (π * ((-(π * Real.sin (π * x₀)) * Real.sin (π * x₀)
+        - Real.cos (π * x₀) * (π * Real.cos (π * x₀))) / Real.sin (π * x₀) ^ 2)) x₀ := by
+    rw [hcoteq]
+    exact hcot.const_mul π
+  have hsimp : π * ((-(π * Real.sin (π * x₀)) * Real.sin (π * x₀)
+      - Real.cos (π * x₀) * (π * Real.cos (π * x₀))) / Real.sin (π * x₀) ^ 2)
+      = -(π ^ 2 / Real.sin (π * x₀) ^ 2) := by
+    have hpyth : Real.sin (π * x₀) ^ 2 + Real.cos (π * x₀) ^ 2 = 1 := Real.sin_sq_add_cos_sq _
+    have hsinsq_ne : Real.sin (π * x₀) ^ 2 ≠ 0 := pow_ne_zero 2 hsin_ne
+    field_simp
+    nlinarith [hpyth]
+  rw [hsimp] at hpicot
+  have hinv : HasDerivAt (fun x : ℝ => 1 / x) (-(1 / x₀ ^ 2)) x₀ := by
+    have := hasDerivAt_inv hx₀_ne
+    simpa [one_div] using this
+  have := hpicot.sub hinv
+  simpa using this
+
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
