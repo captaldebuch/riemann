@@ -13,30 +13,42 @@ does **not** modify `VasyuninBridge.lean` at all.
 
 ## Summary of what is established here
 
-* `realTrigammaSeriesInt` : the real-variable series `∑' n : ℤ, 1 / (x + n) ^ 2`, which is the
-  natural real-variable analogue of the trigamma-type series referenced in the
-  `tsum_shifted_integrals_eq_cotangent_sum` doc-comment (there is no packaged real *or* complex
-  "trigamma" series in Mathlib as such — confirmed by search, see the research notes below).
-* `summable_realTrigammaSeriesInt` : this series is summable for *every* real `x` (even integer
-  `x`, thanks to junk value conventions — no hypothesis needed). Fully proved.
+* `realTrigammaSeriesInt` / `realTrigammaSeriesNat` : the real-variable trigamma-type series
+  `∑' n : ℤ, 1/(x+n)²` and its one-sided `∑' n : ℕ, 1/(n+x)²` form, the natural real-variable
+  analogues of the trigamma-type series referenced in the `tsum_shifted_integrals_eq_cotangent_sum`
+  doc-comment (there is no packaged real *or* complex "trigamma" series in Mathlib as such —
+  confirmed by search, see the research notes below).
+* `summable_realTrigammaSeriesInt` / `summable_realTrigammaSeriesNat` : both series are
+  summable for *every* real `x` (even integer `x`, thanks to junk value conventions — no
+  hypothesis needed). **Fully proved.**
 * `realTrigammaSeriesInt_reflection` : the reflection/partial-fraction identity
-  `∑' n : ℤ, 1/(x+n)^2 = π^2 / sin(π x)^2` for real `x ∉ ℤ`. This is the single most valuable
-  target sub-result identified in the task brief. **Status: stated with an honest `sorry`** — see
-  the extended discussion directly above it for exactly how far the proof was carried and what
-  remains.
+  `∑' n : ℤ, 1/(x+n)^2 = π^2 / sin(π x)^2` for real `x ∉ ℤ`. This was the single most valuable
+  target sub-result identified in the task brief, and **it is fully proved here**, with clean
+  axioms (no `sorryAx`) — see the extended discussion directly above it for the full proof
+  strategy (a term-by-term differentiation argument, `Mathlib`'s `hasDerivAt_tsum_of_isPreconnected`
+  applied on a punctured neighborhood avoiding all integers, matched against the independently
+  computed derivative of `π cot(π x) - 1/x`).
 * Supporting real-variable differentiation lemmas isolating the precise Mathlib gap: Mathlib's
   `Complex.cot_series_rep` / `cot_series_rep'` (`Mathlib.Analysis.SpecialFunctions.Trigonometric.
   Cotangent`) hold on all of `x ∈ Complex.integerComplement` (NOT just the upper half plane
   `ℍₒ` — this is an important correction to the `VasyuninBridge.lean` doc-comment, confirmed by
   reading the Mathlib source directly, see below), which includes real non-integer `x` cast into
   `ℂ`. So the *undifferentiated* Mittag-Leffler cotangent series is already available, for free,
-  at real points. What is missing is differentiating it in the real variable to reach the
+  at real points. What was missing was differentiating it in the real variable to reach the
   *squared* trigamma-type series, since Mathlib's own differentiated version
   (`iteratedDerivWithin_cot_pi_mul_eq_mul_tsum_div_pow`) is restricted to `z ∈ ℍₒ` (open upper
   half plane) for its local-uniform-convergence argument, and does not directly specialize to
-  the real axis (`Im z = 0`, a boundary/limit case of `ℍₒ`, not an interior point).
-* The period-reduction step (from `L = lcm h k` down to individual periods `h`, `k`) is stated
-  as a separate lemma, `shiftedIntegralTsum_period_reduction`, not proved (see its doc-comment).
+  the real axis (`Im z = 0`, a boundary/limit case of `ℍₒ`, not an interior point). This file
+  closes that gap directly on the real line (`hasDerivAt_mittagLefflerSeries`), without ever
+  leaving `ℝ` or approaching from the upper half-plane.
+* `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat` : the exact algebraic identity
+  connecting the `∑_{n≥0} 1/(nL+s)²` weight appearing in `VasyuninBridge.lean`'s
+  `tsum_shifted_integrals_eq_cotangent_sum` to `realTrigammaSeriesNat`. **Fully proved.**
+* `shiftedIntegralTsum_period_reduction` : the period-reduction step (from `L = lcm h k` down
+  to individual periods `h`, `k`, and from there to `cotangentSumVFormula` via the classical
+  Dedekind-sum-style reciprocity) is stated with the exact target shape of
+  `tsum_shifted_integrals_eq_cotangent_sum`, but **not proved** (honest `sorry`) — this is the
+  remaining genuinely Vasyunin-specific combinatorial content; see its doc-comment.
 
 ## Mathlib research notes (for the record)
 
@@ -655,5 +667,52 @@ theorem realTrigammaSeriesInt_reflection {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n :
     rw [Summable.tsum_add h2.neg h1.neg, tsum_neg, tsum_neg]
   rw [hne] at hderiv_unique
   linarith [hderiv_unique]
+
+-- ---------------------------------------------------------------------------
+-- 8. Recognizing the `n`-sum weight in `tsum_shifted_integrals_eq_cotangent_sum` as a
+--    rescaled trigamma series, and the (unproved) period-reduction step down to
+--    `cotangentSumVFormula`.
+-- ---------------------------------------------------------------------------
+
+/-- The `∑_{n≥0} 1/(nL+s)²` weight appearing in `VasyuninBridge.lean`'s
+    `tsum_shifted_integrals_eq_cotangent_sum` is exactly `(1/L²) · realTrigammaSeriesNat (s/L)`,
+    for `L > 0` and `s` such that `s/L ∉ ℤ` is not required here — the identity is purely
+    algebraic (`(n:ℝ)*L + s = L*(n + s/L)`), valid for every `s` and every `n : ℕ` pointwise
+    before summing, hence for the `tsum` as well. This connects the (fully proved)
+    `realTrigammaSeriesInt_reflection` machinery above to the exact shape needed in
+    `tsum_shifted_integrals_eq_cotangent_sum`. -/
+theorem tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat {L : ℝ} (hL : 0 < L) (s : ℝ) :
+    (∑' n : ℕ, 1 / ((n : ℝ) * L + s) ^ 2) = (1 / L ^ 2) * realTrigammaSeriesNat (s / L) := by
+  unfold realTrigammaSeriesNat
+  rw [← tsum_mul_left]
+  apply tsum_congr
+  intro n
+  have hLne : L ≠ 0 := hL.ne'
+  have hterm : (n : ℝ) * L + s = L * ((n : ℝ) + s / L) := by field_simp
+  rw [hterm, mul_pow, one_div, one_div, mul_inv]
+  congr 1
+  rw [← one_div]
+
+/-- **The period-reduction step**, precisely stated but NOT proved here (the remaining
+    genuinely Vasyunin-specific combinatorial content, per the task brief's item 2): reducing
+    the joint-period (`L = lcm h k`) integral
+    `∫_0^L {s/h}{s/k} · realTrigammaSeriesNat(s/L) ds` (after applying
+    `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat` and
+    `realTrigammaSeriesInt_reflection`/its one-sided analogue to recognize the weight in closed
+    form as `π²/sin²(π s/L)` up to bookkeeping) down to the *individual* periods `h` and `k` of
+    the two sawtooth factors, and from there to the explicit finite cotangent sum
+    `cotangentSumVFormula h k + cotangentSumVFormula k h` (Vasyunin's original computation,
+    partitioning `(0, L)` into `h·k` sub-arcs on which `{s/h}` and `{s/k}` are simultaneously
+    affine in `s`, and applying classical Dedekind-sum-style cotangent reciprocity to each
+    piece). This is a genuine multi-page classical argument (see the doc-comment on
+    `tsum_shifted_integrals_eq_cotangent_sum` in `VasyuninBridge.lean` for the precise
+    mathematical content) and is NOT attempted in this session — this statement exists only to
+    record precisely what remains, in terms of the machinery now available in this file. -/
+theorem shiftedIntegralTsum_period_reduction (h k : ℕ) (hne : h ≠ k) (hh : 0 < h) (hk : 0 < k) :
+    (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
+          ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
+      = vasyuninBEntry h k := by
+  sorry
 
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
