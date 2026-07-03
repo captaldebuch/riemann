@@ -339,4 +339,23 @@ theorem ballRadius_le_dist_to_int {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) �
     have : min (x₀ - (⌊x₀⌋ : ℝ)) ((⌊x₀⌋ : ℝ) + 1 - x₀) ≤ (⌊x₀⌋ : ℝ) + 1 - x₀ := min_le_right _ _
     linarith
 
+/-- For `y` within `ballRadius x₀ / 2` of `x₀`, and any integer `a`, `|y - a|` is at least
+    `ballRadius x₀ / 2` — i.e. every point of the half-radius ball is uniformly bounded away
+    from every integer, with a bound depending only on `x₀` (not on `y` or `a`). This is what
+    lets the *same* finite bound cover every "near" index `n` simultaneously on the whole ball,
+    handling the finitely-many small-`n` terms that `mittagLefflerDeriv_far_bound` cannot reach
+    (those with a pole inside or adjacent to a naively-chosen full unit interval). -/
+theorem half_ballRadius_le_dist {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) {y : ℝ}
+    (hy : |y - x₀| < ballRadius x₀ / 2) (a : ℤ) :
+    ballRadius x₀ / 2 ≤ |y - (a : ℝ)| := by
+  have hbig := ballRadius_le_dist_to_int hx₀ a
+  have h1 : |x₀ - (a:ℝ)| - |y - x₀| ≤ |y - (a:ℝ)| := by
+    have := abs_sub_abs_le_abs_sub (x₀ - (a:ℝ)) (x₀ - y)
+    have heq : (x₀ - (a:ℝ)) - (x₀ - y) = y - a := by ring
+    rw [heq] at this
+    have habs : |x₀ - y| = |y - x₀| := abs_sub_comm _ _
+    rw [habs] at this
+    linarith [le_abs_self ((x₀ - (a:ℝ)) - (x₀ - y))]
+  linarith
+
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
