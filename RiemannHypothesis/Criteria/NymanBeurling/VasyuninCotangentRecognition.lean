@@ -299,4 +299,44 @@ theorem mittagLefflerDeriv_far_bound {x₀ δ : ℝ} {y : ℝ} (hy : |y - x₀| 
   have hsum : (4:ℝ) / ((n:ℝ)+1) ^ 2 + 4 / ((n:ℝ)+1) ^ 2 = 8 / ((n:ℝ)+1) ^ 2 := by ring
   linarith [hstep1, hstep2]
 
+-- ---------------------------------------------------------------------------
+-- 5. The "radius to the nearest integer" and the near/far uniform bound.
+-- ---------------------------------------------------------------------------
+
+/-- Half the distance from `x₀` to the nearer of its floor/ceiling: strictly positive whenever
+    `x₀` is not itself an integer. Every point within this radius of `x₀` still lies strictly
+    between `⌊x₀⌋` and `⌊x₀⌋ + 1`, and every integer is at distance at least this radius from
+    every such point (see `dist_ball_radius_lt_dist_to_any_int` below). -/
+noncomputable def ballRadius (x₀ : ℝ) : ℝ :=
+  min (x₀ - (⌊x₀⌋ : ℝ)) ((⌊x₀⌋ : ℝ) + 1 - x₀) / 2
+
+theorem ballRadius_pos {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) : 0 < ballRadius x₀ := by
+  unfold ballRadius
+  have h1 : (⌊x₀⌋ : ℝ) < x₀ := lt_of_le_of_ne (Int.floor_le x₀) (hx₀ ⌊x₀⌋)
+  have h2 : x₀ < (⌊x₀⌋ : ℝ) + 1 := Int.lt_floor_add_one x₀
+  have : (0:ℝ) < min (x₀ - (⌊x₀⌋ : ℝ)) ((⌊x₀⌋ : ℝ) + 1 - x₀) := by
+    apply lt_min <;> linarith
+  linarith
+
+/-- Every integer `a` is at distance at least `ballRadius x₀` from `x₀` itself: distinct
+    integers on either side of `x₀` are, by definition of `ballRadius`, at least that far. -/
+theorem ballRadius_le_dist_to_int {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) (a : ℤ) :
+    ballRadius x₀ ≤ |x₀ - (a : ℝ)| := by
+  unfold ballRadius
+  have h1 : (⌊x₀⌋ : ℝ) < x₀ := lt_of_le_of_ne (Int.floor_le x₀) (hx₀ ⌊x₀⌋)
+  have h2 : x₀ < (⌊x₀⌋ : ℝ) + 1 := Int.lt_floor_add_one x₀
+  rcases le_or_gt (a : ℝ) (⌊x₀⌋ : ℝ) with hcase | hcase
+  · have hxa : (0:ℝ) ≤ x₀ - a := by linarith
+    rw [abs_of_nonneg hxa]
+    have : min (x₀ - (⌊x₀⌋ : ℝ)) ((⌊x₀⌋ : ℝ) + 1 - x₀) ≤ x₀ - (⌊x₀⌋ : ℝ) := min_le_left _ _
+    linarith
+  · have ha : (⌊x₀⌋ : ℝ) + 1 ≤ (a : ℝ) := by
+      have hai : (⌊x₀⌋ : ℤ) < a := by exact_mod_cast hcase
+      have : (⌊x₀⌋ : ℤ) + 1 ≤ a := hai
+      exact_mod_cast this
+    have hxa : x₀ - a ≤ 0 := by linarith
+    rw [abs_of_nonpos hxa]
+    have : min (x₀ - (⌊x₀⌋ : ℝ)) ((⌊x₀⌋ : ℝ) + 1 - x₀) ≤ (⌊x₀⌋ : ℝ) + 1 - x₀ := min_le_right _ _
+    linarith
+
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
