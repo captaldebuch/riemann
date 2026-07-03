@@ -42,22 +42,86 @@ structure MobiusSummatoryEstimates where
   C_pos : 0 < C_L + |1 - Real.eulerMascheroniConstant| * C_M
 
 -- ---------------------------------------------------------------------------
--- 3. Summation by Parts Reductions (Sketched)
+-- 3. Finite Abel Summation
 -- ---------------------------------------------------------------------------
 
--- The rigorous Abel summation identities rewriting the cutoff sums in terms
--- of M(N) and L(N) are analytically heavy and are marked as sorry here to
--- establish the structural reduction.
+/-- Finite Abel summation for a cutoff that vanishes at `N + 1`. -/
+private theorem sum_Icc_mul_sub_endpoint_eq_sum_partial
+    (a b : ℕ → ℝ) (N : ℕ) :
+    (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1))) =
+      ∑ k ∈ Finset.Icc 1 N,
+        (∑ j ∈ Finset.Icc 1 k, a j) * (b k - b (k + 1)) := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+      have hone : 1 ≤ N + 1 := by omega
+      rw [Finset.sum_Icc_succ_top hone, Finset.sum_Icc_succ_top hone]
+      have hshift :
+          (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1 + 1))) =
+            (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1))) +
+              (∑ k ∈ Finset.Icc 1 N, a k) * (b (N + 1) - b (N + 1 + 1)) := by
+        calc
+          _ = ∑ k ∈ Finset.Icc 1 N,
+                (a k * (b k - b (N + 1)) +
+                  a k * (b (N + 1) - b (N + 1 + 1))) := by
+              apply Finset.sum_congr rfl
+              intro k _
+              ring
+          _ = _ := by
+              rw [Finset.sum_add_distrib, Finset.sum_mul]
+      rw [hshift, ih, Finset.sum_Icc_succ_top hone]
+      ring
 
+/-- Exact Abel-summation formula for the cutoff sum of `μ(k) / k`. -/
 theorem cutoffMobiusOverKSum_eq_abel_sum (N : ℕ) :
     cutoffMobiusOverKSum N =
-      -- A concrete expression involving mobiusSummatory
-      sorry := by sorry
+      ∑ k ∈ Finset.Icc 1 N,
+        mobiusSummatory k *
+          (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+  have habel := sum_Icc_mul_sub_endpoint_eq_sum_partial
+    (fun k ↦ ((ArithmeticFunction.moebius k : ℤ) : ℝ))
+    (fun k ↦ 1 / (k : ℝ)) N
+  rw [show cutoffMobiusOverKSum N =
+      ∑ k ∈ Finset.Icc 1 N,
+        ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+          (1 / (k : ℝ) - 1 / ((N + 1 : ℕ) : ℝ)) by
+    unfold cutoffMobiusOverKSum
+    apply Finset.sum_congr rfl
+    intro k hk
+    have hk0 : (k : ℝ) ≠ 0 := by
+      exact_mod_cast (ne_of_gt (Finset.mem_Icc.mp hk).1)
+    have hN0 : ((N + 1 : ℕ) : ℝ) ≠ 0 := by positivity
+    field_simp]
+  simpa [mobiusSummatory] using habel
 
+/-- Exact Abel-summation formula for the cutoff sum of `μ(k) log(k) / k`. -/
 theorem cutoffMobiusLogOverKSum_eq_abel_sum (N : ℕ) :
     cutoffMobiusLogOverKSum N + 1 =
-      -- A concrete expression involving mobiusLogSummatory and mobiusSummatory
-      sorry := by sorry
+      1 + ∑ k ∈ Finset.Icc 1 N,
+        mobiusLogSummatory k *
+          (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+  have habel := sum_Icc_mul_sub_endpoint_eq_sum_partial
+    (fun k ↦ ((ArithmeticFunction.moebius k : ℤ) : ℝ) * Real.log (k : ℝ))
+    (fun k ↦ 1 / (k : ℝ)) N
+  have hcutoff :
+      cutoffMobiusLogOverKSum N =
+        ∑ k ∈ Finset.Icc 1 N,
+          mobiusLogSummatory k *
+            (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+    rw [show cutoffMobiusLogOverKSum N =
+        ∑ k ∈ Finset.Icc 1 N,
+          (((ArithmeticFunction.moebius k : ℤ) : ℝ) * Real.log (k : ℝ)) *
+            (1 / (k : ℝ) - 1 / ((N + 1 : ℕ) : ℝ)) by
+      unfold cutoffMobiusLogOverKSum
+      apply Finset.sum_congr rfl
+      intro k hk
+      have hk0 : (k : ℝ) ≠ 0 := by
+        exact_mod_cast (ne_of_gt (Finset.mem_Icc.mp hk).1)
+      have hN0 : ((N + 1 : ℕ) : ℝ) ≠ 0 := by positivity
+      field_simp]
+    simpa [mobiusLogSummatory] using habel
+  rw [hcutoff]
+  ring
 
 -- ---------------------------------------------------------------------------
 -- 4. Bridge to Dirichlet Estimates
