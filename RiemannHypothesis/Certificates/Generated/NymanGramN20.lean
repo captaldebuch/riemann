@@ -6782,6 +6782,135 @@ def Q_interval : BaezDuarteIntervalQuadraticModel 20 :=
 
 def dataSource : GramEntrySource := GramEntrySource.CertifiedInterval
 
+private theorem ldl_product_apply (i j : Fin 20) :
+    (L_val * Matrix.diagonal D_val * L_val.transpose) i j =
+      ∑ k, L_val i k * D_val k * L_val j k := by
+  have hdiag : Matrix.diagonal D_val * L_val.transpose =
+      fun a b => D_val a * L_val b a := by
+    ext a b
+    change Matrix.diagonal D_val a ⬝ᵥ (fun x => L_val.transpose x b) = _
+    rw [diagonal_dotProduct]
+    rfl
+  rw [mul_assoc, hdiag]
+  simp only [Matrix.mul_apply, mul_assoc]
+
+local macro "prove_ldl_row" js:ident,* : tactic =>
+  `(tactic|
+    (rw [ldl_product_apply]
+     fin_cases $[$js],* <;>
+       simp only [M_reg, M_reg_fn,
+         mreg_r_0, mreg_r_1, mreg_r_2, mreg_r_3, mreg_r_4,
+         mreg_r_5, mreg_r_6, mreg_r_7, mreg_r_8, mreg_r_9,
+         mreg_r_10, mreg_r_11, mreg_r_12, mreg_r_13, mreg_r_14,
+         mreg_r_15, mreg_r_16, mreg_r_17, mreg_r_18, mreg_r_19,
+         L_val, L_val_fn,
+         lval_r_0, lval_r_1, lval_r_2, lval_r_3, lval_r_4,
+         lval_r_5, lval_r_6, lval_r_7, lval_r_8, lval_r_9,
+         lval_r_10, lval_r_11, lval_r_12, lval_r_13, lval_r_14,
+         lval_r_15, lval_r_16, lval_r_17, lval_r_18, lval_r_19,
+         D_val, D_val_fn, Fin.sum_univ_succ, Fin.sum_univ_zero] <;>
+       norm_num (config := { maxSteps := 1000000 })))
+
+private theorem ldl_identity_row_0 (j : Fin 20) :
+    M_reg ⟨0, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨0, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_1 (j : Fin 20) :
+    M_reg ⟨1, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨1, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_2 (j : Fin 20) :
+    M_reg ⟨2, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨2, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_3 (j : Fin 20) :
+    M_reg ⟨3, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨3, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_4 (j : Fin 20) :
+    M_reg ⟨4, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨4, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_5 (j : Fin 20) :
+    M_reg ⟨5, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨5, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_6 (j : Fin 20) :
+    M_reg ⟨6, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨6, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_7 (j : Fin 20) :
+    M_reg ⟨7, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨7, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_8 (j : Fin 20) :
+    M_reg ⟨8, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨8, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_9 (j : Fin 20) :
+    M_reg ⟨9, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨9, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_10 (j : Fin 20) :
+    M_reg ⟨10, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨10, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_11 (j : Fin 20) :
+    M_reg ⟨11, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨11, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_12 (j : Fin 20) :
+    M_reg ⟨12, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨12, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_13 (j : Fin 20) :
+    M_reg ⟨13, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨13, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_14 (j : Fin 20) :
+    M_reg ⟨14, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨14, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_15 (j : Fin 20) :
+    M_reg ⟨15, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨15, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_16 (j : Fin 20) :
+    M_reg ⟨16, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨16, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_17 (j : Fin 20) :
+    M_reg ⟨17, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨17, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_18 (j : Fin 20) :
+    M_reg ⟨18, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨18, by decide⟩ j := by
+  prove_ldl_row j
+
+private theorem ldl_identity_row_19 (j : Fin 20) :
+    M_reg ⟨19, by decide⟩ j =
+      (L_val * Matrix.diagonal D_val * L_val.transpose) ⟨19, by decide⟩ j := by
+  prove_ldl_row j
+
 
 def witnessN20 : RationalPSDWitness 20 :=
 {
@@ -6789,7 +6918,29 @@ def witnessN20 : RationalPSDWitness 20 :=
   L := L_val
   D := D_val
   diagonal_nonneg := by intro i; fin_cases i <;> simp [D_val, D_val_fn] <;> norm_num
-  ldl_identity := by native_decide
+  ldl_identity := by
+    ext i j
+    fin_cases i
+    · exact ldl_identity_row_0 j
+    · exact ldl_identity_row_1 j
+    · exact ldl_identity_row_2 j
+    · exact ldl_identity_row_3 j
+    · exact ldl_identity_row_4 j
+    · exact ldl_identity_row_5 j
+    · exact ldl_identity_row_6 j
+    · exact ldl_identity_row_7 j
+    · exact ldl_identity_row_8 j
+    · exact ldl_identity_row_9 j
+    · exact ldl_identity_row_10 j
+    · exact ldl_identity_row_11 j
+    · exact ldl_identity_row_12 j
+    · exact ldl_identity_row_13 j
+    · exact ldl_identity_row_14 j
+    · exact ldl_identity_row_15 j
+    · exact ldl_identity_row_16 j
+    · exact ldl_identity_row_17 j
+    · exact ldl_identity_row_18 j
+    · exact ldl_identity_row_19 j
 }
 
 -- M_orig removed: implicitly bounded by the Gram entry intervals
@@ -6833,7 +6984,7 @@ noncomputable def certN20 : FiniteApproximationCertificate :=
 -- The proof chain is:
 --   Σ c_h c_k G_hk - 2 Σ c_k l_k + 1
 --     ≤ signAwareQuadBoundQ + signAwareLinBoundQ + 1  (sign_aware_energy_bound, PROVED)
---     = energyUpper                                    (rational equality, native_decide)
+--     = energyUpper                                    (kernel-checked rational equality)
 theorem N20_quadratic_le_energyUpper :
     ∑ h : Fin 20, ∑ k : Fin 20,
       (coeff_fn h : ℝ) * (coeff_fn k : ℝ) *
@@ -6854,7 +7005,106 @@ theorem N20_quadratic_le_energyUpper :
       (RH.Certificates.Generated.ChiRhoBoundsN20.innerProductChiRho_interval k).2)
   have heq : signAwareQuadBoundQ coeff_fn gram_lower gram_upper +
              signAwareLinBoundQ coeff_fn lin_lower lin_upper + 1 =
-             witnessEnergy.energyUpper := by native_decide
+             witnessEnergy.energyUpper := by
+    simp only [signAwareQuadBoundQ, signAwareLinBoundQ,
+      Fin.sum_univ_succ, Fin.sum_univ_zero]
+    simp only [coeff_fn, gram_lower,
+      glwr_r_0, glwr_r_1, glwr_r_2, glwr_r_3, glwr_r_4,
+      glwr_r_5, glwr_r_6, glwr_r_7, glwr_r_8, glwr_r_9,
+      glwr_r_10, glwr_r_11, glwr_r_12, glwr_r_13, glwr_r_14,
+      glwr_r_15, glwr_r_16, glwr_r_17, glwr_r_18, glwr_r_19,
+      gram_upper,
+      gupr_r_0, gupr_r_1, gupr_r_2, gupr_r_3, gupr_r_4,
+      gupr_r_5, gupr_r_6, gupr_r_7, gupr_r_8, gupr_r_9,
+      gupr_r_10, gupr_r_11, gupr_r_12, gupr_r_13, gupr_r_14,
+      gupr_r_15, gupr_r_16, gupr_r_17, gupr_r_18, gupr_r_19,
+      lin_lower, lin_upper,
+      RH.Certificates.Generated.ChiRhoBoundsN20.linearLower,
+      RH.Certificates.Generated.ChiRhoBoundsN20.linearUpper,
+      RH.Certificates.Generated.ChiRhoBoundsN20.linearCenter,
+      witnessEnergy]
+    simp only [
+    entry_1_1, entry_1_2, entry_1_3, entry_1_4, entry_1_5,
+    entry_1_6, entry_1_7, entry_1_8, entry_1_9, entry_1_10,
+    entry_1_11, entry_1_12, entry_1_13, entry_1_14, entry_1_15,
+    entry_1_16, entry_1_17, entry_1_18, entry_1_19, entry_1_20,
+    entry_2_1, entry_2_2, entry_2_3, entry_2_4, entry_2_5,
+    entry_2_6, entry_2_7, entry_2_8, entry_2_9, entry_2_10,
+    entry_2_11, entry_2_12, entry_2_13, entry_2_14, entry_2_15,
+    entry_2_16, entry_2_17, entry_2_18, entry_2_19, entry_2_20,
+    entry_3_1, entry_3_2, entry_3_3, entry_3_4, entry_3_5,
+    entry_3_6, entry_3_7, entry_3_8, entry_3_9, entry_3_10,
+    entry_3_11, entry_3_12, entry_3_13, entry_3_14, entry_3_15,
+    entry_3_16, entry_3_17, entry_3_18, entry_3_19, entry_3_20,
+    entry_4_1, entry_4_2, entry_4_3, entry_4_4, entry_4_5,
+    entry_4_6, entry_4_7, entry_4_8, entry_4_9, entry_4_10,
+    entry_4_11, entry_4_12, entry_4_13, entry_4_14, entry_4_15,
+    entry_4_16, entry_4_17, entry_4_18, entry_4_19, entry_4_20,
+    entry_5_1, entry_5_2, entry_5_3, entry_5_4, entry_5_5,
+    entry_5_6, entry_5_7, entry_5_8, entry_5_9, entry_5_10,
+    entry_5_11, entry_5_12, entry_5_13, entry_5_14, entry_5_15,
+    entry_5_16, entry_5_17, entry_5_18, entry_5_19, entry_5_20,
+    entry_6_1, entry_6_2, entry_6_3, entry_6_4, entry_6_5,
+    entry_6_6, entry_6_7, entry_6_8, entry_6_9, entry_6_10,
+    entry_6_11, entry_6_12, entry_6_13, entry_6_14, entry_6_15,
+    entry_6_16, entry_6_17, entry_6_18, entry_6_19, entry_6_20,
+    entry_7_1, entry_7_2, entry_7_3, entry_7_4, entry_7_5,
+    entry_7_6, entry_7_7, entry_7_8, entry_7_9, entry_7_10,
+    entry_7_11, entry_7_12, entry_7_13, entry_7_14, entry_7_15,
+    entry_7_16, entry_7_17, entry_7_18, entry_7_19, entry_7_20,
+    entry_8_1, entry_8_2, entry_8_3, entry_8_4, entry_8_5,
+    entry_8_6, entry_8_7, entry_8_8, entry_8_9, entry_8_10,
+    entry_8_11, entry_8_12, entry_8_13, entry_8_14, entry_8_15,
+    entry_8_16, entry_8_17, entry_8_18, entry_8_19, entry_8_20,
+    entry_9_1, entry_9_2, entry_9_3, entry_9_4, entry_9_5,
+    entry_9_6, entry_9_7, entry_9_8, entry_9_9, entry_9_10,
+    entry_9_11, entry_9_12, entry_9_13, entry_9_14, entry_9_15,
+    entry_9_16, entry_9_17, entry_9_18, entry_9_19, entry_9_20,
+    entry_10_1, entry_10_2, entry_10_3, entry_10_4, entry_10_5,
+    entry_10_6, entry_10_7, entry_10_8, entry_10_9, entry_10_10,
+    entry_10_11, entry_10_12, entry_10_13, entry_10_14, entry_10_15,
+    entry_10_16, entry_10_17, entry_10_18, entry_10_19, entry_10_20,
+    entry_11_1, entry_11_2, entry_11_3, entry_11_4, entry_11_5,
+    entry_11_6, entry_11_7, entry_11_8, entry_11_9, entry_11_10,
+    entry_11_11, entry_11_12, entry_11_13, entry_11_14, entry_11_15,
+    entry_11_16, entry_11_17, entry_11_18, entry_11_19, entry_11_20,
+    entry_12_1, entry_12_2, entry_12_3, entry_12_4, entry_12_5,
+    entry_12_6, entry_12_7, entry_12_8, entry_12_9, entry_12_10,
+    entry_12_11, entry_12_12, entry_12_13, entry_12_14, entry_12_15,
+    entry_12_16, entry_12_17, entry_12_18, entry_12_19, entry_12_20,
+    entry_13_1, entry_13_2, entry_13_3, entry_13_4, entry_13_5,
+    entry_13_6, entry_13_7, entry_13_8, entry_13_9, entry_13_10,
+    entry_13_11, entry_13_12, entry_13_13, entry_13_14, entry_13_15,
+    entry_13_16, entry_13_17, entry_13_18, entry_13_19, entry_13_20,
+    entry_14_1, entry_14_2, entry_14_3, entry_14_4, entry_14_5,
+    entry_14_6, entry_14_7, entry_14_8, entry_14_9, entry_14_10,
+    entry_14_11, entry_14_12, entry_14_13, entry_14_14, entry_14_15,
+    entry_14_16, entry_14_17, entry_14_18, entry_14_19, entry_14_20,
+    entry_15_1, entry_15_2, entry_15_3, entry_15_4, entry_15_5,
+    entry_15_6, entry_15_7, entry_15_8, entry_15_9, entry_15_10,
+    entry_15_11, entry_15_12, entry_15_13, entry_15_14, entry_15_15,
+    entry_15_16, entry_15_17, entry_15_18, entry_15_19, entry_15_20,
+    entry_16_1, entry_16_2, entry_16_3, entry_16_4, entry_16_5,
+    entry_16_6, entry_16_7, entry_16_8, entry_16_9, entry_16_10,
+    entry_16_11, entry_16_12, entry_16_13, entry_16_14, entry_16_15,
+    entry_16_16, entry_16_17, entry_16_18, entry_16_19, entry_16_20,
+    entry_17_1, entry_17_2, entry_17_3, entry_17_4, entry_17_5,
+    entry_17_6, entry_17_7, entry_17_8, entry_17_9, entry_17_10,
+    entry_17_11, entry_17_12, entry_17_13, entry_17_14, entry_17_15,
+    entry_17_16, entry_17_17, entry_17_18, entry_17_19, entry_17_20,
+    entry_18_1, entry_18_2, entry_18_3, entry_18_4, entry_18_5,
+    entry_18_6, entry_18_7, entry_18_8, entry_18_9, entry_18_10,
+    entry_18_11, entry_18_12, entry_18_13, entry_18_14, entry_18_15,
+    entry_18_16, entry_18_17, entry_18_18, entry_18_19, entry_18_20,
+    entry_19_1, entry_19_2, entry_19_3, entry_19_4, entry_19_5,
+    entry_19_6, entry_19_7, entry_19_8, entry_19_9, entry_19_10,
+    entry_19_11, entry_19_12, entry_19_13, entry_19_14, entry_19_15,
+    entry_19_16, entry_19_17, entry_19_18, entry_19_19, entry_19_20,
+    entry_20_1, entry_20_2, entry_20_3, entry_20_4, entry_20_5,
+    entry_20_6, entry_20_7, entry_20_8, entry_20_9, entry_20_10,
+    entry_20_11, entry_20_12, entry_20_13, entry_20_14, entry_20_15,
+    entry_20_16, entry_20_17, entry_20_18, entry_20_19, entry_20_20]
+    norm_num (config := { maxSteps := 1000000 })
   calc ∑ h : Fin 20, ∑ k : Fin 20,
           (coeff_fn h : ℝ) * (coeff_fn k : ℝ) *
           RH.Criteria.NymanBeurling.VasyuninGram.baezDuarteGramEntry (h.val + 1) (k.val + 1)
