@@ -61,7 +61,7 @@ echo
 # ---------------------------------------------------------------------------
 echo "== 3. Repo-wide counts (report only — compare against what you expect for this change) =="
 AXIOMS=$(grep -R "^axiom " RiemannHypothesis --include="*.lean" | wc -l | tr -d ' ')
-SORRIES=$(grep -R "sorry" RiemannHypothesis --include="*.lean" | wc -l | tr -d ' ')
+SORRIES=$(grep -RE '^\s*sorry\s*$' RiemannHypothesis --include="*.lean" | wc -l | tr -d ' ')
 NATIVE_DECIDE=$(grep -R "native_decide" RiemannHypothesis --include="*.lean" | wc -l | tr -d ' ')
 COT_AXIOMS=$(grep -R "axiom cot_pi_.*_bounds" RiemannHypothesis/Certificates/Generated --include="*.lean" 2>/dev/null | wc -l | tr -d ' ')
 COT_THEOREMS=$(grep -R "theorem cot_pi_.*_bounds" RiemannHypothesis/Certificates/Generated --include="*.lean" 2>/dev/null | wc -l | tr -d ' ')
@@ -73,7 +73,7 @@ echo "cot_pi_*_bounds theorems:          $COT_THEOREMS"
 echo
 echo "Baseline counts for comparison:"
 git show "$BASELINE:RiemannHypothesis" >/dev/null 2>&1 || true
-BASELINE_SORRIES=$(git grep -c "sorry" "$BASELINE" -- 'RiemannHypothesis/*.lean' 2>/dev/null | awk -F: '{s+=$3} END{print s+0}')
+BASELINE_SORRIES=$(git grep -cE '^\s*sorry\s*$' "$BASELINE" -- 'RiemannHypothesis/*.lean' 2>/dev/null | awk -F: '{s+=$3} END{print s+0}')
 BASELINE_NATIVE=$(git grep -c "native_decide" "$BASELINE" -- 'RiemannHypothesis/*.lean' 2>/dev/null | awk -F: '{s+=$3} END{print s+0}')
 echo "  sorry at baseline:         $BASELINE_SORRIES"
 echo "  native_decide at baseline: $BASELINE_NATIVE"
@@ -109,7 +109,7 @@ while IFS= read -r f; do
   case "$f" in *.lean) ;; *) continue ;; esac
   MODULE=$(echo "$f" | sed -E 's#/#.#g; s#\.lean$##')
   NS=$(grep -m1 '^namespace ' "$f" | awk '{print $2}')
-  git diff "$BASELINE" -- "$f" | grep -E '^\+theorem ' | sed -E "s/^\+theorem ([A-Za-z0-9_']+).*/\1/" |
+  git diff "$BASELINE" -- "$f" | grep -E '^\+(theorem|lemma) ' | sed -E "s/^\+(theorem|lemma) ([A-Za-z0-9_']+).*/\2/" |
     while IFS= read -r name; do
       [ -n "$name" ] && printf '%s\t%s\t%s\n' "$MODULE" "$NS" "$name" >> "$ALL_ENTRIES"
     done
