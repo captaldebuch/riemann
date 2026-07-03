@@ -73,7 +73,7 @@ echo "cot_pi_*_bounds theorems:          $COT_THEOREMS"
 echo
 echo "Baseline counts for comparison:"
 git show "$BASELINE:RiemannHypothesis" >/dev/null 2>&1 || true
-BASELINE_SORRIES=$(git grep -cE '^\s*sorry\s*$' "$BASELINE" -- 'RiemannHypothesis/*.lean' 2>/dev/null | awk -F: '{s+=$3} END{print s+0}')
+BASELINE_SORRIES=$(git grep -cE '^[[:space:]]*sorry[[:space:]]*$' "$BASELINE" -- 'RiemannHypothesis/*.lean' 2>/dev/null | awk -F: '{s+=$3} END{print s+0}')
 BASELINE_NATIVE=$(git grep -c "native_decide" "$BASELINE" -- 'RiemannHypothesis/*.lean' 2>/dev/null | awk -F: '{s+=$3} END{print s+0}')
 echo "  sorry at baseline:         $BASELINE_SORRIES"
 echo "  native_decide at baseline: $BASELINE_NATIVE"
