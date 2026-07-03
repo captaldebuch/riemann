@@ -121,7 +121,7 @@ if [ "$TOTAL_NEW" -gt 0 ] && [ "$SAMPLE_SIZE" != "all" ] && [ "$TOTAL_NEW" -gt "
   STEP=$((TOTAL_NEW / SAMPLE_SIZE))
   [ "$STEP" -lt 1 ] && STEP=1
   SELECTED="$SCRATCH_DIR/selected.txt"
-  awk -v step="$STEP" 'NR % step == 1' "$ALL_ENTRIES" > "$SELECTED"
+  awk -v step="$STEP" '(NR-1) % step == 0' "$ALL_ENTRIES" > "$SELECTED"
   echo "Sampling $(wc -l < "$SELECTED" | tr -d ' ') of $TOTAL_NEW new theorems (every ${STEP}th)."
 else
   SELECTED="$ALL_ENTRIES"
