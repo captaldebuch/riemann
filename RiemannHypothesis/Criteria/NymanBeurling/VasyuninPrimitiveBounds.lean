@@ -43,21 +43,6 @@ structure NamedVasyuninInterval where
   lower_le_upper : lower ≤ upper
   interval_proof : ((lower : ℝ) ≤ baezDuarteGramEntry h k) ∧ (baezDuarteGramEntry h k ≤ (upper : ℝ))
 
-theorem baez_duarte_diagonal_scaling (k : ℕ) (hk : 0 < k) :
-    baezDuarteGramEntry k k = (1 / (k : ℝ)) * baezDuarteGramEntry 1 1 := by
-  simp only [baezDuarteGramEntry]
-  have hk_pos : (0 : ℝ) < (k : ℝ) := Nat.cast_pos.mpr hk
-  have h_kk : (∫ x in Set.Ioi (0 : ℝ), Int.fract (1 / ((k : ℝ) * x)) *
-                  Int.fract (1 / ((k : ℝ) * x))) =
-              ∫ x in Set.Ioi (0 : ℝ), Int.fract (1 / (x * (k : ℝ))) *
-                  Int.fract (1 / (x * (k : ℝ))) := by
-    congr 1; apply funext; intro x; ring_nf
-  rw [h_kk]
-  have h_comp := MeasureTheory.integral_comp_mul_right_Ioi
-    (fun y => Int.fract (1 / y) * Int.fract (1 / y)) 0 hk_pos
-  simp only [zero_mul] at h_comp
-  rw [h_comp]
-  simp only [smul_eq_mul, one_div, Nat.cast_one, one_mul]
 
 theorem baez_duarte_off_diagonal_scaling (h k m : ℕ) (hm : 0 < m) :
     baezDuarteGramEntry (m * h) (m * k) = (1 / (m : ℝ)) * baezDuarteGramEntry h k := by

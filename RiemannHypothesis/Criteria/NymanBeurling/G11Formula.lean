@@ -63,4 +63,52 @@ theorem vasyuninBEntry_diagonal_one :
   rw [G11_formula_theorem, vasyuninBEntry_eq_formula, vasyuninBEntryFormula_one_one]
   rfl
 
+theorem baez_duarte_diagonal_scaling (k : ℕ) (hk : 0 < k) :
+    baezDuarteGramEntry k k = (1 / (k : ℝ)) * baezDuarteGramEntry 1 1 := by
+  simp only [baezDuarteGramEntry]
+  have hk_pos : (0 : ℝ) < (k : ℝ) := Nat.cast_pos.mpr hk
+  have h_kk : (∫ x in Set.Ioi (0 : ℝ), Int.fract (1 / ((k : ℝ) * x)) *
+                  Int.fract (1 / ((k : ℝ) * x))) =
+              ∫ x in Set.Ioi (0 : ℝ), Int.fract (1 / (x * (k : ℝ))) *
+                  Int.fract (1 / (x * (k : ℝ))) := by
+    congr 1; apply funext; intro x; ring_nf
+  rw [h_kk]
+  have h_comp := MeasureTheory.integral_comp_mul_right_Ioi
+    (fun y => Int.fract (1 / y) * Int.fract (1 / y)) 0 hk_pos
+  simp only [zero_mul] at h_comp
+  rw [h_comp]
+  simp only [smul_eq_mul, one_div, Nat.cast_one, one_mul]
+
+theorem vasyuninBEntry_diagonal_scaling (k : ℕ) :
+    vasyuninBEntry k k = (1 / (k : ℝ)) * vasyuninBEntry 1 1 := by
+  rcases eq_or_ne k 0 with rfl | hk
+  · rw [vasyuninBEntry_eq_formula, vasyuninBEntry_eq_formula]
+    unfold vasyuninBEntryFormula cotangentSumVFormula
+    simp
+  · have hk_pos : 0 < k := Nat.pos_of_ne_zero hk
+    have hkR_pos : (0 : ℝ) < (k : ℝ) := Nat.cast_pos.mpr hk_pos
+    rw [vasyuninBEntry_eq_formula k k]
+    unfold vasyuninBEntryFormula
+    have h_vanish : ((k : ℝ) - (k : ℝ)) = 0 := sub_self _
+    have h_sum : cotangentSumVFormula k k = 0 := by
+      unfold cotangentSumVFormula
+      apply Finset.sum_eq_zero
+      intro a _ha
+      have : (((a * k : ℕ) : ℝ) / (k : ℝ)) = a := by
+        push_cast
+        exact mul_div_cancel_right₀ _ (ne_of_gt hkR_pos)
+      rw [this, Int.fract_natCast, zero_mul]
+    simp only [h_vanish, zero_div, zero_mul, sub_zero, h_sum, add_zero, mul_zero]
+    rw [vasyuninBEntry_eq_formula 1 1, vasyuninBEntryFormula_one_one]
+    ring
+
+theorem vasyuninBEntry_diagonal_proof (h : ℕ) :
+    baezDuarteGramEntry h h = vasyuninBEntry h h := by
+  rcases eq_or_ne h 0 with rfl | hh
+  · unfold baezDuarteGramEntry vasyuninBEntry vasyuninBEntryFormula cotangentSumVFormula
+    simp
+  · have hh_pos : 0 < h := Nat.pos_of_ne_zero hh
+    rw [baez_duarte_diagonal_scaling h hh_pos, vasyuninBEntry_diagonal_scaling h]
+    rw [vasyuninBEntry_diagonal_one]
+
 end RH.Criteria.NymanBeurling.VasyuninGram

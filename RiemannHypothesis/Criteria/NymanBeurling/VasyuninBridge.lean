@@ -764,6 +764,14 @@ theorem interval_sum_add_tail_eq_cotangent_formula_of_debts (h k : ℕ) (hne : h
 -- 6. Main Theorem Replacement
 -- ---------------------------------------------------------------------------
 
+/-- The symmetry debt is fully unconditionally proved by `vasyuninBEntry_symm_proof`. -/
+theorem vasyuninBEntry_symm (h k : ℕ) : vasyuninBEntry h k = vasyuninBEntry k h :=
+  vasyuninBEntry_symm_proof h k
+
+/-- The diagonal debt is fully unconditionally proved by `vasyuninBEntry_diagonal_proof`. -/
+theorem vasyuninBEntry_diagonal (h : ℕ) : baezDuarteGramEntry h h = vasyuninBEntry h h :=
+  vasyuninBEntry_diagonal_proof h
+
 structure VasyuninBridgeLocalDebts where
   vasyuninBEntry_symm :
     ∀ h k : ℕ, vasyuninBEntry h k = vasyuninBEntry k h

@@ -1,6 +1,5 @@
 import re
 import math
-import sys
 
 k = 21
 
@@ -40,30 +39,26 @@ while i < len(lines):
         if g > 1:
             out.append(f"  have hred : cotangentTermV {a_acute} {k} = cotangentTermV {a_prim} {k_prim} :=\n")
             out.append(f"    cotangentTermV_gcd_reduce (g := {g}) (by norm_num) (by norm_num) (by norm_num) (by norm_num)\n")
-            out.append(f"  rw [hred]\n")
+            if not acute:
+                # We need to rewrite inside the negation, but rw handles that.
+                out.append(f"  rw [hred]\n")
+            else:
+                out.append(f"  rw [hred]\n")
 
         out.append(f"  have hbase := {base_thm}\n")
         out.append(f"  constructor\n")
         if acute:
-            out.append(f"  · apply le_trans _ hbase.1; norm_num [cot_pi_{a}_{k}_lower]\n")
-            out.append(f"  · apply le_trans hbase.2 _; norm_num [cot_pi_{a}_{k}_upper]\n")
+            out.append(f"  · norm_num [cot_pi_{a}_{k}_lower]; linarith [hbase.1]\n")
+            out.append(f"  · norm_num [cot_pi_{a}_{k}_upper]; linarith [hbase.2]\n")
         else:
-            out.append(f"  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_{a}_{k}_lower]\n")
-            out.append(f"  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_{a}_{k}_upper]\n")
+            out.append(f"  · norm_num [cot_pi_{a}_{k}_lower]; linarith [hbase.2]\n")
+            out.append(f"  · norm_num [cot_pi_{a}_{k}_upper]; linarith [hbase.1]\n")
             
     else:
         out.append(line)
     i += 1
 
-if "import RiemannHypothesis.Certificates.Generated.CotangentBoundsK21\n" not in out:
-    idx = 0
-    for idx_line, line in enumerate(out):
-        if line.startswith("import RiemannHypothesis.Certificates.Generated.CotangentBounds"):
-            idx = idx_line
-    out.insert(idx + 1, "import RiemannHypothesis.Certificates.Generated.CotangentBoundsK21\n")
-
 with open("RiemannHypothesis/Certificates/Generated/VasyuninPrimitiveBoundsCore.lean", "w") as f:
     f.writelines(out)
 
-print("Replacement done.")
-
+print("Replacement done for k=21.")

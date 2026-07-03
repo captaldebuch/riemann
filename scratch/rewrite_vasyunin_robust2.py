@@ -11,16 +11,19 @@ out = []
 i = 0
 while i < len(lines):
     line = lines[i]
-    m = re.match(r"^axiom cot_pi_(\d+)_21_bounds\s*:", line)
+    m = re.match(r"^theorem cot_pi_(\d+)_21_bounds\s*:", line)
     if m:
         a = int(m.group(1))
-        # Consume the axiom
-        out.append(f"theorem cot_pi_{a}_{k}_bounds :\n")
+        # This time we match the already rewritten 'theorem'
+        out.append(line)
         i += 1
         out.append(lines[i]) # lower
         i += 1
-        bound_up = lines[i]
-        out.append(f"{bound_up.rstrip()} := by\n")
+        out.append(lines[i]) # upper
+        i += 1
+        # Now we skip until we hit the next theorem or end
+        while i < len(lines) and not lines[i].startswith("theorem cot_pi_") and not lines[i].startswith("end "):
+            i += 1
         
         # Determine the target
         acute = a <= k // 2
@@ -51,16 +54,10 @@ while i < len(lines):
             out.append(f"  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_{a}_{k}_lower]\n")
             out.append(f"  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_{a}_{k}_upper]\n")
             
+        continue
     else:
         out.append(line)
-    i += 1
-
-if "import RiemannHypothesis.Certificates.Generated.CotangentBoundsK21\n" not in out:
-    idx = 0
-    for idx_line, line in enumerate(out):
-        if line.startswith("import RiemannHypothesis.Certificates.Generated.CotangentBounds"):
-            idx = idx_line
-    out.insert(idx + 1, "import RiemannHypothesis.Certificates.Generated.CotangentBoundsK21\n")
+        i += 1
 
 with open("RiemannHypothesis/Certificates/Generated/VasyuninPrimitiveBoundsCore.lean", "w") as f:
     f.writelines(out)
