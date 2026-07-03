@@ -85,6 +85,8 @@ does **not** modify `VasyuninBridge.lean` at all.
 namespace RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
 
 open RH.Criteria.NymanBeurling.VasyuninGram
+open Real (pi)
+open scoped Real
 open scoped MeasureTheory
 
 -- ---------------------------------------------------------------------------
@@ -179,5 +181,46 @@ theorem summable_realTrigammaSeriesInt (x : ℝ) : Summable fun n : ℤ => 1 / (
   have := one_div_add_sq_le_four_div_sq x hle
   rw [Real.norm_eq_abs, abs_of_nonneg (by positivity)] at hn
   linarith
+
+-- ---------------------------------------------------------------------------
+-- 3. The real-cast Mittag-Leffler cotangent series at real non-integer points.
+--
+-- Mathlib's `Complex.cot_series_rep'` holds on all of `ℂ_ℤ` (not just `ℍₒ`), which includes
+-- real non-integer points cast into `ℂ`. This section records that fact as a genuinely
+-- real-variable statement (no `Complex` types in the final statement), which is the true
+-- starting point for the reflection-identity differentiation argument below.
+-- ---------------------------------------------------------------------------
+
+/-- A real number that is not an integer casts to a point of `Complex.integerComplement`. -/
+theorem ofReal_mem_integerComplement {x : ℝ} (hx : ∀ n : ℤ, (n : ℝ) ≠ x) :
+    (x : ℂ) ∈ Complex.integerComplement := by
+  rw [Complex.mem_integerComplement_iff]
+  rintro ⟨n, hn⟩
+  exact hx n (by exact_mod_cast hn)
+
+/-- Real-variable restatement of `Complex.cot_series_rep'` at a real non-integer point: casting
+    everything down from `ℂ` to `ℝ` via `Complex.ofReal_cot`, `Complex.ofReal_tsum`-style
+    lemmas. This is the genuinely real-variable form of the Mittag-Leffler cotangent expansion,
+    valid on all of `ℝ \ ℤ` (not merely a complex upper-half-plane neighborhood) — the key fact
+    enabling everything below. -/
+theorem real_cot_series_rep' {x : ℝ} (hx : ∀ n : ℤ, (n : ℝ) ≠ x) :
+    π * Real.cot (π * x) - 1 / x =
+      ∑' n : ℕ, (1 / (x - (n + 1)) + 1 / (x + (n + 1))) := by
+  have hmem := ofReal_mem_integerComplement hx
+  have hc := cot_series_rep' hmem
+  have hlhs : ((π * Real.cot (π * x) - 1 / x : ℝ) : ℂ)
+      = π * Complex.cot (π * x) - 1 / (x : ℂ) := by
+    push_cast [Complex.ofReal_cot]
+    ring_nf
+  have hrhs : ((∑' n : ℕ, (1 / (x - (n + 1)) + 1 / (x + (n + 1))) : ℝ) : ℂ)
+      = ∑' n : ℕ, (1 / ((x : ℂ) - (n + 1)) + 1 / ((x : ℂ) + (n + 1))) := by
+    rw [Complex.ofReal_tsum]
+    push_cast
+    ring_nf
+  have : ((π * Real.cot (π * x) - 1 / x : ℝ) : ℂ)
+      = ((∑' n : ℕ, (1 / (x - (n + 1)) + 1 / (x + (n + 1))) : ℝ) : ℂ) := by
+    rw [hlhs, hrhs]
+    exact hc
+  exact_mod_cast this
 
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
