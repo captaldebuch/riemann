@@ -1759,7 +1759,7 @@ noncomputable def certN10 : FiniteApproximationCertificate :=
 -- The proof chain is:
 --   Σ c_h c_k G_hk - 2 Σ c_k l_k + 1
 --     ≤ signAwareQuadBoundQ + signAwareLinBoundQ + 1  (sign_aware_energy_bound, PROVED)
---     = energyUpper                                    (rational equality, native_decide)
+--     = energyUpper                                    (kernel-checked rational equality)
 theorem N10_quadratic_le_energyUpper :
     ∑ h : Fin 10, ∑ k : Fin 10,
       (coeff_fn h : ℝ) * (coeff_fn k : ℝ) *
@@ -1780,7 +1780,34 @@ theorem N10_quadratic_le_energyUpper :
       (RH.Certificates.Generated.ChiRhoBoundsN10.innerProductChiRho_interval k).2)
   have heq : signAwareQuadBoundQ coeff_fn gram_lower gram_upper +
              signAwareLinBoundQ coeff_fn lin_lower lin_upper + 1 =
-             witnessEnergy.energyUpper := by native_decide
+             witnessEnergy.energyUpper := by
+    simp only [signAwareQuadBoundQ, signAwareLinBoundQ,
+      Fin.sum_univ_succ, Fin.sum_univ_zero]
+    norm_num [coeff_fn, gram_lower, gram_upper, lin_lower, lin_upper,
+      entry_1_1, entry_1_2, entry_1_3, entry_1_4, entry_1_5,
+      entry_1_6, entry_1_7, entry_1_8, entry_1_9, entry_1_10,
+      entry_2_1, entry_2_2, entry_2_3, entry_2_4, entry_2_5,
+      entry_2_6, entry_2_7, entry_2_8, entry_2_9, entry_2_10,
+      entry_3_1, entry_3_2, entry_3_3, entry_3_4, entry_3_5,
+      entry_3_6, entry_3_7, entry_3_8, entry_3_9, entry_3_10,
+      entry_4_1, entry_4_2, entry_4_3, entry_4_4, entry_4_5,
+      entry_4_6, entry_4_7, entry_4_8, entry_4_9, entry_4_10,
+      entry_5_1, entry_5_2, entry_5_3, entry_5_4, entry_5_5,
+      entry_5_6, entry_5_7, entry_5_8, entry_5_9, entry_5_10,
+      entry_6_1, entry_6_2, entry_6_3, entry_6_4, entry_6_5,
+      entry_6_6, entry_6_7, entry_6_8, entry_6_9, entry_6_10,
+      entry_7_1, entry_7_2, entry_7_3, entry_7_4, entry_7_5,
+      entry_7_6, entry_7_7, entry_7_8, entry_7_9, entry_7_10,
+      entry_8_1, entry_8_2, entry_8_3, entry_8_4, entry_8_5,
+      entry_8_6, entry_8_7, entry_8_8, entry_8_9, entry_8_10,
+      entry_9_1, entry_9_2, entry_9_3, entry_9_4, entry_9_5,
+      entry_9_6, entry_9_7, entry_9_8, entry_9_9, entry_9_10,
+      entry_10_1, entry_10_2, entry_10_3, entry_10_4, entry_10_5,
+      entry_10_6, entry_10_7, entry_10_8, entry_10_9, entry_10_10,
+      RH.Certificates.Generated.ChiRhoBoundsN10.linearLower,
+      RH.Certificates.Generated.ChiRhoBoundsN10.linearUpper,
+      RH.Certificates.Generated.ChiRhoBoundsN10.linearCenter,
+      witnessEnergy]
   calc ∑ h : Fin 10, ∑ k : Fin 10,
           (coeff_fn h : ℝ) * (coeff_fn k : ℝ) *
           RH.Criteria.NymanBeurling.VasyuninGram.baezDuarteGramEntry (h.val + 1) (k.val + 1)
