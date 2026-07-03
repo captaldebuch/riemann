@@ -446,4 +446,20 @@ theorem mittagLefflerDeriv_uniform_bound {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n :
     rw [abs_of_nonpos (by linarith)]
     linarith
 
+/-- Summability of the Mittag-Leffler series terms themselves (not their derivatives) at a
+    real non-integer basepoint, needed for `hasDerivAt_tsum_of_isPreconnected`'s `hg0`
+    hypothesis. Follows the same comparison-with-`4/n²` pattern as
+    `summable_realTrigammaSeriesInt`, one power of `n` lower. -/
+theorem summable_mittagLefflerSeriesTerms {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) :
+    Summable fun n : ℕ => 1 / (x₀ - ((n:ℝ) + 1)) + 1 / (x₀ + ((n:ℝ) + 1)) := by
+  have hmem := ofReal_mem_integerComplement hx₀
+  have hc := summable_cotTerm hmem
+  have heq : (fun n : ℕ => ((1:ℂ) / ((x₀:ℂ) - (n + 1)) + 1 / ((x₀:ℂ) + (n + 1))))
+      = (fun n : ℕ => (((1 / (x₀ - ((n:ℝ) + 1)) + 1 / (x₀ + ((n:ℝ) + 1)) : ℝ)) : ℂ)) := by
+    funext n
+    push_cast
+    ring
+  rw [heq] at hc
+  rwa [Complex.summable_ofReal] at hc
+
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
