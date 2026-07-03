@@ -192,6 +192,18 @@ theorem summable_realTrigammaSeriesInt (x : ℝ) : Summable fun n : ℤ => 1 / (
   rw [Real.norm_eq_abs, abs_of_nonneg (by positivity)] at hn
   linarith
 
+/-- The one-sided (`ℕ`-indexed) trigamma-type series `realTrigammaSeriesNat` is summable for
+    every real `x`, obtained from `summable_realTrigammaSeriesInt` by restricting the summable
+    `ℤ`-indexed series along the (injective) inclusion `ℕ ↪ ℤ`. -/
+theorem summable_realTrigammaSeriesNat (x : ℝ) : Summable fun n : ℕ => 1 / ((n : ℝ) + x) ^ 2 := by
+  have hz := summable_realTrigammaSeriesInt x
+  have hinj : Function.Injective (fun n : ℕ => (n : ℤ)) := fun a b hab => by
+    simpa using hab
+  have hcomp := hz.comp_injective hinj
+  simp only [Function.comp_def, Int.cast_natCast] at hcomp
+  apply hcomp.congr
+  intro n; ring_nf
+
 -- ---------------------------------------------------------------------------
 -- 3. The real-cast Mittag-Leffler cotangent series at real non-integer points.
 --
@@ -571,5 +583,77 @@ theorem hasDerivAt_cot_sub_inv {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ 
     simpa [one_div] using this
   have := hpicot.sub hinv
   simpa using this
+
+/-- **The real-variable reflection identity for the trigamma-type series** (the single most
+    valuable target sub-result identified in this file's task brief): for every real
+    non-integer `x₀`,
+    `∑' n : ℤ, 1/(x₀+n)² = π² / sin(π x₀)²`.
+
+    Proof idea: `real_cot_series_rep'` shows the two functions `f = fun x ↦ π cot(π x) - 1/x`
+    and `g = fun x ↦ ∑' n:ℕ, (1/(x-(n+1)) + 1/(x+(n+1)))` agree at *every* non-integer real `x`,
+    in particular on a whole neighborhood of `x₀` (namely `Set.Ioo (x₀ - ballRadius x₀ / 2)
+    (x₀ + ballRadius x₀ / 2)`, which contains no integer at all, by construction of
+    `ballRadius`). Since `f` and `g` agree on a neighborhood of `x₀`, their derivatives at `x₀`
+    coincide (`HasDerivAt.congr_of_eventuallyEq`). But `g`'s derivative at `x₀` was computed
+    directly in `hasDerivAt_mittagLefflerSeries`, and `f`'s derivative at `x₀` was computed
+    directly (independently, via the quotient rule) in `hasDerivAt_cot_sub_inv`. Equating the
+    two derivatives and rewriting the `ℕ`-indexed sum as the `ℤ`-indexed
+    `realTrigammaSeriesInt` (via `tsum_of_add_one_of_neg_add_one`) gives the claimed identity. -/
+theorem realTrigammaSeriesInt_reflection {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) :
+    realTrigammaSeriesInt x₀ = π ^ 2 / Real.sin (π * x₀) ^ 2 := by
+  set δ' : ℝ := ballRadius x₀ / 2 with hδ'_def
+  have hδpos : 0 < δ' := by have := ballRadius_pos hx₀; rw [hδ'_def]; linarith
+  -- `f` and `g` agree on the whole ball around `x₀`.
+  have heq_nhds : (fun x : ℝ => π * Real.cot (π * x) - 1 / x)
+      =ᶠ[nhds x₀] (fun x : ℝ => ∑' n : ℕ, (1 / (x - ((n:ℝ) + 1)) + 1 / (x + ((n:ℝ) + 1)))) := by
+    have hballopen : Set.Ioo (x₀ - δ') (x₀ + δ') ∈ nhds x₀ :=
+      Ioo_mem_nhds (by linarith) (by linarith)
+    filter_upwards [hballopen] with x hx
+    have hxnotint : ∀ n : ℤ, (n : ℝ) ≠ x := by
+      intro n hcontra
+      have hdist := ballRadius_le_dist_to_int hx₀ n
+      rw [Set.mem_Ioo] at hx
+      have : |x₀ - (n:ℝ)| < δ' := by
+        rw [abs_lt, hcontra]
+        constructor <;> linarith [hx.1, hx.2]
+      rw [hδ'_def] at this
+      linarith
+    exact real_cot_series_rep' hxnotint
+  have hderiv_eq := (hasDerivAt_cot_sub_inv hx₀).congr_of_eventuallyEq heq_nhds.symm
+  have hderiv_unique := hderiv_eq.unique (hasDerivAt_mittagLefflerSeries hx₀)
+  -- Rewrite the RHS series (`ℕ`-indexed, from the derivative computation) as the
+  -- `ℤ`-indexed `realTrigammaSeriesInt`, via `tsum_of_add_one_of_neg_add_one`.
+  have h1 : Summable fun n : ℕ => 1 / (x₀ + ((n:ℝ) + 1)) ^ 2 := by
+    have hbase := summable_realTrigammaSeriesNat (x₀ + 1)
+    apply hbase.congr
+    intro n; rw [show ((n:ℝ) + (x₀ + 1)) = x₀ + ((n:ℝ) + 1) by ring]
+  have h2 : Summable fun n : ℕ => 1 / (x₀ - ((n:ℝ) + 1)) ^ 2 := by
+    have hbase := summable_realTrigammaSeriesNat (1 - x₀)
+    apply hbase.congr
+    intro n
+    rw [show ((n:ℝ) + (1 - x₀)) = -(x₀ - ((n:ℝ)+1)) by ring, neg_sq]
+  have hzeq : realTrigammaSeriesInt x₀
+      = (∑' n : ℕ, 1 / (x₀ + ((n:ℝ) + 1)) ^ 2) + 1 / x₀ ^ 2
+        + ∑' n : ℕ, 1 / (x₀ - ((n:ℝ) + 1)) ^ 2 := by
+    unfold realTrigammaSeriesInt
+    have hcast1 : (fun n : ℕ => 1 / (x₀ + ((n:ℤ) + 1 : ℤ)) ^ 2)
+        = (fun n : ℕ => 1 / (x₀ + ((n:ℝ) + 1)) ^ 2) := by funext n; push_cast; ring_nf
+    have hcast2 : (fun n : ℕ => 1 / (x₀ + (-((n:ℤ) + 1) : ℤ)) ^ 2)
+        = (fun n : ℕ => 1 / (x₀ - ((n:ℝ) + 1)) ^ 2) := by
+      funext n; push_cast; ring_nf
+    have h1' : Summable fun n : ℕ => 1 / (x₀ + ((n:ℤ) + 1 : ℤ)) ^ 2 := by
+      rw [hcast1]; exact h1
+    have h2' : Summable fun n : ℕ => 1 / (x₀ + (-((n:ℤ) + 1) : ℤ)) ^ 2 := by
+      rw [hcast2]; exact h2
+    have hsplit := tsum_of_add_one_of_neg_add_one (f := fun n : ℤ => 1 / (x₀ + n) ^ 2) h1' h2'
+    simp only [Int.cast_zero, add_zero] at hsplit
+    rw [hsplit, hcast1, hcast2]
+  rw [hzeq]
+  -- Combine with the derivative identity to conclude.
+  have hne : ∑' n : ℕ, (-(1 / (x₀ - ((n:ℝ) + 1)) ^ 2) + -(1 / (x₀ + ((n:ℝ) + 1)) ^ 2))
+      = -(∑' n : ℕ, 1 / (x₀ - ((n:ℝ) + 1)) ^ 2) + -(∑' n : ℕ, 1 / (x₀ + ((n:ℝ) + 1)) ^ 2) := by
+    rw [Summable.tsum_add h2.neg h1.neg, tsum_neg, tsum_neg]
+  rw [hne] at hderiv_unique
+  linarith [hderiv_unique]
 
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
