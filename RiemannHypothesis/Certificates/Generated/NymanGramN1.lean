@@ -150,7 +150,7 @@ noncomputable def certN1 : FiniteApproximationCertificate :=
 -- The proof chain is:
 --   Σ c_h c_k G_hk - 2 Σ c_k l_k + 1
 --     ≤ signAwareQuadBoundQ + signAwareLinBoundQ + 1  (sign_aware_energy_bound, PROVED)
---     = energyUpper                                    (rational equality, native_decide)
+--     = energyUpper                                    (kernel-checked rational equality)
 theorem N1_quadratic_le_energyUpper :
     ∑ h : Fin 1, ∑ k : Fin 1,
       (coeff_fn h : ℝ) * (coeff_fn k : ℝ) *
@@ -169,7 +169,10 @@ theorem N1_quadratic_le_energyUpper :
     (fun k => (lin_certified k).2)
   have heq : signAwareQuadBoundQ coeff_fn gram_lower gram_upper +
              signAwareLinBoundQ coeff_fn lin_lower lin_upper + 1 =
-             witnessEnergy.energyUpper := by native_decide
+             witnessEnergy.energyUpper := by
+    norm_num [signAwareQuadBoundQ, signAwareLinBoundQ, coeff_fn,
+      gram_lower, gram_upper, lin_lower, lin_upper, linear_fn,
+      entry_1_1, witnessEnergy]
   calc ∑ h : Fin 1, ∑ k : Fin 1,
           (coeff_fn h : ℝ) * (coeff_fn k : ℝ) *
           RH.Criteria.NymanBeurling.VasyuninGram.baezDuarteGramEntry (h.val + 1) (k.val + 1)
