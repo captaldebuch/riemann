@@ -21,6 +21,9 @@ import RiemannHypothesis.Certificates.Generated.CotangentBoundsK30
 import RiemannHypothesis.Certificates.Generated.CotangentBoundsK31
 import RiemannHypothesis.Certificates.Generated.CotangentBoundsK32
 import RiemannHypothesis.Certificates.Generated.CotangentBoundsK33
+import RiemannHypothesis.Certificates.Generated.CotangentBoundsK34
+import RiemannHypothesis.Certificates.Generated.CotangentBoundsK35
+import RiemannHypothesis.Certificates.Generated.CotangentBoundsK36
 import RiemannHypothesis.Certificates.TrigIntervalDemo
 import RiemannHypothesis.Certificates.TrigIntervalSweep
 import Mathlib.Tactic.Ring
@@ -19158,615 +19161,3610 @@ theorem cot_pi_32_33_bounds :
 
 def cot_pi_1_34_lower : ℚ := 6075197515441309 / 562949953421312
 def cot_pi_1_34_upper : ℚ := 6075197515441317 / 562949953421312
-axiom cot_pi_1_34_bounds :
+theorem cot_pi_1_34_bounds :
   ((cot_pi_1_34_lower : ℚ) : ℝ) ≤ cotangentTermV 1 34 ∧
-  cotangentTermV 1 34 ≤ ((cot_pi_1_34_upper : ℚ) : ℝ)
+  cotangentTermV 1 34 ≤ ((cot_pi_1_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_1_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_1_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_1_34_upper]
 
 def cot_pi_2_34_lower : ℚ := 6023032520105509 / 1125899906842624
 def cot_pi_2_34_upper : ℚ := 6023032520105517 / 1125899906842624
-axiom cot_pi_2_34_bounds :
+theorem cot_pi_2_34_bounds :
   ((cot_pi_2_34_lower : ℚ) : ℝ) ≤ cotangentTermV 2 34 ∧
-  cotangentTermV 2 34 ≤ ((cot_pi_2_34_upper : ℚ) : ℝ)
+  cotangentTermV 2 34 ≤ ((cot_pi_2_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 2 34 = cotangentTermV 1 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_2_34_lower, cot_pi_1_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_2_34_upper, cot_pi_1_17_upper]
 
 def cot_pi_3_34_lower : ℚ := 7914255426076299 / 2251799813685248
 def cot_pi_3_34_upper : ℚ := 7914255426076311 / 2251799813685248
-axiom cot_pi_3_34_bounds :
+theorem cot_pi_3_34_bounds :
   ((cot_pi_3_34_lower : ℚ) : ℝ) ≤ cotangentTermV 3 34 ∧
-  cotangentTermV 3 34 ≤ ((cot_pi_3_34_upper : ℚ) : ℝ)
+  cotangentTermV 3 34 ≤ ((cot_pi_3_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_3_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_3_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_3_34_upper]
 
 def cot_pi_4_34_lower : ℚ := 5812565351615769 / 2251799813685248
 def cot_pi_4_34_upper : ℚ := 5812565351615777 / 2251799813685248
-axiom cot_pi_4_34_bounds :
+theorem cot_pi_4_34_bounds :
   ((cot_pi_4_34_lower : ℚ) : ℝ) ≤ cotangentTermV 4 34 ∧
-  cotangentTermV 4 34 ≤ ((cot_pi_4_34_upper : ℚ) : ℝ)
+  cotangentTermV 4 34 ≤ ((cot_pi_4_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 4 34 = cotangentTermV 2 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_2_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_4_34_lower, cot_pi_2_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_4_34_upper, cot_pi_2_17_upper]
 
 def cot_pi_5_34_lower : ℚ := 565277955825543 / 281474976710656
 def cot_pi_5_34_upper : ℚ := 2261111823302175 / 1125899906842624
-axiom cot_pi_5_34_bounds :
+theorem cot_pi_5_34_bounds :
   ((cot_pi_5_34_lower : ℚ) : ℝ) ≤ cotangentTermV 5 34 ∧
-  cotangentTermV 5 34 ≤ ((cot_pi_5_34_upper : ℚ) : ℝ)
+  cotangentTermV 5 34 ≤ ((cot_pi_5_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_5_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_5_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_5_34_upper]
 
 def cot_pi_6_34_lower : ℚ := 7273563140077287 / 4503599627370496
 def cot_pi_6_34_upper : ℚ := 7273563140077299 / 4503599627370496
-axiom cot_pi_6_34_bounds :
+theorem cot_pi_6_34_bounds :
   ((cot_pi_6_34_lower : ℚ) : ℝ) ≤ cotangentTermV 6 34 ∧
-  cotangentTermV 6 34 ≤ ((cot_pi_6_34_upper : ℚ) : ℝ)
+  cotangentTermV 6 34 ≤ ((cot_pi_6_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 6 34 = cotangentTermV 3 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_3_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_6_34_lower, cot_pi_3_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_6_34_upper, cot_pi_3_17_upper]
 
 def cot_pi_7_34_lower : ℚ := 1490932428397933 / 1125899906842624
 def cot_pi_7_34_upper : ℚ := 2981864856795871 / 2251799813685248
-axiom cot_pi_7_34_bounds :
+theorem cot_pi_7_34_bounds :
   ((cot_pi_7_34_lower : ℚ) : ℝ) ≤ cotangentTermV 7 34 ∧
-  cotangentTermV 7 34 ≤ ((cot_pi_7_34_upper : ℚ) : ℝ)
+  cotangentTermV 7 34 ≤ ((cot_pi_7_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_7_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_7_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_7_34_upper]
 
 def cot_pi_8_34_lower : ℚ := 2470106728168569 / 2251799813685248
 def cot_pi_8_34_upper : ℚ := 2470106728168573 / 2251799813685248
-axiom cot_pi_8_34_bounds :
+theorem cot_pi_8_34_bounds :
   ((cot_pi_8_34_lower : ℚ) : ℝ) ≤ cotangentTermV 8 34 ∧
-  cotangentTermV 8 34 ≤ ((cot_pi_8_34_upper : ℚ) : ℝ)
+  cotangentTermV 8 34 ≤ ((cot_pi_8_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 8 34 = cotangentTermV 4 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_4_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_8_34_lower, cot_pi_4_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_8_34_upper, cot_pi_4_17_upper]
 
 def cot_pi_9_34_lower : ℚ := 2052786765482173 / 2251799813685248
 def cot_pi_9_34_upper : ℚ := 32074793210659 / 35184372088832
-axiom cot_pi_9_34_bounds :
+theorem cot_pi_9_34_bounds :
   ((cot_pi_9_34_lower : ℚ) : ℝ) ≤ cotangentTermV 9 34 ∧
-  cotangentTermV 9 34 ≤ ((cot_pi_9_34_upper : ℚ) : ℝ)
+  cotangentTermV 9 34 ≤ ((cot_pi_9_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_9_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_9_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_9_34_upper]
 
 def cot_pi_10_34_lower : ℚ := 6801921139191367 / 9007199254740992
 def cot_pi_10_34_upper : ℚ := 6801921139191379 / 9007199254740992
-axiom cot_pi_10_34_bounds :
+theorem cot_pi_10_34_bounds :
   ((cot_pi_10_34_lower : ℚ) : ℝ) ≤ cotangentTermV 10 34 ∧
-  cotangentTermV 10 34 ≤ ((cot_pi_10_34_upper : ℚ) : ℝ)
+  cotangentTermV 10 34 ≤ ((cot_pi_10_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 10 34 = cotangentTermV 5 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_5_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_10_34_lower, cot_pi_5_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_10_34_upper, cot_pi_5_17_upper]
 
 def cot_pi_11_34_lower : ℚ := 2788510832042645 / 4503599627370496
 def cot_pi_11_34_upper : ℚ := 1394255416021327 / 2251799813685248
-axiom cot_pi_11_34_bounds :
+theorem cot_pi_11_34_bounds :
   ((cot_pi_11_34_lower : ℚ) : ℝ) ≤ cotangentTermV 11 34 ∧
-  cotangentTermV 11 34 ≤ ((cot_pi_11_34_upper : ℚ) : ℝ)
+  cotangentTermV 11 34 ≤ ((cot_pi_11_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_11_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_11_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_11_34_upper]
 
 def cot_pi_12_34_lower : ℚ := 8970104616069279 / 18014398509481984
 def cot_pi_12_34_upper : ℚ := 8970104616069299 / 18014398509481984
-axiom cot_pi_12_34_bounds :
+theorem cot_pi_12_34_bounds :
   ((cot_pi_12_34_lower : ℚ) : ℝ) ≤ cotangentTermV 12 34 ∧
-  cotangentTermV 12 34 ≤ ((cot_pi_12_34_upper : ℚ) : ℝ)
+  cotangentTermV 12 34 ≤ ((cot_pi_12_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 12 34 = cotangentTermV 6 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_6_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_12_34_lower, cot_pi_6_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_12_34_upper, cot_pi_6_17_upper]
 
 def cot_pi_13_34_lower : ℚ := 1744703790557259 / 4503599627370496
 def cot_pi_13_34_upper : ℚ := 872351895278633 / 2251799813685248
-axiom cot_pi_13_34_bounds :
+theorem cot_pi_13_34_bounds :
   ((cot_pi_13_34_lower : ℚ) : ℝ) ≤ cotangentTermV 13 34 ∧
-  cotangentTermV 13 34 ≤ ((cot_pi_13_34_upper : ℚ) : ℝ)
+  cotangentTermV 13 34 ≤ ((cot_pi_13_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_13_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_13_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_13_34_upper]
 
 def cot_pi_14_34_lower : ℚ := 5125538287992095 / 18014398509481984
 def cot_pi_14_34_upper : ℚ := 5125538287992113 / 18014398509481984
-axiom cot_pi_14_34_bounds :
+theorem cot_pi_14_34_bounds :
   ((cot_pi_14_34_lower : ℚ) : ℝ) ≤ cotangentTermV 14 34 ∧
-  cotangentTermV 14 34 ≤ ((cot_pi_14_34_upper : ℚ) : ℝ)
+  cotangentTermV 14 34 ≤ ((cot_pi_14_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 14 34 = cotangentTermV 7 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_7_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_14_34_lower, cot_pi_7_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_14_34_upper, cot_pi_7_17_upper]
 
 def cot_pi_15_34_lower : ℚ := 6734949391671659 / 36028797018963968
 def cot_pi_15_34_upper : ℚ := 6734949391671705 / 36028797018963968
-axiom cot_pi_15_34_bounds :
+theorem cot_pi_15_34_bounds :
   ((cot_pi_15_34_lower : ℚ) : ℝ) ≤ cotangentTermV 15 34 ∧
-  cotangentTermV 15 34 ≤ ((cot_pi_15_34_upper : ℚ) : ℝ)
+  cotangentTermV 15 34 ≤ ((cot_pi_15_34_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_15_34_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_15_34_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_15_34_upper]
 
 def cot_pi_16_34_lower : ℚ := 3338559701491169 / 36028797018963968
 def cot_pi_16_34_upper : ℚ := 834639925372799 / 9007199254740992
-axiom cot_pi_16_34_bounds :
+theorem cot_pi_16_34_bounds :
   ((cot_pi_16_34_lower : ℚ) : ℝ) ≤ cotangentTermV 16 34 ∧
-  cotangentTermV 16 34 ≤ ((cot_pi_16_34_upper : ℚ) : ℝ)
+  cotangentTermV 16 34 ≤ ((cot_pi_16_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 16 34 = cotangentTermV 8 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_8_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_16_34_lower, cot_pi_8_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_16_34_upper, cot_pi_8_17_upper]
 
 def cot_pi_17_34_lower : ℚ := -313659157 / 1208925819614629174706176
 def cot_pi_17_34_upper : ℚ := 998510359 / 1208925819614629174706176
-axiom cot_pi_17_34_bounds :
+theorem cot_pi_17_34_bounds :
   ((cot_pi_17_34_lower : ℚ) : ℝ) ≤ cotangentTermV 17 34 ∧
-  cotangentTermV 17 34 ≤ ((cot_pi_17_34_upper : ℚ) : ℝ)
+  cotangentTermV 17 34 ≤ ((cot_pi_17_34_upper : ℚ) : ℝ) := by
+  have h0 : 2 * 17 = 34 := by norm_num
+  have heq := cotangentTermV_exact_of_two_mul_eq (a := 17) (k := 34) (by norm_num) h0
+  rw [heq]
+  constructor
+  · norm_num [cot_pi_17_34_lower]
+  · norm_num [cot_pi_17_34_upper]
 
 def cot_pi_18_34_lower : ℚ := -6677119402982369 / 72057594037927936
 def cot_pi_18_34_upper : ℚ := -6677119402982313 / 72057594037927936
-axiom cot_pi_18_34_bounds :
+theorem cot_pi_18_34_bounds :
   ((cot_pi_18_34_lower : ℚ) : ℝ) ≤ cotangentTermV 18 34 ∧
-  cotangentTermV 18 34 ≤ ((cot_pi_18_34_upper : ℚ) : ℝ)
+  cotangentTermV 18 34 ≤ ((cot_pi_18_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 18 34 = cotangentTermV 9 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_9_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_18_34_lower, cot_pi_9_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_18_34_upper, cot_pi_9_17_upper]
 
 def cot_pi_19_34_lower : ℚ := -6734949391671685 / 36028797018963968
 def cot_pi_19_34_upper : ℚ := -6734949391671637 / 36028797018963968
-axiom cot_pi_19_34_bounds :
+private theorem cot_pi_div_15_34_fresh_aux_for_19_34 :
+    (6734949391671637 / 36028797018963968 : ℝ) ≤ cotangentTermV 15 34 ∧
+    cotangentTermV 15 34 ≤ (6734949391671685 / 36028797018963968 : ℝ) := by
+  have hcot : cotangentTermV 15 34
+      = Real.cos (Real.pi * 15 / 34) / Real.sin (Real.pi * 15 / 34) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 15 / 34 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (471238898038468985769 : ℝ) / 340000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (942477796076937971541 : ℝ) / 680000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (409074039985531642863 : ℝ) / 1267650600228229401496703205376 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (204537019992765821433 : ℝ) / 633825300114114700748351602688 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 409074039985531642863 / 1267650600228229401496703205376) (yu := 204537019992765821433 / 633825300114114700748351602688) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (904625697166532776699545855808395683767353349227571432115630305762693193331 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (904625697166532776699545855808395683769066110808588155397881156086154551693 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans hcb2 (by norm_num)
+  have s0l : (291924989857627805635635035122345668356574345963385434153154097477 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (583849979715255611275551813324853010248045602390873600198338285579 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (904625697166532776558238462092459894763303236648932869904749066515515241463 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (904625697166532776558238462092459894770154282972999763033395744395719973429 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans d1cu (by norm_num)
+  have s1l : (583849979715255611240869902450402352246155493316916713189017210537 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (570165995815679307856593403838441431427670786105433035804719649 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (452312848583266387996504443614358369410339683214173268906181109492779544513 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (452312848583266387996504443614358369424041775862307055160620677944063396583 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2cu (by norm_num)
+  have s2l : (583849979715255611119269231273246414387680037927216023302258285529 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (583849979715255611123550974353408087926989354346038673108595429985 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (28269553036454149179127830867929503632106536470296496162611878176948174239 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (113078212145816596716511323471718014542128238529319770893471931922574101581 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d3cu (by norm_num)
+  have s3l : (72981247464406951329108318320577832888216955145483519131245777745 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (291924989857627805318574144822392168329582328318897270085826206147 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (28269553036454148896513043436057926396560402299682496952007792822882765133 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (55213970774324509563502037961050637520043935444953678026116435725887461 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d4cu (by norm_num)
+  have s4l : (291924989857627804343627903865063830204638425418877449618777960447 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (583849979715255608691537550810289334019184662532096235461651226157 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (56539106072908295532107787417143253744356235290239602009194133644273025197 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (7067388259113536941513473427142906731746622059413736265870701190266585057 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d5cu (by norm_num)
+  have s5l : (291924989857627800452406426196073844262271218584876710955533617795 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (36490623732203475056818412217019335147522839609109659500062868955 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (14134776518227071622108647399313289729742505736579861274937890625767713413 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (28269553036454143244217294798626579678718493843300287096305914828748859593 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6cu (by norm_num)
+  have s6l : (583849979715255569775041031040228423403216744680965896977169925755 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (583849979715255569779322774120390098142700480783606161829792486539 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (7067388259113531289217724789712200191522276481458929759742482019047054195 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (7067388259113531289217724789712200410755758851599447549721342882240715401 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d7cu (by norm_num)
+  have s7l : (145962494928813861313988436408140330399926342414227928424498945693 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (145962494928813861315058872178180749988458015966526966597580252543 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (3533694129556756600935664574972032663816223747020283334244046278360104609 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (3533694129556756600935664574972033102283188487300944862591586292708916855 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d8cu (by norm_num)
+  have s8l : (583849979715254947179604604002052253294322188432742700107697187873 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (583849979715254947183886347082213946107020715068151984782306589589 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (55213970774323756660044895242389274563830909098772726819450683249808431 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (1766847064778360213121436647756457662976518571719057902036048200212607445 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d9cu (by norm_num)
+  have s9l : (18245311866101654839819001171330168831605830120552054890290091211 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (583849979715252954878489780562727153258372420197760859068605143569 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (1766847064778287863735854089455423690969395031435016780236656469096932683 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (883423532389143931867927044727713599352556476810230374693951489689070575 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d10cu (by norm_num)
+  have s10l : (583849979715244985652621771445408760497197566308422046406663905009 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (291924989857622492828451757262785371240666370732296530107027723135 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (55213970774312452068547620816455397653088449240140523346914258881471859 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (441711766194499616548380966531646688960425515915053731513529164053171401 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d11cu (by norm_num)
+  have s11l : (291924989857606554383138353974717180960645453439541478396386325181 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (583849979715213108770558451029597269254023357256879849259930521899 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (441711766194210219006050782703917872040724765198569451331044853505900827 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (441711766194210219006050782703931902983596450110056839675653499124521383 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12cu (by norm_num)
+  have s12l : (9122655933048212519076507256374554464231655648171636399632490739 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (291924989857542800612589103744069047218973756032220438321285570949 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (110427941548263157209182669852756786336293581387797841435519388615250105 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (110427941548263157209182669852770817279165254042362067351136330126415137 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d13cu (by norm_num)
+  have s13l : (18245311866080486594980489291283608447880839360632382248406112921 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (583849979714575571043657400401256884636864800010821236771504105293 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (55213970773552783519932547315954048741706463719636836425982998479032957 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (110427941547105567039865094631964221254899421946759977907539389469299219 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d14cu (by norm_num)
+  have s14l : (583849979712535450313295102236779238477711886133146096408259485727 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (583849979712535450317576845317019875092615211352115962205552435081 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (3450873173202350198832351340662056223374034552543741594327511418725321 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (55213970771237603181317621450705147116955972969507694988364529380677037 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15cu (by norm_num)
+  have s15l : (583849979704374967409015654112199473528350788746617156288248428977 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (583849979704374967413297397192676999384152856029037356576417217021 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (27606985380988440913590755605261605249659215371115485770540310454259245 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (27606985380988440913590755605486100335589504539413162812851091959444299 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16cu (by norm_num)
+  have s16l : (291924989835866517896291108507777919645310677149980958594600634875 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (72981247458966629474607995012122615263746704869344804360458392997 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (13803492681233499103953640447984759736510695316971407044007156457613793 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (3450873170308374775988410112108437477067716234757831572214026876675187 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d17cu (by norm_num)
+  have s17l : (36490623721322831833612384690958061208324002299841417164826953131 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (291924989770582654671039949070272145003010588419505425720330822651 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (862718290261913357081041074457246153682584671110399085935744379486487 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (3450873161047653428324164298277974786088873448494504033169809913442061 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d18cu (by norm_num)
+  have s18l : (583849979018894403693856890006599925836663542156606645478427292993 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (583849979018894403698138633106976147911983878104093667998627089099 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873124004768120507045611013745185598338134770304758228561900285571 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (26959946281287250941461293850075827067236870871033828579454678999707 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d19cu (by norm_num)
+  have s19l : (291924988464905391960605776302966688964840945328253443525462937857 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (291924988464905391962746647883476622715817700081011601710721143387 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (1725436487916614107338199500854837455938405139119123440945592040378635 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (862718243958307053669099752223379381272553166284435682931765753680321 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d20cu (by norm_num)
+  have s20l : (583849968573476349680545647352573058059174402467880236875740063343 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (72981246071684543710603423844520938041858357175105534665102219493 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (862718095786772449589686017744793187813158783715277519591127874484759 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (431359047893386224794843012464317694876239080090784389823289063170997 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d21cu (by norm_num)
+  have s21l : (291924967574069665158260716485996131010211106796218445518670541585 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (583849935148139330320803177345884976466371253165144133652338894755 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (431358751550359430643328949966424737221335326878910850649982926670121 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (431358751550359430643328964334105850907592541012662835380774845845667 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22cu (by norm_num)
+  have s22l : (72981225180850341804770261550223735341784836719928975406536265463 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (583849801446802734442443840656874919066117082267088747141585594105 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (53919695772366359748889052771788163185136536595206827804691725108517 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (107839391544732719497778119911244279291524846021311444876545550055853 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d23cu (by norm_num)
+  have s23l : (583849266641640056136973697440180601279526952149429888493605993505 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (583849266641640056141255461220022912435941365762087534113375659295 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (107838206176018660050125042035448828849913327422410776980071409515723 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (53919103088009330025062549752955034292079424126016570169641127267239 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d24cu (by norm_num)
+  have s24l : (291923563711964312154460481508794265790935906925820467489645889107 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (583847127423928624313202788896267738738357939002348760662573573821 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (6739591546537134152623324919322266882053979823644797229660795777635 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (53916732372297073220986714293816048177220565512241098039758212135839 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25cu (by norm_num)
+  have s25l : (583838570600111269790044752190340595614591103368921052725436298873 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (583838570600111269794326826461292147149667541159641528285535286851 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (6738406232112061576401241128985329424089998457888190834757769549345 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (26953624928448246305605194380940909421550344855844312279128413524999 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26cu (by norm_num)
+  have s26l : (145951086014321886373329209093465567125473045825200660773351136413 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (291902172028643772748799952082350102599080740216843724339863607823 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (13467331338531782173249419028148732481322546567987331071881988916277 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (6733665669265891086624939325173759935591433990981376721311844084671 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d27cu (by norm_num)
+  have s27l : (583667449924594423971675073003324655326126954323197699216010022197 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (583667449924594423975962114086514115133534653719507909415264173463 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (1678678633202498515350003470529209472414837532816543690672377571035 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (6714714532809994061400932264414553095110084497358757087027851804879 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28cu (by norm_num)
+  have s28l : (145780016494394269573929238393371269395158121533458066452476005967 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (583120065977577078300019875234422911090714027681204841805063110295 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (414942978172750693794270156266427165694624594291351441443163369573 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (414942978172750693794498890953378809881954717398226536672885433303 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d29cu (by norm_num)
+  have s29l : (580933609362600665919186271962196163242110929180232081085083642251 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (580933609362600665923552514688059651371262885288932377821411020385 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (1584852890404281268994132105126896660928208285134461663265265195303 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (1584852890404281268997737072817233785686256485691885197346383769419 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30cu (by norm_num)
+  have s30l : (286118455607511292604727701352913795005002272452745730836940081317 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (143059227803755646303517930957923669388348513118830314600246340071 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (648162588341426038880861565937753880925309422075633316464012091441 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (648162588341426038887642995927220457190430210156803361451199793245 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31cu (by norm_num)
+  have s31l : (538227369026763344490630123247509169983748440056486047310928452111 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (538227369026763344496196357081015210952844216956824971275690352921 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (19351082814255400067193302719409198041067855570097244582688130417 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (77404331257021600279207579803114199771976727707615559314167650305 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32cu (by norm_num)
+  have sXl : (207038299552513604425734142071369358577870997086856169482002407951 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (207038299552513604430041435903906154217438719341977643935475587139 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (6734949391671637 / 36028797018963968) * Real.sin X ≤ (6734949391671637 / 36028797018963968) * (207038299552513604430041435903906154217438719341977643935475587139 / 210624583337114373395836055367340864637790190801098222508621955072) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (6734949391671637 / 36028797018963968) * (207038299552513604430041435903906154217438719341977643935475587139 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) ≤ (19351082814255400067193302719409198041067855570097244582688130417 / 105312291668557186697918027683670432318895095400549111254310977536) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (77404331257021600279207579803114199771976727707615559314167650305 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) := cXu
+    have h2 : (77404331257021600279207579803114199771976727707615559314167650305 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (6734949391671685 / 36028797018963968) * (207038299552513604425734142071369358577870997086856169482002407951 / 210624583337114373395836055367340864637790190801098222508621955072) := by norm_num
+    have h3 : (6734949391671685 / 36028797018963968) * (207038299552513604425734142071369358577870997086856169482002407951 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) ≤ (6734949391671685 / 36028797018963968) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_19_34_bounds :
   ((cot_pi_19_34_lower : ℚ) : ℝ) ≤ cotangentTermV 19 34 ∧
-  cotangentTermV 19 34 ≤ ((cot_pi_19_34_upper : ℚ) : ℝ)
+  cotangentTermV 19 34 ≤ ((cot_pi_19_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 19 34 = - cotangentTermV 15 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_15_34_fresh_aux_for_19_34
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_19_34_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_19_34_upper]
 
 def cot_pi_20_34_lower : ℚ := -5125538287992107 / 18014398509481984
 def cot_pi_20_34_upper : ℚ := -5125538287992087 / 18014398509481984
-axiom cot_pi_20_34_bounds :
+theorem cot_pi_20_34_bounds :
   ((cot_pi_20_34_lower : ℚ) : ℝ) ≤ cotangentTermV 20 34 ∧
-  cotangentTermV 20 34 ≤ ((cot_pi_20_34_upper : ℚ) : ℝ)
+  cotangentTermV 20 34 ≤ ((cot_pi_20_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 20 34 = cotangentTermV 10 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_10_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_20_34_lower, cot_pi_10_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_20_34_upper, cot_pi_10_17_upper]
 
 def cot_pi_21_34_lower : ℚ := -6978815162229051 / 18014398509481984
 def cot_pi_21_34_upper : ℚ := -6978815162229013 / 18014398509481984
-axiom cot_pi_21_34_bounds :
+private theorem cot_pi_div_13_34_fresh_aux_for_21_34 :
+    (6978815162229013 / 18014398509481984 : ℝ) ≤ cotangentTermV 13 34 ∧
+    cotangentTermV 13 34 ≤ (6978815162229051 / 18014398509481984 : ℝ) := by
+  have hcot : cotangentTermV 13 34
+      = Real.cos (Real.pi * 13 / 34) / Real.sin (Real.pi * 13 / 34) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 13 / 34 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (2042035224833365604999 : ℝ) / 1700000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (4084070449666731210011 : ℝ) / 3400000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (354530834654127423815 : ℝ) / 1267650600228229401496703205376 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (354530834654127423817 : ℝ) / 1267650600228229401496703205376 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 354530834654127423815 / 1267650600228229401496703205376) (yu := 354530834654127423817 / 1267650600228229401496703205376) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (904625697166532776711269135879643689966750254129537582009505343357612191675 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (904625697166532776711269135879643689967725941818409043007522547590719082565 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans hcb2 (by norm_num)
+  have s0l : (506003315753221529771190769551604727292246715274231369492069991771 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (506003315753221529774045264938169689964798006633197566271473049395 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (904625697166532776605131582377451919558753053901975006118532854213323028595 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (226156424291633194151282895594362979890663951164365212527612259424512052391 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d1cu (by norm_num)
+  have s1l : (506003315753221529751401386249663127625849011681540539179533201133 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (506003315753221529754255881636228090298834417932445845209442736233 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (452312848583266388090290684184342418984136898881677834441195177602369971667 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (113078212145816597022572671046085604747985600098162380605951619247550318217 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d2cu (by norm_num)
+  have s2l : (506003315753221529672243853041896728964901878637903047741719010253 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (506003315753221529675098348428461691639623744456564790773424524431 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (113078212145816596810297564041702064033813686194371722634085858376010581081 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (28269553036454149202574391010425516010404796926335852652953221859341409833 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d3cu (by norm_num)
+  have s3l : (506003315753221529355613720210831134395412247697366358979072482395 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (506003315753221529358468215597396097077079951787053850014283019711 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (883423532389192155946852625188811738384663787362278907236129874039350111 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (7067388259113537247574821001510493909028685676641153247436525931177322505 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d4cu (by norm_num)
+  have s4l : (253001657876610764044546594443284378653118071839716017594171116483 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (63250414469152691011493460534141715001960900106652814772338821517 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (14134776518227074070599427994253909710477125276178287073888431325848791245 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (7067388259113537035299713997126954863044064149060831416985838194754595251 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d5cu (by norm_num)
+  have s5l : (506003315753221523023011063589519267970050443515093604477008881121 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (126500828938305380756466389744021057697658728256324013586552944139 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (28269553036454144744797143918371279603081980279629022909644526459834455667 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (28269553036454144744797143918371279727970004455176023988817672657444967093 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6cu (by norm_num)
+  have s6l : (63250414469152687844835320300165201869200887172014928458285556563 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (506003315753221502761537057787886578218725216231969729982079154659 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (7067388259113532789797573909456620129088993998036814663998594549579254965 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (14134776518227065579595147818913240507954036347167591474400967001000475325 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7cu (by norm_num)
+  have s7l : (506003315753221421701368557648535872140624985114149204766355669021 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (506003315753221421704223053035100837183877701352590675768574904655 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (3533694129556759602095362814458630890707648461676838179907042212033099675 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (7067388259113519204190725628917262280967393625541280557081524280794585247 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8cu (by norm_num)
+  have s8l : (506003315753221097472112538637470808933356892759731921164560763429 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (506003315753221097474967034024035781089147998528534209313395038583 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (3533694129556732430881666253423440107778711985415190093626405322126809497 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (1766847064778366215440833126711720553441452694893918861920178731200247341 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d9cu (by norm_num)
+  have s9l : (253001657876609900277544231297228542409425114919215729695407125329 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (506003315753219800557942957981022085424794893728615294540779173659 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (1766847064778311873013440004989545787379143487921196694585267630044064669 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (1766847064778311873013440004989547785587530296646005840445751403887463425 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10cu (by norm_num)
+  have s10l : (126500828938303653221748039610586661948468710938997208275051663227 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (506003315753214612889846653828911762200433740130711310889422006575 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (110427941548630906456491720229510344431300041134851600214895595202484635 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (441711766194523625825966880918043375933586973182271088450385388008991021 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d11cu (by norm_num)
+  have s11l : (253001657876596931107303471076508125311395547682717607831842532425 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (506003315753193862217461437539581820231806921662511538165547758835 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (220855883097153128058197210942964129747963250885219841036438693388997925 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (110427941548576564029098605471484063082368433757696775030319450060809313 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d12cu (by norm_num)
+  have s12l : (253001657876555429762533041050738138399691899857564831578888619855 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (506003315753110859527920577488043667218227345448809751000571283875 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (55213970774179597159763117790218789812815591058151872759622419463840451 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (55213970774179597159763117790222786229589205066102917154844603363099111 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d13cu (by norm_num)
+  have s13l : (253001657876389424383451361793911109635273704154264265438251676393 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (63250414469097356096219652371799611616087728467954732991158678957 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (110427941547489715481238182273357765344380213605570208103826844808921109 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (13803492693436214435154772784173717084821130219756661902611773424120647 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d14cu (by norm_num)
+  have s14l : (506003315751450805734250596613299392748662476457265811021690633003 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (506003315751450805737105091999903199364060325978319066503878927569 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (55213970772005900064054394579304236363032006965740037182130851443172143 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (55213970772005900064054394579368179031408991981704069701355773567779811 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15cu (by norm_num)
+  have s15l : (253001657873069316801831500998351251495077633909704042061708219535 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (126500828936534658401629374345855710358631450541967024482366635365 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (27606985382525034678989084629181677386347269808584862330521912099749227 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (27606985382525034678989084629309562723095869528495878218374158110330397 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16cu (by norm_num)
+  have s16l : (506003315724889945081647236034222970575038961143213567921033690345 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (126500828931222486271125432855352359083820916634849478958367975413 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (1725436585538335829268570078481071646589157244582370273321419813527803 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (13803492684306686634148560628104343846167494900347306955271174883628949 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17cu (by norm_num)
+  have s17l : (253001657819947595499468986123332324749139940785380255036731835593 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (253001657819947595500896233817857812260878089483706003282814239351 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (6901746328241681912224266012998331614866706629244321120003226528068455 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (1725436582060420478056066503377468240357870136909528232547518230315077 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d18cu (by norm_num)
+  have s18l : (126500828824979043688440429520849198530527319435131358944875931785 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (7906301801561190230572128335623528221785476063953038570640079353 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873136297518193147696952144584765761094545012299605508264447531641 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (1725436568148759096573848476583833728070521316353923964585518586426825 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d19cu (by norm_num)
+  have s19l : (506003313940000111143629516531115697577026313249029617119124453583 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (253001656970000055573242005978728428888031737370598251696570530049 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (1725436512502113944529715692260814191558329815886108322914176559969667 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (1725436512502113944529715694306979550321428087217611089533050409914443 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d20cu (by norm_num)
+  have s20l : (506003308500335878632265707732618135550020010357739049913101718707 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (506003308500335878635120203278287887170743448879197490922510459039 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (862718144957769659254473115098814252786508321134053208151774630750147 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (431359072478884829627236559595572397169162234487158295995842018201645 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d21cu (by norm_num)
+  have s21l : (253001643370839649726723801089747262297299947472265214306842248007 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (126500821685419824864075524550619656132246734800297846880836841423 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (107839712473083533057108346340032659148312306254693737601602577066479 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (107839712473083533057108348386197577975482291760680168735777574950983 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d22cu (by norm_num)
+  have s22l : (253001599853529298302094101378954890065430074134726692532452686393 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (506003199707058596607042700690150995350611535117323587891944263627 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (215678979773257100257767779253641709793459908921844828607812641063271 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (215678979773257100257767795622949798054106720953633224744970313784563 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d23cu (by norm_num)
+  have s23l : (506002851568665607051771676979255262191041023796158283033627697685 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (506002851568665607054626182548520491044501792079273360061477854945 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (107838599542340048838913526396230715906726259594100680102144142275227 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (13479824942792506104864194891844599208412436389664457835721076750447 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d24cu (by norm_num)
+  have s24l : (253000729508265398807228107234062647720904794902705681210027914487 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (253000729508265398808655375292707709381655511905159275289689457587 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (53917519094844429820367714830953449923834693060750021915180206986995 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (26958759547422214910183890153642409167352874528134738747125095799327 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d25cu (by norm_num)
+  have s25l : (252997944415492946380662902267480700351646337755136935431994217423 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (126498972207746473191045115710803136121785645537670519661376326729 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (26955198292781156683740658840785791021587010566152279512589652100505 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (26955198292781156683740789787682326175947215155578831930286803019541 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26cu (by norm_num)
+  have s26l : (505973608456712562167066625485090501098905991548030272242502254825 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (505973608456712562169921772538969042345449764047138554150437689985 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (3367619355288314642234788130397434522864104166216782676994596932845 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (1683809677644157321117426796157030229347985873947802622657995588831 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d27cu (by norm_num)
+  have s27l : (505884492845925463402010409022178372684658045228638317651101105893 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (505884492845925463404867510767114540099049703075531238809224015865 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (3360500765650222232391828183325420319974875969900058929822497360095 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (6721001531300444464784179693068799482191148665095086891821939397607 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28cu (by norm_num)
+  have s28l : (505528124571236177481857510229018256519545000232928246007551920591 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (31595507785702261092795151629744534025904410074186346320816254899 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (3332076539582973235942176074142517622265323574150053558922552651369 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (208254783723935827246451236173492646339627583094871389062727332577 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d29cu (by norm_num)
+  have s29l : (252052078685941538294417753260749487508752277766038853908201803557 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (504104157371883076591731604241219834013347474118500593585027909517 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (402397423040087948036614046765082413288342786603443313601822990561 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (402397423040087948037130027566680368827709035657352603627081010611 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d30cu (by norm_num)
+  have s30l : (498432332088176607996446090843330263354858489053094630951203850529 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (62304041511022075999933215926770024224936051209330924413954894053 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (173764749341439024419654586712230711674714473090363205399338926599 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (347529498682878048841280731934978268828277718431557836678416526727 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d31cu (by norm_num)
+  have s31l : (476126487265556842507298542736189432586783449981252740161705807967 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (476126487265556842510793565647442680840011197022885340935461156271 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (9510796928084255965625969043764242128592818489039603575551194835 : ℝ) / 26328072917139296674479506920917608079723773850137277813577744384 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (76086375424674047728260813934512312981855204558737660830228829037 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d32cu (by norm_num)
+  have sXl : (196401574791722571045014517090942747619054602904128291678038687951 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (392803149583445142095140818272248303473385872514716184152550130831 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (6978815162229013 / 18014398509481984) * Real.sin X ≤ (6978815162229013 / 18014398509481984) * (392803149583445142095140818272248303473385872514716184152550130831 / 421249166674228746791672110734681729275580381602196445017243910144) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (6978815162229013 / 18014398509481984) * (392803149583445142095140818272248303473385872514716184152550130831 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (9510796928084255965625969043764242128592818489039603575551194835 / 26328072917139296674479506920917608079723773850137277813577744384) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (76086375424674047728260813934512312981855204558737660830228829037 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) := cXu
+    have h2 : (76086375424674047728260813934512312981855204558737660830228829037 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) ≤ (6978815162229051 / 18014398509481984) * (196401574791722571045014517090942747619054602904128291678038687951 / 210624583337114373395836055367340864637790190801098222508621955072) := by norm_num
+    have h3 : (6978815162229051 / 18014398509481984) * (196401574791722571045014517090942747619054602904128291678038687951 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) ≤ (6978815162229051 / 18014398509481984) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_21_34_bounds :
   ((cot_pi_21_34_lower : ℚ) : ℝ) ≤ cotangentTermV 21 34 ∧
-  cotangentTermV 21 34 ≤ ((cot_pi_21_34_upper : ℚ) : ℝ)
+  cotangentTermV 21 34 ≤ ((cot_pi_21_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 21 34 = - cotangentTermV 13 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_13_34_fresh_aux_for_21_34
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_21_34_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_21_34_upper]
 
 def cot_pi_22_34_lower : ℚ := -8970104616069303 / 18014398509481984
 def cot_pi_22_34_upper : ℚ := -8970104616069251 / 18014398509481984
-axiom cot_pi_22_34_bounds :
+theorem cot_pi_22_34_bounds :
   ((cot_pi_22_34_lower : ℚ) : ℝ) ≤ cotangentTermV 22 34 ∧
-  cotangentTermV 22 34 ≤ ((cot_pi_22_34_upper : ℚ) : ℝ)
+  cotangentTermV 22 34 ≤ ((cot_pi_22_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 22 34 = cotangentTermV 11 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_11_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_22_34_lower, cot_pi_11_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_22_34_upper, cot_pi_11_17_upper]
 
 def cot_pi_23_34_lower : ℚ := -5577021664085309 / 9007199254740992
 def cot_pi_23_34_upper : ℚ := -5577021664085277 / 9007199254740992
-axiom cot_pi_23_34_bounds :
+theorem cot_pi_23_34_bounds :
   ((cot_pi_23_34_lower : ℚ) : ℝ) ≤ cotangentTermV 23 34 ∧
-  cotangentTermV 23 34 ≤ ((cot_pi_23_34_upper : ℚ) : ℝ)
+  cotangentTermV 23 34 ≤ ((cot_pi_23_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 23 34 = - cotangentTermV 11 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_11_34_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_23_34_lower, cot_pi_11_34_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_23_34_upper, cot_pi_11_34_lower]
 
 def cot_pi_24_34_lower : ℚ := -6801921139191381 / 9007199254740992
 def cot_pi_24_34_upper : ℚ := -6801921139191357 / 9007199254740992
-axiom cot_pi_24_34_bounds :
+theorem cot_pi_24_34_bounds :
   ((cot_pi_24_34_lower : ℚ) : ℝ) ≤ cotangentTermV 24 34 ∧
-  cotangentTermV 24 34 ≤ ((cot_pi_24_34_upper : ℚ) : ℝ)
+  cotangentTermV 24 34 ≤ ((cot_pi_24_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 24 34 = cotangentTermV 12 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_12_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_24_34_lower, cot_pi_12_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_24_34_upper, cot_pi_12_17_upper]
 
 def cot_pi_25_34_lower : ℚ := -32074793210659 / 35184372088832
 def cot_pi_25_34_upper : ℚ := -4105573530964339 / 4503599627370496
-axiom cot_pi_25_34_bounds :
+theorem cot_pi_25_34_bounds :
   ((cot_pi_25_34_lower : ℚ) : ℝ) ≤ cotangentTermV 25 34 ∧
-  cotangentTermV 25 34 ≤ ((cot_pi_25_34_upper : ℚ) : ℝ)
+  cotangentTermV 25 34 ≤ ((cot_pi_25_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 25 34 = - cotangentTermV 9 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_9_34_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_25_34_lower, cot_pi_9_34_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_25_34_upper, cot_pi_9_34_lower]
 
 def cot_pi_26_34_lower : ℚ := -1235053364084287 / 1125899906842624
 def cot_pi_26_34_upper : ℚ := -2470106728168561 / 2251799813685248
-axiom cot_pi_26_34_bounds :
+theorem cot_pi_26_34_bounds :
   ((cot_pi_26_34_lower : ℚ) : ℝ) ≤ cotangentTermV 26 34 ∧
-  cotangentTermV 26 34 ≤ ((cot_pi_26_34_upper : ℚ) : ℝ)
+  cotangentTermV 26 34 ≤ ((cot_pi_26_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 26 34 = cotangentTermV 13 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_13_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_26_34_lower, cot_pi_13_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_26_34_upper, cot_pi_13_17_upper]
 
 def cot_pi_27_34_lower : ℚ := -2981864856795873 / 2251799813685248
 def cot_pi_27_34_upper : ℚ := -2981864856795857 / 2251799813685248
-axiom cot_pi_27_34_bounds :
+theorem cot_pi_27_34_bounds :
   ((cot_pi_27_34_lower : ℚ) : ℝ) ≤ cotangentTermV 27 34 ∧
-  cotangentTermV 27 34 ≤ ((cot_pi_27_34_upper : ℚ) : ℝ)
+  cotangentTermV 27 34 ≤ ((cot_pi_27_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 27 34 = - cotangentTermV 7 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_7_34_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_27_34_lower, cot_pi_7_34_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_27_34_upper, cot_pi_7_34_lower]
 
 def cot_pi_28_34_lower : ℚ := -1818390785019325 / 1125899906842624
 def cot_pi_28_34_upper : ℚ := -909195392509659 / 562949953421312
-axiom cot_pi_28_34_bounds :
+theorem cot_pi_28_34_bounds :
   ((cot_pi_28_34_lower : ℚ) : ℝ) ≤ cotangentTermV 28 34 ∧
-  cotangentTermV 28 34 ≤ ((cot_pi_28_34_upper : ℚ) : ℝ)
+  cotangentTermV 28 34 ≤ ((cot_pi_28_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 28 34 = cotangentTermV 14 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_14_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_28_34_lower, cot_pi_14_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_28_34_upper, cot_pi_14_17_upper]
 
 def cot_pi_29_34_lower : ℚ := -2261111823302177 / 1125899906842624
 def cot_pi_29_34_upper : ℚ := -2261111823302163 / 1125899906842624
-axiom cot_pi_29_34_bounds :
+theorem cot_pi_29_34_bounds :
   ((cot_pi_29_34_lower : ℚ) : ℝ) ≤ cotangentTermV 29 34 ∧
-  cotangentTermV 29 34 ≤ ((cot_pi_29_34_upper : ℚ) : ℝ)
+  cotangentTermV 29 34 ≤ ((cot_pi_29_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 29 34 = - cotangentTermV 5 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_5_34_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_29_34_lower, cot_pi_5_34_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_29_34_upper, cot_pi_5_34_lower]
 
 def cot_pi_30_34_lower : ℚ := -2906282675807893 / 1125899906842624
 def cot_pi_30_34_upper : ℚ := -22705333404749 / 8796093022208
-axiom cot_pi_30_34_bounds :
+theorem cot_pi_30_34_bounds :
   ((cot_pi_30_34_lower : ℚ) : ℝ) ≤ cotangentTermV 30 34 ∧
-  cotangentTermV 30 34 ≤ ((cot_pi_30_34_upper : ℚ) : ℝ)
+  cotangentTermV 30 34 ≤ ((cot_pi_30_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 30 34 = cotangentTermV 15 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_15_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_30_34_lower, cot_pi_15_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_30_34_upper, cot_pi_15_17_upper]
 
 def cot_pi_31_34_lower : ℚ := -247320482064885 / 70368744177664
 def cot_pi_31_34_upper : ℚ := -1978563856519069 / 562949953421312
-axiom cot_pi_31_34_bounds :
+theorem cot_pi_31_34_bounds :
   ((cot_pi_31_34_lower : ℚ) : ℝ) ≤ cotangentTermV 31 34 ∧
-  cotangentTermV 31 34 ≤ ((cot_pi_31_34_upper : ℚ) : ℝ)
+  cotangentTermV 31 34 ≤ ((cot_pi_31_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 31 34 = - cotangentTermV 3 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_3_34_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_31_34_lower, cot_pi_3_34_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_31_34_upper, cot_pi_3_34_lower]
 
 def cot_pi_32_34_lower : ℚ := -6023032520105521 / 1125899906842624
 def cot_pi_32_34_upper : ℚ := -6023032520105471 / 1125899906842624
-axiom cot_pi_32_34_bounds :
+theorem cot_pi_32_34_bounds :
   ((cot_pi_32_34_lower : ℚ) : ℝ) ≤ cotangentTermV 32 34 ∧
-  cotangentTermV 32 34 ≤ ((cot_pi_32_34_upper : ℚ) : ℝ)
+  cotangentTermV 32 34 ≤ ((cot_pi_32_34_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 32 34 = cotangentTermV 16 17 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_16_17_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_32_34_lower, cot_pi_16_17_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_32_34_upper, cot_pi_16_17_upper]
 
 def cot_pi_33_34_lower : ℚ := -759399689430167 / 70368744177664
 def cot_pi_33_34_upper : ℚ := -1518799378860297 / 140737488355328
-axiom cot_pi_33_34_bounds :
+theorem cot_pi_33_34_bounds :
   ((cot_pi_33_34_lower : ℚ) : ℝ) ≤ cotangentTermV 33 34 ∧
-  cotangentTermV 33 34 ≤ ((cot_pi_33_34_upper : ℚ) : ℝ)
+  cotangentTermV 33 34 ≤ ((cot_pi_33_34_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 33 34 = - cotangentTermV 1 34 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_1_34_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_33_34_lower, cot_pi_1_34_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_33_34_upper, cot_pi_1_34_lower]
 
 def cot_pi_1_35_lower : ℚ := 6254886268896339 / 562949953421312
 def cot_pi_1_35_upper : ℚ := 6254886268896345 / 562949953421312
-axiom cot_pi_1_35_bounds :
+theorem cot_pi_1_35_bounds :
   ((cot_pi_1_35_lower : ℚ) : ℝ) ≤ cotangentTermV 1 35 ∧
-  cotangentTermV 1 35 ≤ ((cot_pi_1_35_upper : ℚ) : ℝ)
+  cotangentTermV 1 35 ≤ ((cot_pi_1_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_1_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_1_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_1_35_upper]
 
 def cot_pi_2_35_lower : ℚ := 3102109928020983 / 562949953421312
 def cot_pi_2_35_upper : ℚ := 1551054964010493 / 281474976710656
-axiom cot_pi_2_35_bounds :
+theorem cot_pi_2_35_bounds :
   ((cot_pi_2_35_lower : ℚ) : ℝ) ≤ cotangentTermV 2 35 ∧
-  cotangentTermV 2 35 ≤ ((cot_pi_2_35_upper : ℚ) : ℝ)
+  cotangentTermV 2 35 ≤ ((cot_pi_2_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_2_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_2_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_2_35_upper]
 
 def cot_pi_3_35_lower : ℚ := 127487709073883 / 35184372088832
 def cot_pi_3_35_upper : ℚ := 1019901672591065 / 281474976710656
-axiom cot_pi_3_35_bounds :
+theorem cot_pi_3_35_bounds :
   ((cot_pi_3_35_lower : ℚ) : ℝ) ≤ cotangentTermV 3 35 ∧
-  cotangentTermV 3 35 ≤ ((cot_pi_3_35_upper : ℚ) : ℝ)
+  cotangentTermV 3 35 ≤ ((cot_pi_3_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_3_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_3_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_3_35_upper]
 
 def cot_pi_4_35_lower : ℚ := 2999949573484729 / 1125899906842624
 def cot_pi_4_35_upper : ℚ := 749987393371183 / 281474976710656
-axiom cot_pi_4_35_bounds :
+theorem cot_pi_4_35_bounds :
   ((cot_pi_4_35_lower : ℚ) : ℝ) ≤ cotangentTermV 4 35 ∧
-  cotangentTermV 4 35 ≤ ((cot_pi_4_35_upper : ℚ) : ℝ)
+  cotangentTermV 4 35 ≤ ((cot_pi_4_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_4_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_4_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_4_35_upper]
 
 def cot_pi_5_35_lower : ℚ := 4675910493915015 / 2251799813685248
 def cot_pi_5_35_upper : ℚ := 4675910493915021 / 2251799813685248
-axiom cot_pi_5_35_bounds :
+theorem cot_pi_5_35_bounds :
   ((cot_pi_5_35_lower : ℚ) : ℝ) ≤ cotangentTermV 5 35 ∧
-  cotangentTermV 5 35 ≤ ((cot_pi_5_35_upper : ℚ) : ℝ)
+  cotangentTermV 5 35 ≤ ((cot_pi_5_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 5 35 = cotangentTermV 1 7 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_7_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_5_35_lower, cot_pi_1_7_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_5_35_upper, cot_pi_1_7_upper]
 
 def cot_pi_6_35_lower : ℚ := 7537756119555601 / 4503599627370496
 def cot_pi_6_35_upper : ℚ := 7537756119555609 / 4503599627370496
-axiom cot_pi_6_35_bounds :
+theorem cot_pi_6_35_bounds :
   ((cot_pi_6_35_lower : ℚ) : ℝ) ≤ cotangentTermV 6 35 ∧
-  cotangentTermV 6 35 ≤ ((cot_pi_6_35_upper : ℚ) : ℝ)
+  cotangentTermV 6 35 ≤ ((cot_pi_6_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_6_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_6_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_6_35_upper]
 
 def cot_pi_7_35_lower : ℚ := 6198673104153461 / 4503599627370496
 def cot_pi_7_35_upper : ℚ := 6198673104153469 / 4503599627370496
-axiom cot_pi_7_35_bounds :
+theorem cot_pi_7_35_bounds :
   ((cot_pi_7_35_lower : ℚ) : ℝ) ≤ cotangentTermV 7 35 ∧
-  cotangentTermV 7 35 ≤ ((cot_pi_7_35_upper : ℚ) : ℝ)
+  cotangentTermV 7 35 ≤ ((cot_pi_7_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 7 35 = cotangentTermV 1 5 :=
+    cotangentTermV_gcd_reduce (g := 7) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_5_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_7_35_lower, cot_pi_1_5_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_7_35_upper, cot_pi_1_5_upper]
 
 def cot_pi_8_35_lower : ℚ := 5154784541422451 / 4503599627370496
 def cot_pi_8_35_upper : ℚ := 5154784541422457 / 4503599627370496
-axiom cot_pi_8_35_bounds :
+theorem cot_pi_8_35_bounds :
   ((cot_pi_8_35_lower : ℚ) : ℝ) ≤ cotangentTermV 8 35 ∧
-  cotangentTermV 8 35 ≤ ((cot_pi_8_35_upper : ℚ) : ℝ)
+  cotangentTermV 8 35 ≤ ((cot_pi_8_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_8_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_8_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_8_35_upper]
 
 def cot_pi_9_35_lower : ℚ := 8611764261817283 / 9007199254740992
 def cot_pi_9_35_upper : ℚ := 8611764261817293 / 9007199254740992
-axiom cot_pi_9_35_bounds :
+theorem cot_pi_9_35_bounds :
   ((cot_pi_9_35_lower : ℚ) : ℝ) ≤ cotangentTermV 9 35 ∧
-  cotangentTermV 9 35 ≤ ((cot_pi_9_35_upper : ℚ) : ℝ)
+  cotangentTermV 9 35 ≤ ((cot_pi_9_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_9_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_9_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_9_35_upper]
 
 def cot_pi_10_35_lower : ℚ := 3591500857008679 / 4503599627370496
 def cot_pi_10_35_upper : ℚ := 3591500857008683 / 4503599627370496
-axiom cot_pi_10_35_bounds :
+theorem cot_pi_10_35_bounds :
   ((cot_pi_10_35_lower : ℚ) : ℝ) ≤ cotangentTermV 10 35 ∧
-  cotangentTermV 10 35 ≤ ((cot_pi_10_35_upper : ℚ) : ℝ)
+  cotangentTermV 10 35 ≤ ((cot_pi_10_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 10 35 = cotangentTermV 2 7 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_2_7_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_10_35_lower, cot_pi_2_7_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_10_35_upper, cot_pi_2_7_upper]
 
 def cot_pi_11_35_lower : ℚ := 5945600171883123 / 9007199254740992
 def cot_pi_11_35_upper : ℚ := 5945600171883139 / 9007199254740992
-axiom cot_pi_11_35_bounds :
+theorem cot_pi_11_35_bounds :
   ((cot_pi_11_35_lower : ℚ) : ℝ) ≤ cotangentTermV 11 35 ∧
-  cotangentTermV 11 35 ≤ ((cot_pi_11_35_upper : ℚ) : ℝ)
+  cotangentTermV 11 35 ≤ ((cot_pi_11_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_11_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_11_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_11_35_upper]
 
 def cot_pi_12_35_lower : ℚ := 1211745151168417 / 2251799813685248
 def cot_pi_12_35_upper : ℚ := 2423490302336837 / 4503599627370496
-axiom cot_pi_12_35_bounds :
+theorem cot_pi_12_35_bounds :
   ((cot_pi_12_35_lower : ℚ) : ℝ) ≤ cotangentTermV 12 35 ∧
-  cotangentTermV 12 35 ≤ ((cot_pi_12_35_upper : ℚ) : ℝ)
+  cotangentTermV 12 35 ≤ ((cot_pi_12_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_12_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_12_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_12_35_upper]
 
 def cot_pi_13_35_lower : ℚ := 481232715025159 / 1125899906842624
 def cot_pi_13_35_upper : ℚ := 1924930860100643 / 4503599627370496
-axiom cot_pi_13_35_bounds :
+theorem cot_pi_13_35_bounds :
   ((cot_pi_13_35_lower : ℚ) : ℝ) ≤ cotangentTermV 13 35 ∧
-  cotangentTermV 13 35 ≤ ((cot_pi_13_35_upper : ℚ) : ℝ)
+  cotangentTermV 13 35 ≤ ((cot_pi_13_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_13_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_13_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_13_35_upper]
 
 def cot_pi_14_35_lower : ℚ := 2926616445759701 / 9007199254740992
 def cot_pi_14_35_upper : ℚ := 1463308222879853 / 4503599627370496
-axiom cot_pi_14_35_bounds :
+theorem cot_pi_14_35_bounds :
   ((cot_pi_14_35_lower : ℚ) : ℝ) ≤ cotangentTermV 14 35 ∧
-  cotangentTermV 14 35 ≤ ((cot_pi_14_35_upper : ℚ) : ℝ)
+  cotangentTermV 14 35 ≤ ((cot_pi_14_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 14 35 = cotangentTermV 2 5 :=
+    cotangentTermV_gcd_reduce (g := 7) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_2_5_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_14_35_lower, cot_pi_2_5_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_14_35_upper, cot_pi_2_5_upper]
 
 def cot_pi_15_35_lower : ℚ := 1027917226213225 / 4503599627370496
 def cot_pi_15_35_upper : ℚ := 4111668904852923 / 18014398509481984
-axiom cot_pi_15_35_bounds :
+theorem cot_pi_15_35_bounds :
   ((cot_pi_15_35_lower : ℚ) : ℝ) ≤ cotangentTermV 15 35 ∧
-  cotangentTermV 15 35 ≤ ((cot_pi_15_35_upper : ℚ) : ℝ)
+  cotangentTermV 15 35 ≤ ((cot_pi_15_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 15 35 = cotangentTermV 3 7 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_3_7_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_15_35_lower, cot_pi_3_7_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_15_35_upper, cot_pi_3_7_upper]
 
 def cot_pi_16_35_lower : ℚ := 610054020133757 / 4503599627370496
 def cot_pi_16_35_upper : ℚ := 1220108040267517 / 9007199254740992
-axiom cot_pi_16_35_bounds :
+theorem cot_pi_16_35_bounds :
   ((cot_pi_16_35_lower : ℚ) : ℝ) ≤ cotangentTermV 16 35 ∧
-  cotangentTermV 16 35 ≤ ((cot_pi_16_35_upper : ℚ) : ℝ)
+  cotangentTermV 16 35 ≤ ((cot_pi_16_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_16_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_16_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_16_35_upper]
 
 def cot_pi_17_35_lower : ℚ := 6472220559389025 / 144115188075855872
 def cot_pi_17_35_upper : ℚ := 6472220559389185 / 144115188075855872
-axiom cot_pi_17_35_bounds :
+theorem cot_pi_17_35_bounds :
   ((cot_pi_17_35_lower : ℚ) : ℝ) ≤ cotangentTermV 17 35 ∧
-  cotangentTermV 17 35 ≤ ((cot_pi_17_35_upper : ℚ) : ℝ)
+  cotangentTermV 17 35 ≤ ((cot_pi_17_35_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_17_35_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_17_35_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_17_35_upper]
 
 def cot_pi_18_35_lower : ℚ := -6472220559389075 / 144115188075855872
 def cot_pi_18_35_upper : ℚ := -6472220559389037 / 144115188075855872
-axiom cot_pi_18_35_bounds :
+private theorem cot_pi_div_17_35_fresh_aux_for_18_35 :
+    (6472220559389037 / 144115188075855872 : ℝ) ≤ cotangentTermV 17 35 ∧
+    cotangentTermV 17 35 ≤ (6472220559389075 / 144115188075855872 : ℝ) := by
+  have hcot : cotangentTermV 17 35
+      = Real.cos (Real.pi * 17 / 35) / Real.sin (Real.pi * 17 / 35) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 17 / 35 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (2670353755551324252691 : ℝ) / 1750000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (5340707511102648505399 : ℝ) / 3500000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (450371038307880551571 : ℝ) / 1267650600228229401496703205376 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (225185519153940275787 : ℝ) / 633825300114114700748351602688 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 450371038307880551571 / 1267650600228229401496703205376) (yu := 225185519153940275787 / 633825300114114700748351602688) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (1809251394333065553379111209293610982858173819790020704592933114503065721263 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (1809251394333065553379111209293610982862697733031278212554755636618648921681 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hcb2 (by norm_num)
+  have s0l : (642791025286509987263802228233825059374318864394974072056302284107 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (40174439080406874204255248207184102133049692741253887319685688807 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (452312848583266388259138728723049562706269421122782703501533087861999872295 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (452312848583266388259138728723049562710793334364040211463070096871449304097 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d1cu (by norm_num)
+  have s1l : (642791025286509987223234416156720122296581884154489739962953775539 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (642791025286509987227516159237840697052395130722103690464699684455 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (452312848583266387916582434321636830727221797822453194100996848435337067381 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (452312848583266387916582434321636830745317450787483225942576674774994496729 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2cu (by norm_num)
+  have s2l : (160697756321627496765240791962075093500248963001346942258147752913 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (321395512643254993532622455464710474381078603491552510652765345855 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (56539106072908298318294657089498237959475937074762656906232222881006904871 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (113078212145816596636589314178996475937047527114555345635771433309110047655 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d3cu (by norm_num)
+  have s3l : (321395512643254993205939087307310690532220972207172802176551681139 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (642791025286509986416159917695741955846995733032476063692979450161 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (113078212145816595266364136573345552326642340833037766297725177890842452943 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (28269553036454148816591034143336388099756238173289473324646926849562085519 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d4cu (by norm_num)
+  have s4l : (80348878160813747976942275209988176656358731267003555916025548343 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (321395512643254991909909972380512994059496686657905867325203639039 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (7067388259113536861591464134421369581442530880807350180827717121026946029 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (28269553036454147446365856537685478398152735383349526554711715267597430257 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d5cu (by norm_num)
+  have s5l : (642791025286509973430178309941041604918878050396383655702210320323 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (642791025286509973434460053022162180129280511822778250387019179903 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (7067388259113535491366286528770515171228355721606397072497087752733121697 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (28269553036454141965465146115082060974443870326906072904204814562231636937 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6cu (by norm_num)
+  have s6l : (160697756321627482972184685746396844586914022353943418350380006127 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (642791025286509931893020486066707954927174303828613424469532828165 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (14134776518227060020931152212335966122384478996015796351869555937891121757 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (7067388259113530010465576106167983350722686938488307944603547189614228891 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d7cu (by norm_num)
+  have s7l : (321395512643254882861490237581893290085346026570029965746678329155 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (642791025286509765727262218244907162226673279498679139018666375837 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (220855883097297127714460450492875722318035162845410528554700479820807331 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (7067388259113508086862734415772024272298914972973578459662382947317146187 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8cu (by norm_num)
+  have s8l : (642791025286509101059947403876841117189616830334855323263695419397 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (642791025286509101064229146957961721151450104476573651409890993419 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (3533694129556710196225683827207439608093138768065888073875278731752902689 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (3533694129556710196225683827207441924336718291897190935594339615727961707 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9cu (by norm_num)
+  have s9l : (642791025286506442407815118733182940893810692678449852916265327929 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (642791025286506442412096861814303632479052157952265380213175544565 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (55213970774320856365671098536042483322942364456915061409078589026954955 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (1766847064778267403701475153153364098821314710207245847689642675290386317 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10cu (by norm_num)
+  have s10l : (321395512643247903899642989112264522883250997205948474280034784537 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (642791025286495807803567721305650087845376224209312739134577845321 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (883423532388958313028004062930227539969595997971676415735215284196552295 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (441711766194479156514002031465118402471957046265234727110767310408512507 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d11cu (by norm_num)
+  have s11l : (642791025286453269365169417245574426151907740112329820989175743505 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (20087219540201664667795348760209277193916032122735316608434673575 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (441711766194128378868535062206357241404566613199426598416297697852945565 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (441711766194128378868535062206375771353202797411934861693932751392890837 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12cu (by norm_num)
+  have s12l : (40174439080392694726793949388770707625433813034936752578036373257 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (80348878160785389454123116662682421744808815902432737510955589823 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (110427941548181317071667028429424212965317871345779403965273663087956565 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (13803492693522664633958378553680342864244254492247051558835600088911849 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d13cu (by norm_num)
+  have s13l : (642791025285602500682838552368564894387985236895808042969013750133 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (160697756321400625171780073862428844483002914830885898745560170235 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (55213970773389103244901897063113359201583570945111036386909697971391071 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (55213970773389103244901897063150419098855743167015015469238658281609091 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d14cu (by norm_num)
+  have s14l : (160697756320720010224846081237198750963230503463673815233008293957 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (321395512641440020451833034015017606883467868765078790940376043753 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (27606985385291441040602570970210698893182442313713026706015924795114809 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (27606985385291441040602570970284818687725531057600689420263722583276313 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d15cu (by norm_num)
+  have s15l : (80348878158998775220704574883306042625054493954909419046182155987 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (321395512635995100884959171074023728197196929582262356769079463437 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (6901746344919749678361692148611692313272508459629571537103746803382285 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (6901746344919749678361692148685812107810574403836180090293398190916211 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d16cu (by norm_num)
+  have s16l : (80348878153553855653969079535596751659217233237897834986085495155 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (642791025228430845236034379367808750587392170569661211611214818389 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (13803492678614614704313442502520159434974201710462791955185814169873809 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (13803492678614614704313442503113117791117999674338265221381660924274771 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17cu (by norm_num)
+  have s17l : (642791025054193419113927837120573726353431710349426343679202629145 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (321395512527096709559104790104675475672293095727109353020847373625 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (6901746316857538062550141312120736151262779426943343218971151298673171 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (3450873158428769031275070656653326431132269318498972150971948926335171 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d18cu (by norm_num)
+  have s18l : (321395512178621857463002735903057522976972178799140159332736771399 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (160697756089310928732571803729465555408633237609286492871665358317 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873113529230573768339841359627020202894844261579062663231502321579 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (3450873113529230573768339843731460431919719539530124024515336551245151 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19cu (by norm_num)
+  have s19l : (642791021569444902708345308338725146502930231996903720058808996449 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (642791021569444902712627051542352124612189767878819979518137447421 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (1725436466965539345522136366016840294785244720937114424806480738143191 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (215679558370692418190267046345063379490668106014043686826680475399641 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d20cu (by norm_num)
+  have s20l : (642791010418249726382173183146065277025993827945043434569026286995 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (321395505209124863193227463358605729792444550091079253821712050385 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (215679513471156394812070946817508713417296811381738605514838139342181 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (862718053884625579248283796757367677601010524611251752937879610206637 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21cu (by norm_num)
+  have s21l : (160697741453367545447241509778005543267101377278650575644673547379 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (642790965813470181793247784153245089185076848092582508042200542985 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (13479958367065216133884203524429600144142429362985482095887020478723 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (431358667746086916284294531756407585689736707743529041615020188885917 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22cu (by norm_num)
+  have s22l : (642790787394370574798872636787930343704953174904807917920087748713 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (80348848424296321850394298463682355775070895382378847041208963459 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (26959826935136277600366783020401163790030784665460054656311590131265 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (26959826935136277600366787764060992275050784555482430034365154756431 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d23cu (by norm_num)
+  have s23l : (321395036859134644450201820892298313167105268851952862540052695621 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (40174379607391830556542838514207869294871841667507993991334727587 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (26959467740156676449408436335420427683640020847195239620056197066131 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (107837870960626705797633821239901892862665179134219915148741748981997 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24cu (by norm_num)
+  have s24l : (642787219018618414338080767568844890091259881939611050782305133279 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (642787219018618414342362636096032242429342422256895202404354372863 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (53916061952380955511897107207631111373322479416064160724084431522403 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (26958030976190477755948629500687452267774321784045734886880119156931 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d25cu (by norm_num)
+  have s25l : (642775800296082967223210854709523814052696828340078605584804223817 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (160693950074020741806873274892255670266184413736509358096544213143 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (26952284175556216764423031505535363321156408773939863694391654106979 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (26952284175556216764423335071450955725603950904003932354589697344489 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26cu (by norm_num)
+  have s26l : (80341265827876722666825616485586564210167444993976072572173415523 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (642730126623013781338888681985107016408459889630135264118911707043 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (3366162632050379435521318332866539496902509142176945964056243720773 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (13464650528201517742085880290739785075937901926315703104507764883419 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27cu (by norm_num)
+  have s27l : (642547451402860914448703650643517469785542895939673362980766517279 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (160636862850715228613248355073606044703668836062639768425805305191 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (6709358473608971640382132181477229085579509351800352900820831325517 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (6709358473608971640383344720152492499852937488957636357550664021707 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28cu (by norm_num)
+  have s28l : (641817062009822904581354864761375667366327726487697229092141490731 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (160454265502455726146417172502744035146398374710753287053190570411 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (827219032310787559206029809345704470571709501956792074924629981389 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (3308876129243150236826533294572439763846628261345841584859797831803 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d29cu (by norm_num)
+  have s29l : (319450241995418198408670260399259654122300987743096276497070403903 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (319450241995418198410875103633494977308060792242442807043518448683 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (1563870661966026119362586416701595450890784177078912515437336235615 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (1563870661966026119367326969823890997609826820218781583980996074673 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30cu (by norm_num)
+  have s30l : (156828393359919380264539440234221973727506978015031108015690438673 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (39207098339979845066434071492446381576832308304792726160071251111 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (304476734063701324577459134366949066348479649986369249803806647993 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (608953468127402649163717825547244583685625234464918127354904074795 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31cu (by norm_num)
+  have s31l : (582219130010803586918071351360506165288813216810938005969809743171 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (145554782502700896731069867772435211840639265071712196580487154949 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (18899272398135058351908805252627814251908996325487747676645217975 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (18899272398135058364629354189916101004264005322627500303695244221 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32cu (by norm_num)
+  have sXl : (3287695287452040180073858291287260953311256552077443101687472163 : ℝ) / 3291009114642412084309938365114701009965471731267159726697218048 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (105206249198465285765005525845106834691165430760030444606307040689 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (6472220559389037 / 144115188075855872) * Real.sin X ≤ (6472220559389037 / 144115188075855872) * (105206249198465285765005525845106834691165430760030444606307040689 / 105312291668557186697918027683670432318895095400549111254310977536) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (6472220559389037 / 144115188075855872) * (105206249198465285765005525845106834691165430760030444606307040689 / 105312291668557186697918027683670432318895095400549111254310977536 : ℝ) ≤ (18899272398135058351908805252627814251908996325487747676645217975 / 421249166674228746791672110734681729275580381602196445017243910144) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (18899272398135058364629354189916101004264005322627500303695244221 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) := cXu
+    have h2 : (18899272398135058364629354189916101004264005322627500303695244221 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (6472220559389075 / 144115188075855872) * (3287695287452040180073858291287260953311256552077443101687472163 / 3291009114642412084309938365114701009965471731267159726697218048) := by norm_num
+    have h3 : (6472220559389075 / 144115188075855872) * (3287695287452040180073858291287260953311256552077443101687472163 / 3291009114642412084309938365114701009965471731267159726697218048 : ℝ) ≤ (6472220559389075 / 144115188075855872) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_18_35_bounds :
   ((cot_pi_18_35_lower : ℚ) : ℝ) ≤ cotangentTermV 18 35 ∧
-  cotangentTermV 18 35 ≤ ((cot_pi_18_35_upper : ℚ) : ℝ)
+  cotangentTermV 18 35 ≤ ((cot_pi_18_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 18 35 = - cotangentTermV 17 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_17_35_fresh_aux_for_18_35
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_18_35_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_18_35_upper]
 
 def cot_pi_19_35_lower : ℚ := -4880432161070073 / 36028797018963968
 def cot_pi_19_35_upper : ℚ := -4880432161070027 / 36028797018963968
-axiom cot_pi_19_35_bounds :
+theorem cot_pi_19_35_bounds :
   ((cot_pi_19_35_lower : ℚ) : ℝ) ≤ cotangentTermV 19 35 ∧
-  cotangentTermV 19 35 ≤ ((cot_pi_19_35_upper : ℚ) : ℝ)
+  cotangentTermV 19 35 ≤ ((cot_pi_19_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 19 35 = - cotangentTermV 16 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_16_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_19_35_lower, cot_pi_16_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_19_35_upper, cot_pi_16_35_lower]
 
 def cot_pi_20_35_lower : ℚ := -8223337809705817 / 36028797018963968
 def cot_pi_20_35_upper : ℚ := -8223337809705801 / 36028797018963968
-axiom cot_pi_20_35_bounds :
+theorem cot_pi_20_35_bounds :
   ((cot_pi_20_35_lower : ℚ) : ℝ) ≤ cotangentTermV 20 35 ∧
-  cotangentTermV 20 35 ≤ ((cot_pi_20_35_upper : ℚ) : ℝ)
+  cotangentTermV 20 35 ≤ ((cot_pi_20_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 20 35 = cotangentTermV 4 7 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_4_7_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_20_35_lower, cot_pi_4_7_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_20_35_upper, cot_pi_4_7_upper]
 
 def cot_pi_21_35_lower : ℚ := -2926616445759707 / 9007199254740992
 def cot_pi_21_35_upper : ℚ := -2926616445759689 / 9007199254740992
-axiom cot_pi_21_35_bounds :
+theorem cot_pi_21_35_bounds :
   ((cot_pi_21_35_lower : ℚ) : ℝ) ≤ cotangentTermV 21 35 ∧
-  cotangentTermV 21 35 ≤ ((cot_pi_21_35_upper : ℚ) : ℝ)
+  cotangentTermV 21 35 ≤ ((cot_pi_21_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 21 35 = cotangentTermV 3 5 :=
+    cotangentTermV_gcd_reduce (g := 7) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_3_5_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_21_35_lower, cot_pi_3_5_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_21_35_upper, cot_pi_3_5_upper]
 
 def cot_pi_22_35_lower : ℚ := -3849861720201283 / 9007199254740992
 def cot_pi_22_35_upper : ℚ := -3849861720201263 / 9007199254740992
-axiom cot_pi_22_35_bounds :
+private theorem cot_pi_div_13_35_fresh_aux_for_22_35 :
+    (3849861720201263 / 9007199254740992 : ℝ) ≤ cotangentTermV 13 35 ∧
+    cotangentTermV 13 35 ≤ (3849861720201283 / 9007199254740992 : ℝ) := by
+  have hcot : cotangentTermV 13 35
+      = Real.cos (Real.pi * 13 / 35) / Real.sin (Real.pi * 13 / 35) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 13 / 35 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (2042035224833365604999 : ℝ) / 1750000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (4084070449666731210011 : ℝ) / 3500000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (344401382235438068849 : ℝ) / 1267650600228229401496703205376 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (344401382235438068851 : ℝ) / 1267650600228229401496703205376 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 344401382235438068849 / 1267650600228229401496703205376) (yu := 344401382235438068851 / 1267650600228229401496703205376) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (113078212145816597089157740324807543972315093240491515654968381753599052897 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (113078212145816597089157740324807543972427738884181260670105817752055460767 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans hcb2 (by norm_num)
+  have s0l : (245773039080136171603432218561939115608026889532218472469993575903 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (491546078160272343209718932510316958308960918817656568205923059133 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (452312848583266388306551364626359283402766027844211153344217967761796735017 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (904625697166532776613102729252718566809136716286494147172700852747268955571 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans d1cu (by norm_num)
+  have s1l : (122886519540068085797180821110126918542849972370523235544454690275 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (122886519540068085797894444956736600316172836515308494618622300161 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (226156424291633194053116488967437856737635589662762728386314734159165651531 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (452312848583266388106232977934875713482480500521669137740095024950245743711 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2cu (by norm_num)
+  have s2l : (245773039080136171558079336853512722998400734672747777435825127793 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (245773039080136171559506584546732086545815096614161121645532645581 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (226156424291633193652479715584470717030506148244062859468488333860085814477 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (226156424291633193652479715584470717044924790636350221394905224600422452371 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d3cu (by norm_num)
+  have s3l : (491546078160272342825900230773096533362681999883563985519940778295 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (245773039080136171414377363079767630231829896490566641213618836333 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (1766847064778384312890098609785954379435566191156310702624663948612669991 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (113078212145816596024966311026301080312713521018578608752698494003946208037 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4cu (by norm_num)
+  have s4l : (491546078160272341664866459037380883854591499387165385625087766491 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (61443259770034042708465119302977451372520696167963139554295961349 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (3533694129556768525621003873830124571390050120995273377324357162574024509 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (7067388259113537051242007747660249149989421438134227632714934460393934237 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d5cu (by norm_num)
+  have s5l : (491546078160272337020731372094518302276427535022813797088773670629 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (491546078160272337023585867480957029500386712415235262713275230719 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (28269553036454144999873843926903978276176645365626467791164108013597011071 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (14134776518227072499936921963451989195762892251962678740470849074751316279 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d6cu (by norm_num)
+  have s6l : (245773039080136159222095512161534119615470139752645277059409250417 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (245773039080136159223522759854753483424219943320619473160419430593 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (14134776518227066089748547835978558183807825556673104140108053396991445673 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (14134776518227066089748547835978558414506103833270848645407777444576329459 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7cu (by norm_num)
+  have s7l : (491546078160272244138029633237272199323688888473207968130792727143 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (245773039080136122070442064311855464257675107291631931854502201143 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (3533694129556760112248762831523631134099515576768858997758751659788489823 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (3533694129556760112248762831523631364797793853366464006036650810499568135 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d8cu (by norm_num)
+  have s8l : (491546078160271946913384068894155436089845420945402652013839294017 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (491546078160271946916238564280594171578153622951885314154674048277 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (3533694129556734471495266321678358165538653322413181261945348168850266741 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (3533694129556734471495266321678359088331766428801369342707746423738094403 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9cu (by norm_num)
+  have s9l : (491546078160270758014801811522766725477065095953548461160015405435 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (491546078160270758017656306909205486151960801545686238477067595461 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (1766847064778315954240640141458718576438809326929939968394354721987337909 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (1766847064778315954240640141458720422025035539688460511125564512891972871 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10cu (by norm_num)
+  have s10l : (245773039080133001210236391027232680093720243298934541835343680199 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (122886519540066500605831819360226055402171551632949026126052801163 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (441711766194527707053167017224560860944001095175157613325069878735098251 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (883423532389055414106334034449125413060454615724511361763867661298962239 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11cu (by norm_num)
+  have s11l : (245773039080123490021578332228657766806443547941129533536877572369 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (245773039080123490023005579921877399009766436585021793479398167563 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (220855883097161290512597482254776649458723655603639851982555355858712633 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (110427941548580645256298741127390170315588040203228092850774857784000481 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d12cu (by norm_num)
+  have s12l : (491546078160170890533892198485606380657666083169335283522019264889 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (245773039080085445268373346936023628502956044829879099691615571933 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (220855883096751038456653535588502090469820545831629228220817123333341393 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (220855883096751038456653535588516855159630235900817740783180595621374013 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13cu (by norm_num)
+  have s13l : (491546078159866532496834405269012222316458216200870137424717283869 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (61443259769983316562461112581932443303888142012147629189106189159 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (110427941547555015116440144571626446944984840995401124362902355135431191 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (6901746346722188444777509035728498520287759249822723190415326682441881 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d14cu (by norm_num)
+  have s14l : (491546078158649100348604363126514844101350105880878916127374160031 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (15360814942457784385983089328530873727550019528940377322451878795 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (27606985386068249667228493359980078985765885859832744693791692498139283 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (6901746346517062416807123340002402091346225078784219675110206679670431 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d15cu (by norm_num)
+  have s15l : (491546078153779371755702286138593380030373972519803478617387186419 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (245773039076889685879278390762584829736519008283115573435388061571 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (27606985382786233219783609263442151041971563940045510911029387942939027 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (27606985382786233219783609263560268560442941017929113662049554121702721 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16cu (by norm_num)
+  have s16l : (491546078134300457384383443499994153586255946857575235234585894065 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (122886519533575114346809484721745772519640036349637122954341071175 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (6901746342414541857826166359981892881290858917846920087189698148463601 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (6901746342414541857826166360100010399743513022399902662679233334629127 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d17cu (by norm_num)
+  have s17l : (491546078056384799903739517954845674589447572716995926992717419011 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (245773039028192399953297006671742619640044630535581326603748582117 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (6901746329286476074549592786149975651438278038702394243395327280401059 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (6901746329286476074549592786622445724949326883695629050445420933216167 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d18cu (by norm_num)
+  have s18l : (491546077744722170055266935913416945034546598601447061458877833023 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (245773038872361085029060715654329511257484097784613868627634517979 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873138387106512340611215164715782983093015410184324075902807649957 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (3450873138387106512340611216109655927608650121926364012453401888678439 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19cu (by norm_num)
+  have s19l : (61443259562258956480878316176315989898018553111806370101043009741 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (491546076498071651849881024832180047766568846132510013213312226487 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (431359129170322634813407530785691576028978884987589683178940288956973 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (1725436516681290539253630125032646574194705158157167638287572596445043 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d20cu (by norm_num)
+  have s20l : (491546071511469597984463613919892339125561939264078700143335393351 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (30721629469466849874207381840449041950127793584301547407591728441 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (13479971145564414053234292047163827983158193729802962399723716854947 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (862718153316122499406994694798245377701109210493191784235441129322403 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21cu (by norm_num)
+  have s21l : (491546051565061686060589010897288472118173865520456983401146816309 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (30721628222816355378965219177946350221748673802219363017609857125 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (215679433304518509085596731975988968844804744134735952451564210904355 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (215679433304518509085596735755748742109449201033549521805171053143699 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d22cu (by norm_num)
+  have s22l : (491545971779434894786975740581988553374615467012643228026327078339 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (245772985889717447394915119111042324125442539393043871616784544933 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (215679013206640517250630181958020562866249378549432122392531313548923 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (215679013206640517250630197077049839697771519615445690340192666797149 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d23cu (by norm_num)
+  have s23l : (491545652637005432433225647512786442947138631813205842129553796613 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (491545652637005432436080151913850648140795152519792925539067201859 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (26959666602232010965698703491438408712842431287230785021460525174393 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (107838666408928043862794844203733658774448211007925769768171744779909 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24cu (by norm_num)
+  have s24l : (245772188034265413132039663444118868069628101203626946966446738523 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (61443047008566353283366732291639310894052128872353501291706515391 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (53917652826589713914763199904545670142653739568524008367770189793187 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (26958826413294856957381630189938741258214922467830764783691997006759 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d25cu (by norm_num)
+  have s25l : (491539269814524254776002814690615402435485918922457364866356313509 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (122884817453631063694714363577446003109598786163869715124462941353 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (13477732872413130484156815245551111477753875218121470919207199061553 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (3369433218103282621039218929592505279807373831378019865650862409693 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d26cu (by norm_num)
+  have s26l : (491518845116765140161253425279392029270091609343571467566554740689 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (491518845116765140164108497580395073013690383583079224297242271381 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (420969132302676088829642619735181521290807032842853340255102862061 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (13471012233685634842548805682597509514571922713760955021016872303643 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27cu (by norm_num)
+  have s27l : (491437151417844726593177950216749260509864298513510450952989716139 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (122859287854461181649008688249943483160235142125643422058798694185 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (6722070424090640506850448446947486762299604189942838437725332941485 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (1680517606022660126712732956884892016310995594492872223169221699237 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d28cu (by norm_num)
+  have s28l : (15347201815183248789352311435443245594539541444825930049924605905 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (61388807260732995157767210840125089235172520648709249883379596725 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (1667104236491540390852998433003861900204073950997081559766337149957 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (3334208472983080781706961057345852308669416072309991157374586827137 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d29cu (by norm_num)
+  have s29l : (489804987527373324328231705925848762773908201169813308802020126103 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (489804987527373324331123035987961475888727721831199889563775125949 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (201725866705044493011771607604750981541250831671636444878398556411 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (1613806933640355944096080766647380723036440424020729694076213871179 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30cu (by norm_num)
+  have s30l : (15143872127100740721516688832036775046392115124382666164384413043 : ℝ) / 52656145834278593348959013841835216159447547700274555627155488768 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (60575488508402962886441851133880076576153115096866040089140915715 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (175781643829349208549991813260999561604519386756916591055631079135 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (351563287658698417101810924869083913434880479043869650217085490505 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d31cu (by norm_num)
+  have s31l : (232064894360046238043648885957802165592688105941624427806121210035 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (464129788720092476090720470857390408686930169562853967621662546065 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (41390366766581924833470701461417980127687149042117464421098601765 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (165561467066327699339982863153856366860342789914861798757848835947 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32cu (by norm_num)
+  have sXl : (193675153960554165604065409878603986647574237479794342978987613521 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (12104697122534635350406269344900177937609101811503148392946884079 : ℝ) / 13164036458569648337239753460458804039861886925068638906788872192 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (3849861720201263 / 9007199254740992) * Real.sin X ≤ (3849861720201263 / 9007199254740992) * (12104697122534635350406269344900177937609101811503148392946884079 / 13164036458569648337239753460458804039861886925068638906788872192) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (3849861720201263 / 9007199254740992) * (12104697122534635350406269344900177937609101811503148392946884079 / 13164036458569648337239753460458804039861886925068638906788872192 : ℝ) ≤ (41390366766581924833470701461417980127687149042117464421098601765 / 105312291668557186697918027683670432318895095400549111254310977536) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (165561467066327699339982863153856366860342789914861798757848835947 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) := cXu
+    have h2 : (165561467066327699339982863153856366860342789914861798757848835947 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (3849861720201283 / 9007199254740992) * (193675153960554165604065409878603986647574237479794342978987613521 / 210624583337114373395836055367340864637790190801098222508621955072) := by norm_num
+    have h3 : (3849861720201283 / 9007199254740992) * (193675153960554165604065409878603986647574237479794342978987613521 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) ≤ (3849861720201283 / 9007199254740992) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_22_35_bounds :
   ((cot_pi_22_35_lower : ℚ) : ℝ) ≤ cotangentTermV 22 35 ∧
-  cotangentTermV 22 35 ≤ ((cot_pi_22_35_upper : ℚ) : ℝ)
+  cotangentTermV 22 35 ≤ ((cot_pi_22_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 22 35 = - cotangentTermV 13 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_13_35_fresh_aux_for_22_35
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_22_35_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_22_35_upper]
 
 def cot_pi_23_35_lower : ℚ := -2423490302336839 / 4503599627370496
 def cot_pi_23_35_upper : ℚ := -2423490302336825 / 4503599627370496
-axiom cot_pi_23_35_bounds :
+theorem cot_pi_23_35_bounds :
   ((cot_pi_23_35_lower : ℚ) : ℝ) ≤ cotangentTermV 23 35 ∧
-  cotangentTermV 23 35 ≤ ((cot_pi_23_35_upper : ℚ) : ℝ)
+  cotangentTermV 23 35 ≤ ((cot_pi_23_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 23 35 = - cotangentTermV 12 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_12_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_23_35_lower, cot_pi_12_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_23_35_upper, cot_pi_12_35_lower]
 
 def cot_pi_24_35_lower : ℚ := -5945600171883133 / 9007199254740992
 def cot_pi_24_35_upper : ℚ := -5945600171883123 / 9007199254740992
-axiom cot_pi_24_35_bounds :
+private theorem cot_pi_div_11_35_fresh_aux_for_24_35 :
+    (5945600171883123 / 9007199254740992 : ℝ) ≤ cotangentTermV 11 35 ∧
+    cotangentTermV 11 35 ≤ (5945600171883133 / 9007199254740992 : ℝ) := by
+  have hcot : cotangentTermV 11 35
+      = Real.cos (Real.pi * 11 / 35) / Real.sin (Real.pi * 11 / 35) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 11 / 35 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (1727875959474386281153 : ℝ) / 1750000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (3455751918948772562317 : ℝ) / 3500000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (291416554199216827487 : ℝ) / 1267650600228229401496703205376 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (291416554199216827489 : ℝ) / 1267650600228229401496703205376 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 291416554199216827487 / 1267650600228229401496703205376) (yu := 291416554199216827489 / 1267650600228229401496703205376) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (1809251394333065553445488899558244591836622571550420340090240819498890131279 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (1809251394333065553445488899558244591837805147430280768264194967472831629489 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hcb2 (by norm_num)
+  have s0l : (415923604597153521175614106784433590587300059207017688555114717141 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (51990450574644190147308575271296484310862736651007268562171994931 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (904625697166532776651032837975366343363493151429673563896440369798071745727 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (904625697166532776651032837975366343365858303189394420244286168868192178439 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans d1cu (by norm_num)
+  have s1l : (415923604597153521164623722523365674598968704069376482375799410553 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (415923604597153521167478217909303958498766969725575360769366008543 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (226156424291633194091046597690085633290792430748570297540593489213424008065 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (226156424291633194091046597690085633293157582508291153888189300772494185939 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d2cu (by norm_num)
+  have s2l : (25995225287322095070041386592443375665461609125177980553660349919 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (415923604597153521123516680865032294547969738279680241057279374627 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (113078212145816596902100075237530911583132719050097063620365050070696506489 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (28269553036454149225525018809382727896965755642384694078389193275108705883 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d3cu (by norm_num)
+  have s3l : (207961802298576760472408018651003677434466656740654506993929461881 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (415923604597153520947670532687945638772660212240676261405973494665 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (113078212145816596328407180807483291940450220049474350225079628597374780243 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (28269553036454149082101795201870822989842858531810300241462029825473857287 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d4cu (by norm_num)
+  have s4l : (415923604597153520241431444593660732201193979308378301535245569873 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (415923604597153520244285939979599016117492503997884329811956652669 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (28269553036454148508408900771823205767916001196264378671824563430703298837 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (56539106072908297016817801543646411573674430548062458569198896954986941987 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d5cu (by norm_num)
+  have s5l : (207961802298576758713946536880137124333681488614119617577900816489 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (103980901149288379357686892286553133158487001409575096640698018745 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (28269553036454146213637323051632775706904908884143339664262101221141611349 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (14134776518227073106818661525816387891294882597605370033731975442307346385 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d6cu (by norm_num)
+  have s6l : (415923604597153506173739590426728428726060322693022925180317999531 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (103980901149288376544148521453166678223447841496326141060679716141 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (14134776518227068517275506085435838193631253436187143475642822394738205233 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (14134776518227068517275506085435838345000966058321927898864997532184175383 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7cu (by norm_num)
+  have s7l : (415923604597153461157125657092546976065191365117559895308046450003 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (207961802298576730579990076239242630518753233969361703570388393239 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (3533694129556762539775721080979651737390546826451336817135580337374955167 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (1766847064778381269887860540489825944380129724293027853815829358415396869 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d8cu (by norm_num)
+  have s8l : (51990450574644160136333740469481299886397762982471262860609265039 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (415923604597153281093524419141788687281833444796459860177926811709 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (1766847064778372090801549659741145037092216129831250188044544918650174055 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (3533694129556744181603099319482290679663282748200327414455855227962505573 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9cu (by norm_num)
+  have s9l : (51990450574644070103105873801191478738326270422716753511299802951 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (207961802298576280413850742897735065485303228390254418644406020597 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (1766847064778335374456306136905378357583599215964387935003557906773315595 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (883423532389167687228153068452689784270650096515826911398351846298563189 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d10cu (by norm_num)
+  have s10l : (25995225287321854985097203564483835784485254037475900329611974441 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (207961802298574839882204876208839862554570083923205271559396509061 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (883423532389094254537666024052808995003454288883194513709331778530631439 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (883423532389094254537666024052811416918856242950620777772544083424473693 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11cu (by norm_num)
+  have s11l : (51990450574642269438548540455040081658430707184382605892774909165 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (415923604597138155511242819026259211798341000108840235975857655845 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (441711766194400261887858933399869531755848605665079408208145128842626353 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (441711766194400261887858933399874375586652513263087844149957916608199223 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12cu (by norm_num)
+  have s12l : (103980901149273014623930147997623884572797006036393167980983622223 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (207961802298546029249287543688217460358080162122826023574557427563 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (220855883096906400181981390832668049023192991649133575700462078731084153 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (220855883096906400181981390832677736684800802550397710107907062345268361 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13cu (by norm_num)
+  have s13l : (207961802298453835222524848022459636479932694153286575324254589885 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (207961802298453835223952095715430975480572758482862095215127834037 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (55213970773932869283547597384113153797633538171931337493396310957147033 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (110427941547865738567095194768245682918482663788369044015085350124772995 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d14cu (by norm_num)
+  have s14l : (25995225287260632390147912670137582790676724405711172191400326287 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (207961802298085059122610549054078592478669506244381978464524708867 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (27606985386378973117880902389651722305853312019734118683255604986792787 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (55213970772757946235761804779342195258137524064305777861438636420144143 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15cu (by norm_num)
+  have s15l : (415923604593219909431642076784723329238009024055033758183333270275 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (207961802296609954717248286085365959382722642518257835415281107339 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (27606985384029127022350986711277790761176539321920546326089769486571547 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (27606985384029127022350986711355292054036140458194070218516611858963323 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16cu (by norm_num)
+  have s16l : (415923604581419074188869530689111444810533312578775585736777586295 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (415923604581419074191724026075330951221663579595205385545440616477 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (6901746343657435660224509124422497907472175561460068886521250953564743 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (3450873171828717830112254562249999600161490522063869361307855834474571 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d17cu (by norm_num)
+  have s17l : (207961802267107866609894134387711356955953762471369642465316148139 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (12997612641694241663207586380077683995554006802373131779214798785 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (6901746334258051281438408910148611967263716636384625396520041245627137 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (6901746334258051281438408910458617138526208109385597175876005656304279 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d18cu (by norm_num)
+  have s18l : (207961802172701184687802990309036389024993462820774606346729612285 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (207961802172701184689230238004255311066599873236846130716986517059 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873148330256904481804010868399679353306595257477110078806545073297 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (1725436574165128452240902005744205010376222940334197454916994318271811 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d19cu (by norm_num)
+  have s19l : (415923603590148914513160979772053878496391054235811227101153721629 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (415923603590148914516015475175990403107259191185236224062188904953 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (1725436536567591150444500666335233696680988616280236664566991173946769 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (1725436536567591150444500667575254370472517926906178517998182953529075 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d20cu (by norm_num)
+  have s20l : (415923600569135103291927393715738362653061171612463274554485037679 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (207961800284567551647390944586834804511969716664962250373967726011 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (862718193088722337056633635965998745877718521595637752006979087029471 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (431359096544361168528316819223020010703391923157180816062877347066933 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d21cu (by norm_num)
+  have s21l : (415923588485079990063735009529301047637409631794783886885119969353 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (415923588485079990066589505203211175438550205667259899633580109881 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (13479967067319550487944938729660813888746752257976440113674631201769 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (215679473077112807807119022154614009533052735257276188955019890311999 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d22cu (by norm_num)
+  have s22l : (103980885037215410914697733065949425006950852911476764960857357697 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (415923540148861643661645428801623263793545334685738602074237078979 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (53919793074232272326383739707780610873087647212557893792562110033153 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (215679172296929089305534968751281781290203250662034936498287311567213 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d23cu (by norm_num)
+  have s23l : (103980836701005490540321075504013820718966524806574568059841890041 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (415923346804021962164138802009541154397044865846598906469227567497 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (107838984588796205920957668024488499632133164688311385551558342090437 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (107838984588796205920957687864770283617033392675288075280906876438653 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24cu (by norm_num)
+  have s24l : (103980643356300625484890404271714873624218830009593184708064138631 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (415922573425202501942416130902963619404966249870011033849128887013 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (1684946536895443773387127976845650677851985123944661530734895330817 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (53918289180654200748388134939329257597789491454130775945041759181897 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25cu (by norm_num)
+  have s25l : (207959739959276450656418280811105967318049185016672633381337768001 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (6498741873727389083057673917631584871012789294983084221918661687 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (842398075236910892028742585317295357757727155438501535403687355307 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (105299759404613861503593133157536301157332845997143343679302415593 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 := le_trans d26cu (by norm_num)
+  have s26l : (415907106030005572878598658864535947451949617032840426208040982085 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (415907106030005572881453449125284723672654281740721121211238168723 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (842097324763894388009306412327359766723591935396765259970844216327 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (6736778598111155104074530647351020571109327441353182673979771170957 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d27cu (by norm_num)
+  have s27l : (415857612684584159194107072810024351989657188138030443693459075393 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (415857612684584159196962747594818208703844048686919012181332844797 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (3363578723002985341873868038975384721882585429944121270951796863901 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (6727157446005970683748053321807122174641981429131338305541216147563 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28cu (by norm_num)
+  have s28l : (207829837320015412209792271778249661405102266671204080824365381203 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (415659674640030824422443754931893332945747296109806445783981101575 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (1672179655798865133978887187054703895770642115878086238880467458977 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (1672179655798865133979203827053560166124851538200699916939070100349 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d29cu (by norm_num)
+  have s29l : (414868487654115963044635871700957355540251575039823599060034076659 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (103717121913528990761877301340764849023416401634754385638733379169 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (1633923609565647579856789908818796190767733206485840028792627456833 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (1633923609565647579858046834662661661290892883745428720604908735795 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30cu (by norm_num)
+  have s30l : (205856384940860933623032363921307145763451309143915837194532810853 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (411712769881721867248994166309232489065271695075553774071331013925 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (370950133971700133828785673547106863242920684304889815194316040013 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (741900267943400267660009002731587667492450211060916412885138533927 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31cu (by norm_num)
+  have s31l : (399233558359564123994517989911944748557656899963045078782324081091 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (24952097397472757749854109591549254360675988316072313258141696429 : ℝ) / 52656145834278593348959013841835216159447547700274555627155488768 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (232064894360046238041196310360899521440770661845631066631566229867 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (232064894360046238045489487685853283900791497023387118482626345097 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32cu (by norm_num)
+  have sXl : (175781643829349208549698772048336957163121469475322481510850522275 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (351563287658698417103324579233101388459942069946276846423606328953 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (5945600171883123 / 9007199254740992) * Real.sin X ≤ (5945600171883123 / 9007199254740992) * (351563287658698417103324579233101388459942069946276846423606328953 / 421249166674228746791672110734681729275580381602196445017243910144) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (5945600171883123 / 9007199254740992) * (351563287658698417103324579233101388459942069946276846423606328953 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (232064894360046238041196310360899521440770661845631066631566229867 / 421249166674228746791672110734681729275580381602196445017243910144) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (232064894360046238045489487685853283900791497023387118482626345097 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) := cXu
+    have h2 : (232064894360046238045489487685853283900791497023387118482626345097 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (5945600171883133 / 9007199254740992) * (175781643829349208549698772048336957163121469475322481510850522275 / 210624583337114373395836055367340864637790190801098222508621955072) := by norm_num
+    have h3 : (5945600171883133 / 9007199254740992) * (175781643829349208549698772048336957163121469475322481510850522275 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) ≤ (5945600171883133 / 9007199254740992) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_24_35_bounds :
   ((cot_pi_24_35_lower : ℚ) : ℝ) ≤ cotangentTermV 24 35 ∧
-  cotangentTermV 24 35 ≤ ((cot_pi_24_35_upper : ℚ) : ℝ)
+  cotangentTermV 24 35 ≤ ((cot_pi_24_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 24 35 = - cotangentTermV 11 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_11_35_fresh_aux_for_24_35
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_24_35_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_24_35_upper]
 
 def cot_pi_25_35_lower : ℚ := -7183001714017371 / 9007199254740992
 def cot_pi_25_35_upper : ℚ := -7183001714017335 / 9007199254740992
-axiom cot_pi_25_35_bounds :
+theorem cot_pi_25_35_bounds :
   ((cot_pi_25_35_lower : ℚ) : ℝ) ≤ cotangentTermV 25 35 ∧
-  cotangentTermV 25 35 ≤ ((cot_pi_25_35_upper : ℚ) : ℝ)
+  cotangentTermV 25 35 ≤ ((cot_pi_25_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 25 35 = cotangentTermV 5 7 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_5_7_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_25_35_lower, cot_pi_5_7_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_25_35_upper, cot_pi_5_7_upper]
 
 def cot_pi_26_35_lower : ℚ := -4305882130908649 / 4503599627370496
 def cot_pi_26_35_upper : ℚ := -1076470532727157 / 1125899906842624
-axiom cot_pi_26_35_bounds :
+theorem cot_pi_26_35_bounds :
   ((cot_pi_26_35_lower : ℚ) : ℝ) ≤ cotangentTermV 26 35 ∧
-  cotangentTermV 26 35 ≤ ((cot_pi_26_35_upper : ℚ) : ℝ)
+  cotangentTermV 26 35 ≤ ((cot_pi_26_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 26 35 = - cotangentTermV 9 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_9_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_26_35_lower, cot_pi_9_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_26_35_upper, cot_pi_9_35_lower]
 
 def cot_pi_27_35_lower : ℚ := -2577392270711231 / 2251799813685248
 def cot_pi_27_35_upper : ℚ := -1288696135355609 / 1125899906842624
-axiom cot_pi_27_35_bounds :
+theorem cot_pi_27_35_bounds :
   ((cot_pi_27_35_lower : ℚ) : ℝ) ≤ cotangentTermV 27 35 ∧
-  cotangentTermV 27 35 ≤ ((cot_pi_27_35_upper : ℚ) : ℝ)
+  cotangentTermV 27 35 ≤ ((cot_pi_27_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 27 35 = - cotangentTermV 8 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_8_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_27_35_lower, cot_pi_8_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_27_35_upper, cot_pi_8_35_lower]
 
 def cot_pi_28_35_lower : ℚ := -6198673104153469 / 4503599627370496
 def cot_pi_28_35_upper : ℚ := -6198673104153459 / 4503599627370496
-axiom cot_pi_28_35_bounds :
+theorem cot_pi_28_35_bounds :
   ((cot_pi_28_35_lower : ℚ) : ℝ) ≤ cotangentTermV 28 35 ∧
-  cotangentTermV 28 35 ≤ ((cot_pi_28_35_upper : ℚ) : ℝ)
+  cotangentTermV 28 35 ≤ ((cot_pi_28_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 28 35 = cotangentTermV 4 5 :=
+    cotangentTermV_gcd_reduce (g := 7) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_4_5_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_28_35_lower, cot_pi_4_5_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_28_35_upper, cot_pi_4_5_upper]
 
 def cot_pi_29_35_lower : ℚ := -235554878736113 / 140737488355328
 def cot_pi_29_35_upper : ℚ := -1884439029888893 / 1125899906842624
-axiom cot_pi_29_35_bounds :
+theorem cot_pi_29_35_bounds :
   ((cot_pi_29_35_lower : ℚ) : ℝ) ≤ cotangentTermV 29 35 ∧
-  cotangentTermV 29 35 ≤ ((cot_pi_29_35_upper : ℚ) : ℝ)
+  cotangentTermV 29 35 ≤ ((cot_pi_29_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 29 35 = - cotangentTermV 6 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_6_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_29_35_lower, cot_pi_6_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_29_35_upper, cot_pi_6_35_lower]
 
 def cot_pi_30_35_lower : ℚ := -4675910493915027 / 2251799813685248
 def cot_pi_30_35_upper : ℚ := -4675910493914997 / 2251799813685248
-axiom cot_pi_30_35_bounds :
+theorem cot_pi_30_35_bounds :
   ((cot_pi_30_35_lower : ℚ) : ℝ) ≤ cotangentTermV 30 35 ∧
-  cotangentTermV 30 35 ≤ ((cot_pi_30_35_upper : ℚ) : ℝ)
+  cotangentTermV 30 35 ≤ ((cot_pi_30_35_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 30 35 = cotangentTermV 6 7 :=
+    cotangentTermV_gcd_reduce (g := 5) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_6_7_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_30_35_lower, cot_pi_6_7_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_30_35_upper, cot_pi_6_7_upper]
 
 def cot_pi_31_35_lower : ℚ := -5999899146969473 / 2251799813685248
 def cot_pi_31_35_upper : ℚ := -5999899146969429 / 2251799813685248
-axiom cot_pi_31_35_bounds :
+theorem cot_pi_31_35_bounds :
   ((cot_pi_31_35_lower : ℚ) : ℝ) ≤ cotangentTermV 31 35 ∧
-  cotangentTermV 31 35 ≤ ((cot_pi_31_35_upper : ℚ) : ℝ)
+  cotangentTermV 31 35 ≤ ((cot_pi_31_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 31 35 = - cotangentTermV 4 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_4_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_31_35_lower, cot_pi_4_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_31_35_upper, cot_pi_4_35_lower]
 
 def cot_pi_32_35_lower : ℚ := -4079606690364261 / 1125899906842624
 def cot_pi_32_35_upper : ℚ := -4079606690364251 / 1125899906842624
-axiom cot_pi_32_35_bounds :
+theorem cot_pi_32_35_bounds :
   ((cot_pi_32_35_lower : ℚ) : ℝ) ≤ cotangentTermV 32 35 ∧
-  cotangentTermV 32 35 ≤ ((cot_pi_32_35_upper : ℚ) : ℝ)
+  cotangentTermV 32 35 ≤ ((cot_pi_32_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 32 35 = - cotangentTermV 3 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_3_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_32_35_lower, cot_pi_3_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_32_35_upper, cot_pi_3_35_lower]
 
 def cot_pi_33_35_lower : ℚ := -3102109928020995 / 562949953421312
 def cot_pi_33_35_upper : ℚ := -1551054964010477 / 281474976710656
-axiom cot_pi_33_35_bounds :
+theorem cot_pi_33_35_bounds :
   ((cot_pi_33_35_lower : ℚ) : ℝ) ≤ cotangentTermV 33 35 ∧
-  cotangentTermV 33 35 ≤ ((cot_pi_33_35_upper : ℚ) : ℝ)
+  cotangentTermV 33 35 ≤ ((cot_pi_33_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 33 35 = - cotangentTermV 2 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_2_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_33_35_lower, cot_pi_2_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_33_35_upper, cot_pi_2_35_lower]
 
 def cot_pi_34_35_lower : ℚ := -3127443134448191 / 281474976710656
 def cot_pi_34_35_upper : ℚ := -3127443134448113 / 281474976710656
-axiom cot_pi_34_35_bounds :
+theorem cot_pi_34_35_bounds :
   ((cot_pi_34_35_lower : ℚ) : ℝ) ≤ cotangentTermV 34 35 ∧
-  cotangentTermV 34 35 ≤ ((cot_pi_34_35_upper : ℚ) : ℝ)
+  cotangentTermV 34 35 ≤ ((cot_pi_34_35_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 34 35 = - cotangentTermV 1 35 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_1_35_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_34_35_lower, cot_pi_1_35_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_34_35_upper, cot_pi_1_35_lower]
 
 def cot_pi_1_36_lower : ℚ := 6434547411442653 / 562949953421312
 def cot_pi_1_36_upper : ℚ := 6434547411442661 / 562949953421312
-axiom cot_pi_1_36_bounds :
+theorem cot_pi_1_36_bounds :
   ((cot_pi_1_36_lower : ℚ) : ℝ) ≤ cotangentTermV 1 36 ∧
-  cotangentTermV 1 36 ≤ ((cot_pi_1_36_upper : ℚ) : ℝ)
+  cotangentTermV 1 36 ≤ ((cot_pi_1_36_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_1_36_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_1_36_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_1_36_upper]
 
 def cot_pi_2_36_lower : ℚ := 3192647836192921 / 562949953421312
 def cot_pi_2_36_upper : ℚ := 3192647836192925 / 562949953421312
-axiom cot_pi_2_36_bounds :
+theorem cot_pi_2_36_bounds :
   ((cot_pi_2_36_lower : ℚ) : ℝ) ≤ cotangentTermV 2 36 ∧
-  cotangentTermV 2 36 ≤ ((cot_pi_2_36_upper : ℚ) : ℝ)
+  cotangentTermV 2 36 ≤ ((cot_pi_2_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 2 36 = cotangentTermV 1 18 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_18_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_2_36_lower, cot_pi_1_18_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_2_36_upper, cot_pi_1_18_upper]
 
 def cot_pi_3_36_lower : ℚ := 8403831313147473 / 2251799813685248
 def cot_pi_3_36_upper : ℚ := 8403831313147485 / 2251799813685248
-axiom cot_pi_3_36_bounds :
+theorem cot_pi_3_36_bounds :
   ((cot_pi_3_36_lower : ℚ) : ℝ) ≤ cotangentTermV 3 36 ∧
-  cotangentTermV 3 36 ≤ ((cot_pi_3_36_upper : ℚ) : ℝ)
+  cotangentTermV 3 36 ≤ ((cot_pi_3_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 3 36 = cotangentTermV 1 12 :=
+    cotangentTermV_gcd_reduce (g := 3) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_12_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_3_36_lower, cot_pi_1_12_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_3_36_upper, cot_pi_1_12_upper]
 
 def cot_pi_4_36_lower : ℚ := 1546692285308085 / 562949953421312
 def cot_pi_4_36_upper : ℚ := 1546692285308087 / 562949953421312
-axiom cot_pi_4_36_bounds :
+theorem cot_pi_4_36_bounds :
   ((cot_pi_4_36_lower : ℚ) : ℝ) ≤ cotangentTermV 4 36 ∧
-  cotangentTermV 4 36 ≤ ((cot_pi_4_36_upper : ℚ) : ℝ)
+  cotangentTermV 4 36 ≤ ((cot_pi_4_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 4 36 = cotangentTermV 1 9 :=
+    cotangentTermV_gcd_reduce (g := 4) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_9_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_4_36_lower, cot_pi_1_9_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_4_36_upper, cot_pi_1_9_upper]
 
 def cot_pi_5_36_lower : ℚ := 4829000284050147 / 2251799813685248
 def cot_pi_5_36_upper : ℚ := 4829000284050153 / 2251799813685248
-axiom cot_pi_5_36_bounds :
+theorem cot_pi_5_36_bounds :
   ((cot_pi_5_36_lower : ℚ) : ℝ) ≤ cotangentTermV 5 36 ∧
-  cotangentTermV 5 36 ≤ ((cot_pi_5_36_upper : ℚ) : ℝ)
+  cotangentTermV 5 36 ≤ ((cot_pi_5_36_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_5_36_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_5_36_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_5_36_upper]
 
 def cot_pi_6_36_lower : ℚ := 1950115842888489 / 1125899906842624
 def cot_pi_6_36_upper : ℚ := 487528960722123 / 281474976710656
-axiom cot_pi_6_36_bounds :
+theorem cot_pi_6_36_bounds :
   ((cot_pi_6_36_lower : ℚ) : ℝ) ≤ cotangentTermV 6 36 ∧
-  cotangentTermV 6 36 ≤ ((cot_pi_6_36_upper : ℚ) : ℝ)
+  cotangentTermV 6 36 ≤ ((cot_pi_6_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 6 36 = cotangentTermV 1 6 :=
+    cotangentTermV_gcd_reduce (g := 6) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_6_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_6_36_lower, cot_pi_1_6_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_6_36_upper, cot_pi_1_6_upper]
 
 def cot_pi_7_36_lower : ℚ := 6431806830993699 / 4503599627370496
 def cot_pi_7_36_upper : ℚ := 6431806830993709 / 4503599627370496
-axiom cot_pi_7_36_bounds :
+theorem cot_pi_7_36_bounds :
   ((cot_pi_7_36_lower : ℚ) : ℝ) ≤ cotangentTermV 7 36 ∧
-  cotangentTermV 7 36 ≤ ((cot_pi_7_36_upper : ℚ) : ℝ)
+  cotangentTermV 7 36 ≤ ((cot_pi_7_36_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_7_36_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_7_36_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_7_36_upper]
 
 def cot_pi_8_36_lower : ℚ := 2683590517762365 / 2251799813685248
 def cot_pi_8_36_upper : ℚ := 2683590517762369 / 2251799813685248
-axiom cot_pi_8_36_bounds :
+theorem cot_pi_8_36_bounds :
   ((cot_pi_8_36_lower : ℚ) : ℝ) ≤ cotangentTermV 8 36 ∧
-  cotangentTermV 8 36 ≤ ((cot_pi_8_36_upper : ℚ) : ℝ)
+  cotangentTermV 8 36 ≤ ((cot_pi_8_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 8 36 = cotangentTermV 2 9 :=
+    cotangentTermV_gcd_reduce (g := 4) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_2_9_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_8_36_lower, cot_pi_2_9_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_8_36_upper, cot_pi_2_9_upper]
 
 def cot_pi_9_36_lower : ℚ := 2251799813685247 / 2251799813685248
 def cot_pi_9_36_upper : ℚ := 2251799813685249 / 2251799813685248
-axiom cot_pi_9_36_bounds :
+theorem cot_pi_9_36_bounds :
   ((cot_pi_9_36_lower : ℚ) : ℝ) ≤ cotangentTermV 9 36 ∧
-  cotangentTermV 9 36 ≤ ((cot_pi_9_36_upper : ℚ) : ℝ)
+  cotangentTermV 9 36 ≤ ((cot_pi_9_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 9 36 = cotangentTermV 1 4 :=
+    cotangentTermV_gcd_reduce (g := 9) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_4_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_9_36_lower, cot_pi_1_4_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_9_36_upper, cot_pi_1_4_upper]
 
 def cot_pi_10_36_lower : ℚ := 7557937572593433 / 9007199254740992
 def cot_pi_10_36_upper : ℚ := 7557937572593445 / 9007199254740992
-axiom cot_pi_10_36_bounds :
+theorem cot_pi_10_36_bounds :
   ((cot_pi_10_36_lower : ℚ) : ℝ) ≤ cotangentTermV 10 36 ∧
-  cotangentTermV 10 36 ≤ ((cot_pi_10_36_upper : ℚ) : ℝ)
+  cotangentTermV 10 36 ≤ ((cot_pi_10_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 10 36 = cotangentTermV 5 18 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_5_18_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_10_36_lower, cot_pi_5_18_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_10_36_upper, cot_pi_5_18_upper]
 
 def cot_pi_11_36_lower : ℚ := 3153454408163259 / 4503599627370496
 def cot_pi_11_36_upper : ℚ := 3153454408163267 / 4503599627370496
-axiom cot_pi_11_36_bounds :
+theorem cot_pi_11_36_bounds :
   ((cot_pi_11_36_lower : ℚ) : ℝ) ≤ cotangentTermV 11 36 ∧
-  cotangentTermV 11 36 ≤ ((cot_pi_11_36_upper : ℚ) : ℝ)
+  cotangentTermV 11 36 ≤ ((cot_pi_11_36_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_11_36_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_11_36_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_11_36_upper]
 
 def cot_pi_12_36_lower : ℚ := 5200308914369303 / 9007199254740992
 def cot_pi_12_36_upper : ℚ := 5200308914369315 / 9007199254740992
-axiom cot_pi_12_36_bounds :
+theorem cot_pi_12_36_bounds :
   ((cot_pi_12_36_lower : ℚ) : ℝ) ≤ cotangentTermV 12 36 ∧
-  cotangentTermV 12 36 ≤ ((cot_pi_12_36_upper : ℚ) : ℝ)
+  cotangentTermV 12 36 ≤ ((cot_pi_12_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 12 36 = cotangentTermV 1 3 :=
+    cotangentTermV_gcd_reduce (g := 12) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_1_3_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_12_36_lower, cot_pi_1_3_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_12_36_upper, cot_pi_1_3_upper]
 
 def cot_pi_13_36_lower : ℚ := 8400251982027431 / 18014398509481984
 def cot_pi_13_36_upper : ℚ := 8400251982027459 / 18014398509481984
-axiom cot_pi_13_36_bounds :
+theorem cot_pi_13_36_bounds :
   ((cot_pi_13_36_lower : ℚ) : ℝ) ≤ cotangentTermV 13 36 ∧
-  cotangentTermV 13 36 ≤ ((cot_pi_13_36_upper : ℚ) : ℝ)
+  cotangentTermV 13 36 ≤ ((cot_pi_13_36_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_13_36_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_13_36_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_13_36_upper]
 
 def cot_pi_14_36_lower : ℚ := 6556704845660877 / 18014398509481984
 def cot_pi_14_36_upper : ℚ := 6556704845660895 / 18014398509481984
-axiom cot_pi_14_36_bounds :
+theorem cot_pi_14_36_bounds :
   ((cot_pi_14_36_lower : ℚ) : ℝ) ≤ cotangentTermV 14 36 ∧
-  cotangentTermV 14 36 ≤ ((cot_pi_14_36_upper : ℚ) : ℝ)
+  cotangentTermV 14 36 ≤ ((cot_pi_14_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 14 36 = cotangentTermV 7 18 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_7_18_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_14_36_lower, cot_pi_7_18_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_14_36_upper, cot_pi_7_18_upper]
 
 def cot_pi_15_36_lower : ℚ := 1206735883187027 / 4503599627370496
 def cot_pi_15_36_upper : ℚ := 2413471766374067 / 9007199254740992
-axiom cot_pi_15_36_bounds :
+theorem cot_pi_15_36_bounds :
   ((cot_pi_15_36_lower : ℚ) : ℝ) ≤ cotangentTermV 15 36 ∧
-  cotangentTermV 15 36 ≤ ((cot_pi_15_36_upper : ℚ) : ℝ)
+  cotangentTermV 15 36 ≤ ((cot_pi_15_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 15 36 = cotangentTermV 5 12 :=
+    cotangentTermV_gcd_reduce (g := 3) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_5_12_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_15_36_lower, cot_pi_5_12_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_15_36_upper, cot_pi_5_12_upper]
 
 def cot_pi_16_36_lower : ℚ := 6352848996912047 / 36028797018963968
 def cot_pi_16_36_upper : ℚ := 6352848996912077 / 36028797018963968
-axiom cot_pi_16_36_bounds :
+theorem cot_pi_16_36_bounds :
   ((cot_pi_16_36_lower : ℚ) : ℝ) ≤ cotangentTermV 16 36 ∧
-  cotangentTermV 16 36 ≤ ((cot_pi_16_36_upper : ℚ) : ℝ)
+  cotangentTermV 16 36 ≤ ((cot_pi_16_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 16 36 = cotangentTermV 4 9 :=
+    cotangentTermV_gcd_reduce (g := 4) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_4_9_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_16_36_lower, cot_pi_4_9_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_16_36_upper, cot_pi_4_9_upper]
 
 def cot_pi_17_36_lower : ℚ := 1576055649817969 / 18014398509481984
 def cot_pi_17_36_upper : ℚ := 3152111299635979 / 36028797018963968
-axiom cot_pi_17_36_bounds :
+theorem cot_pi_17_36_bounds :
   ((cot_pi_17_36_lower : ℚ) : ℝ) ≤ cotangentTermV 17 36 ∧
-  cotangentTermV 17 36 ≤ ((cot_pi_17_36_upper : ℚ) : ℝ)
+  cotangentTermV 17 36 ≤ ((cot_pi_17_36_upper : ℚ) : ℝ) := by
+  have hbase := cot_pi_div_17_36_mem_interval_v2
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_17_36_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_17_36_upper]
 
 def cot_pi_18_36_lower : ℚ := -488112139 / 9671406556917033397649408
 def cot_pi_18_36_upper : ℚ := 1671954449 / 9671406556917033397649408
-axiom cot_pi_18_36_bounds :
+theorem cot_pi_18_36_bounds :
   ((cot_pi_18_36_lower : ℚ) : ℝ) ≤ cotangentTermV 18 36 ∧
-  cotangentTermV 18 36 ≤ ((cot_pi_18_36_upper : ℚ) : ℝ)
+  cotangentTermV 18 36 ≤ ((cot_pi_18_36_upper : ℚ) : ℝ) := by
+  have h0 : 2 * 18 = 36 := by norm_num
+  have heq := cotangentTermV_exact_of_two_mul_eq (a := 18) (k := 36) (by norm_num) h0
+  rw [heq]
+  constructor
+  · norm_num [cot_pi_18_36_lower]
+  · norm_num [cot_pi_18_36_upper]
 
 def cot_pi_19_36_lower : ℚ := -3152111299635959 / 36028797018963968
 def cot_pi_19_36_upper : ℚ := -3152111299635933 / 36028797018963968
-axiom cot_pi_19_36_bounds :
+private theorem cot_pi_div_17_36_fresh_aux_for_19_36 :
+    (3152111299635933 / 36028797018963968 : ℝ) ≤ cotangentTermV 17 36 ∧
+    cotangentTermV 17 36 ≤ (3152111299635959 / 36028797018963968 : ℝ) := by
+  have hcot : cotangentTermV 17 36
+      = Real.cos (Real.pi * 17 / 36) / Real.sin (Real.pi * 17 / 36) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 17 / 36 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (2670353755551324252691 : ℝ) / 1800000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (5340707511102648505399 : ℝ) / 3600000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (437860731688217202917 : ℝ) / 1267650600228229401496703205376 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (437860731688217202919 : ℝ) / 1267650600228229401496703205376 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 437860731688217202917 / 1267650600228229401496703205376) (yu := 437860731688217202919 / 1267650600228229401496703205376) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (226156424291633194173170842291539988597240698273003821612050495217597903167 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (226156424291633194173170842291539988597699283617532030329350087171014954689 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans hcb2 (by norm_num)
+  have s0l : (156233929757137844127066266905429414988609618741086724196946637473 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (624935719028551376511119563009812287758915386140200811184262725353 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (904625697166532776530788515523516977251274406068366560220328144283884690901 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (113078212145816597066348564440439622157326471447602237462085488626475285151 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d1cu (by norm_num)
+  have s1l : (78116964878568922058873108635955142333311636171192226834104341925 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (312467859514275688236919682237867883236033460672849834872871743177 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (226156424291633193970802275238236267199274586873153416709324406320540722483 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (226156424291633193970802275238236267206611952385604756183929344941437376607 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d2cu (by norm_num)
+  have s2l : (624935719028551376321864074951335053528055126117773298540039176891 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (39058482439284461020294910646214355083626040080947932269864502895 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (226156424291633193323222860667664359131408486372768569343363737755311602879 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (441711766194596080709419649741531951485855368012839701589395067434693829 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d3cu (by norm_num)
+  have s3l : (624935719028551375725380898406110713187800539150264231202835946213 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (624935719028551375728235393794205341015312787132584899786626353705 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (113078212145816595366452601192688366520451706788558954979056649135751397755 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (56539106072908297683226300596344183289575315444084835247881990489787420895 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d4cu (by norm_num)
+  have s4l : (156233929757137843334862048056303338810684611978252978628090762519 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (624935719028551373342302687613307983140453627115040786103520636431 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (56539106072908295092908642314056581893558097422183639306240868884094098285 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (14134776518227073773227160578514145502738986405351267136702399745575586947 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d5cu (by norm_num)
+  have s5l : (624935719028551363795717367501623978117790189088545733783174152359 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (624935719028551363798571862889718606296317093169407413937832879997 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (3533694129556767795727375574056660750517758919416942663157352950727224263 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (28269553036454142365819004592453286238937767753778385443628815086725513117 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6cu (by norm_num)
+  have s6l : (624935719028551325620794068607267344102798851783360371342446297715 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (156233929757137831405912140998840493351143163844888307573907100961 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (14134776518227060821638869167078215442385357673536907002914358580372146033 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (14134776518227060821638869167078215911976750470422480537514591818127857843 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7cu (by norm_num)
+  have s7l : (624935719028551172921100873029854799799660670444847662174202464851 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (156233929757137793230988842104487358398605518025591087258444774691 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (3533694129556754844139084162627455603263768242156277625874437636092639579 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (3533694129556754844139084162627456072855161039041392191915671977777666281 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d8cu (by norm_num)
+  have s8l : (156233929757137640530582022680107122674085657791357736405558026135 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (624935719028550562125182586108523142463054425068228747504203070737 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (1766847064778356699528275823080165705791596339882111668619430659838329791 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (3533694129556713399056551646160333289948763867297338104459816360051869351 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9cu (by norm_num)
+  have s9l : (624935719028548118927236961486305144030825448616263320155141723097 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (312467859514274059465045728437199933842669405749979218237874778547 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (1766847064778273809363210790956068023628115029595454793815526010710117567 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (1766847064778273809363210790956071780359257404602936352705577825055431063 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10cu (by norm_num)
+  have s10l : (624935719028538346146872444607121993332836143474193073641265373951 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (624935719028538346149726939995217004538555782277843117301373314155 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (883423532388971124351475337711044257068346989068475786993020795602785229 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (883423532388971124351475337711051770530631738613455100358269317502812699 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11cu (by norm_num)
+  have s11l : (312467859514249627512707189003676582983069484565354998724492179793 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (624935719028499255028268873395449327376683711556030463826335932411 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (110427941548538500378869401292796873922340931372646137756130959209314747 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (441711766194154001515477605171202522613933220820672742436532808720479917 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12cu (by norm_num)
+  have s12l : (624935719028342890539582126279698263302822713829949017805595209865 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (624935719028342890542436621667799025532667869811562588799879682449 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (220855883096413879437219090014083495218977341172088443481191235992188925 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (6901746346762933732413096562941048408378634429790666992768551296210815 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d13cu (by norm_num)
+  have s13l : (312467859513858716298126677055902580730532862143778144431996422407 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (624935719027717432599107849499924326968112519608124898297633677301 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (110427941546880697077573438241293343382191989804168635559931973969649201 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (110427941546880697077573438241353451080469670334886576203061664456611241 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d14cu (by norm_num)
+  have s14l : (312467859512607800411471010661928446129449808021946385361601089897 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (312467859512607800412898258356024835437376365270401726867439590225 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (55213970770787863256741052607326559838752900563566220232848096378112243 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (55213970770787863256741052607446775235306336571339233625680457521720795 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15cu (by norm_num)
+  have s15l : (9764620609612629277027449754844528838358730577418690866803000311 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (624935719015208273732611279698537076706033337285425927504316846213 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (27606985380088961064491569422433058131936217841737042787142446853807483 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (6901746345022240266122892355668372231256922356995124086139303985161327 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d16cu (by norm_num)
+  have s16l : (624935718975178965357977342462586594798546989178512149765704570047 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (624935718975178965360831837852251635590446458897630857966486880895 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (13803492679434539406186880111921832004861649989235575530413314915596385 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (13803492679434539406186880112402693590921389727313734232561232964227005 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17cu (by norm_num)
+  have s17l : (624935718815061731886243674396233506484114703027690492269525396413 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (624935718815061731889098169790609786238338147158643255361400797401 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (6901746318497387464567704159040891616746612850915729251112534036478761 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (6901746318497387464567704160002614787880464852180856580058794585946057 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d18cu (by norm_num)
+  have s18l : (312467859087296399122727295629760174676412406073391851435809446663 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (624935718174592798248309086672741584940734823655729076485243558463 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873116808929363968966582024079040265437775836962881594654194376455 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (3450873116808929363968966583947525374648121991359208162681805481991481 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19cu (by norm_num)
+  have s19l : (624935715612717067620627681744690338432327103651820162125685269479 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (624935715612717067623482177233291397105234100658103365684921946165 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (862718236762468407623699461203971149997643374702992727084971194943149 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (431359118381234203811849731563708726420124318068689760258001573117629 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d20cu (by norm_num)
+  have s20l : (312467852682607104067295309229601610627797079096541762231129996207 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (312467852682607104068722557124661784136250285912982344969474713269 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (431359033501709816645451957779877427376721092892887782200289513788819 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (107839758375427454161362990406692445185326547318111442055784190839709 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d21cu (by norm_num)
+  have s21l : (624935664375203778402759162432818456958081227304854920967583464415 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (624935664375203778405613659429015893415170109407642310430761633457 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (215679346991833970553506086851410401811608143384659830017007507910549 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (431358693983667941107012189090386179951947046114309842953111532421599 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22cu (by norm_num)
+  have s22l : (624935500415178190871708539190501868305203068982004758066950779657 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (624935500415178190874563041011006639550055953501977823569881883721 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (107839333978097802185570892548377713628538445327797816787534773103713 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (53919666989048901092785453967963470722592930598313401196324514056037 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d23cu (by norm_num)
+  have s23l : (624934844575333943037121874840770666572756034536531827777899410647 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (312467422287666971519988197979244204703079000158138654092168480611 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (53918987955192072525360322112921271679416754746112678055769625317583 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (26959493977596036262680176443945269709704918772904799640290087216967 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d24cu (by norm_num)
+  have s24l : (624932221220086585082237333200961919199971379659505609217903379101 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (624932221220086585085091931507269667704067576870049757589438933567 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (26958135924134617227593017639193969337674826377672295708209805723419 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (53916271848269234455186158376198016357812951774534717490041913645091 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25cu (by norm_num)
+  have s25l : (312460863932585539686723257669973414679826061759599418845198069405 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (624921727865171079376301422396424529873401650975405740237292472797 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (26952703938320730257859356303006322357210676890920037988563020314971 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (26952703938320730257859602482090947987026435003429143037989925678041 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26cu (by norm_num)
+  have s26l : (156219938875669640207958069732654782285351400384387799082617762431 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (156219938875669640208672105230184200934255140245912404112959254499 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (13465489821658255853689105476497757347857250507805460489543870999283 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (3366372455414563963422399425599024393506555185145315628996899045115 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d27cu (by norm_num)
+  have s27l : (156177970741642129519810928361281123756838770966775526777907027975 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (624711882966568518082104794097247715360193158370771099457398467241 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (6711035204714097755457242599800144382225479502339668279092817034297 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (838879400589262219432278249231988720373068657004113258566571013939 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d28cu (by norm_num)
+  have s28l : (312020331694682474448404549485406111483866941315207548268307544015 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (624040663389364948899689917115398698607831609945075528867895878315 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (1656107384802456649502900762546377139174211748940275401664146951911 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (1656107384802456649503879932454957014101609096620937047426146049555 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d29cu (by norm_num)
+  have s29l : (621360110668466372217871734475858356013368159776678969852078280391 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (310680055334233186110415614220510292901343977692341514386179486005 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (785215076538404770181452532739188909401537323868978904900234201807 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (785215076538404770183377296803861282781150567294282107030972659453 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d30cu (by norm_num)
+  have s30l : (610706886392206134866528210302148978861655626043740949928668826009 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (610706886392206134869798042844039065310519208158962802151031993735 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (621154927478118855243934652239271912854777562380429487935129524321 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (621154927478118855251110233258421502023326901861240289311591811199 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31cu (by norm_num)
+  have s31l : (569183623942732130990868312760766382090167621857485132583584104673 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (71147952992841516374413879730570319530546373372578640156337513091 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (18357142001662230631852600663908820138629896786371876695185837105 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (9178571000831115318571496963886352460401964660242440442521372377 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 := le_trans d32cu (by norm_num)
+  have sXl : (104911546604108174953149003856767806447477334827633863950444339043 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (419646186416432699820719288215522266110879391624234324231233232001 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (3152111299635933 / 36028797018963968) * Real.sin X ≤ (3152111299635933 / 36028797018963968) * (419646186416432699820719288215522266110879391624234324231233232001 / 421249166674228746791672110734681729275580381602196445017243910144) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (3152111299635933 / 36028797018963968) * (419646186416432699820719288215522266110879391624234324231233232001 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (18357142001662230631852600663908820138629896786371876695185837105 / 210624583337114373395836055367340864637790190801098222508621955072) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (9178571000831115318571496963886352460401964660242440442521372377 / 105312291668557186697918027683670432318895095400549111254310977536 : ℝ) := cXu
+    have h2 : (9178571000831115318571496963886352460401964660242440442521372377 / 105312291668557186697918027683670432318895095400549111254310977536 : ℝ) ≤ (3152111299635959 / 36028797018963968) * (104911546604108174953149003856767806447477334827633863950444339043 / 105312291668557186697918027683670432318895095400549111254310977536) := by norm_num
+    have h3 : (3152111299635959 / 36028797018963968) * (104911546604108174953149003856767806447477334827633863950444339043 / 105312291668557186697918027683670432318895095400549111254310977536 : ℝ) ≤ (3152111299635959 / 36028797018963968) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_19_36_bounds :
   ((cot_pi_19_36_lower : ℚ) : ℝ) ≤ cotangentTermV 19 36 ∧
-  cotangentTermV 19 36 ≤ ((cot_pi_19_36_upper : ℚ) : ℝ)
+  cotangentTermV 19 36 ≤ ((cot_pi_19_36_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 19 36 = - cotangentTermV 17 36 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_17_36_fresh_aux_for_19_36
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_19_36_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_19_36_upper]
 
 def cot_pi_20_36_lower : ℚ := -3176424498456033 / 18014398509481984
 def cot_pi_20_36_upper : ℚ := -3176424498456017 / 18014398509481984
-axiom cot_pi_20_36_bounds :
+theorem cot_pi_20_36_bounds :
   ((cot_pi_20_36_lower : ℚ) : ℝ) ≤ cotangentTermV 20 36 ∧
-  cotangentTermV 20 36 ≤ ((cot_pi_20_36_upper : ℚ) : ℝ)
+  cotangentTermV 20 36 ≤ ((cot_pi_20_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 20 36 = cotangentTermV 5 9 :=
+    cotangentTermV_gcd_reduce (g := 4) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_5_9_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_20_36_lower, cot_pi_5_9_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_20_36_upper, cot_pi_5_9_upper]
 
 def cot_pi_21_36_lower : ℚ := -1206735883187031 / 4503599627370496
 def cot_pi_21_36_upper : ℚ := -2413471766374049 / 9007199254740992
-axiom cot_pi_21_36_bounds :
+theorem cot_pi_21_36_bounds :
   ((cot_pi_21_36_lower : ℚ) : ℝ) ≤ cotangentTermV 21 36 ∧
-  cotangentTermV 21 36 ≤ ((cot_pi_21_36_upper : ℚ) : ℝ)
+  cotangentTermV 21 36 ≤ ((cot_pi_21_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 21 36 = cotangentTermV 7 12 :=
+    cotangentTermV_gcd_reduce (g := 3) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_7_12_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_21_36_lower, cot_pi_7_12_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_21_36_upper, cot_pi_7_12_upper]
 
 def cot_pi_22_36_lower : ℚ := -1639176211415223 / 4503599627370496
 def cot_pi_22_36_upper : ℚ := -819588105707607 / 2251799813685248
-axiom cot_pi_22_36_bounds :
+theorem cot_pi_22_36_bounds :
   ((cot_pi_22_36_lower : ℚ) : ℝ) ≤ cotangentTermV 22 36 ∧
-  cotangentTermV 22 36 ≤ ((cot_pi_22_36_upper : ℚ) : ℝ)
+  cotangentTermV 22 36 ≤ ((cot_pi_22_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 22 36 = cotangentTermV 11 18 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_11_18_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_22_36_lower, cot_pi_11_18_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_22_36_upper, cot_pi_11_18_upper]
 
 def cot_pi_23_36_lower : ℚ := -8400251982027453 / 18014398509481984
 def cot_pi_23_36_upper : ℚ := -8400251982027403 / 18014398509481984
-axiom cot_pi_23_36_bounds :
+private theorem cot_pi_div_13_36_fresh_aux_for_23_36 :
+    (8400251982027403 / 18014398509481984 : ℝ) ≤ cotangentTermV 13 36 ∧
+    cotangentTermV 13 36 ≤ (8400251982027453 / 18014398509481984 : ℝ) := by
+  have hcot : cotangentTermV 13 36
+      = Real.cos (Real.pi * 13 / 36) / Real.sin (Real.pi * 13 / 36) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 13 / 36 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (2042035224833365604999 : ℝ) / 1800000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (4084070449666731210011 : ℝ) / 3600000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (41854334646667820867 : ℝ) / 158456325028528675187087900672 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (167417338586671283469 : ℝ) / 633825300114114700748351602688 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 41854334646667820867 / 158456325028528675187087900672) (yu := 167417338586671283469 / 633825300114114700748351602688) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (904625697166532776715090961365833722851991662627101812220499381325122210399 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (904625697166532776715090961365833722852827344930975872682272237451945735585 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans hcb2 (by norm_num)
+  have s0l : (477892020433598111450687012221976542085652046088143821332272013207 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (119473005108399527863385376902076461447985505866026387078191042611 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (904625697166532776620418884322212051099153106373233716334926459394850440575 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (226156424291633194155104721080553012775623958897182489545475318668048017083 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d1cu (by norm_num)
+  have s1l : (477892020433598111434016017681091926317341170649808721026691232937 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (119473005108399527859217628266855307505993260360199856338010113035 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (226156424291633194060432644036931341030206175836104784926786691954228446165 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (452312848583266388120865288073862682067097810103202053546590140623520363939 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2cu (by norm_num)
+  have s2l : (238946010216799055683666019758776731623793509272873680506847948127 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (238946010216799055685093267451941383477793231498426987359154699989 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (56539106072908298420436083965611163545995265188480358984424979836180144549 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (226156424291633193681744335862444654197351977615906403316270442057889250175 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d3cu (by norm_num)
+  have s3l : (477892020433598111100596126863399611024400004517966580305116347749 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (238946010216799055551725311124864457368934871804768415762081788063 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (14134776518227074510436943947781119307045825473205480060107208358405234809 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (113078212145816596083495551582248954483108437509613775178294786557913052555 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4cu (by norm_num)
+  have s4l : (29868251277099881877103279765424012689057841163892375411955674571 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (238946010216799055018253485816556753380138188137851403913049152617 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (28269553036454148263497271546588870205772938647293354683153544230753720647 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (14134776518227074131748635773294435116257386185631644570887480489380108013 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d5cu (by norm_num)
+  have s5l : (119473005108399526441469468445080646329850859621619118432989585499 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (119473005108399526442183092291662972285569767596829868589553287701 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (14134776518227072616995403075347732104690759063005325761511530926873800605 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (14134776518227072616995403075347732158174426510945192768228740881569387319 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d6cu (by norm_num)
+  have s6l : (477892020433598088694779463914476343175333973094513002587747172007 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (477892020433598088697633959300805647348308461985028790034289756953 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (7067388259113533278991236141780730603487673710960686444441832751269254213 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (14134776518227066557982472283561461420910017213680810347342528660244028505 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7cu (by norm_num)
+  have s7l : (477892020433598020410385824451095033447353953946443657587351533681 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (238946010216799010206620159918712169510361935397825210193511325995 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (3533694129556760580482687279106258784298142819997480023790068966976082771 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (7067388259113521160965374558212517996465625223513590417218050960801005291 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8cu (by norm_num)
+  have s8l : (477892020433597747272811266597628336108199356064445303548210510387 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (119473005108399436818916440495989411820787746187103304228008655795 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (1766847064778368172215482056002231399415424173450559285877349475071589443 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (3533694129556736344430964112004463654569527513936422932792018697020497197 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9cu (by norm_num)
+  have s9l : (238946010216798327361256517592349105957914311749702719051575145443 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (59736502554199581840670941321378443187138387440296742518726019773 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (1766847064778319700112035722075680103004687912903576860455035529816205119 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (883423532389159850056017861037840907241023123479267278310812311339849537 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d10cu (by norm_num)
+  have s10l : (14934125638549758891291253423373886180447131592181482740722455761 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (238946010216796142262087302467146890490447038164037043650329948355 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (883423532389062905849125195401062854871671639404059253297682819049051985 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (220855883097265726462281298850266569456597076847191609591614878785699317 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d11cu (by norm_num)
+  have s11l : (238946010216787401858274203620407611627812599765948633973208438227 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (238946010216787401859701451313572502481720311160044491430133461309 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (441711766194337564510777284157580203700211822146435709562571036987058309 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (441711766194337564510777284157587049609645157114184421584967471977366941 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12cu (by norm_num)
+  have s12l : (477892020433504880497461601848799197939166120683852404763886941641 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (119473005108376220125079024308782603412974943232866205686844728311 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (110427941548390502713909078418856505281415570860138392119529290394917719 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (13803492693548812839238634802357918898856112727653058960272156812080491 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d13cu (by norm_num)
+  have s13l : (477892020433225187621114441666023300798961039965997248250107085813 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (238946010216612593811984468526180126265683803583409453691586760359 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (110427941547614949058769242695305171481312108279063287067190237474466711 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (110427941547614949058769242695332555119045368016805486018085465273328301 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d14cu (by norm_num)
+  have s14l : (29868251277006651007232923943720686113570091479904727399312178205 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (119473005108026604029645319621472718407054911135139281022035520697 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (55213970772256367219114027969372686021146379888226401012598547387531203 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (27606985386128183609557013984713726648306193255446923158870476807281685 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d15cu (by norm_num)
+  have s15l : (238946010213815665047095931733670953780919289380413623040459042967 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (7467062819181739532766349357090524682620351185042403618064064829 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (6901746345756492247272112944676993135312098432695549745924550048371875 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (6901746345756492247272112944704376773044076038395381612599490268560057 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d16cu (by norm_num)
+  have s16l : (14934125637804093312759488096220856482201755096665019216298445335 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (238946010204865493005579057232943092407685555125320212714034608077 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (13803492685308555254188097882025826661260950012093291689180489742360691 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (6901746342654277627094048941122447881541974138704642810539267830650751 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d17cu (by norm_num)
+  have s17l : (477892020338129609668773587773564885879627976722800803663973127951 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (477892020338129609671628083161852084300558087322107032478920895201 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (6901746330245419151029764162654031041614777026026894072792477107505897 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (1725436582561354787757441040773042311249548228614151658574026678651111 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d18cu (by norm_num)
+  have s18l : (477892020051724104375020602505849486549810118660388560339662788269 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (238946010025862052188937548950005184555888146634434083792227767601 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873140304992660570082391589907841885287320222213838022981573879723 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (1725436570152496330285041196233092123275736980675921626430380684776783 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d19cu (by norm_num)
+  have s19l : (477892018906102084229882900240792369138637165187069856988287272613 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (119473004726525521058184348914611997054088539932114193538856115867 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (1725436520517062797865600003403161543193883228356843816508756574947093 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (1725436520517062797865600005155714335721095485206751597628317501202793 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d20cu (by norm_num)
+  have s20l : (477892014323614020127319882447162965124778239473491334102786863541 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (477892014323614020130174377958797529491203538262601063216901304629 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (431359080493833356927579576583439911959461635846951835248967729861515 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (215679540246916678463789789167996318633015378961841168762079073513523 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d21cu (by norm_num)
+  have s21l : (238945997996831013682435287728395611361625313461676572267182789105 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (238945997996831013683862535672170777927894837133955892841863632689 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (215679440976061512430731718192923375163388018336608222424018239362173 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (26959930122007689053841465212253536001426515494877781363610683445487 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d22cu (by norm_num)
+  have s22l : (477891922673858274679796225231591503944481987465226918632507652917 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (477891922673858274682650722622804713921973449716170397544804179181 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (13479940243299572061705527193654070653107671091522723127886460182999 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (53919760973198288246822112279719044400493270277294698289123094107781 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d23cu (by norm_num)
+  have s23l : (477891629394710757767298519195902558712597080260498542503579640591 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (59736453674338844721269127825220513069803441843042876226283617231 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (107838727781078294331935258463435620170933940518388400861992219735199 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (53919363890539147165967643252094440310015186372848711604145411546545 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d24cu (by norm_num)
+  have s24l : (477890456279200590865056617344920472242729602679411571231652838847 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (477890456279200590867911144809324617414903840166776008345932247139 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (26958887784825025759852895534016903550216748722493070957911497274157 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (26958887784825025759852923574494829591524305301833784557376811982429 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d25cu (by norm_num)
+  have s25l : (119471440958609575852287455478359721931319717037795511015557483919 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (59735720479304787926500555701400190773476664757925115048836056705 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (26955711221025779912598408750275414012659353812999301956531044226587 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (26955711221025779912598520907781832537790991783814316331069464286231 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26cu (by norm_num)
+  have s26l : (29866687145740075009021324671902492690223182325757839441073358817 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (477866994331841200147196203368646180005946459764159152504064920485 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (13471503106720235295749482523090964142302203139438237344846121645895 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (6735751553360117647874853401431796157682392575664101609954680499335 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d27cu (by norm_num)
+  have s27l : (477791920744555237321899757437534307446306789931993646473808889959 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (238895960372277618662378152764839888314447257886814591569392921295 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (6723051535398329311088109749377067014258290626114316820056025208413 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (6723051535398329311088558027067084309467838913953993949547238706519 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28cu (by norm_num)
+  have s28l : (477491697156712308707421517726201052744363868253135421533813678835 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (477491697156712308710284220389348423986108459691694059476154607533 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (1668082811215783629658361543128049749861080639172914914955620517063 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (834041405607891814829404347229760723856902969602453443315483825235 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d29cu (by norm_num)
+  have s29l : (476291934452653808966182826566272443444962992802394438967893900239 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (476291934452653808969070094356542502744649927904698675649692472955 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (808840402251574212577085857125965677854072643472981027883797083641 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (1617680804503148425155942365707289646783497216846081456298439086719 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30cu (by norm_num)
+  have s30l : (235755477943652935005928534838400428152930264374640757414940063175 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (235755477943652935007420874984937587666546923105339260284910152259 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (355277943728851051278483521471097804491368087359534008983642650289 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (177638971864425525640091717571491382262222302911103465221808516129 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d31cu (by norm_num)
+  have s31l : (452674024540978038996705998842057671031384964284380865450375497635 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (56584253067622254875008365046719709208941597824652761137170539191 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (89013795289790363365427030652301509705831666027242203320968050861 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (178027590579580726736588831902555610745005238962973014177372706749 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32cu (by norm_num)
+  have sXl : (47722675004944146488541478638520478964220560581235088833621442565 : ℝ) / 52656145834278593348959013841835216159447547700274555627155488768 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (381781400039553171912993127478302355743856956979277198611272927223 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (8400251982027403 / 18014398509481984) * Real.sin X ≤ (8400251982027403 / 18014398509481984) * (381781400039553171912993127478302355743856956979277198611272927223 / 421249166674228746791672110734681729275580381602196445017243910144) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (8400251982027403 / 18014398509481984) * (381781400039553171912993127478302355743856956979277198611272927223 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (89013795289790363365427030652301509705831666027242203320968050861 / 210624583337114373395836055367340864637790190801098222508621955072) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (178027590579580726736588831902555610745005238962973014177372706749 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) := cXu
+    have h2 : (178027590579580726736588831902555610745005238962973014177372706749 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (8400251982027453 / 18014398509481984) * (47722675004944146488541478638520478964220560581235088833621442565 / 52656145834278593348959013841835216159447547700274555627155488768) := by norm_num
+    have h3 : (8400251982027453 / 18014398509481984) * (47722675004944146488541478638520478964220560581235088833621442565 / 52656145834278593348959013841835216159447547700274555627155488768 : ℝ) ≤ (8400251982027453 / 18014398509481984) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_23_36_bounds :
   ((cot_pi_23_36_lower : ℚ) : ℝ) ≤ cotangentTermV 23 36 ∧
-  cotangentTermV 23 36 ≤ ((cot_pi_23_36_upper : ℚ) : ℝ)
+  cotangentTermV 23 36 ≤ ((cot_pi_23_36_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 23 36 = - cotangentTermV 13 36 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_13_36_fresh_aux_for_23_36
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_23_36_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_23_36_upper]
 
 def cot_pi_24_36_lower : ℚ := -2600154457184657 / 4503599627370496
 def cot_pi_24_36_upper : ℚ := -325019307148081 / 562949953421312
-axiom cot_pi_24_36_bounds :
+theorem cot_pi_24_36_bounds :
   ((cot_pi_24_36_lower : ℚ) : ℝ) ≤ cotangentTermV 24 36 ∧
-  cotangentTermV 24 36 ≤ ((cot_pi_24_36_upper : ℚ) : ℝ)
+  cotangentTermV 24 36 ≤ ((cot_pi_24_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 24 36 = cotangentTermV 2 3 :=
+    cotangentTermV_gcd_reduce (g := 12) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_2_3_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_24_36_lower, cot_pi_2_3_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_24_36_upper, cot_pi_2_3_upper]
 
 def cot_pi_25_36_lower : ℚ := -6306908816326529 / 9007199254740992
 def cot_pi_25_36_upper : ℚ := -6306908816326495 / 9007199254740992
-axiom cot_pi_25_36_bounds :
+private theorem cot_pi_div_11_36_fresh_aux_for_25_36 :
+    (6306908816326495 / 9007199254740992 : ℝ) ≤ cotangentTermV 11 36 ∧
+    cotangentTermV 11 36 ≤ (6306908816326529 / 9007199254740992 : ℝ) := by
+  have hcot : cotangentTermV 11 36
+      = Real.cos (Real.pi * 11 / 36) / Real.sin (Real.pi * 11 / 36) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 11 / 36 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (1727875959474386281153 : ℝ) / 1800000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (3455751918948772562317 : ℝ) / 3600000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (141660824957952624473 : ℝ) / 633825300114114700748351602688 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (70830412478976312237 : ℝ) / 316912650057057350374175801344 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 141660824957952624473 / 633825300114114700748351602688) (yu := 70830412478976312237 / 316912650057057350374175801344) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (904625697166532776724053998245703230237057258277116177178968030278518606193 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (904625697166532776724053998245703230237611385741564227897053366372967085711 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans hcb2 (by norm_num)
+  have s0l : (202185085568060739460683582266800367299897872708049183389147968401 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (404370171136121478924221659919482925652386081401549928945824542855 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (904625697166532776656271031841690080638342418604479914489667601392170458103 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (452312848583266388328135515920845040320279464231136058680976792631205132487 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d1cu (by norm_num)
+  have s1l : (101092542784030369727816860121347677552118531423151350500100151653 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (50546271392015184864265241983909112657655107883360600463535093329 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (56539106072908298524071197889102342641275801648026484091297120810230928087 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (452312848583266388192569583112818741134639432899796278474506050161894148823 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2cu (by norm_num)
+  have s2l : (404370171136121478870868544292550612644701177218991693637173841287 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (404370171136121478873723039678432803698173520148582453506396562461 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (226156424291633193825152925940356772254892680174005294242323204605506341273 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (28269553036454149228144115742544596532969839950646763215879787435267084075 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d3cu (by norm_num)
+  have s3l : (3159141962000949052416194996259298612608014609767713063719727677 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (202185085568060739356063727453536206735060317600551732334850656523 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (113078212145816596370312731738073190048777813794445577896496605788874026881 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (113078212145816596370312731738073190066509892656783200837582215674429754131 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4cu (by norm_num)
+  have s4l : (1579570981000474523683166486077143210460111050730688194005994515 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (50546271392015184758218139477703856618171610377859262592531819601 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (28269553036454148550314451702413103600536033330631181696576476560996916761 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (28269553036454148550314451702413103618268112192968804524283766975732902665 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d5cu (by norm_num)
+  have s5l : (404370171136121475477361264093982425933059266521197255208548856141 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (404370171136121475480215759479864617045802476096942100267523878863 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (7067388259113536595314881693498090656516012912984950240746988362020629681 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (28269553036454146381259526773992362696992367101290290459764003573910618195 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6cu (by norm_num)
+  have s6l : (404370171136121465135243838726917581344872245249528377799972048631 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (404370171136121465138098334112799772638250476984980906630845709501 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (14134776518227068852519913530154976741381652814415453154335314416531829957 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (14134776518227068852519913530154976883238283713116417635462522403261832483 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7cu (by norm_num)
+  have s7l : (50546271392015177970846767157332473755474777203886428026184327229 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (202185085568060711884814316322270991029858269002687310742998544731 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (7067388259113525750040257051397298245738803150486981113428522755079616543 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (3533694129556762875020128525698649264726032473944396988141900304573933157 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d8cu (by norm_num)
+  have s8l : (202185085568060629146447665692827008833143513323606087960664960053 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (202185085568060629147874913385768106286182850788408490354657882757 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (3533694129556745522580729098356021019755137185279547407657317631366407273 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (3533694129556745522580729098356021587181660780082244338174768384938978367 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9cu (by norm_num)
+  have s9l : (101092542784030149099345026973509303346200243606224769953779691779 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (404370171136120596400234603279919419851521067575773254310848199495 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (441711766194584514102891423658692869491824139111901438637830928490939081 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (220855883097292257051445711829346576602542968255696156755173200355139065 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d10cu (by norm_num)
+  have s10l : (202185085568058974407659606967035279957898072483273399741192444947 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (202185085568058974409086854659976406312540955501112743699665070241 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (441711766194549809224092569683522534854575172507984828176477488699951819 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (883423532389099618448185139367047339415244724152453762974362392808859175 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d11cu (by norm_num)
+  have s11l : (202185085568053679243537819099106482275403193642177715020663688997 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (50546271392013419811241266698011925278794355606860590635874932577 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (110427941548602747427224290717985088168424619202132048294524883022529031 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (441711766194410989708897162871944892085887234605953267551202145630967179 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12cu (by norm_num)
+  have s12l : (404370171136064997174101336918926879267287631411303513524937169137 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (25273135696004062323559739519050628551742928440709755761708481337 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (220855883096927855824057840525599062912051046469058103608215704254536411 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (220855883096927855824057840525608141736428558259563141397321000767592807 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13cu (by norm_num)
+  have s13l : (202185085567947775961102079214045638477082500764601454536781017861 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (404370171135895551925058653813977414038967288329282303832111462515 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (110427941547908649851248020144403311846129414562758639027032372201574065 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (27606985386977162462812005036105367373721101927251956741893341352304363 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d14cu (by norm_num)
+  have s14l : (404370171135217770914615870485688688703024518558703540264206850599 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (202185085567608885458735182935793331942319520054914552742093559189 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (55213970772843768804066863454177266430752435182252315044229518248068997 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (6901746346605471100508357931776697716032772249582948804513717187139157 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d15cu (by norm_num)
+  have s15l : (101092542783126661721067383762778865787803613641419332502242666419 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (404370171132506646887124030437060790720077628896010074873877012161 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (27606985384200772158956367441183989966679033317349908195535903607708915 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (27606985384200772158956367441256620561696571121475674654643208885763137 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16cu (by norm_num)
+  have s16l : (404370171121662150762993254673416051781686196046311698985958701441 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (202185085560831075382923875029775394449769700946916581847834697807 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (13803492687658161593621886749927407688173690541754029541456043937832931 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (6901746343829080796810943375036334439096591776215957354598853821229371 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d17cu (by norm_num)
+  have s17l : (404370171078284166279633114932079161702620656588017599581054048993 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (404370171078284166282487610318971537016360714910056298494404805899 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (3450873167472315913740501121261874472754568171396312137159083211838431 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (3450873167472315913740501121407135662711730791789635851042055126735915 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d18cu (by norm_num)
+  have s18l : (202185085452386114187056132137928707746589676787372132651405133983 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (404370170904772228376966759665780343589294444287198991522091663883 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (3450873149703417994141841318907756577347523894045504666454905064976983 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (1725436574851708997070920659744400668089444065853853667079635431350513 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d19cu (by norm_num)
+  have s19l : (202185085105362238599372097226611015301878660637667918724602360729 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (202185085105362238600799344927633584905307250718285285995268669421 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (1725436539313913310363380480137077747265589653379234565926095368122819 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (862718269656956655181690240649583628475014098977708368721423983114565 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d20cu (by norm_num)
+  have s20l : (101092541858633369911179307699493712130036246480136286613009101209 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (404370167434533479647571726248508831869841882682751178348104705077 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (431359099290683250842418245244827642484090812982223934109241406330479 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (431359099290683250842418246406917120255369963213741177465962248813683 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d21cu (by norm_num)
+  have s21l : (101092539082442400946933459373724540187396822523849955249686224543 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (404370156329769603790588333139387515868584833322911328007495822851 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (107839739284878175798560552018183791775609962686474494356092502968553 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (431358957139512703194242212721092567577027175643469440128570426829973 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22cu (by norm_num)
+  have s22l : (404370111910715930105753959174590775079935245590497798949712121957 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (404370111910715930108608455594901540443206362401117945097631347539 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (215679194267493331056015591674536511367414319687552084673599335371679 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (6739974820859166595500487530351475857282119773618324239423146427065 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d23cu (by norm_num)
+  have s23l : (101092483558632627827670411957168351370560443611776256698229476539 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (101092483558632627828384036838067145623975855109011956927984217409 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (107839028529845222199605054144697158166928886411443253498028625284909 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (107839028529845222199605072738085911251205099669148382811172670722061 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24cu (by norm_num)
+  have s24l : (404369223530257250901585017889497996633785975002753019494739522271 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (404369223530257250904439529826211151032017095430332026252508261387 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (26959188531058248626108861179462658207480889279050883532904974230447 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (53918377062116497252217759545441390897131783496346165582551324092799 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25cu (by norm_num)
+  have s25l : (6318224698760294308204384981368033184958330622728393153508083503 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (404366380720658835727935200396424480959085614052874638005685633917 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (6739228541354977081506682069790294912864690773041079176883009266177 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (13478457082709954163013401325050948589896858628455701712641458807965 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d26cu (by norm_num)
+  have s26l : (202177504801089283055181998625800697344324615149063567464175397345 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (404355009602178566113218757444065295724248436122771495118310261407 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (6736954335607465178496734362419457237692807373083405670956039404043 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (13473908671214930356993617449989603790868336334575243895435442045529 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27cu (by norm_num)
+  have s27l : (404309527046831280540017248737525263845695770979677395684018917745 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (12634672720213477516964775101993805011951683744842019384361998073 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (1681965017642133883715782271342682453114156183290497291480605450889 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (1681965017642133883715856600462181127014709024971643603507226095131 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d28cu (by norm_num)
+  have s28l : (404127627520033220806947157628925280420925417838661878633982997535 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (202063813760016610404902944100819561323976615138573873052756905405 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (3345761959149463682993211687299405593248478574039789642143623748247 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (1672880979574731841496902625195351750324966347684524620440830633369 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d29cu (by norm_num)
+  have s29l : (201700260180298338519461776814403682695658184178624338785130908915 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (100850130090149169260448741944320689527307784410574294240264288485 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (1636708149857827605849882541833436949208031940044491659801336484389 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (204588518732228450731382641522934703844087302838194388150081054487 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d30cu (by norm_num)
+  have s30l : (400499936290483507743874770667248039955524051873419593018552218255 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (100124984072620876936699147515880864146638482784700214858354332871 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (93413143576834805843960566295737466433848559382987185086538526549 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (373652574307339223376987079573020317659931883946751951450906463685 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d31cu (by norm_num)
+  have s31l : (389022437076477588130072393237148453672443834727613631168862863339 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (48627804634559698516648826704522948359996036232744385316751395197 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (241618595836851973080060141231159806077084562544862966097431889127 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (241618595836851973084121992295043043110123940821054065363828078785 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32cu (by norm_num)
+  have sXl : (86266779009057177659108111902408410702060139239255011111733679551 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (345067116036228710640255575797868208003294217858290026197717728413 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (6306908816326495 / 9007199254740992) * Real.sin X ≤ (6306908816326495 / 9007199254740992) * (345067116036228710640255575797868208003294217858290026197717728413 / 421249166674228746791672110734681729275580381602196445017243910144) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (6306908816326495 / 9007199254740992) * (345067116036228710640255575797868208003294217858290026197717728413 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (241618595836851973080060141231159806077084562544862966097431889127 / 421249166674228746791672110734681729275580381602196445017243910144) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (241618595836851973084121992295043043110123940821054065363828078785 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) := cXu
+    have h2 : (241618595836851973084121992295043043110123940821054065363828078785 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (6306908816326529 / 9007199254740992) * (86266779009057177659108111902408410702060139239255011111733679551 / 105312291668557186697918027683670432318895095400549111254310977536) := by norm_num
+    have h3 : (6306908816326529 / 9007199254740992) * (86266779009057177659108111902408410702060139239255011111733679551 / 105312291668557186697918027683670432318895095400549111254310977536 : ℝ) ≤ (6306908816326529 / 9007199254740992) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_25_36_bounds :
   ((cot_pi_25_36_lower : ℚ) : ℝ) ≤ cotangentTermV 25 36 ∧
-  cotangentTermV 25 36 ≤ ((cot_pi_25_36_upper : ℚ) : ℝ)
+  cotangentTermV 25 36 ≤ ((cot_pi_25_36_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 25 36 = - cotangentTermV 11 36 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_11_36_fresh_aux_for_25_36
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_25_36_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_25_36_upper]
 
 def cot_pi_26_36_lower : ℚ := -3778968786296725 / 4503599627370496
 def cot_pi_26_36_upper : ℚ := -1889484393148353 / 2251799813685248
-axiom cot_pi_26_36_bounds :
+theorem cot_pi_26_36_bounds :
   ((cot_pi_26_36_lower : ℚ) : ℝ) ≤ cotangentTermV 26 36 ∧
-  cotangentTermV 26 36 ≤ ((cot_pi_26_36_upper : ℚ) : ℝ)
+  cotangentTermV 26 36 ≤ ((cot_pi_26_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 26 36 = cotangentTermV 13 18 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_13_18_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_26_36_lower, cot_pi_13_18_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_26_36_upper, cot_pi_13_18_upper]
 
 def cot_pi_27_36_lower : ℚ := -4503599627370503 / 4503599627370496
 def cot_pi_27_36_upper : ℚ := -9007199254740961 / 9007199254740992
-axiom cot_pi_27_36_bounds :
+theorem cot_pi_27_36_bounds :
   ((cot_pi_27_36_lower : ℚ) : ℝ) ≤ cotangentTermV 27 36 ∧
-  cotangentTermV 27 36 ≤ ((cot_pi_27_36_upper : ℚ) : ℝ)
+  cotangentTermV 27 36 ≤ ((cot_pi_27_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 27 36 = cotangentTermV 3 4 :=
+    cotangentTermV_gcd_reduce (g := 9) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_3_4_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_27_36_lower, cot_pi_3_4_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_27_36_upper, cot_pi_3_4_upper]
 
 def cot_pi_28_36_lower : ℚ := -5367181035524741 / 4503599627370496
 def cot_pi_28_36_upper : ℚ := -5367181035524721 / 4503599627370496
-axiom cot_pi_28_36_bounds :
+theorem cot_pi_28_36_bounds :
   ((cot_pi_28_36_lower : ℚ) : ℝ) ≤ cotangentTermV 28 36 ∧
-  cotangentTermV 28 36 ≤ ((cot_pi_28_36_upper : ℚ) : ℝ)
+  cotangentTermV 28 36 ≤ ((cot_pi_28_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 28 36 = cotangentTermV 7 9 :=
+    cotangentTermV_gcd_reduce (g := 4) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_7_9_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_28_36_lower, cot_pi_7_9_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_28_36_upper, cot_pi_7_9_upper]
 
 def cot_pi_29_36_lower : ℚ := -6431806830993711 / 4503599627370496
 def cot_pi_29_36_upper : ℚ := -6431806830993677 / 4503599627370496
-axiom cot_pi_29_36_bounds :
+theorem cot_pi_29_36_bounds :
   ((cot_pi_29_36_lower : ℚ) : ℝ) ≤ cotangentTermV 29 36 ∧
-  cotangentTermV 29 36 ≤ ((cot_pi_29_36_upper : ℚ) : ℝ)
+  cotangentTermV 29 36 ≤ ((cot_pi_29_36_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 29 36 = - cotangentTermV 7 36 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_7_36_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_29_36_lower, cot_pi_7_36_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_29_36_upper, cot_pi_7_36_lower]
 
 def cot_pi_30_36_lower : ℚ := -975057921444247 / 562949953421312
 def cot_pi_30_36_upper : ℚ := -1950115842888483 / 1125899906842624
-axiom cot_pi_30_36_bounds :
+theorem cot_pi_30_36_bounds :
   ((cot_pi_30_36_lower : ℚ) : ℝ) ≤ cotangentTermV 30 36 ∧
-  cotangentTermV 30 36 ≤ ((cot_pi_30_36_upper : ℚ) : ℝ)
+  cotangentTermV 30 36 ≤ ((cot_pi_30_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 30 36 = cotangentTermV 5 6 :=
+    cotangentTermV_gcd_reduce (g := 6) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_5_6_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_30_36_lower, cot_pi_5_6_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_30_36_upper, cot_pi_5_6_upper]
 
 def cot_pi_31_36_lower : ℚ := -4829000284050157 / 2251799813685248
 def cot_pi_31_36_upper : ℚ := -4829000284050127 / 2251799813685248
-axiom cot_pi_31_36_bounds :
+theorem cot_pi_31_36_bounds :
   ((cot_pi_31_36_lower : ℚ) : ℝ) ≤ cotangentTermV 31 36 ∧
-  cotangentTermV 31 36 ≤ ((cot_pi_31_36_upper : ℚ) : ℝ)
+  cotangentTermV 31 36 ≤ ((cot_pi_31_36_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 31 36 = - cotangentTermV 5 36 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_5_36_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_31_36_lower, cot_pi_5_36_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_31_36_upper, cot_pi_5_36_lower]
 
 def cot_pi_32_36_lower : ℚ := -1546692285308089 / 562949953421312
 def cot_pi_32_36_upper : ℚ := -3093384570616163 / 1125899906842624
-axiom cot_pi_32_36_bounds :
+theorem cot_pi_32_36_bounds :
   ((cot_pi_32_36_lower : ℚ) : ℝ) ≤ cotangentTermV 32 36 ∧
-  cotangentTermV 32 36 ≤ ((cot_pi_32_36_upper : ℚ) : ℝ)
+  cotangentTermV 32 36 ≤ ((cot_pi_32_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 32 36 = cotangentTermV 8 9 :=
+    cotangentTermV_gcd_reduce (g := 4) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_8_9_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_32_36_lower, cot_pi_8_9_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_32_36_upper, cot_pi_8_9_upper]
 
 def cot_pi_33_36_lower : ℚ := -8403831313147493 / 2251799813685248
 def cot_pi_33_36_upper : ℚ := -8403831313147415 / 2251799813685248
-axiom cot_pi_33_36_bounds :
+private theorem cot_pi_div_1_12_fresh_aux_for_33_36 :
+    (8403831313147415 / 2251799813685248 : ℝ) ≤ cotangentTermV 1 12 ∧
+    cotangentTermV 1 12 ≤ (8403831313147493 / 2251799813685248 : ℝ) := by
+  have hcot : cotangentTermV 1 12
+      = Real.cos (Real.pi * 1 / 12) / Real.sin (Real.pi * 1 / 12) := by
+    unfold cotangentTermV
+    norm_num
+  set X : ℝ := Real.pi * 1 / 12 with hXdef
+  have hpl : (3.14159265358979323846 : ℝ) < Real.pi := Real.pi_gt_d20
+  have hpu : Real.pi < (3.14159265358979323847 : ℝ) := Real.pi_lt_d20
+  have hXl : (157079632679489661923 : ℝ) / 600000000000000000000 ≤ X := by rw [hXdef]; nlinarith [hpl]
+  have hXu : X ≤ (314159265358979323847 : ℝ) / 1200000000000000000000 := by rw [hXdef]; nlinarith [hpu]
+  set y : ℝ := X / 2 ^ 32 with hydef
+  have hyl : (77269540886155976985 : ℝ) / 1267650600228229401496703205376 ≤ y := by rw [hydef]; nlinarith [hXl]
+  have hyu : y ≤ (38634770443077988493 : ℝ) / 633825300114114700748351602688 := by rw [hydef]; nlinarith [hXu]
+  have hy0 : 0 ≤ y := le_trans (by norm_num) hyl
+  have hXeq : (2 : ℝ) ^ 32 * y = X := by rw [hydef]; ring
+  have hbase := RH.Certificates.TrigIntervalDemo.cos_sin_base_bound (y := y) (yl := 77269540886155976985 / 1267650600228229401496703205376) (yu := 38634770443077988493 / 633825300114114700748351602688) hy0 hyl hyu (by norm_num) (by norm_num)
+  obtain ⟨⟨hcb1, hcb2⟩, ⟨hsb1, hsb2⟩⟩ := hbase
+  have c0l : (904625697166532776744967750965398747468965077185524831807864926698066798891 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 ≤ Real.cos y := le_trans (by norm_num) hcb1
+  have c0u : Real.cos y ≤ (904625697166532776744967750965398747469009876936524597440973107109805561557 : ℝ) / 904625697166532776746648320380374280103671755200316906558262375061821325312 := le_trans hcb2 (by norm_num)
+  have s0l : (110282773946214948797197114129773064418152705754417390454630018141 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 ≤ Real.sin y := le_trans (by norm_num) hsb1
+  have s0u : Real.sin y ≤ (110282773946214948798624361822481626032327679120294246196991015243 : ℝ) / 1809251394333065553493296640760748560207343510400633813116524750123642650624 := le_trans hsb2 (by norm_num)
+  -- Level 1
+  have hd1 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := y) (by norm_num) (by norm_num) c0l c0u s0l s0u
+  obtain ⟨d1cl, d1cu, d1sl, d1su⟩ := hd1
+  have c1l : (226156424291633194184981510680118037391212821825155573444412581759741823033 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.cos (2 * (y)) := le_trans (by norm_num) d1cl
+  have c1u : Real.cos (2 * (y)) ≤ (1766847064778384329570168052188422167119200168563713586543130304255409001 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d1cu (by norm_num)
+  have s1l : (6892673371638434299812014761336696003098913352840994045250088659 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (y)) := le_trans (by norm_num) d1sl
+  have s1u : Real.sin (2 * (y)) ≤ (55141386973107474399209741937047848831880198535393236144780019815 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 := le_trans d1su (by norm_num)
+  -- Level 2
+  have hd2 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (y)) (by norm_num) (by norm_num) c1l c1u s1l s1u
+  obtain ⟨d2cl, d2cu, d2sl, d2su⟩ := hd2
+  have c2l : (452312848583266388359879604870382878974244895076558717485728962141760419305 : ℝ) / 452312848583266388373324160190187140051835877600158453279131187530910662656 ≤ Real.cos (2 * (2 * (y))) := le_trans (by norm_num) d2cl
+  have c2u : Real.cos (2 * (2 * (y))) ≤ (226156424291633194179939802435191439487301646542278421275295538182070588895 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 := le_trans d2cu (by norm_num)
+  have s2l : (55141386973107474398086362193921711287652264441527966261380371837 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (y))) := le_trans (by norm_num) d2sl
+  have s2u : Real.sin (2 * (2 * (y))) ≤ (6892673371638434299849998255034499011843347034137584211319360531 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d2su (by norm_num)
+  -- Level 3
+  have hd3 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (y))) (by norm_num) (by norm_num) c2l c2u s2l s2u
+  obtain ⟨d3cl, d3cu, d3sl, d3su⟩ := hd3
+  have c3l : (28269553036454149269971621181935630983891949994899459149416642326933150487 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3cl
+  have c3u : Real.cos (2 * (2 * (2 * (y)))) ≤ (56539106072908298539943242363871261967963098993797980831259015250609731665 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 := le_trans d3cu (by norm_num)
+  have s3l : (110282773946214948792894677213668568678228728608591575258177416833 : ℝ) / 226156424291633194186662080095093570025917938800079226639565593765455331328 ≤ Real.sin (2 * (2 * (2 * (y)))) := le_trans (by norm_num) d3sl
+  have s3u : Real.sin (2 * (2 * (2 * (y)))) ≤ (3446336685819217149822560153324285321639459788218636852740205669 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d3su (by norm_num)
+  -- Level 4
+  have hd4 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (y)))) (by norm_num) (by norm_num) c3l c3u s3l s3u
+  obtain ⟨d4cl, d4cu, d4sl, d4su⟩ := hd4
+  have c4l : (113078212145816597039552818768329740706591301368799851571798823636359091271 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 ≤ Real.cos (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4cl
+  have c4u : Real.cos (2 * (2 * (2 * (2 * (y))))) ≤ (113078212145816597039552818768329740708024893400792351831034219948004183141 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4cu (by norm_num)
+  have s4l : (55141386973107474389891244258484576545255073956451325422950519377 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (y))))) := le_trans (by norm_num) d4sl
+  have s4u : Real.sin (2 * (2 * (2 * (2 * (y))))) ≤ (110282773946214948781209736209677714704923976332345011560027159307 : ℝ) / 113078212145816597093331040047546785012958969400039613319782796882727665664 := le_trans d4su (by norm_num)
+  -- Level 5
+  have hd5 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (y))))) (by norm_num) (by norm_num) c4l c4u s4l s4u
+  obtain ⟨d5cl, d5cu, d5sl, d5su⟩ := hd5
+  have c5l : (56539106072908298439109077465339303919320225841759044284730053245641929587 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5cl
+  have c5u : Real.cos (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (1766847064778384326222158670791853247568356559554501400057414317828540127 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d5cu (by norm_num)
+  have s5l : (110282773946214948727333733730171490748989751564843027532872286117 : ℝ) / 56539106072908298546665520023773392506479484700019806659891398441363832832 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) := le_trans (by norm_num) d5sl
+  have s5u : Real.sin (2 * (2 * (2 * (2 * (2 * (y)))))) ≤ (27570693486553737182190245355720013091030738801108903746272145527 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d5su (by norm_num)
+  -- Level 6
+  have hd6 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (y)))))) (by norm_num) (by norm_num) c5l c5u s5l s5u
+  obtain ⟨d6cl, d6cu, d6sl, d6su⟩ := hd6
+  have c6l : (28269553036454149058219874895018519283529842267238467448767174985257731033 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6cl
+  have c6u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (28269553036454149058219874895018519289264210395208468472072883247649805879 : ℝ) / 28269553036454149273332760011886696253239742350009903329945699220681916416 := le_trans d6cu (by norm_num)
+  have s6l : (55141386973107474258769357291490420766285494563870861802301232409 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) := le_trans (by norm_num) d6sl
+  have s6u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (y))))))) ≤ (55141386973107474259482981137844701575290846823967609001568543521 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d6su (by norm_num)
+  -- Level 7
+  have hd7 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (y))))))) (by norm_num) (by norm_num) c6l c6u s6l s6u
+  obtain ⟨d7cl, d7cu, d7sl, d7su⟩ := hd7
+  have c7l : (1766847064778384275805076221525874478008626509932848467736564418046822041 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7cl
+  have c7u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (14134776518227074206440609772206995835537748335402789701234319170353653399 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7cu (by norm_num)
+  have s7l : (110282773946214947678358637994218247061501106661531533656536410031 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) := le_trans (by norm_num) d7sl
+  have s7u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) ≤ (110282773946214947679785885686926808691021814704128655743666328945 : ℝ) / 14134776518227074636666380005943348126619871175004951664972849610340958208 := le_trans d7su (by norm_num)
+  -- Level 8
+  have hd8 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))) (by norm_num) (by norm_num) c7l c7u s7l s7u
+  obtain ⟨d8cl, d8cu, d8sl, d8su⟩ := hd8
+  have c8l : (7067388259113536457881649535498982553159745956423711056487788527494693791 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8cl
+  have c8u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (7067388259113536457881649535498982576097218468303714277014494589012274929 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8cu (by norm_num)
+  have s8l : (110282773946214944321638331639167907490904253311810967447856833191 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) := le_trans (by norm_num) d8sl
+  have s8u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) ≤ (110282773946214944323065579331876469166464975444022598742519807057 : ℝ) / 7067388259113537318333190002971674063309935587502475832486424805170479104 := le_trans d8su (by norm_num)
+  -- Level 9
+  have hd9 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))) (by norm_num) (by norm_num) c8l c8u s8l s8u
+  obtain ⟨d9cl, d9cu, d9sl, d9su⟩ := hd9
+  have c9l : (3533694129556766938263514066540558770966817011635024315888393567778244165 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9cl
+  have c9u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (3533694129556766938263514066540558816841762035395025171686592967289077401 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 := le_trans d9cu (by norm_num)
+  have s9l : (110282773946214930894757106218967162227439664154837805926361974337 : ℝ) / 3533694129556768659166595001485837031654967793751237916243212402585239552 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) := le_trans (by norm_num) d9sl
+  have s9u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) ≤ (27570693486553732724046088477918931021790110661376862325396764787 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 := le_trans d9su (by norm_num)
+  -- Level 10
+  have hd10 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))) (by norm_num) (by norm_num) c9l c9u s9l s9u
+  obtain ⟨d10cl, d10cu, d10sl, d10su⟩ := hd10
+  have c10l : (1766847064778380887777135630853200071349010172871683861629860270662969807 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10cl
+  have c10u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (441711766194595221944283907713300040774725055097910222796139320374540995 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d10cu (by norm_num)
+  have s10l : (27570693486553719296808051134543497369086623849148798826896174555 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) := le_trans (by norm_num) d10sl
+  have s10u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) ≤ (110282773946214877188659452230882552072707499321096491011936485053 : ℝ) / 1766847064778384329583297500742918515827483896875618958121606201292619776 := le_trans d10su (by norm_num)
+  -- Level 11
+  have hd11 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))) (by norm_num) (by norm_num) c10l c10u s10l s10u
+  obtain ⟨d11cl, d11cu, d11sl, d11su⟩ := hd11
+  have c11l : (883423532389185281179325010598726984139417218992739834324829233789554283 : ℝ) / 883423532389192164791648750371459257913741948437809479060803100646309888 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11cl
+  have c11u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (220855883097296320294831252649681791909799328508074109275152237557321295 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d11cu (by norm_num)
+  have s11l : (55141386973107331178566298907579115658108413110352898733918540405 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) := le_trans (by norm_num) d11sl
+  have s11u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) ≤ (55141386973107331179279922753933398429569365940263683299373903831 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d11su (by norm_num)
+  -- Level 12
+  have hd12 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))) (by norm_num) (by norm_num) c11l c11u s11l s11u
+  obtain ⟨d12cl, d12cu, d12sl, d12su⟩ := hd12
+  have c12l : (220855883097291157585588447846951001434601579673404350089501450531183845 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12cl
+  have c12u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (441711766194582315171176895693902369868763349423062255061647900452440199 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12cu (by norm_num)
+  have s12l : (13785346743276725379591771365700765522948279945249432315344702423 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) := le_trans (by norm_num) d12sl
+  have s12u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) ≤ (110282773946213803038161418618314701512751752162996747120738217523 : ℝ) / 441711766194596082395824375185729628956870974218904739530401550323154944 := le_trans d12su (by norm_num)
+  -- Level 13
+  have hd13 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))) (by norm_num) (by norm_num) c12l c12u s12l s12u
+  obtain ⟨d13cl, d13cu, d13sl, d13su⟩ := hd13
+  have c13l : (220855883097270506748617229038304933990949666010049944534414795498801271 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13cl
+  have c13u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (220855883097270506748617229038305667990070046139679848948389593751682075 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13cu (by norm_num)
+  have s13l : (110282773946210365755140463407572503779273098863944589245967578325 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) := le_trans (by norm_num) d13sl
+  have s13u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) ≤ (110282773946210365756567711100281128253413039228042767885573456745 : ℝ) / 220855883097298041197912187592864814478435487109452369765200775161577472 := le_trans d13su (by norm_num)
+  -- Level 14
+  have hd14 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))) (by norm_num) (by norm_num) c13l c13u s13l s13u
+  obtain ⟨d14cl, d14cu, d14sl, d14su⟩ := hd14
+  have c14l : (110427941548593951700366180120075619766937578528435444316692561262075025 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14cl
+  have c14u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (27606985387148487925091545030019271941294584651169402583532277490231349 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d14cu (by norm_num)
+  have s14l : (110282773946196616628765633978234952181352805091393560783491985879 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) := le_trans (by norm_num) d14sl
+  have s14u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) ≤ (110282773946196616630192881670943765235390456481927494363132714739 : ℝ) / 110427941548649020598956093796432407239217743554726184882600387580788736 := le_trans d14su (by norm_num)
+  -- Level 15
+  have hd15 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))) (by norm_num) (by norm_num) c14l c14u s14l s14u
+  obtain ⟨d15cl, d15cu, d15sl, d15su⟩ := hd15
+  have c15l : (55213970774214372502298247007606416693156615559194958400608048250179055 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15cl
+  have c15u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (55213970774214372502298247007609352689638134247538147951650568351069387 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15cu (by norm_num)
+  have s15l : (27570693486535405030816581636408906524506568074981802993257940543 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) := le_trans (by norm_num) d15sl
+  have s15u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) ≤ (110282773946141620124693574238345193471654767380975281689416022827 : ℝ) / 55213970774324510299478046898216203619608871777363092441300193790394368 := le_trans d15su (by norm_num)
+  -- Level 16
+  have hd16 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))) (by norm_num) (by norm_num) c15l c15u s15l s15u
+  obtain ⟨d16cl, d16cu, d16sl, d16su⟩ := hd16
+  have c16l : (6901746346735494888844910841179707998051180166324440306133078264144553 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16cl
+  have c16u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (27606985386941979555379643364724703985167746328855000464734499955216133 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16cu (by norm_num)
+  have s16l : (110282773945921634101269261371252406636848048908989195479541132027 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) := le_trans (by norm_num) d16sl
+  have s16u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) ≤ (110282773945921634102696509063964991288839912108431671772691099117 : ℝ) / 27606985387162255149739023449108101809804435888681546220650096895197184 := le_trans d16su (by norm_num)
+  -- Level 17
+  have hd17 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))) (by norm_num) (by norm_num) c16l c16u s16l s16u
+  obtain ⟨d17cl, d17cu, d17sl, d17su⟩ := hd17
+  have c17l : (3450873173285144096538127282604485011556943602447365171299032939916367 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17cl
+  have c17u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (13803492693140576386152509130429684032153732031870820550914161414277293 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17cu (by norm_num)
+  have s17l : (55141386972520845006641816784972441403607031717717246489871437737 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) := le_trans (by norm_num) d17sl
+  have s17u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) ≤ (110282773945041690014710881262669536572659292809860388320652848939 : ℝ) / 13803492693581127574869511724554050904902217944340773110325048447598592 := le_trans d17su (by norm_num)
+  -- Level 18
+  have hd18 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))) (by norm_num) (by norm_num) c17l c17u s17l s17u
+  obtain ⟨d18cl, d18cu, d18sl, d18su⟩ := hd18
+  have c18l : (6901746345909461410014811271144121758073612379407448519736780667557633 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18cl
+  have c18u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (1725436586477365352503702817791902432481194495826307076432379955268065 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 := le_trans d18cu (by norm_num)
+  have s18l : (110282773941521913661383248704320199636013208121855705295526576301 : ℝ) / 6901746346790563787434755862277025452451108972170386555162524223799296 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) := le_trans (by norm_num) d18sl
+  have s18u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) ≤ (55141386970760956831405248198546564927635100709353988788336931021 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d18su (by norm_num)
+  -- Level 19
+  have hd19 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))) (by norm_num) (by norm_num) c18l c18u s18l s18u
+  obtain ⟨d19cl, d19cu, d19sl, d19su⟩ := hd19
+  have c19l : (862718292908269284747493381495914866482398819497939654386662601944787 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19cl
+  have c19u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (3450873171633077138989973526030635409625929363668085731503416136008227 : ℝ) / 3450873173395281893717377931138512726225554486085193277581262111899648 := le_trans d19cu (by norm_num)
+  have s19l : (27570693481860702063613932668872981824303764230314627344947953631 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) := le_trans (by norm_num) d19sl
+  have s19u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) ≤ (27570693481860702063970744592114490832922973366925145720939574273 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d19su (by norm_num)
+  -- Level 20
+  have hd20 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))) (by norm_num) (by norm_num) c19l c19u s19l s19u
+  obtain ⟨d20cl, d20cu, d20sl, d20su⟩ := hd20
+  have c20l : (1725436583173231438303758372032301100214505735677153743149954303112743 : ℝ) / 1725436586697640946858688965569256363112777243042596638790631055949824 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20cl
+  have c20u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (431359145793307859575939593031563246889799232521283920851015699576687 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d20cu (by norm_num)
+  have s20l : (55141386935563193318765000748936813375686878391355545212706581209 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) := le_trans (by norm_num) d20sl
+  have s20u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) ≤ (55141386935563193319478624595806043023147283642865139296112560169 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d20su (by norm_num)
+  -- Level 21
+  have hd21 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))) (by norm_num) (by norm_num) c20l c20u s20l s20u
+  obtain ⟨d21cl, d21cu, d21sl, d21su⟩ := hd21
+  have c21l : (862718286300001463518509026216511079048992310651596508120609104321771 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21cl
+  have c21u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (862718286300001463518509026404414853354558884204178137489729958807227 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 := le_trans d21cu (by norm_num)
+  have s21l : (110282773645860700342376571724432135021656283424112005833621546577 : ℝ) / 862718293348820473429344482784628181556388621521298319395315527974912 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) := le_trans (by norm_num) d21sl
+  have s21u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) ≤ (55141386822930350171901909710630143675693302544677964710542144019 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d21su (by norm_num)
+  -- Level 22
+  have hd22 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))) (by norm_num) (by norm_num) c21l c21u s21l s21u
+  obtain ⟨d22cl, d22cu, d22sl, d22su⟩ := hd22
+  have c22l : (215679566288386137242603527331747491459819261085250334203304560149293 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22cl
+  have c22u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (215679566288386137242603527519651264230122578288239753990378821295927 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 := le_trans d22cu (by norm_num)
+  have s22l : (27570693186199489480638659848434816860870049008142147116134978057 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) := le_trans (by norm_num) d22sl
+  have s22u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) ≤ (110282772744797957923981887102926191800986408004873988831458734873 : ℝ) / 431359146674410236714672241392314090778194310760649159697657763987456 := le_trans d22su (by norm_num)
+  -- Level 23
+  have hd23 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))) (by norm_num) (by norm_num) c22l c22u s22l s22u
+  obtain ⟨d23cl, d23cu, d23sl, d23su⟩ := hd23
+  have c23l : (215679545141929654636047794052023654888951786002128038816911669268937 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23cl
+  have c23u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (107839772570964827318023897401819360702976627136281699103395966634847 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d23cu (by norm_num)
+  have s23l : (110282769140547032415935227596345218951576535997684292924661474431 : ℝ) / 215679573337205118357336120696157045389097155380324579848828881993728 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) := le_trans (by norm_num) d23sl
+  have s23u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) ≤ (27570692285136758104340618838741807409197964468242726174028230019 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d23su (by norm_num)
+  -- Level 24
+  have hd24 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))) (by norm_num) (by norm_num) c23l c23u s23l s23u
+  obtain ⟨d24cl, d24cu, d24sl, d24su⟩ := hd24
+  have c24l : (107839730278055317637107319303954404948925069805088370098727516535397 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24cl
+  have c24u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (13479966284756914704638415100898042683655404459505183716334469864459 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d24cu (by norm_num)
+  have s24l : (110282754723544037152133337050359695520805677819257349696823522195 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) := le_trans (by norm_num) d24sl
+  have s24u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) ≤ (110282754723544037153560585006722022982547379326833727916746709137 : ℝ) / 107839786668602559178668060348078522694548577690162289924414440996864 := le_trans d24su (by norm_num)
+  -- Level 25
+  have hd25 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))) (by norm_num) (by norm_num) c24l c24u s24l s24u
+  obtain ⟨d25cl, d25cu, d25sl, d25su⟩ := hd25
+  have c25l : (26959890276618141855242526938860844337174035602699063738970865974521 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25cl
+  have c25u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (53919780553236283710485056884179989605814514750088163901708240999907 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25cu (by norm_num)
+  have s25l : (55141348527771682149314580215678816039221770352166127946567483445 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) := le_trans (by norm_num) d25sl
+  have s25u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) ≤ (110282697055543364300056409178680770097404119435298147238687981661 : ℝ) / 53919893334301279589334030174039261347274288845081144962207220498432 := le_trans d25su (by norm_num)
+  -- Level 26
+  have hd26 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))) (by norm_num) (by norm_num) c25l c25u s25l s25u
+  obtain ⟨d26cl, d26cu, d26sl, d26su⟩ := hd26
+  have c26l : (13479860552628272773897897976942085890790319088847464584161117427233 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26cl
+  have c26u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (13479860552628272773897900983394098390509642504253617667066187004829 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d26cu (by norm_num)
+  have s26l : (55141233191860802020454256270141811978676824466542415518965834611 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) := le_trans (by norm_num) d26sl
+  have s26u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) ≤ (110282466383721604042335764451442699427759849703388777979871650785 : ℝ) / 26959946667150639794667015087019630673637144422540572481103610249216 := le_trans d26su (by norm_num)
+  -- Level 27
+  have hd27 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))) (by norm_num) (by norm_num) c26l c26u s26l s26u
+  obtain ⟨d27cl, d27cu, d27sl, d27su⟩ := hd27
+  have c27l : (13479522211674307542903569117292066514147438396634466236263464393863 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27cl
+  have c27u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (6739761105837153771451790571499750960373002496440013709666574293489 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d27cu (by norm_num)
+  have s27l : (27570385924832364242361998618415977556852529514853409271975644083 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) := le_trans (by norm_num) d27sl
+  have s27u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) ≤ (110281543699329456970875259040049859369128161779725209553589555853 : ℝ) / 13479973333575319897333507543509815336818572211270286240551805124608 := le_trans d27su (by norm_num)
+  -- Level 28
+  have hd28 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))) (by norm_num) (by norm_num) c27l c27u s27l s27u
+  obtain ⟨d28cl, d28cu, d28sl, d28su⟩ := hd28
+  have c28l : (1684771109520729510314390000107321280854511564045746287289302502881 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28cl
+  have c28u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (421192777380182377578599003189953081245513523804034816477149959693 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d28cu (by norm_num)
+  have s28l : (110277853008078881391284340022088747319165512334170040477254315017 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) := le_trans (by norm_num) d28sl
+  have s28u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) ≤ (110277853008078881392711655207512192476582591994945405932722766417 : ℝ) / 6739986666787659948666753771754907668409286105635143120275902562304 := le_trans d28su (by norm_num)
+  -- Level 29
+  have hd29 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c28l c28u s28l s28u
+  obtain ⟨d29cl, d29cu, d29sl, d29su⟩ := hd29
+  have c29l : (1684094498379283314815852932796587570640614364026765127411487425179 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29cl
+  have c29u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (3368188996758566629631753960374173642063804521472547707975935176133 : ℝ) / 3369993333393829974333376885877453834204643052817571560137951281152 := le_trans d29cu (by norm_num)
+  have s29l : (27565772746036545380072155642851898841656004577442264771341253355 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) := le_trans (by norm_num) d29sl
+  have s29u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) ≤ (27565772746036545380429035050765573173772935396528599067579424403 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d29su (by norm_num)
+  -- Level 30
+  have hd30 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c29l c29u s29l s29u
+  obtain ⟨d30cl, d30cu, d30sl, d30su⟩ := hd30
+  have c30l : (840694479745409835016248793527446468245438049399214052532057763099 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30cl
+  have c30u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (420347239872704917508148431278948450489529202095136338007343203995 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d30cu (by norm_num)
+  have s30l : (55102027372169317627144938632148666359701420274852386339957105061 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) := le_trans (by norm_num) d30sl
+  have s30u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) ≤ (110204054744338635255718204202257118400512486670402901827265095397 : ℝ) / 1684996666696914987166688442938726917102321526408785780068975640576 := le_trans d30su (by norm_num)
+  -- Level 31
+  have hd31 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c30l c30u s30l s30u
+  obtain ⟨d31cl, d31cu, d31sl, d31su⟩ := hd31
+  have c31l : (417645321657163876333813901726312290703080271128798690590609932889 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31cl
+  have c31u : Real.cos (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (835290643314327752667819667896490151212901843140149671917294653375 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 := le_trans d31cu (by norm_num)
+  have s31l : (109968099403713864840885316668294440348857553002923169771227103589 : ℝ) / 842498333348457493583344221469363458551160763204392890034487820288 ≤ Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) := le_trans (by norm_num) d31sl
+  have s31u : Real.sin (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) ≤ (27492024850928466210579218294665179597656272899227215985703868063 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d31su (by norm_num)
+  -- Level 32
+  have hd32 := RH.Certificates.TrigIntervalDemo.cos_sin_double_bound (θ := 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) (by norm_num) (by norm_num) c31l c31u s31l s31u
+  obtain ⟨d32cl, d32cu, d32sl, d32su⟩ := hd32
+  have hangle : 2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (2 * (y)))))))))))))))))))))))))))))))) = X := by rw [← hXeq]; ring
+  rw [hangle] at d32cl d32cu d32sl d32su
+  have cXl : (101723862348346462515686898619554043329352324313790217590885617541 : ℝ) / 105312291668557186697918027683670432318895095400549111254310977536 ≤ Real.cos (X) := le_trans (by norm_num) d32cl
+  have cXu : Real.cos (X) ≤ (203447724696692925031564020256058949745080481713772615975911063939 : ℝ) / 210624583337114373395836055367340864637790190801098222508621955072 := le_trans d32cu (by norm_num)
+  have sXl : (109027307068856496061817734819302321134765151103689053086964533309 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 ≤ Real.sin (X) := le_trans (by norm_num) d32sl
+  have sXu : Real.sin (X) ≤ (109027307068856496063262087500551382117707690013294703835176586295 : ℝ) / 421249166674228746791672110734681729275580381602196445017243910144 := le_trans d32su (by norm_num)
+  have hsXpos : (0 : ℝ) < Real.sin X := lt_of_lt_of_le (by norm_num) sXl
+  rw [hcot]
+  constructor
+  · rw [le_div_iff₀ hsXpos]
+    have h1 : (8403831313147415 / 2251799813685248) * Real.sin X ≤ (8403831313147415 / 2251799813685248) * (109027307068856496063262087500551382117707690013294703835176586295 / 421249166674228746791672110734681729275580381602196445017243910144) := by apply mul_le_mul_of_nonneg_left sXu (by norm_num)
+    have h2 : (8403831313147415 / 2251799813685248) * (109027307068856496063262087500551382117707690013294703835176586295 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (101723862348346462515686898619554043329352324313790217590885617541 / 105312291668557186697918027683670432318895095400549111254310977536) := by norm_num
+    exact le_trans (le_trans h1 h2) cXl
+  · rw [div_le_iff₀ hsXpos]
+    have h1 : Real.cos X ≤ (203447724696692925031564020256058949745080481713772615975911063939 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) := cXu
+    have h2 : (203447724696692925031564020256058949745080481713772615975911063939 / 210624583337114373395836055367340864637790190801098222508621955072 : ℝ) ≤ (8403831313147493 / 2251799813685248) * (109027307068856496061817734819302321134765151103689053086964533309 / 421249166674228746791672110734681729275580381602196445017243910144) := by norm_num
+    have h3 : (8403831313147493 / 2251799813685248) * (109027307068856496061817734819302321134765151103689053086964533309 / 421249166674228746791672110734681729275580381602196445017243910144 : ℝ) ≤ (8403831313147493 / 2251799813685248) * Real.sin X := by apply mul_le_mul_of_nonneg_left sXl (by norm_num)
+    exact le_trans (le_trans h1 h2) h3
+
+theorem cot_pi_33_36_bounds :
   ((cot_pi_33_36_lower : ℚ) : ℝ) ≤ cotangentTermV 33 36 ∧
-  cotangentTermV 33 36 ≤ ((cot_pi_33_36_upper : ℚ) : ℝ)
+  cotangentTermV 33 36 ≤ ((cot_pi_33_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 33 36 = cotangentTermV 11 12 :=
+    cotangentTermV_gcd_reduce (g := 3) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have h0 : cotangentTermV 11 12 = - cotangentTermV 1 12 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_div_1_12_fresh_aux_for_33_36
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_33_36_lower]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_33_36_upper]
 
 def cot_pi_34_36_lower : ℚ := -3192647836192937 / 562949953421312
 def cot_pi_34_36_upper : ℚ := -3192647836192895 / 562949953421312
-axiom cot_pi_34_36_bounds :
+theorem cot_pi_34_36_bounds :
   ((cot_pi_34_36_lower : ℚ) : ℝ) ≤ cotangentTermV 34 36 ∧
-  cotangentTermV 34 36 ≤ ((cot_pi_34_36_upper : ℚ) : ℝ)
+  cotangentTermV 34 36 ≤ ((cot_pi_34_36_upper : ℚ) : ℝ) := by
+  have hred : cotangentTermV 34 36 = cotangentTermV 17 18 :=
+    cotangentTermV_gcd_reduce (g := 2) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  rw [hred]
+  have hbase := cot_pi_17_18_bounds
+  constructor
+  · apply le_trans _ hbase.1; norm_num [cot_pi_34_36_lower, cot_pi_17_18_lower]
+  · apply le_trans hbase.2 _; norm_num [cot_pi_34_36_upper, cot_pi_17_18_upper]
 
 def cot_pi_35_36_lower : ℚ := -6434547411442705 / 562949953421312
 def cot_pi_35_36_upper : ℚ := -6434547411442543 / 562949953421312
-axiom cot_pi_35_36_bounds :
+theorem cot_pi_35_36_bounds :
   ((cot_pi_35_36_lower : ℚ) : ℝ) ≤ cotangentTermV 35 36 ∧
-  cotangentTermV 35 36 ≤ ((cot_pi_35_36_upper : ℚ) : ℝ)
+  cotangentTermV 35 36 ≤ ((cot_pi_35_36_upper : ℚ) : ℝ) := by
+  have h0 : cotangentTermV 35 36 = - cotangentTermV 1 36 :=
+    cotangentTermV_obtuse_eq_neg (by norm_num) (by norm_num)
+  rw [h0]
+  have hbase := cot_pi_1_36_bounds
+  constructor
+  · apply le_trans _ (neg_le_neg hbase.2); norm_num [cot_pi_35_36_lower, cot_pi_1_36_upper]
+  · apply le_trans (neg_le_neg hbase.1) _; norm_num [cot_pi_35_36_upper, cot_pi_1_36_lower]
 
 def cot_pi_1_37_lower : ℚ := 3307091593147563 / 281474976710656
 def cot_pi_1_37_upper : ℚ := 3307091593147567 / 281474976710656
