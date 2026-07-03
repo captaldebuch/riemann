@@ -155,6 +155,23 @@ structure MobiusPNTStyleEstimates where
 -- 5. Bridge to Dirichlet Estimates
 -- ---------------------------------------------------------------------------
 
+/-- The PNT-style Abel bounds imply the cutoff-sum estimates. -/
+noncomputable def mobius_summatory_estimates_of_pnt_style
+    (H : MobiusPNTStyleEstimates) :
+    MobiusSummatoryEstimates :=
+  { C_M := H.C_M
+    C_L := H.C_L
+    implies_overK := by
+      intro N
+      rw [cutoffMobiusOverKSum_eq_abel_sum]
+      exact H.mobius_abel_bound N
+    implies_logOverK := by
+      intro N
+      rw [cutoffMobiusLogOverKSum_eq_abel_sum]
+      exact H.mobiusLog_abel_bound N
+    C_pos := add_pos_of_pos_of_nonneg H.C_L_pos
+      (mul_nonneg (abs_nonneg _) H.C_M_nonneg) }
+
 noncomputable def linear_mobius_dirichlet_estimates_of_summatory_estimates
     (H : MobiusSummatoryEstimates) :
     LinearMobiusDirichletEstimates :=
@@ -163,5 +180,12 @@ noncomputable def linear_mobius_dirichlet_estimates_of_summatory_estimates
     C_pos := H.C_pos
     log_bound := H.implies_logOverK
     overK_bound := H.implies_overK }
+
+/-- Full Phase 14 bridge from PNT-style summatory input to the linear cutoff estimates. -/
+noncomputable def linear_mobius_dirichlet_estimates_of_pnt_style
+    (H : MobiusPNTStyleEstimates) :
+    LinearMobiusDirichletEstimates :=
+  linear_mobius_dirichlet_estimates_of_summatory_estimates
+    (mobius_summatory_estimates_of_pnt_style H)
 
 end RH.Criteria.NymanBeurling.MobiusSummatory
