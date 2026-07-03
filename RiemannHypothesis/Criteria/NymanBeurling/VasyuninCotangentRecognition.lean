@@ -146,6 +146,16 @@ theorem one_div_add_sq_le_four_div_sq (x : ℝ) {n : ℤ} (hn : 2 * (|x| + 1) �
   rw [hrw] at hstep
   exact hstep
 
+/-- Uniform-in-`x` version of `one_div_add_sq_le_four_div_sq`: the same conclusion holds
+    replacing the specific `x` by any bound `C` with `|x| ≤ C`. This is exactly the form needed
+    for a *global* uniform summable bound on a whole interval (as opposed to a single point),
+    which is what `hasDerivAt_tsum_of_isPreconnected` requires. -/
+theorem one_div_add_sq_le_four_div_sq_of_le {x C : ℝ} (hxC : |x| ≤ C) {n : ℤ}
+    (hn : 2 * (C + 1) ≤ |(n : ℝ)|) :
+    1 / (x + n) ^ 2 ≤ 4 / (n : ℝ) ^ 2 := by
+  have hCx : 2 * (|x| + 1) ≤ |(n:ℝ)| := by linarith
+  exact one_div_add_sq_le_four_div_sq x hCx
+
 /-- The finitely-many "bad" integers `n` for which the comparison bound
     `one_div_add_sq_le_four_div_sq` does not (yet) apply, i.e. `|n| < 2*(|x|+1)`. -/
 theorem finite_small_int (x : ℝ) :
@@ -260,5 +270,33 @@ theorem hasDerivAt_mittagLefflerTerm {a y : ℝ} (ha : y ≠ a) (ha' : y ≠ -a)
     convert this using 1
     field_simp
   simpa using h1.add h2
+
+/-- Uniform (in `y` ranging over the ball `|y - x₀| < δ`) comparison bound for a single
+    Mittag-Leffler derivative term, valid once `n` is large enough (`2 * (|x₀| + δ + 1) ≤ n+1`)
+    that the `4/n²`-style comparison (`one_div_add_sq_le_four_div_sq`, applied with the
+    uniform-in-`y` bound `|y| ≤ |x₀| + δ`) kicks in for every `y` in the ball at once, not just
+    at the center `x₀`. -/
+theorem mittagLefflerDeriv_far_bound {x₀ δ : ℝ} {y : ℝ} (hy : |y - x₀| < δ)
+    {n : ℕ} (hn : 2 * (|x₀| + δ + 1) ≤ (n : ℝ) + 1) :
+    1 / (y - ((n:ℝ) + 1)) ^ 2 + 1 / (y + ((n:ℝ) + 1)) ^ 2 ≤ 8 / ((n:ℝ) + 1) ^ 2 := by
+  have hyC : |y| ≤ |x₀| + δ := by
+    have h1 : |y| - |x₀| ≤ |y - x₀| := by
+      have := abs_sub_abs_le_abs_sub y x₀; linarith
+    linarith
+  set m : ℤ := (n : ℤ) + 1 with hm_def
+  have hmcast : ((m : ℤ) : ℝ) = (n : ℝ) + 1 := by push_cast [hm_def]; ring
+  have hn' : 2 * (|y| + 1) ≤ |(m : ℝ)| := by
+    rw [hmcast]; rw [abs_of_nonneg (by positivity : (0:ℝ) ≤ (n:ℝ) + 1)]; linarith
+  have hstep1 : 1 / (y + (m : ℝ)) ^ 2 ≤ 4 / (m : ℝ) ^ 2 :=
+    one_div_add_sq_le_four_div_sq y hn'
+  have hn'' : 2 * (|(-y)| + 1) ≤ |(m : ℝ)| := by
+    rw [abs_neg]; exact hn'
+  have hstep2 : 1 / (-y + (m : ℝ)) ^ 2 ≤ 4 / (m : ℝ) ^ 2 :=
+    one_div_add_sq_le_four_div_sq (-y) hn''
+  rw [hmcast] at hstep1 hstep2
+  have heq2 : (-y + ((n:ℝ) + 1)) ^ 2 = (y - ((n:ℝ) + 1)) ^ 2 := by ring
+  rw [heq2] at hstep2
+  have hsum : (4:ℝ) / ((n:ℝ)+1) ^ 2 + 4 / ((n:ℝ)+1) ^ 2 = 8 / ((n:ℝ)+1) ^ 2 := by ring
+  linarith [hstep1, hstep2]
 
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
