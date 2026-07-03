@@ -223,4 +223,42 @@ theorem real_cot_series_rep' {x : ℝ} (hx : ∀ n : ℤ, (n : ℝ) ≠ x) :
     exact hc
   exact_mod_cast this
 
+-- ---------------------------------------------------------------------------
+-- 4. Term-by-term differentiation of the real Mittag-Leffler series on an interval
+--    `Ioo (m : ℝ) (m + 1)` avoiding all integers.
+--
+-- Strategy (per the task brief's identification of `hasDerivAt_tsum_of_isPreconnected` in
+-- `Mathlib.Analysis.Calculus.SmoothSeries` as the right real-variable tool): work on a single
+-- open interval `t = Set.Ioo (m : ℝ) (m + 1)` for a fixed integer `m`, on which every term
+-- `y ↦ 1/(y - (n+1)) + 1/(y + (n+1))` (`n : ℕ`) is differentiable (the denominators
+-- `y - (n+1)`, `y + (n+1)` never vanish on `t`, since `t` contains no integer), and on which a
+-- genuinely *global* (not just local) uniform summable bound on the derivatives is available,
+-- because `t` is a bounded interval a fixed positive distance from every integer other than
+-- `m` and `m+1` themselves (and the two "close" terms `n = m` / `n = -m-1`-ish contribute only
+-- finitely many exceptional terms, handled by the eventual/global bound argument below via a
+-- `4/n²`-type comparison, exactly as in `summable_realTrigammaSeriesInt`).
+-- ---------------------------------------------------------------------------
+
+/-- The derivative of a single term `y ↦ 1/(y - a) + 1/(y + a)` of the Mittag-Leffler series,
+    valid whenever `y ≠ a` and `y ≠ -a`. -/
+theorem hasDerivAt_mittagLefflerTerm {a y : ℝ} (ha : y ≠ a) (ha' : y ≠ -a) :
+    HasDerivAt (fun z : ℝ => 1 / (z - a) + 1 / (z + a))
+      (-(1 / (y - a) ^ 2) + -(1 / (y + a) ^ 2)) y := by
+  have h1 : HasDerivAt (fun z : ℝ => 1 / (z - a)) (-(1 / (y - a) ^ 2)) y := by
+    have hsub : HasDerivAt (fun z : ℝ => z - a) 1 y := (hasDerivAt_id y).sub_const a
+    have hne : y - a ≠ 0 := sub_ne_zero.mpr ha
+    have := hsub.inv hne
+    simp only [one_div, inv_one] at this ⊢
+    convert this using 1
+    field_simp
+  have h2 : HasDerivAt (fun z : ℝ => 1 / (z + a)) (-(1 / (y + a) ^ 2)) y := by
+    have hadd : HasDerivAt (fun z : ℝ => z + a) 1 y := (hasDerivAt_id y).add_const a
+    have hne : y + a ≠ 0 := by
+      intro h; apply ha'; linarith
+    have := hadd.inv hne
+    simp only [one_div, inv_one] at this ⊢
+    convert this using 1
+    field_simp
+  simpa using h1.add h2
+
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
