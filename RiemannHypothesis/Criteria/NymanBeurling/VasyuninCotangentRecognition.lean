@@ -44,6 +44,20 @@ does **not** modify `VasyuninBridge.lean` at all.
 * `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat` : the exact algebraic identity
   connecting the `∑_{n≥0} 1/(nL+s)²` weight appearing in `VasyuninBridge.lean`'s
   `tsum_shifted_integrals_eq_cotangent_sum` to `realTrigammaSeriesNat`. **Fully proved.**
+* `summable_inv_shifted_sq` : unconditional summability (any `L > 0`, any real `s`) of the
+  `∑_{n≥0} 1/(nL+s)²` shifted series itself, a one-line corollary of
+  `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat` and `summable_realTrigammaSeriesNat`.
+  **Fully proved.**
+* `shiftedIntegralTsum_eq_integral_of_rescaled_series` : the sum-integral interchange step
+  explicitly flagged in `VasyuninBridge.lean`'s doc-comment on
+  `tsum_shifted_integrals_eq_cotangent_sum` ("swapping sum and integral, itself a
+  nontrivial-but-standard monotone/dominated-convergence step since the summand is a sum of
+  nonnegative terms") — it turns the "sum of integrals" shape of that theorem's LHS into an
+  "integral of the (closed-form) sum" shape, via Mathlib's `MeasureTheory.integral_tsum`. Takes
+  as its one hypothesis the integrability of the resulting closed-form integrand on `Ioc 0 L`
+  (deliberately *not* proved here — that belongs with the harder sub-arc/Dedekind-reciprocity
+  recognition work below, out of scope for this step). **Fully proved** (no `sorryAx`) modulo
+  that explicit, precisely-isolated hypothesis.
 * `shiftedIntegralTsum_period_reduction` : the period-reduction step (from `L = lcm h k` down
   to individual periods `h`, `k`, and from there to `cotangentSumVFormula` via the classical
   Dedekind-sum-style reciprocity) is stated with the exact target shape of
@@ -92,6 +106,24 @@ does **not** modify `VasyuninBridge.lean` at all.
     found anywhere in Mathlib (searched `Trigonometric/EulerSineProd.lean`, the `Gamma`/`Digamma`
     directory, and grepped the whole tree for `trigamma`/`polygamma`/`sin_sq` in a `tsum`
     context) — the identity `∑ 1/(x+n)² = π²/sin²(πx)` is not otherwise available "for free".
+* `Mathlib.MeasureTheory.Integral.DominatedConvergence`:
+  - `MeasureTheory.integral_tsum {f : ι → α → G} (hf : ∀ i, AEStronglyMeasurable (f i) μ)
+      (hf' : ∑' i, ∫⁻ a, ‖f i a‖ₑ ∂μ ≠ ∞) : ∫ a, ∑' i, f i a ∂μ = ∑' i, ∫ a, f i a ∂μ` is the
+    right tool for the sum-integral interchange needed in
+    `shiftedIntegralTsum_eq_integral_of_rescaled_series` below: unlike the more obvious-looking
+    `MeasureTheory.integral_tsum_of_summable_integral_norm` (which demands `∀ i, Integrable (f i) μ`
+    as a *separate* hypothesis), `integral_tsum`'s single finiteness hypothesis is on the *total*
+    lintegral, from which each summand's integrability falls out for free — important here because
+    proving `Integrable (F n)` directly for the `n = 0` shifted-integral summand is delicate (it
+    blows up like `1/s²` as `s → 0⁺`, same difficulty flagged in `VasyuninBridge.lean`'s own
+    `genIntegrandTransformed_integrableOn_Ioc01`), so avoiding that as a separate proof obligation
+    is a real simplification.
+  - `MeasureTheory.lintegral_tsum {f : β → α → ℝ≥0∞} (hf : ∀ i, AEMeasurable (f i) μ) :
+      ∫⁻ a, ∑' i, f i a ∂μ = ∑' i, ∫⁻ a, f i a ∂μ` is the `ℝ≥0∞`-valued analogue, unconditional
+      (no finiteness/summability side-condition, since `ℝ≥0∞`-tsums are always well-defined) —
+      used to establish `integral_tsum`'s finiteness hypothesis by relating it to the ordinary
+      (Bochner) integrability of the pointwise-summed closed-form function via
+      `ENNReal.ofReal_tsum_of_nonneg` and `MeasureTheory.lintegral_ofReal_ne_top_iff_integrable`.
 -/
 
 namespace RH.Criteria.NymanBeurling.VasyuninCotangentRecognition
@@ -692,6 +724,125 @@ theorem tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat {L : ℝ} (hL : 0 
   rw [hterm, mul_pow, one_div, one_div, mul_inv]
   congr 1
   rw [← one_div]
+
+/-- Summability, for fixed `L > 0` and any real `s` (no non-integrality of `s/L` required), of
+    the shifted series `∑_{n≥0} 1/(nL+s)²` appearing in `tsum_shifted_integrals_eq_cotangent_sum`.
+    An immediate consequence of `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat` together
+    with `summable_realTrigammaSeriesNat`: rescaling `(n:ℝ)*L+s = L*(n+s/L)` turns the series into
+    a constant multiple of `realTrigammaSeriesNat (s/L)`'s defining series, which is unconditionally
+    summable. Needed below to justify the pointwise application of `ENNReal.ofReal_tsum_of_nonneg`
+    in the sum-integral interchange. -/
+theorem summable_inv_shifted_sq {L : ℝ} (hL : 0 < L) (s : ℝ) :
+    Summable fun n : ℕ => 1 / ((n : ℝ) * L + s) ^ 2 := by
+  have hbase := summable_realTrigammaSeriesNat (s / L)
+  have hLne : L ≠ 0 := hL.ne'
+  have heq : (fun n : ℕ => (1:ℝ) / ((n:ℝ) * L + s) ^ 2)
+      = (fun n : ℕ => (1 / L ^ 2) * (1 / ((n:ℝ) + s / L) ^ 2)) := by
+    funext n
+    have hterm : (n : ℝ) * L + s = L * ((n : ℝ) + s / L) := by field_simp
+    rw [hterm, mul_pow]
+    field_simp
+  rw [heq]
+  exact hbase.mul_left _
+
+/-- **The sum-integral interchange step**, isolated as its own theorem per the task brief (this
+    is exactly the "swapping sum and integral" step flagged in `VasyuninBridge.lean`'s doc-comment
+    on `tsum_shifted_integrals_eq_cotangent_sum` as "itself a nontrivial-but-standard
+    monotone/dominated-convergence step since the summand is a sum of nonnegative terms"). It
+    turns the LHS "sum of integrals" shape of `tsum_shifted_integrals_eq_cotangent_sum` into the
+    "integral of the (now closed-form, via `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat`)
+    sum" shape, which is the natural starting point for the remaining sub-arc/Dedekind-reciprocity
+    argument (`shiftedIntegralTsum_period_reduction` below, NOT attempted here).
+
+    The one hypothesis, `hg_int`, is integrability of the resulting closed-form integrand
+    `{s/h}{s/k} · (1/L²) · realTrigammaSeriesNat(s/L)` on `Ioc 0 L` — this is NOT proved here (it
+    is exactly the kind of fact that the sub-arc partitioning / Dedekind-reciprocity argument
+    would need to establish anyway as part of recognizing the closed form), so it is taken as an
+    explicit hypothesis, precisely isolating the interchange from that separate, harder content.
+
+    Proof strategy: write `F n s := {s/h}{s/k}/(nL+s)²` and `g s :=
+    {s/h}{s/k}·(1/L²)·realTrigammaSeriesNat(s/L)`, so that `∑' n, F n s = g s` pointwise (by
+    `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat`) and both are nonnegative. Mathlib's
+    `MeasureTheory.integral_tsum` swaps `∫ ∑'` into `∑' ∫` given (a) `AEStronglyMeasurable (F n)`
+    for each `n` (immediate, `F n` is an elementary measurable function — no need to separately
+    establish `Integrable (F n)`, which would be delicate since `F 0` blows up like `1/s²` near
+    `s = 0`: this per-summand integrability instead falls out for free from the total finiteness
+    hypothesis below, exactly as in the internal proof of `integral_tsum` itself) and (b) the
+    *total* lower-integral (`lintegral`) finiteness `∑' n, ∫⁻ s, ‖F n s‖ₑ ∂μ ≠ ∞`. That finiteness
+    is obtained by rewriting `‖F n s‖ₑ = ENNReal.ofReal (F n s)` (nonnegativity), commuting the
+    `∑'`/`∫⁻` via the unconditional (`ℝ≥0∞`-valued, no summability side-condition) `lintegral_tsum`,
+    recognizing the pointwise sum as `ENNReal.ofReal (g s)` via `ENNReal.ofReal_tsum_of_nonneg`
+    (using `summable_inv_shifted_sq`-derived pointwise summability of `F · s`), and finally
+    invoking `hg_int` via `lintegral_ofReal_ne_top_iff_integrable`. -/
+theorem shiftedIntegralTsum_eq_integral_of_rescaled_series (h k : ℕ) (hh : 0 < h) (hk : 0 < k)
+    (hg_int : MeasureTheory.IntegrableOn
+      (fun s : ℝ => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+        ((1 / (Nat.lcm h k : ℝ) ^ 2) * realTrigammaSeriesNat (s / (Nat.lcm h k : ℝ))))
+      (Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ))) :
+    (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
+          ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
+      = ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+          Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+            ((1 / (Nat.lcm h k : ℝ) ^ 2) * realTrigammaSeriesNat (s / (Nat.lcm h k : ℝ))) := by
+  set L : ℝ := (Nat.lcm h k : ℝ) with hL_def
+  have hLpos : 0 < L := by
+    rw [hL_def]; exact_mod_cast Nat.lcm_pos hh hk
+  set μ : MeasureTheory.Measure ℝ := MeasureTheory.volume.restrict (Set.Ioc (0 : ℝ) L) with hμ_def
+  set F : ℕ → ℝ → ℝ :=
+    fun n s => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / ((n : ℝ) * L + s) ^ 2
+    with hF_def
+  set g : ℝ → ℝ := fun s => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+    ((1 / L ^ 2) * realTrigammaSeriesNat (s / L)) with hg_def
+  -- Pointwise: `∑' n, F n s = g s`, directly from
+  -- `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat`.
+  have hpt : ∀ s : ℝ, ∑' n : ℕ, F n s = g s := by
+    intro s
+    rw [hF_def, hg_def]
+    simp only
+    rw [← tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat hLpos s, ← tsum_mul_left]
+    exact tsum_congr (fun n => by ring)
+  have hFnonneg : ∀ n s, 0 ≤ F n s := by
+    intro n s
+    rw [hF_def]
+    simp only
+    have h1 := Int.fract_nonneg (s / (h : ℝ))
+    have h3 := Int.fract_nonneg (s / (k : ℝ))
+    positivity
+  have hgnonneg : ∀ s, 0 ≤ g s := fun s => hpt s ▸ tsum_nonneg (fun n => hFnonneg n s)
+  have hFmeas : ∀ n : ℕ, MeasureTheory.AEStronglyMeasurable (F n) μ := by
+    intro n
+    apply Measurable.aestronglyMeasurable
+    rw [hF_def]; measurability
+  -- The total lintegral of the norms is finite, thanks to `hg_int`.
+  have hfin : ∑' n : ℕ, ∫⁻ s, ‖F n s‖ₑ ∂μ ≠ ⊤ := by
+    have hstep1 : (fun n : ℕ => ∫⁻ s, ‖F n s‖ₑ ∂μ)
+        = (fun n : ℕ => ∫⁻ s, ENNReal.ofReal (F n s) ∂μ) := by
+      funext n; congr 1; funext s; exact Real.enorm_eq_ofReal (hFnonneg n s)
+    rw [hstep1, ← MeasureTheory.lintegral_tsum (fun n => (hFmeas n).aemeasurable.ennreal_ofReal)]
+    have hsummableF : ∀ s : ℝ, Summable fun n : ℕ => F n s := by
+      intro s
+      rw [hF_def]
+      have hcomp := (summable_inv_shifted_sq hLpos s).mul_left
+        (Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)))
+      refine hcomp.congr (fun n => ?_)
+      change Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) * (1 / ((n : ℝ) * L + s) ^ 2)
+        = Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / ((n : ℝ) * L + s) ^ 2
+      ring
+    have hstep2 : (fun s => ∑' n : ℕ, ENNReal.ofReal (F n s))
+        = (fun s => ENNReal.ofReal (g s)) := by
+      funext s
+      rw [← hpt s]
+      exact (ENNReal.ofReal_tsum_of_nonneg (fun n => hFnonneg n s) (hsummableF s)).symm
+    rw [hstep2]
+    exact (MeasureTheory.lintegral_ofReal_ne_top_iff_integrable
+      hg_int.aestronglyMeasurable (Filter.Eventually.of_forall hgnonneg)).mpr hg_int
+  -- Apply the interchange and rewrite both sides via `hpt`.
+  have hswap := MeasureTheory.integral_tsum hFmeas hfin
+  have hlhs_eq : (∫ s, ∑' n : ℕ, F n s ∂μ) = ∫ s, g s ∂μ := by
+    congr 1; funext s; exact hpt s
+  rw [hlhs_eq, hμ_def] at hswap
+  exact hswap.symm
 
 /-- **The period-reduction step**, precisely stated but NOT proved here (the remaining
     genuinely Vasyunin-specific combinatorial content, per the task brief's item 2): reducing
