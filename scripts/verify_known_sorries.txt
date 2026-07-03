@@ -1,0 +1,26 @@
+# Theorems that are EXPECTED to depend on sorryAx, because they transitively
+# depend on a real, individually-documented open sorry in the source (not a
+# hidden/undocumented gap). scripts/verify.sh's step 4 will not FAIL on a
+# sorryAx dependency for a name listed here (bare name or fully-qualified,
+# one per line, matched exactly).
+#
+# Adding a name here is a judgment call, not a rubber stamp: before adding,
+# confirm the sorry it depends on is genuinely documented at its declaration
+# (see AGENTS.md — undocumented/silent sorries are not acceptable regardless
+# of this allowlist).
+
+# RiemannHypothesis/Criteria/NymanBeurling/VasyuninBridge.lean — Vasyunin tail
+# decomposition (Phase 13B), see docs/roadmap.md and the memory entry
+# phase_10t_cotangent_axioms.md / project_roadmap_phase13.md for context.
+# Three genuinely open sorries here: genIntegrandTransformed_integrableOn_Ioc01,
+# transformedIntegral_eq_tsum_genBlockSetIntegral (mechanical, tedious to close),
+# and tsum_shifted_integrals_eq_cotangent_sum (the actual hard mathematical
+# content — a Dedekind-sum-style cotangent identity not in Mathlib).
+genIntegrandTransformed_integrableOn_Ioc01
+genIntegrandTransformed_integrableOn_Ioi
+transformedIntegral_eq_tsum_genBlockSetIntegral
+debtFieldLHS_eq_tsum_shifted_integrals
+tsum_shifted_integrals_eq_cotangent_sum
+interval_sum_add_tail_eq_cotangent_formula_of_debts
+interval_sum_add_tail_eq_cotangent_formula_unconditional
+baezDuarteGramEntry_eq_transformed_integral

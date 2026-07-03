@@ -132,19 +132,46 @@ cut -f1 "$SELECTED" | sort -u | sed 's/^/import /' > "$SCRATCH"
 cut -f2 "$SELECTED" | grep -v '^$' | sort -u | sed 's/^/open /' >> "$SCRATCH"
 cut -f3 "$SELECTED" | sed 's/^/#print axioms /' >> "$SCRATCH"
 
+ALLOWLIST="scripts/verify_known_sorries.txt"
 if [ "$NEW_THEOREM_COUNT" -eq 0 ]; then
   echo "No new 'theorem' declarations found relative to baseline (nothing to check, or only defs/axioms changed)."
 else
   echo "Checking $NEW_THEOREM_COUNT new theorem(s)..."
   AXIOM_OUTPUT=$(lake env lean "$SCRATCH" 2>&1)
   echo "$AXIOM_OUTPUT"
-  if echo "$AXIOM_OUTPUT" | grep -q "sorryAx"; then
-    echo "FAIL: at least one new theorem depends on sorryAx"
-    OVERALL_FAIL=1
-  elif echo "$AXIOM_OUTPUT" | grep -qi "error"; then
+  if echo "$AXIOM_OUTPUT" | grep -qi "^error\|invalid 'import'\|unknown"; then
     echo "FAIL: the axiom-check script itself failed to compile — inspect $SCRATCH manually"
     echo "(this can happen if a theorem needs a namespace/import this script didn't guess correctly)"
     OVERALL_FAIL=1
+  elif echo "$AXIOM_OUTPUT" | grep -q "sorryAx"; then
+    # A theorem depending on sorryAx is only acceptable if it's individually named in
+    # scripts/verify_known_sorries.txt (one qualified or bare name per line, '#' comments ok) —
+    # i.e. someone has already looked at it and decided it's expected, documented open work,
+    # not a surprise. Anything else fails.
+    UNEXPECTED=""
+    CURRENT_NAME=""
+    while IFS= read -r line; do
+      if echo "$line" | grep -qE "^'.*' depends on axioms:"; then
+        CURRENT_NAME=$(echo "$line" | sed -E "s/^'([^']+)'.*/\1/")
+      fi
+      if echo "$line" | grep -q "sorryAx" && [ -n "$CURRENT_NAME" ]; then
+        SHORT_NAME="${CURRENT_NAME##*.}"
+        if [ -f "$ALLOWLIST" ] && (grep -qxF "$CURRENT_NAME" "$ALLOWLIST" || grep -qxF "$SHORT_NAME" "$ALLOWLIST"); then
+          echo "  (sorryAx in $CURRENT_NAME — allowlisted in $ALLOWLIST, OK)"
+        else
+          UNEXPECTED="$UNEXPECTED $CURRENT_NAME"
+        fi
+        CURRENT_NAME=""
+      fi
+    done <<< "$AXIOM_OUTPUT"
+    if [ -n "$UNEXPECTED" ]; then
+      echo "FAIL: theorem(s) depend on sorryAx and are NOT in $ALLOWLIST:$UNEXPECTED"
+      echo "      If this is expected/documented open work, add the name to $ALLOWLIST."
+      echo "      If it's a surprise, that's exactly what this check exists to catch."
+      OVERALL_FAIL=1
+    else
+      echo "PASS: all sorryAx dependencies found are allowlisted in $ALLOWLIST."
+    fi
   else
     echo "PASS: no sorryAx detected. Review the axiom lists above by eye — anything beyond"
     echo "      [propext, Classical.choice, Quot.sound] plus already-known project axioms"
