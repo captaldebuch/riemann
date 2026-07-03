@@ -124,7 +124,35 @@ theorem cutoffMobiusLogOverKSum_eq_abel_sum (N : ℕ) :
   ring
 
 -- ---------------------------------------------------------------------------
--- 4. Bridge to Dirichlet Estimates
+-- 4. PNT-Style Summatory Estimates
+-- ---------------------------------------------------------------------------
+
+/--
+PNT-style quantitative hypotheses at the exact Abel-transform interface needed
+by the cutoff Möbius argument.  Constructing this structure is the remaining
+classical analytic-number-theory debt; it makes no assumption about the cutoff
+sums themselves.
+-/
+structure MobiusPNTStyleEstimates where
+  C_M : ℝ
+  C_L : ℝ
+  C_M_nonneg : 0 ≤ C_M
+  C_L_pos : 0 < C_L
+  mobius_abel_bound :
+    ∀ N : ℕ,
+      |∑ k ∈ Finset.Icc 1 N,
+          mobiusSummatory k *
+            (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))|
+        ≤ C_M / Real.log (N + 2 : ℝ)
+  mobiusLog_abel_bound :
+    ∀ N : ℕ,
+      |1 + ∑ k ∈ Finset.Icc 1 N,
+          mobiusLogSummatory k *
+            (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))|
+        ≤ C_L / Real.log (N + 2 : ℝ)
+
+-- ---------------------------------------------------------------------------
+-- 5. Bridge to Dirichlet Estimates
 -- ---------------------------------------------------------------------------
 
 noncomputable def linear_mobius_dirichlet_estimates_of_summatory_estimates
