@@ -194,7 +194,36 @@ theorem quadraticInteractionGcdSlice_eq_coprimeScaled (N g : ℕ) (hg : 0 < g) :
       rw [Finset.sum_filter, Finset.sum_product]
 
 -- ---------------------------------------------------------------------------
--- 4. Formal Reductions
+-- 4. Off-Diagonal GCD Stratification
+-- ---------------------------------------------------------------------------
+
+/-- The off-diagonal weighted interaction terms whose indices have gcd exactly `g`. -/
+noncomputable def quadraticInteractionOffDiagonalGcdSlice (N g : ℕ) : ℝ :=
+  ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ (Finset.Icc 1 N).erase h,
+    if Nat.gcd h k = g then
+      cutoffMobiusCoeff N h * cutoffMobiusCoeff N k * quadraticInteractionKernel h k
+    else 0
+
+theorem quadraticInteractionOffDiagonal_eq_sum_gcdSlices (N : ℕ) :
+    quadraticInteractionOffDiagonal N =
+      ∑ g ∈ Finset.Icc 1 N, quadraticInteractionOffDiagonalGcdSlice N g := by
+  symm
+  unfold quadraticInteractionOffDiagonal quadraticInteractionOffDiagonalGcdSlice
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro h hh
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro k _
+  rcases Finset.mem_Icc.mp hh with ⟨h1, hN⟩
+  have hhpos : 0 < h := lt_of_lt_of_le Nat.zero_lt_one h1
+  have hgcd_mem : Nat.gcd h k ∈ Finset.Icc 1 N :=
+    Finset.mem_Icc.mpr ⟨Nat.gcd_pos_of_pos_left k hhpos,
+      (Nat.gcd_le_left k hhpos).trans hN⟩
+  simp only [Finset.sum_ite_eq, if_pos hgcd_mem]
+
+-- ---------------------------------------------------------------------------
+-- 5. Formal Reductions
 -- ---------------------------------------------------------------------------
 
 theorem explicitQuadraticLogCotangentInteraction_eq_unified_sum (N : ℕ) :
@@ -213,7 +242,7 @@ theorem explicitQuadraticLogCotangentInteraction_eq_unified_sum (N : ℕ) :
   ring
 
 -- ---------------------------------------------------------------------------
--- 5. The Isolated Hard Remainder Target
+-- 6. The Isolated Hard Remainder Target
 -- ---------------------------------------------------------------------------
 
 /--
