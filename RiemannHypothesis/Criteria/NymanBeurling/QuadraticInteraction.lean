@@ -327,4 +327,82 @@ theorem explicitQuadraticInteractionRemainder_eq_sum_gcdSlices (N : ℕ) :
   rw [explicitQuadraticInteractionRemainder_eq_kernel_sum,
     quadraticInteractionKernelSum_eq_sum_gcdSlices]
 
+-- ---------------------------------------------------------------------------
+-- 8. Analytic Synthesis (Phase 15E)
+-- ---------------------------------------------------------------------------
+
+/--
+The three Phase 15D hypotheses imply the interaction-remainder field required
+by `QuadraticInteractionEstimates`. This is finite-sum and triangle-inequality wiring.
+-/
+theorem explicitQuadraticInteractionRemainder_bound_of_analytic_subEstimates
+    (H : QuadraticInteractionAnalyticSubEstimates) (N : ℕ) :
+    |explicitQuadraticInteractionRemainder N| ≤
+      (H.diagonal.C_diagonal + H.gcdError.C_error + H.gcdMain.C_main) /
+        Real.log (N + 2 : ℝ) := by
+  rw [explicitQuadraticInteractionRemainder_eq_diagonal_add_sum_offDiagonalGcdSlices]
+  have hdecomp :
+      quadraticInteractionDiagonal N +
+          (∑ g ∈ Finset.Icc 1 N, quadraticInteractionOffDiagonalGcdSlice N g) - 1 =
+        quadraticInteractionDiagonal N +
+          (∑ g ∈ Finset.Icc 1 N,
+            (quadraticInteractionOffDiagonalGcdSlice N g - H.gcdMain.mainTerm g)) +
+          ((∑ g ∈ Finset.Icc 1 N, H.gcdMain.mainTerm g) - 1) := by
+    rw [Finset.sum_sub_distrib]
+    abel
+  rw [hdecomp]
+  have hslice :
+      |∑ g ∈ Finset.Icc 1 N,
+          (quadraticInteractionOffDiagonalGcdSlice N g - H.gcdMain.mainTerm g)| ≤
+        ∑ g ∈ Finset.Icc 1 N, H.gcdError.errorMajorant N g := by
+    calc
+      |∑ g ∈ Finset.Icc 1 N,
+          (quadraticInteractionOffDiagonalGcdSlice N g - H.gcdMain.mainTerm g)|
+          ≤ ∑ g ∈ Finset.Icc 1 N,
+              |quadraticInteractionOffDiagonalGcdSlice N g - H.gcdMain.mainTerm g| :=
+        Finset.abs_sum_le_sum_abs _ _
+      _ ≤ ∑ g ∈ Finset.Icc 1 N, H.gcdError.errorMajorant N g := by
+        exact Finset.sum_le_sum fun g hg => H.gcdError.slice_error_bound N g hg
+  calc
+    |quadraticInteractionDiagonal N +
+        (∑ g ∈ Finset.Icc 1 N,
+          (quadraticInteractionOffDiagonalGcdSlice N g - H.gcdMain.mainTerm g)) +
+        ((∑ g ∈ Finset.Icc 1 N, H.gcdMain.mainTerm g) - 1)|
+        ≤ |quadraticInteractionDiagonal N| +
+            |∑ g ∈ Finset.Icc 1 N,
+              (quadraticInteractionOffDiagonalGcdSlice N g - H.gcdMain.mainTerm g)| +
+            |(∑ g ∈ Finset.Icc 1 N, H.gcdMain.mainTerm g) - 1| := by
+          exact (abs_add_le _ _).trans
+            (add_le_add (abs_add_le _ _) le_rfl)
+    _ ≤ H.diagonal.C_diagonal / Real.log (N + 2 : ℝ) +
+          (∑ g ∈ Finset.Icc 1 N, H.gcdError.errorMajorant N g) +
+          H.gcdMain.C_main / Real.log (N + 2 : ℝ) :=
+      add_le_add (add_le_add (H.diagonal.diagonal_bound N) hslice)
+        (H.gcdMain.main_term_bound N)
+    _ ≤ H.diagonal.C_diagonal / Real.log (N + 2 : ℝ) +
+          H.gcdError.C_error / Real.log (N + 2 : ℝ) +
+          H.gcdMain.C_main / Real.log (N + 2 : ℝ) :=
+      add_le_add (add_le_add le_rfl (H.gcdError.error_mass_bound N)) le_rfl
+    _ = (H.diagonal.C_diagonal + H.gcdError.C_error + H.gcdMain.C_main) /
+          Real.log (N + 2 : ℝ) := by rw [add_div, add_div]
+
+/-- Package the interaction bridge with independently supplied log-gamma and residue bounds. -/
+noncomputable def quadraticInteractionEstimates_of_analytic_subEstimates
+    (H : QuadraticInteractionAnalyticSubEstimates)
+    (C_loggamma C_residue : ℝ)
+    (C_pos :
+      0 < C_loggamma +
+        (H.diagonal.C_diagonal + H.gcdError.C_error + H.gcdMain.C_main) + C_residue)
+    (loggamma_bound :
+      ∀ N : ℕ,
+        |explicitQuadraticLogGammaComponent N| ≤ C_loggamma / Real.log (N + 2 : ℝ))
+    (residue_bound :
+      ∀ N : ℕ,
+        |explicitCutoffResidueComponent N| ≤ C_residue / Real.log (N + 2 : ℝ)) :
+    QuadraticInteractionEstimates := by
+  refine ⟨C_loggamma,
+    H.diagonal.C_diagonal + H.gcdError.C_error + H.gcdMain.C_main,
+    C_residue, C_pos, loggamma_bound, ?_, residue_bound⟩
+  exact explicitQuadraticInteractionRemainder_bound_of_analytic_subEstimates H
+
 end RH.Criteria.NymanBeurling.QuadraticInteraction
