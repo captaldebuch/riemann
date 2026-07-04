@@ -17,6 +17,21 @@ noncomputable def cotangentSumVFormula (h k : ℕ) : ℝ :=
   ∑ a ∈ Finset.Ico 1 k,
     Int.fract (((a * h : ℕ) : ℝ) / (k : ℝ)) * cotangentTermV a k
 
+/-- Every diagonal Vasyunin cotangent sum vanishes exactly. -/
+theorem cotangentSumVFormula_diag_eq_zero (h : ℕ) :
+    cotangentSumVFormula h h = 0 := by
+  by_cases hh : h = 0
+  · subst h
+    simp [cotangentSumVFormula]
+  · have hhR_pos : (0 : ℝ) < (h : ℝ) := Nat.cast_pos.mpr (Nat.pos_of_ne_zero hh)
+    unfold cotangentSumVFormula
+    apply Finset.sum_eq_zero
+    intro a _
+    have hah_div : (((a * h : ℕ) : ℝ) / (h : ℝ)) = a := by
+      push_cast
+      exact mul_div_cancel_right₀ _ (ne_of_gt hhR_pos)
+    rw [hah_div, Int.fract_natCast, zero_mul]
+
 /-- Vasyunin formula: b_{h,k} = (log(2π) − γ)/2 · (1/h + 1/k)
     + (k − h)/(2hk) · log(h/k) − π/(2hk) · (V(h,k) + V(k,h)). -/
 noncomputable def vasyuninBEntryFormula (h k : ℕ) : ℝ :=
