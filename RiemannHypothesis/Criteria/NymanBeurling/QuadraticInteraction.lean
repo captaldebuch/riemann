@@ -242,6 +242,14 @@ structure QuadraticInteractionDiagonalEstimate where
     ∀ N : ℕ,
       |quadraticInteractionDiagonal N| ≤ C_diagonal / Real.log (N + 2 : ℝ)
 
+/-- The exact-zero diagonal supplies its logarithmic estimate with constant zero. -/
+noncomputable def quadraticInteractionDiagonalEstimate_zero :
+    QuadraticInteractionDiagonalEstimate := by
+  refine ⟨0, le_rfl, ?_⟩
+  intro N
+  rw [quadraticInteractionDiagonal_eq_zero]
+  simp
+
 /--
 The limiting main term assigned to each off-diagonal gcd stratum. Its partial
 sums account for the target value `1` at the required logarithmic rate.
