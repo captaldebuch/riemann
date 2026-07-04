@@ -78,6 +78,28 @@ noncomputable def quadraticInteractionGcdSlice (N g : ℕ) : ℝ :=
       cutoffMobiusCoeff N h * cutoffMobiusCoeff N k * quadraticInteractionKernel h k
     else 0
 
+/-- A gcd stratum indexed by a non-squarefree integer vanishes identically. -/
+theorem quadraticInteractionGcdSlice_eq_zero_of_not_squarefree
+    (N g : ℕ) (hg : ¬ Squarefree g) :
+    quadraticInteractionGcdSlice N g = 0 := by
+  classical
+  unfold quadraticInteractionGcdSlice
+  apply Finset.sum_eq_zero
+  intro h _
+  apply Finset.sum_eq_zero
+  intro k _
+  split_ifs with hgcd
+  · have hgdvdh : g ∣ h := by
+      rw [← hgcd]
+      exact Nat.gcd_dvd_left h k
+    have h_not_squarefree : ¬ Squarefree h := by
+      intro hh
+      exact hg (hh.squarefree_of_dvd hgdvdh)
+    have hmu : ArithmeticFunction.moebius h = 0 :=
+      ArithmeticFunction.moebius_eq_zero_of_not_squarefree h_not_squarefree
+    simp [cutoffMobiusCoeff, hmu]
+  · rfl
+
 theorem quadraticInteractionKernelSum_eq_sum_gcdSlices (N : ℕ) :
     (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
       cutoffMobiusCoeff N h * cutoffMobiusCoeff N k * quadraticInteractionKernel h k) =
