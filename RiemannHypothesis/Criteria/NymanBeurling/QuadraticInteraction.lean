@@ -46,6 +46,10 @@ noncomputable def quadraticInteractionDiagonal (N : ℕ) : ℝ :=
   ∑ h ∈ Finset.Icc 1 N,
     cutoffMobiusCoeff N h * cutoffMobiusCoeff N h * quadraticInteractionKernel h h
 
+theorem quadraticInteractionDiagonal_eq_zero (N : ℕ) :
+    quadraticInteractionDiagonal N = 0 := by
+  simp [quadraticInteractionDiagonal, quadraticInteractionKernel_diag_eq_zero]
+
 /-- The terms in the weighted interaction sum with distinct indices. -/
 noncomputable def quadraticInteractionOffDiagonal (N : ℕ) : ℝ :=
   ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ (Finset.Icc 1 N).erase h,
