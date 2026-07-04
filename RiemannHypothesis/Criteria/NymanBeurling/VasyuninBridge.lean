@@ -541,22 +541,83 @@ noncomputable def genBlockSetIntegral (h k n : ℕ) : ℝ :=
   ∫ t in Set.Ioc ((n : ℝ) * (Nat.lcm h k : ℝ)) (((n : ℝ) + 1) * (Nat.lcm h k : ℝ)),
     genIntegrandTransformed h k t
 
+/-- Positive real multiples of the consecutive half-open unit intervals tile `(0, ∞)`. -/
+theorem Ioi_zero_eq_iUnion_Ioc_nat_mul (L : ℝ) (hL : 0 < L) :
+    Set.Ioi (0 : ℝ) =
+      ⋃ n : ℕ, Set.Ioc ((n : ℝ) * L) (((n : ℝ) + 1) * L) := by
+  ext x
+  simp only [Set.mem_Ioi, Set.mem_iUnion, Set.mem_Ioc]
+  constructor
+  · intro hx
+    have hxL : 0 < x / L := div_pos hx hL
+    use ⌈x / L⌉₊ - 1
+    have hceil : 1 ≤ ⌈x / L⌉₊ := Nat.ceil_pos.mpr hxL
+    have hstep : (((⌈x / L⌉₊ - 1 : ℕ) : ℝ) + 1) = (⌈x / L⌉₊ : ℝ) := by
+      rw [Nat.cast_sub hceil, Nat.cast_one, sub_add_cancel]
+    constructor
+    · apply (lt_div_iff₀ hL).mp
+      rw [Nat.cast_sub hceil, Nat.cast_one]
+      have hlt := Nat.ceil_lt_add_one hxL.le
+      linarith
+    · rw [hstep]
+      exact (div_le_iff₀ hL).mp (Nat.le_ceil (x / L))
+  · rintro ⟨n, hn, _⟩
+    have hn_nonneg : 0 ≤ (n : ℝ) * L :=
+      mul_nonneg (Nat.cast_nonneg n) hL.le
+    linarith
+
+/-- The positive-real rescalings of distinct consecutive half-open unit intervals are
+    disjoint. -/
+theorem pairwiseDisjoint_Ioc_nat_mul (L : ℝ) (hL : 0 < L) :
+    Pairwise (fun i j : ℕ =>
+      Disjoint (Set.Ioc ((i : ℝ) * L) (((i : ℝ) + 1) * L))
+        (Set.Ioc ((j : ℝ) * L) (((j : ℝ) + 1) * L))) := by
+  intro i j hij
+  rw [Set.disjoint_left]
+  intro x hx hy
+  rw [Set.mem_Ioc] at hx hy
+  rcases lt_trichotomy i j with h | h | h
+  · have hbound : ((i : ℝ) + 1) * L ≤ (j : ℝ) * L := by
+      apply mul_le_mul_of_nonneg_right _ hL.le
+      exact_mod_cast Nat.succ_le_of_lt h
+    linarith
+  · exact hij h
+  · have hbound : ((j : ℝ) + 1) * L ≤ (i : ℝ) * L := by
+      apply mul_le_mul_of_nonneg_right _ hL.le
+      exact_mod_cast Nat.succ_le_of_lt h
+    linarith
+
+/-- An integrable function on `(0, ∞)` integrates as the sum of its integrals over
+    consecutive half-open blocks of any fixed positive length. -/
+theorem integral_iUnion_disjoint_scaled_intervals_theorem
+    {f : ℝ → ℝ} {L : ℝ} (hL : 0 < L)
+    (hf : MeasureTheory.IntegrableOn f (Set.Ioi (0 : ℝ))) :
+    (∫ t in Set.Ioi (0 : ℝ), f t) =
+      ∑' n : ℕ, ∫ t in Set.Ioc ((n : ℝ) * L) (((n : ℝ) + 1) * L), f t := by
+  have hs : HasSum
+      (fun n : ℕ => ∫ t in Set.Ioc ((n : ℝ) * L) (((n : ℝ) + 1) * L), f t)
+      (∫ t in ⋃ n : ℕ, Set.Ioc ((n : ℝ) * L) (((n : ℝ) + 1) * L), f t) := by
+    apply MeasureTheory.hasSum_integral_iUnion
+    · intro _
+      exact measurableSet_Ioc
+    · exact pairwiseDisjoint_Ioc_nat_mul L hL
+    · rw [← Ioi_zero_eq_iUnion_Ioc_nat_mul L hL]
+      exact hf
+  rw [Ioi_zero_eq_iUnion_Ioc_nat_mul L hL]
+  exact hs.tsum_eq.symm
+
 /-- The off-diagonal generalization of `integral_Ioi_eq_tsum_unit_set_integrals_theorem`,
     using period-`L` blocks instead of unit intervals. Since `L = lcm h k ≥ 1` for `h,k > 0`,
-    the blocks `Ioc (n*L) ((n+1)*L)` still tile `(0,∞)` exactly as `n` ranges over `ℕ` (this
-    needs its own tiling lemma, analogous to `Ioi_zero_eq_iUnion_Ioc_nat`, generalized to step
-    size `L` — NOT separately proved in this session, folded into the sorry below for time
-    reasons; it is standard and elementary, unlike the trigamma/cotangent step). Also depends on
-    `genIntegrandTransformed_integrableOn_Ioi`, hence transitively on that lemma's sorry too. -/
+    the blocks `Ioc (n*L) ((n+1)*L)` tile `(0,∞)` exactly as `n` ranges over `ℕ`. This
+    depends on `genIntegrandTransformed_integrableOn_Ioi`, hence transitively on that lemma's
+    separate, pre-existing integrability-near-zero sorry. -/
 theorem transformedIntegral_eq_tsum_genBlockSetIntegral (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
     (∫ t in Set.Ioi (0 : ℝ), genIntegrandTransformed h k t) =
       ∑' n : ℕ, genBlockSetIntegral h k n := by
-  sorry
-  -- MISSING: generalizing `Ioi_zero_eq_iUnion_Ioc_nat` / `pairwiseDisjoint_Ioc_nat` /
-  -- `integral_iUnion_disjoint_unit_intervals_theorem` from unit step (`G11IntegralEvaluation.lean`,
-  -- where it is proved fully generically in the integrand, just with implicit step size `1`) to
-  -- step size `L = lcm h k`. Purely mechanical (replace `n`/`n+1` by `n*L`/`(n+1)*L` throughout
-  -- those three lemmas), not attempted here for time.
+  unfold genBlockSetIntegral
+  apply integral_iUnion_disjoint_scaled_intervals_theorem
+  · exact_mod_cast Nat.lcm_pos hh hk
+  · exact genIntegrandTransformed_integrableOn_Ioi h k
 
 /-- The `n = 0` block piece, via `genIntegrandTransformed_eq_shift_lcm`, is exactly
     `∫_0^L {s/h}{s/k}/s² ds` (trivial since `t - 0 = t`). -/
@@ -685,8 +746,8 @@ theorem baezDuarteGramEntry_ne_tsum_intervals_disproof :
     proved) which in turn equals the transformed integral over `(0,∞)`
     (`baezDuarteGramEntry_eq_transformed_integral`, proved above modulo the documented
     integrability-near-zero `sorry`), which splits as the tsum of `genBlockSetIntegral` pieces
-    of length `L = lcm h k` (`transformedIntegral_eq_tsum_genBlockSetIntegral`, itself carrying
-    an additional `sorry` for the block-tiling generalization, on top of the same
+    of length `L = lcm h k` (`transformedIntegral_eq_tsum_genBlockSetIntegral`, whose
+    block-tiling argument is fully proved above but which inherits the same
     integrability-near-zero issue), each of which is `∫_0^L {s/h}{s/k}/(nL+s)² ds`
     (`genBlockSetIntegral_eq_shifted_integral`, fully proved unconditionally). This theorem
     assembles all of that into the single reduction: the debt-field LHS equals
@@ -751,17 +812,17 @@ theorem tsum_shifted_integrals_eq_cotangent_sum (h k : ℕ) (hne : h ≠ k) (hh 
     claimed this theorem was "fully proved" once `H_cotangent_recognition` was made an explicit
     hypothesis instead of a direct call to `tsum_shifted_integrals_eq_cotangent_sum`. That claim
     was false — `debtFieldLHS_eq_tsum_shifted_integrals` itself *also* transitively depends on
-    `sorryAx`, via the other two open `sorry`s in this file (the integrability-near-zero lemma
-    `genIntegrandTransformed_integrableOn_Ioc01` and the block-tiling lemma
-    `transformedIntegral_eq_tsum_genBlockSetIntegral` inherits from it) — confirmed directly via
+    `sorryAx`, via the open integrability-near-zero `sorry` in
+    `genIntegrandTransformed_integrableOn_Ioc01`, which
+    `transformedIntegral_eq_tsum_genBlockSetIntegral` inherits — confirmed directly via
     `#print axioms debtFieldLHS_eq_tsum_shifted_integrals`, which shows `sorryAx`.
 
     So this theorem genuinely improves on the previous version in one specific way — the
     cotangent-recognition dependency is now an explicit, visible hypothesis instead of a hidden
-    direct call — but it does *not* eliminate `sorryAx` from `#print axioms`, because two other,
-    separately-documented open `sorry`s remain baked into `debtFieldLHS_eq_tsum_shifted_integrals`.
-    Fully isolating all three would require parametrizing those as explicit hypotheses too, which
-    was not attempted here. -/
+    direct call — but it does *not* eliminate `sorryAx` from `#print axioms`, because the
+    separately documented integrability-near-zero `sorry` remains baked into
+    `debtFieldLHS_eq_tsum_shifted_integrals`. Fully isolating it would require parametrizing that
+    fact as an explicit hypothesis too, which was not attempted here. -/
 theorem interval_sum_add_tail_eq_cotangent_formula_of_debts (h k : ℕ) (hne : h ≠ k) (hh : 0 < h)
     (hk : 0 < k)
     (H_cotangent_recognition :
