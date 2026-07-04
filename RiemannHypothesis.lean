@@ -15,3 +15,5 @@ import RiemannHypothesis.Certificates.NymanBeurlingCertificate
 import RiemannHypothesis.Certificates.Generated
 import RiemannHypothesis.Certificates.TrigIntervalDemo
 import RiemannHypothesis.Certificates.TrigIntervalSweep
+import RiemannHypothesis.Criteria.NymanBeurling.AnalyticDebts
+import RiemannHypothesis.Criteria.NymanBeurling.VasyuninCotangentRecognition
