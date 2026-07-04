@@ -700,6 +700,69 @@ theorem realTrigammaSeriesInt_reflection {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n :
   rw [hne] at hderiv_unique
   linarith [hderiv_unique]
 
+/-- The two-sided trigamma-type series splits into a sum of two one-sided series:
+    `∑'_{n∈ℤ} 1/(x+n)² = ∑'_{n≥0} 1/(n+x)² + ∑'_{n≥0} 1/(n+(1-x))²`. Proved via
+    `tsum_of_add_one_of_neg_add_one` applied to `f n = 1/(x+n)^2`: the `n = 0` term `f 0 = 1/x²`
+    combines with the `∑_{n≥0} f(n+1) = ∑_{n≥0} 1/(x+n+1)²` tail to give exactly
+    `realTrigammaSeriesNat x` (reindexing `m = n+1` recovers the full `m ≥ 0` sum starting at
+    `m = 0`), while the other tail `∑_{n≥0} f(-(n+1)) = ∑_{n≥0} 1/(x-(n+1))² =
+    ∑_{n≥0} 1/((n+1)-x)²` is *already* exactly `realTrigammaSeriesNat (1-x)` term-by-term (no
+    further reindexing needed, since squaring erases the sign and the index starts at `n = 0`
+    matching `m = 0` on both sides). Holds unconditionally in `x` (no non-integrality hypothesis
+    needed), matching the unconditional summability of both series. -/
+theorem realTrigammaSeriesInt_eq_add_realTrigammaSeriesNat (x : ℝ) :
+    realTrigammaSeriesInt x = realTrigammaSeriesNat x + realTrigammaSeriesNat (1 - x) := by
+  have h1 : Summable fun n : ℕ => 1 / (x + ((n:ℝ) + 1)) ^ 2 := by
+    have hbase := summable_realTrigammaSeriesNat (x + 1)
+    apply hbase.congr
+    intro n; rw [show ((n:ℝ) + (x + 1)) = x + ((n:ℝ) + 1) by ring]
+  have h2 : Summable fun n : ℕ => 1 / (x - ((n:ℝ) + 1)) ^ 2 := by
+    have hbase := summable_realTrigammaSeriesNat (1 - x)
+    apply hbase.congr
+    intro n
+    rw [show ((n:ℝ) + (1 - x)) = -(x - ((n:ℝ)+1)) by ring, neg_sq]
+  have hcast1 : (fun n : ℕ => 1 / (x + ((n:ℤ) + 1 : ℤ)) ^ 2)
+      = (fun n : ℕ => 1 / (x + ((n:ℝ) + 1)) ^ 2) := by funext n; push_cast; ring_nf
+  have hcast2 : (fun n : ℕ => 1 / (x + (-((n:ℤ) + 1) : ℤ)) ^ 2)
+      = (fun n : ℕ => 1 / (x - ((n:ℝ) + 1)) ^ 2) := by
+    funext n; push_cast; ring_nf
+  have h1' : Summable fun n : ℕ => 1 / (x + ((n:ℤ) + 1 : ℤ)) ^ 2 := by rw [hcast1]; exact h1
+  have h2' : Summable fun n : ℕ => 1 / (x + (-((n:ℤ) + 1) : ℤ)) ^ 2 := by rw [hcast2]; exact h2
+  have hsplit := tsum_of_add_one_of_neg_add_one (f := fun n : ℤ => 1 / (x + n) ^ 2) h1' h2'
+  simp only [Int.cast_zero, add_zero] at hsplit
+  rw [hcast1, hcast2] at hsplit
+  -- `realTrigammaSeriesNat x = f 0 + ∑'_{n≥0} f (n+1)`, via the standard `ℕ`-tsum head/tail split.
+  have hNatx : realTrigammaSeriesNat x = 1 / x ^ 2 + ∑' n : ℕ, 1 / (x + ((n:ℝ) + 1)) ^ 2 := by
+    unfold realTrigammaSeriesNat
+    have hbase := summable_realTrigammaSeriesNat x
+    unfold realTrigammaSeriesNat at hbase
+    rw [hbase.tsum_eq_zero_add]
+    have h0 : (1:ℝ) / ((0:ℕ) + x) ^ 2 = 1 / x ^ 2 := by norm_num
+    rw [h0]
+    congr 1
+    apply tsum_congr
+    intro n; push_cast; ring_nf
+  -- `realTrigammaSeriesNat (1-x) = ∑'_{n≥0} f (-(n+1))` term-by-term, no head/tail split needed.
+  have hNat1mx : realTrigammaSeriesNat (1 - x) = ∑' n : ℕ, 1 / (x - ((n:ℝ) + 1)) ^ 2 := by
+    unfold realTrigammaSeriesNat
+    apply tsum_congr
+    intro n
+    rw [show ((n:ℝ) + (1 - x)) = -(x - ((n:ℝ)+1)) by ring, neg_sq]
+  unfold realTrigammaSeriesInt
+  rw [hsplit, hNatx, hNat1mx]
+  ring
+
+/-- The one-sided reflection formula, obtained by combining `realTrigammaSeriesInt_reflection`
+    with the two-sided/one-sided splitting `realTrigammaSeriesInt_eq_add_realTrigammaSeriesNat`:
+    `∑'_{n≥0} 1/(n+x₀)² + ∑'_{n≥0} 1/(n+(1-x₀))² = π²/sin²(π x₀)`, for real `x₀ ∉ ℤ`. This is the
+    exact one-sided closed form needed downstream (the theorems near the end of this file are
+    all stated in terms of `realTrigammaSeriesNat`, not `realTrigammaSeriesInt`), obtained here
+    purely algebraically from the already-proved two-sided identity — no new analysis. -/
+theorem realTrigammaSeriesNat_reflection {x₀ : ℝ} (hx₀ : ∀ n : ℤ, (n : ℝ) ≠ x₀) :
+    realTrigammaSeriesNat x₀ + realTrigammaSeriesNat (1 - x₀) = π ^ 2 / Real.sin (π * x₀) ^ 2 := by
+  rw [← realTrigammaSeriesInt_eq_add_realTrigammaSeriesNat]
+  exact realTrigammaSeriesInt_reflection hx₀
+
 -- ---------------------------------------------------------------------------
 -- 8. Recognizing the `n`-sum weight in `tsum_shifted_integrals_eq_cotangent_sum` as a
 --    rescaled trigamma series, and the (unproved) period-reduction step down to
