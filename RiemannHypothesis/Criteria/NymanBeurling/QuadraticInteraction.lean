@@ -223,7 +223,57 @@ theorem quadraticInteractionOffDiagonal_eq_sum_gcdSlices (N : ℕ) :
   simp only [Finset.sum_ite_eq, if_pos hgcd_mem]
 
 -- ---------------------------------------------------------------------------
--- 5. Formal Reductions
+-- 5. Analytic Sub-Estimate Interfaces
+-- ---------------------------------------------------------------------------
+
+/-- The diagonal contribution is negligible at the target logarithmic rate. -/
+structure QuadraticInteractionDiagonalEstimate where
+  C_diagonal : ℝ
+  C_diagonal_nonneg : 0 ≤ C_diagonal
+  diagonal_bound :
+    ∀ N : ℕ,
+      |quadraticInteractionDiagonal N| ≤ C_diagonal / Real.log (N + 2 : ℝ)
+
+/--
+The limiting main term assigned to each off-diagonal gcd stratum. Its partial
+sums account for the target value `1` at the required logarithmic rate.
+-/
+structure QuadraticInteractionGcdMainTermEstimate where
+  mainTerm : ℕ → ℝ
+  C_main : ℝ
+  C_main_nonneg : 0 ≤ C_main
+  main_term_bound :
+    ∀ N : ℕ,
+      |(∑ g ∈ Finset.Icc 1 N, mainTerm g) - 1| ≤ C_main / Real.log (N + 2 : ℝ)
+
+/--
+Each finite-cutoff gcd slice is controlled against its limiting main term by a
+nonnegative majorant whose total mass has the target logarithmic decay.
+-/
+structure QuadraticInteractionGcdSliceErrorEstimate (mainTerm : ℕ → ℝ) where
+  errorMajorant : ℕ → ℕ → ℝ
+  C_error : ℝ
+  C_error_nonneg : 0 ≤ C_error
+  errorMajorant_nonneg : ∀ N g : ℕ, 0 ≤ errorMajorant N g
+  slice_error_bound :
+    ∀ N g : ℕ,
+      g ∈ Finset.Icc 1 N →
+        |quadraticInteractionOffDiagonalGcdSlice N g - mainTerm g| ≤ errorMajorant N g
+  error_mass_bound :
+    ∀ N : ℕ,
+      (∑ g ∈ Finset.Icc 1 N, errorMajorant N g) ≤ C_error / Real.log (N + 2 : ℝ)
+
+/--
+The Phase 15D analytic debts, bundled without yet deriving the global
+`QuadraticInteractionEstimates` interface. That synthesis is reserved for Phase 15E.
+-/
+structure QuadraticInteractionAnalyticSubEstimates where
+  diagonal : QuadraticInteractionDiagonalEstimate
+  gcdMain : QuadraticInteractionGcdMainTermEstimate
+  gcdError : QuadraticInteractionGcdSliceErrorEstimate gcdMain.mainTerm
+
+-- ---------------------------------------------------------------------------
+-- 6. Formal Reductions
 -- ---------------------------------------------------------------------------
 
 theorem explicitQuadraticLogCotangentInteraction_eq_unified_sum (N : ℕ) :
@@ -242,7 +292,7 @@ theorem explicitQuadraticLogCotangentInteraction_eq_unified_sum (N : ℕ) :
   ring
 
 -- ---------------------------------------------------------------------------
--- 6. The Isolated Hard Remainder Target
+-- 7. The Isolated Hard Remainder Target
 -- ---------------------------------------------------------------------------
 
 /--
@@ -262,6 +312,14 @@ theorem explicitQuadraticInteractionRemainder_eq_diagonal_add_offDiagonal (N : �
       quadraticInteractionDiagonal N + quadraticInteractionOffDiagonal N - 1 := by
   rw [explicitQuadraticInteractionRemainder_eq_kernel_sum,
     quadraticInteractionKernelSum_eq_diagonal_add_offDiagonal]
+
+theorem explicitQuadraticInteractionRemainder_eq_diagonal_add_sum_offDiagonalGcdSlices
+    (N : ℕ) :
+    explicitQuadraticInteractionRemainder N =
+      quadraticInteractionDiagonal N +
+        (∑ g ∈ Finset.Icc 1 N, quadraticInteractionOffDiagonalGcdSlice N g) - 1 := by
+  rw [explicitQuadraticInteractionRemainder_eq_diagonal_add_offDiagonal,
+    quadraticInteractionOffDiagonal_eq_sum_gcdSlices]
 
 theorem explicitQuadraticInteractionRemainder_eq_sum_gcdSlices (N : ℕ) :
     explicitQuadraticInteractionRemainder N =
