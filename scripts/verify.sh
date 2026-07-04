@@ -108,12 +108,32 @@ SCRATCH_DIR=$(mktemp -d /tmp/verify_axioms_XXXX)
 SCRATCH="$SCRATCH_DIR/check.lean"
 ALL_ENTRIES="$SCRATCH_DIR/all_entries.txt"   # tab-separated: module<TAB>namespace<TAB>name
 : > "$ALL_ENTRIES"
+AWK_SORRY_SCRIPT='
+/^theorem / || /^lemma / {
+    if (in_thm && has_sorry) print name;
+    in_thm = 1;
+    name = $2;
+    has_sorry = 0;
+}
+in_thm && /sorry/ { has_sorry = 1 }
+/^$/ || /^def / || /^noncomputable def / || /^abbrev / || /^instance / {
+    if (in_thm && has_sorry) print name;
+    in_thm = 0;
+}
+END { if (in_thm && has_sorry) print name }
+'
 while IFS= read -r f; do
   [ -f "$f" ] || continue
   case "$f" in *.lean) ;; *) continue ;; esac
   MODULE=$(echo "$f" | sed -E 's#/#.#g; s#\.lean$##')
   NS=$(grep -m1 '^namespace ' "$f" | awk '{print $2}')
   git diff "$BASELINE" -- "$f" | grep -E '^\+(theorem|lemma) ' | sed -E "s/^\+(theorem|lemma) ([A-Za-z0-9_']+).*/\2/" |
+    while IFS= read -r name; do
+      [ -n "$name" ] && printf '%s\t%s\t%s\n' "$MODULE" "$NS" "$name" >> "$ALL_ENTRIES"
+    done
+  git show "$BASELINE:$f" 2>/dev/null | awk "$AWK_SORRY_SCRIPT" | sort > "$SCRATCH_DIR/baseline_sorries.txt" || true
+  awk "$AWK_SORRY_SCRIPT" "$f" | sort > "$SCRATCH_DIR/current_sorries.txt"
+  comm -23 "$SCRATCH_DIR/baseline_sorries.txt" "$SCRATCH_DIR/current_sorries.txt" |
     while IFS= read -r name; do
       [ -n "$name" ] && printf '%s\t%s\t%s\n' "$MODULE" "$NS" "$name" >> "$ALL_ENTRIES"
     done
