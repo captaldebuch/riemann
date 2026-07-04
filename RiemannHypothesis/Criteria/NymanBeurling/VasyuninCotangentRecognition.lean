@@ -844,6 +844,191 @@ theorem shiftedIntegralTsum_eq_integral_of_rescaled_series (h k : ℕ) (hh : 0 <
   rw [hlhs_eq, hμ_def] at hswap
   exact hswap.symm
 
+-- ---------------------------------------------------------------------------
+-- 9. Discharging `hg_int`: the rescaled-trigamma integrand
+--    `g s = {s/h}{s/k} · (1/L²) · realTrigammaSeriesNat(s/L)` is bounded (hence integrable) on
+--    `Ioc 0 L`, `L = lcm h k`.
+--
+-- Investigation summary (see accompanying report for the numerical sanity checks): the naive
+-- worry — that `realTrigammaSeriesNat(s/L) ~ L²/s²` blows up as `s → 0⁺` — is real, but it is
+-- exactly cancelled by the numerator, because `{s/h}{s/k} ≤ (s/h)(s/k)` *globally* (not just
+-- for small `s`; see `fract_le_self_of_nonneg` below, valid for every nonnegative real
+-- argument, since `Int.fract y = y - ⌊y⌋ ≤ y` whenever `⌊y⌋ ≥ 0`). This gives the clean global
+-- bound `{s/h}{s/k}/s² ≤ 1/(hk)` on ALL of `s > 0`, with no case split needed. Combined with the
+-- elementary comparison bound `realTrigammaSeriesNat(x) ≤ 1/x² + realTrigammaSeriesNat(1)` for
+-- `x > 0` (splitting off the `n = 0` term and comparing the tail termwise against
+-- `realTrigammaSeriesNat 1`'s defining series, using `x > 0`), the whole integrand `g` is
+-- bounded on `(0, L]` by the *constant* `1/(hk) + realTrigammaSeriesNat 1 / L²`, uniformly in
+-- `s`. This is a genuinely different (and easier) situation than `VasyuninBridge.lean`'s
+-- `genIntegrandTransformed h k t = {t/h}{t/k}/t²` (the `sorry` in
+-- `genIntegrandTransformed_integrableOn_Ioc01`): that integrand has NO compensating
+-- `realTrigammaSeriesNat`-type factor, so its `1/t²` singularity is genuine and its
+-- integrability near `0` really does require the harder sawtooth-average-cancellation argument
+-- described there. Here, by contrast, the extra `realTrigammaSeriesNat(s/L)` factor's own
+-- singularity at `s = 0` is *exactly* what cancels against the numerator, and the elementary
+-- global bounds above suffice — no limiting/continuity argument at the single point `s = 0` is
+-- needed at all (that point is not even in `Ioc 0 L`), only a genuine uniform bound for `s > 0`.
+-- ---------------------------------------------------------------------------
+
+/-- `Int.fract y ≤ y` for every nonnegative real `y`: since `Int.fract y = y - ⌊y⌋` and
+    `⌊y⌋ ≥ 0` whenever `y ≥ 0` (`Int.floor_nonneg`), this is immediate. This is the key global
+    (not merely small-`y`) fact making the bound on the rescaled trigamma integrand below work
+    without any case split on the size of `s`. -/
+theorem fract_le_self_of_nonneg {y : ℝ} (hy : 0 ≤ y) : Int.fract y ≤ y := by
+  have h1 : (0 : ℤ) ≤ ⌊y⌋ := Int.floor_nonneg.mpr hy
+  have h2 : (0 : ℝ) ≤ (⌊y⌋ : ℝ) := by exact_mod_cast h1
+  unfold Int.fract
+  linarith
+
+/-- Comparison bound for `realTrigammaSeriesNat` at positive arguments: splitting off the `n = 0`
+    term of the defining series (`1/x²`) and bounding the remaining tail termwise by
+    `realTrigammaSeriesNat 1`'s own defining series (using `x > 0` so `n + 1 + x ≥ n + 1`). This
+    quantifies the "trigamma blows up like `1/x²` as `x → 0⁺`, plus a bounded remainder" folklore
+    fact in a form cheap enough to use directly in a boundedness argument. -/
+theorem realTrigammaSeriesNat_le_of_pos {x : ℝ} (hx : 0 < x) :
+    realTrigammaSeriesNat x ≤ 1 / x ^ 2 + realTrigammaSeriesNat 1 := by
+  unfold realTrigammaSeriesNat
+  have hsum := summable_realTrigammaSeriesNat x
+  rw [hsum.tsum_eq_zero_add]
+  simp only [Nat.cast_zero, zero_add, Nat.cast_add, Nat.cast_one]
+  have hs1 : Summable fun n : ℕ => (1 : ℝ) / ((n : ℝ) + 1 + x) ^ 2 := by
+    have hbase := summable_realTrigammaSeriesNat x
+    have hcomp := hbase.comp_injective (add_left_injective (a := 1) (G := ℕ))
+    apply hcomp.congr
+    intro n; simp
+  have hs2 : Summable fun n : ℕ => (1 : ℝ) / ((n : ℝ) + 1) ^ 2 := by
+    have hbase := summable_realTrigammaSeriesNat 1
+    apply hbase.congr
+    intro n; ring_nf
+  have hstep : (∑' n : ℕ, (1 : ℝ) / ((n : ℝ) + 1 + x) ^ 2) ≤ ∑' n : ℕ, 1 / ((n : ℝ) + 1) ^ 2 := by
+    apply Summable.tsum_mono hs1 hs2
+    intro n
+    apply one_div_le_one_div_of_le (by positivity)
+    have hnn : (0 : ℝ) ≤ (n : ℝ) + 1 := by positivity
+    nlinarith [sq_nonneg x]
+  have heq2 : realTrigammaSeriesNat 1 = ∑' n : ℕ, 1 / ((n : ℝ) + 1) ^ 2 := rfl
+  rw [show (∑' (b : ℕ), (1 : ℝ) / ((b : ℝ) + 1 + x) ^ 2)
+        = ∑' n : ℕ, (1 : ℝ) / ((n : ℝ) + 1 + x) ^ 2 from rfl, heq2] at *
+  linarith
+
+/-- The rescaled-trigamma integrand `g s = {s/h}{s/k} · (1/L²) · realTrigammaSeriesNat(s/L)`
+    (`L = lcm h k`) is bounded, uniformly for `s ∈ (0, L]`, by the constant
+    `1/(hk) + realTrigammaSeriesNat 1 / L²`. See the section-9 header comment above for the
+    mathematical explanation of why the apparent `1/s²`-type singularity at `s = 0` is in fact
+    cancelled by the `{s/h}{s/k}` numerator. -/
+theorem rescaled_trigamma_integrand_bound (h k : ℕ) (hh : 0 < h) (hk : 0 < k) {s : ℝ}
+    (hs : s ∈ Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ)) :
+    |Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+        ((1 / (Nat.lcm h k : ℝ) ^ 2) * realTrigammaSeriesNat (s / (Nat.lcm h k : ℝ)))|
+      ≤ 1 / ((h : ℝ) * (k : ℝ)) + realTrigammaSeriesNat 1 / (Nat.lcm h k : ℝ) ^ 2 := by
+  set L : ℝ := (Nat.lcm h k : ℝ) with hL_def
+  have hLpos : 0 < L := by rw [hL_def]; exact_mod_cast Nat.lcm_pos hh hk
+  obtain ⟨hspos, hsle⟩ := hs
+  have hhpos : (0 : ℝ) < (h : ℝ) := by exact_mod_cast hh
+  have hkpos : (0 : ℝ) < (k : ℝ) := by exact_mod_cast hk
+  have hfract_h_nonneg := Int.fract_nonneg (s / (h : ℝ))
+  have hfract_k_nonneg := Int.fract_nonneg (s / (k : ℝ))
+  have hfract_h_le : Int.fract (s / (h : ℝ)) ≤ s / (h : ℝ) :=
+    fract_le_self_of_nonneg (by positivity)
+  have hfract_k_le : Int.fract (s / (k : ℝ)) ≤ s / (k : ℝ) :=
+    fract_le_self_of_nonneg (by positivity)
+  have hxpos : (0 : ℝ) < s / L := by positivity
+  have htri_le := realTrigammaSeriesNat_le_of_pos hxpos
+  have hprod_nonneg : 0 ≤ Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) :=
+    mul_nonneg hfract_h_nonneg hfract_k_nonneg
+  have hall_nonneg : 0 ≤ Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+      ((1 / L ^ 2) * realTrigammaSeriesNat (s / L)) := by
+    apply mul_nonneg hprod_nonneg
+    apply mul_nonneg (by positivity)
+    unfold realTrigammaSeriesNat
+    apply tsum_nonneg
+    intro n; positivity
+  rw [abs_of_nonneg hall_nonneg]
+  have hstep1 : Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+      ((1 / L ^ 2) * realTrigammaSeriesNat (s / L))
+      ≤ Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+      ((1 / L ^ 2) * (1 / (s / L) ^ 2 + realTrigammaSeriesNat 1)) := by
+    apply mul_le_mul_of_nonneg_left _ hprod_nonneg
+    apply mul_le_mul_of_nonneg_left htri_le (by positivity)
+  refine hstep1.trans ?_
+  have hexpand : Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+      ((1 / L ^ 2) * (1 / (s / L) ^ 2 + realTrigammaSeriesNat 1))
+      = Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2
+        + Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ))
+          * (realTrigammaSeriesNat 1 / L ^ 2) := by
+    have hLne : L ≠ 0 := hLpos.ne'
+    have hsne : s ≠ 0 := hspos.ne'
+    field_simp
+  rw [hexpand]
+  have hbound1 : Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2
+      ≤ 1 / ((h : ℝ) * (k : ℝ)) := by
+    have hmain : Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ))
+        ≤ (s / (h : ℝ)) * (s / (k : ℝ)) :=
+      mul_le_mul hfract_h_le hfract_k_le hfract_k_nonneg (by positivity)
+    have hssq_pos : (0 : ℝ) < s ^ 2 := by positivity
+    calc Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2
+        ≤ (s / (h : ℝ)) * (s / (k : ℝ)) / s ^ 2 := by
+          apply div_le_div_of_nonneg_right hmain hssq_pos.le
+      _ = 1 / ((h : ℝ) * (k : ℝ)) := by field_simp
+  have hbound2 : Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ))
+        * (realTrigammaSeriesNat 1 / L ^ 2)
+      ≤ realTrigammaSeriesNat 1 / L ^ 2 := by
+    have htriv : Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) ≤ 1 := by
+      have h1 := Int.fract_lt_one (s / (h : ℝ))
+      have h2 := Int.fract_lt_one (s / (k : ℝ))
+      nlinarith
+    have hCnonneg : 0 ≤ realTrigammaSeriesNat 1 / L ^ 2 := by
+      apply div_nonneg _ (by positivity)
+      unfold realTrigammaSeriesNat
+      apply tsum_nonneg; intro n; positivity
+    calc Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) * (realTrigammaSeriesNat 1 / L ^ 2)
+        ≤ 1 * (realTrigammaSeriesNat 1 / L ^ 2) := by
+          apply mul_le_mul_of_nonneg_right htriv hCnonneg
+      _ = realTrigammaSeriesNat 1 / L ^ 2 := by ring
+  linarith
+
+/-- **The deliverable**: discharging `shiftedIntegralTsum_eq_integral_of_rescaled_series`'s
+    `hg_int` hypothesis for general `h k : ℕ` with `h, k > 0`. Immediate from
+    `rescaled_trigamma_integrand_bound` (a uniform bound on `Ioc 0 L`) together with
+    `MeasureTheory.Measure.integrableOn_of_bounded` (bounded + finite-measure set ⟹ integrable),
+    the same idiom already used for `genIntegrand_integrableOn_Ioc01` in `VasyuninBridge.lean`. -/
+theorem integrableOn_rescaled_trigamma_integrand (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
+    MeasureTheory.IntegrableOn
+      (fun s : ℝ => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+        ((1 / (Nat.lcm h k : ℝ) ^ 2) * realTrigammaSeriesNat (s / (Nat.lcm h k : ℝ))))
+      (Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ)) := by
+  have hmeas : Measurable (fun s : ℝ => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+      ((1 / (Nat.lcm h k : ℝ) ^ 2) * realTrigammaSeriesNat (s / (Nat.lcm h k : ℝ)))) := by
+    apply Measurable.mul
+    · measurability
+    · apply measurable_const.mul
+      unfold realTrigammaSeriesNat
+      apply Measurable.tsum
+      intro n
+      measurability
+  apply MeasureTheory.Measure.integrableOn_of_bounded
+    (M := 1 / ((h : ℝ) * (k : ℝ)) + realTrigammaSeriesNat 1 / (Nat.lcm h k : ℝ) ^ 2)
+    measure_Ioc_lt_top.ne hmeas.aestronglyMeasurable
+  rw [MeasureTheory.ae_restrict_iff' measurableSet_Ioc]
+  filter_upwards with s hs
+  rw [Real.norm_eq_abs]
+  exact rescaled_trigamma_integrand_bound h k hh hk hs
+
+/-- **The deliverable, applied**: `shiftedIntegralTsum_eq_integral_of_rescaled_series` with its
+    `hg_int` hypothesis discharged, for every `h k > 0`. This closes the sum-integral
+    interchange unconditionally (no remaining hypothesis), for use by whatever downstream
+    argument needs it — still not touching the separate, harder period-reduction content in
+    `shiftedIntegralTsum_period_reduction` below. -/
+theorem shiftedIntegralTsum_eq_integral_of_rescaled_series' (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
+    (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
+          ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
+      = ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+          Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) *
+            ((1 / (Nat.lcm h k : ℝ) ^ 2) * realTrigammaSeriesNat (s / (Nat.lcm h k : ℝ))) :=
+  shiftedIntegralTsum_eq_integral_of_rescaled_series h k hh hk
+    (integrableOn_rescaled_trigamma_integrand h k hh hk)
+
 /-- **The period-reduction step**, precisely stated but NOT proved here (the remaining
     genuinely Vasyunin-specific combinatorial content, per the task brief's item 2): reducing
     the joint-period (`L = lcm h k`) integral
