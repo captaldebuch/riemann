@@ -60,7 +60,37 @@ theorem quadraticInteractionKernelSum_eq_diagonal_add_offDiagonal (N : ℕ) :
       quadraticInteractionKernel h k) hh).symm
 
 -- ---------------------------------------------------------------------------
--- 3. Formal Reductions
+-- 3. GCD Stratification
+-- ---------------------------------------------------------------------------
+
+/-- The weighted interaction terms whose two indices have gcd exactly `g`. -/
+noncomputable def quadraticInteractionGcdSlice (N g : ℕ) : ℝ :=
+  ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+    if Nat.gcd h k = g then
+      cutoffMobiusCoeff N h * cutoffMobiusCoeff N k * quadraticInteractionKernel h k
+    else 0
+
+theorem quadraticInteractionKernelSum_eq_sum_gcdSlices (N : ℕ) :
+    (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+      cutoffMobiusCoeff N h * cutoffMobiusCoeff N k * quadraticInteractionKernel h k) =
+      ∑ g ∈ Finset.Icc 1 N, quadraticInteractionGcdSlice N g := by
+  symm
+  unfold quadraticInteractionGcdSlice
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro h hh
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro k _
+  rcases Finset.mem_Icc.mp hh with ⟨h1, hN⟩
+  have hhpos : 0 < h := lt_of_lt_of_le Nat.zero_lt_one h1
+  have hgcd_mem : Nat.gcd h k ∈ Finset.Icc 1 N :=
+    Finset.mem_Icc.mpr ⟨Nat.gcd_pos_of_pos_left k hhpos,
+      (Nat.gcd_le_left k hhpos).trans hN⟩
+  simp only [Finset.sum_ite_eq, if_pos hgcd_mem]
+
+-- ---------------------------------------------------------------------------
+-- 4. Formal Reductions
 -- ---------------------------------------------------------------------------
 
 theorem explicitQuadraticLogCotangentInteraction_eq_unified_sum (N : ℕ) :
@@ -79,7 +109,7 @@ theorem explicitQuadraticLogCotangentInteraction_eq_unified_sum (N : ℕ) :
   ring
 
 -- ---------------------------------------------------------------------------
--- 4. The Isolated Hard Remainder Target
+-- 5. The Isolated Hard Remainder Target
 -- ---------------------------------------------------------------------------
 
 /--
@@ -99,5 +129,11 @@ theorem explicitQuadraticInteractionRemainder_eq_diagonal_add_offDiagonal (N : �
       quadraticInteractionDiagonal N + quadraticInteractionOffDiagonal N - 1 := by
   rw [explicitQuadraticInteractionRemainder_eq_kernel_sum,
     quadraticInteractionKernelSum_eq_diagonal_add_offDiagonal]
+
+theorem explicitQuadraticInteractionRemainder_eq_sum_gcdSlices (N : ℕ) :
+    explicitQuadraticInteractionRemainder N =
+      (∑ g ∈ Finset.Icc 1 N, quadraticInteractionGcdSlice N g) - 1 := by
+  rw [explicitQuadraticInteractionRemainder_eq_kernel_sum,
+    quadraticInteractionKernelSum_eq_sum_gcdSlices]
 
 end RH.Criteria.NymanBeurling.QuadraticInteraction
