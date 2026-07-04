@@ -47,7 +47,10 @@ echo "(A 'def' line disappearing or having its RHS changed relative to the"
 echo " baseline means a public constant's value moved — this is how the"
 echo " 2026-07-02 regression happened. Only expected if you deliberately"
 echo " changed a definition's semantics, not just its proof.)"
-CHANGED_DEFS=$(git diff "$BASELINE" -- 'RiemannHypothesis/*.lean' | grep -E '^-def |^-noncomputable def ' | sed -E 's/^-(noncomputable )?def ([A-Za-z0-9_'"'"']+).*/\2/' | sort -u)
+SCRATCH_DIR_2=$(mktemp -d /tmp/verify_defs_XXXX)
+git grep -h -E '^(noncomputable )?def [A-Za-z0-9_'"'"']+.*:.*:=' "$BASELINE" -- 'RiemannHypothesis/*.lean' 2>/dev/null | sort > "$SCRATCH_DIR_2/baseline_defs.txt" || true
+git grep -h -E '^(noncomputable )?def [A-Za-z0-9_'"'"']+.*:.*:=' -- 'RiemannHypothesis/*.lean' 2>/dev/null | sort > "$SCRATCH_DIR_2/current_defs.txt" || true
+CHANGED_DEFS=$(comm -23 "$SCRATCH_DIR_2/baseline_defs.txt" "$SCRATCH_DIR_2/current_defs.txt")
 if [ -z "$CHANGED_DEFS" ]; then
   echo "PASS: no pre-existing def line removed or modified"
 else
@@ -56,6 +59,7 @@ else
   echo "$CHANGED_DEFS"
   OVERALL_FAIL=1
 fi
+rm -rf "$SCRATCH_DIR_2"
 echo
 
 # ---------------------------------------------------------------------------
