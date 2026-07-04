@@ -33,6 +33,10 @@ theorem quadraticInteractionKernel_symm (h k : ℕ) :
     Real.log_div (Nat.cast_ne_zero.mpr hk) (Nat.cast_ne_zero.mpr hh)]
   ring
 
+theorem quadraticInteractionKernel_diag_eq_zero (h : ℕ) :
+    quadraticInteractionKernel h h = 0 := by
+  simp [quadraticInteractionKernel, cotangentSumVFormula_diag_eq_zero]
+
 -- ---------------------------------------------------------------------------
 -- 2. Diagonal / Off-Diagonal Split
 -- ---------------------------------------------------------------------------
