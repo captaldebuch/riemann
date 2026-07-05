@@ -93,4 +93,36 @@ theorem sum_Icc_one_natCast_eq_of_fract (x : ℝ) (hx : 0 ≤ x) :
   rw [hN]
   ring
 
+/-- **Proposition 21** (Báez-Duarte–Balazard–Landreau–Saias, arXiv:math/0306251): for real
+    `x, θ > 0`,
+    `∑_{1≤n≤θx} B₁(n/θ) + ∑_{1≤m≤x} B₁(mθ) = (1/(2θ))·({θx}-θ{x})² + ((θ-1)/(2θ))·({θx}-θ{x})`.
+
+    **Not attempted here** — this is H13-J1's real deliverable, deferred to a dedicated
+    continuation. What IS done: the formula below has been independently re-derived (the
+    PDF's own dense typesetting was not trusted blindly, given this session's track record of
+    catching real transcription/convention errors elsewhere) and stress-tested numerically —
+    200 random trials with rational `θ = k/h` (`h,k ∈ [1,12]`) and real `x ∈ (0,15)`, max
+    deviation `~10⁻¹⁵` (floating-point noise). It also uses the corrected `bernoulliB1`
+    (Dedekind sawtooth, `B₁(n) = 0` for integer `n`) documented above — a first attempt using
+    the naive `Int.fract z - 1/2` convention fails this identity for every rational `θ` tested,
+    by exactly `⌊x/q⌋` when `θ = p/q` in lowest terms (traced to `B₁` hitting exact integers
+    whenever `θ` is rational: `m·θ ∈ ℤ ⟺ q ∣ m`, `n/θ ∈ ℤ ⟺ p ∣ n`).
+
+    Proof strategy for the eventual continuation (per the paper, Prop 21's own proof): expand
+    each `B₁` as `Int.fract - 1/2` plus an exact-integer correction, apply
+    `sum_Icc_one_natCast_eq_of_fract` above (the paper's Proposition 15) to convert both sums of
+    naturals into closed forms, and combine via the paper's Proposition 12 (a floor-counting
+    identity: `∑⌊mθ⌋ + ∑⌊n/θ⌋ = ⌊x⌋⌊θx⌋` for irrational `θ`, with a `+⌊x/q⌋` correction for
+    rational `θ = p/q` that exactly cancels the `B₁`-convention correction derived above via the
+    exact-integer-hit count (`m·θ∈ℤ ⟺ q∣m`, giving `⌊x/q⌋` hits; likewise for the other sum).
+    Since this project only ever needs `θ = k/h` rational (never irrational `θ`), the eventual
+    Lean proof can skip the irrational branch entirely and work the rational case directly via
+    `Nat`/`Int` divisibility — likely simpler than the paper's own two-case argument. -/
+theorem baezDuarte_prop21 (x θ : ℝ) (hx : 0 < x) (hθ : 0 < θ) :
+    (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ)) +
+        (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ)) =
+      (1 / (2 * θ)) * (Int.fract (θ * x) - θ * Int.fract x) ^ 2 +
+        ((θ - 1) / (2 * θ)) * (Int.fract (θ * x) - θ * Int.fract x) := by
+  sorry
+
 end RH.Criteria.NymanBeurling.VasyuninGram
