@@ -14,9 +14,13 @@ Landreau, Saias, *Étude de l'autocorrélation multiplicative de la fonction
 
 This file states and proves Propositions 15 and 21 of that paper, the two purely
 finite/algebraic facts underlying the period-reduction chain (H13-J1 in the project's
-lettered plan). Propositions 16, 22, 88, 89 (the analytic steps: one Stieltjes
-integration by parts, one limit, one rational specialization) are deliberately NOT
-attempted in this file — see the H13-J memory plan for the full sequencing.
+lettered plan). Proposition 21 is fully proved for the rational case this project
+actually needs (`θ = k/h`, see `baezDuarte_prop21_rat_of_prop12`), taking Proposition 12's
+floor-sum identity as an explicit hypothesis (a genuine separate classical fact, not yet
+proved — see that theorem's docstring). Propositions 12 (the floor-sum identity itself),
+16, 22, 88, 89 (the analytic steps: one Stieltjes integration by parts, one limit, one
+rational specialization) are deliberately NOT attempted in this file — see the H13-J
+memory plan for the full sequencing.
 
 **Important correction to a naive transcription of Proposition 21** (found and fixed via
 direct numerical verification, not by re-reading the PDF more carefully — the PDF's own
@@ -258,10 +262,68 @@ theorem baezDuarte_prop21_rat_of_prop12 {h k : ℕ} (hh : 0 < h) (hk : 0 < k)
   set θ : ℝ := (k : ℝ) / (h : ℝ) with hθdef
   set X : ℕ := ⌊x⌋₊ with hXdef
   set Y : ℕ := ⌊θ * x⌋₊ with hYdef
+  clear_value θ X Y
   have hhR : (h : ℝ) ≠ 0 := by exact_mod_cast hh.ne'
   have hkR : (k : ℝ) ≠ 0 := by exact_mod_cast hk.ne'
   have hθpos : 0 < θ := by rw [hθdef]; positivity
   have hθR : θ ≠ 0 := hθpos.ne'
-  sorry
+  -- Step 1+2: expand both B1 sums into fract-sums, then into plain sums minus floor-sums.
+  have hB1n := sum_bernoulliB1_eq Y (fun n => (n : ℝ) / θ)
+  have hB1m := sum_bernoulliB1_eq X (fun m => (m : ℝ) * θ)
+  have hfn := sum_fract_sub_half_eq Y (fun n => (n : ℝ) / θ)
+  have hfm := sum_fract_sub_half_eq X (fun m => (m : ℝ) * θ)
+  -- Step 3: Proposition 15 applied to both index sets.
+  have hP15n : (∑ n ∈ Finset.Icc 1 Y, (n : ℝ)) =
+      (θ * x) ^ 2 / 2 - (θ * x) * Int.fract (θ * x) + (Int.fract (θ * x)) ^ 2 / 2 +
+        (θ * x) / 2 - (Int.fract (θ * x)) / 2 := by
+    have hh15 := sum_Icc_one_natCast_eq_of_fract (θ * x) (by positivity)
+    rwa [← hYdef] at hh15
+  have hP15m : (∑ m ∈ Finset.Icc 1 X, (m : ℝ)) =
+      x ^ 2 / 2 - x * Int.fract x + (Int.fract x) ^ 2 / 2 + x / 2 - (Int.fract x) / 2 := by
+    have hh15 := sum_Icc_one_natCast_eq_of_fract x hx.le
+    rwa [← hXdef] at hh15
+  -- Step 4: the two exact-integer-hit filter cards both reduce to ⌊x/h⌋₊.
+  have hcardm : ((Finset.Icc 1 X).filter (fun m : ℕ => Int.fract ((m : ℝ) * θ) = 0)).card =
+      X / h := by
+    rw [hθdef]; exact card_filter_fract_mul_div_eq_zero hh hcop X
+  have hcardn : ((Finset.Icc 1 Y).filter (fun n : ℕ => Int.fract ((n : ℝ) / θ) = 0)).card =
+      Y / k := by
+    rw [show (Finset.Icc 1 Y).filter (fun n : ℕ => Int.fract ((n : ℝ) / θ) = 0) =
+        (Finset.Icc 1 Y).filter (fun n : ℕ => Int.fract ((n : ℝ) * ((h : ℝ) / (k : ℝ))) = 0) from
+      Finset.filter_congr (fun n _ => by
+        have heq : (n : ℝ) / θ = (n : ℝ) * ((h : ℝ) / (k : ℝ)) := by rw [hθdef]; field_simp
+        rw [heq])]
+    exact card_filter_fract_mul_div_eq_zero hk hcop.symm Y
+  have hFdef : ((X / h : ℕ) : ℝ) = (⌊x / (h : ℝ)⌋₊ : ℝ) := by
+    have := natFloor_div_eq_natFloor_div x h
+    rw [← hXdef] at this
+    exact_mod_cast this
+  have hFdef2 : ((Y / k : ℕ) : ℝ) = (⌊x / (h : ℝ)⌋₊ : ℝ) := by
+    have hnest := natFloor_theta_mul_div_eq_natFloor_div hh hk x
+    rw [← hθdef, ← hYdef] at hnest
+    exact_mod_cast hnest
+  -- Split the two `∑ i, i/θ` and `∑ i, i*θ` sums into `(∑ i, i)` scaled by `θ`.
+  have hsplitn : (∑ n ∈ Finset.Icc 1 Y, (n : ℝ) / θ) = (∑ n ∈ Finset.Icc 1 Y, (n : ℝ)) / θ := by
+    rw [Finset.sum_div]
+  have hsplitm : (∑ m ∈ Finset.Icc 1 X, (m : ℝ) * θ) = (∑ m ∈ Finset.Icc 1 X, (m : ℝ)) * θ := by
+    rw [Finset.sum_mul]
+  -- Assemble: rewrite both B1 sums, combine, substitute Proposition 12, cancel the F-terms.
+  rw [hB1n, hB1m, hfn, hfm, hsplitn, hsplitm, hP15n, hP15m, hcardm, hcardn, hFdef, hFdef2]
+  have hXR : (X : ℝ) = x - Int.fract x := by
+    have h1 : ((X : ℤ) : ℝ) = x - Int.fract x := by
+      rw [hXdef]
+      have := Int.natCast_floor_eq_floor hx.le
+      have h2 : ((⌊x⌋₊ : ℤ) : ℝ) = (⌊x⌋ : ℝ) := by exact_mod_cast this
+      rw [h2]; linarith [Int.self_sub_fract x]
+    exact_mod_cast h1
+  have hYR : (Y : ℝ) = θ * x - Int.fract (θ * x) := by
+    have h1 : ((Y : ℤ) : ℝ) = θ * x - Int.fract (θ * x) := by
+      rw [hYdef]
+      have := Int.natCast_floor_eq_floor (by positivity : (0:ℝ) ≤ θ * x)
+      have h2 : ((⌊θ * x⌋₊ : ℤ) : ℝ) = (⌊θ * x⌋ : ℝ) := by exact_mod_cast this
+      rw [h2]; linarith [Int.self_sub_fract (θ * x)]
+    exact_mod_cast h1
+  rw [hXR, hYR] at hprop12 ⊢
+  linear_combination (norm := (field_simp; ring)) -hprop12
 
 end RH.Criteria.NymanBeurling.VasyuninGram

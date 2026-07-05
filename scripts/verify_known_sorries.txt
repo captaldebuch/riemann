@@ -34,3 +34,13 @@ N50_quadratic_le_energyUpper
 # computation), deliberately not attempted — see the memory entry
 # vasyunin_v5_cotangent_recognition.md for context.
 shiftedIntegralTsum_period_reduction
+
+# RiemannHypothesis/Criteria/NymanBeurling/VasyuninPeriodReduction.lean — H13-J
+# plan (see the memory entry phase_h13j_baez_duarte_prop21_plan.md). One
+# deliberately open sorry: baezDuarte_prop21, the GENERAL real-theta statement
+# of Baez-Duarte-Balazard-Landreau-Saias Proposition 21 (arXiv:math/0306251),
+# kept only for fidelity to the paper's exact statement. The rational-theta
+# specialization this project actually needs, baezDuarte_prop21_rat_of_prop12,
+# is fully proved (no sorryAx) conditional on Proposition 12's floor-sum
+# identity as an explicit hypothesis parameter — not a hidden dependency.
+baezDuarte_prop21
