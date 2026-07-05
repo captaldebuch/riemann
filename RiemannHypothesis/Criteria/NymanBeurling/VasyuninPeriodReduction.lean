@@ -125,4 +125,32 @@ theorem baezDuarte_prop21 (x θ : ℝ) (hx : 0 < x) (hθ : 0 < θ) :
         ((θ - 1) / (2 * θ)) * (Int.fract (θ * x) - θ * Int.fract x) := by
   sorry
 
+/-! ## Rational specialization (θ = k/h), the case this project actually needs -/
+
+/-- Pointwise: `B₁(z)` decomposes into the naive-fract piece plus an exact-integer
+    correction, isolating exactly the convention gap documented above. -/
+theorem bernoulliB1_eq_fract_sub_half_add_indicator (x : ℝ) :
+    bernoulliB1 x = Int.fract x - 1 / 2 + (if Int.fract x = 0 then (1 : ℝ) / 2 else 0) := by
+  unfold bernoulliB1
+  split_ifs with h <;> simp [h]
+
+theorem sum_ite_eq_zero_card {α : Type*} (s : Finset α) (p : α → Prop) [DecidablePred p] :
+    (∑ i ∈ s, if p i then (1 : ℝ) else 0) = (s.filter p).card := by
+  rw [← Finset.sum_filter]
+  simp
+
+/-- Sum form of the pointwise decomposition, specialized to a `Finset.Icc 1 N` indexed by a
+    scaling function `f`, with the exact-integer count expressed as a `Finset.filter` card. -/
+theorem sum_bernoulliB1_eq (N : ℕ) (f : ℕ → ℝ) :
+    (∑ i ∈ Finset.Icc 1 N, bernoulliB1 (f i)) =
+      (∑ i ∈ Finset.Icc 1 N, (Int.fract (f i) - 1 / 2)) +
+        ((Finset.Icc 1 N).filter (fun i => Int.fract (f i) = 0)).card / 2 := by
+  rw [Finset.sum_congr rfl (fun i _ => bernoulliB1_eq_fract_sub_half_add_indicator (f i))]
+  rw [Finset.sum_add_distrib]
+  congr 1
+  have hpt : (fun i => if Int.fract (f i) = 0 then (1 : ℝ) / 2 else 0) =
+      (fun i => (if Int.fract (f i) = 0 then (1 : ℝ) else 0) / 2) := by
+    funext i; split_ifs <;> ring
+  rw [hpt, ← Finset.sum_div, sum_ite_eq_zero_card]
+
 end RH.Criteria.NymanBeurling.VasyuninGram
