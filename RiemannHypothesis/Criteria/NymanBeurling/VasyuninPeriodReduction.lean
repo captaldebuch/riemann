@@ -160,6 +160,20 @@ theorem fract_natCast_mul_div_eq_zero_iff {h k : ℕ} (hh : 0 < h) (hcop : Nat.C
     push_cast
     field_simp
 
+theorem Icc_one_eq_Ioc_zero (N : ℕ) : Finset.Icc 1 N = Finset.Ioc 0 N := by
+  ext n; simp only [Finset.mem_Icc, Finset.mem_Ioc]; omega
+
+/-- The exact-integer-hit count in the `mθ` sum (`θ = k/h`, coprime, `m ≤ X`) is `X / h`. -/
+theorem card_filter_fract_mul_div_eq_zero {h k : ℕ} (hh : 0 < h) (hcop : Nat.Coprime h k)
+    (X : ℕ) :
+    ((Finset.Icc 1 X).filter (fun m : ℕ => Int.fract ((m : ℝ) * ((k : ℝ) / (h : ℝ))) = 0)).card =
+      X / h := by
+  rw [show (Finset.Icc 1 X).filter (fun m : ℕ => Int.fract ((m : ℝ) * ((k : ℝ) / (h : ℝ))) = 0) =
+      (Finset.Icc 1 X).filter (fun m : ℕ => h ∣ m) from
+    Finset.filter_congr (fun m _ => fract_natCast_mul_div_eq_zero_iff hh hcop m)]
+  rw [Icc_one_eq_Ioc_zero]
+  exact Nat.Ioc_filter_dvd_card_eq_div X h
+
 /-- Sum form of the pointwise decomposition, specialized to a `Finset.Icc 1 N` indexed by a
     scaling function `f`, with the exact-integer count expressed as a `Finset.filter` card. -/
 theorem sum_bernoulliB1_eq (N : ℕ) (f : ℕ → ℝ) :
