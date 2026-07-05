@@ -174,6 +174,22 @@ theorem card_filter_fract_mul_div_eq_zero {h k : ℕ} (hh : 0 < h) (hcop : Nat.C
   rw [Icc_one_eq_Ioc_zero]
   exact Nat.Ioc_filter_dvd_card_eq_div X h
 
+/-- Floor-nesting: `⌊x⌋₊ / h = ⌊x/h⌋₊` (Nat division), a direct specialization of
+    `Nat.floor_div_natCast`. -/
+theorem natFloor_div_eq_natFloor_div (x : ℝ) (h : ℕ) : ⌊x⌋₊ / h = ⌊x / h⌋₊ :=
+  (Nat.floor_div_natCast x h).symm
+
+/-- Floor-nesting for the `θx = k·(x/h)` scaling: `⌊θx⌋₊ / k = ⌊x/h⌋₊` for `θ = k/h`, `h,k > 0`. -/
+theorem natFloor_theta_mul_div_eq_natFloor_div {h k : ℕ} (hh : 0 < h) (hk : 0 < k) (x : ℝ) :
+    ⌊(k : ℝ) / (h : ℝ) * x⌋₊ / k = ⌊x / h⌋₊ := by
+  have hkR : (k : ℝ) ≠ 0 := by exact_mod_cast hk.ne'
+  have heq : (k : ℝ) / (h : ℝ) * x = (k : ℝ) * (x / h) := by ring
+  have hdiv : (k : ℝ) * (x / h) / k = x / h := by field_simp
+  have hnest := Nat.floor_div_natCast ((k : ℝ) * (x / h)) k
+  rw [hdiv] at hnest
+  rw [heq]
+  exact hnest.symm
+
 /-- Sum form of the pointwise decomposition, specialized to a `Finset.Icc 1 N` indexed by a
     scaling function `f`, with the exact-integer count expressed as a `Finset.filter` card. -/
 theorem sum_bernoulliB1_eq (N : ℕ) (f : ℕ → ℝ) :
