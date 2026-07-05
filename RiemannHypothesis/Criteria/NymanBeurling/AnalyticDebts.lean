@@ -1,6 +1,6 @@
 import Mathlib
 import RiemannHypothesis.Criteria.NymanBeurling.CutoffMobiusKernels
-import RiemannHypothesis.Criteria.NymanBeurling.MobiusSummatory
+import RiemannHypothesis.Criteria.NymanBeurling.MobiusSummatoryClassical
 import RiemannHypothesis.Criteria.NymanBeurling.QuadraticInteraction
 
 namespace RH.Criteria.NymanBeurling.AnalyticDebts

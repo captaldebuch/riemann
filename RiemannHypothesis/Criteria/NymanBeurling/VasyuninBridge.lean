@@ -342,34 +342,70 @@ theorem genIntegrandTransformed_le_inv_sq_on_Ioi_one (h k : ℕ) {t : ℝ}
   apply div_le_div_of_nonneg_right _ (sq_nonneg t)
   nlinarith
 
+/-- On `(0, 1)`, the transformed integrand is the constant `1 / (h * k)`. If either
+    index is zero, both sides reduce to zero by Lean's division-by-zero convention. -/
+theorem genIntegrandTransformed_eq_const_on_Ioo_zero_one (h k : ℕ) {t : ℝ}
+    (ht : t ∈ Set.Ioo (0 : ℝ) 1) :
+    genIntegrandTransformed h k t = 1 / ((h : ℝ) * (k : ℝ)) := by
+  by_cases hh : h = 0
+  · subst h
+    simp [genIntegrandTransformed]
+  by_cases hk : k = 0
+  · subst k
+    simp [genIntegrandTransformed]
+  have hhpos : (0 : ℝ) < (h : ℝ) := by
+    exact_mod_cast Nat.pos_of_ne_zero hh
+  have hkpos : (0 : ℝ) < (k : ℝ) := by
+    exact_mod_cast Nat.pos_of_ne_zero hk
+  have hone_le_h : (1 : ℝ) ≤ (h : ℝ) := by
+    exact_mod_cast Nat.one_le_iff_ne_zero.mpr hh
+  have hone_le_k : (1 : ℝ) ≤ (k : ℝ) := by
+    exact_mod_cast Nat.one_le_iff_ne_zero.mpr hk
+  have hfract_h : Int.fract (t / (h : ℝ)) = t / (h : ℝ) := by
+    rw [Int.fract_eq_self]
+    exact ⟨div_nonneg ht.1.le hhpos.le,
+      (div_lt_one hhpos).mpr (lt_of_lt_of_le ht.2 hone_le_h)⟩
+  have hfract_k : Int.fract (t / (k : ℝ)) = t / (k : ℝ) := by
+    rw [Int.fract_eq_self]
+    exact ⟨div_nonneg ht.1.le hkpos.le,
+      (div_lt_one hkpos).mpr (lt_of_lt_of_le ht.2 hone_le_k)⟩
+  have ht_ne : t ≠ 0 := ne_of_gt ht.1
+  have hh_ne : (h : ℝ) ≠ 0 := ne_of_gt hhpos
+  have hk_ne : (k : ℝ) ≠ 0 := ne_of_gt hkpos
+  unfold genIntegrandTransformed
+  rw [hfract_h, hfract_k]
+  field_simp [ht_ne, hh_ne, hk_ne]
+
+/-- The pointwise constant identity on `(0, 1)` holds almost everywhere on `(0, 1]`. -/
+theorem ae_genIntegrandTransformed_eq_const_on_Ioc_zero_one (h k : ℕ) :
+    genIntegrandTransformed h k
+      =ᵐ[MeasureTheory.volume.restrict (Set.Ioc (0 : ℝ) 1)]
+        (fun _ : ℝ => 1 / ((h : ℝ) * (k : ℝ))) := by
+  rw [Filter.EventuallyEq, MeasureTheory.ae_restrict_iff' measurableSet_Ioc]
+  have hae : ∀ᵐ t ∂(MeasureTheory.volume : MeasureTheory.Measure ℝ), t ≠ (1 : ℝ) := by
+    apply MeasureTheory.ae_iff.mpr
+    have : {t : ℝ | ¬t ≠ 1} = {1} := by ext t; simp
+    rw [this]
+    exact MeasureTheory.measure_singleton 1
+  filter_upwards [hae] with t ht_ne ht_mem
+  have ht_ioo : t ∈ Set.Ioo (0 : ℝ) 1 :=
+    ⟨ht_mem.1, lt_of_le_of_ne ht_mem.2 ht_ne⟩
+  exact genIntegrandTransformed_eq_const_on_Ioo_zero_one h k ht_ioo
+
+/-- The constant value of the transformed integrand on `(0, 1)` is integrable on `(0, 1]`. -/
+theorem integrableOn_genIntegrandTransformed_const_Ioc_zero_one (h k : ℕ) :
+    MeasureTheory.IntegrableOn (fun _ : ℝ => 1 / ((h : ℝ) * (k : ℝ)))
+      (Set.Ioc (0 : ℝ) 1) := by
+  exact MeasureTheory.integrableOn_const (ne_of_lt measure_Ioc_lt_top)
+
 theorem genIntegrandTransformed_integrableOn_Ioc01 (h k : ℕ) :
-    MeasureTheory.IntegrableOn (genIntegrandTransformed h k) (Set.Ioc (0:ℝ) 1) := by
-  have hint : MeasureTheory.IntegrableOn (fun t : ℝ => 1 / t ^ 2) (Set.Ioc (0:ℝ) 1) := by
-    sorry
-    -- MISSING: `1/t^2` is NOT integrable near `t = 0` (it blows up faster than `1/t`), so this
-    -- bounding strategy (copy-pasting the `genIntegrand_integrableOn_Ioi_one` pattern) is
-    -- actually the WRONG approach on `Ioc 0 1` — unlike `genIntegrand`, which is bounded by the
-    -- *constant* `1` near `0` (because `Int.fract(1/(hx))` is always in `[0,1)` regardless of
-    -- how large `1/(hx)` gets), `genIntegrandTransformed h k t = Int.fract(t/h)Int.fract(t/k)/t^2`
-    -- genuinely blows up like `1/t^2` as `t → 0`, and `∫_0^1 1/t^2 dt = ∞`. However
-    -- `genIntegrandTransformed` should STILL be integrable near 0 (confirmed numerically, e.g.
-    -- `∫_0^1 genIntegrandTransformed 2 3 t dt ≈ 0.1667` for `h=2,k=3`) because the numerator
-    -- `Int.fract(t/h)Int.fract(t/k)` itself goes to `0` on average like `t^2` as `t → 0` (both
-    -- factors individually average `~t/(2h)` and `~t/(2k)` in size for small `t`, cancelling the
-    -- `1/t^2`). This is NOT a trivial pointwise bound — it is exactly the same order of
-    -- difficulty as the unit/period-block-interval sum argument used for the rest of this
-    -- section (`genIntegrandTransformed_periodic` below), which is presumably the right route:
-    -- decompose `(0,1)` into the countably many blocks between consecutive points of
-    -- `{1/(nh) : n ≥ 1} ∪ {1/(nk) : n ≥ 1}` (where each of `Int.fract(t/h)`, `Int.fract(t/k)` is
-    -- individually a scaled sawtooth) and sum a convergent series, mirroring
-    -- `genIntegrand_integrableOn_Ioc01` on the ORIGINAL (untransformed) side, which is already
-    -- fully proved by the trivial constant bound `1`. Left open; see report.
-  exact MeasureTheory.Integrable.mono' hint
-    (genIntegrandTransformed_measurable h k).aestronglyMeasurable.restrict
-    (by
-      rw [MeasureTheory.ae_restrict_iff' measurableSet_Ioc]
-      filter_upwards with t ht
-      exact genIntegrandTransformed_bound_Ioc01 h k ht)
+    MeasureTheory.IntegrableOn (genIntegrandTransformed h k) (Set.Ioc (0 : ℝ) 1) := by
+  have hs : (fun _ : ℝ => 1 / ((h : ℝ) * (k : ℝ)))
+      =ᵐ[MeasureTheory.volume.restrict (Set.Ioc (0 : ℝ) 1)]
+        genIntegrandTransformed h k :=
+    (ae_genIntegrandTransformed_eq_const_on_Ioc_zero_one h k).symm
+  exact MeasureTheory.IntegrableOn.congr_fun_ae
+    (integrableOn_genIntegrandTransformed_const_Ioc_zero_one h k) hs
 
 theorem genIntegrandTransformed_integrableOn_Ioi_one (h k : ℕ) :
     MeasureTheory.IntegrableOn (genIntegrandTransformed h k) (Set.Ioi (1:ℝ)) := by
@@ -379,9 +415,8 @@ theorem genIntegrandTransformed_integrableOn_Ioi_one (h k : ℕ) :
   filter_upwards with t ht
   exact genIntegrandTransformed_le_inv_sq_on_Ioi_one h k ht
 
-/-- Depends on the open `genIntegrandTransformed_integrableOn_Ioc01` sorry above (the genuinely
-    hard integrability-near-zero gap); everything else here is immediate from the `(0,1]` /
-    `(1,∞)` split. -/
+/-- Global integrability, combining the exact constant description on `(0, 1]` with the
+    `1 / t²` tail bound on `(1, ∞)`. -/
 theorem genIntegrandTransformed_integrableOn_Ioi (h k : ℕ) :
     MeasureTheory.IntegrableOn (genIntegrandTransformed h k) (Set.Ioi (0 : ℝ)) := by
   rw [Ioi_zero_eq_Ioc_zero_one_union_Ioi_one]
@@ -451,11 +486,9 @@ theorem setIntegral_Ioi_inv_substitution_generic
     from the `h = k = 1` case in `G11IntegralEvaluation.lean` to arbitrary `h, k`, via the
     generic helper `setIntegral_Ioi_inv_substitution_generic` above. Uses
     `genIntegrand_integrableOn_Ioi` (already fully proved above) for the composition-integrability
-    hypothesis and `genIntegrand_inv_eq_transformed`-style algebra for the pointwise
-    identification of the two integrands. This proof itself contains no new `sorry`, but it
-    transitively depends (via `genIntegrandTransformed_integrableOn_Ioi`) on the documented
-    `sorry` in `genIntegrandTransformed_integrableOn_Ioc01` for the integrability-near-zero of
-    the *transformed* integrand — so this theorem is not yet unconditionally closed. -/
+    hypothesis, `genIntegrandTransformed_integrableOn_Ioi` for the transformed side, and
+    `genIntegrand_inv_eq_transformed`-style algebra for the pointwise identification of the two
+    integrands. -/
 theorem baezDuarteGramEntry_eq_transformed_integral (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
     baezDuarteGramEntry h k = ∫ t in Set.Ioi (0 : ℝ), genIntegrandTransformed h k t := by
   -- We need `f` with `f (1/x) = genIntegrand h k x` (so the substitution lemma's LHS matches
@@ -479,10 +512,6 @@ theorem baezDuarteGramEntry_eq_transformed_integral (h k : ℕ) (hh : 0 < h) (hk
     exact genIntegrand_inv_eq_transformed h k t
   have hf_int' : MeasureTheory.IntegrableOn (fun t => f t * (1 / t ^ 2)) (Set.Ioi (0 : ℝ)) := by
     rw [htrans_eq]; exact genIntegrandTransformed_integrableOn_Ioi h k
-    -- NOTE: this transitively depends on the documented `sorry` in
-    -- `genIntegrandTransformed_integrableOn_Ioc01` above (integrability of the transformed
-    -- integrand near `t = 0`, which is genuinely subtle — see that lemma's doc-comment). All
-    -- other steps in this theorem are complete.
   have := setIntegral_Ioi_inv_substitution_generic hf_meas hf_bound hf_int_comp hf_int'
   rw [hcomp_eq, htrans_eq] at this
   rw [baezDuarteGramEntry_eq_genIntegrand]
@@ -608,9 +637,7 @@ theorem integral_iUnion_disjoint_scaled_intervals_theorem
 
 /-- The off-diagonal generalization of `integral_Ioi_eq_tsum_unit_set_integrals_theorem`,
     using period-`L` blocks instead of unit intervals. Since `L = lcm h k ≥ 1` for `h,k > 0`,
-    the blocks `Ioc (n*L) ((n+1)*L)` tile `(0,∞)` exactly as `n` ranges over `ℕ`. This
-    depends on `genIntegrandTransformed_integrableOn_Ioi`, hence transitively on that lemma's
-    separate, pre-existing integrability-near-zero sorry. -/
+    the blocks `Ioc (n*L) ((n+1)*L)` tile `(0,∞)` exactly as `n` ranges over `ℕ`. -/
 theorem transformedIntegral_eq_tsum_genBlockSetIntegral (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
     (∫ t in Set.Ioi (0 : ℝ), genIntegrandTransformed h k t) =
       ∑' n : ℕ, genBlockSetIntegral h k n := by
@@ -744,11 +771,10 @@ theorem baezDuarteGramEntry_ne_tsum_intervals_disproof :
     (`(∑' m, fractionalPartIntervalIntegral h k m) + fractionalPartTailIntegral h k`) equals
     `baezDuarteGramEntry h k` (by `baezDuarteGramEntry_eq_tsum_intervals_add_tail`, already fully
     proved) which in turn equals the transformed integral over `(0,∞)`
-    (`baezDuarteGramEntry_eq_transformed_integral`, proved above modulo the documented
-    integrability-near-zero `sorry`), which splits as the tsum of `genBlockSetIntegral` pieces
-    of length `L = lcm h k` (`transformedIntegral_eq_tsum_genBlockSetIntegral`, whose
-    block-tiling argument is fully proved above but which inherits the same
-    integrability-near-zero issue), each of which is `∫_0^L {s/h}{s/k}/(nL+s)² ds`
+    (`baezDuarteGramEntry_eq_transformed_integral`, fully proved above), which splits as the tsum
+    of `genBlockSetIntegral` pieces of length `L = lcm h k`
+    (`transformedIntegral_eq_tsum_genBlockSetIntegral`, fully proved above), each of which is
+    `∫_0^L {s/h}{s/k}/(nL+s)² ds`
     (`genBlockSetIntegral_eq_shifted_integral`, fully proved unconditionally). This theorem
     assembles all of that into the single reduction: the debt-field LHS equals
     `∑' n, ∫_0^L {s/h}{s/k}/(nL+s)² ds`. -/
@@ -807,22 +833,7 @@ theorem tsum_shifted_integrals_eq_cotangent_sum (h k : ℕ) (hne : h ≠ k) (hh 
 /-- Assembling `debtFieldLHS_eq_tsum_shifted_integrals` with an explicit hypothesis standing in
     for `tsum_shifted_integrals_eq_cotangent_sum` (the central, still-open cotangent-recognition
     debt) gives exactly the target debt field `interval_sum_add_tail_eq_cotangent_formula`.
-
-    CORRECTION (caught by `#print axioms`, not assumed): an earlier version of this doc-comment
-    claimed this theorem was "fully proved" once `H_cotangent_recognition` was made an explicit
-    hypothesis instead of a direct call to `tsum_shifted_integrals_eq_cotangent_sum`. That claim
-    was false — `debtFieldLHS_eq_tsum_shifted_integrals` itself *also* transitively depends on
-    `sorryAx`, via the open integrability-near-zero `sorry` in
-    `genIntegrandTransformed_integrableOn_Ioc01`, which
-    `transformedIntegral_eq_tsum_genBlockSetIntegral` inherits — confirmed directly via
-    `#print axioms debtFieldLHS_eq_tsum_shifted_integrals`, which shows `sorryAx`.
-
-    So this theorem genuinely improves on the previous version in one specific way — the
-    cotangent-recognition dependency is now an explicit, visible hypothesis instead of a hidden
-    direct call — but it does *not* eliminate `sorryAx` from `#print axioms`, because the
-    separately documented integrability-near-zero `sorry` remains baked into
-    `debtFieldLHS_eq_tsum_shifted_integrals`. Fully isolating it would require parametrizing that
-    fact as an explicit hypothesis too, which was not attempted here. -/
+    All structural and integrability steps in this hypothesis-based theorem are fully proved. -/
 theorem interval_sum_add_tail_eq_cotangent_formula_of_debts (h k : ℕ) (hne : h ≠ k) (hh : 0 < h)
     (hk : 0 < k)
     (H_cotangent_recognition :
