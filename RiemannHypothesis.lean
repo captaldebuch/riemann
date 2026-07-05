@@ -17,3 +17,4 @@ import RiemannHypothesis.Certificates.TrigIntervalDemo
 import RiemannHypothesis.Certificates.TrigIntervalSweep
 import RiemannHypothesis.Criteria.NymanBeurling.AnalyticDebts
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninCotangentRecognition
+import RiemannHypothesis.Criteria.NymanBeurling.VasyuninPeriodReduction
