@@ -139,6 +139,27 @@ theorem sum_ite_eq_zero_card {α : Type*} (s : Finset α) (p : α → Prop) [Dec
   rw [← Finset.sum_filter]
   simp
 
+/-- For coprime `h, k` with `h > 0`: `m·(k/h) ∈ ℤ ⟺ h ∣ m`. This is the exact-integer-hit
+    condition for the `mθ` sum in Proposition 21 with `θ = k/h`. -/
+theorem fract_natCast_mul_div_eq_zero_iff {h k : ℕ} (hh : 0 < h) (hcop : Nat.Coprime h k)
+    (m : ℕ) : Int.fract ((m : ℝ) * ((k : ℝ) / (h : ℝ))) = 0 ↔ h ∣ m := by
+  have hhR : (h : ℝ) ≠ 0 := by exact_mod_cast hh.ne'
+  rw [Int.fract_eq_zero_iff]
+  constructor
+  · rintro ⟨n, hn⟩
+    have hn' : (n : ℝ) * (h : ℝ) = (m : ℝ) * (k : ℝ) := by
+      field_simp at hn; linarith [hn]
+    have : n * (h : ℤ) = (m : ℤ) * (k : ℤ) := by exact_mod_cast hn'
+    have hdvd : (h : ℤ) ∣ (m : ℤ) * (k : ℤ) := ⟨n, by linarith [this]⟩
+    have hdvd' : h ∣ m * k := by exact_mod_cast hdvd
+    exact (Nat.Coprime.dvd_of_dvd_mul_right hcop hdvd')
+  · rintro ⟨c, hc⟩
+    refine ⟨(c : ℤ) * (k : ℤ), ?_⟩
+    have : (m : ℝ) = (h : ℝ) * (c : ℝ) := by exact_mod_cast hc
+    rw [this]
+    push_cast
+    field_simp
+
 /-- Sum form of the pointwise decomposition, specialized to a `Finset.Icc 1 N` indexed by a
     scaling function `f`, with the exact-integer count expressed as a `Finset.filter` card. -/
 theorem sum_bernoulliB1_eq (N : ℕ) (f : ℕ → ℝ) :
