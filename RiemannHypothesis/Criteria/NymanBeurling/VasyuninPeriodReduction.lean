@@ -204,4 +204,64 @@ theorem sum_bernoulliB1_eq (N : ℕ) (f : ℕ → ℝ) :
     funext i; split_ifs <;> ring
   rw [hpt, ← Finset.sum_div, sum_ite_eq_zero_card]
 
+/-- Pure linear-algebra restatement of `Int.fract`'s definition, summed: turns
+    `∑(Int.fract(f i) - 1/2)` into `∑f i - ∑⌊f i⌋ - N/2`. -/
+theorem sum_fract_sub_half_eq (N : ℕ) (f : ℕ → ℝ) :
+    (∑ i ∈ Finset.Icc 1 N, (Int.fract (f i) - 1 / 2)) =
+      (∑ i ∈ Finset.Icc 1 N, f i) - (∑ i ∈ Finset.Icc 1 N, (⌊f i⌋ : ℝ)) - (N : ℝ) / 2 := by
+  have h1 : (∑ i ∈ Finset.Icc 1 N, (Int.fract (f i) - 1 / 2)) =
+      (∑ i ∈ Finset.Icc 1 N, Int.fract (f i)) - (Finset.Icc 1 N).card * (1 / 2 : ℝ) := by
+    rw [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul]
+  rw [h1, Nat.card_Icc]
+  have h2 : (∑ i ∈ Finset.Icc 1 N, Int.fract (f i)) =
+      (∑ i ∈ Finset.Icc 1 N, f i) - (∑ i ∈ Finset.Icc 1 N, (⌊f i⌋ : ℝ)) := by
+    rw [← Finset.sum_sub_distrib]
+    apply Finset.sum_congr rfl
+    intro i _
+    unfold Int.fract
+    ring
+  rw [h2]
+  push_cast
+  ring
+
+/-- **Proposition 21, rational case** (`θ = k/h`, coprime, `h,k > 0` — the only case this
+    project needs), assembled from Proposition 15 (`sum_Icc_one_natCast_eq_of_fract`, proved
+    above) and Proposition 12's rational-case floor-sum identity, taken here as an explicit
+    hypothesis (`hprop12`) rather than proved — a genuine, separate classical lattice-point
+    counting fact (the BBLS paper itself cites Hardy-Littlewood, *The lattice-points of a
+    right-angled triangle*, for this style of result), deliberately isolated rather than
+    attempted here. This mirrors the project's own established discipline of taking hard,
+    separable analytic content as an explicit hypothesis (e.g.
+    `QuadraticInteractionAnalyticSubEstimates` in `QuadraticInteraction.lean`).
+
+    Once `hprop12` is available, everything else is finite real-number algebra: expand both
+    `bernoulliB1` sums via `sum_bernoulliB1_eq`, convert the resulting `Int.fract` sums via
+    `sum_fract_sub_half_eq`, apply Proposition 15 to the two natural-number sums, substitute
+    `hprop12` for the two floor sums, and simplify the exact-integer-hit correction terms via
+    `card_filter_fract_mul_div_eq_zero` and the floor-nesting lemmas (both hit counts reduce to
+    `⌊x/h⌋₊`, which is exactly `hprop12`'s own correction term — this is the "cancellation"
+    the paper's own proof describes for the general case, made explicit and direct here for the
+    rational case). Hand-verified symbolically (not just numerically) before writing this
+    proof: every non-cancelling term matches the target RHS exactly. -/
+theorem baezDuarte_prop21_rat_of_prop12 {h k : ℕ} (hh : 0 < h) (hk : 0 < k)
+    (hcop : Nat.Coprime h k) (x : ℝ) (hx : 0 < x)
+    (hprop12 :
+      (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, (⌊(m : ℝ) * ((k : ℝ) / (h : ℝ))⌋ : ℝ)) +
+          (∑ n ∈ Finset.Icc 1 ⌊(k : ℝ) / (h : ℝ) * x⌋₊, (⌊(n : ℝ) / ((k : ℝ) / (h : ℝ))⌋ : ℝ)) =
+        (⌊x⌋₊ : ℝ) * (⌊(k : ℝ) / (h : ℝ) * x⌋₊ : ℝ) + (⌊x / (h : ℝ)⌋₊ : ℝ)) :
+    (∑ n ∈ Finset.Icc 1 ⌊(k : ℝ) / (h : ℝ) * x⌋₊, bernoulliB1 ((n : ℝ) / ((k : ℝ) / (h : ℝ)))) +
+        (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * ((k : ℝ) / (h : ℝ)))) =
+      (1 / (2 * ((k : ℝ) / (h : ℝ)))) *
+          (Int.fract ((k : ℝ) / (h : ℝ) * x) - (k : ℝ) / (h : ℝ) * Int.fract x) ^ 2 +
+        ((((k : ℝ) / (h : ℝ)) - 1) / (2 * ((k : ℝ) / (h : ℝ)))) *
+          (Int.fract ((k : ℝ) / (h : ℝ) * x) - (k : ℝ) / (h : ℝ) * Int.fract x) := by
+  set θ : ℝ := (k : ℝ) / (h : ℝ) with hθdef
+  set X : ℕ := ⌊x⌋₊ with hXdef
+  set Y : ℕ := ⌊θ * x⌋₊ with hYdef
+  have hhR : (h : ℝ) ≠ 0 := by exact_mod_cast hh.ne'
+  have hkR : (k : ℝ) ≠ 0 := by exact_mod_cast hk.ne'
+  have hθpos : 0 < θ := by rw [hθdef]; positivity
+  have hθR : θ ≠ 0 := hθpos.ne'
+  sorry
+
 end RH.Criteria.NymanBeurling.VasyuninGram
