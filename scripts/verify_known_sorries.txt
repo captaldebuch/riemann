@@ -44,3 +44,10 @@ shiftedIntegralTsum_period_reduction
 # is fully proved (no sorryAx) conditional on Proposition 12's floor-sum
 # identity as an explicit hypothesis parameter — not a hidden dependency.
 baezDuarte_prop21
+
+# RiemannHypothesis/Criteria/NymanBeurling/VasyuninPeriodReduction.lean — H13-J0
+# statement freeze for Baez-Duarte-Balazard-Landreau-Saias Proposition 22
+# (arXiv:math/0306251), rational θ = k/h specialization only. This is deliberately
+# sorry-bodied after direct PDF extraction and numerical verification; the proof is
+# the next Stieltjes/Abel summation-by-parts continuation, not a hidden dependency.
+baezDuarte_prop22_rat
