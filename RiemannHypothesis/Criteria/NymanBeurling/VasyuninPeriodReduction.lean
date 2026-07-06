@@ -991,6 +991,32 @@ theorem bernoulliB1_scaled_companion_abel_stieltjes_identity {θ x : ℝ}
     (stepFunction_abel_stieltjes_identity
       (fun n : ℕ => bernoulliB1 ((n : ℝ) / θ)) (x := θ * x) (mul_pos hθ hx))
 
+/-- Quadratic scaling identity used in the proof of BBLS Proposition 22.
+
+The identity appears explicitly in the proof on page 12 of
+Báez-Duarte--Balazard--Landreau--Saias (arXiv:math/0306251), and was numerically checked
+piecewise on rational test cases before formalization.  It is a direct change of variables
+`u ↦ θ*u`. -/
+theorem fract_sq_scaled_integral {θ x : ℝ} (hθ : 0 < θ) :
+    (∫ u in (0 : ℝ)..x, (Int.fract (θ * u)) ^ 2 / u ^ 2) =
+      θ * (∫ u in (0 : ℝ)..(θ * x), (Int.fract u) ^ 2 / u ^ 2) := by
+  let f : ℝ → ℝ := fun u => (Int.fract u) ^ 2 / u ^ 2
+  have hpoint : (fun u : ℝ => (Int.fract (θ * u)) ^ 2 / u ^ 2) =
+      fun u : ℝ => θ ^ 2 * f (θ * u) := by
+    funext u
+    dsimp [f]
+    by_cases hu : u = 0
+    · simp [hu]
+    · have hθne : θ ≠ 0 := hθ.ne'
+      field_simp [hθne, hu, pow_two]
+  rw [hpoint]
+  rw [intervalIntegral.integral_const_mul]
+  have hcomp :=
+    intervalIntegral.integral_comp_mul_left (f := f) (a := (0 : ℝ)) (b := x) hθ.ne'
+  simp [f, smul_eq_mul] at hcomp ⊢
+  rw [hcomp]
+  field_simp [hθ.ne']
+
 /-- **Proposition 22, rational case** (`θ = k/h`, coprime, `h,k > 0`), from
     Báez-Duarte--Balazard--Landreau--Saias, arXiv:math/0306251.
 
