@@ -608,6 +608,56 @@ left for the next continuation: it should be a discrete Abel/Stieltjes summation
 argument, not a new analytic estimate.
 -/
 
+/-- Elementary positive-endpoint primitive used in the Proposition 22/Proposition 16
+    integration-by-parts chain: a constant multiple of `t⁻²` integrates to the endpoint
+    difference of `-c/t`.  This small lemma is intentionally local to the BBLS period
+    reduction file; the remaining Proposition 22 proof still needs the step-function Abel
+    identity and the paper's Proposition 16 fractional-part split. -/
+theorem intervalIntegral_const_div_sq (c a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
+    (∫ t in a..b, c / t ^ 2) = c * (1 / a - 1 / b) := by
+  have hderiv : ∀ t ∈ Set.uIcc a b, HasDerivAt (fun u : ℝ => -c / u) (c / t ^ 2) t := by
+    intro t ht
+    have htpos : 0 < t := by
+      rcases le_total a b with hab | hba
+      · have ht' : t ∈ Set.Icc a b := by
+          simpa [Set.uIcc_of_le hab] using ht
+        linarith [ht'.1]
+      · have ht' : t ∈ Set.Icc b a := by
+          simpa [Set.uIcc_of_ge hba] using ht
+        linarith [ht'.1]
+    have htne : t ≠ 0 := ne_of_gt htpos
+    have h := HasDerivAt.const_mul (-c) (hasDerivAt_inv htne)
+    have hfun : (fun u : ℝ => -c * u⁻¹) = fun u : ℝ => -c / u := by
+      funext u
+      ring
+    have hval : -c * -(t ^ 2)⁻¹ = c / t ^ 2 := by
+      field_simp
+    rw [hfun, hval] at h
+    exact h
+  have hint : IntervalIntegrable (fun t : ℝ => c / t ^ 2) MeasureTheory.volume a b := by
+    apply ContinuousOn.intervalIntegrable
+    apply ContinuousOn.div
+    · exact continuousOn_const
+    · exact continuousOn_id.pow 2
+    · intro t ht
+      have htpos : 0 < t := by
+        rcases le_total a b with hab | hba
+        · have ht' : t ∈ Set.Icc a b := by
+            simpa [Set.uIcc_of_le hab] using ht
+          linarith [ht'.1]
+        · have ht' : t ∈ Set.Icc b a := by
+            simpa [Set.uIcc_of_ge hba] using ht
+          linarith [ht'.1]
+      positivity
+  calc
+    (∫ t in a..b, c / t ^ 2) = (-c / b) - (-c / a) := by
+      apply intervalIntegral.integral_eq_sub_of_hasDerivAt
+      · exact hderiv
+      · exact hint
+    _ = c * (1 / a - 1 / b) := by
+      field_simp [ne_of_gt ha, ne_of_gt hb]
+      ring
+
 /-- **Proposition 22, rational case** (`θ = k/h`, coprime, `h,k > 0`), from
     Báez-Duarte--Balazard--Landreau--Saias, arXiv:math/0306251.
 
