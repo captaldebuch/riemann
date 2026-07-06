@@ -17,10 +17,11 @@ finite/algebraic facts underlying the period-reduction chain (H13-J1 in the proj
 lettered plan). Proposition 21 is fully proved for the rational case this project
 actually needs (`θ = k/h`, see `baezDuarte_prop21_rat_of_prop12`), taking Proposition 12's
 floor-sum identity as an explicit hypothesis (a genuine separate classical fact, not yet
-proved — see that theorem's docstring). Propositions 12 (the floor-sum identity itself),
-16, 22, 88, 89 (the analytic steps: one Stieltjes integration by parts, one limit, one
-rational specialization) are deliberately NOT attempted in this file — see the H13-J
-memory plan for the full sequencing.
+proved — see that theorem's docstring). Proposition 22 is frozen below as a rational
+`sorry`-bodied statement after direct PDF extraction and numerical verification. Its proof,
+plus Propositions 16, 88, and 89 (the remaining analytic steps: Stieltjes integration by
+parts, one limit, and one rational specialization), is deliberately NOT attempted in this
+file — see the H13-J memory plan for the full sequencing.
 
 **Important correction to a naive transcription of Proposition 21** (found and fixed via
 direct numerical verification, not by re-reading the PDF more carefully — the PDF's own
@@ -592,5 +593,41 @@ theorem baezDuarte_prop21_rat_of_prop12 {h k : ℕ} (hh : 0 < h) (hk : 0 < k)
           (Int.fract ((k : ℝ) / (h : ℝ) * x) - (k : ℝ) / (h : ℝ) * Int.fract x) := by
   exact baezDuarte_prop21_rat_of_prop12_aux hh hk hcop x hx
     (baezDuarte_prop12_rat hh hk hcop x hx)
+
+/-! ## Proposition 22 statement (rational θ = k/h)
+
+The next BBLS step is Proposition 22: a Riemann--Stieltjes integration-by-parts
+identity obtained from Proposition 21.  This project only needs the rational
+specialization `θ = k/h`, so the frozen statement below follows the same convention as
+`baezDuarte_prop21_rat_of_prop12`.
+
+The statement was extracted directly from the saved PDF, visually checked against the
+rendered page, and numerically verified by exact piecewise integration for several
+rational `(x, θ)` test cases before being introduced here.  The proof is deliberately
+left for the next continuation: it should be a discrete Abel/Stieltjes summation-by-parts
+argument, not a new analytic estimate.
+-/
+
+/-- **Proposition 22, rational case** (`θ = k/h`, coprime, `h,k > 0`), from
+    Báez-Duarte--Balazard--Landreau--Saias, arXiv:math/0306251.
+
+    The paper's statement for real positive `x, θ` is:
+    `∑_{1≤m≤x} B₁(mθ)/m + θ ∑_{1≤n≤θx} B₁(n/θ)/n`
+    equals the displayed integral expression.  Here it is specialized to the rational
+    parameter `θ = k/h`, the only case needed downstream for Vasyunin period reduction.
+-/
+theorem baezDuarte_prop22_rat {h k : ℕ} (hh : 0 < h) (hk : 0 < k)
+    (hcop : Nat.Coprime h k) (x : ℝ) (hx : 0 < x) :
+    let θ : ℝ := (k : ℝ) / (h : ℝ)
+    (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) / (m : ℝ)) +
+        θ * (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) / (n : ℝ)) =
+      (θ / 2) * (∫ t in (0 : ℝ)..x, (Int.fract t) ^ 2 / t ^ 2) +
+        (1 / 2) * (∫ t in (0 : ℝ)..(θ * x), (Int.fract t) ^ 2 / t ^ 2) -
+        (∫ t in (0 : ℝ)..x, (Int.fract t * Int.fract (θ * t)) / t ^ 2) +
+        ((θ - 1) / 2) * Real.log (1 / θ) +
+        ((θ - 1) / 2) * (∫ t in x..(θ * x), Int.fract t / t ^ 2) +
+        (1 / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x) ^ 2 +
+        ((θ - 1) / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x) := by
+  sorry
 
 end RH.Criteria.NymanBeurling.VasyuninGram
