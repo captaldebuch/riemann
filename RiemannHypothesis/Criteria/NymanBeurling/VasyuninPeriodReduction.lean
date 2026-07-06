@@ -658,6 +658,325 @@ theorem intervalIntegral_const_div_sq (c a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
       field_simp [ne_of_gt ha, ne_of_gt hb]
       ring
 
+/-- A floor-indexed partial sum is constant on the half-open unit interval `[n,n+1)`. -/
+theorem stepPartialSum_eq_on_Ico (a : ℕ → ℝ) (n : ℕ) {u : ℝ}
+    (hu : u ∈ Set.Ico (n : ℝ) ((n + 1 : ℕ) : ℝ)) :
+    (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) = ∑ m ∈ Finset.Icc 1 n, a m := by
+  have hfloor : ⌊u⌋₊ = n := Nat.floor_eq_on_Ico n u (by simpa using hu)
+  rw [hfloor]
+
+/-- The initial block contributes zero: on `(0,1)` the floor-indexed step sum is empty. -/
+theorem stepPartialSum_div_sq_integral_zero_block (a : ℕ → ℝ) :
+    (∫ u in (0 : ℝ)..(1 : ℝ), (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) = 0 := by
+  have hcongr :
+      (∫ u in (0 : ℝ)..(1 : ℝ), (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =
+        (∫ _u in (0 : ℝ)..(1 : ℝ), (0 : ℝ)) := by
+    apply intervalIntegral.integral_congr_ae'
+    · filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume (1 : ℝ)] with u hu_ne hu_mem
+      have huIco : u ∈ Set.Ico (0 : ℝ) (1 : ℝ) :=
+        ⟨hu_mem.1.le, lt_of_le_of_ne hu_mem.2 hu_ne⟩
+      change (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = 0
+      rw [stepPartialSum_eq_on_Ico a 0 (by simpa using huIco)]
+      simp
+    · filter_upwards with u hu_mem
+      exfalso
+      have : (1 : ℝ) < 0 := lt_of_lt_of_le hu_mem.1 hu_mem.2
+      norm_num at this
+  rw [hcongr]
+  simp
+
+/-- If `⌊x⌋₊ = 0`, then the whole step-function integral from `0` to `x` vanishes. -/
+theorem stepPartialSum_div_sq_integral_of_floor_eq_zero (a : ℕ → ℝ) {x : ℝ}
+    (hx : 0 < x) (hfloor : ⌊x⌋₊ = 0) :
+    (∫ u in (0 : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) = 0 := by
+  have hxlt : x < 1 := Nat.floor_eq_zero.mp hfloor
+  have hcongr :
+      (∫ u in (0 : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =
+        (∫ _u in (0 : ℝ)..x, (0 : ℝ)) := by
+    apply intervalIntegral.integral_congr
+    intro u hu
+    have huIcc : u ∈ Set.Icc (0 : ℝ) x := by
+      simpa [Set.uIcc_of_le hx.le] using hu
+    have huIco : u ∈ Set.Ico (0 : ℝ) (1 : ℝ) :=
+      ⟨huIcc.1, lt_of_le_of_lt huIcc.2 hxlt⟩
+    change (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = 0
+    rw [stepPartialSum_eq_on_Ico a 0 (by simpa using huIco)]
+    simp
+  rw [hcongr]
+  simp
+
+/-- Integral of one positive unit block of the floor-indexed step function. -/
+theorem stepPartialSum_div_sq_integral_nat_block (a : ℕ → ℝ) {n : ℕ} (hn : 0 < n) :
+    (∫ u in (n : ℝ)..((n + 1 : ℕ) : ℝ),
+        (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =
+      (∑ m ∈ Finset.Icc 1 n, a m) *
+        (1 / (n : ℝ) - 1 / ((n + 1 : ℕ) : ℝ)) := by
+  have hcongr :
+      (∫ u in (n : ℝ)..((n + 1 : ℕ) : ℝ),
+          (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =
+        (∫ u in (n : ℝ)..((n + 1 : ℕ) : ℝ),
+          (∑ m ∈ Finset.Icc 1 n, a m) / u ^ 2) := by
+    apply intervalIntegral.integral_congr_ae'
+    · filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume (((n + 1 : ℕ) : ℝ))]
+        with u hu_ne hu_mem
+      have huIco : u ∈ Set.Ico (n : ℝ) ((n + 1 : ℕ) : ℝ) :=
+        ⟨hu_mem.1.le, lt_of_le_of_ne hu_mem.2 hu_ne⟩
+      change (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 =
+        (∑ m ∈ Finset.Icc 1 n, a m) / u ^ 2
+      rw [stepPartialSum_eq_on_Ico a n huIco]
+    · filter_upwards with u hu_mem
+      exfalso
+      have hle : (((n + 1 : ℕ) : ℝ) ≤ (n : ℝ)) := le_trans hu_mem.1.le hu_mem.2
+      have hnat : n + 1 ≤ n := by exact_mod_cast hle
+      omega
+  rw [hcongr]
+  exact intervalIntegral_const_div_sq (∑ m ∈ Finset.Icc 1 n, a m) (n : ℝ)
+    ((n + 1 : ℕ) : ℝ) (by exact_mod_cast hn) (by positivity)
+
+/-- Local integrability of the floor-indexed step function on each unit block. -/
+theorem stepPartialSum_div_sq_intervalIntegrable_nat_block (a : ℕ → ℝ) (n : ℕ) :
+    IntervalIntegrable (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+      MeasureTheory.volume (n : ℝ) ((n + 1 : ℕ) : ℝ) := by
+  by_cases hn : n = 0
+  · subst n
+    have hAE :
+        (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =ᵐ[
+          MeasureTheory.volume.restrict (Set.uIoc (0 : ℝ) (1 : ℝ))] (fun _ : ℝ => 0) := by
+      change ∀ᵐ u : ℝ ∂MeasureTheory.volume.restrict (Set.uIoc (0 : ℝ) (1 : ℝ)),
+        (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = 0
+      rw [MeasureTheory.ae_restrict_iff' measurableSet_uIoc]
+      filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume (1 : ℝ)] with u hu_ne hu
+      have huIoc : u ∈ Set.Ioc (0 : ℝ) (1 : ℝ) := by
+        simpa [Set.uIoc_of_le zero_le_one] using hu
+      have huIco : u ∈ Set.Ico (0 : ℝ) (1 : ℝ) :=
+        ⟨huIoc.1.le, lt_of_le_of_ne huIoc.2 hu_ne⟩
+      rw [stepPartialSum_eq_on_Ico a 0 (by simpa using huIco)]
+      simp
+    simpa using (intervalIntegrable_congr_ae hAE).2 IntervalIntegrable.zero
+  · have hnpos : 0 < n := Nat.pos_of_ne_zero hn
+    let c : ℝ := ∑ m ∈ Finset.Icc 1 n, a m
+    have hAE :
+        (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =ᵐ[
+          MeasureTheory.volume.restrict (Set.uIoc (n : ℝ) ((n + 1 : ℕ) : ℝ))]
+          (fun u : ℝ => c / u ^ 2) := by
+      change ∀ᵐ u : ℝ ∂MeasureTheory.volume.restrict
+          (Set.uIoc (n : ℝ) ((n + 1 : ℕ) : ℝ)),
+        (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = c / u ^ 2
+      rw [MeasureTheory.ae_restrict_iff' measurableSet_uIoc]
+      filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume (((n + 1 : ℕ) : ℝ))]
+        with u hu_ne hu
+      have hle : (n : ℝ) ≤ ((n + 1 : ℕ) : ℝ) := by exact_mod_cast Nat.le_succ n
+      have huIoc : u ∈ Set.Ioc (n : ℝ) ((n + 1 : ℕ) : ℝ) := by
+        simpa [Set.uIoc_of_le hle] using hu
+      have huIco : u ∈ Set.Ico (n : ℝ) ((n + 1 : ℕ) : ℝ) :=
+        ⟨huIoc.1.le, lt_of_le_of_ne huIoc.2 hu_ne⟩
+      rw [stepPartialSum_eq_on_Ico a n huIco]
+    have hg : IntervalIntegrable (fun u : ℝ => c / u ^ 2) MeasureTheory.volume
+        (n : ℝ) ((n + 1 : ℕ) : ℝ) := by
+      apply ContinuousOn.intervalIntegrable
+      apply ContinuousOn.div
+      · exact continuousOn_const
+      · exact continuousOn_id.pow 2
+      · intro u hu
+        have huIcc : u ∈ Set.Icc (n : ℝ) ((n + 1 : ℕ) : ℝ) := by
+          simpa [Set.uIcc_of_le (by exact_mod_cast Nat.le_succ n)] using hu
+        have hupos : 0 < u := lt_of_lt_of_le (by exact_mod_cast hnpos) huIcc.1
+        positivity
+    exact (intervalIntegrable_congr_ae hAE).2 hg
+
+/-- Integral from `0` to an integer endpoint, with the final block isolated for later
+    cancellation against the endpoint term in Abel summation. -/
+theorem stepPartialSum_div_sq_integral_zero_to_nat (a : ℕ → ℝ) (N : ℕ) :
+    (∫ u in (0 : ℝ)..(N : ℝ), (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =
+      (∑ k ∈ Finset.Icc 1 N,
+          (∑ m ∈ Finset.Icc 1 k, a m) *
+            (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))) -
+        (∑ m ∈ Finset.Icc 1 N, a m) *
+          (1 / (N : ℝ) - 1 / ((N + 1 : ℕ) : ℝ)) := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+      have hprevInt : IntervalIntegrable
+          (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+          MeasureTheory.volume (0 : ℝ) (N : ℝ) := by
+        simpa using (IntervalIntegrable.trans_iterate
+          (a := fun k : ℕ => (k : ℝ)) (n := N)
+          (fun k _hk => stepPartialSum_div_sq_intervalIntegrable_nat_block a k))
+      have hblockInt := stepPartialSum_div_sq_intervalIntegrable_nat_block a N
+      have hadd := intervalIntegral.integral_add_adjacent_intervals hprevInt hblockInt
+      rw [← hadd, ih]
+      by_cases hN0 : N = 0
+      · subst N
+        have hzero :
+            (∫ x in ((0 : ℕ) : ℝ)..(((0 + 1 : ℕ)) : ℝ),
+              (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, a m) / x ^ 2) = 0 := by
+          simpa using stepPartialSum_div_sq_integral_zero_block a
+        rw [hzero]
+        norm_num
+      · have hNpos : 0 < N := Nat.pos_of_ne_zero hN0
+        rw [stepPartialSum_div_sq_integral_nat_block a hNpos]
+        have hone : 1 ≤ N + 1 := by omega
+        rw [Finset.sum_Icc_succ_top hone]
+        ring
+
+/-- Tail block from the last integer endpoint `N = ⌊x⌋₊` to `x`. -/
+theorem stepPartialSum_div_sq_integral_floor_tail (a : ℕ → ℝ) {x : ℝ}
+    (hx : 0 < x) {N : ℕ} (hN : ⌊x⌋₊ = N) (hNpos : 0 < N) :
+    (∫ u in (N : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =
+      (∑ m ∈ Finset.Icc 1 N, a m) * (1 / (N : ℝ) - 1 / x) := by
+  have hNx : (N : ℝ) ≤ x := by
+    rw [← hN]
+    exact Nat.floor_le hx.le
+  have hxlt : x < ((N + 1 : ℕ) : ℝ) := by
+    rw [← hN]
+    simpa [Nat.cast_add, Nat.cast_one] using Nat.lt_floor_add_one x
+  have hcongr :
+      (∫ u in (N : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2) =
+        (∫ u in (N : ℝ)..x, (∑ m ∈ Finset.Icc 1 N, a m) / u ^ 2) := by
+    apply intervalIntegral.integral_congr
+    intro u hu
+    have huIcc : u ∈ Set.Icc (N : ℝ) x := by
+      simpa [Set.uIcc_of_le hNx] using hu
+    have huIco : u ∈ Set.Ico (N : ℝ) ((N + 1 : ℕ) : ℝ) :=
+      ⟨huIcc.1, lt_of_le_of_lt huIcc.2 hxlt⟩
+    change (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 =
+      (∑ m ∈ Finset.Icc 1 N, a m) / u ^ 2
+    rw [stepPartialSum_eq_on_Ico a N huIco]
+  rw [hcongr]
+  exact intervalIntegral_const_div_sq (∑ m ∈ Finset.Icc 1 N, a m) (N : ℝ) x
+    (by exact_mod_cast hNpos) hx
+
+/-- Local integrability on the final tail block `N..x`, where `N = ⌊x⌋₊ > 0`. -/
+theorem stepPartialSum_div_sq_intervalIntegrable_floor_tail (a : ℕ → ℝ) {x : ℝ}
+    (hx : 0 < x) {N : ℕ} (hN : ⌊x⌋₊ = N) (hNpos : 0 < N) :
+    IntervalIntegrable (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+      MeasureTheory.volume (N : ℝ) x := by
+  let c : ℝ := ∑ m ∈ Finset.Icc 1 N, a m
+  have hNx : (N : ℝ) ≤ x := by
+    rw [← hN]
+    exact Nat.floor_le hx.le
+  have hxlt : x < ((N + 1 : ℕ) : ℝ) := by
+    rw [← hN]
+    simpa [Nat.cast_add, Nat.cast_one] using Nat.lt_floor_add_one x
+  have hEq : Set.EqOn
+      (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+      (fun u : ℝ => c / u ^ 2) (Set.uIoc (N : ℝ) x) := by
+    intro u hu
+    have huIoc : u ∈ Set.Ioc (N : ℝ) x := by
+      simpa [Set.uIoc_of_le hNx] using hu
+    have huIco : u ∈ Set.Ico (N : ℝ) ((N + 1 : ℕ) : ℝ) :=
+      ⟨huIoc.1.le, lt_of_le_of_lt huIoc.2 hxlt⟩
+    change (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = c / u ^ 2
+    rw [stepPartialSum_eq_on_Ico a N huIco]
+  have hg : IntervalIntegrable (fun u : ℝ => c / u ^ 2) MeasureTheory.volume (N : ℝ) x := by
+    apply ContinuousOn.intervalIntegrable
+    apply ContinuousOn.div
+    · exact continuousOn_const
+    · exact continuousOn_id.pow 2
+    · intro u hu
+      have huIcc : u ∈ Set.Icc (N : ℝ) x := by
+        simpa [Set.uIcc_of_le hNx] using hu
+      have hupos : 0 < u := lt_of_lt_of_le (by exact_mod_cast hNpos) huIcc.1
+      positivity
+  exact (intervalIntegrable_congr hEq).2 hg
+
+/-- Finite Abel summation for a cutoff that vanishes at `N + 1`, local to the BBLS
+    step-function proof.  This is the same proof shape as the private Phase 14 helper
+    `sum_Icc_mul_sub_endpoint_eq_sum_partial` in `MobiusSummatory.lean`. -/
+private theorem finite_abel_sum_Icc_mul_sub_endpoint_eq_sum_partial
+    (a b : ℕ → ℝ) (N : ℕ) :
+    (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1))) =
+      ∑ k ∈ Finset.Icc 1 N,
+        (∑ j ∈ Finset.Icc 1 k, a j) * (b k - b (k + 1)) := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+      have hone : 1 ≤ N + 1 := by omega
+      rw [Finset.sum_Icc_succ_top hone, Finset.sum_Icc_succ_top hone]
+      have hshift :
+          (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1 + 1))) =
+            (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1))) +
+              (∑ k ∈ Finset.Icc 1 N, a k) * (b (N + 1) - b (N + 1 + 1)) := by
+        calc
+          _ = ∑ k ∈ Finset.Icc 1 N,
+                (a k * (b k - b (N + 1)) +
+                  a k * (b (N + 1) - b (N + 1 + 1))) := by
+              apply Finset.sum_congr rfl
+              intro k _
+              ring
+          _ = _ := by
+              rw [Finset.sum_add_distrib, Finset.sum_mul]
+      rw [hshift, ih, Finset.sum_Icc_succ_top hone]
+      ring
+
+/-- Discrete Abel summation in the exact form needed for the step-function integral. -/
+theorem sum_Icc_div_eq_endpoint_add_abel (a : ℕ → ℝ) (N : ℕ) :
+    (∑ k ∈ Finset.Icc 1 N, a k / (k : ℝ)) =
+      (∑ k ∈ Finset.Icc 1 N, a k) / ((N + 1 : ℕ) : ℝ) +
+        ∑ k ∈ Finset.Icc 1 N,
+          (∑ j ∈ Finset.Icc 1 k, a j) *
+            (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+  have habel := finite_abel_sum_Icc_mul_sub_endpoint_eq_sum_partial
+    a (fun k : ℕ => 1 / (k : ℝ)) N
+  have hdiff :
+      (∑ k ∈ Finset.Icc 1 N, a k / (k : ℝ)) -
+          (∑ k ∈ Finset.Icc 1 N, a k) / ((N + 1 : ℕ) : ℝ) =
+        ∑ k ∈ Finset.Icc 1 N,
+          (∑ j ∈ Finset.Icc 1 k, a j) *
+            (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+    calc
+      (∑ k ∈ Finset.Icc 1 N, a k / (k : ℝ)) -
+          (∑ k ∈ Finset.Icc 1 N, a k) / ((N + 1 : ℕ) : ℝ) =
+          ∑ k ∈ Finset.Icc 1 N,
+            (a k / (k : ℝ) - a k / ((N + 1 : ℕ) : ℝ)) := by
+            rw [Finset.sum_sub_distrib, Finset.sum_div]
+      _ = ∑ k ∈ Finset.Icc 1 N,
+            a k * (1 / (k : ℝ) - 1 / ((N + 1 : ℕ) : ℝ)) := by
+            apply Finset.sum_congr rfl
+            intro k _
+            ring
+      _ = _ := habel
+  linarith
+
+/-- Step-function Abel/Stieltjes summation-by-parts identity.
+
+For the step sum `S(u) = ∑_{1≤m≤u} a_m`, this proves
+`∑_{1≤m≤x} a_m/m = S(x)/x + ∫₀ˣ S(u)/u² du`.  This is the first
+mechanical ingredient needed for the frozen BBLS Proposition 22 proof. -/
+theorem stepFunction_abel_stieltjes_identity (a : ℕ → ℝ) {x : ℝ} (hx : 0 < x) :
+    (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, a m / (m : ℝ)) =
+      (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, a m) / x +
+        ∫ u in (0 : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 := by
+  by_cases hfloor0 : ⌊x⌋₊ = 0
+  · rw [hfloor0]
+    rw [stepPartialSum_div_sq_integral_of_floor_eq_zero a hx hfloor0]
+    simp
+  · set N : ℕ := ⌊x⌋₊ with hN
+    have hNfloor : ⌊x⌋₊ = N := hN.symm
+    have hNpos : 0 < N := Nat.pos_of_ne_zero hfloor0
+    have hprevInt : IntervalIntegrable
+        (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+        MeasureTheory.volume (0 : ℝ) (N : ℝ) := by
+      simpa using (IntervalIntegrable.trans_iterate
+        (a := fun k : ℕ => (k : ℝ)) (n := N)
+        (fun k _hk => stepPartialSum_div_sq_intervalIntegrable_nat_block a k))
+    have htailInt := stepPartialSum_div_sq_intervalIntegrable_floor_tail a hx hNfloor hNpos
+    have hadd := intervalIntegral.integral_add_adjacent_intervals hprevInt htailInt
+    have hzeroN := stepPartialSum_div_sq_integral_zero_to_nat a N
+    have htail := stepPartialSum_div_sq_integral_floor_tail a hx hNfloor hNpos
+    have habel := sum_Icc_div_eq_endpoint_add_abel a N
+    rw [hN]
+    calc
+      (∑ m ∈ Finset.Icc 1 N, a m / (m : ℝ)) =
+          (∑ m ∈ Finset.Icc 1 N, a m) / ((N + 1 : ℕ) : ℝ) +
+            ∑ k ∈ Finset.Icc 1 N,
+              (∑ j ∈ Finset.Icc 1 k, a j) *
+                (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := habel
+      _ = (∑ m ∈ Finset.Icc 1 N, a m) / x +
+            ∫ u in (0 : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 := by
+          rw [← hadd, hzeroN, htail]
+          ring
+
 /-- **Proposition 22, rational case** (`θ = k/h`, coprime, `h,k > 0`), from
     Báez-Duarte--Balazard--Landreau--Saias, arXiv:math/0306251.
 
