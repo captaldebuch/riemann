@@ -977,6 +977,20 @@ theorem stepFunction_abel_stieltjes_identity (a : ℕ → ℝ) {x : ℝ} (hx : 0
           rw [← hadd, hzeroN, htail]
           ring
 
+/-- The scaled companion Abel/Stieltjes identity for the second Proposition 22 sum.
+
+This is just `stepFunction_abel_stieltjes_identity` instantiated with
+`a n = B₁(n / θ)` and endpoint `θ*x`. -/
+theorem bernoulliB1_scaled_companion_abel_stieltjes_identity {θ x : ℝ}
+    (hθ : 0 < θ) (hx : 0 < x) :
+    (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) / (n : ℝ)) =
+      (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ)) / (θ * x) +
+        ∫ u in (0 : ℝ)..(θ * x),
+          (∑ n ∈ Finset.Icc 1 ⌊u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2 := by
+  simpa using
+    (stepFunction_abel_stieltjes_identity
+      (fun n : ℕ => bernoulliB1 ((n : ℝ) / θ)) (x := θ * x) (mul_pos hθ hx))
+
 /-- **Proposition 22, rational case** (`θ = k/h`, coprime, `h,k > 0`), from
     Báez-Duarte--Balazard--Landreau--Saias, arXiv:math/0306251.
 
