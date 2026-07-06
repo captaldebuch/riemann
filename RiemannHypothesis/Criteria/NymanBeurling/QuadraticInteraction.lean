@@ -311,6 +311,93 @@ structure QuadraticInteractionAnalyticSubEstimates where
   gcdError : QuadraticInteractionGcdSliceErrorEstimate gcdMain.mainTerm
 
 -- ---------------------------------------------------------------------------
+-- 5a. BBLS / Estermann Contour Package Interface
+-- ---------------------------------------------------------------------------
+
+/--
+Structural interface for the Báez-Duarte--Balazard--Landreau--Saias
+autocorrelation/Estermann contour input relevant to the quadratic interaction.
+
+This is intentionally only a dependency package, not an attempted proof of the
+contour argument.  The current Lean kernel is
+
+`((k-h)/(2hk))*log(h/k) - (π/(2hk))*(V(h,k)+V(k,h))`.
+
+For coprime positive `h,k`, BBLS Proposition 89 gives
+
+`A(h/k)/h =
+  quadraticInteractionKernel h k
+    + ((log(2π)-γ)/2) * (1/h + 1/k)`.
+
+Thus the BBLS autocorrelation main term lines up with this file only after
+respecting the existing split between the log-gamma component and the
+log/cotangent interaction kernel.  The package below records the three analytic
+inputs expected from the Mellin/Estermann contour method, plus the extracted
+gcd-main-term estimate that H15 can consume.  It deliberately does **not**
+include the gcd-slice error estimate, which is the separate Möbius-correlation
+problem.
+-/
+structure BBLS_EstermannContourPackage where
+  /--
+  BBLS Proposition 86: the Mellin transform formula for the multiplicative
+  fractional-part autocorrelation `A`, namely
+  `M_A(s) = -ζ(-s)ζ(s+1)/(s(s+1))` on `-1 < Re s < 0`, expressed in whatever
+  eventual Mellin-transform API this project adopts.
+  -/
+  mellin_transform_formula : Prop
+  /--
+  The residue/double-pole computation at `s = 0` for the contour-shifted
+  integrand, producing the explicit main term that matches the BBLS
+  Proposition 89 normalization after subtracting this file's log-gamma split.
+  -/
+  double_pole_residue_formula : Prop
+  /--
+  The vertical-strip growth bound for the Estermann side, of the kind used in
+  BBLS Proposition 66, sufficient to justify the contour shift.
+  -/
+  vertical_strip_growth_bound : Prop
+  mellin_transform_formula_holds : mellin_transform_formula
+  double_pole_residue_formula_holds : double_pole_residue_formula
+  vertical_strip_growth_bound_holds : vertical_strip_growth_bound
+  mainTerm : ℕ → ℝ
+  C_main : ℝ
+  C_main_nonneg : 0 ≤ C_main
+  /--
+  The H15-level consequence of the BBLS residue extraction: the proposed gcd
+  main terms sum to the target value `1` at the logarithmic rate required by
+  `QuadraticInteractionGcdMainTermEstimate`.
+
+  Proving this field from the preceding analytic fields is future Mellin/
+  contour infrastructure.  Once supplied, the bridge below is purely structural.
+  -/
+  main_term_bound :
+    ∀ N : ℕ,
+      |(∑ g ∈ Finset.Icc 1 N, mainTerm g) - 1| ≤ C_main / Real.log (N + 2 : ℝ)
+
+/-- The BBLS/Estermann contour package discharges the gcd-main-term subestimate. -/
+noncomputable def quadraticInteractionGcdMainTermEstimate_of_BBLS
+    (H : BBLS_EstermannContourPackage) :
+    QuadraticInteractionGcdMainTermEstimate :=
+  { mainTerm := H.mainTerm
+    C_main := H.C_main
+    C_main_nonneg := H.C_main_nonneg
+    main_term_bound := H.main_term_bound }
+
+/--
+BBLS contour input plus a separately supplied gcd-slice error estimate gives
+the full analytic-subestimate package.  The diagonal component is already
+unconditional (`quadraticInteractionDiagonalEstimate_zero`); the remaining
+separate input is exactly the uniform Möbius-weighted slice-error estimate.
+-/
+noncomputable def quadraticInteractionAnalyticSubEstimates_of_BBLS_and_gcdError
+    (H : BBLS_EstermannContourPackage)
+    (E : QuadraticInteractionGcdSliceErrorEstimate H.mainTerm) :
+    QuadraticInteractionAnalyticSubEstimates :=
+  { diagonal := quadraticInteractionDiagonalEstimate_zero
+    gcdMain := quadraticInteractionGcdMainTermEstimate_of_BBLS H
+    gcdError := E }
+
+-- ---------------------------------------------------------------------------
 -- 6. Formal Reductions
 -- ---------------------------------------------------------------------------
 
