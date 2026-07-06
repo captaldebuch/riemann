@@ -21,8 +21,7 @@ noncomputable def mobiusLogSummatory (N : ℕ) : ℝ :=
 -- 2. Classical Asymptotic Bounds Structure
 -- ---------------------------------------------------------------------------
 
-/-- 
-  The classical asymptotic estimates for the Möbius function.
+/-- The classical asymptotic estimates for the Möbius function.
   For the cutoff-Möbius integral convergence, we need bounds strong enough
   to overcome the logarithmic weights in the Abel summation.
   Specifically, M(N) ≪ N / log(N)^A and L(N) ≪ N / log(N)^A for some A > 1.

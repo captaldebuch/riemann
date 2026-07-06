@@ -18,7 +18,7 @@ open scoped BigOperators
 def RationalMatrixPSD {n : ℕ} (M : Matrix (Fin n) (Fin n) ℚ) : Prop :=
   ∀ x : Fin n → ℚ, 0 ≤ ∑ i, x i * (M.mulVec x) i
 
-/-- 
+/--
 A computable witness of positive-semidefiniteness via an exact LDLᵀ decomposition.
 Because L and D are rational, Lean can verify this identity exactly via `norm_num`.
 -/
@@ -29,7 +29,7 @@ structure RationalPSDWitness (n : ℕ) where
   diagonal_nonneg : ∀ i, 0 ≤ D i
   ldl_identity : M = L * Matrix.diagonal D * L.transpose
 
-/-- 
+/--
 The explicit formal theorem that an LDLᵀ decomposition implies PSD.
 This proves that the algebraic identity `M = L * D * Lᵀ` translates
 exactly into `RationalMatrixPSD`.

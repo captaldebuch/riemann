@@ -47,8 +47,7 @@ open RH.Criteria.NymanBeurling.QuadraticInteraction
 -- 2. Final Conditional Synthesis Theorem
 -- ---------------------------------------------------------------------------
 
-/--
-  The ultimate conditional theorem bridging the fundamental arithmetic estimates
+/-- The ultimate conditional theorem bridging the fundamental arithmetic estimates
   to the Riemann Hypothesis.
 
   If we establish:

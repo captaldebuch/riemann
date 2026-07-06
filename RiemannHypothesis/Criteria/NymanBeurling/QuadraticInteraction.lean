@@ -11,8 +11,7 @@ open RH.Criteria.NymanBeurling.VasyuninGram
 -- 1. Unified Interaction Kernel
 -- ---------------------------------------------------------------------------
 
-/--
-  The central arithmetic interaction kernel independent of the Möbius cutoff weights.
+/-- The central arithmetic interaction kernel independent of the Möbius cutoff weights.
   It combines the log-ratio and the fractional cotangent sum, which are individually large
   but cancel heavily to approximate 1 when summed against the Möbius cutoff.
 -/
@@ -585,8 +584,7 @@ theorem explicitQuadraticLogCotangentInteraction_eq_unified_sum (N : ℕ) :
 -- 7. The Isolated Hard Remainder Target
 -- ---------------------------------------------------------------------------
 
-/--
-  The core remaining analytic estimate target:
+/-- The core remaining analytic estimate target:
   The double sum over the interaction kernel must converge to 1
   with an error rate of O(1/log N).
 -/
