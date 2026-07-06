@@ -398,6 +398,171 @@ noncomputable def quadraticInteractionAnalyticSubEstimates_of_BBLS_and_gcdError
     gcdError := E }
 
 -- ---------------------------------------------------------------------------
+-- 5b. Farey-Cell Möbius Correlation Interface
+-- ---------------------------------------------------------------------------
+
+/--
+The two-linear-forms Möbius correlation sum expected after decomposing a gcd
+slice into Farey cells.  The parameters `a/q` describe the Farey approximant,
+`r,s` are residue offsets, and `w` is the real kernel/cutoff weight left over
+from the quadratic interaction on that cell.
+
+The point of this definition is that the arithmetic obstruction is genuinely a
+binary correlation
+
+`μ(a*m+r) * μ(q*m+s)`,
+
+not a one-dimensional arithmetic-progression or Bombieri--Vinogradov-type
+estimate.
+-/
+noncomputable def fareyCellMobiusCorrelationSum
+    (a q r s M : ℕ) (w : ℕ → ℝ) : ℝ :=
+  ∑ m ∈ Finset.Icc 1 M,
+    ((ArithmeticFunction.moebius (a * m + r) : ℤ) : ℝ) *
+      ((ArithmeticFunction.moebius (q * m + s) : ℤ) : ℝ) * w m
+
+/-- The `ℓ¹` size of the cell weight over the active parameter interval. -/
+noncomputable def fareyCellWeightL1 (M : ℕ) (w : ℕ → ℝ) : ℝ :=
+  ∑ m ∈ Finset.Icc 1 M, |w m|
+
+/--
+The pointwise logarithmic saving predicted for one Farey-cell correlation sum.
+The global H15 error still needs a separate summation/decomposition hypothesis:
+there are many cells, and their weights must have summable total mass.
+-/
+noncomputable def fareyCellLogSavingMajorant
+    (C : ℝ) (N M : ℕ) (w : ℕ → ℝ) : ℝ :=
+  C * fareyCellWeightL1 M w / Real.log (N + 2 : ℝ)
+
+/--
+Finite summation over the Farey-cell parameters relevant to the `g`-scaled
+off-diagonal slice.  For a slice with `h = g*x`, `k = g*y`, the scaled variables
+`x,y` are at most `N/g`; hence the Farey order and all cell lengths are bounded
+by `N/g`.
+-/
+noncomputable def fareyCellParameterSum
+    (N g : ℕ) (F : ℕ → ℕ → ℕ → ℕ → ℕ → ℝ) : ℝ :=
+  ∑ a ∈ Finset.Icc 1 (N / g),
+    ∑ q ∈ (Finset.Icc 1 (N / g)).filter (fun q => Nat.Coprime a q),
+      ∑ r ∈ Finset.range a,
+        ∑ s ∈ Finset.range q,
+          ∑ M ∈ Finset.Icc 1 (N / g), F a q r s M
+
+/--
+The genuine arithmetic input needed by the Farey-cell approach: a uniform
+log-saving estimate for Möbius evaluated on two independent affine-linear
+forms.
+
+This is deliberately stronger and more specific than
+`QuadraticInteractionGcdSliceErrorEstimate`.  It does not mention the H15 kernel
+or gcd slices; it only states the binary Möbius-correlation estimate that a
+future analytic proof would have to supply.  The surrounding parameter ranges
+are those arising from `quadraticInteractionOffDiagonalGcdSlice` after the
+scaling `h = g*x`, `k = g*y` and a Farey decomposition of the coprime pair
+`x/y`.
+-/
+structure FareyCellMobiusCorrelationEstimate where
+  C_correlation : ℝ
+  C_correlation_nonneg : 0 ≤ C_correlation
+  correlation_bound :
+    ∀ N g a q r s M : ℕ,
+      ∀ w : ℕ → ℝ,
+        g ∈ Finset.Icc 1 N →
+          a ∈ Finset.Icc 1 (N / g) →
+            q ∈ Finset.Icc 1 (N / g) →
+              Nat.Coprime a q →
+                r < a →
+                  s < q →
+                    M ∈ Finset.Icc 1 (N / g) →
+                      |fareyCellMobiusCorrelationSum a q r s M w| ≤
+                        fareyCellLogSavingMajorant C_correlation N M w
+
+/--
+The combinatorial and weight bookkeeping that connects Farey-cell correlations
+back to the concrete H15 gcd-slice error.
+
+This is a separate package because it is not merely a tactic-level rewrite:
+formalizing the Farey partition of the off-diagonal coprime pairs, extracting
+the exact cell weights from `quadraticInteractionKernel`, and proving their
+summed log-saving majorants are all substantial infrastructure.  The fields
+below isolate that infrastructure without pretending to prove the hard binary
+Möbius-correlation estimate itself.
+-/
+structure FareyCellGcdSliceErrorDecomposition
+    (Hcorr : FareyCellMobiusCorrelationEstimate) (mainTerm : ℕ → ℝ) where
+  /--
+  The real weight attached to a Farey cell.  It absorbs the cutoff factors, the
+  log/cotangent interaction kernel, the fixed gcd `g`, and any squarefree or
+  coprimality indicators needed to convert `μ(g*x) μ(g*y)` into the primitive
+  two-linear-forms correlation.
+  -/
+  cellWeight : ℕ → ℕ → ℕ → ℕ → ℕ → ℕ → ℕ → ℕ → ℝ
+  errorMajorant : ℕ → ℕ → ℝ
+  C_error : ℝ
+  C_error_nonneg : 0 ≤ C_error
+  errorMajorant_nonneg : ∀ N g : ℕ, 0 ≤ errorMajorant N g
+  /--
+  Exact Farey-cell decomposition of one finite gcd slice after subtracting its
+  BBLS-supplied limiting main term.
+  -/
+  farey_cell_decomposition :
+    ∀ N g : ℕ,
+      g ∈ Finset.Icc 1 N →
+        quadraticInteractionOffDiagonalGcdSlice N g - mainTerm g =
+          fareyCellParameterSum N g (fun a q r s M =>
+            fareyCellMobiusCorrelationSum a q r s M
+              (cellWeight N g a q r s M))
+  /--
+  The finite triangle-inequality and cellwise correlation step: applying
+  `Hcorr.correlation_bound` over all relevant Farey cells is enough to dominate
+  the decomposed slice by the sum of the cell log-saving majorants.
+  -/
+  farey_cell_correlation_bound :
+    ∀ N g : ℕ,
+      g ∈ Finset.Icc 1 N →
+        |fareyCellParameterSum N g (fun a q r s M =>
+          fareyCellMobiusCorrelationSum a q r s M
+            (cellWeight N g a q r s M))| ≤
+          fareyCellParameterSum N g (fun a q r s M =>
+            fareyCellLogSavingMajorant Hcorr.C_correlation N M
+              (cellWeight N g a q r s M))
+  /--
+  The remaining Farey-cell mass bookkeeping: once every cell has its
+  log-saving majorant, their total contribution to this gcd slice is controlled
+  by `errorMajorant`.
+  -/
+  farey_cell_majorant_bound :
+    ∀ N g : ℕ,
+      g ∈ Finset.Icc 1 N →
+        fareyCellParameterSum N g (fun a q r s M =>
+          fareyCellLogSavingMajorant Hcorr.C_correlation N M
+            (cellWeight N g a q r s M)) ≤ errorMajorant N g
+  error_mass_bound :
+    ∀ N : ℕ,
+      (∑ g ∈ Finset.Icc 1 N, errorMajorant N g) ≤
+        C_error / Real.log (N + 2 : ℝ)
+
+/--
+Farey-cell binary Möbius-correlation input, together with the explicit
+decomposition/weight bookkeeping, supplies the abstract H15 gcd-slice error
+estimate.
+-/
+noncomputable def quadraticInteractionGcdSliceErrorEstimate_of_fareyCellCorrelation
+    (Hcorr : FareyCellMobiusCorrelationEstimate) (mainTerm : ℕ → ℝ)
+    (D : FareyCellGcdSliceErrorDecomposition Hcorr mainTerm) :
+    QuadraticInteractionGcdSliceErrorEstimate mainTerm :=
+  { errorMajorant := D.errorMajorant
+    C_error := D.C_error
+    C_error_nonneg := D.C_error_nonneg
+    errorMajorant_nonneg := D.errorMajorant_nonneg
+    slice_error_bound := by
+      intro N g hg
+      rw [D.farey_cell_decomposition N g hg]
+      exact (D.farey_cell_correlation_bound N g hg).trans
+        (D.farey_cell_majorant_bound N g hg)
+    error_mass_bound := D.error_mass_bound }
+
+-- ---------------------------------------------------------------------------
 -- 6. Formal Reductions
 -- ---------------------------------------------------------------------------
 
