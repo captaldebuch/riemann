@@ -6,6 +6,57 @@ open Filter Finset Topology
 open RH.Criteria.NymanBeurling.CutoffMobiusKernels
 open scoped BigOperators
 
+-- ---------------------------------------------------------------------------
+-- H14M-A. de la Vallée Poussin zero-free-region API
+-- ---------------------------------------------------------------------------
+
+/--
+The normalized de la Vallée Poussin zero-free strip used for the future
+quantitative Mertens bound.
+
+The `+ 2` keeps the logarithmic denominator positive uniformly, including on
+the real axis.  The point `s = 1` needs no separate exclusion in this project
+because Mathlib's `riemannZeta` is total and has a nonzero junk value there.
+-/
+noncomputable def deLaValleePoussinRegion (c : ℝ) (s : ℂ) : Prop :=
+  1 - c / Real.log (|s.im| + 2) < s.re
+
+lemma log_abs_im_add_two_pos (s : ℂ) :
+    0 < Real.log (|s.im| + 2) := by
+  exact Real.log_pos (by linarith [abs_nonneg s.im])
+
+lemma deLaValleePoussinRegion_of_one_le_re {c : ℝ} (hc : 0 < c) {s : ℂ}
+    (hs : 1 ≤ s.re) :
+    deLaValleePoussinRegion c s := by
+  unfold deLaValleePoussinRegion
+  have hden : 0 < Real.log (|s.im| + 2) := log_abs_im_add_two_pos s
+  have hquot : 0 < c / Real.log (|s.im| + 2) := div_pos hc hden
+  linarith
+
+/--
+H14M-A frozen statement of the classical de la Vallée Poussin zero-free
+region needed by the later effective Perron/contour-shift development.
+
+This is intentionally only an API package: constructing it is the substantive
+future analytic-number-theory work.  The constant is existential rather than
+numeric, since the downstream `mertens_bound` only needs some positive
+zero-free-region width.
+-/
+structure DeLaValleePoussinZeroFreeRegion where
+  c : ℝ
+  c_pos : 0 < c
+  zeta_ne_zero :
+    ∀ s : ℂ, deLaValleePoussinRegion c s → riemannZeta s ≠ 0
+
+/--
+The frozen package extends Mathlib's already-formalized closed half-plane
+nonvanishing into the logarithmically thin region to the left of `Re s = 1`.
+-/
+lemma DeLaValleePoussinZeroFreeRegion.ne_zero_of_one_le_re
+    (H : DeLaValleePoussinZeroFreeRegion) {s : ℂ} (hs : 1 ≤ s.re) :
+    riemannZeta s ≠ 0 :=
+  H.zeta_ne_zero s (deLaValleePoussinRegion_of_one_le_re H.c_pos hs)
+
 lemma log_tail_term_le_telescoping (k : ℕ) :
     1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2) ≤
       6 * (1 / Real.log (k + 2 : ℝ) - 1 / Real.log (k + 3 : ℝ)) := by
