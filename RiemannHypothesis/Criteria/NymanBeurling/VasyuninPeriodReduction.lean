@@ -1101,6 +1101,60 @@ theorem prop16_fract_diff_eq_zero_of_lt_alpha {θ α t : ℝ} (hθ : 0 < θ)
   rw [Int.fract_eq_self.mpr ⟨hθt_nonneg, hθt_lt_one⟩]
   ring
 
+/-- Positive-endpoint primitive for `1/t`, local to the BBLS Proposition 16 proof. -/
+theorem intervalIntegral_one_div (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
+    (∫ t in a..b, (1 : ℝ) / t) = Real.log b - Real.log a := by
+  have hderiv : ∀ t ∈ Set.uIcc a b, HasDerivAt Real.log (1 / t) t := by
+    intro t ht
+    have htpos : 0 < t := by
+      rcases le_total a b with hab | hba
+      · have ht' : t ∈ Set.Icc a b := by
+          simpa [Set.uIcc_of_le hab] using ht
+        linarith [ht'.1]
+      · have ht' : t ∈ Set.Icc b a := by
+          simpa [Set.uIcc_of_ge hba] using ht
+        linarith [ht'.1]
+    simpa [one_div] using Real.hasDerivAt_log htpos.ne'
+  have hint : IntervalIntegrable (fun t : ℝ => (1 : ℝ) / t) MeasureTheory.volume a b := by
+    apply ContinuousOn.intervalIntegrable
+    apply ContinuousOn.div
+    · exact continuousOn_const
+    · exact continuousOn_id
+    · intro t ht
+      have htpos : 0 < t := by
+        rcases le_total a b with hab | hba
+        · have ht' : t ∈ Set.Icc a b := by
+            simpa [Set.uIcc_of_le hab] using ht
+          linarith [ht'.1]
+        · have ht' : t ∈ Set.Icc b a := by
+            simpa [Set.uIcc_of_ge hba] using ht
+          linarith [ht'.1]
+      exact ne_of_gt htpos
+  exact intervalIntegral.integral_eq_sub_of_hasDerivAt hderiv hint
+
+/-- On intervals contained in `(0,1]`, the fractional-part integral reduces to the logarithmic
+primitive.  Endpoint disagreements at `1` are removed by an a.e. congruence. -/
+theorem fract_div_sq_integral_of_pos_le_one {a b : ℝ}
+    (ha : 0 < a) (hb : 0 < b) (ha1 : a ≤ 1) (hb1 : b ≤ 1) :
+    (∫ u in a..b, Int.fract u / u ^ 2) = Real.log b - Real.log a := by
+  have hcongr :
+      (∫ u in a..b, Int.fract u / u ^ 2) = (∫ u in a..b, (1 : ℝ) / u) := by
+    apply intervalIntegral.integral_congr_ae'
+    · filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume (1 : ℝ)] with u hu_ne hu
+      have hupos : 0 < u := lt_trans ha hu.1
+      have hule : u ≤ 1 := le_trans hu.2 hb1
+      have hult : u < 1 := lt_of_le_of_ne hule hu_ne
+      rw [Int.fract_eq_self.mpr ⟨hupos.le, hult⟩]
+      field_simp [ne_of_gt hupos]
+    · filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume (1 : ℝ)] with u hu_ne hu
+      have hupos : 0 < u := lt_trans hb hu.1
+      have hule : u ≤ 1 := le_trans hu.2 ha1
+      have hult : u < 1 := lt_of_le_of_ne hule hu_ne
+      rw [Int.fract_eq_self.mpr ⟨hupos.le, hult⟩]
+      field_simp [ne_of_gt hupos]
+  rw [hcongr]
+  exact intervalIntegral_one_div a b ha hb
+
 /-- Quadratic scaling identity used in the proof of BBLS Proposition 22.
 
 The identity appears explicitly in the proof on page 12 of
