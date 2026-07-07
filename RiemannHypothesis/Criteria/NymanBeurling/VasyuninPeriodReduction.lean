@@ -1053,6 +1053,54 @@ theorem fract_scaled_integral {θ a b : ℝ} (hθ : 0 < θ) :
   rw [hcomp]
   field_simp [hθ.ne']
 
+/-- Local interval integrability of the BBLS Proposition 16 difference integrand away from
+zero. -/
+theorem prop16_fract_diff_div_sq_intervalIntegrable {θ a b : ℝ} (hpos : 0 < min a b) :
+    IntervalIntegrable (fun t : ℝ => (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2)
+      MeasureTheory.volume a b := by
+  have h1 := fract_mul_div_sq_intervalIntegrable (c := θ) (a := a) (b := b) hpos
+  have h2 := fract_mul_div_sq_intervalIntegrable (c := 1) (a := a) (b := b) hpos
+  have h2' : IntervalIntegrable (fun t : ℝ => θ * (Int.fract t / t ^ 2))
+      MeasureTheory.volume a b := by
+    simpa [one_mul] using h2.const_mul θ
+  have hsub := h1.sub h2'
+  convert hsub using 1
+  ext t
+  ring
+
+/-- On the open interval below `α = min 1 (1/θ)`, the Proposition 16 difference integrand
+vanishes pointwise.  The endpoint is intentionally excluded: if `α = 1`, then
+`Int.fract 1 = 0`, so the identity can fail exactly at the endpoint, which is harmless for
+interval-integral congruences. -/
+theorem prop16_fract_diff_eq_zero_of_lt_alpha {θ α t : ℝ} (hθ : 0 < θ)
+    (hα : α = min 1 (1 / θ)) (ht0 : 0 ≤ t) (htα : t < α) :
+    Int.fract (θ * t) - θ * Int.fract t = 0 := by
+  have hα_le_one : α ≤ 1 := by
+    rw [hα]
+    exact min_le_left _ _
+  have hθα_le_one : θ * α ≤ 1 := by
+    rw [hα]
+    by_cases hθle : θ ≤ 1
+    · have hmin : min (1 : ℝ) (1 / θ) = 1 :=
+        min_eq_left (one_le_one_div hθ hθle)
+      rw [hmin]
+      simpa using hθle
+    · have hθge : 1 ≤ θ := le_of_not_ge hθle
+      have h1θle : 1 / θ ≤ 1 := by
+        simpa using (one_div_le_one_div_of_le zero_lt_one hθge)
+      have hmin : min (1 : ℝ) (1 / θ) = 1 / θ := min_eq_right h1θle
+      rw [hmin]
+      have hmul : θ * (1 / θ) = 1 := by
+        field_simp [hθ.ne']
+      rw [hmul]
+  have ht_lt_one : t < 1 := lt_of_lt_of_le htα hα_le_one
+  have hθt_nonneg : 0 ≤ θ * t := mul_nonneg hθ.le ht0
+  have hθt_lt_one : θ * t < 1 :=
+    lt_of_lt_of_le (mul_lt_mul_of_pos_left htα hθ) hθα_le_one
+  rw [Int.fract_eq_self.mpr ⟨ht0, ht_lt_one⟩]
+  rw [Int.fract_eq_self.mpr ⟨hθt_nonneg, hθt_lt_one⟩]
+  ring
+
 /-- Quadratic scaling identity used in the proof of BBLS Proposition 22.
 
 The identity appears explicitly in the proof on page 12 of
