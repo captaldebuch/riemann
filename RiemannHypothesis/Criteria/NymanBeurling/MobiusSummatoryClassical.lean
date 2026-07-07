@@ -57,6 +57,23 @@ lemma DeLaValleePoussinZeroFreeRegion.ne_zero_of_one_le_re
     riemannZeta s ≠ 0 :=
   H.zeta_ne_zero s (deLaValleePoussinRegion_of_one_le_re H.c_pos hs)
 
+-- ---------------------------------------------------------------------------
+-- H14M-B0. Elementary 3-4-1 trigonometric ingredient
+-- ---------------------------------------------------------------------------
+
+/--
+The elementary trigonometric inequality underlying the classical
+de la Vallée Poussin `3-4-1` positivity trick.
+
+This is only the real-variable algebraic ingredient.  The analytic use in the
+zero-free-region proof still requires the von Mangoldt logarithmic-derivative
+identity, pole control at `s = 1`, and uniform vertical growth estimates.
+-/
+lemma deLaValleePoussin_three_four_one_trig_nonneg (θ : ℝ) :
+    0 ≤ 3 + 4 * Real.cos θ + Real.cos (2 * θ) := by
+  rw [Real.cos_two_mul]
+  nlinarith [sq_nonneg (Real.cos θ + 1)]
+
 lemma log_tail_term_le_telescoping (k : ℕ) :
     1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2) ≤
       6 * (1 / Real.log (k + 2 : ℝ) - 1 / Real.log (k + 3 : ℝ)) := by
