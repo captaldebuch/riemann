@@ -1155,6 +1155,30 @@ theorem fract_div_sq_integral_of_pos_le_one {a b : ℝ}
   rw [hcongr]
   exact intervalIntegral_one_div a b ha hb
 
+/-- The Proposition 16 difference integrand integrates to zero on any oriented interval
+contained in `[0, α]`, where `α = min 1 (1/θ)`.  The proof uses an a.e. congruence to avoid
+the possible endpoint discontinuity at `α`. -/
+theorem prop16_fract_diff_integral_eq_zero_of_nonneg_le_alpha {θ α a b : ℝ}
+    (hθ : 0 < θ) (hα : α = min 1 (1 / θ))
+    (ha0 : 0 ≤ a) (hb0 : 0 ≤ b) (haα : a ≤ α) (hbα : b ≤ α) :
+    (∫ t in a..b, (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2) = 0 := by
+  have hcongr :
+      (∫ t in a..b, (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2) =
+        (∫ _t in a..b, (0 : ℝ)) := by
+    apply intervalIntegral.integral_congr_ae'
+    · filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume α] with t ht_ne ht
+      have ht0 : 0 ≤ t := le_trans ha0 ht.1.le
+      have htα : t < α := lt_of_le_of_ne (le_trans ht.2 hbα) ht_ne
+      rw [prop16_fract_diff_eq_zero_of_lt_alpha hθ hα ht0 htα]
+      simp
+    · filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume α] with t ht_ne ht
+      have ht0 : 0 ≤ t := le_trans hb0 ht.1.le
+      have htα : t < α := lt_of_le_of_ne (le_trans ht.2 haα) ht_ne
+      rw [prop16_fract_diff_eq_zero_of_lt_alpha hθ hα ht0 htα]
+      simp
+  rw [hcongr]
+  simp
+
 /-- Quadratic scaling identity used in the proof of BBLS Proposition 22.
 
 The identity appears explicitly in the proof on page 12 of
