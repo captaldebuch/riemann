@@ -1179,6 +1179,140 @@ theorem prop16_fract_diff_integral_eq_zero_of_nonneg_le_alpha {θ α a b : ℝ}
   rw [hcongr]
   simp
 
+/-- **BBLS Proposition 16**, Frullani-type fractional-part identity.
+
+For positive real `x` and `θ`, Báez-Duarte--Balazard--Landreau--Saias prove
+
+`∫₀ˣ t⁻²({θt} - θ{t}) dt =
+  θ log(1/θ) + θ ∫ₓ^{θx} u⁻² {u} du`.
+
+The proof splits at `α = min 1 (1/θ)`, where the difference integrand vanishes below
+`α`, uses the substitution `u = θ*t`, and evaluates the remaining small interval via
+`{u} = u` on `(0,1)`.  The formula was re-checked against the paper and by exact
+piecewise numerical integration on rational test cases before formalization. -/
+theorem baezDuarte_prop16_frullani {θ x : ℝ} (hθ : 0 < θ) (hx : 0 < x) :
+    (∫ t in (0 : ℝ)..x, (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2) =
+      θ * Real.log (1 / θ) + θ * (∫ u in x..(θ * x), Int.fract u / u ^ 2) := by
+  set α : ℝ := min 1 (1 / θ) with hαdef
+  have hα : α = min 1 (1 / θ) := hαdef
+  have hαpos : 0 < α := by
+    rw [hα]
+    exact lt_min zero_lt_one (one_div_pos.mpr hθ)
+  have hαle1 : α ≤ 1 := by
+    rw [hα]
+    exact min_le_left _ _
+  have hθαpos : 0 < θ * α := mul_pos hθ hαpos
+  have hθαle1 : θ * α ≤ 1 := by
+    rw [hα]
+    by_cases hθle : θ ≤ 1
+    · have hmin : min (1 : ℝ) (1 / θ) = 1 := min_eq_left (one_le_one_div hθ hθle)
+      rw [hmin]
+      simpa using hθle
+    · have hθge : 1 ≤ θ := le_of_not_ge hθle
+      have h1θle : 1 / θ ≤ 1 := by
+        simpa using (one_div_le_one_div_of_le zero_lt_one hθge)
+      have hmin : min (1 : ℝ) (1 / θ) = 1 / θ := min_eq_right h1θle
+      rw [hmin]
+      have hmul : θ * (1 / θ) = 1 := by field_simp [hθ.ne']
+      rw [hmul]
+  by_cases hxα : x < α
+  · have hleftzero := prop16_fract_diff_integral_eq_zero_of_nonneg_le_alpha
+      (θ := θ) (α := α) (a := (0 : ℝ)) (b := x) hθ hα (by norm_num) hx.le hαpos.le hxα.le
+    have hxle1 : x ≤ 1 := le_trans hxα.le hαle1
+    have hθxpos : 0 < θ * x := mul_pos hθ hx
+    have hθxle1 : θ * x ≤ 1 :=
+      le_trans (mul_le_mul_of_nonneg_left hxα.le hθ.le) hθαle1
+    have hint := fract_div_sq_integral_of_pos_le_one hx hθxpos hxle1 hθxle1
+    rw [hleftzero, hint]
+    rw [Real.log_mul hθ.ne' hx.ne']
+    rw [show (1 / θ : ℝ) = θ⁻¹ by ring, Real.log_inv]
+    ring
+  · have hαx : α ≤ x := le_of_not_gt hxα
+    have hzero0α := prop16_fract_diff_integral_eq_zero_of_nonneg_le_alpha
+      (θ := θ) (α := α) (a := (0 : ℝ)) (b := α) hθ hα (by norm_num) hαpos.le hαpos.le le_rfl
+    have hsmallAE :
+        (fun t : ℝ => (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2) =ᵐ[
+          MeasureTheory.volume.restrict (Set.uIoc (0 : ℝ) α)] (fun _ : ℝ => 0) := by
+      change ∀ᵐ t : ℝ ∂MeasureTheory.volume.restrict (Set.uIoc (0 : ℝ) α),
+        (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2 = 0
+      rw [MeasureTheory.ae_restrict_iff' measurableSet_uIoc]
+      filter_upwards [MeasureTheory.Measure.ae_ne MeasureTheory.volume α] with t ht_ne ht
+      have htIoc : t ∈ Set.Ioc (0 : ℝ) α := by
+        simpa [Set.uIoc_of_le hαpos.le] using ht
+      have htz := prop16_fract_diff_eq_zero_of_lt_alpha hθ hα htIoc.1.le
+        (lt_of_le_of_ne htIoc.2 ht_ne)
+      rw [htz]
+      simp
+    have hsmallInt : IntervalIntegrable
+        (fun t : ℝ => (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2)
+        MeasureTheory.volume (0 : ℝ) α := by
+      exact (intervalIntegrable_congr_ae hsmallAE).2 IntervalIntegrable.zero
+    have hlargeInt : IntervalIntegrable
+        (fun t : ℝ => (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2)
+        MeasureTheory.volume α x := by
+      have hmin : min α x = α := min_eq_left hαx
+      exact prop16_fract_diff_div_sq_intervalIntegrable (θ := θ) (a := α) (b := x)
+        (by simpa [hmin] using hαpos)
+    have hadd := intervalIntegral.integral_add_adjacent_intervals hsmallInt hlargeInt
+    have hleft :
+        (∫ t in (0 : ℝ)..x, (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2) =
+          ∫ t in α..x, (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2 := by
+      rw [← hadd, hzero0α, zero_add]
+    have hexpand :
+        (∫ t in α..x, (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2) =
+          (∫ t in α..x, Int.fract (θ * t) / t ^ 2) -
+            θ * (∫ t in α..x, Int.fract t / t ^ 2) := by
+      have hmin : min α x = α := min_eq_left hαx
+      have hpos : 0 < min α x := by simpa [hmin] using hαpos
+      have h1 := fract_mul_div_sq_intervalIntegrable (c := θ) (a := α) (b := x) hpos
+      have h2 := fract_mul_div_sq_intervalIntegrable (c := 1) (a := α) (b := x) hpos
+      have h2' : IntervalIntegrable (fun t : ℝ => θ * (Int.fract t / t ^ 2))
+          MeasureTheory.volume α x := by
+        simpa [one_mul] using h2.const_mul θ
+      have hfun : (fun t : ℝ => (Int.fract (θ * t) - θ * Int.fract t) / t ^ 2) =
+          fun t : ℝ => Int.fract (θ * t) / t ^ 2 - θ * (Int.fract t / t ^ 2) := by
+        funext t
+        ring
+      rw [hfun]
+      rw [intervalIntegral.integral_sub h1 h2']
+      rw [intervalIntegral.integral_const_mul]
+    have hscaled := fract_scaled_integral (θ := θ) (a := α) (b := x) hθ
+    have hinterval :
+        (∫ u in (θ * α)..(θ * x), Int.fract u / u ^ 2) -
+            (∫ u in α..x, Int.fract u / u ^ 2) =
+          Real.log (1 / θ) + (∫ u in x..(θ * x), Int.fract u / u ^ 2) := by
+      have hab : IntervalIntegrable (fun u : ℝ => Int.fract u / u ^ 2)
+          MeasureTheory.volume (θ * α) (θ * x) := by
+        simpa [one_mul] using
+          (fract_mul_div_sq_intervalIntegrable (c := 1) (a := θ * α) (b := θ * x)
+            (lt_min hθαpos (mul_pos hθ hx)))
+      have hcd : IntervalIntegrable (fun u : ℝ => Int.fract u / u ^ 2)
+          MeasureTheory.volume α x := by
+        simpa [one_mul] using
+          (fract_mul_div_sq_intervalIntegrable (c := 1) (a := α) (b := x)
+            (lt_min hαpos hx))
+      have hac : IntervalIntegrable (fun u : ℝ => Int.fract u / u ^ 2)
+          MeasureTheory.volume (θ * α) α := by
+        simpa [one_mul] using
+          (fract_mul_div_sq_intervalIntegrable (c := 1) (a := θ * α) (b := α)
+            (lt_min hθαpos hαpos))
+      have hcomm := intervalIntegral.integral_interval_sub_interval_comm hab hcd hac
+      have hlogint : (∫ u in (θ * α)..α, Int.fract u / u ^ 2) =
+          Real.log α - Real.log (θ * α) :=
+        fract_div_sq_integral_of_pos_le_one hθαpos hαpos hθαle1 hαle1
+      have hlogeq : Real.log α - Real.log (θ * α) = Real.log (1 / θ) := by
+        rw [Real.log_mul hθ.ne' hαpos.ne']
+        rw [show (1 / θ : ℝ) = θ⁻¹ by ring]
+        rw [Real.log_inv]
+        ring
+      rw [hcomm, hlogint, hlogeq]
+      rw [intervalIntegral.integral_symm]
+      ring
+    rw [hleft, hexpand, hscaled]
+    rw [← mul_sub]
+    rw [hinterval]
+    ring
+
 /-- Quadratic scaling identity used in the proof of BBLS Proposition 22.
 
 The identity appears explicitly in the proof on page 12 of
