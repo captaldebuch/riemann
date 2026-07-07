@@ -991,6 +991,68 @@ theorem bernoulliB1_scaled_companion_abel_stieltjes_identity {θ x : ℝ}
     (stepFunction_abel_stieltjes_identity
       (fun n : ℕ => bernoulliB1 ((n : ℝ) / θ)) (x := θ * x) (mul_pos hθ hx))
 
+/-- Local interval integrability of the weighted fractional-part function away from zero.
+
+The proof uses only measurability of `Int.fract` and the elementary bound
+`0 ≤ Int.fract y < 1`: on an interval whose lower unordered endpoint is positive,
+`1 / t²` is bounded.  This packages the local integrability infrastructure needed for
+the BBLS Proposition 16 Frullani step without enumerating the finitely many breakpoints
+of the fractional part function. -/
+theorem fract_mul_div_sq_intervalIntegrable {c a b : ℝ} (hpos : 0 < min a b) :
+    IntervalIntegrable (fun t : ℝ => Int.fract (c * t) / t ^ 2)
+      MeasureTheory.volume a b := by
+  rw [intervalIntegrable_iff]
+  refine MeasureTheory.IntegrableOn.of_bound ?hsfin ?hmeas (1 / (min a b) ^ 2) ?hbound
+  · rw [Real.volume_uIoc]
+    exact ENNReal.ofReal_lt_top
+  · exact (by
+      measurability :
+        Measurable (fun t : ℝ => Int.fract (c * t) / t ^ 2)).aestronglyMeasurable.restrict
+  · rw [MeasureTheory.ae_restrict_iff' measurableSet_uIoc]
+    filter_upwards with t ht
+    have htIoc : t ∈ Set.Ioc (min a b) (max a b) := by
+      simpa [Set.uIoc] using ht
+    have hmin_lt_t : min a b < t := htIoc.1
+    have htpos : 0 < t := lt_trans hpos hmin_lt_t
+    have hfract_nonneg : 0 ≤ Int.fract (c * t) := Int.fract_nonneg _
+    have hfract_le : Int.fract (c * t) ≤ 1 := le_of_lt (Int.fract_lt_one _)
+    have hm2pos : 0 < (min a b) ^ 2 := sq_pos_of_pos hpos
+    have hsq : (min a b) ^ 2 ≤ t ^ 2 := by
+      nlinarith [hmin_lt_t.le, hpos, htpos]
+    have hden : 1 / t ^ 2 ≤ 1 / (min a b) ^ 2 :=
+      one_div_le_one_div_of_le hm2pos hsq
+    have hnonneg : 0 ≤ Int.fract (c * t) / t ^ 2 :=
+      div_nonneg hfract_nonneg (sq_nonneg t)
+    rw [Real.norm_eq_abs, abs_of_nonneg hnonneg]
+    calc
+      Int.fract (c * t) / t ^ 2 ≤ 1 / t ^ 2 := by
+        gcongr
+      _ ≤ 1 / (min a b) ^ 2 := hden
+
+/-- Linear fractional-part scaling under the substitution `u = θ*t`.
+
+This is the non-quadratic companion to `fract_sq_scaled_integral`, and is the substitution
+step appearing in BBLS Proposition 16. -/
+theorem fract_scaled_integral {θ a b : ℝ} (hθ : 0 < θ) :
+    (∫ t in a..b, Int.fract (θ * t) / t ^ 2) =
+      θ * (∫ u in (θ * a)..(θ * b), Int.fract u / u ^ 2) := by
+  let f : ℝ → ℝ := fun u => Int.fract u / u ^ 2
+  have hpoint : (fun t : ℝ => Int.fract (θ * t) / t ^ 2) =
+      fun t : ℝ => θ ^ 2 * f (θ * t) := by
+    funext t
+    dsimp [f]
+    by_cases ht : t = 0
+    · simp [ht]
+    · have hθne : θ ≠ 0 := hθ.ne'
+      field_simp [hθne, ht, pow_two]
+  rw [hpoint]
+  rw [intervalIntegral.integral_const_mul]
+  have hcomp :=
+    intervalIntegral.integral_comp_mul_left (f := f) (a := a) (b := b) hθ.ne'
+  simp [f, smul_eq_mul] at hcomp ⊢
+  rw [hcomp]
+  field_simp [hθ.ne']
+
 /-- Quadratic scaling identity used in the proof of BBLS Proposition 22.
 
 The identity appears explicitly in the proof on page 12 of
