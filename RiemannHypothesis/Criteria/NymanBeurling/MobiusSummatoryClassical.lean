@@ -74,6 +74,71 @@ lemma deLaValleePoussin_three_four_one_trig_nonneg (θ : ℝ) :
   rw [Real.cos_two_mul]
   nlinarith [sq_nonneg (Real.cos θ + 1)]
 
+-- ---------------------------------------------------------------------------
+-- H14M-B1. Public 3-4-1 positivity package
+-- ---------------------------------------------------------------------------
+
+section ThreeFourOnePositivity
+
+open Complex
+
+/--
+Complex unit-circle form of the de la Vallée Poussin `3-4-1` positivity
+identity.
+
+For `‖z‖ = 1`, the left side is `2 * (z.re + 1)^2`.  This is the algebraic
+core behind the nonnegative Euler-factor/logarithmic combinations used in the
+classical zero-free-region argument.
+-/
+lemma deLaValleePoussin_three_four_one_unit_re_nonneg {z : ℂ} (hz : ‖z‖ = 1) :
+    0 ≤ 3 + 4 * z.re + (z ^ 2).re := by
+  have hnormSq : z.re * z.re + z.im * z.im = 1 := by
+    have hsq : ‖z‖ ^ 2 = (1 : ℝ) ^ 2 := by rw [hz]
+    rw [← Complex.normSq_eq_norm_sq, Complex.normSq_apply] at hsq
+    norm_num at hsq
+    simpa [sq] using hsq
+  have hre : (z ^ 2).re = z.re * z.re - z.im * z.im := by
+    simp [pow_two, Complex.mul_re]
+  rw [hre]
+  nlinarith [sq_nonneg (z.re + 1)]
+
+/--
+Reusable logarithmic Euler-factor positivity lemma.
+
+This is the public project-facing analogue of Mathlib's private
+`re_log_comb_nonneg'` lemma in `Mathlib.NumberTheory.LSeries.Nonvanishing`.
+It packages the Taylor-series proof of the `3-4-1` trick for any real
+`0 ≤ a < 1` and any unit complex number `z`.
+-/
+lemma deLaValleePoussin_re_log_comb_nonneg_unit {a : ℝ}
+    (ha₀ : 0 ≤ a) (ha₁ : a < 1) {z : ℂ} (hz : ‖z‖ = 1) :
+    0 ≤ 3 * (-log (1 - a)).re + 4 * (-log (1 - a * z)).re +
+      (-log (1 - a * z ^ 2)).re := by
+  have hac₀ : ‖(a : ℂ)‖ < 1 := by
+    simp only [Complex.norm_of_nonneg ha₀, ha₁]
+  have hac₁ : ‖a * z‖ < 1 := by rwa [norm_mul, hz, mul_one]
+  have hac₂ : ‖a * z ^ 2‖ < 1 := by rwa [norm_mul, norm_pow, hz, one_pow, mul_one]
+  rw [← ((hasSum_re <| hasSum_taylorSeries_neg_log hac₀).mul_left 3).add
+    ((hasSum_re <| hasSum_taylorSeries_neg_log hac₁).mul_left 4) |>.add
+    (hasSum_re <| hasSum_taylorSeries_neg_log hac₂) |>.tsum_eq]
+  refine tsum_nonneg fun n ↦ ?_
+  simp only [← ofReal_pow, div_natCast_re, ofReal_re, mul_pow, mul_re, ofReal_im, zero_mul,
+    sub_zero]
+  rcases n.eq_zero_or_pos with rfl | hn
+  · simp
+  · simp only [← mul_div_assoc, ← add_div]
+    refine div_nonneg ?_ n.cast_nonneg
+    have hzpow : ‖z ^ n‖ = 1 := by rw [norm_pow, hz, one_pow]
+    have hunit : 0 ≤ 3 + 4 * (z ^ n).re + ((z ^ n) ^ 2).re :=
+      deLaValleePoussin_three_four_one_unit_re_nonneg hzpow
+    have hpoweq : ((z ^ 2) ^ n).re = ((z ^ n) ^ 2).re := by
+      congr 1
+      rw [← pow_mul, ← pow_mul, Nat.mul_comm]
+    rw [hpoweq]
+    nlinarith [mul_nonneg (pow_nonneg ha₀ n) hunit]
+
+end ThreeFourOnePositivity
+
 lemma log_tail_term_le_telescoping (k : ℕ) :
     1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2) ≤
       6 * (1 / Real.log (k + 2 : ℝ) - 1 / Real.log (k + 3 : ℝ)) := by
