@@ -201,6 +201,64 @@ lemma deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_term_re
   rw [deLaValleePoussin_neg_zeta_logDeriv_eq_vonMangoldt_LSeries hs,
     deLaValleePoussin_vonMangoldt_LSeries_re_eq_tsum_term_re hs]
 
+/--
+Real part of a negative complex power with positive real base.
+
+This is the elementary `cpow` algebra behind the cosine form of the
+von Mangoldt Dirichlet series.
+-/
+lemma deLaValleePoussin_real_cpow_neg_re {x σ t : ℝ} (hx : 0 < x) :
+    (((x : ℂ) ^ (-(σ + Complex.I * t : ℂ))).re) =
+      x ^ (-σ) * Real.cos (t * Real.log x) := by
+  rw [Complex.cpow_def_of_ne_zero (Complex.ofReal_ne_zero.mpr hx.ne')]
+  have hlog : Complex.log (x : ℂ) = (Real.log x : ℂ) :=
+    (Complex.ofReal_log hx.le).symm
+  rw [hlog]
+  simp [Complex.exp_re, Real.cos_neg, mul_comm]
+  rw [Real.rpow_def_of_pos hx]
+  ring
+
+/--
+Term-level cosine form of the von Mangoldt L-series at `s = σ + it`.
+-/
+lemma deLaValleePoussin_vonMangoldt_term_re_eq_cos
+    {σ t : ℝ} {n : ℕ} (hn : n ≠ 0) :
+    (LSeries.term ↗Λ (σ + Complex.I * t : ℂ) n).re =
+      Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n) := by
+  rw [LSeries.term_of_ne_zero hn, div_eq_mul_inv, ← Complex.cpow_neg]
+  rw [← Complex.ofReal_natCast n]
+  change ((((Λ n : ℂ) * (((n : ℝ) : ℂ) ^ (-(σ + Complex.I * t : ℂ)))).re) =
+    Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n))
+  have hnpos : 0 < (n : ℝ) := by exact_mod_cast Nat.pos_of_ne_zero hn
+  have hpow := deLaValleePoussin_real_cpow_neg_re
+    (x := (n : ℝ)) (σ := σ) (t := t) hnpos
+  calc
+    (((Λ n : ℂ) * (((n : ℝ) : ℂ) ^ (-(σ + Complex.I * t : ℂ)))).re)
+        = Λ n * ((((n : ℝ) : ℂ) ^ (-(σ + Complex.I * t : ℂ))).re) := by
+          simp [Complex.mul_re]
+    _ = Λ n * ((n : ℝ) ^ (-σ) * Real.cos (t * Real.log n)) := by
+          rw [hpow]
+    _ = Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n) := by ring
+
+/--
+Cosine expansion of the real part of `-ζ'/ζ(σ + it)` for `σ > 1`.
+-/
+lemma deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_cos
+    {σ t : ℝ} (hσ : 1 < σ) :
+    (- deriv riemannZeta (σ + Complex.I * t : ℂ) /
+        riemannZeta (σ + Complex.I * t : ℂ)).re =
+      ∑' n : ℕ,
+        if _ : n = 0 then 0
+        else Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n) := by
+  have hs : 1 < (σ + Complex.I * t : ℂ).re := by simpa using hσ
+  rw [deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_term_re hs]
+  apply tsum_congr
+  intro n
+  by_cases hn : n = 0
+  · simp [hn, LSeries.term]
+  · simpa [hn] using
+      deLaValleePoussin_vonMangoldt_term_re_eq_cos (σ := σ) (t := t) hn
+
 end VonMangoldtLogDerivative
 
 -- ---------------------------------------------------------------------------
