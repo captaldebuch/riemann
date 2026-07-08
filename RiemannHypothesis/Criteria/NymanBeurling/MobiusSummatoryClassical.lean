@@ -203,6 +203,59 @@ lemma deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_term_re
 
 end VonMangoldtLogDerivative
 
+-- ---------------------------------------------------------------------------
+-- H14M-B3. Local zeta pole and hypothetical-zero contribution wrappers
+-- ---------------------------------------------------------------------------
+
+section ZetaLocalContributions
+
+open Filter
+
+/--
+Project-facing residue statement for the simple pole of `ζ` at `s = 1`.
+
+This is the local pole input available in Mathlib.  Turning it into the full
+quantitative `ζ'/ζ` pole contribution used in a de la Vallée Poussin contour
+argument still needs additional Laurent/log-derivative control.
+-/
+lemma deLaValleePoussin_zeta_residue_one :
+    Tendsto (fun s : ℂ => (s - 1) * riemannZeta s)
+      (nhdsWithin 1 ({1}ᶜ : Set ℂ)) (nhds 1) :=
+  riemannZeta_residue_one
+
+/--
+The regular part `ζ(s) - 1/(s-1)` is locally bounded at `s = 1`.
+
+This is a useful pole-neighborhood estimate already formalized in Mathlib.
+It is not by itself the full logarithmic-derivative pole estimate.
+-/
+lemma deLaValleePoussin_zeta_regular_part_isBigO_one :
+    Asymptotics.IsBigO (nhds (1 : ℂ))
+      (fun s : ℂ => riemannZeta s - 1 / (s - 1))
+      (fun _ : ℂ => (1 : ℂ)) :=
+  isBigO_riemannZeta_sub_one_div
+
+/--
+Hypothetical simple-zero contribution to the logarithmic derivative of `ζ`.
+
+If `ρ ≠ 1` is a simple zero of `ζ`, then the logarithmic residue of `ζ'/ζ`
+at `ρ` is `1`.  This is the clean local contribution theorem currently
+available from Mathlib's generic analytic simple-zero API.
+
+The zero-free-region proof ultimately needs an arbitrary-multiplicity and
+quantitative version; that stronger statement is deliberately not claimed here.
+-/
+lemma deLaValleePoussin_zeta_simple_zero_logDeriv_residue
+    {ρ : ℂ} (hρ : ρ ≠ 1) (hz : riemannZeta ρ = 0)
+    (hsimple : deriv riemannZeta ρ ≠ 0) :
+    Tendsto (fun s : ℂ => (s - ρ) * logDeriv riemannZeta s)
+      (nhdsWithin ρ ({ρ}ᶜ : Set ℂ)) (nhds 1) := by
+  have han : AnalyticAt ℂ riemannZeta ρ := by
+    exact analyticOn_riemannZeta ρ (by simpa [Set.mem_compl_iff] using hρ)
+  exact han.tendsto_mul_logDeriv_simple_zero hz hsimple
+
+end ZetaLocalContributions
+
 lemma log_tail_term_le_telescoping (k : ℕ) :
     1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2) ≤
       6 * (1 / Real.log (k + 2 : ℝ) - 1 / Real.log (k + 3 : ℝ)) := by
