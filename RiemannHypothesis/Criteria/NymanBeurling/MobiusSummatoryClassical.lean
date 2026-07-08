@@ -139,6 +139,70 @@ lemma deLaValleePoussin_re_log_comb_nonneg_unit {a : ℝ}
 
 end ThreeFourOnePositivity
 
+-- ---------------------------------------------------------------------------
+-- H14M-B2. Public von Mangoldt logarithmic-derivative wrappers
+-- ---------------------------------------------------------------------------
+
+section VonMangoldtLogDerivative
+
+open Complex
+open scoped ArithmeticFunction LSeries.notation
+
+/--
+Project-facing wrapper for Mathlib's von Mangoldt logarithmic-derivative
+identity.
+
+For `Re s > 1`, the Dirichlet series of the von Mangoldt function is the
+negative logarithmic derivative of the Riemann zeta function.  This is the
+analytic bridge used by the de la Vallée Poussin `3-4-1` argument.
+-/
+lemma deLaValleePoussin_vonMangoldt_LSeries_eq_neg_zeta_logDeriv
+    {s : ℂ} (hs : 1 < s.re) :
+    L ↗Λ s =
+      - deriv riemannZeta s / riemannZeta s :=
+  ArithmeticFunction.LSeries_vonMangoldt_eq_deriv_riemannZeta_div hs
+
+/--
+The same identity in the orientation most often used when substituting
+`ζ'/ζ` into the positivity argument.
+-/
+lemma deLaValleePoussin_neg_zeta_logDeriv_eq_vonMangoldt_LSeries
+    {s : ℂ} (hs : 1 < s.re) :
+    - deriv riemannZeta s / riemannZeta s =
+      L ↗Λ s :=
+  (deLaValleePoussin_vonMangoldt_LSeries_eq_neg_zeta_logDeriv hs).symm
+
+/--
+Termwise real-part expansion of the von Mangoldt L-series in the half-plane
+`Re s > 1`.
+
+This is the public project hook for the later cosine expansion
+`Λ(n) n^{-σ} cos(t log n)`: that last syntactic simplification is separate
+`cpow` algebra, while this lemma provides the justified interchange of real
+part and infinite sum.
+-/
+lemma deLaValleePoussin_vonMangoldt_LSeries_re_eq_tsum_term_re
+    {s : ℂ} (hs : 1 < s.re) :
+    (L ↗Λ s).re =
+      ∑' n : ℕ, (LSeries.term ↗Λ s n).re := by
+  have hsum :
+      HasSum (LSeries.term ↗Λ s) (L ↗Λ s) :=
+    (ArithmeticFunction.LSeriesSummable_vonMangoldt hs).hasSum
+  exact (Complex.hasSum_re hsum).tsum_eq.symm
+
+/--
+Real-part form of the logarithmic-derivative identity, with the von Mangoldt
+series expanded termwise.
+-/
+lemma deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_term_re
+    {s : ℂ} (hs : 1 < s.re) :
+    (- deriv riemannZeta s / riemannZeta s).re =
+      ∑' n : ℕ, (LSeries.term ↗Λ s n).re := by
+  rw [deLaValleePoussin_neg_zeta_logDeriv_eq_vonMangoldt_LSeries hs,
+    deLaValleePoussin_vonMangoldt_LSeries_re_eq_tsum_term_re hs]
+
+end VonMangoldtLogDerivative
+
 lemma log_tail_term_le_telescoping (k : ℕ) :
     1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2) ≤
       6 * (1 / Real.log (k + 2 : ℝ) - 1 / Real.log (k + 3 : ℝ)) := by
