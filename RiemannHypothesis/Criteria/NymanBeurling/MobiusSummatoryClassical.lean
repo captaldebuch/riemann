@@ -57,6 +57,263 @@ lemma DeLaValleePoussinZeroFreeRegion.ne_zero_of_one_le_re
     riemannZeta s ≠ 0 :=
   H.zeta_ne_zero s (deLaValleePoussinRegion_of_one_le_re H.c_pos hs)
 
+-- ---------------------------------------------------------------------------
+-- H14M-B0. Elementary 3-4-1 trigonometric ingredient
+-- ---------------------------------------------------------------------------
+
+/--
+The elementary trigonometric inequality underlying the classical
+de la Vallée Poussin `3-4-1` positivity trick.
+
+This is only the real-variable algebraic ingredient.  The analytic use in the
+zero-free-region proof still requires the von Mangoldt logarithmic-derivative
+identity, pole control at `s = 1`, and uniform vertical growth estimates.
+-/
+lemma deLaValleePoussin_three_four_one_trig_nonneg (θ : ℝ) :
+    0 ≤ 3 + 4 * Real.cos θ + Real.cos (2 * θ) := by
+  rw [Real.cos_two_mul]
+  nlinarith [sq_nonneg (Real.cos θ + 1)]
+
+-- ---------------------------------------------------------------------------
+-- H14M-B1. Public 3-4-1 positivity package
+-- ---------------------------------------------------------------------------
+
+section ThreeFourOnePositivity
+
+open Complex
+
+/--
+Complex unit-circle form of the de la Vallée Poussin `3-4-1` positivity
+identity.
+
+For `‖z‖ = 1`, the left side is `2 * (z.re + 1)^2`.  This is the algebraic
+core behind the nonnegative Euler-factor/logarithmic combinations used in the
+classical zero-free-region argument.
+-/
+lemma deLaValleePoussin_three_four_one_unit_re_nonneg {z : ℂ} (hz : ‖z‖ = 1) :
+    0 ≤ 3 + 4 * z.re + (z ^ 2).re := by
+  have hnormSq : z.re * z.re + z.im * z.im = 1 := by
+    have hsq : ‖z‖ ^ 2 = (1 : ℝ) ^ 2 := by rw [hz]
+    rw [← Complex.normSq_eq_norm_sq, Complex.normSq_apply] at hsq
+    norm_num at hsq
+    simpa [sq] using hsq
+  have hre : (z ^ 2).re = z.re * z.re - z.im * z.im := by
+    simp [pow_two, Complex.mul_re]
+  rw [hre]
+  nlinarith [sq_nonneg (z.re + 1)]
+
+/--
+Reusable logarithmic Euler-factor positivity lemma.
+
+This is the public project-facing analogue of Mathlib's private
+`re_log_comb_nonneg'` lemma in `Mathlib.NumberTheory.LSeries.Nonvanishing`.
+It packages the Taylor-series proof of the `3-4-1` trick for any real
+`0 ≤ a < 1` and any unit complex number `z`.
+-/
+lemma deLaValleePoussin_re_log_comb_nonneg_unit {a : ℝ}
+    (ha₀ : 0 ≤ a) (ha₁ : a < 1) {z : ℂ} (hz : ‖z‖ = 1) :
+    0 ≤ 3 * (-log (1 - a)).re + 4 * (-log (1 - a * z)).re +
+      (-log (1 - a * z ^ 2)).re := by
+  have hac₀ : ‖(a : ℂ)‖ < 1 := by
+    simp only [Complex.norm_of_nonneg ha₀, ha₁]
+  have hac₁ : ‖a * z‖ < 1 := by rwa [norm_mul, hz, mul_one]
+  have hac₂ : ‖a * z ^ 2‖ < 1 := by rwa [norm_mul, norm_pow, hz, one_pow, mul_one]
+  rw [← ((hasSum_re <| hasSum_taylorSeries_neg_log hac₀).mul_left 3).add
+    ((hasSum_re <| hasSum_taylorSeries_neg_log hac₁).mul_left 4) |>.add
+    (hasSum_re <| hasSum_taylorSeries_neg_log hac₂) |>.tsum_eq]
+  refine tsum_nonneg fun n ↦ ?_
+  simp only [← ofReal_pow, div_natCast_re, ofReal_re, mul_pow, mul_re, ofReal_im, zero_mul,
+    sub_zero]
+  rcases n.eq_zero_or_pos with rfl | hn
+  · simp
+  · simp only [← mul_div_assoc, ← add_div]
+    refine div_nonneg ?_ n.cast_nonneg
+    have hzpow : ‖z ^ n‖ = 1 := by rw [norm_pow, hz, one_pow]
+    have hunit : 0 ≤ 3 + 4 * (z ^ n).re + ((z ^ n) ^ 2).re :=
+      deLaValleePoussin_three_four_one_unit_re_nonneg hzpow
+    have hpoweq : ((z ^ 2) ^ n).re = ((z ^ n) ^ 2).re := by
+      congr 1
+      rw [← pow_mul, ← pow_mul, Nat.mul_comm]
+    rw [hpoweq]
+    nlinarith [mul_nonneg (pow_nonneg ha₀ n) hunit]
+
+end ThreeFourOnePositivity
+
+-- ---------------------------------------------------------------------------
+-- H14M-B2. Public von Mangoldt logarithmic-derivative wrappers
+-- ---------------------------------------------------------------------------
+
+section VonMangoldtLogDerivative
+
+open Complex
+open scoped ArithmeticFunction LSeries.notation
+
+/--
+Project-facing wrapper for Mathlib's von Mangoldt logarithmic-derivative
+identity.
+
+For `Re s > 1`, the Dirichlet series of the von Mangoldt function is the
+negative logarithmic derivative of the Riemann zeta function.  This is the
+analytic bridge used by the de la Vallée Poussin `3-4-1` argument.
+-/
+lemma deLaValleePoussin_vonMangoldt_LSeries_eq_neg_zeta_logDeriv
+    {s : ℂ} (hs : 1 < s.re) :
+    L ↗Λ s =
+      - deriv riemannZeta s / riemannZeta s :=
+  ArithmeticFunction.LSeries_vonMangoldt_eq_deriv_riemannZeta_div hs
+
+/--
+The same identity in the orientation most often used when substituting
+`ζ'/ζ` into the positivity argument.
+-/
+lemma deLaValleePoussin_neg_zeta_logDeriv_eq_vonMangoldt_LSeries
+    {s : ℂ} (hs : 1 < s.re) :
+    - deriv riemannZeta s / riemannZeta s =
+      L ↗Λ s :=
+  (deLaValleePoussin_vonMangoldt_LSeries_eq_neg_zeta_logDeriv hs).symm
+
+/--
+Termwise real-part expansion of the von Mangoldt L-series in the half-plane
+`Re s > 1`.
+
+This is the public project hook for the later cosine expansion
+`Λ(n) n^{-σ} cos(t log n)`: that last syntactic simplification is separate
+`cpow` algebra, while this lemma provides the justified interchange of real
+part and infinite sum.
+-/
+lemma deLaValleePoussin_vonMangoldt_LSeries_re_eq_tsum_term_re
+    {s : ℂ} (hs : 1 < s.re) :
+    (L ↗Λ s).re =
+      ∑' n : ℕ, (LSeries.term ↗Λ s n).re := by
+  have hsum :
+      HasSum (LSeries.term ↗Λ s) (L ↗Λ s) :=
+    (ArithmeticFunction.LSeriesSummable_vonMangoldt hs).hasSum
+  exact (Complex.hasSum_re hsum).tsum_eq.symm
+
+/--
+Real-part form of the logarithmic-derivative identity, with the von Mangoldt
+series expanded termwise.
+-/
+lemma deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_term_re
+    {s : ℂ} (hs : 1 < s.re) :
+    (- deriv riemannZeta s / riemannZeta s).re =
+      ∑' n : ℕ, (LSeries.term ↗Λ s n).re := by
+  rw [deLaValleePoussin_neg_zeta_logDeriv_eq_vonMangoldt_LSeries hs,
+    deLaValleePoussin_vonMangoldt_LSeries_re_eq_tsum_term_re hs]
+
+/--
+Real part of a negative complex power with positive real base.
+
+This is the elementary `cpow` algebra behind the cosine form of the
+von Mangoldt Dirichlet series.
+-/
+lemma deLaValleePoussin_real_cpow_neg_re {x σ t : ℝ} (hx : 0 < x) :
+    (((x : ℂ) ^ (-(σ + Complex.I * t : ℂ))).re) =
+      x ^ (-σ) * Real.cos (t * Real.log x) := by
+  rw [Complex.cpow_def_of_ne_zero (Complex.ofReal_ne_zero.mpr hx.ne')]
+  have hlog : Complex.log (x : ℂ) = (Real.log x : ℂ) :=
+    (Complex.ofReal_log hx.le).symm
+  rw [hlog]
+  simp [Complex.exp_re, Real.cos_neg, mul_comm]
+  rw [Real.rpow_def_of_pos hx]
+  ring
+
+/--
+Term-level cosine form of the von Mangoldt L-series at `s = σ + it`.
+-/
+lemma deLaValleePoussin_vonMangoldt_term_re_eq_cos
+    {σ t : ℝ} {n : ℕ} (hn : n ≠ 0) :
+    (LSeries.term ↗Λ (σ + Complex.I * t : ℂ) n).re =
+      Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n) := by
+  rw [LSeries.term_of_ne_zero hn, div_eq_mul_inv, ← Complex.cpow_neg]
+  rw [← Complex.ofReal_natCast n]
+  change ((((Λ n : ℂ) * (((n : ℝ) : ℂ) ^ (-(σ + Complex.I * t : ℂ)))).re) =
+    Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n))
+  have hnpos : 0 < (n : ℝ) := by exact_mod_cast Nat.pos_of_ne_zero hn
+  have hpow := deLaValleePoussin_real_cpow_neg_re
+    (x := (n : ℝ)) (σ := σ) (t := t) hnpos
+  calc
+    (((Λ n : ℂ) * (((n : ℝ) : ℂ) ^ (-(σ + Complex.I * t : ℂ)))).re)
+        = Λ n * ((((n : ℝ) : ℂ) ^ (-(σ + Complex.I * t : ℂ))).re) := by
+          simp [Complex.mul_re]
+    _ = Λ n * ((n : ℝ) ^ (-σ) * Real.cos (t * Real.log n)) := by
+          rw [hpow]
+    _ = Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n) := by ring
+
+/--
+Cosine expansion of the real part of `-ζ'/ζ(σ + it)` for `σ > 1`.
+-/
+lemma deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_cos
+    {σ t : ℝ} (hσ : 1 < σ) :
+    (- deriv riemannZeta (σ + Complex.I * t : ℂ) /
+        riemannZeta (σ + Complex.I * t : ℂ)).re =
+      ∑' n : ℕ,
+        if _ : n = 0 then 0
+        else Λ n * (n : ℝ) ^ (-σ) * Real.cos (t * Real.log n) := by
+  have hs : 1 < (σ + Complex.I * t : ℂ).re := by simpa using hσ
+  rw [deLaValleePoussin_neg_zeta_logDeriv_re_eq_tsum_term_re hs]
+  apply tsum_congr
+  intro n
+  by_cases hn : n = 0
+  · simp [hn, LSeries.term]
+  · simpa [hn] using
+      deLaValleePoussin_vonMangoldt_term_re_eq_cos (σ := σ) (t := t) hn
+
+end VonMangoldtLogDerivative
+
+-- ---------------------------------------------------------------------------
+-- H14M-B3. Local zeta pole and hypothetical-zero contribution wrappers
+-- ---------------------------------------------------------------------------
+
+section ZetaLocalContributions
+
+open Filter
+
+/--
+Project-facing residue statement for the simple pole of `ζ` at `s = 1`.
+
+This is the local pole input available in Mathlib.  Turning it into the full
+quantitative `ζ'/ζ` pole contribution used in a de la Vallée Poussin contour
+argument still needs additional Laurent/log-derivative control.
+-/
+lemma deLaValleePoussin_zeta_residue_one :
+    Tendsto (fun s : ℂ => (s - 1) * riemannZeta s)
+      (nhdsWithin 1 ({1}ᶜ : Set ℂ)) (nhds 1) :=
+  riemannZeta_residue_one
+
+/--
+The regular part `ζ(s) - 1/(s-1)` is locally bounded at `s = 1`.
+
+This is a useful pole-neighborhood estimate already formalized in Mathlib.
+It is not by itself the full logarithmic-derivative pole estimate.
+-/
+lemma deLaValleePoussin_zeta_regular_part_isBigO_one :
+    Asymptotics.IsBigO (nhds (1 : ℂ))
+      (fun s : ℂ => riemannZeta s - 1 / (s - 1))
+      (fun _ : ℂ => (1 : ℂ)) :=
+  isBigO_riemannZeta_sub_one_div
+
+/--
+Hypothetical simple-zero contribution to the logarithmic derivative of `ζ`.
+
+If `ρ ≠ 1` is a simple zero of `ζ`, then the logarithmic residue of `ζ'/ζ`
+at `ρ` is `1`.  This is the clean local contribution theorem currently
+available from Mathlib's generic analytic simple-zero API.
+
+The zero-free-region proof ultimately needs an arbitrary-multiplicity and
+quantitative version; that stronger statement is deliberately not claimed here.
+-/
+lemma deLaValleePoussin_zeta_simple_zero_logDeriv_residue
+    {ρ : ℂ} (hρ : ρ ≠ 1) (hz : riemannZeta ρ = 0)
+    (hsimple : deriv riemannZeta ρ ≠ 0) :
+    Tendsto (fun s : ℂ => (s - ρ) * logDeriv riemannZeta s)
+      (nhdsWithin ρ ({ρ}ᶜ : Set ℂ)) (nhds 1) := by
+  have han : AnalyticAt ℂ riemannZeta ρ := by
+    exact analyticOn_riemannZeta ρ (by simpa [Set.mem_compl_iff] using hρ)
+  exact han.tendsto_mul_logDeriv_simple_zero hz hsimple
+
+end ZetaLocalContributions
+
 lemma log_tail_term_le_telescoping (k : ℕ) :
     1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2) ≤
       6 * (1 / Real.log (k + 2 : ℝ) - 1 / Real.log (k + 3 : ℝ)) := by
