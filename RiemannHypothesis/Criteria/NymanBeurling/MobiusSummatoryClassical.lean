@@ -513,6 +513,79 @@ structure ClassicalMertensResidualInputs where
   mobius_sum_zero : Tendsto mobiusOverKPartial atTop (𝓝 0)
   mobiusLog_sum_neg_one : Tendsto mobiusLogOverKPartial atTop (𝓝 (-1))
 
+/--
+Finite Abel summation for a cutoff that vanishes at `N + 1`.
+
+This is the public H14-classical copy of the private finite Abel lemma in
+`MobiusSummatory.lean`; it is kept here so the residual-reduction layer can use
+the same summation-by-parts shape without changing the earlier file.
+-/
+theorem finite_abel_sum_Icc_mul_sub_endpoint_eq_sum_partial
+    (a b : ℕ → ℝ) (N : ℕ) :
+    (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1))) =
+      ∑ k ∈ Finset.Icc 1 N,
+        (∑ j ∈ Finset.Icc 1 k, a j) * (b k - b (k + 1)) := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+      have hone : 1 ≤ N + 1 := by omega
+      rw [Finset.sum_Icc_succ_top hone, Finset.sum_Icc_succ_top hone]
+      have hshift :
+          (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1 + 1))) =
+            (∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1))) +
+              (∑ k ∈ Finset.Icc 1 N, a k) * (b (N + 1) - b (N + 1 + 1)) := by
+        calc
+          _ = ∑ k ∈ Finset.Icc 1 N,
+                (a k * (b k - b (N + 1)) +
+                  a k * (b (N + 1) - b (N + 1 + 1))) := by
+              apply Finset.sum_congr rfl
+              intro k _
+              ring
+          _ = _ := by
+              rw [Finset.sum_add_distrib, Finset.sum_mul]
+      rw [hshift, ih, Finset.sum_Icc_succ_top hone]
+      ring
+
+/--
+Finite Abel summation in endpoint-plus-differences form.
+-/
+theorem finite_abel_sum_Icc_mul_eq_endpoint_add_sum_partial
+    (a b : ℕ → ℝ) (N : ℕ) :
+    (∑ k ∈ Finset.Icc 1 N, a k * b k) =
+      (∑ k ∈ Finset.Icc 1 N, a k) * b (N + 1) +
+        ∑ k ∈ Finset.Icc 1 N,
+          (∑ j ∈ Finset.Icc 1 k, a j) * (b k - b (k + 1)) := by
+  have habel := finite_abel_sum_Icc_mul_sub_endpoint_eq_sum_partial a b N
+  calc
+    (∑ k ∈ Finset.Icc 1 N, a k * b k)
+        = (∑ k ∈ Finset.Icc 1 N, a k * b (N + 1)) +
+            ∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1)) := by
+          rw [← Finset.sum_add_distrib]
+          apply Finset.sum_congr rfl
+          intro k _
+          ring
+    _ = (∑ k ∈ Finset.Icc 1 N, a k) * b (N + 1) +
+            ∑ k ∈ Finset.Icc 1 N, a k * (b k - b (N + 1)) := by
+          rw [Finset.sum_mul]
+    _ = (∑ k ∈ Finset.Icc 1 N, a k) * b (N + 1) +
+            ∑ k ∈ Finset.Icc 1 N,
+              (∑ j ∈ Finset.Icc 1 k, a j) * (b k - b (k + 1)) := by
+          rw [habel]
+
+/--
+Exact Abel-summation expansion for the logarithmic Möbius summatory function.
+-/
+theorem mobiusLogSummatory_eq_abel_endpoint_add_sum (N : ℕ) :
+    mobiusLogSummatory N =
+      mobiusSummatory N * Real.log (N + 1 : ℝ) +
+        ∑ k ∈ Finset.Icc 1 N,
+          mobiusSummatory k *
+            (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ)) := by
+  simpa [mobiusLogSummatory, mobiusSummatory] using
+    finite_abel_sum_Icc_mul_eq_endpoint_add_sum_partial
+      (fun k ↦ ((ArithmeticFunction.moebius k : ℤ) : ℝ))
+      (fun k ↦ Real.log (k : ℝ)) N
+
 lemma abs_mobiusSummatory_le_nat (N : ℕ) :
     |mobiusSummatory N| ≤ (N : ℝ) := by
   unfold mobiusSummatory
