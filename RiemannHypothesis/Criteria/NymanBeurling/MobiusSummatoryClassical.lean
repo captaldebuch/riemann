@@ -886,6 +886,35 @@ lemma ClassicalMertensAPI.mobius_ratio_tendsto_zero (api : ClassicalMertensAPI) 
           field_simp
           nlinarith [api.C_M_pos]
 
+/--
+The Mertens ratio `M(N)/(N+1)` tends to zero under the single de la Vallée
+Poussin decay input.
+-/
+lemma mobius_ratio_tendsto_zero_of_decay (H : ClassicalMertensDecay) :
+    Tendsto (fun N : ℕ => mobiusSummatory N / ((N + 1 : ℕ) : ℝ)) atTop (𝓝 0) := by
+  rcases mertens_bound_of_decay H with ⟨C_M, hC_M_pos, hM⟩
+  have hmajorant :
+      Tendsto (fun N : ℕ => C_M * (1 / Real.log (N + 2 : ℝ)) ^ 3) atTop (𝓝 0) := by
+    simpa using (tendsto_const_nhds.mul (tendsto_inv_log_nat_add_two.pow 3))
+  rw [tendsto_zero_iff_abs_tendsto_zero]
+  refine squeeze_zero' (Eventually.of_forall fun N : ℕ => abs_nonneg _)
+    (Eventually.of_forall fun N : ℕ => ?_) hmajorant
+  calc
+    |mobiusSummatory N / ((N + 1 : ℕ) : ℝ)| =
+        |mobiusSummatory N| / ((N + 1 : ℕ) : ℝ) := by
+          rw [abs_div]
+          congr 1
+          exact abs_of_pos (by exact_mod_cast Nat.succ_pos N)
+    _ ≤ (C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 3) /
+          ((N + 1 : ℕ) : ℝ) := by
+            gcongr
+            exact hM N
+    _ ≤ C_M * (1 / Real.log (N + 2 : ℝ)) ^ 3 := by
+          have hlog : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+          have hN : (N : ℝ) ≤ ((N + 1 : ℕ) : ℝ) := by norm_cast; omega
+          field_simp
+          nlinarith [hC_M_pos]
+
 lemma ClassicalMertensAPI.mobiusLog_ratio_tendsto_zero (api : ClassicalMertensAPI) :
     Tendsto (fun N : ℕ => mobiusLogSummatory N / ((N + 1 : ℕ) : ℝ)) atTop (𝓝 0) := by
   have hmajorant :
@@ -962,6 +991,116 @@ lemma ClassicalMertensAPI.overK_difference_bound (api : ClassicalMertensAPI)
     _ ≤ api.C_M * (12 / Real.log (N + 2 : ℝ)) := by
           exact mul_le_mul_of_nonneg_left (finite_log_cubed_tail_bound N R) api.C_M_pos.le
     _ = _ := by ring
+
+/--
+Tail Cauchy bound for the cutoff Abel transform, using only an explicit
+polynomial-log Mertens bound.
+-/
+lemma cutoffMobiusOverKSum_difference_bound_of_mertens_bound
+    {C_M : ℝ} (hC_M_nonneg : 0 ≤ C_M)
+    (hM : ∀ N : ℕ,
+      |mobiusSummatory N| ≤ C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 3)
+    (N R : ℕ) (hNR : N ≤ R) :
+    |cutoffMobiusOverKSum R - cutoffMobiusOverKSum N| ≤
+      12 * C_M / Real.log (N + 2 : ℝ) := by
+  rw [cutoffMobiusOverKSum_eq_abel_sum, cutoffMobiusOverKSum_eq_abel_sum,
+    sum_Icc_one_sub_sum_Icc_one _ N R hNR]
+  calc
+    |∑ k ∈ Finset.Icc (N + 1) R,
+        mobiusSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))|
+      ≤ ∑ k ∈ Finset.Icc (N + 1) R,
+          |mobiusSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))| :=
+        abs_sum_le_sum_abs _ _
+    _ ≤ ∑ k ∈ Finset.Icc (N + 1) R,
+        C_M * (1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 3)) := by
+          apply Finset.sum_le_sum
+          intro k hk
+          have hkpos : 0 < k := lt_of_lt_of_le (by omega) (Finset.mem_Icc.mp hk).1
+          have hkR : (0 : ℝ) < k := by exact_mod_cast hkpos
+          have hdiff : 0 ≤ 1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ) := by
+            exact sub_nonneg.mpr (one_div_le_one_div_of_le hkR (by norm_cast; omega))
+          rw [abs_mul, abs_of_nonneg hdiff]
+          calc
+            |mobiusSummatory k| * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))
+              ≤ (C_M * (k : ℝ) / Real.log (k + 2 : ℝ) ^ 3) *
+                  (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+                    exact mul_le_mul_of_nonneg_right (hM k) hdiff
+            _ = C_M * (1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 3)) := by
+                  field_simp
+                  norm_num [Nat.cast_add]
+    _ = C_M * (∑ k ∈ Finset.Icc (N + 1) R,
+        1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 3)) := by
+          rw [Finset.mul_sum]
+    _ ≤ C_M * (12 / Real.log (N + 2 : ℝ)) := by
+          exact mul_le_mul_of_nonneg_left (finite_log_cubed_tail_bound N R) hC_M_nonneg
+    _ = _ := by ring
+
+/--
+The cutoff Abel transform is Cauchy under the single de la Vallée Poussin decay
+input.  This is the convergence half of the classical Axer step; it does not
+identify the limiting value.
+-/
+lemma cutoffMobiusOverKSum_cauchySeq_of_decay (H : ClassicalMertensDecay) :
+    CauchySeq cutoffMobiusOverKSum := by
+  rcases mertens_bound_of_decay H with ⟨C_M, hC_M_pos, hM⟩
+  refine cauchySeq_of_le_tendsto_0 (fun N : ℕ => 12 * C_M / Real.log (N + 2 : ℝ)) ?_ ?_
+  · intro n m N hNn hNm
+    have hlogN : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+    by_cases hnm : n ≤ m
+    · have hdiff :=
+        cutoffMobiusOverKSum_difference_bound_of_mertens_bound hC_M_pos.le hM n m hnm
+      have hlogn : 0 < Real.log (n + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+      have hmono : Real.log (N + 2 : ℝ) ≤ Real.log (n + 2 : ℝ) := by
+        exact Real.log_le_log (by positivity) (by norm_cast; omega)
+      have htail :
+          12 * C_M / Real.log (n + 2 : ℝ) ≤
+            12 * C_M / Real.log (N + 2 : ℝ) := by
+        have hcoeff : 0 ≤ 12 * C_M := by positivity
+        exact mul_le_mul_of_nonneg_left
+          (by simpa [one_div] using one_div_le_one_div_of_le hlogN hmono) hcoeff
+      calc
+        dist (cutoffMobiusOverKSum n) (cutoffMobiusOverKSum m)
+            = |cutoffMobiusOverKSum m - cutoffMobiusOverKSum n| := by
+              rw [Real.dist_eq, abs_sub_comm]
+        _ ≤ 12 * C_M / Real.log (n + 2 : ℝ) := hdiff
+        _ ≤ 12 * C_M / Real.log (N + 2 : ℝ) := htail
+    · have hmn : m ≤ n := le_of_not_ge hnm
+      have hdiff :=
+        cutoffMobiusOverKSum_difference_bound_of_mertens_bound hC_M_pos.le hM m n hmn
+      have hlogm : 0 < Real.log (m + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+      have hmono : Real.log (N + 2 : ℝ) ≤ Real.log (m + 2 : ℝ) := by
+        exact Real.log_le_log (by positivity) (by norm_cast; omega)
+      have htail :
+          12 * C_M / Real.log (m + 2 : ℝ) ≤
+            12 * C_M / Real.log (N + 2 : ℝ) := by
+        have hcoeff : 0 ≤ 12 * C_M := by positivity
+        exact mul_le_mul_of_nonneg_left
+          (by simpa [one_div] using one_div_le_one_div_of_le hlogN hmono) hcoeff
+      calc
+        dist (cutoffMobiusOverKSum n) (cutoffMobiusOverKSum m)
+            = |cutoffMobiusOverKSum n - cutoffMobiusOverKSum m| := by
+              rw [Real.dist_eq]
+        _ ≤ 12 * C_M / Real.log (m + 2 : ℝ) := hdiff
+        _ ≤ 12 * C_M / Real.log (N + 2 : ℝ) := htail
+  · simpa [div_eq_mul_inv, mul_assoc] using
+      ((tendsto_const_nhds : Tendsto (fun _ : ℕ => 12 * C_M) atTop (𝓝 (12 * C_M))).mul
+        tendsto_inv_log_nat_add_two)
+
+/--
+R2a: under classical de la Vallée Poussin decay, the partial sums
+`∑_{k≤N} μ(k)/k` converge to some real limit.
+
+The Axer normalization identifying this limit with `0` is not claimed here.
+-/
+lemma mobiusOverKPartial_convergent_of_decay (H : ClassicalMertensDecay) :
+    ∃ ℓ : ℝ, Tendsto mobiusOverKPartial atTop (𝓝 ℓ) := by
+  rcases cauchySeq_tendsto_of_complete (cutoffMobiusOverKSum_cauchySeq_of_decay H) with
+    ⟨ℓ, hℓ⟩
+  refine ⟨ℓ, ?_⟩
+  have hsum := hℓ.add (mobius_ratio_tendsto_zero_of_decay H)
+  simpa using hsum.congr' (Eventually.of_forall fun N => by
+    rw [cutoffMobiusOverKSum_eq_partial_sub]
+    ring)
 
 lemma ClassicalMertensAPI.logOverK_difference_bound (api : ClassicalMertensAPI)
     (N R : ℕ) (hNR : N ≤ R) :
