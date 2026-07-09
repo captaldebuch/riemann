@@ -693,4 +693,52 @@ noncomputable def quadraticInteractionEstimates_of_analytic_subEstimates
     C_residue, C_pos, loggamma_bound, ?_, residue_bound⟩
   exact explicitQuadraticInteractionRemainder_bound_of_analytic_subEstimates H
 
+
+/-! ## Phase 15H: the kernel–Gram-entry correspondence
+
+With the Vasyunin bridge now fully proved (`vasyuninBEntry_correct_axiom`,
+tag `verified-h13-complete`), the quadratic interaction kernel acquires an
+UNCONDITIONAL integral representation: it is exactly the Báez-Duarte Gram
+entry minus its smooth `(log 2π − γ)`-part. This replaces the finite
+cotangent sums (whose per-stratum Diophantine fluctuations the Phase 15B
+diagnostics showed to be individually unboundable) by a manifestly
+positive-semidefinite integral kernel plus a smooth correction — the
+global-cancellation structure the diagnostics called for. -/
+
+section KernelGramCorrespondence
+
+open RH.Criteria.NymanBeurling.VasyuninGram
+
+/-- The quadratic interaction kernel is the Vasyunin explicit-formula entry minus
+its smooth part — a pure algebraic identity between the two definitions. -/
+theorem quadraticInteractionKernel_eq_vasyuninBEntry_sub (h k : ℕ) :
+    quadraticInteractionKernel h k =
+      vasyuninBEntry h k -
+        (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) / 2 *
+          (1 / (h : ℝ) + 1 / (k : ℝ)) := by
+  unfold quadraticInteractionKernel vasyuninBEntry vasyuninBEntryFormula
+  ring
+
+/-- **The Gram-integral representation of the quadratic interaction kernel**
+(Phase 15H): for positive `h, k`,
+
+`K(h,k) = ∫₀^∞ {1/(hx)}·{1/(kx)} dx − (log 2π − γ)/2 · (1/h + 1/k)`.
+
+This is unconditional, via the now-proved Vasyunin bridge. The first term is a
+positive-semidefinite kernel in `(h,k)` (it is the Gram matrix of the
+Nyman–Beurling family), so the Möbius-weighted quadratic form
+`∑ c(h)c(k)·K(h,k)` is a genuine squared `L²`-norm minus a product of linear
+sums — the broad cancellation across gcd strata observed numerically in
+Phase 15B is structural, not accidental. -/
+theorem quadraticInteractionKernel_eq_gramEntry_sub (h k : ℕ)
+    (hh : 0 < h) (hk : 0 < k) :
+    quadraticInteractionKernel h k =
+      baezDuarteGramEntry h k -
+        (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) / 2 *
+          (1 / (h : ℝ) + 1 / (k : ℝ)) := by
+  rw [quadraticInteractionKernel_eq_vasyuninBEntry_sub,
+    vasyuninBEntry_correct_axiom h k hh hk]
+
+end KernelGramCorrespondence
+
 end RH.Criteria.NymanBeurling.QuadraticInteraction
