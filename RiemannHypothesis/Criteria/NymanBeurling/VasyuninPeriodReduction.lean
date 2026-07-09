@@ -1339,6 +1339,23 @@ theorem fract_sq_scaled_integral {θ x : ℝ} (hθ : 0 < θ) :
   rw [hcomp]
   field_simp [hθ.ne']
 
+/-- Interval integrability on `[0, x]` of a measurable function admitting a uniform bound
+on `(0, x]`.  This is the `of_bound` pattern of `fract_mul_div_sq_intervalIntegrable`,
+specialized to a left endpoint at zero: the value at `0` itself is irrelevant, so the bound
+is only required on the half-open interval. -/
+theorem intervalIntegrable_of_bound_on_Ioc {f : ℝ → ℝ} {x C : ℝ} (hx : 0 ≤ x)
+    (hmeas : Measurable f) (hbound : ∀ u ∈ Set.Ioc (0 : ℝ) x, |f u| ≤ C) :
+    IntervalIntegrable f MeasureTheory.volume (0 : ℝ) x := by
+  rw [intervalIntegrable_iff]
+  refine MeasureTheory.IntegrableOn.of_bound ?hsfin ?hmeas C ?hbound
+  · rw [Real.volume_uIoc]
+    exact ENNReal.ofReal_lt_top
+  · exact hmeas.aestronglyMeasurable.restrict
+  · rw [MeasureTheory.ae_restrict_iff' measurableSet_uIoc]
+    filter_upwards with u hu
+    have huIoc : u ∈ Set.Ioc (0 : ℝ) x := by simpa [Set.uIoc_of_le hx] using hu
+    simpa [Real.norm_eq_abs] using hbound u huIoc
+
 /-- **Proposition 22, rational case** (`θ = k/h`, coprime, `h,k > 0`), from
     Báez-Duarte--Balazard--Landreau--Saias, arXiv:math/0306251.
 
@@ -1359,6 +1376,259 @@ theorem baezDuarte_prop22_rat {h k : ℕ} (hh : 0 < h) (hk : 0 < k)
         ((θ - 1) / 2) * (∫ t in x..(θ * x), Int.fract t / t ^ 2) +
         (1 / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x) ^ 2 +
         ((θ - 1) / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x) := by
-  sorry
+  intro θ
+  have hθval : θ = (k : ℝ) / (h : ℝ) := rfl
+  clear_value θ
+  have hθpos : 0 < θ := by rw [hθval]; positivity
+  have hθne : θ ≠ 0 := hθpos.ne'
+  have hxne : x ≠ 0 := hx.ne'
+  have hθx : 0 < θ * x := mul_pos hθpos hx
+  -- `Int.fract y ≤ y` for nonnegative `y`.
+  have hfle : ∀ y : ℝ, 0 ≤ y → Int.fract y ≤ y := by
+    intro y hy
+    have h0 : (0 : ℝ) ≤ (⌊y⌋ : ℝ) := by exact_mod_cast Int.floor_nonneg.mpr hy
+    linarith [Int.self_sub_fract y]
+  -- Integrability of the step-sum integrands over `[0, y]` for any positive `y`.
+  have hGenInt : ∀ (a : ℕ → ℝ) (y : ℝ), 0 < y →
+      IntervalIntegrable (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+        MeasureTheory.volume (0 : ℝ) y := by
+    intro a y hy
+    by_cases hfloor0 : ⌊y⌋₊ = 0
+    · have hlt1 : y < 1 := Nat.floor_eq_zero.mp hfloor0
+      have hzero : Set.EqOn (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+          (fun _ : ℝ => (0 : ℝ)) (Set.uIoc (0 : ℝ) y) := by
+        intro u hu
+        have huIoc : u ∈ Set.Ioc (0 : ℝ) y := by simpa [Set.uIoc_of_le hy.le] using hu
+        have hfl : ⌊u⌋₊ = 0 := Nat.floor_eq_zero.mpr (lt_of_le_of_lt huIoc.2 hlt1)
+        show (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = 0
+        rw [hfl]
+        simp
+      exact (intervalIntegrable_congr hzero).2 intervalIntegrable_const
+    · set N : ℕ := ⌊y⌋₊ with hNdef
+      have hNpos : 0 < N := Nat.pos_of_ne_zero hfloor0
+      have hprevInt : IntervalIntegrable
+          (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2)
+          MeasureTheory.volume (0 : ℝ) (N : ℝ) := by
+        simpa using (IntervalIntegrable.trans_iterate
+          (a := fun j : ℕ => (j : ℝ)) (n := N)
+          (fun j _hj => stepPartialSum_div_sq_intervalIntegrable_nat_block a j))
+      exact hprevInt.trans
+        (stepPartialSum_div_sq_intervalIntegrable_floor_tail a hy hNdef.symm hNpos)
+  have hSInt : IntervalIntegrable
+      (fun u : ℝ => (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, bernoulliB1 ((m : ℝ) * θ)) / u ^ 2)
+      MeasureTheory.volume (0 : ℝ) x :=
+    hGenInt (fun m => bernoulliB1 ((m : ℝ) * θ)) x hx
+  have hTInt0 : IntervalIntegrable
+      (fun v : ℝ => (∑ n ∈ Finset.Icc 1 ⌊v⌋₊, bernoulliB1 ((n : ℝ) / θ)) / v ^ 2)
+      MeasureTheory.volume (0 : ℝ) (θ * x) :=
+    hGenInt (fun n => bernoulliB1 ((n : ℝ) / θ)) (θ * x) hθx
+  -- Change of variables `v = θ*u`: integrability of the composed integrand on `[0, x]`.
+  have hTcomp : IntervalIntegrable
+      (fun u : ℝ => (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / (θ * u) ^ 2)
+      MeasureTheory.volume (0 : ℝ) x := by
+    simpa [hθne, mul_div_cancel_left₀] using hTInt0.comp_mul_left (c := θ)
+  have hTuInt : IntervalIntegrable
+      (fun u : ℝ => (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2)
+      MeasureTheory.volume (0 : ℝ) x := by
+    have heq : (fun u : ℝ =>
+          (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2) =
+        fun u : ℝ =>
+          θ ^ 2 * ((∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / (θ * u) ^ 2) := by
+      funext u
+      by_cases hu : u = 0
+      · simp [hu]
+      · field_simp [hθne, hu, pow_two]
+    rw [heq]
+    exact hTcomp.const_mul (θ ^ 2)
+  -- The substitution identity turning the scaled companion integral into `[0, x]` form.
+  have hTsub : (∫ u in (0 : ℝ)..x,
+        (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2) =
+      θ * ∫ v in (0 : ℝ)..(θ * x),
+        (∑ n ∈ Finset.Icc 1 ⌊v⌋₊, bernoulliB1 ((n : ℝ) / θ)) / v ^ 2 := by
+    let f : ℝ → ℝ := fun v => (∑ n ∈ Finset.Icc 1 ⌊v⌋₊, bernoulliB1 ((n : ℝ) / θ)) / v ^ 2
+    have hpoint : (fun u : ℝ =>
+          (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2) =
+        fun u : ℝ => θ ^ 2 * f (θ * u) := by
+      funext u
+      dsimp [f]
+      by_cases hu : u = 0
+      · simp [hu]
+      · field_simp [hθne, hu, pow_two]
+    rw [hpoint]
+    rw [intervalIntegral.integral_const_mul]
+    have hcomp :=
+      intervalIntegral.integral_comp_mul_left (f := f) (a := (0 : ℝ)) (b := x) hθne
+    simp [f, smul_eq_mul] at hcomp ⊢
+    rw [hcomp]
+    field_simp [hθne]
+  -- Step 1: the two Abel/Stieltjes identities.
+  have hA : (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) / (m : ℝ)) =
+      (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ)) / x +
+        ∫ u in (0 : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, bernoulliB1 ((m : ℝ) * θ)) / u ^ 2 :=
+    stepFunction_abel_stieltjes_identity (fun m : ℕ => bernoulliB1 ((m : ℝ) * θ)) hx
+  have hB : (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) / (n : ℝ)) =
+      (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ)) / (θ * x) +
+        ∫ u in (0 : ℝ)..(θ * x),
+          (∑ n ∈ Finset.Icc 1 ⌊u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2 :=
+    bernoulliB1_scaled_companion_abel_stieltjes_identity hθpos hx
+  -- Step 2: combine the two `[0, x]` integrals into one.
+  have hcombine : (∫ u in (0 : ℝ)..x,
+        ((∑ m ∈ Finset.Icc 1 ⌊u⌋₊, bernoulliB1 ((m : ℝ) * θ)) / u ^ 2 +
+          (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2)) =
+      (∫ u in (0 : ℝ)..x, (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, bernoulliB1 ((m : ℝ) * θ)) / u ^ 2) +
+        ∫ u in (0 : ℝ)..x, (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2 :=
+    intervalIntegral.integral_add hSInt hTuInt
+  -- Step 3: rewrite the combined integrand pointwise via Proposition 21.
+  have hcongr : (∫ u in (0 : ℝ)..x,
+        ((∑ m ∈ Finset.Icc 1 ⌊u⌋₊, bernoulliB1 ((m : ℝ) * θ)) / u ^ 2 +
+          (∑ n ∈ Finset.Icc 1 ⌊θ * u⌋₊, bernoulliB1 ((n : ℝ) / θ)) / u ^ 2)) =
+      ∫ u in (0 : ℝ)..x,
+        ((1 / (2 * θ)) * (Int.fract (θ * u) - θ * Int.fract u) ^ 2 +
+          ((θ - 1) / (2 * θ)) * (Int.fract (θ * u) - θ * Int.fract u)) / u ^ 2 := by
+    apply intervalIntegral.integral_congr
+    intro u hu
+    have huIcc : u ∈ Set.Icc (0 : ℝ) x := by simpa [Set.uIcc_of_le hx.le] using hu
+    dsimp only
+    by_cases hu0 : u = 0
+    · simp [hu0]
+    · have hupos : 0 < u := lt_of_le_of_ne huIcc.1 (Ne.symm hu0)
+      have hprop21 := baezDuarte_prop21_rat_of_prop12 hh hk hcop u hupos
+      rw [← hθval] at hprop21
+      linear_combination (1 / u ^ 2) * hprop21
+  -- Step 4: integrability of the four expanded quadratic pieces on `[0, x]`.
+  have hPsq : ∀ c : ℝ, 0 < c → IntervalIntegrable
+      (fun u : ℝ => (Int.fract (c * u)) ^ 2 / u ^ 2) MeasureTheory.volume (0 : ℝ) x := by
+    intro c hc
+    refine intervalIntegrable_of_bound_on_Ioc hx.le
+      (((measurable_id.const_mul c).fract.pow_const 2).div (measurable_id.pow_const 2))
+      (C := c ^ 2) ?_
+    intro u hu
+    have hupos : 0 < u := hu.1
+    have h1 := Int.fract_nonneg (c * u)
+    have h2 := hfle (c * u) (by positivity)
+    have hle : (Int.fract (c * u)) ^ 2 / u ^ 2 ≤ c ^ 2 := by
+      rw [div_le_iff₀ (by positivity : (0 : ℝ) < u ^ 2)]
+      nlinarith [mul_self_le_mul_self h1 h2]
+    have hnn : 0 ≤ (Int.fract (c * u)) ^ 2 / u ^ 2 := by positivity
+    rwa [abs_of_nonneg hnn]
+  have hP1 : IntervalIntegrable (fun u : ℝ => (Int.fract (θ * u)) ^ 2 / u ^ 2)
+      MeasureTheory.volume (0 : ℝ) x := hPsq θ hθpos
+  have hP3 : IntervalIntegrable (fun u : ℝ => (Int.fract u) ^ 2 / u ^ 2)
+      MeasureTheory.volume (0 : ℝ) x := by
+    simpa using hPsq 1 one_pos
+  have hP2 : IntervalIntegrable
+      (fun u : ℝ => Int.fract u * Int.fract (θ * u) / u ^ 2)
+      MeasureTheory.volume (0 : ℝ) x := by
+    refine intervalIntegrable_of_bound_on_Ioc hx.le
+      ((measurable_fract.mul (measurable_id.const_mul θ).fract).div
+        (measurable_id.pow_const 2))
+      (C := θ) ?_
+    intro u hu
+    have hupos : 0 < u := hu.1
+    have h1 := hfle u hupos.le
+    have h2 := hfle (θ * u) (by positivity)
+    have h3 := Int.fract_nonneg (θ * u)
+    have h4 := Int.fract_nonneg u
+    have hprod : Int.fract u * Int.fract (θ * u) ≤ u * (θ * u) :=
+      mul_le_mul h1 h2 h3 hupos.le
+    have hle : Int.fract u * Int.fract (θ * u) / u ^ 2 ≤ θ := by
+      rw [div_le_iff₀ (by positivity : (0 : ℝ) < u ^ 2)]
+      nlinarith
+    have hnn : 0 ≤ Int.fract u * Int.fract (θ * u) / u ^ 2 := by positivity
+    rwa [abs_of_nonneg hnn]
+  have hP4 : IntervalIntegrable
+      (fun u : ℝ => (Int.fract (θ * u) - θ * Int.fract u) / u ^ 2)
+      MeasureTheory.volume (0 : ℝ) x := by
+    set α : ℝ := min 1 (1 / θ) with hα
+    have hαpos : 0 < α := lt_min one_pos (one_div_pos.mpr hθpos)
+    refine intervalIntegrable_of_bound_on_Ioc hx.le
+      (((measurable_id.const_mul θ).fract.sub (measurable_fract.const_mul θ)).div
+        (measurable_id.pow_const 2))
+      (C := (1 + θ) / α ^ 2) ?_
+    intro u hu
+    by_cases huα : u < α
+    · rw [prop16_fract_diff_eq_zero_of_lt_alpha hθpos hα hu.1.le huα, zero_div, abs_zero]
+      positivity
+    · have hαu : α ≤ u := le_of_not_gt huα
+      have h1 := Int.fract_nonneg (θ * u)
+      have h2 := (Int.fract_lt_one (θ * u)).le
+      have h3 := Int.fract_nonneg u
+      have h4 := (Int.fract_lt_one u).le
+      have h5 : 0 ≤ θ * Int.fract u := mul_nonneg hθpos.le h3
+      have h6 : θ * Int.fract u ≤ θ := by
+        have := mul_le_mul_of_nonneg_left h4 hθpos.le
+        simpa using this
+      have hnum : |Int.fract (θ * u) - θ * Int.fract u| ≤ 1 + θ := by
+        rw [abs_le]
+        constructor <;> linarith
+      have hu2 : α ^ 2 ≤ u ^ 2 := by nlinarith [hαpos.le]
+      rw [abs_div, abs_of_nonneg (sq_nonneg u)]
+      calc |Int.fract (θ * u) - θ * Int.fract u| / u ^ 2
+          ≤ (1 + θ) / u ^ 2 := by gcongr
+        _ ≤ (1 + θ) / α ^ 2 := by gcongr
+  have hP1c : IntervalIntegrable
+      (fun u : ℝ => (1 / (2 * θ)) * ((Int.fract (θ * u)) ^ 2 / u ^ 2))
+      MeasureTheory.volume (0 : ℝ) x := hP1.const_mul _
+  have hP3c : IntervalIntegrable
+      (fun u : ℝ => (θ / 2) * ((Int.fract u) ^ 2 / u ^ 2))
+      MeasureTheory.volume (0 : ℝ) x := hP3.const_mul _
+  have hP4c : IntervalIntegrable
+      (fun u : ℝ => ((θ - 1) / (2 * θ)) * ((Int.fract (θ * u) - θ * Int.fract u) / u ^ 2))
+      MeasureTheory.volume (0 : ℝ) x := hP4.const_mul _
+  have hab : IntervalIntegrable
+      (fun u : ℝ => (1 / (2 * θ)) * ((Int.fract (θ * u)) ^ 2 / u ^ 2) -
+        Int.fract u * Int.fract (θ * u) / u ^ 2)
+      MeasureTheory.volume (0 : ℝ) x := hP1c.sub hP2
+  have habc : IntervalIntegrable
+      (fun u : ℝ => (1 / (2 * θ)) * ((Int.fract (θ * u)) ^ 2 / u ^ 2) -
+        Int.fract u * Int.fract (θ * u) / u ^ 2 + (θ / 2) * ((Int.fract u) ^ 2 / u ^ 2))
+      MeasureTheory.volume (0 : ℝ) x := hab.add hP3c
+  -- Step 5: split the Proposition 21 integral into its four pieces.
+  have hsplit : (∫ u in (0 : ℝ)..x,
+        ((1 / (2 * θ)) * (Int.fract (θ * u) - θ * Int.fract u) ^ 2 +
+          ((θ - 1) / (2 * θ)) * (Int.fract (θ * u) - θ * Int.fract u)) / u ^ 2) =
+      (1 / (2 * θ)) * (∫ u in (0 : ℝ)..x, (Int.fract (θ * u)) ^ 2 / u ^ 2) -
+        (∫ u in (0 : ℝ)..x, Int.fract u * Int.fract (θ * u) / u ^ 2) +
+        (θ / 2) * (∫ u in (0 : ℝ)..x, (Int.fract u) ^ 2 / u ^ 2) +
+        ((θ - 1) / (2 * θ)) *
+          (∫ u in (0 : ℝ)..x, (Int.fract (θ * u) - θ * Int.fract u) / u ^ 2) := by
+    have hfun : (fun u : ℝ =>
+          ((1 / (2 * θ)) * (Int.fract (θ * u) - θ * Int.fract u) ^ 2 +
+            ((θ - 1) / (2 * θ)) * (Int.fract (θ * u) - θ * Int.fract u)) / u ^ 2) =
+        fun u : ℝ =>
+          (1 / (2 * θ)) * ((Int.fract (θ * u)) ^ 2 / u ^ 2) -
+            Int.fract u * Int.fract (θ * u) / u ^ 2 +
+            (θ / 2) * ((Int.fract u) ^ 2 / u ^ 2) +
+            ((θ - 1) / (2 * θ)) * ((Int.fract (θ * u) - θ * Int.fract u) / u ^ 2) := by
+      funext u
+      by_cases hu : u = 0
+      · simp [hu]
+      · field_simp
+        ring
+    rw [hfun, intervalIntegral.integral_add habc hP4c,
+      intervalIntegral.integral_add hab hP3c, intervalIntegral.integral_sub hP1c hP2]
+    simp only [intervalIntegral.integral_const_mul]
+  -- Step 6: the two scaled-integral evaluations.
+  have hI1eq := fract_sq_scaled_integral (θ := θ) (x := x) hθpos
+  have hI4eq := baezDuarte_prop16_frullani hθpos hx
+  -- Step 7: the boundary term, Proposition 21 evaluated at `x` itself.
+  have hbdry : (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ)) +
+      (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ)) =
+      (1 / (2 * θ)) * (Int.fract (θ * x) - θ * Int.fract x) ^ 2 +
+        ((θ - 1) / (2 * θ)) * (Int.fract (θ * x) - θ * Int.fract x) := by
+    have h21 := baezDuarte_prop21_rat_of_prop12 hh hk hcop x hx
+    rw [← hθval] at h21
+    exact h21
+  -- Final assembly: everything is now linear algebra over the collected identities.
+  -- The four weighted sums are made opaque first, so that `field_simp` cannot
+  -- renormalize divisions inside their summands inconsistently between occurrences.
+  set A1 : ℝ := ∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) / (m : ℝ) with hA1def
+  set A2 : ℝ := ∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) / (n : ℝ) with hA2def
+  set SB1 : ℝ := ∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) with hSB1def
+  set SB2 : ℝ := ∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) with hSB2def
+  clear_value A1 A2 SB1 SB2
+  linear_combination (norm := (field_simp; ring))
+    hA + θ * hB - hTsub - hcombine + hcongr + hsplit + (1 / (2 * θ)) * hI1eq +
+      ((θ - 1) / (2 * θ)) * hI4eq + (1 / x) * hbdry
 
 end RH.Criteria.NymanBeurling.VasyuninGram
