@@ -410,9 +410,17 @@ The open core of §7.2, `shiftedIntegralTsum_period_reduction`, turned out to ha
 - **A real convention bug caught by numerics before formalization**: the paper's `B₁` is the *Dedekind sawtooth* (value `0` at exact integers, not `-1/2`); the first frozen statement used the wrong convention and was numerically refuted, then corrected — the same "verify the statement before proving it" discipline as §7.1/§7.3.
 - **Proposition 21, rational case** (`baezDuarte_prop21_rat_of_prop12`): fully proved, unconditional, for every real `x > 0`. (The paper's general-real-θ statement `baezDuarte_prop21` is kept as a documented, allowlisted `sorry` purely for fidelity; nothing downstream uses it.)
 - **Proposition 22's four analytic ingredients**, each proved: two discrete Abel/Stieltjes summation-by-parts identities (`stepFunction_abel_stieltjes_identity` and its scaled companion, `∑_{m≤x} a_m/m = S(x)/x + ∫₀ˣ S(u)/u² du`), the quadratic change-of-variables identity (`fract_sq_scaled_integral`), and **Proposition 16**, the Frullani-type identity `∫₀ˣ t⁻²({θt} − θ{t}) dt = θ log(1/θ) + θ∫ₓ^{θx} u⁻²{u} du`, proved for *general* positive real `θ, x` (stronger than the rational case needed) with new local integrability infrastructure for discontinuous fractional-part integrands.
-- **Proposition 22 itself** (`baezDuarte_prop22_rat`): the full Stieltjes-integral identity for the weighted sums `∑ B₁(mθ)/m + θ∑ B₁(n/θ)/n`, now **assembled and proved** from the four ingredients plus Proposition 21 applied pointwise inside the integral — `#print axioms`-clean (`[propext, Classical.choice, Quot.sound]` only), with the stale allowlist entry removed; the full-project verification gate for the merge was in flight at the time of writing.
+- **Proposition 22 itself** (`baezDuarte_prop22_rat`): the full Stieltjes-integral identity for the weighted sums `∑ B₁(mθ)/m + θ∑ B₁(n/θ)/n`, **assembled and proved** from the four ingredients plus Proposition 21 applied pointwise inside the integral — `#print axioms`-clean, merged and tagged (`verified-h13-prop22-proved`).
 
-**What remains open in the chain**: Proposition 88 (the `x → ∞` limit — flagged in advance as carrying a genuine conditional-convergence risk for `∑ B₁(kθ)/k`, to be scoped before attempting), Proposition 89 (rational specialization, expected to reuse the already-verified digamma reflection machinery), and the final connection back to `shiftedIntegralTsum_period_reduction` itself.
+**The chain is now COMPLETE** (tag `verified-h13-complete`), closing every remaining H13 `sorry`:
+
+- **Proposition 48** (`BBLSPhiOne.lean`): the conditionally convergent `φ₁(p/q) = ∑_{k≥1} B₁(kp/q)/k` converges to `(π/2q)·V(p,q)` — for **all** positive `p, q`, coprime or not (numerically confirmed on non-coprime pairs before formalization). Proved with no digamma API at all: an absolutely convergent surrogate series, the reflection identity derived from this project's own real Mittag-Leffler cotangent expansion (§7.2), and a periodic-mean-zero Dirichlet-series limit theorem (existence via the discrete Abel identity + uniformly bounded partial sums; value via the block subsequence `N = mq`).
+- **Proposition 87**: `A(1) = ∫₀^∞ {t}²/t² dt = log 2π − γ`, via exact block integrals telescoping to `2N − H_N − 2N·log N + 2·log N!`, then Mathlib's Stirling (`tendsto_stirlingSeq_sqrt_pi`) and Euler–Mascheroni (`tendsto_eulerMascheroniSeq`) limits.
+- **Propositions 88–89, fused**: the `x → ∞` limit of Proposition 22 gives `A(k/h)` in closed cotangent form for all positive `h, k` — the conditional-convergence risk flagged for Proposition 88 dissolved entirely, because Proposition 48's generality supplies convergence at every rational directly, with the limit identity taken along the reduced coprime pair and the series limits evaluated at the non-reduced pair.
+- **The period reduction**: unfolding the shifted-integral tsum over `lcm`-periods (translation + countable disjoint-union integration), substituting `s = t·h`, and assembling into `vasyuninBEntry` — discharging `shiftedIntegralTsum_period_reduction`, `tsum_shifted_integrals_eq_cotangent_sum`, and `vasyuninBEntry_correct_axiom`.
+- **A third false statement caught and corrected** (continuing §7.1/§7.3's pattern): `vasyuninBEntry_correct_axiom` as originally recorded was hypothesis-free and therefore **false at `h = 0`** (the Gram integrand vanishes identically while `vasyuninBEntryFormula 0 k = (log 2π − γ)/(2k) ≠ 0`). Positivity hypotheses were added and all 2,004 call sites across the generated certificate files patched; the full 8,616-job rebuild and verification gate passed.
+
+**H13 status: closed.** Exactly one `sorry` remains in the entire project — `baezDuarte_prop21`, the general-real-θ statement of Proposition 21, kept purely for fidelity to the paper's own phrasing; nothing depends on it.
 
 ## 8. Phase 14: Linear Möbius / Dirichlet Estimates
 
@@ -433,7 +441,9 @@ On that basis a lettered plan (H14M-A…I) was drawn up and its first two steps 
 - **H14M-A** (`verified-h14m-a-zero-free-api`): the zero-free-region *statement* frozen as a hypothesis structure `DeLaValleePoussinZeroFreeRegion` (`ζ(s) ≠ 0` for `Re s > 1 − c/log(|Im s|+2)`), with proved sanity corollaries (consistency with the closed-half-plane nonvanishing Mathlib already has).
 - **H14M-B, ingredients only** (`verified-h14m-b-zero-free-subpieces`, 13 lemmas, no `sorry`): the elementary `3-4-1` inequality `0 ≤ 3 + 4cos θ + cos 2θ`; its unit-circle and logarithmic Euler-factor positivity forms (a public reproof of a *private* Mathlib lemma in `Nonvanishing.lean`, via the Taylor series of `−log(1−z)`); von Mangoldt log-derivative wrappers `L↗Λ(s) = −ζ'(s)/ζ(s)` with the termwise cosine expansion `Λ(n)n^{−σ}cos(t log n)`; and local wrappers at `s = 1` (residue, regular-part boundedness, and a genuinely new simple-zero log-derivative residue lemma).
 
-**Honestly not done, stated in the code's own docstrings**: no *instance* of `DeLaValleePoussinZeroFreeRegion` is constructed — that requires combining the positivity across `σ, σ+it, σ+2it`, handling zeros of arbitrary multiplicity (the residue lemma above covers only simple zeros), and the global contour/growth estimates. The H14 track is **parked here by explicit decision**: its remaining debt is now reduced to precisely-named missing pieces (H14M-B assembly, then C–I), each documented in the plan, none attempted.
+**Honestly not done, stated in the code's own docstrings**: no *instance* of `DeLaValleePoussinZeroFreeRegion` is constructed — that requires combining the positivity across `σ, σ+it, σ+2it`, handling zeros of arbitrary multiplicity (the residue lemma above covers only simple zeros), and the global contour/growth estimates.
+
+**Architecture finalized** (tag `verified-h14-finalized-decay`): the quantitative Mertens debt is now reduced to a *single* classical statement, `ClassicalMertensDecay` (`|M(N)| ≤ C·N·exp(−a√(log N))` — exactly the output of the 1899 de la Vallée Poussin zero-free region), with the conversion to the project's `N/log³N` bound **proved unconditionally** (`mertens_bound_of_decay`, via elementary `t^A·e^{−a√t}` calculus). The three fields not yet derived from decay (`mobiusLogSummatory_bound`, `mobius_sum_zero`, `mobiusLog_sum_neg_one` — the Abel/Axer-type arguments) remain explicitly named in `ClassicalMertensResidualInputs`, and `ClassicalMertensAPI.ofDecay` assembles the full API from the two. The H14 track is **parked here**: its debt is one classical decay statement plus a three-field named residual.
 
 ## 9. Phase 15: Quadratic Log-Cotangent Interaction
 
@@ -454,6 +464,16 @@ Two further structural steps, both merged after independent verification, sharpe
 - **BBLS/Estermann contour route, a partial success** (`BBLS_EstermannContourPackage` + wiring theorems): the mysterious `+1` main term is *explained* by a genuine, checkable residue mechanism (the pole structure of the Estermann function in the Báez-Duarte–Balazard–Landreau–Saias contour argument) — but the route does **not** by itself close the error estimates; the package honestly isolates what the contour argument would still require as unproved hypothesis fields.
 - **The canonical reframing** (`fareyCellMobiusCorrelationSum`, `FareyCellMobiusCorrelationEstimate`, `FareyCellGcdSliceErrorDecomposition` + wiring): the remaining gap is a **two-linear-forms Möbius correlation estimate over Farey cells** — a Chowla/Elliott-type correlation problem, explicitly **not** a Bombieri–Vinogradov/equidistribution problem (a tempting but wrong reduction, recorded as such to prevent future re-derivation). Relevant modern literature to consult when this is picked up: Matomäki–Radziwiłł–Tao, Tao–Teräväinen, Lichtman–Teräväinen, Frantzikinakis–Host, Harper/Klurman/Mangerel. The hypothesis structures isolate exactly this correlation estimate as the single named debt; everything around it is proved wiring.
 
+### 9.2 The norm representation (Phase 15H), unlocked by H13's closure
+
+With the Vasyunin bridge proved (§7.4), the interaction kernel acquired an **unconditional integral representation** (tags `verified-h15-kernel-gram`, `verified-h15-h3-norm-identity`):
+
+- `quadraticInteractionKernel h k = baezDuarteGramEntry h k − (log 2π − γ)/2·(1/h + 1/k)` — the H15 kernel is *literally* the Báez-Duarte Gram integral minus its smooth part (the first identity is one `ring` away from the definitions; nobody had noticed).
+- The **norm identity**, proved for a general weight and instantiated at the Möbius cutoff: `∑∑ c(h)c(k)·K(h,k) = ∫₀^∞ (∑ c(h)·{1/(hx)})² dx − (log 2π − γ)·(∑ c(h)/h)·(∑ c(k))`, wired all the way to `explicitQuadraticInteractionRemainder`.
+- **The first unconditional inequality on the H15 quadratic form** (`quadratic_form_ge_neg_linear`), free from the positive-semidefiniteness of the norm term.
+
+**What this changes**: the "mysterious broad cancellation across gcd strata" from the §9 diagnostics is now *structural* — the wild per-stratum cotangent fluctuations live inside a manifestly nonnegative squared L²-norm, and per-stratum bounding is provably the wrong decomposition. H15's open content is restated in its sharpest form: the Nyman–Beurling **energy of the specific Möbius cutoff vector** minus H14-governed linear sums minus 1, at rate `O(1/log N)`. The hard analytic content remains open, but it is now directly connected to the linear (H14) machinery and the certificate/energy infrastructure, and a staged finish attempt (conditional on H14's classical inputs, with any residue isolated as a single named hypothesis, under a strict no-RH-circularity guard) has been scoped.
+
 ## 10. The Fourth Debt: Nyman–Beurling ⇒ RH
 
 Even a fully closed set of analytic debts (§7–9) only yields a theorem-proved Báez–Duarte criterion. The step from there to unconditional RH is `nyman_beurling_criterion_iff_RH` (`BaezDuarte.lean`), still a bare, explicitly-labeled axiom — the classical Nyman (1950) / Beurling (1955) / Báez-Duarte (2003) theorem itself. A staged plan for this ("Phase NB") exists but has not been started: split the bare `↔` into two one-directional theorems and pursue only the forward direction (`NymanBeurlingCriterion → RH`, the direction that actually turns this project's work into RH) via a Mellin-transform vanishing argument, deferring the converse (the full classical Beurling density/cyclicity theorem) indefinitely. Notably, `nymanBeurlingCriterion_iff_baezDuarteCriterion` — a step the plan initially assumed was still open — is **already proved** in the repo (Phase 10A); the actual remaining gap is narrower than it first appears.
@@ -466,25 +486,22 @@ Axiom count:            1364 (original) → 133 (current), a reduction of >90%
   of which native_decide:       16 → 0        (Phase 10U, fully closed)
   of which prim_log/log_certified/euler_gamma:  87 (open, mechanical, Phase 10V, in progress)
   of which dead axioms from abandoned exploratory strategies: ~46 (not on the active path)
-sorry count:             4 — all individually named, documented, and allowlisted
-                           (scripts/verify_known_sorries.txt), none silent:
-                           tsum_shifted_integrals_eq_cotangent_sum (VasyuninBridge),
-                           vasyuninBEntry_correct_axiom (VasyuninBridge),
-                           shiftedIntegralTsum_period_reduction (CotangentRecognition),
-                           and baezDuarte_prop21 (general-θ, kept for paper fidelity only)
+sorry count:             1 — baezDuarte_prop21 (general-real-θ Proposition 21,
+                           kept for paper fidelity only, used by nothing; allowlisted
+                           in scripts/verify_known_sorries.txt)
 
 Three analytic debts (H13, H14, H15) toward a proved Báez-Duarte criterion:
-  H13 (Vasyunin local bridge):        BBLS period-reduction chain (§7.4) proved through
-                                       Proposition 22 inclusive; Propositions 88/89 and
-                                       the final reconnection remain
-  H14 (linear Möbius/Dirichlet):      Abel identities proved; no-shortcut verdict
-                                       confirmed twice; de la Vallée Poussin API frozen
-                                       + 3-4-1 ingredients banked (§8.1); PARKED — the
-                                       zero-free-region instance itself is untouched
-  H15 (quadratic log-cotangent):      structural decomposition + diagonal proved; open
-                                       core reframed as a Farey-cell two-linear-forms
-                                       Möbius correlation (§9.1), explicitly NOT
-                                       Bombieri-Vinogradov; the estimate is untouched
+  H13 (Vasyunin local bridge):        CLOSED (§7.4, tag verified-h13-complete) — the
+                                       full BBLS chain incl. Props 48/87/88/89 and the
+                                       period reduction; all Bridge sorries discharged
+  H14 (linear Möbius/Dirichlet):      FINALIZED + PARKED (§8.1) — debt reduced to the
+                                       single ClassicalMertensDecay statement plus a
+                                       three-field named residual (ofDecay bridge proved)
+  H15 (quadratic log-cotangent):      open core now in NORM FORM (§9.2): NB-energy of
+                                       the Möbius cutoff vector minus H14-type linear
+                                       sums; first unconditional inequality banked; the
+                                       O(1/log N) estimate itself remains the deepest
+                                       open debt
 
 A fourth, separate gap beyond all three debts:
   nyman_beurling_criterion_iff_RH:    still a bare axiom; a staged plan exists,
