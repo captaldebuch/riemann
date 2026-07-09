@@ -9,33 +9,13 @@
 # (see AGENTS.md — undocumented/silent sorries are not acceptable regardless
 # of this allowlist).
 
-# RiemannHypothesis/Criteria/NymanBeurling/VasyuninBridge.lean — Vasyunin tail
-# decomposition (Phase 13B), see docs/roadmap.md and the memory entry
-# phase_10t_cotangent_axioms.md / project_roadmap_phase13.md for context.
-# One genuinely open sorry here: tsum_shifted_integrals_eq_cotangent_sum (the actual
-# hard mathematical content — a Dedekind-sum-style cotangent identity not in Mathlib).
-debtFieldLHS_eq_tsum_shifted_integrals
-tsum_shifted_integrals_eq_cotangent_sum
-interval_sum_add_tail_eq_cotangent_formula_of_debts
-interval_sum_add_tail_eq_cotangent_formula_unconditional
-baezDuarteGramEntry_eq_transformed_integral
-N20_quadratic_le_energyUpper
-N50_quadratic_le_energyUpper
-
-# RiemannHypothesis/Criteria/NymanBeurling/VasyuninCotangentRecognition.lean —
-# Vasyunin V5 cotangent-recognition groundwork (H13). One genuinely open sorry:
-# shiftedIntegralTsum_period_reduction, the classical sub-arc-partition /
-# Dedekind-sum-style cotangent reciprocity argument (Vasyunin's own multi-page
-# computation), deliberately not attempted — see the memory entry
-# vasyunin_v5_cotangent_recognition.md for context.
-shiftedIntegralTsum_period_reduction
-
 # RiemannHypothesis/Criteria/NymanBeurling/VasyuninPeriodReduction.lean — H13-J
 # plan (see the memory entry phase_h13j_baez_duarte_prop21_plan.md). One
 # deliberately open sorry: baezDuarte_prop21, the GENERAL real-theta statement
 # of Baez-Duarte-Balazard-Landreau-Saias Proposition 21 (arXiv:math/0306251),
 # kept only for fidelity to the paper's exact statement. The rational-theta
 # specialization this project actually needs, baezDuarte_prop21_rat_of_prop12,
-# is fully proved (no sorryAx) conditional on Proposition 12's floor-sum
-# identity as an explicit hypothesis parameter — not a hidden dependency.
+# is fully proved (no sorryAx). Everything else in the Vasyunin bridge chain
+# (Propositions 12, 15, 16, 21-rational, 22, 48, 87, 88, 89, the period
+# reduction, and vasyuninBEntry_correct_axiom) is now fully proved.
 baezDuarte_prop21

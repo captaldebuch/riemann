@@ -560,4 +560,235 @@ theorem bbls_A_rat (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
   linear_combination hkey
 
 
+/-! ## Period unfolding: the shifted-integral tsum equals the Vasyunin entry -/
+
+/-- The two-period integrand `{s/h}{s/k}/s²` is integrable on `(0, ∞)`. -/
+theorem integrableOn_fract_two_div_sq (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
+    IntegrableOn (fun s : ℝ => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2)
+      (Set.Ioi (0 : ℝ)) := by
+  have hhR : (0 : ℝ) < h := by exact_mod_cast hh
+  have hkR : (0 : ℝ) < k := by exact_mod_cast hk
+  have hfle : ∀ y : ℝ, 0 ≤ y → Int.fract y ≤ y := by
+    intro y hy
+    have h0 : (0 : ℝ) ≤ (⌊y⌋ : ℝ) := by exact_mod_cast Int.floor_nonneg.mpr hy
+    linarith [Int.self_sub_fract y]
+  have hmeas : Measurable (fun s : ℝ => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2) :=
+    ((measurable_id.div_const (h : ℝ)).fract.mul
+      (measurable_id.div_const (k : ℝ)).fract).div (measurable_id.pow_const 2)
+  have hsplit : Set.Ioi (0 : ℝ) = Set.Ioc (0 : ℝ) 1 ∪ Set.Ioi (1 : ℝ) :=
+    (Set.Ioc_union_Ioi_eq_Ioi zero_le_one).symm
+  rw [hsplit]
+  apply IntegrableOn.union
+  · have h01 : IntervalIntegrable
+        (fun s : ℝ => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2)
+        MeasureTheory.volume (0 : ℝ) 1 := by
+      refine intervalIntegrable_of_bound_on_Ioc zero_le_one hmeas
+        (C := 1 / ((h : ℝ) * k)) ?_
+      intro u hu
+      have hupos : 0 < u := hu.1
+      have h1 := hfle (u / h) (by positivity)
+      have h2 := hfle (u / k) (by positivity)
+      have h3 := Int.fract_nonneg (u / (h : ℝ))
+      have h4 := Int.fract_nonneg (u / (k : ℝ))
+      have hprod : Int.fract (u / (h : ℝ)) * Int.fract (u / (k : ℝ)) ≤ (u / h) * (u / k) :=
+        mul_le_mul h1 h2 h4 (by positivity)
+      have hle : Int.fract (u / (h : ℝ)) * Int.fract (u / (k : ℝ)) / u ^ 2 ≤ 1 / ((h : ℝ) * k) := by
+        rw [div_le_div_iff₀ (by positivity) (by positivity)]
+        have hexp : (u / h) * (u / k) * ((h : ℝ) * k) = u ^ 2 := by
+          field_simp
+        nlinarith [mul_le_mul_of_nonneg_right hprod
+          (by positivity : (0 : ℝ) ≤ (h : ℝ) * k)]
+      have hnn : 0 ≤ Int.fract (u / (h : ℝ)) * Int.fract (u / (k : ℝ)) / u ^ 2 := by positivity
+      rwa [abs_of_nonneg hnn]
+    have h02 := intervalIntegrable_iff.mp h01
+    rwa [Set.uIoc_of_le zero_le_one] at h02
+  · have hmaj : IntegrableOn (fun t : ℝ => t ^ (-2 : ℝ)) (Set.Ioi (1 : ℝ)) :=
+      integrableOn_Ioi_rpow_of_lt (by norm_num) one_pos
+    apply Integrable.mono' hmaj
+    · exact hmeas.aestronglyMeasurable.restrict
+    · rw [MeasureTheory.ae_restrict_iff' measurableSet_Ioi]
+      filter_upwards with t ht
+      have ht1 : (1 : ℝ) < t := ht
+      have htpos : 0 < t := lt_trans one_pos ht1
+      have hf1 : Int.fract (t / (h : ℝ)) < 1 := Int.fract_lt_one _
+      have hf2 : Int.fract (t / (k : ℝ)) < 1 := Int.fract_lt_one _
+      have hf3 := Int.fract_nonneg (t / (h : ℝ))
+      have hf4 := Int.fract_nonneg (t / (k : ℝ))
+      have hnn : 0 ≤ Int.fract (t / (h : ℝ)) * Int.fract (t / (k : ℝ)) / t ^ 2 := by positivity
+      rw [Real.norm_eq_abs, abs_of_nonneg hnn, Real.rpow_neg htpos.le, Real.rpow_two]
+      rw [div_le_iff₀ (by positivity : (0 : ℝ) < t ^ 2)]
+      have hinv : (t ^ 2)⁻¹ * t ^ 2 = 1 := by field_simp
+      rw [hinv]
+      nlinarith
+
+/-- Period unfolding: the tsum of shifted slice integrals is the improper integral. -/
+theorem bbls_period_unfolding (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
+    (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
+          ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
+      = ∫ s in Set.Ioi (0 : ℝ),
+          Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2 := by
+  have hhR : (0 : ℝ) < h := by exact_mod_cast hh
+  have hkR : (0 : ℝ) < k := by exact_mod_cast hk
+  set L : ℕ := Nat.lcm h k with hLdef
+  have hL : 0 < L := Nat.pos_of_ne_zero (Nat.lcm_ne_zero hh.ne' hk.ne')
+  have hLR : (0 : ℝ) < (L : ℝ) := by exact_mod_cast hL
+  set g : ℝ → ℝ := fun s => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2
+    with hgdef
+  -- fract periodicity under shifts by multiples of L
+  have hper : ∀ (m : ℕ) (hdvd : (m : ℕ) ∣ L) (n : ℕ) (u : ℝ),
+      Int.fract ((u + (n : ℝ) * L) / (m : ℝ)) = Int.fract (u / (m : ℝ)) := by
+    intro m hdvd n u
+    obtain ⟨c, hc⟩ := hdvd
+    rcases Nat.eq_zero_or_pos m with hm0 | hmpos
+    · subst hm0
+      simp
+    · have hmR : (0 : ℝ) < m := by exact_mod_cast hmpos
+      have hcast : (u + (n : ℝ) * L) / (m : ℝ) = u / m + ((n * c : ℕ) : ℝ) := by
+        rw [hc]
+        push_cast
+        field_simp
+      rw [hcast, Int.fract_add_natCast]
+  -- each slice integral is the integral of g over the shifted block
+  have hslice : ∀ n : ℕ,
+      (∫ s in Set.Ioc (0 : ℝ) (L : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / ((n : ℝ) * L + s) ^ 2)
+      = ∫ s in Set.Ioc ((n : ℝ) * L) ((n : ℝ) * L + L), g s := by
+    intro n
+    have hle1 : (0 : ℝ) ≤ (L : ℝ) := hLR.le
+    have hle2 : (n : ℝ) * L ≤ (n : ℝ) * L + L := by linarith
+    rw [← intervalIntegral.integral_of_le hle1, ← intervalIntegral.integral_of_le hle2]
+    have hcongr : (∫ s in (0 : ℝ)..(L : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / ((n : ℝ) * L + s) ^ 2)
+        = ∫ s in (0 : ℝ)..(L : ℝ), g (s + (n : ℝ) * L) := by
+      apply intervalIntegral.integral_congr
+      intro s _
+      rw [hgdef]
+      simp only
+      rw [hper h (Nat.dvd_lcm_left h k) n s, hper k (Nat.dvd_lcm_right h k) n s]
+      congr 1
+      ring
+    rw [hcongr]
+    have hcomp := intervalIntegral.integral_comp_add_right (a := (0 : ℝ)) (b := (L : ℝ))
+      (f := g) ((n : ℝ) * L)
+    rw [hcomp]
+    congr 1 <;> ring
+  -- the blocks partition (0, ∞)
+  have hunion : (⋃ n : ℕ, Set.Ioc ((n : ℝ) * L) ((n : ℝ) * L + L)) = Set.Ioi (0 : ℝ) := by
+    ext x
+    simp only [Set.mem_iUnion, Set.mem_Ioc, Set.mem_Ioi]
+    constructor
+    · rintro ⟨n, hn1, _⟩
+      have : (0 : ℝ) ≤ (n : ℝ) * L := by positivity
+      linarith
+    · intro hx
+      have hxL : 0 < x / (L : ℝ) := by positivity
+      have hceil : 1 ≤ ⌈x / (L : ℝ)⌉₊ := Nat.one_le_ceil_iff.mpr hxL
+      refine ⟨⌈x / (L : ℝ)⌉₊ - 1, ?_, ?_⟩
+      · have hlt : ((⌈x / (L : ℝ)⌉₊ - 1 : ℕ) : ℝ) < x / L := by
+          rw [Nat.cast_sub hceil]
+          push_cast
+          have := Nat.ceil_lt_add_one hxL.le
+          have h2 : (⌈x / (L : ℝ)⌉₊ : ℝ) < x / L + 1 := this
+          linarith
+        calc ((⌈x / (L : ℝ)⌉₊ - 1 : ℕ) : ℝ) * L < (x / L) * L := by
+              apply mul_lt_mul_of_pos_right hlt hLR
+          _ = x := by field_simp
+      · have hle : x / (L : ℝ) ≤ (⌈x / (L : ℝ)⌉₊ : ℝ) := Nat.le_ceil _
+        have h2 : x ≤ (⌈x / (L : ℝ)⌉₊ : ℝ) * L := by
+          rw [← div_le_iff₀ hLR]
+          exact hle
+        calc x ≤ (⌈x / (L : ℝ)⌉₊ : ℝ) * L := h2
+          _ = ((⌈x / (L : ℝ)⌉₊ - 1 : ℕ) : ℝ) * L + L := by
+              rw [Nat.cast_sub hceil]
+              push_cast
+              ring
+  have hdisj : Pairwise (Function.onFun Disjoint
+      (fun n : ℕ => Set.Ioc ((n : ℝ) * L) ((n : ℝ) * L + L))) := by
+    intro m n hmn
+    have hkey : ∀ a b : ℕ, a < b → Disjoint (Set.Ioc ((a : ℝ) * L) ((a : ℝ) * L + L))
+        (Set.Ioc ((b : ℝ) * L) ((b : ℝ) * L + L)) := by
+      intro a b hab
+      apply Set.disjoint_left.mpr
+      intro x hxa hxb
+      have h1 : x ≤ (a : ℝ) * L + L := hxa.2
+      have h2 : (b : ℝ) * L < x := hxb.1
+      have h3 : (a : ℝ) + 1 ≤ (b : ℝ) := by exact_mod_cast hab
+      nlinarith
+    rcases lt_or_gt_of_ne hmn with hlt | hlt
+    · exact hkey m n hlt
+    · exact (hkey n m hlt).symm
+  have hint : IntegrableOn g (⋃ n : ℕ, Set.Ioc ((n : ℝ) * L) ((n : ℝ) * L + L)) := by
+    rw [hunion]
+    exact integrableOn_fract_two_div_sq h k hh hk
+  have hiUnion := MeasureTheory.integral_iUnion (fun n => measurableSet_Ioc) hdisj hint
+  calc (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (L : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / ((n : ℝ) * L + s) ^ 2)
+      = ∑' n : ℕ, ∫ s in Set.Ioc ((n : ℝ) * L) ((n : ℝ) * L + L), g s := by
+        exact tsum_congr hslice
+    _ = ∫ s in (⋃ n : ℕ, Set.Ioc ((n : ℝ) * L) ((n : ℝ) * L + L)), g s := hiUnion.symm
+    _ = ∫ s in Set.Ioi (0 : ℝ), g s := by rw [hunion]
+
+/-- **The Vasyunin period reduction**: the shifted-integral tsum equals the Vasyunin
+explicit-formula entry, for all positive `h, k` (`h = k` included). -/
+theorem bbls_tsum_eq_vasyuninBEntry (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
+    (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
+          ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
+      = vasyuninBEntry h k := by
+  have hhR : (0 : ℝ) < h := by exact_mod_cast hh
+  have hkR : (0 : ℝ) < k := by exact_mod_cast hk
+  rw [bbls_period_unfolding h k hh hk]
+  -- substitution s = t·h reduces to the autocorrelation integral at h/k
+  have hcomp := MeasureTheory.integral_comp_mul_right_Ioi
+    (fun s : ℝ => Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2) 0 hhR
+  simp only [zero_mul, smul_eq_mul] at hcomp
+  have hpoint : ∀ t : ℝ, 0 < t →
+      Int.fract ((t * h) / (h : ℝ)) * Int.fract ((t * h) / (k : ℝ)) / (t * h) ^ 2
+        = (1 / (h : ℝ) ^ 2) * (Int.fract t * Int.fract (((h : ℝ) / (k : ℝ)) * t) / t ^ 2) := by
+    intro t ht
+    have h1 : (t * h) / (h : ℝ) = t := by field_simp
+    have h2 : (t * h) / (k : ℝ) = ((h : ℝ) / k) * t := by field_simp
+    rw [h1, h2]
+    field_simp
+  have hcongr : (∫ t in Set.Ioi (0 : ℝ),
+      Int.fract ((t * h) / (h : ℝ)) * Int.fract ((t * h) / (k : ℝ)) / (t * h) ^ 2)
+      = ∫ t in Set.Ioi (0 : ℝ),
+          (1 / (h : ℝ) ^ 2) * (Int.fract t * Int.fract (((h : ℝ) / (k : ℝ)) * t) / t ^ 2) := by
+    apply MeasureTheory.setIntegral_congr_fun measurableSet_Ioi
+    intro t ht
+    exact hpoint t ht
+  have hsub : (∫ s in Set.Ioi (0 : ℝ),
+      Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2)
+      = (1 / (h : ℝ)) * ∫ t in Set.Ioi (0 : ℝ),
+          Int.fract t * Int.fract (((h : ℝ) / (k : ℝ)) * t) / t ^ 2 := by
+    have hg : (∫ s in Set.Ioi (0 : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) / s ^ 2)
+        = (h : ℝ) * ∫ t in Set.Ioi (0 : ℝ),
+            Int.fract ((t * h) / (h : ℝ)) * Int.fract ((t * h) / (k : ℝ)) / (t * h) ^ 2 := by
+      rw [hcomp]
+      have hhne : (h : ℝ) ≠ 0 := hhR.ne'
+      field_simp
+    rw [hg, hcongr, MeasureTheory.integral_const_mul]
+    have hhne : (h : ℝ) ≠ 0 := hhR.ne'
+    field_simp
+  rw [hsub, bbls_A_rat k h hk hh]
+  unfold vasyuninBEntry vasyuninBEntryFormula
+  have hhne : (h : ℝ) ≠ 0 := hhR.ne'
+  have hkne : (k : ℝ) ≠ 0 := hkR.ne'
+  field_simp
+  ring
+
+/-- The period-reduction statement in its original recorded form (with the unused
+`h ≠ k` hypothesis), replacing the former `sorry` in
+`VasyuninCotangentRecognition.lean`. -/
+theorem shiftedIntegralTsum_period_reduction (h k : ℕ) (_hne : h ≠ k) (hh : 0 < h)
+    (hk : 0 < k) :
+    (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
+        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
+          ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
+      = vasyuninBEntry h k :=
+  bbls_tsum_eq_vasyuninBEntry h k hh hk
+
+
 end RH.Criteria.NymanBeurling.VasyuninGram

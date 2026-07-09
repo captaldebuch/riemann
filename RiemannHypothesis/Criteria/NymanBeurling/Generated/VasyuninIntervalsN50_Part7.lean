@@ -233,7 +233,7 @@ def interval_28_28 : NamedVasyuninInterval :=
   interval_proof := G28_28_interval
 }
 
-theorem G28_29_formula : baezDuarteGramEntry 28 29 = vasyuninBEntry 28 29 := vasyuninBEntry_correct_axiom 28 29
+theorem G28_29_formula : baezDuarteGramEntry 28 29 = vasyuninBEntry 28 29 := vasyuninBEntry_correct_axiom 28 29 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_29_eval :
     ((((6881203/162970000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 29) ∧
@@ -259,13 +259,13 @@ def interval_28_29 : NamedVasyuninInterval :=
   interval_proof := G28_29_interval
 }
 
-theorem G28_30_formula : baezDuarteGramEntry 28 30 = vasyuninBEntry 28 30 := vasyuninBEntry_correct_axiom 28 30
+theorem G28_30_formula : baezDuarteGramEntry 28 30 = vasyuninBEntry 28 30 := vasyuninBEntry_correct_axiom 28 30 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_30_eval :
     ((((24539363/606370000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 30) ∧
     (vasyuninBEntry 28 30 ≤ (((24660637/606370000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_14_15_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 14 15 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 14 15 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -288,7 +288,7 @@ def interval_28_30 : NamedVasyuninInterval :=
   interval_proof := G28_30_interval
 }
 
-theorem G28_31_formula : baezDuarteGramEntry 28 31 = vasyuninBEntry 28 31 := vasyuninBEntry_correct_axiom 28 31
+theorem G28_31_formula : baezDuarteGramEntry 28 31 = vasyuninBEntry 28 31 := vasyuninBEntry_correct_axiom 28 31 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_31_eval :
     ((((35299649/903510000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 31) ∧
@@ -314,13 +314,13 @@ def interval_28_31 : NamedVasyuninInterval :=
   interval_proof := G28_31_interval
 }
 
-theorem G28_32_formula : baezDuarteGramEntry 28 32 = vasyuninBEntry 28 32 := vasyuninBEntry_correct_axiom 28 32
+theorem G28_32_formula : baezDuarteGramEntry 28 32 = vasyuninBEntry 28 32 := vasyuninBEntry_correct_axiom 28 32 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_32_eval :
     ((((3290071/86790000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 32) ∧
     (vasyuninBEntry 28 32 ≤ (((3307429/86790000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_7_8_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 7 8 4 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 7 8 4 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 4)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 4)
@@ -343,7 +343,7 @@ def interval_28_32 : NamedVasyuninInterval :=
   interval_proof := G28_32_interval
 }
 
-theorem G28_33_formula : baezDuarteGramEntry 28 33 = vasyuninBEntry 28 33 := vasyuninBEntry_correct_axiom 28 33
+theorem G28_33_formula : baezDuarteGramEntry 28 33 = vasyuninBEntry 28 33 := vasyuninBEntry_correct_axiom 28 33 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_33_eval :
     ((((19158051/519490000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 33) ∧
@@ -369,13 +369,13 @@ def interval_28_33 : NamedVasyuninInterval :=
   interval_proof := G28_33_interval
 }
 
-theorem G28_34_formula : baezDuarteGramEntry 28 34 = vasyuninBEntry 28 34 := vasyuninBEntry_correct_axiom 28 34
+theorem G28_34_formula : baezDuarteGramEntry 28 34 = vasyuninBEntry 28 34 := vasyuninBEntry_correct_axiom 28 34 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_34_eval :
     ((((1914679/53210000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 34) ∧
     (vasyuninBEntry 28 34 ≤ (((1925321/53210000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_14_17_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 14 17 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 14 17 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -398,13 +398,13 @@ def interval_28_34 : NamedVasyuninInterval :=
   interval_proof := G28_34_interval
 }
 
-theorem G28_35_formula : baezDuarteGramEntry 28 35 = vasyuninBEntry 28 35 := vasyuninBEntry_correct_axiom 28 35
+theorem G28_35_formula : baezDuarteGramEntry 28 35 = vasyuninBEntry 28 35 := vasyuninBEntry_correct_axiom 28 35 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_35_eval :
     ((((16752461/475390000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 35) ∧
     (vasyuninBEntry 28 35 ≤ (((16847539/475390000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_4_5_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 4 5 7 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 4 5 7 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 7)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 7)
@@ -427,13 +427,13 @@ def interval_28_35 : NamedVasyuninInterval :=
   interval_proof := G28_35_interval
 }
 
-theorem G28_36_formula : baezDuarteGramEntry 28 36 = vasyuninBEntry 28 36 := vasyuninBEntry_correct_axiom 28 36
+theorem G28_36_formula : baezDuarteGramEntry 28 36 = vasyuninBEntry 28 36 := vasyuninBEntry_correct_axiom 28 36 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_36_eval :
     ((((5837061/169390000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 36) ∧
     (vasyuninBEntry 28 36 ≤ (((5870939/169390000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_7_9_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 7 9 4 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 7 9 4 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 4)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 4)
@@ -456,7 +456,7 @@ def interval_28_36 : NamedVasyuninInterval :=
   interval_proof := G28_36_interval
 }
 
-theorem G28_37_formula : baezDuarteGramEntry 28 37 = vasyuninBEntry 28 37 := vasyuninBEntry_correct_axiom 28 37
+theorem G28_37_formula : baezDuarteGramEntry 28 37 = vasyuninBEntry 28 37 := vasyuninBEntry_correct_axiom 28 37 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_37_eval :
     ((((2367003/69970000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 37) ∧
@@ -482,13 +482,13 @@ def interval_28_37 : NamedVasyuninInterval :=
   interval_proof := G28_37_interval
 }
 
-theorem G28_38_formula : baezDuarteGramEntry 28 38 = vasyuninBEntry 28 38 := vasyuninBEntry_correct_axiom 28 38
+theorem G28_38_formula : baezDuarteGramEntry 28 38 = vasyuninBEntry 28 38 := vasyuninBEntry_correct_axiom 28 38 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_38_eval :
     ((((9915119/298810000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 38) ∧
     (vasyuninBEntry 28 38 ≤ (((9974881/298810000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_14_19_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 14 19 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 14 19 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -511,7 +511,7 @@ def interval_28_38 : NamedVasyuninInterval :=
   interval_proof := G28_38_interval
 }
 
-theorem G28_39_formula : baezDuarteGramEntry 28 39 = vasyuninBEntry 28 39 := vasyuninBEntry_correct_axiom 28 39
+theorem G28_39_formula : baezDuarteGramEntry 28 39 = vasyuninBEntry 28 39 := vasyuninBEntry_correct_axiom 28 39 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_39_eval :
     ((((30426651/933490000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 39) ∧
@@ -537,13 +537,13 @@ def interval_28_39 : NamedVasyuninInterval :=
   interval_proof := G28_39_interval
 }
 
-theorem G28_40_formula : baezDuarteGramEntry 28 40 = vasyuninBEntry 28 40 := vasyuninBEntry_correct_axiom 28 40
+theorem G28_40_formula : baezDuarteGramEntry 28 40 = vasyuninBEntry 28 40 := vasyuninBEntry_correct_axiom 28 40 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_40_eval :
     ((((3686509/114910000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 40) ∧
     (vasyuninBEntry 28 40 ≤ (((3709491/114910000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_7_10_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 7 10 4 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 7 10 4 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 4)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 4)
@@ -566,7 +566,7 @@ def interval_28_40 : NamedVasyuninInterval :=
   interval_proof := G28_40_interval
 }
 
-theorem G28_41_formula : baezDuarteGramEntry 28 41 = vasyuninBEntry 28 41 := vasyuninBEntry_correct_axiom 28 41
+theorem G28_41_formula : baezDuarteGramEntry 28 41 = vasyuninBEntry 28 41 := vasyuninBEntry_correct_axiom 28 41 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_41_eval :
     ((((30324157/958430000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 41) ∧
@@ -592,13 +592,13 @@ def interval_28_41 : NamedVasyuninInterval :=
   interval_proof := G28_41_interval
 }
 
-theorem G28_42_formula : baezDuarteGramEntry 28 42 = vasyuninBEntry 28 42 := vasyuninBEntry_correct_axiom 28 42
+theorem G28_42_formula : baezDuarteGramEntry 28 42 = vasyuninBEntry 28 42 := vasyuninBEntry_correct_axiom 28 42 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_42_eval :
     ((((29246879/931210000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 42) ∧
     (vasyuninBEntry 28 42 ≤ (((29433121/931210000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_2_3_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 2 3 14 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 2 3 14 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 14)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 14)
@@ -621,7 +621,7 @@ def interval_28_42 : NamedVasyuninInterval :=
   interval_proof := G28_42_interval
 }
 
-theorem G28_43_formula : baezDuarteGramEntry 28 43 = vasyuninBEntry 28 43 := vasyuninBEntry_correct_axiom 28 43
+theorem G28_43_formula : baezDuarteGramEntry 28 43 = vasyuninBEntry 28 43 := vasyuninBEntry_correct_axiom 28 43 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_43_eval :
     ((((10924419/355810000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 43) ∧
@@ -647,13 +647,13 @@ def interval_28_43 : NamedVasyuninInterval :=
   interval_proof := G28_43_interval
 }
 
-theorem G28_44_formula : baezDuarteGramEntry 28 44 = vasyuninBEntry 28 44 := vasyuninBEntry_correct_axiom 28 44
+theorem G28_44_formula : baezDuarteGramEntry 28 44 = vasyuninBEntry 28 44 := vasyuninBEntry_correct_axiom 28 44 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_44_eval :
     ((((29223251/967490000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 44) ∧
     (vasyuninBEntry 28 44 ≤ (((29416749/967490000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_7_11_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 7 11 4 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 7 11 4 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 4)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 4)
@@ -676,7 +676,7 @@ def interval_28_44 : NamedVasyuninInterval :=
   interval_proof := G28_44_interval
 }
 
-theorem G28_45_formula : baezDuarteGramEntry 28 45 = vasyuninBEntry 28 45 := vasyuninBEntry_correct_axiom 28 45
+theorem G28_45_formula : baezDuarteGramEntry 28 45 = vasyuninBEntry 28 45 := vasyuninBEntry_correct_axiom 28 45 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_45_eval :
     ((((13135873/441270000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 45) ∧
@@ -702,13 +702,13 @@ def interval_28_45 : NamedVasyuninInterval :=
   interval_proof := G28_45_interval
 }
 
-theorem G28_46_formula : baezDuarteGramEntry 28 46 = vasyuninBEntry 28 46 := vasyuninBEntry_correct_axiom 28 46
+theorem G28_46_formula : baezDuarteGramEntry 28 46 = vasyuninBEntry 28 46 := vasyuninBEntry_correct_axiom 28 46 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_46_eval :
     ((((17769529/604710000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 46) ∧
     (vasyuninBEntry 28 46 ≤ (((17890471/604710000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_14_23_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 14 23 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 14 23 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -731,7 +731,7 @@ def interval_28_46 : NamedVasyuninInterval :=
   interval_proof := G28_46_interval
 }
 
-theorem G28_47_formula : baezDuarteGramEntry 28 47 = vasyuninBEntry 28 47 := vasyuninBEntry_correct_axiom 28 47
+theorem G28_47_formula : baezDuarteGramEntry 28 47 = vasyuninBEntry 28 47 := vasyuninBEntry_correct_axiom 28 47 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_47_eval :
     ((((4786019/164810000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 47) ∧
@@ -757,13 +757,13 @@ def interval_28_47 : NamedVasyuninInterval :=
   interval_proof := G28_47_interval
 }
 
-theorem G28_48_formula : baezDuarteGramEntry 28 48 = vasyuninBEntry 28 48 := vasyuninBEntry_correct_axiom 28 48
+theorem G28_48_formula : baezDuarteGramEntry 28 48 = vasyuninBEntry 28 48 := vasyuninBEntry_correct_axiom 28 48 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_48_eval :
     ((((23637571/824290000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 48) ∧
     (vasyuninBEntry 28 48 ≤ (((23802429/824290000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_7_12_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 7 12 4 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 7 12 4 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 4)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 4)
@@ -786,13 +786,13 @@ def interval_28_48 : NamedVasyuninInterval :=
   interval_proof := G28_48_interval
 }
 
-theorem G28_49_formula : baezDuarteGramEntry 28 49 = vasyuninBEntry 28 49 := vasyuninBEntry_correct_axiom 28 49
+theorem G28_49_formula : baezDuarteGramEntry 28 49 = vasyuninBEntry 28 49 := vasyuninBEntry_correct_axiom 28 49 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_49_eval :
     ((((7035219/247810000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 49) ∧
     (vasyuninBEntry 28 49 ≤ (((7084781/247810000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_4_7_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 4 7 7 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 4 7 7 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 7)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 7)
@@ -815,13 +815,13 @@ def interval_28_49 : NamedVasyuninInterval :=
   interval_proof := G28_49_interval
 }
 
-theorem G28_50_formula : baezDuarteGramEntry 28 50 = vasyuninBEntry 28 50 := vasyuninBEntry_correct_axiom 28 50
+theorem G28_50_formula : baezDuarteGramEntry 28 50 = vasyuninBEntry 28 50 := vasyuninBEntry_correct_axiom 28 50 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_28_50_eval :
     ((((4421751/157490000) : ℚ) : ℝ) ≤ vasyuninBEntry 28 50) ∧
     (vasyuninBEntry 28 50 ≤ (((4453249/157490000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_14_25_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 14 25 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 14 25 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -1463,7 +1463,7 @@ def interval_29_29 : NamedVasyuninInterval :=
   interval_proof := G29_29_interval
 }
 
-theorem G29_30_formula : baezDuarteGramEntry 29 30 = vasyuninBEntry 29 30 := vasyuninBEntry_correct_axiom 29 30
+theorem G29_30_formula : baezDuarteGramEntry 29 30 = vasyuninBEntry 29 30 := vasyuninBEntry_correct_axiom 29 30 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_30_eval :
     ((((14474551/354490000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 30) ∧
@@ -1489,7 +1489,7 @@ def interval_29_30 : NamedVasyuninInterval :=
   interval_proof := G29_30_interval
 }
 
-theorem G29_31_formula : baezDuarteGramEntry 29 31 = vasyuninBEntry 29 31 := vasyuninBEntry_correct_axiom 29 31
+theorem G29_31_formula : baezDuarteGramEntry 29 31 = vasyuninBEntry 29 31 := vasyuninBEntry_correct_axiom 29 31 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_31_eval :
     ((((35140293/897070000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 31) ∧
@@ -1515,7 +1515,7 @@ def interval_29_31 : NamedVasyuninInterval :=
   interval_proof := G29_31_interval
 }
 
-theorem G29_32_formula : baezDuarteGramEntry 29 32 = vasyuninBEntry 29 32 := vasyuninBEntry_correct_axiom 29 32
+theorem G29_32_formula : baezDuarteGramEntry 29 32 = vasyuninBEntry 29 32 := vasyuninBEntry_correct_axiom 29 32 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_32_eval :
     ((((1323503/34970000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 32) ∧
@@ -1541,7 +1541,7 @@ def interval_29_32 : NamedVasyuninInterval :=
   interval_proof := G29_32_interval
 }
 
-theorem G29_33_formula : baezDuarteGramEntry 29 33 = vasyuninBEntry 29 33 := vasyuninBEntry_correct_axiom 29 33
+theorem G29_33_formula : baezDuarteGramEntry 29 33 = vasyuninBEntry 29 33 := vasyuninBEntry_correct_axiom 29 33 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_33_eval :
     ((((33758097/919030000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 33) ∧
@@ -1567,7 +1567,7 @@ def interval_29_33 : NamedVasyuninInterval :=
   interval_proof := G29_33_interval
 }
 
-theorem G29_34_formula : baezDuarteGramEntry 29 34 = vasyuninBEntry 29 34 := vasyuninBEntry_correct_axiom 29 34
+theorem G29_34_formula : baezDuarteGramEntry 29 34 = vasyuninBEntry 29 34 := vasyuninBEntry_correct_axiom 29 34 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_34_eval :
     ((((33945093/949070000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 34) ∧
@@ -1593,7 +1593,7 @@ def interval_29_34 : NamedVasyuninInterval :=
   interval_proof := G29_34_interval
 }
 
-theorem G29_35_formula : baezDuarteGramEntry 29 35 = vasyuninBEntry 29 35 := vasyuninBEntry_correct_axiom 29 35
+theorem G29_35_formula : baezDuarteGramEntry 29 35 = vasyuninBEntry 29 35 := vasyuninBEntry_correct_axiom 29 35 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_35_eval :
     ((((12259887/351130000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 35) ∧
@@ -1619,7 +1619,7 @@ def interval_29_35 : NamedVasyuninInterval :=
   interval_proof := G29_35_interval
 }
 
-theorem G29_36_formula : baezDuarteGramEntry 29 36 = vasyuninBEntry 29 36 := vasyuninBEntry_correct_axiom 29 36
+theorem G29_36_formula : baezDuarteGramEntry 29 36 = vasyuninBEntry 29 36 := vasyuninBEntry_correct_axiom 29 36 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_36_eval :
     ((((6385307/186930000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 36) ∧
@@ -1645,7 +1645,7 @@ def interval_29_36 : NamedVasyuninInterval :=
   interval_proof := G29_36_interval
 }
 
-theorem G29_37_formula : baezDuarteGramEntry 29 37 = vasyuninBEntry 29 37 := vasyuninBEntry_correct_axiom 29 37
+theorem G29_37_formula : baezDuarteGramEntry 29 37 = vasyuninBEntry 29 37 := vasyuninBEntry_correct_axiom 29 37 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_37_eval :
     ((((33160849/991510000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 37) ∧
@@ -1671,7 +1671,7 @@ def interval_29_37 : NamedVasyuninInterval :=
   interval_proof := G29_37_interval
 }
 
-theorem G29_38_formula : baezDuarteGramEntry 29 38 = vasyuninBEntry 29 38 := vasyuninBEntry_correct_axiom 29 38
+theorem G29_38_formula : baezDuarteGramEntry 29 38 = vasyuninBEntry 29 38 := vasyuninBEntry_correct_axiom 29 38 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_38_eval :
     ((((30008583/914170000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 38) ∧
@@ -1697,7 +1697,7 @@ def interval_29_38 : NamedVasyuninInterval :=
   interval_proof := G29_38_interval
 }
 
-theorem G29_39_formula : baezDuarteGramEntry 29 39 = vasyuninBEntry 29 39 := vasyuninBEntry_correct_axiom 29 39
+theorem G29_39_formula : baezDuarteGramEntry 29 39 = vasyuninBEntry 29 39 := vasyuninBEntry_correct_axiom 29 39 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_39_eval :
     ((((20825453/645470000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 39) ∧
@@ -1723,7 +1723,7 @@ def interval_29_39 : NamedVasyuninInterval :=
   interval_proof := G29_39_interval
 }
 
-theorem G29_40_formula : baezDuarteGramEntry 29 40 = vasyuninBEntry 29 40 := vasyuninBEntry_correct_axiom 29 40
+theorem G29_40_formula : baezDuarteGramEntry 29 40 = vasyuninBEntry 29 40 := vasyuninBEntry_correct_axiom 29 40 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_40_eval :
     ((((28669469/905310000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 40) ∧
@@ -1749,7 +1749,7 @@ def interval_29_40 : NamedVasyuninInterval :=
   interval_proof := G29_40_interval
 }
 
-theorem G29_41_formula : baezDuarteGramEntry 29 41 = vasyuninBEntry 29 41 := vasyuninBEntry_correct_axiom 29 41
+theorem G29_41_formula : baezDuarteGramEntry 29 41 = vasyuninBEntry 29 41 := vasyuninBEntry_correct_axiom 29 41 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_41_eval :
     ((((27980213/897870000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 41) ∧
@@ -1775,7 +1775,7 @@ def interval_29_41 : NamedVasyuninInterval :=
   interval_proof := G29_41_interval
 }
 
-theorem G29_42_formula : baezDuarteGramEntry 29 42 = vasyuninBEntry 29 42 := vasyuninBEntry_correct_axiom 29 42
+theorem G29_42_formula : baezDuarteGramEntry 29 42 = vasyuninBEntry 29 42 := vasyuninBEntry_correct_axiom 29 42 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_42_eval :
     ((((1621721/52790000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 42) ∧
@@ -1801,7 +1801,7 @@ def interval_29_42 : NamedVasyuninInterval :=
   interval_proof := G29_42_interval
 }
 
-theorem G29_43_formula : baezDuarteGramEntry 29 43 = vasyuninBEntry 29 43 := vasyuninBEntry_correct_axiom 29 43
+theorem G29_43_formula : baezDuarteGramEntry 29 43 = vasyuninBEntry 29 43 := vasyuninBEntry_correct_axiom 29 43 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_43_eval :
     ((((5344907/175930000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 43) ∧
@@ -1827,7 +1827,7 @@ def interval_29_43 : NamedVasyuninInterval :=
   interval_proof := G29_43_interval
 }
 
-theorem G29_44_formula : baezDuarteGramEntry 29 44 = vasyuninBEntry 29 44 := vasyuninBEntry_correct_axiom 29 44
+theorem G29_44_formula : baezDuarteGramEntry 29 44 = vasyuninBEntry 29 44 := vasyuninBEntry_correct_axiom 29 44 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_44_eval :
     ((((4195987/140130000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 44) ∧
@@ -1853,7 +1853,7 @@ def interval_29_44 : NamedVasyuninInterval :=
   interval_proof := G29_44_interval
 }
 
-theorem G29_45_formula : baezDuarteGramEntry 29 45 = vasyuninBEntry 29 45 := vasyuninBEntry_correct_axiom 29 45
+theorem G29_45_formula : baezDuarteGramEntry 29 45 = vasyuninBEntry 29 45 := vasyuninBEntry_correct_axiom 29 45 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_45_eval :
     ((((9517639/323610000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 45) ∧
@@ -1879,7 +1879,7 @@ def interval_29_45 : NamedVasyuninInterval :=
   interval_proof := G29_45_interval
 }
 
-theorem G29_46_formula : baezDuarteGramEntry 29 46 = vasyuninBEntry 29 46 := vasyuninBEntry_correct_axiom 29 46
+theorem G29_46_formula : baezDuarteGramEntry 29 46 = vasyuninBEntry 29 46 := vasyuninBEntry_correct_axiom 29 46 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_46_eval :
     ((((4279231/147690000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 46) ∧
@@ -1905,7 +1905,7 @@ def interval_29_46 : NamedVasyuninInterval :=
   interval_proof := G29_46_interval
 }
 
-theorem G29_47_formula : baezDuarteGramEntry 29 47 = vasyuninBEntry 29 47 := vasyuninBEntry_correct_axiom 29 47
+theorem G29_47_formula : baezDuarteGramEntry 29 47 = vasyuninBEntry 29 47 := vasyuninBEntry_correct_axiom 29 47 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_47_eval :
     ((((1118089/39110000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 47) ∧
@@ -1931,7 +1931,7 @@ def interval_29_47 : NamedVasyuninInterval :=
   interval_proof := G29_47_interval
 }
 
-theorem G29_48_formula : baezDuarteGramEntry 29 48 = vasyuninBEntry 29 48 := vasyuninBEntry_correct_axiom 29 48
+theorem G29_48_formula : baezDuarteGramEntry 29 48 = vasyuninBEntry 29 48 := vasyuninBEntry_correct_axiom 29 48 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_48_eval :
     ((((10796799/382010000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 48) ∧
@@ -1957,7 +1957,7 @@ def interval_29_48 : NamedVasyuninInterval :=
   interval_proof := G29_48_interval
 }
 
-theorem G29_49_formula : baezDuarteGramEntry 29 49 = vasyuninBEntry 29 49 := vasyuninBEntry_correct_axiom 29 49
+theorem G29_49_formula : baezDuarteGramEntry 29 49 = vasyuninBEntry 29 49 := vasyuninBEntry_correct_axiom 29 49 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_49_eval :
     ((((23535683/843170000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 49) ∧
@@ -1983,7 +1983,7 @@ def interval_29_49 : NamedVasyuninInterval :=
   interval_proof := G29_49_interval
 }
 
-theorem G29_50_formula : baezDuarteGramEntry 29 50 = vasyuninBEntry 29 50 := vasyuninBEntry_correct_axiom 29 50
+theorem G29_50_formula : baezDuarteGramEntry 29 50 = vasyuninBEntry 29 50 := vasyuninBEntry_correct_axiom 29 50 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_29_50_eval :
     ((((4379129/158710000) : ℚ) : ℝ) ≤ vasyuninBEntry 29 50) ∧
@@ -2649,7 +2649,7 @@ def interval_30_30 : NamedVasyuninInterval :=
   interval_proof := G30_30_interval
 }
 
-theorem G30_31_formula : baezDuarteGramEntry 30 31 = vasyuninBEntry 30 31 := vasyuninBEntry_correct_axiom 30 31
+theorem G30_31_formula : baezDuarteGramEntry 30 31 = vasyuninBEntry 30 31 := vasyuninBEntry_correct_axiom 30 31 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_31_eval :
     ((((3872703/97970000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 31) ∧
@@ -2675,13 +2675,13 @@ def interval_30_31 : NamedVasyuninInterval :=
   interval_proof := G30_31_interval
 }
 
-theorem G30_32_formula : baezDuarteGramEntry 30 32 = vasyuninBEntry 30 32 := vasyuninBEntry_correct_axiom 30 32
+theorem G30_32_formula : baezDuarteGramEntry 30 32 = vasyuninBEntry 30 32 := vasyuninBEntry_correct_axiom 30 32 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_32_eval :
     ((((3841879/101210000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 32) ∧
     (vasyuninBEntry 30 32 ≤ (((3862121/101210000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_15_16_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 15 16 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 15 16 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -2704,13 +2704,13 @@ def interval_30_32 : NamedVasyuninInterval :=
   interval_proof := G30_32_interval
 }
 
-theorem G30_33_formula : baezDuarteGramEntry 30 33 = vasyuninBEntry 30 33 := vasyuninBEntry_correct_axiom 30 33
+theorem G30_33_formula : baezDuarteGramEntry 30 33 = vasyuninBEntry 30 33 := vasyuninBEntry_correct_axiom 30 33 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_33_eval :
     ((((32920309/896910000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 33) ∧
     (vasyuninBEntry 30 33 ≤ (((33099691/896910000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_10_11_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 10 11 3 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 10 11 3 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 3)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 3)
@@ -2733,13 +2733,13 @@ def interval_30_33 : NamedVasyuninInterval :=
   interval_proof := G30_33_interval
 }
 
-theorem G30_34_formula : baezDuarteGramEntry 30 34 = vasyuninBEntry 30 34 := vasyuninBEntry_correct_axiom 30 34
+theorem G30_34_formula : baezDuarteGramEntry 30 34 = vasyuninBEntry 30 34 := vasyuninBEntry_correct_axiom 30 34 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_34_eval :
     ((((27572633/773670000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 34) ∧
     (vasyuninBEntry 30 34 ≤ (((27727367/773670000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_15_17_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 15 17 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 15 17 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -2762,13 +2762,13 @@ def interval_30_34 : NamedVasyuninInterval :=
   interval_proof := G30_34_interval
 }
 
-theorem G30_35_formula : baezDuarteGramEntry 30 35 = vasyuninBEntry 30 35 := vasyuninBEntry_correct_axiom 30 35
+theorem G30_35_formula : baezDuarteGramEntry 30 35 = vasyuninBEntry 30 35 := vasyuninBEntry_correct_axiom 30 35 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_35_eval :
     ((((9243389/266110000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 35) ∧
     (vasyuninBEntry 30 35 ≤ (((9296611/266110000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_6_7_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 6 7 5 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 6 7 5 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 5)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 5)
@@ -2791,13 +2791,13 @@ def interval_30_35 : NamedVasyuninInterval :=
   interval_proof := G30_35_interval
 }
 
-theorem G30_36_formula : baezDuarteGramEntry 30 36 = vasyuninBEntry 30 36 := vasyuninBEntry_correct_axiom 30 36
+theorem G30_36_formula : baezDuarteGramEntry 30 36 = vasyuninBEntry 30 36 := vasyuninBEntry_correct_axiom 30 36 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_36_eval :
     ((((17448577/514230000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 36) ∧
     (vasyuninBEntry 30 36 ≤ (((17551423/514230000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_5_6_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 5 6 6 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 5 6 6 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 6)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 6)
@@ -2820,7 +2820,7 @@ def interval_30_36 : NamedVasyuninInterval :=
   interval_proof := G30_36_interval
 }
 
-theorem G30_37_formula : baezDuarteGramEntry 30 37 = vasyuninBEntry 30 37 := vasyuninBEntry_correct_axiom 30 37
+theorem G30_37_formula : baezDuarteGramEntry 30 37 = vasyuninBEntry 30 37 := vasyuninBEntry_correct_axiom 30 37 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_37_eval :
     ((((14600983/440170000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 37) ∧
@@ -2846,13 +2846,13 @@ def interval_30_37 : NamedVasyuninInterval :=
   interval_proof := G30_37_interval
 }
 
-theorem G30_38_formula : baezDuarteGramEntry 30 38 = vasyuninBEntry 30 38 := vasyuninBEntry_correct_axiom 30 38
+theorem G30_38_formula : baezDuarteGramEntry 30 38 = vasyuninBEntry 30 38 := vasyuninBEntry_correct_axiom 30 38 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_38_eval :
     ((((24135749/742510000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 38) ∧
     (vasyuninBEntry 30 38 ≤ (((24284251/742510000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_15_19_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 15 19 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 15 19 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -2875,13 +2875,13 @@ def interval_30_38 : NamedVasyuninInterval :=
   interval_proof := G30_38_interval
 }
 
-theorem G30_39_formula : baezDuarteGramEntry 30 39 = vasyuninBEntry 30 39 := vasyuninBEntry_correct_axiom 30 39
+theorem G30_39_formula : baezDuarteGramEntry 30 39 = vasyuninBEntry 30 39 := vasyuninBEntry_correct_axiom 30 39 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_39_eval :
     ((((7648523/239770000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 39) ∧
     (vasyuninBEntry 30 39 ≤ (((7696477/239770000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_10_13_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 10 13 3 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 10 13 3 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 3)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 3)
@@ -2904,13 +2904,13 @@ def interval_30_39 : NamedVasyuninInterval :=
   interval_proof := G30_39_interval
 }
 
-theorem G30_40_formula : baezDuarteGramEntry 30 40 = vasyuninBEntry 30 40 := vasyuninBEntry_correct_axiom 30 40
+theorem G30_40_formula : baezDuarteGramEntry 30 40 = vasyuninBEntry 30 40 := vasyuninBEntry_correct_axiom 30 40 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_40_eval :
     ((((1259993/40070000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 40) ∧
     (vasyuninBEntry 30 40 ≤ (((1268007/40070000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_3_4_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 3 4 10 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 3 4 10 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 10)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 10)
@@ -2933,7 +2933,7 @@ def interval_30_40 : NamedVasyuninInterval :=
   interval_proof := G30_40_interval
 }
 
-theorem G30_41_formula : baezDuarteGramEntry 30 41 = vasyuninBEntry 30 41 := vasyuninBEntry_correct_axiom 30 41
+theorem G30_41_formula : baezDuarteGramEntry 30 41 = vasyuninBEntry 30 41 := vasyuninBEntry_correct_axiom 30 41 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_41_eval :
     ((((184521/5990000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 41) ∧
@@ -2959,13 +2959,13 @@ def interval_30_41 : NamedVasyuninInterval :=
   interval_proof := G30_41_interval
 }
 
-theorem G30_42_formula : baezDuarteGramEntry 30 42 = vasyuninBEntry 30 42 := vasyuninBEntry_correct_axiom 30 42
+theorem G30_42_formula : baezDuarteGramEntry 30 42 = vasyuninBEntry 30 42 := vasyuninBEntry_correct_axiom 30 42 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_42_eval :
     ((((6040087/199130000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 42) ∧
     (vasyuninBEntry 30 42 ≤ (((6079913/199130000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_5_7_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 5 7 6 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 5 7 6 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 6)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 6)
@@ -2988,7 +2988,7 @@ def interval_30_42 : NamedVasyuninInterval :=
   interval_proof := G30_42_interval
 }
 
-theorem G30_43_formula : baezDuarteGramEntry 30 43 = vasyuninBEntry 30 43 := vasyuninBEntry_correct_axiom 30 43
+theorem G30_43_formula : baezDuarteGramEntry 30 43 = vasyuninBEntry 30 43 := vasyuninBEntry_correct_axiom 30 43 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_43_eval :
     ((((1092343/36570000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 43) ∧
@@ -3014,13 +3014,13 @@ def interval_30_43 : NamedVasyuninInterval :=
   interval_proof := G30_43_interval
 }
 
-theorem G30_44_formula : baezDuarteGramEntry 30 44 = vasyuninBEntry 30 44 := vasyuninBEntry_correct_axiom 30 44
+theorem G30_44_formula : baezDuarteGramEntry 30 44 = vasyuninBEntry 30 44 := vasyuninBEntry_correct_axiom 30 44 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_44_eval :
     ((((17002367/576330000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 44) ∧
     (vasyuninBEntry 30 44 ≤ (((17117633/576330000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_15_22_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 15 22 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 15 22 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -3043,13 +3043,13 @@ def interval_30_44 : NamedVasyuninInterval :=
   interval_proof := G30_44_interval
 }
 
-theorem G30_45_formula : baezDuarteGramEntry 30 45 = vasyuninBEntry 30 45 := vasyuninBEntry_correct_axiom 30 45
+theorem G30_45_formula : baezDuarteGramEntry 30 45 = vasyuninBEntry 30 45 := vasyuninBEntry_correct_axiom 30 45 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_45_eval :
     ((((14176627/483730000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 45) ∧
     (vasyuninBEntry 30 45 ≤ (((14273373/483730000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_2_3_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 2 3 15 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 2 3 15 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 15)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 15)
@@ -3072,13 +3072,13 @@ def interval_30_45 : NamedVasyuninInterval :=
   interval_proof := G30_45_interval
 }
 
-theorem G30_46_formula : baezDuarteGramEntry 30 46 = vasyuninBEntry 30 46 := vasyuninBEntry_correct_axiom 30 46
+theorem G30_46_formula : baezDuarteGramEntry 30 46 = vasyuninBEntry 30 46 := vasyuninBEntry_correct_axiom 30 46 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_46_eval :
     ((((23119403/805970000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 46) ∧
     (vasyuninBEntry 30 46 ≤ (((23280597/805970000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_15_23_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 15 23 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 15 23 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -3101,7 +3101,7 @@ def interval_30_46 : NamedVasyuninInterval :=
   interval_proof := G30_46_interval
 }
 
-theorem G30_47_formula : baezDuarteGramEntry 30 47 = vasyuninBEntry 30 47 := vasyuninBEntry_correct_axiom 30 47
+theorem G30_47_formula : baezDuarteGramEntry 30 47 = vasyuninBEntry 30 47 := vasyuninBEntry_correct_axiom 30 47 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_47_eval :
     ((((28090519/994810000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 47) ∧
@@ -3127,13 +3127,13 @@ def interval_30_47 : NamedVasyuninInterval :=
   interval_proof := G30_47_interval
 }
 
-theorem G30_48_formula : baezDuarteGramEntry 30 48 = vasyuninBEntry 30 48 := vasyuninBEntry_correct_axiom 30 48
+theorem G30_48_formula : baezDuarteGramEntry 30 48 = vasyuninBEntry 30 48 := vasyuninBEntry_correct_axiom 30 48 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_48_eval :
     ((((417751/14990000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 48) ∧
     (vasyuninBEntry 30 48 ≤ (((420749/14990000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_5_8_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 5 8 6 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 5 8 6 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 6)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 6)
@@ -3156,7 +3156,7 @@ def interval_30_48 : NamedVasyuninInterval :=
   interval_proof := G30_48_interval
 }
 
-theorem G30_49_formula : baezDuarteGramEntry 30 49 = vasyuninBEntry 30 49 := vasyuninBEntry_correct_axiom 30 49
+theorem G30_49_formula : baezDuarteGramEntry 30 49 = vasyuninBEntry 30 49 := vasyuninBEntry_correct_axiom 30 49 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_49_eval :
     ((((6207433/225670000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 49) ∧
@@ -3182,13 +3182,13 @@ def interval_30_49 : NamedVasyuninInterval :=
   interval_proof := G30_49_interval
 }
 
-theorem G30_50_formula : baezDuarteGramEntry 30 50 = vasyuninBEntry 30 50 := vasyuninBEntry_correct_axiom 30 50
+theorem G30_50_formula : baezDuarteGramEntry 30 50 = vasyuninBEntry 30 50 := vasyuninBEntry_correct_axiom 30 50 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_30_50_eval :
     ((((169939/6235000) : ℚ) : ℝ) ≤ vasyuninBEntry 30 50) ∧
     (vasyuninBEntry 30 50 ≤ (((85593/3117500) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_3_5_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 3 5 10 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 3 5 10 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 10)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 10)
@@ -3872,7 +3872,7 @@ def interval_31_31 : NamedVasyuninInterval :=
   interval_proof := G31_31_interval
 }
 
-theorem G31_32_formula : baezDuarteGramEntry 31 32 = vasyuninBEntry 31 32 := vasyuninBEntry_correct_axiom 31 32
+theorem G31_32_formula : baezDuarteGramEntry 31 32 = vasyuninBEntry 31 32 := vasyuninBEntry_correct_axiom 31 32 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_32_eval :
     ((((3613567/94330000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 32) ∧
@@ -3898,7 +3898,7 @@ def interval_31_32 : NamedVasyuninInterval :=
   interval_proof := G31_32_interval
 }
 
-theorem G31_33_formula : baezDuarteGramEntry 31 33 = vasyuninBEntry 31 33 := vasyuninBEntry_correct_axiom 31 33
+theorem G31_33_formula : baezDuarteGramEntry 31 33 = vasyuninBEntry 31 33 := vasyuninBEntry_correct_axiom 31 33 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_33_eval :
     ((((32092833/871670000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 33) ∧
@@ -3924,7 +3924,7 @@ def interval_31_33 : NamedVasyuninInterval :=
   interval_proof := G31_33_interval
 }
 
-theorem G31_34_formula : baezDuarteGramEntry 31 34 = vasyuninBEntry 31 34 := vasyuninBEntry_correct_axiom 31 34
+theorem G31_34_formula : baezDuarteGramEntry 31 34 = vasyuninBEntry 31 34 := vasyuninBEntry_correct_axiom 31 34 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_34_eval :
     ((((24670741/692590000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 34) ∧
@@ -3950,7 +3950,7 @@ def interval_31_34 : NamedVasyuninInterval :=
   interval_proof := G31_34_interval
 }
 
-theorem G31_35_formula : baezDuarteGramEntry 31 35 = vasyuninBEntry 31 35 := vasyuninBEntry_correct_axiom 31 35
+theorem G31_35_formula : baezDuarteGramEntry 31 35 = vasyuninBEntry 31 35 := vasyuninBEntry_correct_axiom 31 35 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_35_eval :
     ((((16671829/481710000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 35) ∧
@@ -3976,7 +3976,7 @@ def interval_31_35 : NamedVasyuninInterval :=
   interval_proof := G31_35_interval
 }
 
-theorem G31_36_formula : baezDuarteGramEntry 31 36 = vasyuninBEntry 31 36 := vasyuninBEntry_correct_axiom 31 36
+theorem G31_36_formula : baezDuarteGramEntry 31 36 = vasyuninBEntry 31 36 := vasyuninBEntry_correct_axiom 31 36 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_36_eval :
     ((((33510657/993430000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 36) ∧
@@ -4002,7 +4002,7 @@ def interval_31_36 : NamedVasyuninInterval :=
   interval_proof := G31_36_interval
 }
 
-theorem G31_37_formula : baezDuarteGramEntry 31 37 = vasyuninBEntry 31 37 := vasyuninBEntry_correct_axiom 31 37
+theorem G31_37_formula : baezDuarteGramEntry 31 37 = vasyuninBEntry 31 37 := vasyuninBEntry_correct_axiom 31 37 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_37_eval :
     ((((27466657/833430000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 37) ∧
@@ -4028,7 +4028,7 @@ def interval_31_37 : NamedVasyuninInterval :=
   interval_proof := G31_37_interval
 }
 
-theorem G31_38_formula : baezDuarteGramEntry 31 38 = vasyuninBEntry 31 38 := vasyuninBEntry_correct_axiom 31 38
+theorem G31_38_formula : baezDuarteGramEntry 31 38 = vasyuninBEntry 31 38 := vasyuninBEntry_correct_axiom 31 38 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_38_eval :
     ((((2618879/81210000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 38) ∧
@@ -4054,7 +4054,7 @@ def interval_31_38 : NamedVasyuninInterval :=
   interval_proof := G31_38_interval
 }
 
-theorem G31_39_formula : baezDuarteGramEntry 31 39 = vasyuninBEntry 31 39 := vasyuninBEntry_correct_axiom 31 39
+theorem G31_39_formula : baezDuarteGramEntry 31 39 = vasyuninBEntry 31 39 := vasyuninBEntry_correct_axiom 31 39 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_39_eval :
     ((((6696327/211730000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 39) ∧
@@ -4080,7 +4080,7 @@ def interval_31_39 : NamedVasyuninInterval :=
   interval_proof := G31_39_interval
 }
 
-theorem G31_40_formula : baezDuarteGramEntry 31 40 = vasyuninBEntry 31 40 := vasyuninBEntry_correct_axiom 31 40
+theorem G31_40_formula : baezDuarteGramEntry 31 40 = vasyuninBEntry 31 40 := vasyuninBEntry_correct_axiom 31 40 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_40_eval :
     ((((28258921/910790000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 40) ∧
@@ -4106,7 +4106,7 @@ def interval_31_40 : NamedVasyuninInterval :=
   interval_proof := G31_40_interval
 }
 
-theorem G31_41_formula : baezDuarteGramEntry 31 41 = vasyuninBEntry 31 41 := vasyuninBEntry_correct_axiom 31 41
+theorem G31_41_formula : baezDuarteGramEntry 31 41 = vasyuninBEntry 31 41 := vasyuninBEntry_correct_axiom 31 41 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_41_eval :
     ((((3650543/119570000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 41) ∧
@@ -4132,7 +4132,7 @@ def interval_31_41 : NamedVasyuninInterval :=
   interval_proof := G31_41_interval
 }
 
-theorem G31_42_formula : baezDuarteGramEntry 31 42 = vasyuninBEntry 31 42 := vasyuninBEntry_correct_axiom 31 42
+theorem G31_42_formula : baezDuarteGramEntry 31 42 = vasyuninBEntry 31 42 := vasyuninBEntry_correct_axiom 31 42 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_42_eval :
     ((((3984717/132830000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 42) ∧
@@ -4158,7 +4158,7 @@ def interval_31_42 : NamedVasyuninInterval :=
   interval_proof := G31_42_interval
 }
 
-theorem G31_43_formula : baezDuarteGramEntry 31 43 = vasyuninBEntry 31 43 := vasyuninBEntry_correct_axiom 31 43
+theorem G31_43_formula : baezDuarteGramEntry 31 43 = vasyuninBEntry 31 43 := vasyuninBEntry_correct_axiom 31 43 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_43_eval :
     ((((27187861/921390000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 43) ∧
@@ -4184,7 +4184,7 @@ def interval_31_43 : NamedVasyuninInterval :=
   interval_proof := G31_43_interval
 }
 
-theorem G31_44_formula : baezDuarteGramEntry 31 44 = vasyuninBEntry 31 44 := vasyuninBEntry_correct_axiom 31 44
+theorem G31_44_formula : baezDuarteGramEntry 31 44 = vasyuninBEntry 31 44 := vasyuninBEntry_correct_axiom 31 44 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_44_eval :
     ((((2822791/97090000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 44) ∧
@@ -4210,7 +4210,7 @@ def interval_31_44 : NamedVasyuninInterval :=
   interval_proof := G31_44_interval
 }
 
-theorem G31_45_formula : baezDuarteGramEntry 31 45 = vasyuninBEntry 31 45 := vasyuninBEntry_correct_axiom 31 45
+theorem G31_45_formula : baezDuarteGramEntry 31 45 = vasyuninBEntry 31 45 := vasyuninBEntry_correct_axiom 31 45 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_45_eval :
     ((((4934803/171970000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 45) ∧
@@ -4236,7 +4236,7 @@ def interval_31_45 : NamedVasyuninInterval :=
   interval_proof := G31_45_interval
 }
 
-theorem G31_46_formula : baezDuarteGramEntry 31 46 = vasyuninBEntry 31 46 := vasyuninBEntry_correct_axiom 31 46
+theorem G31_46_formula : baezDuarteGramEntry 31 46 = vasyuninBEntry 31 46 := vasyuninBEntry_correct_axiom 31 46 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_46_eval :
     ((((7608217/267830000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 46) ∧
@@ -4262,7 +4262,7 @@ def interval_31_46 : NamedVasyuninInterval :=
   interval_proof := G31_46_interval
 }
 
-theorem G31_47_formula : baezDuarteGramEntry 31 47 = vasyuninBEntry 31 47 := vasyuninBEntry_correct_axiom 31 47
+theorem G31_47_formula : baezDuarteGramEntry 31 47 = vasyuninBEntry 31 47 := vasyuninBEntry_correct_axiom 31 47 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_47_eval :
     ((((27491899/981010000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 47) ∧
@@ -4288,7 +4288,7 @@ def interval_31_47 : NamedVasyuninInterval :=
   interval_proof := G31_47_interval
 }
 
-theorem G31_48_formula : baezDuarteGramEntry 31 48 = vasyuninBEntry 31 48 := vasyuninBEntry_correct_axiom 31 48
+theorem G31_48_formula : baezDuarteGramEntry 31 48 = vasyuninBEntry 31 48 := vasyuninBEntry_correct_axiom 31 48 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_48_eval :
     ((((2310613/83870000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 48) ∧
@@ -4314,7 +4314,7 @@ def interval_31_48 : NamedVasyuninInterval :=
   interval_proof := G31_48_interval
 }
 
-theorem G31_49_formula : baezDuarteGramEntry 31 49 = vasyuninBEntry 31 49 := vasyuninBEntry_correct_axiom 31 49
+theorem G31_49_formula : baezDuarteGramEntry 31 49 = vasyuninBEntry 31 49 := vasyuninBEntry_correct_axiom 31 49 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_49_eval :
     ((((687967/25330000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 49) ∧
@@ -4340,7 +4340,7 @@ def interval_31_49 : NamedVasyuninInterval :=
   interval_proof := G31_49_interval
 }
 
-theorem G31_50_formula : baezDuarteGramEntry 31 50 = vasyuninBEntry 31 50 := vasyuninBEntry_correct_axiom 31 50
+theorem G31_50_formula : baezDuarteGramEntry 31 50 = vasyuninBEntry 31 50 := vasyuninBEntry_correct_axiom 31 50 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_31_50_eval :
     ((((4762241/177590000) : ℚ) : ℝ) ≤ vasyuninBEntry 31 50) ∧
@@ -5048,7 +5048,7 @@ def interval_32_32 : NamedVasyuninInterval :=
   interval_proof := G32_32_interval
 }
 
-theorem G32_33_formula : baezDuarteGramEntry 32 33 = vasyuninBEntry 32 33 := vasyuninBEntry_correct_axiom 32 33
+theorem G32_33_formula : baezDuarteGramEntry 32 33 = vasyuninBEntry 32 33 := vasyuninBEntry_correct_axiom 32 33 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_33_eval :
     ((((2568089/69110000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 33) ∧
@@ -5074,13 +5074,13 @@ def interval_32_33 : NamedVasyuninInterval :=
   interval_proof := G32_33_interval
 }
 
-theorem G32_34_formula : baezDuarteGramEntry 32 34 = vasyuninBEntry 32 34 := vasyuninBEntry_correct_axiom 32 34
+theorem G32_34_formula : baezDuarteGramEntry 32 34 = vasyuninBEntry 32 34 := vasyuninBEntry_correct_axiom 32 34 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_34_eval :
     ((((18029561/504390000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 34) ∧
     (vasyuninBEntry 32 34 ≤ (((18130439/504390000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_16_17_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 16 17 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 16 17 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -5103,7 +5103,7 @@ def interval_32_34 : NamedVasyuninInterval :=
   interval_proof := G32_34_interval
 }
 
-theorem G32_35_formula : baezDuarteGramEntry 32 35 = vasyuninBEntry 32 35 := vasyuninBEntry_correct_axiom 32 35
+theorem G32_35_formula : baezDuarteGramEntry 32 35 = vasyuninBEntry 32 35 := vasyuninBEntry_correct_axiom 32 35 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_35_eval :
     ((((1774871/51290000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 35) ∧
@@ -5129,13 +5129,13 @@ def interval_32_35 : NamedVasyuninInterval :=
   interval_proof := G32_35_interval
 }
 
-theorem G32_36_formula : baezDuarteGramEntry 32 36 = vasyuninBEntry 32 36 := vasyuninBEntry_correct_axiom 32 36
+theorem G32_36_formula : baezDuarteGramEntry 32 36 = vasyuninBEntry 32 36 := vasyuninBEntry_correct_axiom 32 36 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_36_eval :
     ((((6638271/197290000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 36) ∧
     (vasyuninBEntry 32 36 ≤ (((6677729/197290000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_8_9_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 8 9 4 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 8 9 4 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 4)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 4)
@@ -5158,7 +5158,7 @@ def interval_32_36 : NamedVasyuninInterval :=
   interval_proof := G32_36_interval
 }
 
-theorem G32_37_formula : baezDuarteGramEntry 32 37 = vasyuninBEntry 32 37 := vasyuninBEntry_correct_axiom 32 37
+theorem G32_37_formula : baezDuarteGramEntry 32 37 = vasyuninBEntry 32 37 := vasyuninBEntry_correct_axiom 32 37 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_37_eval :
     ((((15652277/477230000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 37) ∧
@@ -5184,13 +5184,13 @@ def interval_32_37 : NamedVasyuninInterval :=
   interval_proof := G32_37_interval
 }
 
-theorem G32_38_formula : baezDuarteGramEntry 32 38 = vasyuninBEntry 32 38 := vasyuninBEntry_correct_axiom 32 38
+theorem G32_38_formula : baezDuarteGramEntry 32 38 = vasyuninBEntry 32 38 := vasyuninBEntry_correct_axiom 32 38 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_38_eval :
     ((((16817533/524670000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 38) ∧
     (vasyuninBEntry 32 38 ≤ (((16922467/524670000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_16_19_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 16 19 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 16 19 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -5213,7 +5213,7 @@ def interval_32_38 : NamedVasyuninInterval :=
   interval_proof := G32_38_interval
 }
 
-theorem G32_39_formula : baezDuarteGramEntry 32 39 = vasyuninBEntry 32 39 := vasyuninBEntry_correct_axiom 32 39
+theorem G32_39_formula : baezDuarteGramEntry 32 39 = vasyuninBEntry 32 39 := vasyuninBEntry_correct_axiom 32 39 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_39_eval :
     ((((2265281/72190000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 39) ∧
@@ -5239,13 +5239,13 @@ def interval_32_39 : NamedVasyuninInterval :=
   interval_proof := G32_39_interval
 }
 
-theorem G32_40_formula : baezDuarteGramEntry 32 40 = vasyuninBEntry 32 40 := vasyuninBEntry_correct_axiom 32 40
+theorem G32_40_formula : baezDuarteGramEntry 32 40 = vasyuninBEntry 32 40 := vasyuninBEntry_correct_axiom 32 40 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_40_eval :
     ((((14652461/475390000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 40) ∧
     (vasyuninBEntry 32 40 ≤ (((14747539/475390000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_4_5_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 4 5 8 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 4 5 8 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 8)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 8)
@@ -5268,7 +5268,7 @@ def interval_32_40 : NamedVasyuninInterval :=
   interval_proof := G32_40_interval
 }
 
-theorem G32_41_formula : baezDuarteGramEntry 32 41 = vasyuninBEntry 32 41 := vasyuninBEntry_correct_axiom 32 41
+theorem G32_41_formula : baezDuarteGramEntry 32 41 = vasyuninBEntry 32 41 := vasyuninBEntry_correct_axiom 32 41 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_41_eval :
     ((((3695267/122330000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 41) ∧
@@ -5294,13 +5294,13 @@ def interval_32_41 : NamedVasyuninInterval :=
   interval_proof := G32_41_interval
 }
 
-theorem G32_42_formula : baezDuarteGramEntry 32 42 = vasyuninBEntry 32 42 := vasyuninBEntry_correct_axiom 32 42
+theorem G32_42_formula : baezDuarteGramEntry 32 42 = vasyuninBEntry 32 42 := vasyuninBEntry_correct_axiom 32 42 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_42_eval :
     ((((391339/13172500) : ℚ) : ℝ) ≤ vasyuninBEntry 32 42) ∧
     (vasyuninBEntry 32 42 ≤ (((787947/26345000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_16_21_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 16 21 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 16 21 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)
@@ -5323,7 +5323,7 @@ def interval_32_42 : NamedVasyuninInterval :=
   interval_proof := G32_42_interval
 }
 
-theorem G32_43_formula : baezDuarteGramEntry 32 43 = vasyuninBEntry 32 43 := vasyuninBEntry_correct_axiom 32 43
+theorem G32_43_formula : baezDuarteGramEntry 32 43 = vasyuninBEntry 32 43 := vasyuninBEntry_correct_axiom 32 43 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_43_eval :
     ((((12183347/416530000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 43) ∧
@@ -5349,13 +5349,13 @@ def interval_32_43 : NamedVasyuninInterval :=
   interval_proof := G32_43_interval
 }
 
-theorem G32_44_formula : baezDuarteGramEntry 32 44 = vasyuninBEntry 32 44 := vasyuninBEntry_correct_axiom 32 44
+theorem G32_44_formula : baezDuarteGramEntry 32 44 = vasyuninBEntry 32 44 := vasyuninBEntry_correct_axiom 32 44 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_44_eval :
     ((((1903381/66190000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 44) ∧
     (vasyuninBEntry 32 44 ≤ (((1916619/66190000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_8_11_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 8 11 4 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 8 11 4 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 4)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 4)
@@ -5378,7 +5378,7 @@ def interval_32_44 : NamedVasyuninInterval :=
   interval_proof := G32_44_interval
 }
 
-theorem G32_45_formula : baezDuarteGramEntry 32 45 = vasyuninBEntry 32 45 := vasyuninBEntry_correct_axiom 32 45
+theorem G32_45_formula : baezDuarteGramEntry 32 45 = vasyuninBEntry 32 45 := vasyuninBEntry_correct_axiom 32 45 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_45_eval :
     ((((4372567/154330000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 45) ∧
@@ -5404,13 +5404,13 @@ def interval_32_45 : NamedVasyuninInterval :=
   interval_proof := G32_45_interval
 }
 
-theorem G32_46_formula : baezDuarteGramEntry 32 46 = vasyuninBEntry 32 46 := vasyuninBEntry_correct_axiom 32 46
+theorem G32_46_formula : baezDuarteGramEntry 32 46 = vasyuninBEntry 32 46 := vasyuninBEntry_correct_axiom 32 46 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_32_46_eval :
     ((((5154059/184410000) : ℚ) : ℝ) ≤ vasyuninBEntry 32 46) ∧
     (vasyuninBEntry 32 46 ≤ (((5190941/184410000) : ℚ) : ℝ)) := by
   obtain ⟨hlo, hhi⟩ := vasyuninBEntry_16_23_eval
-  have hscale := vasyuninBEntry_off_diagonal_scaling 16 23 2 (by norm_num)
+  have hscale := vasyuninBEntry_off_diagonal_scaling 16 23 2 (by norm_num) (by norm_num) (by norm_num)
   rw [hscale]
   have hlo_mul := mul_le_mul_of_nonneg_left hlo (by norm_num : (0 : ℝ) ≤ 1 / 2)
   have hhi_mul := mul_le_mul_of_nonneg_left hhi (by norm_num : (0 : ℝ) ≤ 1 / 2)

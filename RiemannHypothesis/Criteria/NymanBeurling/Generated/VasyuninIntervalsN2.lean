@@ -38,7 +38,7 @@ def interval_1_1 : NamedVasyuninInterval :=
   interval_proof := G1_1_interval_axiom
 }
 
-theorem G1_2_formula : baezDuarteGramEntry 1 2 = vasyuninBEntry 1 2 := vasyuninBEntry_correct_axiom 1 2
+theorem G1_2_formula : baezDuarteGramEntry 1 2 = vasyuninBEntry 1 2 := vasyuninBEntry_correct_axiom 1 2 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_1_2_eval :
     ((((3861/5000) : ℚ) : ℝ) ≤ vasyuninBEntry 1 2) ∧

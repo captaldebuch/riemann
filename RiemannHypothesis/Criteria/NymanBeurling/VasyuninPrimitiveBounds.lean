@@ -60,15 +60,17 @@ theorem baez_duarte_off_diagonal_scaling (h k m : ℕ) (hm : 0 < m) :
   rw [h_comp]
   simp only [smul_eq_mul, one_div]
 
-theorem vasyuninBEntry_off_diagonal_scaling (h k m : ℕ) (hm : 0 < m) :
+theorem vasyuninBEntry_off_diagonal_scaling (h k m : ℕ) (hm : 0 < m)
+    (hh : 0 < h) (hk : 0 < k) :
     vasyuninBEntry (m * h) (m * k) = (1 / (m : ℝ)) * vasyuninBEntry h k :=
   calc vasyuninBEntry (m * h) (m * k)
       = baezDuarteGramEntry (m * h) (m * k) :=
-          (vasyuninBEntry_correct_axiom (m * h) (m * k)).symm
+          (vasyuninBEntry_correct_axiom (m * h) (m * k)
+            (Nat.mul_pos hm hh) (Nat.mul_pos hm hk)).symm
     _ = (1 / (m : ℝ)) * baezDuarteGramEntry h k :=
           baez_duarte_off_diagonal_scaling h k m hm
     _ = (1 / (m : ℝ)) * vasyuninBEntry h k := by
-          rw [vasyuninBEntry_correct_axiom h k]
+          rw [vasyuninBEntry_correct_axiom h k hh hk]
 
 theorem diag_log_gamma_interval_from_G11 (k : ℕ) (hk : 0 < k) :
     (1 / (k : ℝ)) * ((6303 / 5000 : ℚ) : ℝ) ≤

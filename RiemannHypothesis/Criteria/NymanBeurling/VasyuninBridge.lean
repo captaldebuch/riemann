@@ -1,5 +1,6 @@
 import Mathlib
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninGram
+import RiemannHypothesis.Criteria.NymanBeurling.BBLSAutocorrelation
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninExplicitFormula
 import RiemannHypothesis.Criteria.NymanBeurling.G11IntegralEvaluation
 import RiemannHypothesis.Criteria.NymanBeurling.G11Formula
@@ -827,8 +828,8 @@ theorem tsum_shifted_integrals_eq_cotangent_sum (h k : ℕ) (hne : h ≠ k) (hh 
     (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
         Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
           ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
-      = vasyuninBEntry h k := by
-  sorry
+      = vasyuninBEntry h k :=
+  bbls_tsum_eq_vasyuninBEntry h k hh hk
 
 /-- Assembling `debtFieldLHS_eq_tsum_shifted_integrals` with an explicit hypothesis standing in
     for `tsum_shifted_integrals_eq_cotangent_sum` (the central, still-open cotangent-recognition
@@ -895,8 +896,19 @@ theorem vasyuninBEntry_correct_of_local_debts
   · rw [baezDuarteGramEntry_eq_tsum_intervals_add_tail h k hh hk]
     exact H.interval_sum_add_tail_eq_cotangent_formula h k h_eq hh hk
 
-theorem vasyuninBEntry_correct_axiom (h k : ℕ) :
+/-- The Vasyunin explicit formula for the Báez-Duarte Gram entry, now fully proved
+via the BBLS period-reduction chain. Positivity hypotheses are REQUIRED: the
+previously recorded hypothesis-free statement was false at `h = 0` (the Gram
+integrand vanishes identically, but `vasyuninBEntryFormula 0 k = (log 2π − γ)/(2k) ≠ 0`);
+this was caught during the closing pass and the statement corrected, matching every
+actual use site (all of which have positive indices). -/
+theorem vasyuninBEntry_correct_axiom (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
     baezDuarteGramEntry h k = vasyuninBEntry h k := by
-  sorry
+  by_cases h_eq : h = k
+  · rw [h_eq]
+    exact vasyuninBEntry_diagonal k
+  · rw [baezDuarteGramEntry_eq_tsum_intervals_add_tail h k hh hk]
+    exact interval_sum_add_tail_eq_cotangent_formula_of_debts h k h_eq hh hk
+      (tsum_shifted_integrals_eq_cotangent_sum h k h_eq hh hk)
 
 end RH.Criteria.NymanBeurling.VasyuninGram

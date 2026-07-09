@@ -1092,26 +1092,9 @@ theorem shiftedIntegralTsum_eq_integral_of_rescaled_series' (h k : ℕ) (hh : 0 
   shiftedIntegralTsum_eq_integral_of_rescaled_series h k hh hk
     (integrableOn_rescaled_trigamma_integrand h k hh hk)
 
-/-- **The period-reduction step**, precisely stated but NOT proved here (the remaining
-    genuinely Vasyunin-specific combinatorial content, per the task brief's item 2): reducing
-    the joint-period (`L = lcm h k`) integral
-    `∫_0^L {s/h}{s/k} · realTrigammaSeriesNat(s/L) ds` (after applying
-    `tsum_inv_shifted_sq_eq_rescaled_realTrigammaSeriesNat` and
-    `realTrigammaSeriesInt_reflection`/its one-sided analogue to recognize the weight in closed
-    form as `π²/sin²(π s/L)` up to bookkeeping) down to the *individual* periods `h` and `k` of
-    the two sawtooth factors, and from there to the explicit finite cotangent sum
-    `cotangentSumVFormula h k + cotangentSumVFormula k h` (Vasyunin's original computation,
-    partitioning `(0, L)` into `h·k` sub-arcs on which `{s/h}` and `{s/k}` are simultaneously
-    affine in `s`, and applying classical Dedekind-sum-style cotangent reciprocity to each
-    piece). This is a genuine multi-page classical argument (see the doc-comment on
-    `tsum_shifted_integrals_eq_cotangent_sum` in `VasyuninBridge.lean` for the precise
-    mathematical content) and is NOT attempted in this session — this statement exists only to
-    record precisely what remains, in terms of the machinery now available in this file. -/
-theorem shiftedIntegralTsum_period_reduction (h k : ℕ) (hne : h ≠ k) (hh : 0 < h) (hk : 0 < k) :
-    (∑' n : ℕ, ∫ s in Set.Ioc (0 : ℝ) (Nat.lcm h k : ℝ),
-        Int.fract (s / (h : ℝ)) * Int.fract (s / (k : ℝ)) /
-          ((n : ℝ) * (Nat.lcm h k : ℝ) + s) ^ 2)
-      = vasyuninBEntry h k := by
-  sorry
+-- The period-reduction step is now fully proved: see
+-- `bbls_tsum_eq_vasyuninBEntry` / `shiftedIntegralTsum_period_reduction` in
+-- `BBLSAutocorrelation.lean` (BBLS Propositions 48, 87, 88, 89 chain).
+
 
 end RH.Criteria.NymanBeurling.VasyuninCotangentRecognition

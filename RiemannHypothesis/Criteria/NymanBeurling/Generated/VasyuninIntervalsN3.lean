@@ -38,7 +38,7 @@ def interval_1_1 : NamedVasyuninInterval :=
   interval_proof := G1_1_interval_axiom
 }
 
-theorem G1_2_formula : baezDuarteGramEntry 1 2 = vasyuninBEntry 1 2 := vasyuninBEntry_correct_axiom 1 2
+theorem G1_2_formula : baezDuarteGramEntry 1 2 = vasyuninBEntry 1 2 := vasyuninBEntry_correct_axiom 1 2 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_1_2_eval :
     ((((3861/5000) : ℚ) : ℝ) ≤ vasyuninBEntry 1 2) ∧
@@ -64,7 +64,7 @@ def interval_1_2 : NamedVasyuninInterval :=
   interval_proof := G1_2_interval_axiom
 }
 
-theorem G1_3_formula : baezDuarteGramEntry 1 3 = vasyuninBEntry 1 3 := vasyuninBEntry_correct_axiom 1 3
+theorem G1_3_formula : baezDuarteGramEntry 1 3 = vasyuninBEntry 1 3 := vasyuninBEntry_correct_axiom 1 3 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_1_3_eval :
     ((((23/40) : ℚ) : ℝ) ≤ vasyuninBEntry 1 3) ∧
@@ -142,7 +142,7 @@ def interval_2_2 : NamedVasyuninInterval :=
   interval_proof := G2_2_interval_axiom
 }
 
-theorem G2_3_formula : baezDuarteGramEntry 2 3 = vasyuninBEntry 2 3 := vasyuninBEntry_correct_axiom 2 3
+theorem G2_3_formula : baezDuarteGramEntry 2 3 = vasyuninBEntry 2 3 := vasyuninBEntry_correct_axiom 2 3 (by norm_num) (by norm_num)
 
 theorem vasyuninBEntry_2_3_eval :
     ((((4411/10000) : ℚ) : ℝ) ≤ vasyuninBEntry 2 3) ∧
