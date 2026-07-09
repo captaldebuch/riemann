@@ -1,4 +1,5 @@
 import RiemannHypothesis.Criteria.NymanBeurling.BaezDuarte
+import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 import RiemannHypothesis.Certificates.NymanBeurlingCertificate
 import RiemannHypothesis.Certificates.Generated.NymanGramN10
 import RiemannHypothesis.Certificates.Generated.NymanGramN20
@@ -30,8 +31,8 @@ open RH.Certificates
 #print axioms baezDuarteCriterion_of_certified_energy_sequence
 
 -- The main equivalence (proof via Nyman-Beurling)
--- baez_duarte_criterion_implies_RH uses nyman_beurling_criterion_iff_RH
-#print axioms RH.Criteria.NymanBeurling.BaezDuarte.baez_duarte_criterion_implies_RH
+-- RH_of_baezDuarteCriterion bridges from BaezDuarteCriterion to RH using explicit debts
+#print axioms RH.Criteria.NymanBeurling.RHBridge.RH_of_baezDuarteCriterion
 
 -- -----------------------------------------------------------------------
 -- FINITE DISTANCE BOUNDS

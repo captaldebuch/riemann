@@ -169,21 +169,12 @@ theorem nymanBeurlingCriterion_iff_baezDuarteCriterion :
     push Not at hall
     linarith [le_ciInf hall]
 
-/-- The Nyman-Beurling theorem: the completeness criterion is equivalent to RH.
+/- The Nyman-Beurling theorem: the completeness criterion is equivalent to RH.
     Source: Nyman (1950) proved → direction; Beurling (1955) strengthened;
     Báez-Duarte (2003) established that integer dilations {ρ_k} suffice.
-    **Neither direction is proved here.**
-    This is the SOLE remaining RH-level axiom on the Nyman-Beurling route. -/
-axiom nyman_beurling_criterion_iff_RH :
-    NymanBeurlingCriterion ↔ RH.Basic.RiemannHypothesis
-
-/-- Derived (Phase 10A — no longer axiom): BaezDuarteCriterion → RH.
-    Proof chain: BaezDuarteCriterion ↔ NymanBeurlingCriterion (proved, Phase 10A)
-                 → RH (nyman_beurling_criterion_iff_RH, axiom). -/
-theorem baez_duarte_criterion_implies_RH :
-    BaezDuarteCriterion → RH.Basic.RiemannHypothesis :=
-  fun h => nyman_beurling_criterion_iff_RH.mp
-           (nymanBeurlingCriterion_iff_baezDuarteCriterion.mpr h)
+    
+    The axiom `nyman_beurling_criterion_iff_RH` has been removed in Phase NB-A.
+    Use `NymanBeurlingRHBridgeDebts` to conditionally bridge to RH instead. -/
 
 -- ---------------------------------------------------------------------------
 -- Phase 9F — Named bridge for documentation
