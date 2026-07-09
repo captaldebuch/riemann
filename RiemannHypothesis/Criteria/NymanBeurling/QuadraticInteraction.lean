@@ -741,4 +741,213 @@ theorem quadraticInteractionKernel_eq_gramEntry_sub (h k : ℕ)
 
 end KernelGramCorrespondence
 
+/-! ## Phase 15H-H3: Gram-square structure of the finite quadratic form
+
+The pointwise kernel identity above upgrades immediately to a finite quadratic-form
+identity.  The genuinely analytic input is already present in `VasyuninBridge`:
+`genIntegrand_integrableOn_Ioi` proves integrability of the Gram integrand.
+Everything below is finite-sum/integral interchange plus algebra. -/
+
+section KernelGramQuadraticForm
+
+open scoped MeasureTheory
+open RH.Criteria.NymanBeurling.VasyuninGram
+
+/-- The Gram-entry integrand is integrable on `(0, ∞)` for positive indices.
+
+This is a local wrapper around the existing `genIntegrand_integrableOn_Ioi`.
+No new integrability analysis is needed here. -/
+theorem gramIntegrand_integrableOn_Ioi (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
+    MeasureTheory.IntegrableOn
+      (fun x : ℝ => Int.fract (1 / ((h : ℝ) * x)) *
+        Int.fract (1 / ((k : ℝ) * x)))
+      (Set.Ioi (0 : ℝ)) := by
+  change MeasureTheory.IntegrableOn (genIntegrand h k) (Set.Ioi (0 : ℝ))
+  exact genIntegrand_integrableOn_Ioi h k hh hk
+
+/-- A finite Gram quadratic form is the integral of the square of the corresponding
+finite linear combination of fractional-part basis functions. -/
+theorem gram_quadratic_form_eq_integral_sq (N : ℕ) (c : ℕ → ℝ) :
+    (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        c h * c k * baezDuarteGramEntry h k)
+      = ∫ x in Set.Ioi (0 : ℝ),
+          (∑ h ∈ Finset.Icc 1 N,
+            c h * Int.fract (1 / ((h : ℝ) * x))) ^ 2 := by
+  classical
+  let S := Finset.Icc 1 N
+  let G : ℕ → ℕ → ℝ → ℝ := fun h k x => c h * c k * genIntegrand h k x
+  have hpair_int : ∀ h ∈ S, ∀ k ∈ S,
+      MeasureTheory.Integrable (fun x : ℝ => G h k x)
+        (MeasureTheory.volume.restrict (Set.Ioi (0 : ℝ))) := by
+    intro h hh k hk
+    have hhpos : 0 < h := by
+      exact lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hh).1
+    have hkpos : 0 < k := by
+      exact lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hk).1
+    have hint : MeasureTheory.IntegrableOn (genIntegrand h k) (Set.Ioi (0 : ℝ)) :=
+      genIntegrand_integrableOn_Ioi h k hhpos hkpos
+    simpa [G] using hint.const_mul (c h * c k)
+  have h_lhs :
+      (∑ h ∈ S, ∑ k ∈ S, c h * c k * baezDuarteGramEntry h k) =
+        ∑ h ∈ S, ∑ k ∈ S, ∫ x in Set.Ioi (0 : ℝ), G h k x := by
+    apply Finset.sum_congr rfl
+    intro h _
+    apply Finset.sum_congr rfl
+    intro k _
+    rw [baezDuarteGramEntry_eq_genIntegrand]
+    calc
+      c h * c k * (∫ x in Set.Ioi (0 : ℝ), genIntegrand h k x)
+          = (c h * c k) * (∫ x in Set.Ioi (0 : ℝ), genIntegrand h k x) := by
+            ring
+      _ = ∫ x in Set.Ioi (0 : ℝ), (c h * c k) * genIntegrand h k x := by
+            rw [MeasureTheory.integral_const_mul]
+      _ = ∫ x in Set.Ioi (0 : ℝ), G h k x := by
+            rfl
+  have h_integral_sum :
+      (∫ x in Set.Ioi (0 : ℝ), ∑ h ∈ S, ∑ k ∈ S, G h k x) =
+        ∑ h ∈ S, ∑ k ∈ S, ∫ x in Set.Ioi (0 : ℝ), G h k x := by
+    rw [MeasureTheory.integral_finsetSum]
+    · apply Finset.sum_congr rfl
+      intro h hh
+      rw [MeasureTheory.integral_finsetSum]
+      exact fun k hk => hpair_int h hh k hk
+    · intro h hh
+      exact MeasureTheory.integrable_finsetSum S (fun k hk => hpair_int h hh k hk)
+  rw [h_lhs, ← h_integral_sum]
+  apply MeasureTheory.integral_congr_ae
+  exact Filter.Eventually.of_forall fun x => by
+    dsimp [G, genIntegrand]
+    rw [sq, Finset.sum_mul_sum]
+    apply Finset.sum_congr rfl
+    intro h _
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+
+/-- The smooth correction term in the kernel-Gram correspondence collapses to a
+product of two finite linear sums. -/
+theorem smooth_part_quadratic_sum_eq_linear_product (N : ℕ) (c : ℕ → ℝ) :
+    (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        c h * c k *
+          ((Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) / 2 *
+            (1 / (h : ℝ) + 1 / (k : ℝ)))) =
+      (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) *
+        (∑ h ∈ Finset.Icc 1 N, c h / (h : ℝ)) *
+          (∑ k ∈ Finset.Icc 1 N, c k) := by
+  classical
+  let S := Finset.Icc 1 N
+  let A := (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) / 2
+  let L := Real.log (2 * Real.pi) - Real.eulerMascheroniConstant
+  change
+    (∑ h ∈ S, ∑ k ∈ S, c h * c k * (A * (1 / (h : ℝ) + 1 / (k : ℝ)))) =
+      L * (∑ h ∈ S, c h / (h : ℝ)) * (∑ k ∈ S, c k)
+  have hswap :
+      (∑ h ∈ S, ∑ k ∈ S, c h * c k * (A * (1 / (k : ℝ)))) =
+        ∑ h ∈ S, ∑ k ∈ S, c h * c k * (A * (1 / (h : ℝ))) := by
+    rw [Finset.sum_comm]
+    apply Finset.sum_congr rfl
+    intro h _
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  have hprod :
+      (∑ h ∈ S, ∑ k ∈ S, c h * c k * (A * (1 / (h : ℝ)))) =
+        A * ((∑ h ∈ S, c h / (h : ℝ)) * (∑ k ∈ S, c k)) := by
+    rw [Finset.sum_mul_sum]
+    rw [Finset.mul_sum]
+    simp_rw [Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro h _
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  have hL : L = 2 * A := by
+    dsimp [L, A]
+    ring
+  rw [hL]
+  simp_rw [mul_add, Finset.sum_add_distrib]
+  rw [hswap, hprod]
+  ring
+
+/-- The finite quadratic form associated to `quadraticInteractionKernel` is a
+Gram-square integral minus the smooth linear product. -/
+theorem quadratic_form_eq_normSq_sub_linear (N : ℕ) (c : ℕ → ℝ) :
+    (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        c h * c k * quadraticInteractionKernel h k)
+      = (∫ x in Set.Ioi (0 : ℝ),
+          (∑ h ∈ Finset.Icc 1 N,
+            c h * Int.fract (1 / ((h : ℝ) * x))) ^ 2)
+        - (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) *
+            (∑ h ∈ Finset.Icc 1 N, c h / (h : ℝ)) *
+              (∑ k ∈ Finset.Icc 1 N, c k) := by
+  classical
+  let S := Finset.Icc 1 N
+  let A := (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) / 2
+  have hrewrite :
+      (∑ h ∈ S, ∑ k ∈ S, c h * c k * quadraticInteractionKernel h k) =
+        ∑ h ∈ S, ∑ k ∈ S,
+          c h * c k *
+            (baezDuarteGramEntry h k - A * (1 / (h : ℝ) + 1 / (k : ℝ))) := by
+    apply Finset.sum_congr rfl
+    intro h hh
+    apply Finset.sum_congr rfl
+    intro k hk
+    have hhpos : 0 < h := by
+      exact lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hh).1
+    have hkpos : 0 < k := by
+      exact lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hk).1
+    rw [quadraticInteractionKernel_eq_gramEntry_sub h k hhpos hkpos]
+  rw [hrewrite]
+  simp_rw [mul_sub, Finset.sum_sub_distrib]
+  rw [gram_quadratic_form_eq_integral_sq N c,
+    smooth_part_quadratic_sum_eq_linear_product N c]
+
+/-- The Gram-square integral appearing in `quadratic_form_eq_normSq_sub_linear`
+is nonnegative. -/
+theorem gram_norm_integral_nonneg (N : ℕ) (c : ℕ → ℝ) :
+    0 ≤ ∫ x in Set.Ioi (0 : ℝ),
+      (∑ h ∈ Finset.Icc 1 N,
+        c h * Int.fract (1 / ((h : ℝ) * x))) ^ 2 := by
+  exact MeasureTheory.integral_nonneg fun _ => sq_nonneg _
+
+/-- Unconditional lower bound for any finite weighted quadratic form of the
+interaction kernel: only the smooth linear product can contribute negatively. -/
+theorem quadratic_form_ge_neg_linear (N : ℕ) (c : ℕ → ℝ) :
+    -((Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) *
+        (∑ h ∈ Finset.Icc 1 N, c h / (h : ℝ)) *
+          (∑ k ∈ Finset.Icc 1 N, c k))
+      ≤ ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+          c h * c k * quadraticInteractionKernel h k := by
+  rw [quadratic_form_eq_normSq_sub_linear N c]
+  have hnonneg := gram_norm_integral_nonneg N c
+  linarith
+
+/-- The norm-square identity specialized to the project's cutoff Möbius weights. -/
+theorem cutoffMobius_quadratic_form_eq_normSq_sub_linear (N : ℕ) :
+    (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        cutoffMobiusCoeff N h * cutoffMobiusCoeff N k * quadraticInteractionKernel h k)
+      = (∫ x in Set.Ioi (0 : ℝ),
+          (∑ h ∈ Finset.Icc 1 N,
+            cutoffMobiusCoeff N h * Int.fract (1 / ((h : ℝ) * x))) ^ 2)
+        - (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) *
+            (∑ h ∈ Finset.Icc 1 N, cutoffMobiusCoeff N h / (h : ℝ)) *
+              (∑ k ∈ Finset.Icc 1 N, cutoffMobiusCoeff N k) :=
+  quadratic_form_eq_normSq_sub_linear N (cutoffMobiusCoeff N)
+
+/-- The isolated quadratic-interaction remainder is the cutoff Möbius Gram-square
+minus its smooth product correction, and then minus the target main term `1`. -/
+theorem explicitQuadraticInteractionRemainder_eq_normSq_sub_linear (N : ℕ) :
+    explicitQuadraticInteractionRemainder N =
+      (∫ x in Set.Ioi (0 : ℝ),
+          (∑ h ∈ Finset.Icc 1 N,
+            cutoffMobiusCoeff N h * Int.fract (1 / ((h : ℝ) * x))) ^ 2)
+        - (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) *
+            (∑ h ∈ Finset.Icc 1 N, cutoffMobiusCoeff N h / (h : ℝ)) *
+              (∑ k ∈ Finset.Icc 1 N, cutoffMobiusCoeff N k)
+        - 1 := by
+  rw [explicitQuadraticInteractionRemainder_eq_kernel_sum,
+    cutoffMobius_quadratic_form_eq_normSq_sub_linear]
+
+end KernelGramQuadraticForm
+
 end RH.Criteria.NymanBeurling.QuadraticInteraction
