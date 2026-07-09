@@ -635,6 +635,109 @@ lemma log_nat_add_two_le_two_log_nat {N : ℕ} (hN : 3 ≤ N) :
     norm_num
   exact hlog.trans_eq hlog_sq
 
+/--
+The classical de la Vallée Poussin decay form implies the polynomial-log
+Mertens bound used by `ClassicalMertensAPI`.
+
+The proof is deliberately lossy in constants: large `N` uses
+`exp (-a √log N) ≪ 1 / log(N)^3`, and the finitely many small values are
+absorbed by a harmless absolute constant.
+-/
+lemma mertens_bound_of_decay (H : ClassicalMertensDecay) :
+    ∃ C_M : ℝ, 0 < C_M ∧
+      ∀ N : ℕ,
+        |mobiusSummatory N| ≤ C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 3 := by
+  rcases exists_pos_exp_neg_mul_sqrt_log_nat_le_const_div_log_pow 3 H.a H.a_pos with
+    ⟨C₃, hC₃_pos, hC₃⟩
+  refine ⟨max (8 * H.C * C₃) 100, lt_of_lt_of_le (by norm_num) (le_max_right _ _), ?_⟩
+  intro N
+  by_cases hN0 : N = 0
+  · subst N
+    simp [mobiusSummatory]
+  by_cases hNlarge : 3 ≤ N
+  · have hN2 : 2 ≤ N := by omega
+    have hNpos : 0 ≤ (N : ℝ) := by positivity
+    have hlogN_pos : 0 < Real.log (N : ℝ) := by
+      exact Real.log_pos (by exact_mod_cast (show 1 < N by omega))
+    have hlogN2_pos : 0 < Real.log (N + 2 : ℝ) := by
+      exact Real.log_pos (by norm_cast; omega)
+    have hlogN2_nonneg : 0 ≤ Real.log (N + 2 : ℝ) := hlogN2_pos.le
+    have hlog_compare := log_nat_add_two_le_two_log_nat hNlarge
+    have hcube :
+        Real.log (N + 2 : ℝ) ^ 3 ≤ 8 * Real.log (N : ℝ) ^ 3 := by
+      have hpow :=
+        pow_le_pow_left₀ hlogN2_nonneg hlog_compare 3
+      have hrewrite :
+          (2 * Real.log (N : ℝ)) ^ 3 = 8 * Real.log (N : ℝ) ^ 3 := by ring
+      simpa [hrewrite] using hpow
+    have hpowN_pos : 0 < Real.log (N : ℝ) ^ 3 := pow_pos hlogN_pos 3
+    have hpowN2_pos : 0 < Real.log (N + 2 : ℝ) ^ 3 := pow_pos hlogN2_pos 3
+    have hinv :
+        (1 : ℝ) / Real.log (N : ℝ) ^ 3 ≤
+          8 / Real.log (N + 2 : ℝ) ^ 3 := by
+      rw [div_le_div_iff₀ hpowN_pos hpowN2_pos]
+      nlinarith
+    have hdecay := H.mertens_decay N hN2
+    have hpoly := hC₃ N hNlarge
+    have hCN_nonneg : 0 ≤ H.C * (N : ℝ) :=
+      mul_nonneg H.C_pos.le hNpos
+    have hcoeff_nonneg : 0 ≤ H.C * C₃ * (N : ℝ) :=
+      mul_nonneg (mul_nonneg H.C_pos.le hC₃_pos.le) hNpos
+    calc
+      |mobiusSummatory N|
+          ≤ H.C * (N : ℝ) *
+              Real.exp (-H.a * Real.sqrt (Real.log (N : ℝ))) := hdecay
+      _ ≤ H.C * (N : ℝ) * (C₃ / Real.log (N : ℝ) ^ 3) := by
+            exact mul_le_mul_of_nonneg_left hpoly hCN_nonneg
+      _ = (H.C * C₃ * (N : ℝ)) * (1 / Real.log (N : ℝ) ^ 3) := by ring
+      _ ≤ (H.C * C₃ * (N : ℝ)) * (8 / Real.log (N + 2 : ℝ) ^ 3) := by
+            exact mul_le_mul_of_nonneg_left hinv hcoeff_nonneg
+      _ = (8 * H.C * C₃) * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 3 := by ring
+      _ ≤ max (8 * H.C * C₃) 100 * (N : ℝ) /
+            Real.log (N + 2 : ℝ) ^ 3 := by
+            gcongr
+            exact le_max_left _ _
+  · have hNsmall : N ≤ 2 := by omega
+    have hNpos_nat : 0 < N := Nat.pos_of_ne_zero hN0
+    have hN_nonneg : 0 ≤ (N : ℝ) := by positivity
+    have hlog_pos : 0 < Real.log (N + 2 : ℝ) := by
+      exact Real.log_pos (by norm_cast; omega)
+    have hlog_nonneg : 0 ≤ Real.log (N + 2 : ℝ) := hlog_pos.le
+    have hlog_le_four : Real.log (N + 2 : ℝ) ≤ 4 := by
+      have hle : (N + 2 : ℝ) ≤ 4 := by exact_mod_cast (by omega : N + 2 ≤ 4)
+      exact (Real.log_le_log (by positivity) hle).trans
+        (Real.log_le_self (by norm_num : (0 : ℝ) ≤ 4))
+    have hlog_cube_le : Real.log (N + 2 : ℝ) ^ 3 ≤ 100 := by
+      nlinarith [sq_nonneg (Real.log (N + 2 : ℝ)), hlog_nonneg, hlog_le_four]
+    have hpow_pos : 0 < Real.log (N + 2 : ℝ) ^ 3 := pow_pos hlog_pos 3
+    have hone_le :
+        (1 : ℝ) ≤ max (8 * H.C * C₃) 100 / Real.log (N + 2 : ℝ) ^ 3 := by
+      rw [le_div_iff₀ hpow_pos]
+      simpa [one_mul] using hlog_cube_le.trans (le_max_right _ _)
+    calc
+      |mobiusSummatory N| ≤ (N : ℝ) := abs_mobiusSummatory_le_nat N
+      _ = 1 * (N : ℝ) := by ring
+      _ ≤ (max (8 * H.C * C₃) 100 / Real.log (N + 2 : ℝ) ^ 3) * (N : ℝ) := by
+            exact mul_le_mul_of_nonneg_right hone_le hN_nonneg
+      _ = max (8 * H.C * C₃) 100 * (N : ℝ) /
+            Real.log (N + 2 : ℝ) ^ 3 := by ring
+
+/--
+Constructor bridge from the single classical Mertens decay hypothesis plus the
+remaining non-Mertens residual inputs to the existing Phase 14 API.
+-/
+noncomputable def ClassicalMertensAPI.ofDecay
+    (H : ClassicalMertensDecay) (R : ClassicalMertensResidualInputs) :
+    ClassicalMertensAPI :=
+  { C_M := Classical.choose (mertens_bound_of_decay H)
+    C_L := R.C_L
+    C_M_pos := (Classical.choose_spec (mertens_bound_of_decay H)).1
+    C_L_pos := R.C_L_pos
+    mertens_bound := (Classical.choose_spec (mertens_bound_of_decay H)).2
+    mobiusLogSummatory_bound := R.mobiusLogSummatory_bound
+    mobius_sum_zero := R.mobius_sum_zero
+    mobiusLog_sum_neg_one := R.mobiusLog_sum_neg_one }
+
 lemma tendsto_inv_log_nat_add_two :
     Tendsto (fun N : ℕ => 1 / Real.log (N + 2 : ℝ)) atTop (𝓝 0) := by
   have harg : Tendsto (fun N : ℕ => ((N + 2 : ℕ) : ℝ)) atTop atTop :=
