@@ -513,6 +513,24 @@ structure ClassicalMertensResidualInputs where
   mobius_sum_zero : Tendsto mobiusOverKPartial atTop (𝓝 0)
   mobiusLog_sum_neg_one : Tendsto mobiusLogOverKPartial atTop (𝓝 (-1))
 
+lemma abs_mobiusSummatory_le_nat (N : ℕ) :
+    |mobiusSummatory N| ≤ (N : ℝ) := by
+  unfold mobiusSummatory
+  calc
+    |∑ k ∈ Finset.Icc 1 N, ((ArithmeticFunction.moebius k : ℤ) : ℝ)|
+      ≤ ∑ k ∈ Finset.Icc 1 N, |((ArithmeticFunction.moebius k : ℤ) : ℝ)| :=
+        abs_sum_le_sum_abs _ _
+    _ ≤ ∑ _k ∈ Finset.Icc 1 N, (1 : ℝ) := by
+          apply Finset.sum_le_sum
+          intro k _hk
+          exact_mod_cast (ArithmeticFunction.abs_moebius_le_one (n := k))
+    _ ≤ N := by
+          rw [Finset.sum_const, nsmul_eq_mul, mul_one]
+          have hcard : (Finset.Icc 1 N).card ≤ N := by
+            rw [Nat.card_Icc]
+            omega
+          exact_mod_cast hcard
+
 lemma tendsto_rpow_mul_exp_neg_mul_sqrt_atTop_nhds_zero
     (A a : ℝ) (ha : 0 < a) :
     Tendsto (fun t : ℝ => t ^ A * Real.exp (-a * Real.sqrt t)) atTop (𝓝 0) := by
