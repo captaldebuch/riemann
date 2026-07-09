@@ -18,4 +18,5 @@ import RiemannHypothesis.Certificates.TrigIntervalSweep
 import RiemannHypothesis.Criteria.NymanBeurling.AnalyticDebts
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninCotangentRecognition
 import RiemannHypothesis.Criteria.NymanBeurling.BBLSPhiOne
+import RiemannHypothesis.Criteria.NymanBeurling.BBLSAutocorrelation
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninPeriodReduction
