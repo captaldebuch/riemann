@@ -1,5 +1,6 @@
 import Mathlib
 import RiemannHypothesis.Criteria.NymanBeurling.CutoffMobiusKernels
+import RiemannHypothesis.Criteria.NymanBeurling.MobiusSummatoryClassical
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninExplicitFormula
 
 namespace RH.Criteria.NymanBeurling.QuadraticInteraction
@@ -949,5 +950,185 @@ theorem explicitQuadraticInteractionRemainder_eq_normSq_sub_linear (N : ℕ) :
     cutoffMobius_quadratic_form_eq_normSq_sub_linear]
 
 end KernelGramQuadraticForm
+
+/-! ## Phase 15H finish attempt: norm residual interface
+
+The norm-square representation exposes the interaction remainder as a completed
+square plus linear corrections.  The H14 Dirichlet estimates control the linear
+piece `explicitLinearMobiusSum N + 1`; the remaining genuinely quadratic input
+is isolated below as a single norm/loggamma residual package.
+
+This section deliberately does not assume any Nyman--Beurling distance infimum
+or RH-equivalent approximation statement.  The only norm quantity appearing is
+the specific finite cutoff-Möbius vector already present in the kernel formula.
+-/
+
+section KernelNormFinish
+
+open scoped MeasureTheory
+open RH.Criteria.NymanBeurling.CutoffMobiusKernels
+
+/-- H15-facing wrapper for the already-proved χ--ρ integral evaluation. -/
+theorem chiRhoIntegral_eq_explicitChiRhoKernel (h : ℕ) (hh : 0 < h) :
+    (∫ x in Set.Ioc (0 : ℝ) 1, Int.fract (1 / ((h : ℝ) * x))) =
+      explicitChiRhoKernel h := by
+  change RH.Criteria.NymanBeurling.ChiRhoIntegralEvaluation.chiRhoIntegral h =
+    explicitChiRhoKernel h
+  rw [RH.Criteria.NymanBeurling.ChiRhoIntegralEvaluation.chiRhoIntegral_formula h hh]
+  rfl
+
+/-- The cutoff-Möbius Gram norm appearing in the 15H-H3 identity. -/
+noncomputable def cutoffMobiusGramNormIntegral (N : ℕ) : ℝ :=
+  ∫ x in Set.Ioi (0 : ℝ),
+    (∑ h ∈ Finset.Icc 1 N,
+      cutoffMobiusCoeff N h * Int.fract (1 / ((h : ℝ) * x))) ^ 2
+
+/-- The χ-cross term for the specific cutoff-Möbius vector. -/
+noncomputable def cutoffMobiusChiRhoCross (N : ℕ) : ℝ :=
+  ∑ k ∈ Finset.Icc 1 N, cutoffMobiusCoeff N k * explicitChiRhoKernel k
+
+/-- The completed-square energy of the specific cutoff-Möbius approximation. -/
+noncomputable def cutoffMobiusDefectEnergy (N : ℕ) : ℝ :=
+  1 - 2 * cutoffMobiusChiRhoCross N + cutoffMobiusGramNormIntegral N
+
+/-- The cutoff χ-cross term is the negative of the explicit linear Möbius sum. -/
+theorem cutoffMobiusChiRhoCross_eq_neg_explicitLinearMobiusSum (N : ℕ) :
+    cutoffMobiusChiRhoCross N = - explicitLinearMobiusSum N := by
+  unfold cutoffMobiusChiRhoCross explicitLinearMobiusSum cutoffMobiusCoeff
+    cutoffWeight explicitChiRhoKernel
+  rw [← Finset.sum_neg_distrib]
+  apply Finset.sum_congr rfl
+  intro k _
+  ring
+
+/-- The explicit log-gamma quadratic component is the smooth product in the
+kernel-Gram correspondence. -/
+theorem explicitQuadraticLogGammaComponent_eq_smooth_product (N : ℕ) :
+    explicitQuadraticLogGammaComponent N =
+      (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) *
+        (∑ h ∈ Finset.Icc 1 N, cutoffMobiusCoeff N h / (h : ℝ)) *
+          (∑ k ∈ Finset.Icc 1 N, cutoffMobiusCoeff N k) := by
+  unfold explicitQuadraticLogGammaComponent
+  exact smooth_part_quadratic_sum_eq_linear_product N (cutoffMobiusCoeff N)
+
+/-- The interaction remainder written as completed-square energy plus the
+H14-controlled linear centered error. -/
+theorem explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear
+    (N : ℕ) :
+    explicitQuadraticInteractionRemainder N =
+      cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N
+        - 2 * (explicitLinearMobiusSum N + 1) := by
+  rw [explicitQuadraticInteractionRemainder_eq_normSq_sub_linear,
+    explicitQuadraticLogGammaComponent_eq_smooth_product]
+  unfold cutoffMobiusDefectEnergy cutoffMobiusGramNormIntegral
+  rw [cutoffMobiusChiRhoCross_eq_neg_explicitLinearMobiusSum]
+  ring
+
+/--
+The single residual analytic input left by the norm-square finish attempt.
+
+It packages exactly the part not supplied by H14's linear Möbius estimates:
+both the smooth log-gamma component and the corrected cutoff-Möbius defect
+energy must have total logarithmic mass.  This is intentionally stronger than
+separate bounds but keeps the remaining H15 debt as one named, content-bearing
+norm statement rather than the earlier gcd-slice sub-estimate interface.
+-/
+structure QuadraticInteractionNormResidual where
+  C_norm : ℝ
+  C_norm_nonneg : 0 ≤ C_norm
+  norm_loggamma_package_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogGammaComponent N| +
+          |cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N|
+        ≤ C_norm / Real.log (N + 2 : ℝ)
+
+/-- The residual package gives the log-gamma field of
+`QuadraticInteractionEstimates`. -/
+theorem explicitQuadraticLogGammaComponent_bound_of_normResidual
+    (H_res : QuadraticInteractionNormResidual) (N : ℕ) :
+    |explicitQuadraticLogGammaComponent N| ≤
+      H_res.C_norm / Real.log (N + 2 : ℝ) := by
+  have h := H_res.norm_loggamma_package_bound N
+  exact (le_add_of_nonneg_right (abs_nonneg _)).trans h
+
+/-- H14 linear estimates plus the norm residual give the interaction-remainder
+field of `QuadraticInteractionEstimates`. -/
+theorem explicitQuadraticInteractionRemainder_bound_of_linear_and_normResidual
+    (H_linear : LinearMobiusDirichletEstimates)
+    (H_res : QuadraticInteractionNormResidual) (N : ℕ) :
+    |explicitQuadraticInteractionRemainder N| ≤
+      (H_res.C_norm +
+          2 * (H_linear.C_log +
+            |1 - Real.eulerMascheroniConstant| * H_linear.C_overK)) /
+        Real.log (N + 2 : ℝ) := by
+  rw [explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear]
+  let C_linear :=
+    H_linear.C_log + |1 - Real.eulerMascheroniConstant| * H_linear.C_overK
+  have hcenter :
+      |explicitLinearMobiusSum N + 1| ≤ C_linear / Real.log (N + 2 : ℝ) :=
+    (linear_mobius_centered_estimate_of_dirichlet_estimates H_linear).bound N
+  have hres_all := H_res.norm_loggamma_package_bound N
+  have hres :
+      |cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N| ≤
+        H_res.C_norm / Real.log (N + 2 : ℝ) :=
+    (le_add_of_nonneg_left (abs_nonneg _)).trans hres_all
+  calc
+    |cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N -
+        2 * (explicitLinearMobiusSum N + 1)|
+        ≤ |cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N| +
+            |2 * (explicitLinearMobiusSum N + 1)| := by
+          simpa [sub_eq_add_neg] using
+            (abs_add_le
+            (cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N)
+            (-(2 * (explicitLinearMobiusSum N + 1))))
+    _ = |cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N| +
+            2 * |explicitLinearMobiusSum N + 1| := by
+          rw [abs_mul, abs_of_pos (by norm_num : (0 : ℝ) < 2)]
+    _ ≤ H_res.C_norm / Real.log (N + 2 : ℝ) +
+            2 * (C_linear / Real.log (N + 2 : ℝ)) := by
+          exact add_le_add hres
+            (mul_le_mul_of_nonneg_left hcenter (by norm_num : (0 : ℝ) ≤ 2))
+    _ = (H_res.C_norm + 2 * C_linear) / Real.log (N + 2 : ℝ) := by
+          ring
+
+/-- The residue component is definitionally zero. -/
+theorem explicitCutoffResidueComponent_zero_bound (N : ℕ) :
+    |explicitCutoffResidueComponent N| ≤ 0 / Real.log (N + 2 : ℝ) := by
+  simp [explicitCutoffResidueComponent]
+
+/-- H14 linear Möbius estimates plus the single norm residual discharge the
+current `QuadraticInteractionEstimates` interface. -/
+noncomputable def quadraticInteractionEstimates_of_linearDirichlet_and_normResidual
+    (H_linear : LinearMobiusDirichletEstimates)
+    (H_res : QuadraticInteractionNormResidual) :
+    QuadraticInteractionEstimates := by
+  let C_linear :=
+    H_linear.C_log + |1 - Real.eulerMascheroniConstant| * H_linear.C_overK
+  refine
+    { C_loggamma := H_res.C_norm
+      C_interaction := H_res.C_norm + 2 * C_linear
+      C_residue := 0
+      C_pos := ?_
+      loggamma_bound := explicitQuadraticLogGammaComponent_bound_of_normResidual H_res
+      interaction_bound :=
+        explicitQuadraticInteractionRemainder_bound_of_linear_and_normResidual H_linear H_res
+      residue_bound := explicitCutoffResidueComponent_zero_bound }
+  have hlin : 0 < C_linear := H_linear.C_pos
+  have hnorm : 0 ≤ H_res.C_norm := H_res.C_norm_nonneg
+  dsimp [C_linear]
+  linarith
+
+/-- The requested H14-facing wrapper: a `ClassicalMertensAPI` instance supplies
+the linear Dirichlet estimates, and the single norm residual supplies the
+remaining quadratic input. -/
+noncomputable def quadraticInteractionEstimates_of_mertens_and_normResidual
+    (H_mertens : MobiusSummatory.ClassicalMertensAPI)
+    (H_res : QuadraticInteractionNormResidual) :
+    QuadraticInteractionEstimates :=
+  quadraticInteractionEstimates_of_linearDirichlet_and_normResidual
+    (MobiusSummatory.linear_mobius_dirichlet_estimates_of_classical_api H_mertens)
+    H_res
+
+end KernelNormFinish
 
 end RH.Criteria.NymanBeurling.QuadraticInteraction
