@@ -526,6 +526,49 @@ lemma tendsto_rpow_mul_exp_neg_mul_sqrt_atTop_nhds_zero
     ring
   simp [hsqrt]
 
+/--
+Exponential decay in `√t` dominates every real power of `t`, uniformly on
+`[1, ∞)`.
+
+This is the calculus conversion used to turn the classical de la Vallée
+Poussin decay `exp (-a √log N)` into any desired power of `1 / log N`.
+-/
+lemma exists_pos_bound_rpow_mul_exp_neg_mul_sqrt
+    (A a : ℝ) (ha : 0 < a) :
+    ∃ C_A : ℝ, 0 < C_A ∧
+      ∀ t : ℝ, 1 ≤ t → t ^ A * Real.exp (-a * Real.sqrt t) ≤ C_A := by
+  have hlim := tendsto_rpow_mul_exp_neg_mul_sqrt_atTop_nhds_zero A a ha
+  have hsmall :
+      ∀ᶠ t : ℝ in atTop, t ^ A * Real.exp (-a * Real.sqrt t) ≤ 1 := by
+    have hball : Metric.ball (0 : ℝ) 1 ∈ 𝓝 (0 : ℝ) :=
+      Metric.ball_mem_nhds _ zero_lt_one
+    filter_upwards [hlim hball] with t ht
+    have habs : |t ^ A * Real.exp (-a * Real.sqrt t)| < 1 := by
+      simpa [Real.dist_eq] using ht
+    exact (le_abs_self _).trans habs.le
+  rcases eventually_atTop.1 hsmall with ⟨B, hB⟩
+  let R : ℝ := max 1 B
+  have hcont :
+      ContinuousOn (fun t : ℝ => t ^ A * Real.exp (-a * Real.sqrt t))
+        (Set.Icc 1 R) := by
+    have hpow : ContinuousOn (fun t : ℝ => t ^ A) (Set.Icc 1 R) := by
+      refine ContinuousOn.rpow_const continuousOn_id ?_
+      intro t ht
+      exact Or.inl (ne_of_gt (lt_of_lt_of_le zero_lt_one ht.1))
+    have hexp : ContinuousOn (fun t : ℝ => Real.exp (-a * Real.sqrt t))
+        (Set.Icc 1 R) := by
+      fun_prop
+    exact hpow.mul hexp
+  rcases isCompact_Icc.exists_bound_of_continuousOn hcont with ⟨C₀, hC₀⟩
+  refine ⟨max C₀ 1, lt_of_lt_of_le zero_lt_one (le_max_right C₀ 1), ?_⟩
+  intro t ht
+  by_cases htR : t ≤ R
+  · have hnorm := hC₀ t ⟨ht, htR⟩
+    exact (le_abs_self _).trans <| hnorm.trans (le_max_left C₀ 1)
+  · have hRt : R ≤ t := le_of_not_ge htR
+    have hBt : B ≤ t := (le_max_right 1 B).trans hRt
+    exact (hB t hBt).trans (le_max_right C₀ 1)
+
 lemma tendsto_inv_log_nat_add_two :
     Tendsto (fun N : ℕ => 1 / Real.log (N + 2 : ℝ)) atTop (𝓝 0) := by
   have harg : Tendsto (fun N : ℕ => ((N + 2 : ℕ) : ℝ)) atTop atTop :=
