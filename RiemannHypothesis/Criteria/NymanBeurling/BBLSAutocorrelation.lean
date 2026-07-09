@@ -330,4 +330,234 @@ theorem bbls_A_one :
     integrableOn_fract_sq_div_sq hcast
   exact tendsto_nhds_unique h1 tendsto_fract_sq_integral_nat
 
+/-! ## The `x → ∞` limit of Proposition 22 (BBLS Propositions 88–89 at rationals) -/
+
+/-- The middle interval `∫_x^{θx} {t}/t² dt` vanishes as `x → ∞`. -/
+theorem tendsto_fract_div_sq_interval_zero {θ : ℝ} (hθ : 0 < θ) :
+    Tendsto (fun x : ℝ => ∫ t in x..(θ * x), Int.fract t / t ^ 2) atTop (𝓝 0) := by
+  have hkey : ∀ a b : ℝ, 0 < a → a ≤ b →
+      |∫ t in a..b, Int.fract t / t ^ 2| ≤ 1 / a - 1 / b := by
+    intro a b ha hab
+    have hb : (0 : ℝ) < b := lt_of_lt_of_le ha hab
+    have hfint : IntervalIntegrable (fun t : ℝ => Int.fract t / t ^ 2)
+        MeasureTheory.volume a b := by
+      have := fract_mul_div_sq_intervalIntegrable (c := 1) (a := a) (b := b)
+        (lt_min ha hb)
+      simpa [one_mul] using this
+    have hgint : IntervalIntegrable (fun t : ℝ => 1 / t ^ 2)
+        MeasureTheory.volume a b := by
+      apply ContinuousOn.intervalIntegrable
+      apply ContinuousOn.div continuousOn_const (by fun_prop)
+      intro t ht
+      have htIcc : t ∈ Set.Icc a b := by rwa [Set.uIcc_of_le hab] at ht
+      have : 0 < t := lt_of_lt_of_le ha htIcc.1
+      positivity
+    have hmono : (∫ t in a..b, Int.fract t / t ^ 2) ≤ ∫ t in a..b, 1 / t ^ 2 := by
+      apply intervalIntegral.integral_mono_on hab hfint hgint
+      intro t htIcc
+      have htpos : 0 < t := lt_of_lt_of_le ha htIcc.1
+      gcongr
+      exact (Int.fract_lt_one t).le
+    have hnonneg : (0 : ℝ) ≤ ∫ t in a..b, Int.fract t / t ^ 2 := by
+      apply intervalIntegral.integral_nonneg hab
+      intro u huIcc
+      have hupos : 0 < u := lt_of_lt_of_le ha huIcc.1
+      have := Int.fract_nonneg u
+      positivity
+    have hval : (∫ t in a..b, 1 / t ^ 2) = 1 / a - 1 / b := by
+      have := intervalIntegral_const_div_sq 1 a b ha hb
+      simpa using this
+    rw [abs_of_nonneg hnonneg]
+    rw [hval] at hmono
+    exact hmono
+  have hb : ∀ᶠ x : ℝ in atTop, ‖∫ t in x..(θ * x), Int.fract t / t ^ 2‖ ≤
+      |1 / x - 1 / (θ * x)| := by
+    filter_upwards [eventually_gt_atTop (0 : ℝ)] with x hx
+    have hθx : (0 : ℝ) < θ * x := by positivity
+    rcases le_total x (θ * x) with hle | hle
+    · have h1 := hkey x (θ * x) hx hle
+      rw [Real.norm_eq_abs]
+      calc |∫ t in x..(θ * x), Int.fract t / t ^ 2| ≤ 1 / x - 1 / (θ * x) := h1
+        _ ≤ |1 / x - 1 / (θ * x)| := le_abs_self _
+    · have h1 := hkey (θ * x) x hθx hle
+      rw [Real.norm_eq_abs, intervalIntegral.integral_symm, abs_neg]
+      calc |∫ t in (θ * x)..x, Int.fract t / t ^ 2| ≤ 1 / (θ * x) - 1 / x := h1
+        _ ≤ |1 / (θ * x) - 1 / x| := le_abs_self _
+        _ = |1 / x - 1 / (θ * x)| := abs_sub_comm _ _
+  refine squeeze_zero_norm' hb ?_
+  · have h1 : Tendsto (fun x : ℝ => 1 / x) atTop (𝓝 0) := by
+      simpa [one_div] using tendsto_inv_atTop_zero (𝕜 := ℝ)
+    have h2 : Tendsto (fun x : ℝ => 1 / (θ * x)) atTop (𝓝 0) := by
+      have hθmul : Tendsto (fun x : ℝ => θ * x) atTop atTop :=
+        Tendsto.const_mul_atTop hθ tendsto_id
+      simpa only [one_div] using hθmul.inv_tendsto_atTop
+    have h3 := (h1.sub h2).abs
+    simpa using h3
+
+/-- Generic squeeze: `(1/(cx))·Δ(x) → 0` for eventually-bounded `Δ`. -/
+theorem tendsto_one_div_mul_bounded_zero (C c : ℝ) (hC : 0 ≤ C) (hc : 0 < c)
+    (Δ : ℝ → ℝ) (hΔ : ∀ x : ℝ, 1 ≤ x → |Δ x| ≤ C) :
+    Tendsto (fun x : ℝ => 1 / (c * x) * Δ x) atTop (𝓝 0) := by
+  have hb : ∀ᶠ x : ℝ in atTop, ‖1 / (c * x) * Δ x‖ ≤ C / (c * x) := by
+    filter_upwards [eventually_ge_atTop (1 : ℝ)] with x hx
+    have hxpos : (0 : ℝ) < x := lt_of_lt_of_le one_pos hx
+    have hcx : (0 : ℝ) < c * x := by positivity
+    rw [Real.norm_eq_abs, abs_mul, abs_of_pos (by positivity : (0 : ℝ) < 1 / (c * x))]
+    calc 1 / (c * x) * |Δ x| ≤ 1 / (c * x) * C := by
+          apply mul_le_mul_of_nonneg_left (hΔ x hx) (by positivity)
+      _ = C / (c * x) := by ring
+  refine squeeze_zero_norm' hb ?_
+  · have hmul : Tendsto (fun x : ℝ => c * x) atTop atTop :=
+      Tendsto.const_mul_atTop hc tendsto_id
+    have h2 : Tendsto (fun x : ℝ => C * (c * x)⁻¹) atTop (𝓝 (C * 0)) :=
+      tendsto_const_nhds.mul hmul.inv_tendsto_atTop
+    simpa [div_eq_mul_inv] using h2
+
+/-- **BBLS Propositions 88–89 fused, at an arbitrary positive rational** `θ = k/h`
+(coprimality NOT required — numerically verified for non-coprime pairs): the
+autocorrelation integral `A(k/h) = ∫₀^∞ {t}{(k/h)t}/t² dt` in closed form. -/
+theorem bbls_A_rat (h k : ℕ) (hh : 0 < h) (hk : 0 < k) :
+    (∫ t in Set.Ioi (0 : ℝ), Int.fract t * Int.fract (((k : ℝ) / (h : ℝ)) * t) / t ^ 2) =
+      (1 - (k : ℝ) / h) / 2 * Real.log ((k : ℝ) / h) +
+        ((k : ℝ) / h + 1) / 2 * (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant) -
+        Real.pi / (2 * h) * cotangentSumVFormula k h -
+        ((k : ℝ) / h) * (Real.pi / (2 * k) * cotangentSumVFormula h k) := by
+  set θ : ℝ := (k : ℝ) / (h : ℝ) with hθdef
+  have hhR : (0 : ℝ) < h := by exact_mod_cast hh
+  have hkR : (0 : ℝ) < k := by exact_mod_cast hk
+  have hθpos : 0 < θ := by rw [hθdef]; positivity
+  -- the reduced coprime representation, for Proposition 22
+  set d : ℕ := Nat.gcd h k with hddef
+  have hd : 0 < d := Nat.gcd_pos_of_pos_left k hh
+  set h' : ℕ := h / d with hh'def
+  set k' : ℕ := k / d with hk'def
+  have hh' : 0 < h' := Nat.div_pos (Nat.le_of_dvd hh (Nat.gcd_dvd_left h k)) hd
+  have hk' : 0 < k' := Nat.div_pos (Nat.le_of_dvd hk (Nat.gcd_dvd_right h k)) hd
+  have hcop : Nat.Coprime h' k' := Nat.coprime_div_gcd_div_gcd hd
+  have hkd : (k' : ℝ) * d = k := by
+    exact_mod_cast Nat.div_mul_cancel (Nat.gcd_dvd_right h k)
+  have hhd : (h' : ℝ) * d = h := by
+    exact_mod_cast Nat.div_mul_cancel (Nat.gcd_dvd_left h k)
+  have hdR : (0 : ℝ) < d := by exact_mod_cast hd
+  have hh'R : (0 : ℝ) < h' := by exact_mod_cast hh'
+  have hθeq : θ = (k' : ℝ) / (h' : ℝ) := by
+    rw [hθdef, ← hkd, ← hhd]
+    field_simp
+  -- Proposition 22 restated for θ
+  have h22 : ∀ x : ℝ, 0 < x →
+      (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) / (m : ℝ)) +
+        θ * (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) / (n : ℝ)) =
+      (θ / 2) * (∫ t in (0 : ℝ)..x, (Int.fract t) ^ 2 / t ^ 2) +
+        (1 / 2) * (∫ t in (0 : ℝ)..(θ * x), (Int.fract t) ^ 2 / t ^ 2) -
+        (∫ t in (0 : ℝ)..x, (Int.fract t * Int.fract (θ * t)) / t ^ 2) +
+        ((θ - 1) / 2) * Real.log (1 / θ) +
+        ((θ - 1) / 2) * (∫ t in x..(θ * x), Int.fract t / t ^ 2) +
+        (1 / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x) ^ 2 +
+        ((θ - 1) / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x) := by
+    intro x hx
+    rw [hθeq]
+    exact baezDuarte_prop22_rat hh' hk' hcop x hx
+  -- limits of the integral pieces
+  have hIθmul : Tendsto (fun x : ℝ => θ * x) atTop atTop :=
+    Tendsto.const_mul_atTop hθpos tendsto_id
+  have hI1 : Tendsto (fun x : ℝ => ∫ t in (0 : ℝ)..x, (Int.fract t) ^ 2 / t ^ 2) atTop
+      (𝓝 (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant)) := by
+    have h1 := MeasureTheory.intervalIntegral_tendsto_integral_Ioi (0 : ℝ)
+      integrableOn_fract_sq_div_sq tendsto_id
+    rwa [bbls_A_one] at h1
+  have hI2 : Tendsto (fun x : ℝ => ∫ t in (0 : ℝ)..(θ * x), (Int.fract t) ^ 2 / t ^ 2) atTop
+      (𝓝 (Real.log (2 * Real.pi) - Real.eulerMascheroniConstant)) := by
+    have h1 := MeasureTheory.intervalIntegral_tendsto_integral_Ioi (0 : ℝ)
+      integrableOn_fract_sq_div_sq hIθmul
+    rwa [bbls_A_one] at h1
+  have hI3 : Tendsto (fun x : ℝ =>
+      ∫ t in (0 : ℝ)..x, (Int.fract t * Int.fract (θ * t)) / t ^ 2) atTop
+      (𝓝 (∫ t in Set.Ioi (0 : ℝ), Int.fract t * Int.fract (θ * t) / t ^ 2)) :=
+    MeasureTheory.intervalIntegral_tendsto_integral_Ioi (0 : ℝ)
+      (integrableOn_fract_mul_fract_div_sq hθpos) tendsto_id
+  have hI5 := tendsto_fract_div_sq_interval_zero hθpos
+  -- boundary terms
+  have hΔbdd : ∀ x : ℝ, 1 ≤ x → |Int.fract (θ * x) - θ * Int.fract x| ≤ 1 + θ := by
+    intro x hx
+    have h1 := Int.fract_nonneg (θ * x)
+    have h2 := (Int.fract_lt_one (θ * x)).le
+    have h3 := Int.fract_nonneg x
+    have h4 := (Int.fract_lt_one x).le
+    have h5 : 0 ≤ θ * Int.fract x := mul_nonneg hθpos.le h3
+    have h6 : θ * Int.fract x ≤ θ := by nlinarith
+    rw [abs_le]
+    constructor <;> linarith
+  have hB1 : Tendsto (fun x : ℝ =>
+      1 / (2 * θ * x) * (Int.fract (θ * x) - θ * Int.fract x) ^ 2) atTop (𝓝 0) := by
+    apply tendsto_one_div_mul_bounded_zero ((1 + θ) ^ 2) (2 * θ) (by positivity)
+      (by positivity)
+    intro x hx
+    have h1 := hΔbdd x hx
+    rw [abs_pow]
+    nlinarith [abs_nonneg (Int.fract (θ * x) - θ * Int.fract x)]
+  have hB2 : Tendsto (fun x : ℝ =>
+      (θ - 1) / (2 * θ * x) * (Int.fract (θ * x) - θ * Int.fract x)) atTop (𝓝 0) := by
+    have hbound : ∀ x : ℝ, 1 ≤ x →
+        |(θ - 1) * (Int.fract (θ * x) - θ * Int.fract x)| ≤ |θ - 1| * (1 + θ) := by
+      intro x hx
+      rw [abs_mul]
+      exact mul_le_mul_of_nonneg_left (hΔbdd x hx) (abs_nonneg _)
+    have hgen := tendsto_one_div_mul_bounded_zero (|θ - 1| * (1 + θ)) (2 * θ)
+      (by positivity) (by positivity) _ hbound
+    apply Tendsto.congr ?_ hgen
+    intro x
+    ring
+  -- limits of the two series (Stage A, at the NON-reduced representations)
+  have hA1 : Tendsto (fun x : ℝ =>
+      ∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) / (m : ℝ)) atTop
+      (𝓝 (Real.pi / (2 * h) * cotangentSumVFormula k h)) := by
+    have h1 := (tendsto_bernoulliB1_sum_div_rat k h hk hh).comp
+      (tendsto_nat_floor_atTop (α := ℝ))
+    simp only [Function.comp_def] at h1
+    have h2 : ∀ x : ℝ, (∑ m ∈ Finset.Icc 1 ⌊x⌋₊,
+        bernoulliB1 ((m : ℝ) * ((k : ℝ) / h)) / (m : ℝ)) =
+        ∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) / (m : ℝ) := by
+      intro x
+      rfl
+    exact Tendsto.congr h2 h1
+  have hA2 : Tendsto (fun x : ℝ =>
+      ∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) / (n : ℝ)) atTop
+      (𝓝 (Real.pi / (2 * k) * cotangentSumVFormula h k)) := by
+    have h1 := (tendsto_bernoulliB1_sum_div_rat h k hh hk).comp
+      ((tendsto_nat_floor_atTop (α := ℝ)).comp hIθmul)
+    simp only [Function.comp_def] at h1
+    apply Tendsto.congr ?_ h1
+    intro x
+    apply Finset.sum_congr rfl
+    intro n _
+    have harg : (n : ℝ) * ((h : ℝ) / k) = (n : ℝ) / θ := by
+      rw [hθdef]
+      field_simp
+    rw [harg]
+  -- combine
+  have hLHS := hA1.add (hA2.const_mul θ)
+  have hRHS := ((((((hI1.const_mul (θ / 2)).add (hI2.const_mul (1 / 2))).sub hI3).add
+    (tendsto_const_nhds (x := (θ - 1) / 2 * Real.log (1 / θ)))).add
+      (hI5.const_mul ((θ - 1) / 2))).add hB1).add hB2
+  have hEq : (fun x : ℝ =>
+      (∑ m ∈ Finset.Icc 1 ⌊x⌋₊, bernoulliB1 ((m : ℝ) * θ) / (m : ℝ)) +
+        θ * (∑ n ∈ Finset.Icc 1 ⌊θ * x⌋₊, bernoulliB1 ((n : ℝ) / θ) / (n : ℝ)))
+      =ᶠ[atTop] (fun x : ℝ =>
+      (θ / 2) * (∫ t in (0 : ℝ)..x, (Int.fract t) ^ 2 / t ^ 2) +
+        (1 / 2) * (∫ t in (0 : ℝ)..(θ * x), (Int.fract t) ^ 2 / t ^ 2) -
+        (∫ t in (0 : ℝ)..x, (Int.fract t * Int.fract (θ * t)) / t ^ 2) +
+        ((θ - 1) / 2) * Real.log (1 / θ) +
+        ((θ - 1) / 2) * (∫ t in x..(θ * x), Int.fract t / t ^ 2) +
+        (1 / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x) ^ 2 +
+        ((θ - 1) / (2 * θ * x)) * (Int.fract (θ * x) - θ * Int.fract x)) := by
+    filter_upwards [eventually_gt_atTop (0 : ℝ)] with x hx
+    exact h22 x hx
+  have hLHS' := Filter.Tendsto.congr' hEq hLHS
+  have hkey := tendsto_nhds_unique hLHS' hRHS
+  have hlog : Real.log (1 / θ) = -Real.log θ := by
+    rw [one_div, Real.log_inv]
+  rw [hlog] at hkey
+  linear_combination hkey
+
+
 end RH.Criteria.NymanBeurling.VasyuninGram
