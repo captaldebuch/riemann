@@ -321,3 +321,172 @@ The witness scaffolding (`witnessN*`/`regCertN*`/`certN*`) was pre-Phase-10D leg
 | `Basic/CriticalStrip.lean` | 18, 23 | Basic RH setup stubs |
 | `Criteria/NymanBeurling/VasyuninGram.lean` | 23, 27 | Gram integral identity |
 | `Criteria/NymanBeurling/G11IntegralEvaluation.lean` | 108 | G(1,1) analytic evaluation |
+
+---
+
+## 4. Phase 10T: Eliminating the Cotangent-Interval Axiom Family (k = 1..50)
+
+At the start of this phase the project's honest weak point was numeric, not structural: `RiemannHypothesis/Certificates/Generated/VasyuninPrimitiveBoundsCore.lean` contained **1,225 `axiom cot_pi_A_K_bounds`** declarations — rational interval bounds on `cotangentTermV a k = cos(πa/k)/sin(πa/k)`, originally computed by an external Python/Arb script and simply *asserted* into Lean rather than kernel-checked. A green `lake build` therefore did **not** mean these specific numeric claims had been verified by anything other than trust in the external tool.
+
+**Method.** Each bound is proved by: bounding the target angle via `Real.pi_gt_d20`/`Real.pi_lt_d20` (Mathlib's 20-digit π bounds), halving the angle down to a small base value, Taylor-bounding `cos`/`sin` there via `Real.cos_bound`/`Real.sin_bound`, then re-doubling `n` times (`cos(2θ)=2cos²θ-1`, `sin(2θ)=2sinθcosθ`) back up to the target angle, and finally dividing via a generic `cot_bound_of_sin_cos_bounds` lemma. Reusable infrastructure lives in `RiemannHypothesis/Certificates/TrigIntervalSweep.lean` / `CotangentBoundsCore.lean`.
+
+**Structural shortcuts** avoid a fresh 32-level halving proof for every pair `(a,k)`:
+- exact `π/2` (`2a = k`) → `cot = 0` trivially;
+- obtuse pairs (`2a > k`) reduce via `cotangentTermV a k = -cotangentTermV (k-a) k`;
+- reducible fractions (`gcd(a,k) > 1`) reduce via `cotangentTermV_gcd_reduce`;
+- when a reduction target's own public bound is numerically too loose to imply the original pair's *exact pre-declared literal* (checked via exact `Fraction` arithmetic before writing any Lean), a private `_fresh_aux` certificate is generated for the reduction target's acute companion angle instead — chaining gcd-reduction and obtuse-negation together where both apply.
+
+**Progression** (each stage independently `#print axioms`-verified — not taken from any tool's self-report — and tagged):
+
+| Stage | k-range | Axioms retired | Tag |
+|---|---|---|---|
+| 10T₁ | k ≤ 10 | 45 | — |
+| 10T₂ | k ≤ 20 | 145 | `verified-phase-10T2-13B` |
+| 10T₃ | k ≤ 30 | ~210 | `verified-phase-10T3-k30` |
+| 10T₄ | k = 31–40 | 345 | `verified-phase-10T4-k40` |
+| 10T₅ | k = 41–50 | 445 | `verified-phase-10T5-k50` |
+
+**Final state: 1225 → 0.** Every `cot_pi_A_K_bounds` in the project (k = 1 through 50) is now a kernel-checked `theorem`, not an `axiom` — 1225 theorems, 0 axioms remaining for this family, project-wide.
+
+### 4.1 A regression, caught and fixed twice
+
+This project's own methodology caught two real defects during Phase 10T, both by the same discipline: never trust a tool's "built, verified, done" self-report — independently re-run `lake build` and `#print axioms`, and for generated-file diffs, compare `def` values as a **sorted name+value set**, not a positional `git diff`.
+
+1. **2026-07-02 incident.** A tool committing directly to `main` silently changed several pre-existing `def cot_pi_A_K_lower`/`upper` rational literals into symbolic references to other pairs' bounds (e.g. `def cot_pi_10_22_upper := - cot_pi_12_22_upper`) — plausible-looking, but not the literal the surrounding proofs were built against. Caught by an independent rebuild, not by the committing tool's own report. This incident motivated the `AGENTS.md` "Multi-tool coordination protocol" (§6) and `scripts/verify.sh`.
+2. **2026-07-04 recurrence, Phase 10T₅.** The exact same defect class reappeared: a generator script's `def`-line handler had a stray branch that replaced gcd-reducible pairs' literals with symbolic references (306 pairs / 606 lines affected). Caught the same way — an exhaustive sorted-set comparison of all 2450 `cot_pi_*` def lines against the last verified tag showed 606 non-empty diffs where 0 were expected. Root-caused and fixed by removing the offending branch entirely: generator scripts must never touch `def` lines under any circumstance; all reductions happen inside the `theorem := by ...` proof body.
+
+**Lesson embedded in tooling**: `scripts/verify.sh` Step 2 checks exactly this — do the pre-existing `def name : Type := value` lines, taken as a set, change at all. It is now the mandatory pre-merge gate for this project, run by whichever tool proposes a merge, checked independently by whichever tool proposes to accept it.
+
+## 5. Phase 10U: Removing `native_decide`
+
+Seven generated certificate files (`NymanGramN1/2/3/5/10/20.lean`, `NymanGramN50_Tail.lean`) used `native_decide` — 16 occurrences total — to close a decidable rational-equality goal (`signAwareQuadBoundQ ... + signAwareLinBoundQ ... + 1 = witnessEnergy.energyUpper`) or, for N=20, an LDL^T certificate match. `native_decide` compiles to native machine code and trusts the whole Lean compiler, not just the kernel — disallowed by this project's own `AGENTS.md` rule, and a strictly weaker trust guarantee than everything else in the pipeline.
+
+**Replacements, all genuine kernel-checked proofs:**
+- N=1/2/3/5/10: direct `norm_num` unfolding of the relevant definitions.
+- N=20: the single `ldl_identity` `native_decide` (a 20×20 exact-rational matrix identity) was split into 20 per-row lemmas (`ldl_identity_row_0`..`19`), each closed by explicit computation — notably slow to compile (order of an hour) since kernel-checking this much large-rational arithmetic is exactly what `native_decide`'s compiled-code path existed to avoid, but fully trustworthy.
+- N=50: already documented as infeasible for `native_decide` at this scale (exact LDL^T entries would run to ~8,500 digits) — closed instead via `simp` with a raised `maxSteps` bound, unfolding the ~50 gram-entry definitions directly.
+
+**Result: 16 → 0 `native_decide` occurrences, project-wide.** Tag `verified-phase-10U-native-decide-removed`.
+
+## 6. Verification Tooling and Multi-Tool Coordination
+
+As the project scaled, it began being worked by multiple independent AI tools (Claude Code, Codex, Google Antigravity/Gemini) across separate sessions — never concurrently on the same branch, always via isolated git worktrees each with a **real copy** (never a symlink — a symlinked `.lake` build cache caused real cross-session corruption once) of the `.lake` build cache.
+
+**`scripts/verify.sh`** is the mandatory pre-merge gate, run before any branch reaches `main`, regardless of which tool produced it:
+1. Full `lake build RiemannHypothesis` must succeed.
+2. Every pre-existing `def` line, compared as a **sorted name+value set** (not positional `git diff`, which produced a recurring false-positive class on large generated-file diffs — a short axiom replaced by a long theorem proof causes git's Myers diff to represent unrelated, byte-identical lines elsewhere as "moved"), must be unchanged unless the change is a deliberate, disclosed, reviewed correction.
+3. Repo-wide `axiom`/`sorry`/`native_decide` counts, reported and compared against the baseline.
+4. `#print axioms` on a bounded sample of new/changed theorems since baseline — including theorems whose signature pre-existed as a `sorry`-stub with only the body filled in (a second blind spot fixed alongside the first) — checked against `scripts/verify_known_sorries.txt`, an explicit allowlist of names individually confirmed to carry a genuinely documented, open `sorry` rather than a silent gap.
+
+**A note on trusting tool self-reports.** Every substantive claim in this report — every "proved," every "clean," every "verified" — was independently re-derived by a human-directed audit (a fresh `lake build`, a fresh `#print axioms`, a fresh exhaustive diff), not accepted from any tool's own narration. This discipline caught the two regressions in §4.1, a genuinely false pre-existing axiom (§7.3), and, separately, a pattern where one tool's own wrap-up summaries became disconnected from its concurrent real work (accurate edits, confused narration) — underscoring that in a multi-tool pipeline, the code and build state are the only reliable source of truth.
+
+## 7. Phase 13: The Vasyunin Local Bridge
+
+### 7.1 A false theorem, found and corrected
+
+An earlier version of the Vasyunin bridge asserted `baezDuarteGramEntry_eq_tsum_intervals`: that `baezDuarteGramEntry h k` equals the sum, over `m`, of the fractional-part integral on `[1/(m+1), 1/m]`. This is **false** — those intervals tile `(0,1]`, but `baezDuarteGramEntry` integrates over all of `(0,∞)`, and the tail `(1,∞)` contributes a generically nonzero amount (e.g. for `h=k=1`, numerically `≈0.2605` vs. `≈0.9800`). This was formally disproved (`baezDuarteGramEntry_ne_tsum_intervals_disproof`) rather than silently worked around, and replaced with the honest decomposition: `baezDuarteGramEntry_eq_tsum_intervals_add_tail` (fully proved) splits the entry into the interval-tsum piece plus an explicit tail term, and the corrected target field `interval_sum_add_tail_eq_cotangent_formula` requires the tsum **plus** the tail (not the tsum alone) to equal the Vasyunin cotangent formula.
+
+### 7.2 V1–V7: decomposing the remaining hard theorem
+
+`interval_sum_add_tail_eq_cotangent_formula`'s remaining gap — now isolated to a single theorem, `tsum_shifted_integrals_eq_cotangent_sum` in `VasyuninBridge.lean` — was deliberately **not** attempted directly (this project's own rule: never point an agent at a theorem this large in one pass). A dedicated file, `VasyuninCotangentRecognition.lean`, builds supporting infrastructure incrementally:
+
+- **`real_cot_series_rep'`**: Mathlib's own Mittag-Leffler cotangent expansion (`Complex.cot_series_rep'`) is valid on all of `ℂ_ℤ`, not merely the upper half-plane as `VasyuninBridge.lean`'s own (now corrected) doc-comment assumed — but its *iterated-derivative* form, needed for the trigamma-type series this problem actually requires, **is** restricted to the upper half-plane. This theorem builds the genuine real-variable version directly, unrestricted.
+- **`realTrigammaSeriesInt_reflection`**: the real-variable reflection identity `∑'_{n∈ℤ} 1/(x+n)² = π²/sin²(πx)` — a closed form Mathlib does not otherwise provide — proved via term-by-term differentiation of the real Mittag-Leffler series on integer-avoiding intervals (`Mathlib.Analysis.Calculus.SmoothSeries.hasDerivAt_tsum_of_isPreconnected`).
+- **`shiftedIntegralTsum_eq_integral_of_rescaled_series'`**: the sum-integral interchange needed to connect the shifted-integral tsum to the trigamma series, made fully **unconditional** by discharging its integrability hypothesis outright — via the global, non-asymptotic bound `Int.fract y ≤ y` for all `y ≥ 0` (no case split), showing the integrand's apparent `1/s²`-type singularity at `s=0` is exactly cancelled, not a genuine obstacle (unlike a *different*, harder integrand — `genIntegrandTransformed` — elsewhere in `VasyuninBridge.lean`, whose own open `sorry` this does *not* discharge).
+
+Every theorem above is independently confirmed `#print axioms`-clean (`[propext, Classical.choice, Quot.sound]` only). **What remains open**: connecting the one-sided (`ℕ`-indexed) trigamma series actually used downstream to the two-sided reflection identity, and — the genuinely deep remaining mathematical core — the classical sub-arc partition and Dedekind-sum-style cotangent reciprocity argument (Vasyunin's own multi-page computation) inside `shiftedIntegralTsum_period_reduction`, which is precisely and honestly marked `sorry`.
+
+### 7.3 A false axiom, found and corrected
+
+Independently of the above, an audit ahead of a mechanical axiom-elimination pass (Phase 10V, log-bound axioms) found that a pre-existing, widely-used (1,548 call sites across 27 files) definition asserted something **mathematically false**: `prim_pi_upper : ℚ := 884279719003555 / 281474976710656`, evaluating to `3.141592653589793115...`, is strictly *less* than `π = 3.14159265358979323846...` — so the axiom `Real.pi ≤ prim_pi_upper` could never have been proved, because it isn't true. Confirmed independently via exact decimal comparison before any fix was applied. Corrected to the next representable value (`884279719003556/...`, genuinely `≥ π`), converted from `axiom` to a real `theorem` (via Mathlib's `Real.pi_gt_d20`/`pi_lt_d20`), and re-verified with a full project rebuild to confirm no downstream proof depended on the old, too-tight (and false) value in a way that broke.
+
+### 7.4 The H13-J period-reduction chain (Báez-Duarte–Balazard–Landreau–Saias)
+
+The open core of §7.2, `shiftedIntegralTsum_period_reduction`, turned out to have a tractable elementary proof chain in the literature — not via the initially-investigated digamma route (a cited "Belhadj–Goubi identity" could not be located or verified and was **abandoned as a dead end**, not silently assumed), but via Propositions 12/15/16/21/22/88/89 of Báez-Duarte–Balazard–Landreau–Saias, arXiv:math/0306251, formalized in `VasyuninPeriodReduction.lean`. Status, each item independently `#print axioms`-checked:
+
+- **Proposition 15** (Gauss-sum/floor-sum identity) and **Proposition 12** (lattice-point double-counting: `∑⌊mθ⌋ + ∑⌊n/θ⌋ = ⌊x⌋⌊θx⌋ + ⌊x/h⌋` for `θ = k/h` coprime): fully proved.
+- **A real convention bug caught by numerics before formalization**: the paper's `B₁` is the *Dedekind sawtooth* (value `0` at exact integers, not `-1/2`); the first frozen statement used the wrong convention and was numerically refuted, then corrected — the same "verify the statement before proving it" discipline as §7.1/§7.3.
+- **Proposition 21, rational case** (`baezDuarte_prop21_rat_of_prop12`): fully proved, unconditional, for every real `x > 0`. (The paper's general-real-θ statement `baezDuarte_prop21` is kept as a documented, allowlisted `sorry` purely for fidelity; nothing downstream uses it.)
+- **Proposition 22's four analytic ingredients**, each proved: two discrete Abel/Stieltjes summation-by-parts identities (`stepFunction_abel_stieltjes_identity` and its scaled companion, `∑_{m≤x} a_m/m = S(x)/x + ∫₀ˣ S(u)/u² du`), the quadratic change-of-variables identity (`fract_sq_scaled_integral`), and **Proposition 16**, the Frullani-type identity `∫₀ˣ t⁻²({θt} − θ{t}) dt = θ log(1/θ) + θ∫ₓ^{θx} u⁻²{u} du`, proved for *general* positive real `θ, x` (stronger than the rational case needed) with new local integrability infrastructure for discontinuous fractional-part integrands.
+- **Proposition 22 itself** (`baezDuarte_prop22_rat`): the full Stieltjes-integral identity for the weighted sums `∑ B₁(mθ)/m + θ∑ B₁(n/θ)/n`, now **assembled and proved** from the four ingredients plus Proposition 21 applied pointwise inside the integral — `#print axioms`-clean (`[propext, Classical.choice, Quot.sound]` only), with the stale allowlist entry removed; the full-project verification gate for the merge was in flight at the time of writing.
+
+**What remains open in the chain**: Proposition 88 (the `x → ∞` limit — flagged in advance as carrying a genuine conditional-convergence risk for `∑ B₁(kθ)/k`, to be scoped before attempting), Proposition 89 (rational specialization, expected to reuse the already-verified digamma reflection machinery), and the final connection back to `shiftedIntegralTsum_period_reduction` itself.
+
+## 8. Phase 14: Linear Möbius / Dirichlet Estimates
+
+The linear half of the analytic-debt program targets `explicitLinearCenteredRemainder N = 2·(explicitLinearMobiusSum N + 1)`, split into two classical Dirichlet-style sums, `cutoffMobiusOverKSum N → 0` and `cutoffMobiusLogOverKSum N → -1`, each at rate `O(1/log N)` — smoothed/cutoff analogues of `∑μ(k)/k ≈ 0` and `∑μ(k)log k/k ≈ -1`, which follow classically from the behavior of `1/ζ(s)` near `s=1`.
+
+**Proved**: exact finite Abel-summation identities (`cutoffMobiusOverKSum_eq_abel_sum`, `cutoffMobiusLogOverKSum_eq_abel_sum`), replacing what were previously `sorry`-stubbed placeholder statements, via an explicit induction lemma (`sum_Icc_mul_sub_endpoint_eq_sum_partial`).
+
+**Explicitly and honestly isolated, not proved**: the actual quantitative analytic input, as a new hypothesis structure `MobiusPNTStyleEstimates` (bounds on the Abel-transformed Möbius/Möbius-log summatory functions at rate `O(1/log N)`) — the same "debts as explicit structure fields" pattern used throughout this project. A research pass (§ methodology: check Mathlib before assuming a gap) confirmed Mathlib has finite/continuous Abel summation, the Möbius-zeta convolution identity `L_μ(s) = 1/ζ(s)` for `Re(s) > 1`, and closed-half-plane zeta nonvanishing — but **not** quantitative Mertens/PNT-type bounds for the relevant partial sums, nor the boundary-passage argument at `s=1`. This is genuinely substantial classical analytic number theory, not a short formalization gap.
+
+Tag `verified-phase-14-linear-abel`.
+
+### 8.1 The H14M track: no shortcut, then classical groundwork (now parked)
+
+Two independent research passes converged on the same verdict, **do not re-litigate without new information**: the `MobiusPNTStyleEstimates`/`ClassicalMertensAPI` fields cannot be obtained from any weaker-than-PNT input. The quantitative requirement is `M(x) ≪ x/log²x`; Mathlib's qualitative PNT (Wiener–Ikehara, and `pi_alt` in the external `PrimeNumberTheoremAnd` project) is Tauberian and *in principle* cannot yield an effective rate. Even the purely qualitative field `mobius_sum_zero` (`∑μ(k)/k → 0`) was confirmed by targeted reconnaissance to be missing from both Mathlib and `PrimeNumberTheoremAnd` — the bridge (a sign-changing Tauberian theorem for `1/ζ`, or any `M(N)/N → 0` result) does not exist there yet. The genuinely good news: the classical **1899 de la Vallée Poussin zero-free region alone** already gives `M(x) ≪ x·exp(-c√log x)`, far stronger than needed — so this debt is 125-year-old textbook material actively being formalized upstream, not open research.
+
+On that basis a lettered plan (H14M-A…I) was drawn up and its first two steps banked, both merged after independent verification:
+
+- **H14M-A** (`verified-h14m-a-zero-free-api`): the zero-free-region *statement* frozen as a hypothesis structure `DeLaValleePoussinZeroFreeRegion` (`ζ(s) ≠ 0` for `Re s > 1 − c/log(|Im s|+2)`), with proved sanity corollaries (consistency with the closed-half-plane nonvanishing Mathlib already has).
+- **H14M-B, ingredients only** (`verified-h14m-b-zero-free-subpieces`, 13 lemmas, no `sorry`): the elementary `3-4-1` inequality `0 ≤ 3 + 4cos θ + cos 2θ`; its unit-circle and logarithmic Euler-factor positivity forms (a public reproof of a *private* Mathlib lemma in `Nonvanishing.lean`, via the Taylor series of `−log(1−z)`); von Mangoldt log-derivative wrappers `L↗Λ(s) = −ζ'(s)/ζ(s)` with the termwise cosine expansion `Λ(n)n^{−σ}cos(t log n)`; and local wrappers at `s = 1` (residue, regular-part boundedness, and a genuinely new simple-zero log-derivative residue lemma).
+
+**Honestly not done, stated in the code's own docstrings**: no *instance* of `DeLaValleePoussinZeroFreeRegion` is constructed — that requires combining the positivity across `σ, σ+it, σ+2it`, handling zeros of arbitrary multiplicity (the residue lemma above covers only simple zeros), and the global contour/growth estimates. The H14 track is **parked here by explicit decision**: its remaining debt is now reduced to precisely-named missing pieces (H14M-B assembly, then C–I), each documented in the plan, none attempted.
+
+## 9. Phase 15: Quadratic Log-Cotangent Interaction
+
+The deepest of the three analytic debts. The target, `explicitQuadraticInteractionRemainder N = (double sum of an interaction kernel) - 1 → 0` at rate `O(1/log N)`, was deliberately **not** approached by attempting the bound directly. Per this project's own rule for problems at this scale — freeze the exact object, gather numerical evidence, decompose structurally, and only then consider an actual estimate — the sequence so far:
+
+- **Kernel frozen and symmetric** (`quadraticInteractionKernel_symm`, handling `h=0`/`k=0` edge cases explicitly, not by omission).
+- **Numerical diagnostics** (`experiments/phase15_quadratic_interaction_diagnostics.py`, independently re-run and reproduced exactly): at N=1000, the diagonal contributes **exactly 0**; the target `+1` limit comes from broad cancellation between coprime pairs (`-0.30`) and non-coprime pairs (`+1.31`), not from any single narrow window — a `gcd`-exact breakdown shows wild swings (gcd 6–10 alone: `+1.72`, larger in magnitude than the whole target).
+- **Structural decomposition** motivated directly by that finding: diagonal/off-diagonal split, then a `gcd`-stratified partition of the off-diagonal part (`quadraticInteractionGcdSlice`, plus an exact identity that the full double sum equals `∑_g gcdSlice`).
+- **The diagonal case, resolved exactly** (not merely bounded): `cotangentSumVFormula h h = 0` identically, because each summand contains `Int.fract(a·h/h) = Int.fract(a) = 0` for the integer `a` — so `quadraticInteractionKernel h h = 0` and hence `quadraticInteractionDiagonal N = 0` for every `N`, trivially satisfying its share of the interaction bound.
+- **A bridge theorem**, `explicitQuadraticInteractionRemainder_bound_of_analytic_subEstimates`, that takes three still-open hypothesis structures (`QuadraticInteractionDiagonalEstimate`, `QuadraticInteractionGcdMainTermEstimate`, `QuadraticInteractionGcdSliceErrorEstimate`, bundled as `QuadraticInteractionAnalyticSubEstimates`) — none of them proved true — and derives the combined interaction bound via genuine triangle-inequality/finite-sum algebra. This is pure logical wiring: *if* the three sub-estimates hold, the combined bound follows; it says nothing about whether they do.
+
+**What remains completely open**: identifying and proving the actual per-`gcd`-stratum main term (why the sharp `gcd` 6–10 contribution?) and bounding the error mass — the genuinely deep, unattempted mathematical core of this debt, likely the hardest single piece in the whole project per its own diagnostics.
+
+### 9.1 Reframing the open core: Estermann route (partial) and the Farey-cell correlation
+
+Two further structural steps, both merged after independent verification, sharpened *what kind* of problem the open core actually is:
+
+- **BBLS/Estermann contour route, a partial success** (`BBLS_EstermannContourPackage` + wiring theorems): the mysterious `+1` main term is *explained* by a genuine, checkable residue mechanism (the pole structure of the Estermann function in the Báez-Duarte–Balazard–Landreau–Saias contour argument) — but the route does **not** by itself close the error estimates; the package honestly isolates what the contour argument would still require as unproved hypothesis fields.
+- **The canonical reframing** (`fareyCellMobiusCorrelationSum`, `FareyCellMobiusCorrelationEstimate`, `FareyCellGcdSliceErrorDecomposition` + wiring): the remaining gap is a **two-linear-forms Möbius correlation estimate over Farey cells** — a Chowla/Elliott-type correlation problem, explicitly **not** a Bombieri–Vinogradov/equidistribution problem (a tempting but wrong reduction, recorded as such to prevent future re-derivation). Relevant modern literature to consult when this is picked up: Matomäki–Radziwiłł–Tao, Tao–Teräväinen, Lichtman–Teräväinen, Frantzikinakis–Host, Harper/Klurman/Mangerel. The hypothesis structures isolate exactly this correlation estimate as the single named debt; everything around it is proved wiring.
+
+## 10. The Fourth Debt: Nyman–Beurling ⇒ RH
+
+Even a fully closed set of analytic debts (§7–9) only yields a theorem-proved Báez–Duarte criterion. The step from there to unconditional RH is `nyman_beurling_criterion_iff_RH` (`BaezDuarte.lean`), still a bare, explicitly-labeled axiom — the classical Nyman (1950) / Beurling (1955) / Báez-Duarte (2003) theorem itself. A staged plan for this ("Phase NB") exists but has not been started: split the bare `↔` into two one-directional theorems and pursue only the forward direction (`NymanBeurlingCriterion → RH`, the direction that actually turns this project's work into RH) via a Mellin-transform vanishing argument, deferring the converse (the full classical Beurling density/cyclicity theorem) indefinitely. Notably, `nymanBeurlingCriterion_iff_baezDuarteCriterion` — a step the plan initially assumed was still open — is **already proved** in the repo (Phase 10A); the actual remaining gap is narrower than it first appears.
+
+## 11. Current Honest Status
+
+```text
+Axiom count:            1364 (original) → 133 (current), a reduction of >90%
+  of which cot_pi_*_bounds:   1225 → 0        (Phase 10T, fully closed)
+  of which native_decide:       16 → 0        (Phase 10U, fully closed)
+  of which prim_log/log_certified/euler_gamma:  87 (open, mechanical, Phase 10V, in progress)
+  of which dead axioms from abandoned exploratory strategies: ~46 (not on the active path)
+sorry count:             4 — all individually named, documented, and allowlisted
+                           (scripts/verify_known_sorries.txt), none silent:
+                           tsum_shifted_integrals_eq_cotangent_sum (VasyuninBridge),
+                           vasyuninBEntry_correct_axiom (VasyuninBridge),
+                           shiftedIntegralTsum_period_reduction (CotangentRecognition),
+                           and baezDuarte_prop21 (general-θ, kept for paper fidelity only)
+
+Three analytic debts (H13, H14, H15) toward a proved Báez-Duarte criterion:
+  H13 (Vasyunin local bridge):        BBLS period-reduction chain (§7.4) proved through
+                                       Proposition 22 inclusive; Propositions 88/89 and
+                                       the final reconnection remain
+  H14 (linear Möbius/Dirichlet):      Abel identities proved; no-shortcut verdict
+                                       confirmed twice; de la Vallée Poussin API frozen
+                                       + 3-4-1 ingredients banked (§8.1); PARKED — the
+                                       zero-free-region instance itself is untouched
+  H15 (quadratic log-cotangent):      structural decomposition + diagonal proved; open
+                                       core reframed as a Farey-cell two-linear-forms
+                                       Möbius correlation (§9.1), explicitly NOT
+                                       Bombieri-Vinogradov; the estimate is untouched
+
+A fourth, separate gap beyond all three debts:
+  nyman_beurling_criterion_iff_RH:    still a bare axiom; a staged plan exists,
+                                       not yet started
+```
+
+**This project is, honestly, a certified reduction with explicit, named, individually-tracked analytic debts — not a proof of the Riemann Hypothesis.** What has changed since the original 1,364-axiom, trust-everything state is that every remaining gap is now precisely named, precisely stated, and independently `#print axioms`-auditable — nothing is hidden inside a misleadingly "green" build. Closing H13, H14, H15, and the Nyman–Beurling bridge would yield a genuine, unconditional, machine-checked proof of RH; each of the four remaining pieces is, on its own merits, a substantial, multi-session (or genuinely open-research-level) undertaking, and none should be assumed tractable merely because the surrounding architecture is now clean.
