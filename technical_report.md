@@ -1,5 +1,7 @@
 # Technical Report: Certified Nyman-Beurling Pipeline for the Riemann Hypothesis
 
+**Authors:** Xavier Fresquet and Gérard Biau, Sorbonne Université
+
 ## 0. Methodology: A Digital Humanities Approach to the Riemann Hypothesis
 
 This project applies a **Digital Humanities (DH) and Knowledge Engineering methodology** to the Riemann Hypothesis. Rather than attempting a direct, isolated mathematical attack, it treats the centuries-long history of RH research as a vast corpus to be mapped, filtered, and reverse-engineered — using machine-verified formal proof as the ultimate rigour gate.
@@ -490,3 +492,46 @@ A fourth, separate gap beyond all three debts:
 ```
 
 **This project is, honestly, a certified reduction with explicit, named, individually-tracked analytic debts — not a proof of the Riemann Hypothesis.** What has changed since the original 1,364-axiom, trust-everything state is that every remaining gap is now precisely named, precisely stated, and independently `#print axioms`-auditable — nothing is hidden inside a misleadingly "green" build. Closing H13, H14, H15, and the Nyman–Beurling bridge would yield a genuine, unconditional, machine-checked proof of RH; each of the four remaining pieces is, on its own merits, a substantial, multi-session (or genuinely open-research-level) undertaking, and none should be assumed tractable merely because the surrounding architecture is now clean.
+
+## References
+
+### The criterion and its refinements
+
+- B. Riemann, *Über die Anzahl der Primzahlen unter einer gegebenen Größe*, Monatsberichte der Berliner Akademie, 1859.
+- B. Nyman, *On the One-Dimensional Translation Group and Semi-Group in Certain Function Spaces*, Ph.D. thesis, University of Uppsala, 1950.
+- A. Beurling, *A closure problem related to the Riemann zeta-function*, Proc. Nat. Acad. Sci. USA **41** (1955), 312–314.
+- L. Báez-Duarte, *A strengthening of the Nyman–Beurling criterion for the Riemann hypothesis*, Atti Accad. Naz. Lincei Rend. Lincei Mat. Appl. **14** (2003), 5–11.
+- V. I. Vasyunin, *On a biorthogonal system associated with the Riemann hypothesis*, Algebra i Analiz **7** (1995); English transl. St. Petersburg Math. J. **7** (1996), 405–419.
+
+### Sources directly formalized or numerically re-verified in this project
+
+- L. Báez-Duarte, M. Balazard, B. Landreau, E. Saias, *Étude de l'autocorrélation multiplicative de la fonction « partie fractionnaire »*, Ramanujan J. **9** (2005), 215–240; arXiv:math/0306251. (Propositions 12, 15, 16, 21, 22 — the §7.4 period-reduction chain; Propositions 88–89 pending.)
+- J.-F. Burnol, *A lower bound in an approximation problem involving the zeros of the Riemann zeta function*, Adv. Math. **170** (2002), 56–70.
+- S. Bettin, J. B. Conrey, *Period functions and cotangent sums*, Algebra & Number Theory **7** (2013), 215–242. (Cotangent-sum growth bounds informing the Phase 10T certificate track.)
+- T. Estermann, *On the representations of a number as the sum of two products*, Proc. London Math. Soc. (2) **31** (1930), 123–133. (The Estermann zeta function underlying the §9.1 contour package.)
+
+### Classical analytic number theory background
+
+- C.-J. de la Vallée Poussin, *Sur la fonction ζ(s) de Riemann et le nombre des nombres premiers inférieurs à une limite donnée*, Mém. Couronnés Acad. Roy. Sci. Belgique **59** (1899). (The zero-free region targeted by the H14M track, §8.1.)
+- S. Ikehara, *An extension of Landau's theorem in the analytical theory of numbers*, J. Math. Phys. MIT **10** (1931), 1–12; N. Wiener, *Tauberian theorems*, Ann. of Math. **33** (1932), 1–100. (The Tauberian route already in Mathlib, shown in §8.1 to be inherently non-quantitative for this project's needs.)
+
+### Historical framing (§0): discredited or heuristic approaches surveyed
+
+- P. Turán, *On some approximative Dirichlet-polynomials in the theory of the zeta-function of Riemann*, Danske Vid. Selsk. Mat.-Fys. Medd. **24** (1948).
+- L. de Branges, *The Riemann hypothesis for Hilbert spaces of entire functions*, Bull. Amer. Math. Soc. **15** (1986), 1–17.
+- X.-J. Li, *The positivity of a sequence of numbers and the Riemann hypothesis*, J. Number Theory **65** (1997), 325–333.
+- A. Connes, *Trace formula in noncommutative geometry and the zeros of the Riemann zeta function*, Selecta Math. (N.S.) **5** (1999), 29–106.
+
+### Literature identified for the open H15 correlation estimate (§9.1; pointers recorded, not yet used)
+
+- K. Matomäki, M. Radziwiłł, T. Tao, *An averaged form of Chowla's conjecture*, Algebra & Number Theory **9** (2015), 2167–2196.
+- T. Tao, *The logarithmically averaged Chowla and Elliott conjectures for two-point correlations*, Forum Math. Pi **4** (2016).
+- T. Tao, J. Teräväinen, *The structure of logarithmically averaged correlations of multiplicative functions, with applications to the Chowla and Elliott conjectures*, Duke Math. J. **168** (2019), 1977–2027.
+- N. Frantzikinakis, B. Host, *The logarithmic Sarnak conjecture for ergodic weights*, Ann. of Math. **187** (2018), 869–931.
+- Further works of J. D. Lichtman and J. Teräväinen, and of A. J. Harper, O. Klurman, and A. P. Mangerel, on correlations of multiplicative functions, as recorded in the project's research notes.
+
+### Formal verification tools
+
+- The mathlib Community, *The Lean mathematical library*, Proc. 9th ACM SIGPLAN Conf. on Certified Programs and Proofs (CPP 2020), 367–381.
+- L. de Moura, S. Ullrich, *The Lean 4 theorem prover and programming language*, Proc. 28th Int. Conf. on Automated Deduction (CADE-28), 2021, 625–635.
+- A. Kontorovich et al., *PrimeNumberTheoremAnd*, Lean 4 formalization repository, `github.com/AlexKontorovich/PrimeNumberTheoremAnd`. (Consulted for the §8.1 inventory; no code imported.)
