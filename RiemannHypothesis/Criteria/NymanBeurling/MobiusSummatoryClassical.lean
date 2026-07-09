@@ -1,4 +1,5 @@
 import RiemannHypothesis.Criteria.NymanBeurling.MobiusSummatory
+import Mathlib.Analysis.Complex.ExponentialBounds
 import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 
 namespace RH.Criteria.NymanBeurling.MobiusSummatory
@@ -568,6 +569,40 @@ lemma exists_pos_bound_rpow_mul_exp_neg_mul_sqrt
   · have hRt : R ≤ t := le_of_not_ge htR
     have hBt : B ≤ t := (le_max_right 1 B).trans hRt
     exact (hB t hBt).trans (le_max_right C₀ 1)
+
+/--
+Natural-number logarithmic form of
+`exists_pos_bound_rpow_mul_exp_neg_mul_sqrt`.
+-/
+lemma exists_pos_exp_neg_mul_sqrt_log_nat_le_const_div_log_pow
+    (m : ℕ) (a : ℝ) (ha : 0 < a) :
+    ∃ C_A : ℝ, 0 < C_A ∧
+      ∀ N : ℕ, 3 ≤ N →
+        Real.exp (-a * Real.sqrt (Real.log (N : ℝ))) ≤
+          C_A / Real.log (N : ℝ) ^ m := by
+  rcases exists_pos_bound_rpow_mul_exp_neg_mul_sqrt (m : ℝ) a ha with
+    ⟨C_A, hC_A_pos, hC_A⟩
+  refine ⟨C_A, hC_A_pos, ?_⟩
+  intro N hN
+  have hNpos : 0 < (N : ℝ) := by exact_mod_cast (lt_of_lt_of_le (by norm_num) hN)
+  have hlog_one : 1 ≤ Real.log (N : ℝ) := by
+    rw [Real.le_log_iff_exp_le hNpos]
+    exact Real.exp_one_lt_three.le.trans (by exact_mod_cast hN)
+  have hlog_pos : 0 < Real.log (N : ℝ) :=
+    lt_of_lt_of_le zero_lt_one hlog_one
+  have hprod := hC_A (Real.log (N : ℝ)) hlog_one
+  have hprod_nat :
+      Real.log (N : ℝ) ^ m * Real.exp (-a * Real.sqrt (Real.log (N : ℝ))) ≤ C_A := by
+    simpa [Real.rpow_natCast] using hprod
+  have hpow_pos : 0 < Real.log (N : ℝ) ^ m := pow_pos hlog_pos m
+  calc
+    Real.exp (-a * Real.sqrt (Real.log (N : ℝ)))
+        = (Real.log (N : ℝ) ^ m *
+            Real.exp (-a * Real.sqrt (Real.log (N : ℝ)))) /
+            Real.log (N : ℝ) ^ m := by
+          field_simp [hpow_pos.ne']
+    _ ≤ C_A / Real.log (N : ℝ) ^ m := by
+          exact div_le_div_of_nonneg_right hprod_nat hpow_pos.le
 
 lemma tendsto_inv_log_nat_add_two :
     Tendsto (fun N : ℕ => 1 / Real.log (N + 2 : ℝ)) atTop (𝓝 0) := by
