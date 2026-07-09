@@ -622,6 +622,19 @@ lemma exists_pos_exp_neg_mul_sqrt_log_nat_le_const_div_log_pow
     _ ≤ C_A / Real.log (N : ℝ) ^ m := by
           exact div_le_div_of_nonneg_right hprod_nat hpow_pos.le
 
+lemma log_nat_add_two_le_two_log_nat {N : ℕ} (hN : 3 ≤ N) :
+    Real.log (N + 2 : ℝ) ≤ 2 * Real.log (N : ℝ) := by
+  have hNpos : 0 < (N : ℝ) := by exact_mod_cast (lt_of_lt_of_le (by norm_num) hN)
+  have hargpos : 0 < (N + 2 : ℝ) := by positivity
+  have hle_sq : (N + 2 : ℝ) ≤ (N : ℝ) ^ 2 := by
+    norm_num [sq]
+    nlinarith [show (3 : ℝ) ≤ N by exact_mod_cast hN]
+  have hlog := Real.log_le_log hargpos hle_sq
+  have hlog_sq : Real.log ((N : ℝ) ^ 2) = 2 * Real.log (N : ℝ) := by
+    rw [Real.log_pow]
+    norm_num
+  exact hlog.trans_eq hlog_sq
+
 lemma tendsto_inv_log_nat_add_two :
     Tendsto (fun N : ℕ => 1 / Real.log (N + 2 : ℝ)) atTop (𝓝 0) := by
   have harg : Tendsto (fun N : ℕ => ((N + 2 : ℕ) : ℝ)) atTop atTop :=
