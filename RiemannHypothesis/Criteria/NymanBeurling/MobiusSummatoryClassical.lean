@@ -1102,6 +1102,65 @@ lemma mobiusOverKPartial_convergent_of_decay (H : ClassicalMertensDecay) :
     rw [cutoffMobiusOverKSum_eq_partial_sub]
     ring)
 
+/--
+Residual Axer normalization after the convergence half has been proved from
+`ClassicalMertensDecay`.
+
+This is intentionally weaker and more precise than assuming
+`mobius_sum_zero` directly: the remaining classical content is only that the
+already-existing limit of `∑_{k≤N} μ(k)/k` is the value `0`.
+-/
+structure MobiusOverKLimitIsZero where
+  limit_eq_zero :
+    ∀ ℓ : ℝ, Tendsto mobiusOverKPartial atTop (𝓝 ℓ) → ℓ = 0
+
+/--
+The old `mobius_sum_zero` field follows from decay plus the remaining Axer
+normalization residual.
+-/
+lemma mobius_sum_zero_of_decay_and_limit_zero
+    (H : ClassicalMertensDecay) (Z : MobiusOverKLimitIsZero) :
+    Tendsto mobiusOverKPartial atTop (𝓝 0) := by
+  rcases mobiusOverKPartial_convergent_of_decay H with ⟨ℓ, hℓ⟩
+  simpa [Z.limit_eq_zero ℓ hℓ] using hℓ
+
+/--
+Slimmed residual inputs after deriving the Mertens polynomial-log bound and
+the convergence half of the `μ(k)/k` boundary value from
+`ClassicalMertensDecay`.
+
+Compared with `ClassicalMertensResidualInputs`, the `mobius_sum_zero` field is
+replaced by the narrower `mobius_overK_limit_zero` normalization statement.
+The logarithmic summatory bound and the logarithmic boundary value remain
+separate residuals.
+-/
+structure ClassicalMertensResidualInputsOfDecay where
+  C_L : ℝ
+  C_L_pos : 0 < C_L
+  mobiusLogSummatory_bound :
+    ∀ N : ℕ,
+      |mobiusLogSummatory N| ≤ C_L * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2
+  mobius_overK_limit_zero : MobiusOverKLimitIsZero
+  mobiusLog_sum_neg_one : Tendsto mobiusLogOverKPartial atTop (𝓝 (-1))
+
+/--
+Additive constructor exposing the residual shrinkage achieved by the H14
+decay/convergence work.  The original `ClassicalMertensAPI.ofDecay` is left
+unchanged.
+-/
+noncomputable def ClassicalMertensAPI.ofDecay'
+    (H : ClassicalMertensDecay) (R : ClassicalMertensResidualInputsOfDecay) :
+    ClassicalMertensAPI :=
+  { C_M := Classical.choose (mertens_bound_of_decay H)
+    C_L := R.C_L
+    C_M_pos := (Classical.choose_spec (mertens_bound_of_decay H)).1
+    C_L_pos := R.C_L_pos
+    mertens_bound := (Classical.choose_spec (mertens_bound_of_decay H)).2
+    mobiusLogSummatory_bound := R.mobiusLogSummatory_bound
+    mobius_sum_zero :=
+      mobius_sum_zero_of_decay_and_limit_zero H R.mobius_overK_limit_zero
+    mobiusLog_sum_neg_one := R.mobiusLog_sum_neg_one }
+
 lemma ClassicalMertensAPI.logOverK_difference_bound (api : ClassicalMertensAPI)
     (N R : ℕ) (hNR : N ≤ R) :
     |(cutoffMobiusLogOverKSum R + 1) - (cutoffMobiusLogOverKSum N + 1)| ≤
