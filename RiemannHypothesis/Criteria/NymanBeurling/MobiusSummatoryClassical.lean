@@ -512,6 +512,20 @@ structure ClassicalMertensResidualInputs where
   mobius_sum_zero : Tendsto mobiusOverKPartial atTop (𝓝 0)
   mobiusLog_sum_neg_one : Tendsto mobiusLogOverKPartial atTop (𝓝 (-1))
 
+lemma tendsto_rpow_mul_exp_neg_mul_sqrt_atTop_nhds_zero
+    (A a : ℝ) (ha : 0 < a) :
+    Tendsto (fun t : ℝ => t ^ A * Real.exp (-a * Real.sqrt t)) atTop (𝓝 0) := by
+  have hbase :
+      Tendsto (fun x : ℝ => x ^ (2 * A) * Real.exp (-a * x)) atTop (𝓝 0) :=
+    tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero (2 * A) a ha
+  refine (hbase.comp Real.tendsto_sqrt_atTop).congr' ?_
+  filter_upwards [eventually_ge_atTop (0 : ℝ)] with t ht
+  have hsqrt : t ^ A = Real.sqrt t ^ (2 * A) := by
+    rw [← Real.rpow_div_two_eq_sqrt (2 * A) ht]
+    congr 1
+    ring
+  simp [hsqrt]
+
 lemma tendsto_inv_log_nat_add_two :
     Tendsto (fun N : ℕ => 1 / Real.log (N + 2 : ℝ)) atTop (𝓝 0) := by
   have harg : Tendsto (fun N : ℕ => ((N + 2 : ℕ) : ℝ)) atTop atTop :=
