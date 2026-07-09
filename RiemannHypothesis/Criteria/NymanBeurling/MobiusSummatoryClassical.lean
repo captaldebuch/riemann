@@ -1,4 +1,5 @@
 import RiemannHypothesis.Criteria.NymanBeurling.MobiusSummatory
+import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 
 namespace RH.Criteria.NymanBeurling.MobiusSummatory
 
@@ -469,6 +470,42 @@ structure ClassicalMertensAPI where
   mertens_bound :
     ∀ N : ℕ,
       |mobiusSummatory N| ≤ C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 3
+  mobiusLogSummatory_bound :
+    ∀ N : ℕ,
+      |mobiusLogSummatory N| ≤ C_L * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2
+  mobius_sum_zero : Tendsto mobiusOverKPartial atTop (𝓝 0)
+  mobiusLog_sum_neg_one : Tendsto mobiusLogOverKPartial atTop (𝓝 (-1))
+
+/--
+Single classical de la Vallée Poussin decay input for the Mertens summatory
+function.
+
+This is the intended final quantitative H14 debt: proving this structure from
+the zero-free region/effective Perron contour argument is classical analytic
+number theory.  The remaining wrappers below convert it into the polynomial-log
+Mertens bound used by the finite Abel estimates.
+-/
+structure ClassicalMertensDecay where
+  C : ℝ
+  a : ℝ
+  C_pos : 0 < C
+  a_pos : 0 < a
+  mertens_decay :
+    ∀ N : ℕ, 2 ≤ N →
+      |mobiusSummatory N| ≤ C * (N : ℝ) * Real.exp (-a * Real.sqrt (Real.log N))
+
+/--
+Residual non-Mertens inputs needed to assemble the existing
+`ClassicalMertensAPI`.
+
+The logarithmic summatory estimate is classically a separate Abel consequence
+of sufficiently strong Mertens decay, but formalizing that derivation is not
+part of this wrapper.  The two boundary values are Tauberian/residue inputs
+(`1 / ζ(1) = 0` and the `ζ'/ζ` residue) rather than mere decay estimates.
+-/
+structure ClassicalMertensResidualInputs where
+  C_L : ℝ
+  C_L_pos : 0 < C_L
   mobiusLogSummatory_bound :
     ∀ N : ℕ,
       |mobiusLogSummatory N| ≤ C_L * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2
