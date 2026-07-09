@@ -1,5 +1,5 @@
 import Mathlib
-import RiemannHypothesis.Criteria.NymanBeurling.VasyuninBridge
+import RiemannHypothesis.Criteria.NymanBeurling.VasyuninGram
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninExplicitFormula
 
 /-!
