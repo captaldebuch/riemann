@@ -670,6 +670,42 @@ theorem not_nonempty_zetaLogDerivDiscBound :
 
 end FrozenDiscBoundObstruction
 
+section RepairedDiscBound
+
+open Complex
+
+/--
+R1: the repaired quantitative logarithmic-derivative package.
+
+Unlike `ZetaLogDerivDiscBound`, both estimates are restricted to heights
+`|t| ≥ t₀`, keeping them uniformly away from zeta's pole.  The companion
+diagnostic sampled the full frozen `1 < σ ≤ 2`, `|t| ≥ 1` shape (including
+`σ - 1` down to `10⁻⁶`, both signs of `t`, and heights through `250`): the
+normalized vertical quantity stayed between approximately `-0.4821` and
+`0.1424`.  The retained-zero normalization stayed below `0.233` on the first
+twenty critical-line zeros.  These observations only gate the statement;
+the constant `C` remains abstract.
+-/
+structure ZetaLogDerivDiscBoundAtHeight where
+  t₀ : ℝ
+  t₀_pos : 0 < t₀
+  t₀_le_one : t₀ ≤ 1
+  C : ℝ
+  C_nonneg : 0 ≤ C
+  vertical_bound :
+    ∀ {σ t : ℝ}, 1 < σ → σ ≤ 2 → t₀ ≤ |t| →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        C * Real.log (|t| + 2)
+  zero_contribution_bound :
+    ∀ {σ β t : ℝ}, 1 < σ → σ ≤ 2 → β ≤ 1 → t₀ ≤ |t| →
+      riemannZeta (β + Complex.I * t : ℂ) = 0 →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        -1 / (σ - β) + C * Real.log (|t| + 2)
+
+end RepairedDiscBound
+
 end ZetaLogDerivativeDiscBound
 
 end RH.Criteria.NymanBeurling.MobiusSummatory

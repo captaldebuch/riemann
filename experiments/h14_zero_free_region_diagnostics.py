@@ -156,6 +156,30 @@ def sample_small_height_obstruction() -> None:
     print("  hence no uniform C can cover every nonzero t")
 
 
+def sample_repaired_height_range() -> None:
+    """Gate the repaired vertical range ``|t| >= 1, 1 < sigma <= 2``."""
+    sigmas = [1 + 10.0 ** (-k) for k in range(1, 7)]
+    sigmas += [1 + j / 20 for j in range(1, 21)]
+    heights = [1, 1.05, 1.1, 1.25, 1.5, 2, 3, 5, 10, 25, 50, 100, 250]
+    rows: list[tuple[float, float, float, float]] = []
+    for sign in (-1, 1):
+        for height in heights:
+            t = sign * height
+            denominator = math.log(abs(t) + 2)
+            for sigma in sigmas:
+                value = -zeta_log_derivative(sigma + 1j * t).real
+                rows.append((value / denominator, sigma, t, value))
+    rows.sort(key=lambda row: row[0])
+    print("\nRepaired R1 range: |t| >= 1 and 1 < sigma <= 2")
+    for label, row in (("minimum", rows[0]), ("maximum", rows[-1])):
+        normalized, sigma, t, value = row
+        print(
+            f"  {label}: normalized={normalized:.15g}, sigma={sigma:.12g}, "
+            f"t={t:.12g}, -Re(zeta'/zeta)={value:.12g}"
+        )
+    print("  sampled range is bounded; the frozen repaired API keeps C existential")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--zeros", type=int, default=20)
@@ -163,6 +187,7 @@ def main() -> None:
     sample_z2()
     sample_z3(args.zeros)
     sample_small_height_obstruction()
+    sample_repaired_height_range()
 
 
 if __name__ == "__main__":
