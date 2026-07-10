@@ -3,6 +3,7 @@ import RiemannHypothesis.Basic.Zeta
 import RiemannHypothesis.Basic.CriticalStrip
 import RiemannHypothesis.Criteria.Li
 import RiemannHypothesis.Criteria.NymanBeurling.BaezDuarte
+import RiemannHypothesis.Criteria.NymanBeurling.NymanBeurlingForward
 import RiemannHypothesis.Criteria.NymanBeurling.MellinCriticalLine
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninGram
 import RiemannHypothesis.Criteria.WeilPositivity
