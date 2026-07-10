@@ -770,6 +770,196 @@ theorem exists_lowHeight_zeta_zeroFree_left_strip (t₀ : ℝ) (_ht₀ : 0 ≤ t
   · rw [zetaPoleRemoved_of_ne_one hsone] at hG
     exact (mul_ne_zero_iff.mp hG).2
 
+/--
+R3, high-height part: the repaired logarithmic-derivative package repels zeta
+zeros whose ordinate is at least the package's fixed height.
+-/
+theorem deLaValleePoussin_high_zero_repulsion
+    (H : ZetaLogDerivDiscBoundAtHeight) :
+    ∃ c > 0, ∀ {β t : ℝ}, β ≤ 1 → H.t₀ ≤ |t| →
+      riemannZeta (β + Complex.I * t : ℂ) = 0 →
+      c ≤ (1 - β) * Real.log (|t| + 2) := by
+  rcases deLaValleePoussin_neg_logDeriv_real_le_pole_add_const with
+    ⟨A, hA, hApole⟩
+  let l : ℝ := Real.log 2
+  let B : ℝ := 3 * A / l + 6 * H.C + 1
+  let delta : ℝ := min (l / 2) (1 / (10 * B))
+  have hl : 0 < l := by
+    dsimp [l]
+    exact Real.log_pos (by norm_num)
+  have hB : 0 < B := by
+    dsimp [B]
+    have hquot : 0 ≤ 3 * A / l := div_nonneg (by positivity) hl.le
+    nlinarith [H.C_nonneg]
+  have hδ : 0 < delta := by
+    dsimp [delta]
+    exact lt_min (div_pos hl (by norm_num)) (one_div_pos.mpr (by positivity))
+  refine ⟨delta / 4, div_pos hδ (by norm_num), ?_⟩
+  intro β t hβ htHeight hz
+  let logHeight : ℝ := Real.log (|t| + 2)
+  let x : ℝ := 1 - β
+  let σ : ℝ := 1 + delta / logHeight
+  have hL : 0 < logHeight := by
+    dsimp [logHeight]
+    exact Real.log_pos (by linarith [abs_nonneg t])
+  have hlL : l ≤ logHeight := by
+    dsimp [l, logHeight]
+    exact Real.log_le_log (by norm_num) (by linarith [abs_nonneg t])
+  have hx : 0 ≤ x := by dsimp [x]; linarith
+  have hδsmall : delta ≤ 1 / (10 * B) := by
+    dsimp [delta]
+    exact min_le_right _ _
+  have hδhalf : delta ≤ l / 2 := by
+    dsimp [delta]
+    exact min_le_left _ _
+  have hσ1 : 1 < σ := by
+    dsimp [σ]
+    exact lt_add_of_pos_right 1 (div_pos hδ hL)
+  have hσ2 : σ ≤ 2 := by
+    have hδL : delta ≤ logHeight / 2 := hδhalf.trans (by linarith)
+    dsimp [σ]
+    have hquot : delta / logHeight ≤ 1 / 2 := by
+      apply (div_le_iff₀ hL).2
+      simpa [div_eq_mul_inv, mul_comm] using hδL
+    linarith
+  have hzero := H.zero_contribution_bound hσ1 hσ2 hβ htHeight hz
+  have hzero' :
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        -1 / (delta / logHeight + x) + H.C * logHeight := by
+    calc
+      _ ≤ -1 / (σ - β) + H.C * Real.log (|t| + 2) := hzero
+      _ = -1 / (delta / logHeight + x) + H.C * logHeight := by
+        dsimp [σ, x, logHeight]
+        congr 2
+        ring
+  have hpole := hApole σ hσ1 hσ2
+  have hpole' :
+      (-deriv riemannZeta (σ : ℂ) / riemannZeta (σ : ℂ)).re ≤
+        logHeight / delta + A := by
+    calc
+      _ ≤ 1 / (σ - 1) + A := hpole
+      _ = logHeight / delta + A := by
+        dsimp [σ]
+        field_simp [ne_of_gt hL, ne_of_gt hδ]
+        ring
+  have htHeightDouble : H.t₀ ≤ |2 * t| := by
+    rw [abs_mul, abs_of_pos (by norm_num : 0 < (2 : ℝ))]
+    nlinarith [htHeight, abs_nonneg t]
+  have hdouble := H.vertical_bound hσ1 hσ2 htHeightDouble
+  have hlogdouble : Real.log (|2 * t| + 2) ≤ 2 * logHeight := by
+    have habs : |2 * t| = 2 * |t| := by rw [abs_mul]; norm_num
+    have harg : 2 * |t| + 2 ≤ (|t| + 2) ^ 2 := by
+      nlinarith [abs_nonneg t, sq_nonneg (|t| + 1)]
+    calc
+      Real.log (|2 * t| + 2) = Real.log (2 * |t| + 2) := by rw [habs]
+      _ ≤ Real.log ((|t| + 2) ^ 2) :=
+        Real.log_le_log (by positivity) harg
+      _ = 2 * logHeight := by simp [Real.log_pow, logHeight]
+  have hdouble' :
+      (-deriv riemannZeta (σ + Complex.I * (2 * t) : ℂ) /
+          riemannZeta (σ + Complex.I * (2 * t) : ℂ)).re ≤
+        H.C * (2 * logHeight) := by
+    calc
+      _ ≤ H.C * Real.log (|2 * t| + 2) := by
+        simpa only [Complex.ofReal_mul, Complex.ofReal_ofNat] using hdouble
+      _ ≤ H.C * (2 * logHeight) :=
+        mul_le_mul_of_nonneg_left hlogdouble H.C_nonneg
+  have hpos := deLaValleePoussin_logDeriv_three_four_one_nonneg
+    (σ := σ) (t := t) hσ1
+  have hmain :
+      0 ≤ 3 * logHeight / delta + 3 * A -
+        4 / (delta / logHeight + x) + 6 * H.C * logHeight := by
+    have hmain' :
+        0 ≤ 3 * (logHeight / delta + A) +
+          4 * (-1 / (delta / logHeight + x) + H.C * logHeight) +
+          H.C * (2 * logHeight) := by
+      linarith
+    convert hmain' using 1 <;> ring
+  exact three_four_one_forces_repulsion hA.le H.C_nonneg hl hlL hL hδ hx
+    (by simpa [B] using hδsmall) hmain
+
+/--
+R3/Z5': the repaired high-height logarithmic-derivative estimate, together with
+the compact low-height zero-free strip, constructs the frozen de la Vallee
+Poussin zero-free-region package.
+-/
+noncomputable def deLaValleePoussinZeroFreeRegion_of_logDerivDiscBoundAtHeight
+    (H : ZetaLogDerivDiscBoundAtHeight) :
+    DeLaValleePoussinZeroFreeRegion := by
+  let hrepExists := deLaValleePoussin_high_zero_repulsion H
+  let c₀ : ℝ := Classical.choose hrepExists
+  have hc₀ : 0 < c₀ := (Classical.choose_spec hrepExists).1
+  have hrepel :
+      ∀ {β t : ℝ}, β ≤ 1 → H.t₀ ≤ |t| →
+        riemannZeta (β + Complex.I * t : ℂ) = 0 →
+        c₀ ≤ (1 - β) * Real.log (|t| + 2) :=
+    (Classical.choose_spec hrepExists).2
+  let hlowExists := exists_lowHeight_zeta_zeroFree_left_strip H.t₀ H.t₀_pos.le
+  let delta : ℝ := Classical.choose hlowExists
+  have hdelta : 0 < delta := (Classical.choose_spec hlowExists).1
+  have hlow :
+      ∀ {σ t : ℝ}, 1 - delta ≤ σ → σ ≤ 1 → |t| ≤ H.t₀ →
+        riemannZeta (σ + Complex.I * t : ℂ) ≠ 0 :=
+    (Classical.choose_spec hlowExists).2
+  let l : ℝ := Real.log 2
+  let c : ℝ := min c₀ (delta * l / 2)
+  have hl : 0 < l := by
+    dsimp [l]
+    exact Real.log_pos (by norm_num)
+  have hc : 0 < c := by
+    dsimp [c]
+    exact lt_min hc₀ (div_pos (mul_pos hdelta hl) (by norm_num))
+  refine
+    { c := c
+      c_pos := hc
+      zeta_ne_zero := ?_ }
+  intro s hs
+  by_cases hre : 1 ≤ s.re
+  · exact riemannZeta_ne_zero_of_one_le_re hre
+  have hre_lt : s.re < 1 := lt_of_not_ge hre
+  by_cases hheight : H.t₀ ≤ |s.im|
+  · intro hz
+    have hs_cart : s = (s.re + Complex.I * s.im : ℂ) := by
+      apply Complex.ext <;> simp
+    rw [hs_cart] at hz
+    have hrep := hrepel hre_lt.le hheight hz
+    have hL : 0 < Real.log (|s.im| + 2) := log_abs_im_add_two_pos s
+    have hregion :
+        1 - c / Real.log (|s.im| + 2) < s.re := by
+      simpa [deLaValleePoussinRegion] using hs
+    have hgap :
+        (1 - s.re) * Real.log (|s.im| + 2) < c := by
+      apply (lt_div_iff₀ hL).mp
+      linarith
+    have hc₀c : c ≤ c₀ := by
+      dsimp [c]
+      exact min_le_left _ _
+    linarith
+  · have himlow : |s.im| ≤ H.t₀ := le_of_not_ge hheight
+    have hL : 0 < Real.log (|s.im| + 2) := log_abs_im_add_two_pos s
+    have hlL : l ≤ Real.log (|s.im| + 2) := by
+      dsimp [l]
+      exact Real.log_le_log (by norm_num) (by linarith [abs_nonneg s.im])
+    have hregion :
+        1 - c / Real.log (|s.im| + 2) < s.re := by
+      simpa [deLaValleePoussinRegion] using hs
+    have hcdelta : c ≤ delta * l / 2 := by
+      dsimp [c]
+      exact min_le_right _ _
+    have hcdiv : c / Real.log (|s.im| + 2) ≤ delta / 2 := by
+      apply (div_le_iff₀ hL).2
+      calc
+        c ≤ delta * l / 2 := hcdelta
+        _ = (delta / 2) * l := by ring
+        _ ≤ (delta / 2) * Real.log (|s.im| + 2) := by
+          exact mul_le_mul_of_nonneg_left hlL (by linarith)
+    have hleft : 1 - delta ≤ s.re := by linarith
+    have hs_cart : s = (s.re + Complex.I * s.im : ℂ) := by
+      apply Complex.ext <;> simp
+    rw [hs_cart]
+    exact hlow hleft hre_lt.le himlow
+
 end RepairedDiscBound
 
 end ZetaLogDerivativeDiscBound
