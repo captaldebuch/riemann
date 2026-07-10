@@ -2830,4 +2830,251 @@ theorem mobiusLog_LSeries_eq_zeta_deriv_div_sq {s : ℂ} (hs : 1 < s.re) :
 
 end MobiusLogLSeries
 
+-- ---------------------------------------------------------------------------
+-- H14 final field, B3. A Dirichlet--Abelian boundary theorem
+-- ---------------------------------------------------------------------------
+
+open scoped LSeries.notation
+
+/-- The real boundary coefficient `mu(n) log(n) / n`. -/
+noncomputable def mobiusLogBoundaryTerm (n : ℕ) : ℝ :=
+  ((ArithmeticFunction.moebius n : ℤ) : ℝ) * Real.log (n : ℝ) / (n : ℝ)
+
+@[simp]
+lemma mobiusLogBoundaryTerm_zero : mobiusLogBoundaryTerm 0 = 0 := by
+  simp [mobiusLogBoundaryTerm]
+
+lemma sum_range_succ_eq_sum_Icc_one_of_zero
+    (a : ℕ → ℝ) (ha0 : a 0 = 0) (N : ℕ) :
+    (∑ n ∈ Finset.range (N + 1), a n) = ∑ n ∈ Finset.Icc 1 N, a n := by
+  induction N with
+  | zero => simp [ha0]
+  | succ N ih =>
+      rw [Finset.sum_range_succ, ih]
+      rw [Finset.sum_Icc_succ_top (by omega)]
+
+lemma mobiusLogBoundaryTerm_partial_sum (N : ℕ) :
+    (∑ n ∈ Finset.Icc 1 N, mobiusLogBoundaryTerm n) =
+      mobiusLogOverKPartial N := by
+  rfl
+
+/--
+For a positive displacement `d`, taking real parts in the absolutely
+convergent logarithmic Möbius L-series gives the real weighted boundary
+series.
+-/
+lemma mobiusLog_LSeries_hasSum_boundary_weighted (d : ℝ) (hd : 0 < d) :
+    HasSum (fun n : ℕ => mobiusLogBoundaryTerm n * (n : ℝ) ^ (-d))
+      (L mobiusLogCoeffC (((1 + d : ℝ) : ℂ))).re := by
+  have habs :
+      LSeries.abscissaOfAbsConv
+          (↗ArithmeticFunction.moebius : ℕ → ℂ) <
+        (((1 + d : ℝ) : ℂ)).re := by
+    rw [ArithmeticFunction.abscissaOfAbsConv_moebius, ← EReal.coe_one,
+      EReal.coe_lt_coe_iff]
+    simpa using hd
+  have hcomplex :=
+    (LSeriesSummable_logMul_of_lt_re habs).LSeriesHasSum
+  have hseries_eq :
+      L (LSeries.logMul (↗ArithmeticFunction.moebius : ℕ → ℂ))
+          (((1 + d : ℝ) : ℂ)) =
+        L mobiusLogCoeffC (((1 + d : ℝ) : ℂ)) := by
+    symm
+    apply LSeries_congr
+    intro n _hn
+    simp [mobiusLogCoeffC, LSeries.logMul, ← Complex.natCast_log]
+  rw [← hseries_eq]
+  have hreal := Complex.hasSum_re hcomplex
+  refine hreal.congr_fun (fun n => ?_)
+  symm
+  by_cases hn : n = 0
+  · subst n
+    simp [mobiusLogBoundaryTerm, LSeries.term]
+  · rw [LSeries.term_of_ne_zero hn, div_eq_mul_inv, ← Complex.cpow_neg]
+    have hnpos : 0 < (n : ℝ) := by exact_mod_cast Nat.pos_of_ne_zero hn
+    have hpow := deLaValleePoussin_real_cpow_neg_re
+      (x := (n : ℝ)) (σ := 1 + d) (t := 0) hnpos
+    have hpow' :
+        ((n : ℂ) ^ (-(((1 + d : ℝ) : ℂ) + Complex.I * (0 : ℝ)))).re =
+          (n : ℝ) ^ (-(1 + d)) * Real.cos (0 * Real.log (n : ℝ)) := by
+      simpa using hpow
+    change
+      ((Complex.log (n : ℂ) * ((ArithmeticFunction.moebius n : ℤ) : ℂ) *
+          (n : ℂ) ^ (-((1 + d : ℝ) : ℂ))).re) = _
+    rw [← Complex.natCast_log]
+    have hcoeff :
+        (Real.log (n : ℝ) : ℂ) * ((ArithmeticFunction.moebius n : ℤ) : ℂ) =
+          ((Real.log (n : ℝ) *
+            ((ArithmeticFunction.moebius n : ℤ) : ℝ) : ℝ) : ℂ) := by
+      push_cast
+      ring
+    calc
+      (((Real.log (n : ℝ) : ℂ) * ((ArithmeticFunction.moebius n : ℤ) : ℂ) *
+          (n : ℂ) ^ (-((1 + d : ℝ) : ℂ))).re) =
+          Real.log (n : ℝ) * ((ArithmeticFunction.moebius n : ℤ) : ℝ) *
+            (n : ℝ) ^ (-(1 + d)) := by
+              rw [hcoeff]
+              rw [show (-((1 + d : ℝ) : ℂ)) =
+                (-(((1 + d : ℝ) : ℂ) + Complex.I * (0 : ℝ))) by simp]
+              simp only [Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, zero_mul,
+                sub_zero]
+              rw [hpow']
+              norm_num
+      _ = mobiusLogBoundaryTerm n * (n : ℝ) ^ (-d) := by
+        rw [show -(1 + d) = (-1 : ℝ) + (-d) by ring,
+          Real.rpow_add hnpos, Real.rpow_neg_one]
+        simp [mobiusLogBoundaryTerm, div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc]
+
+/--
+Finite tail estimate underlying the Dirichlet--Abelian boundary theorem.
+It is a direct application of the finite Abel inequality already used in the
+quantitative Axer argument.
+-/
+lemma abs_sum_Icc_rpow_neg_le_of_partial_limit
+    (a : ℕ → ℝ) {ℓ ε : ℝ} (K B : ℕ) (d : ℝ)
+    (hε : 0 ≤ ε) (hd : 0 < d) (hKB : K + 1 ≤ B)
+    (htail : ∀ n : ℕ, K ≤ n →
+      |(∑ j ∈ Finset.Icc 1 n, a j) - ℓ| ≤ ε) :
+    |∑ n ∈ Finset.Icc (K + 1) B, a n * (n : ℝ) ^ (-d)| ≤ 2 * ε := by
+  apply abs_sum_Icc_mul_le_of_partial_sum_le_of_antitone
+    a (fun n : ℕ => (n : ℝ) ^ (-d)) (K + 1) B (2 * ε) hKB (by positivity)
+  · intro n hn
+    exact Real.rpow_nonneg (by positivity) _
+  · intro n hn
+    have hnrange := Finset.mem_Icc.mp hn
+    exact Real.rpow_le_rpow_of_nonpos
+      (by exact_mod_cast (show 0 < n by omega)) (by norm_cast; omega) (by linarith)
+  · exact Real.rpow_le_one_of_one_le_of_nonpos (by norm_cast; omega) (by linarith)
+  · intro n hn
+    have hnrange := Finset.mem_Icc.mp hn
+    rw [← sum_Icc_one_sub_sum_Icc_one a K n (by omega)]
+    calc
+      |(∑ j ∈ Finset.Icc 1 n, a j) - ∑ j ∈ Finset.Icc 1 K, a j| =
+          |((∑ j ∈ Finset.Icc 1 n, a j) - ℓ) -
+            ((∑ j ∈ Finset.Icc 1 K, a j) - ℓ)| := by ring_nf
+      _ ≤ |(∑ j ∈ Finset.Icc 1 n, a j) - ℓ| +
+          |(∑ j ∈ Finset.Icc 1 K, a j) - ℓ| := abs_sub _ _
+      _ ≤ 2 * ε := by
+        have hnK : K ≤ n := by omega
+        linarith [htail n hnK, htail K le_rfl]
+
+/-- Passing the finite Abel tail estimate to an absolutely convergent series. -/
+lemma abs_dirichlet_series_sub_head_le_of_partial_limit
+    (a : ℕ → ℝ) (F : ℝ) {ℓ ε : ℝ} (K : ℕ) (d : ℝ)
+    (ha0 : a 0 = 0) (hε : 0 ≤ ε) (hd : 0 < d)
+    (htail : ∀ n : ℕ, K ≤ n →
+      |(∑ j ∈ Finset.Icc 1 n, a j) - ℓ| ≤ ε)
+    (hsum : HasSum (fun n : ℕ => a n * (n : ℝ) ^ (-d)) F) :
+    |F - ∑ n ∈ Finset.Icc 1 K, a n * (n : ℝ) ^ (-d)| ≤ 2 * ε := by
+  let f : ℕ → ℝ := fun n => a n * (n : ℝ) ^ (-d)
+  have hf0 : f 0 = 0 := by simp [f, ha0]
+  have hrange := hsum.tendsto_sum_nat.comp (Filter.tendsto_add_atTop_nat 1)
+  have hpartial :
+      Tendsto (fun B : ℕ => ∑ n ∈ Finset.Icc 1 B, f n) atTop (𝓝 F) := by
+    convert hrange using 1
+    ext B
+    exact (sum_range_succ_eq_sum_Icc_one_of_zero f hf0 B).symm
+  have htail_tendsto :
+      Tendsto (fun B : ℕ => ∑ n ∈ Finset.Icc (K + 1) B, f n) atTop
+        (𝓝 (F - ∑ n ∈ Finset.Icc 1 K, f n)) := by
+    have hsub := hpartial.sub_const (∑ n ∈ Finset.Icc 1 K, f n)
+    apply hsub.congr'
+    filter_upwards [eventually_ge_atTop K] with B hKB
+    exact sum_Icc_one_sub_sum_Icc_one f K B hKB
+  have habs_tendsto := htail_tendsto.abs
+  apply le_of_tendsto habs_tendsto
+  filter_upwards [eventually_ge_atTop (K + 1)] with B hKB
+  simpa [f] using
+    abs_sum_Icc_rpow_neg_le_of_partial_limit a K B d hε hd hKB htail
+
+/--
+A real Dirichlet--Abelian boundary theorem in the exact form needed here.
+Ordered convergence of the boundary partial sums, together with absolute
+convergence at every positive displacement, implies convergence back to the
+boundary from the right.
+-/
+theorem dirichlet_abelian_tendsto_of_partial_sum_tendsto
+    (a : ℕ → ℝ) (F : ℝ → ℝ) {ℓ : ℝ} (ha0 : a 0 = 0)
+    (hpartial : Tendsto (fun N : ℕ => ∑ n ∈ Finset.Icc 1 N, a n) atTop (𝓝 ℓ))
+    (hsum : ∀ d : ℝ, 0 < d →
+      HasSum (fun n : ℕ => a n * (n : ℝ) ^ (-d)) (F d)) :
+    Tendsto F (𝓝[>] (0 : ℝ)) (𝓝 ℓ) := by
+  rw [Metric.tendsto_nhds]
+  intro ε hε
+  have hη : 0 < ε / 8 := by positivity
+  rw [Metric.tendsto_atTop] at hpartial
+  obtain ⟨K, hK⟩ := hpartial (ε / 8) hη
+  have htail : ∀ n : ℕ, K ≤ n →
+      |(∑ j ∈ Finset.Icc 1 n, a j) - ℓ| ≤ ε / 8 := by
+    intro n hn
+    have hdist := hK n hn
+    rw [Real.dist_eq] at hdist
+    exact hdist.le
+  have hhead :
+      Tendsto (fun d : ℝ =>
+        ∑ n ∈ Finset.Icc 1 K, a n * (n : ℝ) ^ (-d))
+        (𝓝[>] (0 : ℝ)) (𝓝 (∑ n ∈ Finset.Icc 1 K, a n)) := by
+    simpa using tendsto_finset_sum (Finset.Icc 1 K) (fun n hn => by
+      have hnpos : 0 < (n : ℝ) := by
+        exact_mod_cast (Finset.mem_Icc.mp hn).1
+      have hrpow :
+          Tendsto (fun d : ℝ => (n : ℝ) ^ (-d)) (𝓝[>] (0 : ℝ)) (𝓝 1) := by
+        have hneg : Tendsto (fun d : ℝ => -d) (𝓝 (0 : ℝ)) (𝓝 (0 : ℝ)) := by
+          simpa using (continuousAt_neg : ContinuousAt (fun d : ℝ => -d) 0).tendsto
+        have hbase :=
+          (Real.continuousAt_const_rpow (a := (n : ℝ)) (b := (0 : ℝ)) hnpos.ne').tendsto
+        have hfull : Tendsto (fun d : ℝ => (n : ℝ) ^ (-d)) (𝓝 (0 : ℝ)) (𝓝 1) := by
+          simpa using hbase.comp hneg
+        exact tendsto_nhdsWithin_of_tendsto_nhds hfull
+      simpa using (tendsto_const_nhds.mul hrpow :
+        Tendsto (fun d : ℝ => a n * (n : ℝ) ^ (-d))
+          (𝓝[>] (0 : ℝ)) (𝓝 (a n * 1))))
+  have hhead_eventually := (Metric.tendsto_nhds.mp hhead) (ε / 2) (by positivity)
+  filter_upwards [hhead_eventually, self_mem_nhdsWithin] with d hhead_d hdmem
+  have hd : 0 < d := hdmem
+  have hseries_tail := abs_dirichlet_series_sub_head_le_of_partial_limit
+    a (F d) K d ha0 hη.le hd htail (hsum d hd)
+  rw [Real.dist_eq] at hhead_d ⊢
+  calc
+    |F d - ℓ| ≤
+        |F d - ∑ n ∈ Finset.Icc 1 K, a n * (n : ℝ) ^ (-d)| +
+          |(∑ n ∈ Finset.Icc 1 K, a n * (n : ℝ) ^ (-d)) -
+            ∑ n ∈ Finset.Icc 1 K, a n| +
+          |(∑ n ∈ Finset.Icc 1 K, a n) - ℓ| := by
+      calc
+        |F d - ℓ| =
+            |(F d - ∑ n ∈ Finset.Icc 1 K, a n * (n : ℝ) ^ (-d)) +
+              ((∑ n ∈ Finset.Icc 1 K, a n * (n : ℝ) ^ (-d)) -
+                ∑ n ∈ Finset.Icc 1 K, a n) +
+              ((∑ n ∈ Finset.Icc 1 K, a n) - ℓ)| := by ring_nf
+        _ ≤ _ := (abs_add_three _ _ _)
+    _ < ε := by linarith [hseries_tail, hhead_d, htail K le_rfl]
+
+/-- B3: the logarithmic Möbius L-series tends to its ordered boundary sum. -/
+theorem mobiusLog_LSeries_tendsto_boundary
+    {ℓ : ℝ} (hℓ : Tendsto mobiusLogOverKPartial atTop (𝓝 ℓ)) :
+    Tendsto (fun s : ℝ => (L mobiusLogCoeffC (s : ℂ)).re)
+      (𝓝[>] (1 : ℝ)) (𝓝 ℓ) := by
+  have habelian := dirichlet_abelian_tendsto_of_partial_sum_tendsto
+    mobiusLogBoundaryTerm
+    (fun d : ℝ => (L mobiusLogCoeffC (((1 + d : ℝ) : ℂ))).re)
+    mobiusLogBoundaryTerm_zero
+    (by simpa [mobiusLogBoundaryTerm_partial_sum] using hℓ)
+    mobiusLog_LSeries_hasSum_boundary_weighted
+  have hshift : Tendsto (fun s : ℝ => s - 1) (𝓝[>] (1 : ℝ)) (𝓝[>] (0 : ℝ)) := by
+    rw [nhdsWithin]
+    apply tendsto_inf.2
+    constructor
+    · exact tendsto_nhdsWithin_of_tendsto_nhds (by
+        have hid : Tendsto (fun s : ℝ => s) (𝓝 (1 : ℝ)) (𝓝 (1 : ℝ)) := tendsto_id
+        simpa using hid.sub_const (1 : ℝ))
+    · rw [tendsto_principal]
+      filter_upwards [self_mem_nhdsWithin] with s hs
+      exact show 0 < s - 1 from sub_pos.mpr hs
+  apply (habelian.comp hshift).congr'
+  filter_upwards [] with s
+  simp only [Function.comp_apply]
+  rw [show (1 + (s - 1) : ℝ) = s by ring]
+
+
 end RH.Criteria.NymanBeurling.MobiusSummatory
