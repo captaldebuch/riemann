@@ -458,6 +458,94 @@ noncomputable def mobiusLogOverKPartial (N : ℕ) : ℝ :=
   ∑ k ∈ Finset.Icc 1 N,
     ((ArithmeticFunction.moebius k : ℤ) : ℝ) * Real.log (k : ℝ) / (k : ℝ)
 
+-- ---------------------------------------------------------------------------
+-- H14 Axer step. Exact finite hyperbola identities
+-- ---------------------------------------------------------------------------
+
+/-- The divisor sum of the integer-valued Möbius function. -/
+lemma sum_moebius_divisors_int (n : ℕ) :
+    (∑ d ∈ n.divisors, ArithmeticFunction.moebius d) =
+      if n = 1 then 1 else 0 := by
+  calc
+    _ = (ArithmeticFunction.moebius *
+          (ArithmeticFunction.zeta : ArithmeticFunction ℤ)) n :=
+      ArithmeticFunction.coe_mul_zeta_apply.symm
+    _ = (1 : ArithmeticFunction ℤ) n := by
+      rw [ArithmeticFunction.moebius_mul_coe_zeta]
+    _ = _ := ArithmeticFunction.one_apply
+
+/--
+The exact finite Möbius hyperbola identity
+`∑_{k≤N} μ(k) ⌊N/k⌋ = 1`.
+
+The proof increments `N`, uses `Nat.succ_div`, and identifies the new terms
+with the divisor sum of the Möbius function.
+-/
+theorem mobius_floor_hyperbola_identity (N : ℕ) (hN : 1 ≤ N) :
+    (∑ k ∈ Finset.Icc 1 N,
+      ArithmeticFunction.moebius k * ((N / k : ℕ) : ℤ)) = 1 := by
+  induction N, hN using Nat.le_induction with
+  | base => norm_num [ArithmeticFunction.moebius]
+  | succ N hN ih =>
+      have hNpos : 0 < N + 1 := by omega
+      have hdivisors :
+          Finset.filter (fun k : ℕ => k ∣ N + 1) (Finset.Icc 1 (N + 1)) =
+            (N + 1).divisors := by
+        ext k
+        simp only [Finset.mem_filter, Finset.mem_Icc, Nat.mem_divisors]
+        constructor
+        · rintro ⟨_, hk⟩
+          exact ⟨hk, hNpos.ne'⟩
+        · rintro ⟨hk, _⟩
+          exact ⟨⟨Nat.pos_of_dvd_of_pos hk hNpos,
+            Nat.le_of_dvd hNpos hk⟩, hk⟩
+      have hdivsum :
+          (∑ k ∈ Finset.Icc 1 (N + 1),
+              ArithmeticFunction.moebius k *
+                (if k ∣ N + 1 then (1 : ℤ) else 0)) = 0 := by
+        calc
+          _ = ∑ k ∈ Finset.Icc 1 (N + 1),
+                if k ∣ N + 1 then ArithmeticFunction.moebius k else 0 := by
+              apply Finset.sum_congr rfl
+              intro k _
+              split <;> simp_all
+          _ = ∑ k ∈ Finset.filter (fun k : ℕ => k ∣ N + 1)
+                (Finset.Icc 1 (N + 1)), ArithmeticFunction.moebius k := by
+              rw [Finset.sum_filter]
+          _ = 0 := by
+              rw [hdivisors, sum_moebius_divisors_int]
+              split <;> simp_all
+      have hold :
+          (∑ k ∈ Finset.Icc 1 (N + 1),
+              ArithmeticFunction.moebius k * ((N / k : ℕ) : ℤ)) = 1 := by
+        rw [Finset.sum_Icc_succ_top (by omega)]
+        have hlast : ((N / (N + 1) : ℕ) : ℤ) = 0 := by
+          rw [Nat.div_eq_of_lt (by omega)]
+          norm_num
+        rw [hlast, mul_zero, add_zero]
+        exact ih
+      calc
+        (∑ k ∈ Finset.Icc 1 (N + 1),
+            ArithmeticFunction.moebius k * (((N + 1) / k : ℕ) : ℤ)) =
+            ∑ k ∈ Finset.Icc 1 (N + 1),
+              ArithmeticFunction.moebius k * (((N / k : ℕ) : ℤ) +
+                if k ∣ N + 1 then 1 else 0) := by
+              apply Finset.sum_congr rfl
+              intro k _
+              rw [Nat.succ_div]
+              push_cast
+              rfl
+        _ = (∑ k ∈ Finset.Icc 1 (N + 1),
+              ArithmeticFunction.moebius k * ((N / k : ℕ) : ℤ)) +
+            ∑ k ∈ Finset.Icc 1 (N + 1),
+              ArithmeticFunction.moebius k *
+                (if k ∣ N + 1 then (1 : ℤ) else 0) := by
+              rw [← Finset.sum_add_distrib]
+              apply Finset.sum_congr rfl
+              intro k _
+              ring
+        _ = 1 := by rw [hold, hdivsum, add_zero]
+
 /--
 Quantitative and boundary-value inputs for the linear Mobius/Dirichlet bridge.
 This isolates the still-unformalized classical analytic number theory from the
