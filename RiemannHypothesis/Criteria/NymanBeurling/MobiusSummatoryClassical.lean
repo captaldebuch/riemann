@@ -1463,6 +1463,38 @@ noncomputable def ClassicalMertensAPI.ofDecay'
       mobius_sum_zero_of_decay_and_limit_zero H R.mobius_overK_limit_zero
     mobiusLog_sum_neg_one := R.mobiusLog_sum_neg_one }
 
+/--
+The two boundary normalizations still needed after deriving both quantitative
+summatory bounds from `ClassicalMertensDecay`.
+
+The first field records the Axer identification of the already-proved limit of
+`mobiusOverKPartial`; the second is the logarithmic boundary normalization.
+-/
+structure ClassicalMertensBoundaryResidualInputs where
+  mobius_overK_limit_zero : MobiusOverKLimitIsZero
+  mobiusLog_sum_neg_one : Tendsto mobiusLogOverKPartial atTop (𝓝 (-1))
+
+/--
+Assemble `ClassicalMertensAPI` from Mertens decay and only the two remaining
+boundary normalizations.
+
+This is additive: the earlier residual structures and constructors remain
+available unchanged.
+-/
+noncomputable def ClassicalMertensAPI.ofDecay''
+    (H : ClassicalMertensDecay) (R : ClassicalMertensBoundaryResidualInputs) :
+    ClassicalMertensAPI :=
+  { C_M := Classical.choose (mertens_bound_of_decay H)
+    C_L := Classical.choose (mobiusLogSummatory_bound_of_decay H)
+    C_M_pos := (Classical.choose_spec (mertens_bound_of_decay H)).1
+    C_L_pos := (Classical.choose_spec (mobiusLogSummatory_bound_of_decay H)).1
+    mertens_bound := (Classical.choose_spec (mertens_bound_of_decay H)).2
+    mobiusLogSummatory_bound :=
+      (Classical.choose_spec (mobiusLogSummatory_bound_of_decay H)).2
+    mobius_sum_zero :=
+      mobius_sum_zero_of_decay_and_limit_zero H R.mobius_overK_limit_zero
+    mobiusLog_sum_neg_one := R.mobiusLog_sum_neg_one }
+
 lemma ClassicalMertensAPI.logOverK_difference_bound (api : ClassicalMertensAPI)
     (N R : ℕ) (hNR : N ≤ R) :
     |(cutoffMobiusLogOverKSum R + 1) - (cutoffMobiusLogOverKSum N + 1)| ≤
