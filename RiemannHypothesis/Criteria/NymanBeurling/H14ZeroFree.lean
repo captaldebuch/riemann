@@ -217,4 +217,41 @@ theorem deLaValleePoussin_neg_logDeriv_real_le_pole_add_const :
 
 end PoleLogDerivativeBound
 
+section ZetaLogDerivativeDiscBound
+
+open Complex
+
+/--
+Z3: the one quantitative complex-analytic input still missing from Mathlib for
+the classical de la Vallée Poussin argument.
+
+Mathlib supplies Borel--Carathéodory, Jensen's formula, discreteness of the
+zeta zeros, and analytic order/factorization.  What is not currently supplied
+is the quantitative application of those tools to zeta in a disc centered at
+height `t`: a logarithmic vertical bound for `-ζ'/ζ`, together with the same
+bound after retaining the contribution of a specified zero.  The latter is
+stated with coefficient one, so it applies to zeros of arbitrary positive
+multiplicity (and deliberately does not assume a simple zero).
+
+The companion diagnostic checks the normalization on the first twenty
+critical-line zeros; it suggests that `C = 1` has a wide numerical margin.
+No numerical observation is used in this hypothesis package.
+-/
+structure ZetaLogDerivDiscBound where
+  C : ℝ
+  C_nonneg : 0 ≤ C
+  vertical_bound :
+    ∀ {σ t : ℝ}, 1 < σ → σ ≤ 2 → t ≠ 0 →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        C * Real.log (|t| + 2)
+  zero_contribution_bound :
+    ∀ {σ β t : ℝ}, 1 < σ → σ ≤ 2 → β ≤ 1 → t ≠ 0 →
+      riemannZeta (β + Complex.I * t : ℂ) = 0 →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        -1 / (σ - β) + C * Real.log (|t| + 2)
+
+end ZetaLogDerivativeDiscBound
+
 end RH.Criteria.NymanBeurling.MobiusSummatory
