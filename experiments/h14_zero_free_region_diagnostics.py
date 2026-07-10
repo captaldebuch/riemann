@@ -143,12 +143,26 @@ def sample_z3(zero_count: int) -> None:
     print("  this samples only the analytic normalization; it is not a zero-free proof")
 
 
+def sample_small_height_obstruction() -> None:
+    """Expose the pole obstruction in the frozen global vertical-bound field."""
+    print("\nSmall-height diagonal path sigma=1+epsilon, t=epsilon")
+    print("  epsilon        -Re(zeta'/zeta)       divided by log(t+2)")
+    for exponent in range(1, 7):
+        epsilon = 10.0 ** (-exponent)
+        value = -zeta_log_derivative(1 + epsilon + 1j * epsilon).real
+        normalized = value / math.log(epsilon + 2)
+        print(f"  {epsilon:8.1e}   {value:20.12g}   {normalized:20.12g}")
+    print("  the normalized values grow like 1/(2*epsilon*log 2)")
+    print("  hence no uniform C can cover every nonzero t")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--zeros", type=int, default=20)
     args = parser.parse_args()
     sample_z2()
     sample_z3(args.zeros)
+    sample_small_height_obstruction()
 
 
 if __name__ == "__main__":

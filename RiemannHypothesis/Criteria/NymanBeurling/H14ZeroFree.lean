@@ -540,6 +540,136 @@ noncomputable def deLaValleePoussinZeroFreeRegion_of_logDerivDiscBound
       exact min_le_left _ _
     linarith
 
+section FrozenDiscBoundObstruction
+
+open Complex
+
+/-- The regular part of the zeta logarithmic derivative after removing its
+pole at `s = 1`. -/
+noncomputable def zetaPoleLogDerivRegularPart (s : ℂ) : ℝ :=
+  (deriv zetaPoleRemoved s / zetaPoleRemoved s).re
+
+lemma continuousAt_zetaPoleLogDerivRegularPart :
+    ContinuousAt zetaPoleLogDerivRegularPart (1 : ℂ) := by
+  have hG := zetaPoleRemoved_analyticAt (1 : ℂ)
+  have hquot : ContinuousAt
+      (fun s : ℂ => deriv zetaPoleRemoved s / zetaPoleRemoved s) 1 :=
+    hG.deriv.continuousAt.div hG.continuousAt (by simp)
+  exact Complex.continuous_re.continuousAt.comp hquot
+
+/--
+The globally quantified `vertical_bound` field in the frozen Z3 package is
+incompatible with zeta's pole.  Along `s = 1 + x + ix`, its left side grows
+as `1 / (2x)`, while `C * log (x + 2)` remains bounded as `x → 0⁺`.
+
+Consequently the frozen package cannot be instantiated.  A corrected API
+must restrict the vertical estimate to ordinates of nonreal zeta zeros (which
+is all the zero-repulsion proof uses), or impose a fixed positive lower bound
+on `|t|` and absorb the remaining compact region separately.
+-/
+theorem not_nonempty_zetaLogDerivDiscBound :
+    ¬ Nonempty ZetaLogDerivDiscBound := by
+  rintro ⟨H⟩
+  let Q : ℂ → ℝ := zetaPoleLogDerivRegularPart
+  have hQcont : ContinuousAt Q (1 : ℂ) := by
+    simpa [Q] using continuousAt_zetaPoleLogDerivRegularPart
+  rcases Metric.continuousAt_iff.mp hQcont 1 zero_lt_one with
+    ⟨radius, hradius, hQclose⟩
+  let B : ℝ := |Q 1| + 1
+  let M : ℝ := H.C * Real.log 3 + B + 1
+  have hlog3 : 0 < Real.log 3 := Real.log_pos (by norm_num)
+  have hB : 0 < B := by
+    dsimp [B]
+    linarith [abs_nonneg (Q 1)]
+  have hM : 0 < M := by
+    dsimp [M]
+    nlinarith [H.C_nonneg, hlog3]
+  let x : ℝ := min (radius / 4) (min (1 / 2) (1 / (4 * M)))
+  have hx : 0 < x := by
+    dsimp [x]
+    exact lt_min (div_pos hradius (by norm_num))
+      (lt_min (by norm_num) (one_div_pos.mpr (by positivity)))
+  have hxradius : x ≤ radius / 4 := by
+    dsimp [x]
+    exact min_le_left _ _
+  have hxone : x ≤ 1 / 2 := by
+    dsimp [x]
+    exact (min_le_right _ _).trans (min_le_left _ _)
+  have hxM : x ≤ 1 / (4 * M) := by
+    dsimp [x]
+    exact (min_le_right _ _).trans (min_le_right _ _)
+  let s : ℂ := (1 + x : ℝ) + Complex.I * x
+  have hsre : s.re = 1 + x := by simp [s]
+  have hsim : s.im = x := by simp [s]
+  have hsone : 1 < s.re := by rw [hsre]; linarith
+  have hstwo : s.re ≤ 2 := by rw [hsre]; linarith
+  have hvertical :
+      (-deriv riemannZeta s / riemannZeta s).re ≤
+        H.C * Real.log (x + 2) := by
+    have h := H.vertical_bound
+      (σ := 1 + x) (t := x) (by linarith) (by linarith) hx.ne'
+    simpa [s, abs_of_pos hx] using h
+  have hs_ne : s ≠ 1 := by
+    intro hs
+    have : s.re = 1 := by simp [hs]
+    linarith
+  have hz : riemannZeta s ≠ 0 :=
+    riemannZeta_ne_zero_of_one_lt_re hsone
+  have hdist : dist s (1 : ℂ) < radius := by
+    have hsub : s - 1 = (x : ℂ) + Complex.I * x := by
+      dsimp [s]
+      push_cast
+      ring
+    rw [dist_eq_norm, hsub]
+    calc
+      ‖(x : ℂ) + Complex.I * x‖ ≤
+          ‖(x : ℂ)‖ + ‖Complex.I * (x : ℂ)‖ := norm_add_le _ _
+      _ = 2 * x := by simp [abs_of_pos hx]; ring
+      _ < radius := by linarith
+  have hQdist : dist (Q s) (Q 1) < 1 := hQclose hdist
+  have hQlt : Q s < B := by
+    have hdiff : Q s - Q 1 < 1 := by
+      rw [Real.dist_eq] at hQdist
+      exact lt_of_le_of_lt (le_abs_self _) hQdist
+    dsimp [B]
+    linarith [le_abs_self (Q 1)]
+  have hpole : (1 / (s - 1)).re = 1 / (2 * x) := by
+    have hsub : s - 1 = (x : ℂ) + Complex.I * x := by
+      dsimp [s]
+      push_cast
+      ring
+    rw [hsub, div_eq_mul_inv, one_mul, Complex.inv_re]
+    simp [Complex.normSq_apply]
+    field_simp [hx.ne']
+    ring
+  have hformula :
+      (-deriv riemannZeta s / riemannZeta s).re =
+        1 / (2 * x) - Q s := by
+    have h := neg_zeta_logDeriv_eq_inv_sub_poleRemovedLogDeriv hs_ne hz
+    calc
+      (-deriv riemannZeta s / riemannZeta s).re =
+          (1 / (s - 1) - deriv zetaPoleRemoved s /
+            zetaPoleRemoved s).re := congrArg Complex.re h
+      _ = (1 / (s - 1)).re -
+          (deriv zetaPoleRemoved s / zetaPoleRemoved s).re := rfl
+      _ = 1 / (2 * x) - Q s := by rw [hpole]; rfl
+  have hxMprod : x * (4 * M) ≤ 1 :=
+    (le_div_iff₀ (by positivity : 0 < 4 * M)).mp hxM
+  have hinv : 2 * M ≤ 1 / (2 * x) := by
+    apply (le_div_iff₀ (by positivity : 0 < 2 * x)).2
+    nlinarith
+  have hlarge : H.C * Real.log 3 < 1 / (2 * x) - Q s := by
+    dsimp [M] at hinv
+    linarith
+  have hlog : Real.log (x + 2) ≤ Real.log 3 := by
+    exact Real.log_le_log (by positivity) (by linarith)
+  have hupper : H.C * Real.log (x + 2) ≤ H.C * Real.log 3 :=
+    mul_le_mul_of_nonneg_left hlog H.C_nonneg
+  rw [hformula] at hvertical
+  linarith
+
+end FrozenDiscBoundObstruction
+
 end ZetaLogDerivativeDiscBound
 
 end RH.Criteria.NymanBeurling.MobiusSummatory
