@@ -690,6 +690,102 @@ theorem abs_sum_Icc_mul_le_of_partial_sum_le_of_antitone
     _ ≤ D := by
       nlinarith [hb_nonneg A hAmem]
 
+lemma nat_div_eq_iff_mem_Icc_div (N q k : ℕ) (hk : 0 < k) (hq : 0 < q) :
+    N / k = q ↔ k ∈ Finset.Icc (N / (q + 1) + 1) (N / q) := by
+  constructor
+  · intro heq
+    have hlower : N / (q + 1) < k := by
+      rw [Nat.div_lt_iff_lt_mul (by omega)]
+      have : N / k < q + 1 := by omega
+      simpa [Nat.mul_comm] using (Nat.div_lt_iff_lt_mul hk).mp this
+    have hupper : k ≤ N / q := by
+      rw [Nat.le_div_iff_mul_le hq]
+      have : q ≤ N / k := by omega
+      simpa [Nat.mul_comm] using (Nat.le_div_iff_mul_le hk).mp this
+    exact Finset.mem_Icc.mpr ⟨by omega, hupper⟩
+  · intro hmem
+    rcases Finset.mem_Icc.mp hmem with ⟨hlower, hupper⟩
+    have hlt : N / k < q + 1 := by
+      rw [Nat.div_lt_iff_lt_mul hk]
+      have : N < k * (q + 1) :=
+        (Nat.div_lt_iff_lt_mul (by omega)).mp (by omega)
+      simpa [Nat.mul_comm] using this
+    have hle : q ≤ N / k := by
+      rw [Nat.le_div_iff_mul_le hk]
+      have : k * q ≤ N :=
+        (Nat.le_div_iff_mul_le hq).mp hupper
+      simpa [Nat.mul_comm] using this
+    omega
+
+/-- The contribution from the block on which `⌊N/k⌋ = q`. -/
+noncomputable def mobiusFractBlock (N q : ℕ) : ℝ :=
+  ∑ k ∈ Finset.Icc (N / (q + 1) + 1) (N / q),
+    ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+      Int.fract ((N : ℝ) / (k : ℝ))
+
+lemma mobiusFractBlock_eq_filtered_tail (N Q q : ℕ)
+    (hq : 1 ≤ q) (hqQ : q ≤ Q) :
+    mobiusFractBlock N q =
+      ∑ k ∈ Finset.filter (fun k : ℕ => N / k = q)
+        (Finset.Icc (N / (Q + 1) + 1) N),
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+            Int.fract ((N : ℝ) / (k : ℝ)) := by
+  unfold mobiusFractBlock
+  have hsets :
+      Finset.Icc (N / (q + 1) + 1) (N / q) =
+        Finset.filter (fun k : ℕ => N / k = q)
+          (Finset.Icc (N / (Q + 1) + 1) N) := by
+    ext k
+    simp only [Finset.mem_Icc, Finset.mem_filter]
+    constructor
+    · intro hkblock
+      have hkpos : 0 < k := lt_of_lt_of_le (Nat.zero_lt_succ _) hkblock.1
+      have heq := (nat_div_eq_iff_mem_Icc_div N q k hkpos (by omega)).mpr
+        (Finset.mem_Icc.mpr hkblock)
+      have hKle : N / (Q + 1) ≤ N / (q + 1) :=
+        Nat.div_le_div_left (by omega) (by omega)
+      exact ⟨⟨by omega, hkblock.2.trans (Nat.div_le_self N q)⟩, heq⟩
+    · rintro ⟨hktail, heq⟩
+      have hkpos : 0 < k :=
+        lt_of_lt_of_le (Nat.zero_lt_succ _) hktail.1
+      exact Finset.mem_Icc.mp
+        ((nat_div_eq_iff_mem_Icc_div N q k hkpos (by omega)).mp heq)
+  rw [hsets]
+
+/-- The tail above `N/(Q+1)` is the exact sum of the first `Q` floor blocks. -/
+lemma mobiusFractTail_eq_sum_blocks (N Q : ℕ) :
+    (∑ k ∈ Finset.Icc (N / (Q + 1) + 1) N,
+      ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+        Int.fract ((N : ℝ) / (k : ℝ))) =
+      ∑ q ∈ Finset.Icc 1 Q, mobiusFractBlock N q := by
+  let s := Finset.Icc (N / (Q + 1) + 1) N
+  let f := fun k : ℕ =>
+    ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+      Int.fract ((N : ℝ) / (k : ℝ))
+  have hmaps : ∀ k ∈ s, N / k ∈ Finset.Icc 1 Q := by
+    intro k hk
+    have hkIcc : k ∈ Finset.Icc (N / (Q + 1) + 1) N := hk
+    rcases Finset.mem_Icc.mp hkIcc with ⟨hKk, hkN⟩
+    have hkpos : 0 < k := lt_of_lt_of_le (Nat.zero_lt_succ _) hKk
+    have hlower : 1 ≤ N / k := by
+      rw [Nat.le_div_iff_mul_le hkpos]
+      simpa using hkN
+    have hupper : N / k ≤ Q := by
+      have hlt : N / k < Q + 1 := by
+        rw [Nat.div_lt_iff_lt_mul hkpos]
+        have : N < k * (Q + 1) :=
+          (Nat.div_lt_iff_lt_mul (by omega)).mp (by omega)
+        simpa [Nat.mul_comm] using this
+      omega
+    exact Finset.mem_Icc.mpr ⟨hlower, hupper⟩
+  have hfiber := Finset.sum_fiberwise_of_maps_to hmaps f
+  change (∑ k ∈ s, f k) = ∑ q ∈ Finset.Icc 1 Q, mobiusFractBlock N q
+  rw [← hfiber]
+  apply Finset.sum_congr rfl
+  intro q hq
+  rcases Finset.mem_Icc.mp hq with ⟨hq1, hqQ⟩
+  exact (mobiusFractBlock_eq_filtered_tail N Q q hq1 hqQ).symm
+
 /--
 Quantitative and boundary-value inputs for the linear Mobius/Dirichlet bridge.
 This isolates the still-unformalized classical analytic number theory from the
