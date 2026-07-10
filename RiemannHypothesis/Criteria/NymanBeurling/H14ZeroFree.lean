@@ -438,6 +438,108 @@ theorem deLaValleePoussin_nonreal_zero_repulsion
   exact three_four_one_forces_repulsion hA.le H.C_nonneg hl hlL hL hδ hx
     (by simpa [B] using hδsmall) hmain
 
+/--
+Z5: the isolated logarithmic-derivative disc estimate is sufficient to
+construct the frozen de la Vallée Poussin zero-free-region package.
+
+The nonreal case is `deLaValleePoussin_nonreal_zero_repulsion`.  On the real
+axis, continuity and the value `zetaPoleRemoved 1 = 1` give a zero-free
+neighborhood of the pole; shrinking the same positive constant absorbs this
+compact low-height case.  The closed half-plane `Re s ≥ 1` is Mathlib's
+unconditional zeta nonvanishing theorem.
+-/
+noncomputable def deLaValleePoussinZeroFreeRegion_of_logDerivDiscBound
+    (H : ZetaLogDerivDiscBound) :
+    DeLaValleePoussinZeroFreeRegion := by
+  let hrepExists := deLaValleePoussin_nonreal_zero_repulsion H
+  let c₀ : ℝ := Classical.choose hrepExists
+  have hc₀ : 0 < c₀ := (Classical.choose_spec hrepExists).1
+  have hrepel :
+      ∀ {β t : ℝ}, β ≤ 1 → t ≠ 0 →
+        riemannZeta (β + Complex.I * t : ℂ) = 0 →
+        c₀ ≤ (1 - β) * Real.log (|t| + 2) :=
+    (Classical.choose_spec hrepExists).2
+  have hG_eventually :
+      ∀ᶠ z : ℂ in 𝓝 (1 : ℂ), zetaPoleRemoved z ≠ 0 :=
+    (zetaPoleRemoved_analyticAt (1 : ℂ)).continuousAt.eventually_ne (by simp)
+  let hlocalExists := Metric.eventually_nhds_iff.mp hG_eventually
+  let ε : ℝ := Classical.choose hlocalExists
+  have hε : 0 < ε := (Classical.choose_spec hlocalExists).1
+  have hG_ne :
+      ∀ ⦃z : ℂ⦄, dist z (1 : ℂ) < ε → zetaPoleRemoved z ≠ 0 :=
+    (Classical.choose_spec hlocalExists).2
+  let l : ℝ := Real.log 2
+  let c : ℝ := min c₀ (ε * l / 2)
+  have hl : 0 < l := by
+    dsimp [l]
+    exact Real.log_pos (by norm_num)
+  have hc : 0 < c := by
+    dsimp [c]
+    exact lt_min hc₀ (div_pos (mul_pos hε hl) (by norm_num))
+  refine
+    { c := c
+      c_pos := hc
+      zeta_ne_zero := ?_ }
+  intro s hs
+  by_cases hre : 1 ≤ s.re
+  · exact riemannZeta_ne_zero_of_one_le_re hre
+  have hre_lt : s.re < 1 := lt_of_not_ge hre
+  by_cases him : s.im = 0
+  · have hs_real : s = (s.re : ℂ) := by
+      apply Complex.ext
+      · simp
+      · simpa [him]
+    have hregion : 1 - c / l < s.re := by
+      simpa [deLaValleePoussinRegion, him, l] using hs
+    have hgap : 1 - s.re < c / l := by linarith
+    have hcε : c ≤ ε * l / 2 := by
+      dsimp [c]
+      exact min_le_right _ _
+    have hcdiv : c / l ≤ ε / 2 := by
+      apply (div_le_iff₀ hl).2
+      calc
+        c ≤ ε * l / 2 := hcε
+        _ = (ε / 2) * l := by ring
+    have hdist : dist s (1 : ℂ) < ε := by
+      rw [hs_real]
+      have hreal : dist s.re (1 : ℝ) = 1 - s.re := by
+        rw [Real.dist_eq, abs_of_nonpos (by linarith)]
+        ring
+      have hsmall : 1 - s.re < ε := by linarith [hε]
+      have hcoe : dist (s.re : ℂ) (1 : ℂ) = dist s.re (1 : ℝ) := by
+        rw [dist_eq_norm, dist_eq_norm]
+        calc
+          ‖(s.re : ℂ) - 1‖ = ‖((s.re - 1 : ℝ) : ℂ)‖ := by
+            rw [Complex.ofReal_sub, Complex.ofReal_one]
+          _ = ‖s.re - 1‖ := Complex.norm_real _
+      rw [hcoe, hreal]
+      exact hsmall
+    have hG := hG_ne hdist
+    intro hz
+    have hs_ne : s ≠ 1 := by
+      intro h
+      have : s.re = 1 := by simpa [h]
+      linarith
+    rw [zetaPoleRemoved_of_ne_one hs_ne] at hG
+    exact hG (by rw [hz]; simp)
+  · intro hz
+    have hs_cart : s = (s.re + Complex.I * s.im : ℂ) := by
+      apply Complex.ext <;> simp
+    rw [hs_cart] at hz
+    have hrep := hrepel hre_lt.le him hz
+    have hL : 0 < Real.log (|s.im| + 2) := log_abs_im_add_two_pos s
+    have hregion :
+        1 - c / Real.log (|s.im| + 2) < s.re := by
+      simpa [deLaValleePoussinRegion] using hs
+    have hgap :
+        (1 - s.re) * Real.log (|s.im| + 2) < c := by
+      apply (lt_div_iff₀ hL).mp
+      linarith
+    have hc₀c : c ≤ c₀ := by
+      dsimp [c]
+      exact min_le_left _ _
+    linarith
+
 end ZetaLogDerivativeDiscBound
 
 end RH.Criteria.NymanBeurling.MobiusSummatory
