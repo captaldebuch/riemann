@@ -786,6 +786,105 @@ lemma mobiusFractTail_eq_sum_blocks (N Q : ℕ) :
   rcases Finset.mem_Icc.mp hq with ⟨hq1, hqQ⟩
   exact (mobiusFractBlock_eq_filtered_tail N Q q hq1 hqQ).symm
 
+lemma sum_Icc_succ_eq_sum_Icc_one_sub (a : ℕ → ℝ) (K R : ℕ) (hKR : K ≤ R) :
+    (∑ k ∈ Finset.Icc (K + 1) R, a k) =
+      (∑ k ∈ Finset.Icc 1 R, a k) - ∑ k ∈ Finset.Icc 1 K, a k := by
+  induction R, hKR using Nat.le_induction with
+  | base => simp
+  | succ R hKR ih =>
+      rw [Finset.sum_Icc_succ_top (by omega),
+        Finset.sum_Icc_succ_top (by omega), ih]
+      ring
+
+/--
+A single floor block is controlled by twice a uniform Mertens bound on the
+surrounding interval.
+-/
+lemma abs_mobiusFractBlock_le_of_summatory_bound
+    (N q : ℕ) (D : ℝ) (hq : 1 ≤ q) (hD : 0 ≤ D)
+    (hM : ∀ k ∈ Finset.Icc (N / (q + 1)) N,
+      |mobiusSummatory k| ≤ D) :
+    |mobiusFractBlock N q| ≤ 2 * D := by
+  let A := N / (q + 1) + 1
+  let B := N / q
+  by_cases hAB : A ≤ B
+  · let weight := fun k : ℕ =>
+      if k ≤ B then Int.fract ((N : ℝ) / (k : ℝ)) else 0
+    have hsum : mobiusFractBlock N q =
+        ∑ k ∈ Finset.Icc A B,
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) * weight k := by
+      unfold mobiusFractBlock
+      apply Finset.sum_congr
+      · rfl
+      · intro k hk
+        simp [weight, B, Finset.mem_Icc.mp hk |>.2]
+    rw [hsum]
+    apply abs_sum_Icc_mul_le_of_partial_sum_le_of_antitone
+      (fun k : ℕ => ((ArithmeticFunction.moebius k : ℤ) : ℝ))
+      weight A B (2 * D) hAB (by positivity)
+    · intro k hk
+      simp only [weight]
+      split
+      · exact Int.fract_nonneg _
+      · exact le_rfl
+    · intro k hk
+      rcases Finset.mem_Icc.mp hk with ⟨hAk, hkB⟩
+      have hApos : 0 < A := by simp [A]
+      have hkpos : 0 < k := hApos.trans_le hAk
+      simp only [weight, if_pos hkB]
+      by_cases hksucc : k + 1 ≤ B
+      · rw [if_pos hksucc]
+        have hkblock : k ∈ Finset.Icc (N / (q + 1) + 1) (N / q) := by
+          simpa [A, B] using Finset.mem_Icc.mpr ⟨hAk, hkB⟩
+        have hksuccblock :
+            k + 1 ∈ Finset.Icc (N / (q + 1) + 1) (N / q) := by
+          simpa [A, B] using
+            Finset.mem_Icc.mpr ⟨hAk.trans (Nat.le_succ k), hksucc⟩
+        have hkfloor :=
+          (nat_div_eq_iff_mem_Icc_div N q k hkpos (by omega)).mpr hkblock
+        have hksuccfloor :=
+          (nat_div_eq_iff_mem_Icc_div N q (k + 1) (by omega) (by omega)).mpr
+            hksuccblock
+        have hkfract := nat_div_add_fract_natCast_div N k
+        have hksuccfract := nat_div_add_fract_natCast_div N (k + 1)
+        norm_cast at hkfloor hksuccfloor
+        rw [hkfloor] at hkfract
+        rw [hksuccfloor] at hksuccfract
+        have hdiv : (N : ℝ) / (k + 1 : ℕ) ≤ (N : ℝ) / k := by
+          gcongr
+          norm_num
+        linarith
+      · rw [if_neg hksucc]
+        exact Int.fract_nonneg _
+    · simp only [weight, if_pos hAB]
+      exact (Int.fract_lt_one _).le
+    · intro k hk
+      rcases Finset.mem_Icc.mp hk with ⟨hAk, hkB⟩
+      have hKk : N / (q + 1) ≤ k := by simp [A] at hAk; omega
+      have hkN : k ≤ N := by
+        exact hkB.trans (by simpa [B] using Nat.div_le_self N q)
+      have hlocal :
+          (∑ j ∈ Finset.Icc A k,
+            ((ArithmeticFunction.moebius j : ℤ) : ℝ)) =
+            mobiusSummatory k - mobiusSummatory (N / (q + 1)) := by
+        unfold mobiusSummatory
+        simpa [A] using sum_Icc_succ_eq_sum_Icc_one_sub
+          (fun j : ℕ => ((ArithmeticFunction.moebius j : ℤ) : ℝ))
+          (N / (q + 1)) k hKk
+      rw [hlocal]
+      calc
+        |mobiusSummatory k - mobiusSummatory (N / (q + 1))| ≤
+            |mobiusSummatory k| + |mobiusSummatory (N / (q + 1))| :=
+          abs_sub _ _
+        _ ≤ D + D := add_le_add
+          (hM k (Finset.mem_Icc.mpr ⟨hKk, hkN⟩))
+          (hM (N / (q + 1))
+            (Finset.mem_Icc.mpr ⟨le_rfl, Nat.div_le_self N (q + 1)⟩))
+        _ = 2 * D := by ring
+  · have hempty : Finset.Icc (N / (q + 1) + 1) (N / q) = ∅ :=
+      Finset.Icc_eq_empty (by simpa [A, B] using hAB)
+    simp [mobiusFractBlock, hempty, hD]
+
 /--
 Quantitative and boundary-value inputs for the linear Mobius/Dirichlet bridge.
 This isolates the still-unformalized classical analytic number theory from the
