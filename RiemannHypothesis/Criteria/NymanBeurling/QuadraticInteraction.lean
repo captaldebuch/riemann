@@ -1013,6 +1013,32 @@ theorem explicitQuadraticLogGammaComponent_eq_smooth_product (N : ℕ) :
   unfold explicitQuadraticLogGammaComponent
   exact smooth_part_quadratic_sum_eq_linear_product N (cutoffMobiusCoeff N)
 
+/-- The inverse-index factor in the smooth product is exactly the negative
+H14 cutoff Dirichlet sum. -/
+theorem cutoffMobiusCoeff_div_sum_eq_neg_overK (N : ℕ) :
+    (∑ h ∈ Finset.Icc 1 N, cutoffMobiusCoeff N h / (h : ℝ)) =
+      -cutoffMobiusOverKSum N := by
+  unfold cutoffMobiusCoeff cutoffWeight cutoffMobiusOverKSum
+  rw [← Finset.sum_neg_distrib]
+  apply Finset.sum_congr rfl
+  intro h _
+  ring
+
+/-- Classical Mertens decay controls the inverse-index factor of the smooth
+product.  The other factor `∑ k, cutoffMobiusCoeff N k` is deliberately not
+discarded: the separate absolute value in the H15 target requires genuine
+control of their product. -/
+theorem cutoffMobiusCoeff_div_sum_bound_of_decay
+    (H : MobiusSummatory.ClassicalMertensDecay) :
+    ∃ C > 0, ∀ N : ℕ,
+      |∑ h ∈ Finset.Icc 1 N, cutoffMobiusCoeff N h / (h : ℝ)| ≤
+        C / Real.log (N + 2 : ℝ) := by
+  let api := MobiusSummatory.ClassicalMertensAPI.ofDecayOnly H
+  refine ⟨12 * api.C_M, mul_pos (by norm_num) api.C_M_pos, ?_⟩
+  intro N
+  rw [cutoffMobiusCoeff_div_sum_eq_neg_overK, abs_neg]
+  exact api.overK_bound N
+
 /-- The interaction remainder written as completed-square energy plus the
 H14-controlled linear centered error. -/
 theorem explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear
