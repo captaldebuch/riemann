@@ -3165,6 +3165,45 @@ theorem zeta_deriv_div_sq_tendsto_neg_one :
     riemannZeta_ne_zero_of_one_lt_re (by simpa using hs)
   exact congrArg Complex.re (zeta_deriv_div_sq_eq_poleRemoved hs1 hz).symm
 
+-- ---------------------------------------------------------------------------
+-- H14 final field, B5. Collapse to the single classical decay input
+-- ---------------------------------------------------------------------------
+
+/--
+B5: the logarithmic Möbius boundary value is forced to be `-1` by its
+Dirichlet series and the simple pole of `ζ`.
+-/
+theorem mobiusLog_sum_neg_one_of_decay (H : ClassicalMertensDecay) :
+    Tendsto mobiusLogOverKPartial atTop (𝓝 (-1)) := by
+  rcases mobiusLogOverKPartial_convergent_of_decay H with ⟨ℓ, hℓ⟩
+  have hboundary := mobiusLog_LSeries_tendsto_boundary hℓ
+  have hzeta := zeta_deriv_div_sq_tendsto_neg_one
+  have hLseries : Tendsto (fun s : ℝ => (L mobiusLogCoeffC (s : ℂ)).re)
+      (𝓝[>] (1 : ℝ)) (𝓝 (-1 : ℝ)) := by
+    apply hzeta.congr'
+    filter_upwards [self_mem_nhdsWithin] with s hs
+    exact congrArg Complex.re
+      (mobiusLog_LSeries_eq_zeta_deriv_div_sq (by simpa using hs)).symm
+  have hℓeq : ℓ = -1 := tendsto_nhds_unique hboundary hLseries
+  simpa [hℓeq] using hℓ
+
+/--
+Final H14 constructor: the whole classical linear Möbius API follows from the
+single de la Vallée Poussin decay statement.
+-/
+noncomputable def ClassicalMertensAPI.ofDecayOnly
+    (H : ClassicalMertensDecay) : ClassicalMertensAPI :=
+  { C_M := Classical.choose (mertens_bound_of_decay H)
+    C_L := Classical.choose (mobiusLogSummatory_bound_of_decay H)
+    C_M_pos := (Classical.choose_spec (mertens_bound_of_decay H)).1
+    C_L_pos := (Classical.choose_spec (mobiusLogSummatory_bound_of_decay H)).1
+    mertens_bound := (Classical.choose_spec (mertens_bound_of_decay H)).2
+    mobiusLogSummatory_bound :=
+      (Classical.choose_spec (mobiusLogSummatory_bound_of_decay H)).2
+    mobius_sum_zero := mobiusOverK_tendsto_zero_of_decay H
+    mobiusLog_sum_neg_one := mobiusLog_sum_neg_one_of_decay H }
+
+
 
 
 
