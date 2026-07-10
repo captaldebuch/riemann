@@ -11,6 +11,40 @@ namespace RH.Criteria.NymanBeurling.MobiusSummatory
 open Filter Finset Topology
 open scoped ArithmeticFunction BigOperators LSeries.notation
 
+section ZetaGrowthPartialSummation
+
+open Complex
+
+/--
+P1: complex-valued finite Abel summation on an arbitrary natural interval.
+
+This is the zeta-growth analogue of
+`finite_abel_sum_Icc_mul_eq_endpoint_add_sum_partial_from` from
+`MobiusSummatoryClassical.lean`.  The forthcoming vertical-growth argument for
+`ζ(s)` needs the same endpoint-plus-differences identity with complex weights
+such as `n ^ (-s)`, so we keep this reusable copy local to the zero-free-region
+pipeline rather than changing the real-valued H14 API.
+-/
+theorem finite_abel_sum_Icc_mul_eq_endpoint_add_sum_partial_from_complex
+    (a b : ℕ → ℂ) (A B : ℕ) (hAB : A ≤ B) :
+    (∑ k ∈ Finset.Icc A B, a k * b k) =
+      (∑ j ∈ Finset.Icc A B, a j) * b (B + 1) +
+        ∑ k ∈ Finset.Icc A B,
+          (∑ j ∈ Finset.Icc A k, a j) * (b k - b (k + 1)) := by
+  induction B, hAB using Nat.le_induction with
+  | base =>
+      simp
+      ring
+  | succ B hAB ih =>
+      have hAB' : A ≤ B + 1 := by omega
+      rw [Finset.sum_Icc_succ_top hAB', Finset.sum_Icc_succ_top hAB',
+        Finset.sum_Icc_succ_top hAB']
+      rw [ih]
+      rw [Finset.sum_Icc_succ_top hAB']
+      ring
+
+end ZetaGrowthPartialSummation
+
 section ThreeFourOneLogDerivative
 
 open Complex
