@@ -7,7 +7,15 @@ BBLS Proposition 48 rewrites the symmetric cotangent contribution as
          * sum_k c_N(k) B1(m*h/k).
 
 This script checks that normalization against the finite Vasyunin formula and
-then probes the actual inner sum
+then decomposes the centered package into the two cancellations that any proof
+must preserve:
+
+    Q_N = logRatio_N + cotangent_N - 1,
+    D_N = Q_N + 2 * (explicitLinearMobiusSum_N + 1).
+
+Thus ``logRatio_N`` cancels the order-one cotangent term around the main term
+``1``, and the residual ``Q_N`` is paired with the doubled linear centering.
+The table reports both pairings before probing the actual inner sum
 
     I_N(A) = sum_{k <= N} c_N(k) B1(A/k),  A = m*h,
 
@@ -138,21 +146,69 @@ def centered_package(n: int, mu: np.ndarray) -> tuple[float, ...]:
     return loggamma, logratio, cot, explicit_linear, defect_minus_loggamma, package
 
 
-def print_centered_package() -> None:
-    ns = (20, 50, 100, 300)
+def print_smooth_product_components(ns: tuple[int, ...]) -> None:
+    """Probe the two linear factors in the separately absolute log-gamma term."""
     mu = mobius_sieve(max(ns))
-    print("\nExact centered correlation package")
+    print("\nSmooth log-gamma product factors (no cotangent table required)")
     print(
-        "N      loggamma      logratio      cotangent     linear+1   "
-        "defect-loggamma    package   package*log^2"
+        "N        sum(c/h)          sum(c)       loggamma    "
+        "|loggamma|*log^2   N*|loggamma|"
     )
     for n in ns:
-        loggamma, logratio, cot, linear, corrected, package = centered_package(n, mu)
+        k_int, c = cutoff_coefficients(n, mu)
+        k = k_int.astype(np.float64)
+        sum_c_over_h = float(np.sum(c / k))
+        sum_c = float(np.sum(c))
+        loggamma = LOG_TWO_PI_MINUS_GAMMA * sum_c_over_h * sum_c
+        print(
+            f"{n:7d}  {sum_c_over_h:+16.9e}  {sum_c:+12.6f}  "
+            f"{loggamma:+12.7e}  "
+            f"{abs(loggamma)*math.log(n+2.0)**2:18.9e}  "
+            f"{n*abs(loggamma):14.7f}"
+        )
+
+
+def print_centered_package(ns: tuple[int, ...]) -> None:
+    mu = mobius_sieve(max(ns))
+    rows = [(n, centered_package(n, mu)) for n in ns]
+    print("\nExact centered correlation package")
+    print(
+        "N      loggamma      logratio      cotangent       Q=R+C-1   "
+        "2(linear+1)       D=Q+2L      package*log^2"
+    )
+    for n, components in rows:
+        loggamma, logratio, cot, linear, corrected, package = components
         logn = math.log(n + 2.0)
+        quadratic_pair = logratio + cot - 1.0
+        linear_center = 2.0 * (linear + 1.0)
         print(
             f"{n:3d}  {loggamma:+12.7f}  {logratio:+12.7f}  {cot:+12.7f}  "
-            f"{linear+1.0:+10.7f}  {corrected:+16.8f}  {package:9.7f}  "
+            f"{quadratic_pair:+12.7f}  {linear_center:+12.7f}  "
+            f"{corrected:+12.7f}  "
             f"{package*logn*logn:13.7f}"
+        )
+
+    print("\nCancellation and rate diagnostics")
+    print(
+        "N      Q*log^2      2L*log^2       D*log^2    |loggamma|*log^2  "
+        "cancel(R,C;1)  cancel(Q,2L)"
+    )
+    for n, components in rows:
+        loggamma, logratio, cot, linear, corrected, _ = components
+        logn2 = math.log(n + 2.0) ** 2
+        quadratic_pair = logratio + cot - 1.0
+        linear_center = 2.0 * (linear + 1.0)
+        first_cancel = (abs(logratio) + abs(cot) + 1.0) / max(
+            abs(quadratic_pair), 1e-300
+        )
+        second_cancel = (abs(quadratic_pair) + abs(linear_center)) / max(
+            abs(corrected), 1e-300
+        )
+        print(
+            f"{n:3d}  {quadratic_pair*logn2:+12.7f}  "
+            f"{linear_center*logn2:+12.7f}  {corrected*logn2:+12.7f}  "
+            f"{abs(loggamma)*logn2:18.7f}  {first_cancel:13.3f}  "
+            f"{second_cancel:12.3f}"
         )
 
 
@@ -204,15 +260,30 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--ns", nargs="+", type=int, default=list(DEFAULT_NS))
     parser.add_argument("--samples", type=int, default=1024)
     parser.add_argument("--skip-triple", action="store_true")
+    parser.add_argument(
+        "--centered-ns",
+        nargs="+",
+        type=int,
+        default=[20, 50, 100, 300],
+        help="cutoffs for the exact centered-pairing table",
+    )
+    parser.add_argument(
+        "--smooth-ns",
+        nargs="+",
+        type=int,
+        default=[100, 300, 1000, 3000, 10000, 100000, 1000000],
+        help="cutoffs for the cheap smooth-product factor table",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     ns = tuple(sorted(set(args.ns)))
+    print_smooth_product_components(tuple(sorted(set(args.smooth_ns))))
     if not args.skip_triple:
         check_reordered_normalization()
-        print_centered_package()
+        print_centered_package(tuple(sorted(set(args.centered_ns))))
     print_inner_probes(collect_inner_probes(ns, args.samples))
 
 
