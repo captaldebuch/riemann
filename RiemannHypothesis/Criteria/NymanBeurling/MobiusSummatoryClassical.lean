@@ -2761,4 +2761,73 @@ theorem mobiusLogOverKPartial_convergent_of_decay (H : ClassicalMertensDecay) :
     rw [cutoffMobiusLogOverKSum_eq_partial_sub]
     ring)
 
+-- ---------------------------------------------------------------------------
+-- H14 final field, B2. Möbius logarithmic L-series identity
+-- ---------------------------------------------------------------------------
+
+section MobiusLogLSeries
+
+open Complex
+open scoped ArithmeticFunction LSeries.notation
+
+/-- Complex coefficient sequence `μ(n) log n`. -/
+noncomputable def mobiusLogCoeffC (n : ℕ) : ℂ :=
+  (Real.log (n : ℝ) : ℂ) * ((ArithmeticFunction.moebius n : ℤ) : ℂ)
+
+lemma mobius_LSeries_eq_inv_riemannZeta {s : ℂ} (hs : 1 < s.re) :
+    L ↗ArithmeticFunction.moebius s = (riemannZeta s)⁻¹ := by
+  have hz : riemannZeta s ≠ 0 := riemannZeta_ne_zero_of_one_lt_re hs
+  rw [← one_div]
+  apply (eq_div_iff hz).2
+  have hmul := ArithmeticFunction.LSeries_zeta_mul_Lseries_moebius hs
+  rw [ArithmeticFunction.LSeries_zeta_eq_riemannZeta hs] at hmul
+  simpa [mul_comm] using hmul
+
+lemma deriv_mobius_LSeries_eq_neg_zeta_deriv_div_sq {s : ℂ} (hs : 1 < s.re) :
+    deriv (L ↗ArithmeticFunction.moebius) s =
+      -deriv riemannZeta s / riemannZeta s ^ 2 := by
+  have hregion : {z : ℂ | 1 < z.re} ∈ 𝓝 s :=
+    (isOpen_lt continuous_const continuous_re).mem_nhds hs
+  have heq :
+      (L ↗ArithmeticFunction.moebius) =ᶠ[𝓝 s]
+        (riemannZeta ·)⁻¹ := by
+    filter_upwards [hregion] with z hz
+    exact mobius_LSeries_eq_inv_riemannZeta hz
+  rw [heq.deriv_eq]
+  have hs1 : s ≠ 1 := by
+    intro h
+    simpa [h] using hs
+  exact ((differentiableAt_riemannZeta hs1).hasDerivAt.inv
+    (riemannZeta_ne_zero_of_one_lt_re hs)).deriv
+
+/--
+B2: on `Re s > 1`, the Dirichlet series of `μ(n) log n` is
+`ζ'(s) / ζ(s)^2`.
+-/
+theorem mobiusLog_LSeries_eq_zeta_deriv_div_sq {s : ℂ} (hs : 1 < s.re) :
+    L mobiusLogCoeffC s = deriv riemannZeta s / riemannZeta s ^ 2 := by
+  have habs : LSeries.abscissaOfAbsConv (↗ArithmeticFunction.moebius : ℕ → ℂ) < s.re := by
+    rw [ArithmeticFunction.abscissaOfAbsConv_moebius, ← EReal.coe_one,
+      EReal.coe_lt_coe_iff]
+    exact hs
+  have hLderiv := LSeries_deriv habs
+  have hzderiv := deriv_mobius_LSeries_eq_neg_zeta_deriv_div_sq hs
+  have hneg :
+      -L (LSeries.logMul (↗ArithmeticFunction.moebius : ℕ → ℂ)) s =
+        -(deriv riemannZeta s / riemannZeta s ^ 2) := by
+    calc
+      -L (LSeries.logMul (↗ArithmeticFunction.moebius : ℕ → ℂ)) s =
+          deriv (L ↗ArithmeticFunction.moebius) s := hLderiv.symm
+      _ = -deriv riemannZeta s / riemannZeta s ^ 2 := hzderiv
+      _ = -(deriv riemannZeta s / riemannZeta s ^ 2) := by ring
+  calc
+    L mobiusLogCoeffC s =
+        L (LSeries.logMul (↗ArithmeticFunction.moebius : ℕ → ℂ)) s := by
+      apply LSeries_congr
+      intro n _hn
+      simp [mobiusLogCoeffC, LSeries.logMul, ← Complex.natCast_log]
+    _ = deriv riemannZeta s / riemannZeta s ^ 2 := neg_inj.mp hneg
+
+end MobiusLogLSeries
+
 end RH.Criteria.NymanBeurling.MobiusSummatory
