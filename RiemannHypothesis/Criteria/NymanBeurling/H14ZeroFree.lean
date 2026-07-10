@@ -1004,6 +1004,48 @@ polynomial vertical growth bound for `ζ` in a strip nor the assembled
 partial-fraction estimate for `ζ'/ζ`.  This package names precisely that
 assembled complex-analysis output without changing the repaired disc-bound API.
 -/
+structure ZetaLinearVerticalGrowthInStripAtHeight where
+  t₀ : ℝ
+  t₀_pos : 0 < t₀
+  t₀_le_one : t₀ ≤ 1
+  C : ℝ
+  C_nonneg : 0 ≤ C
+  vertical_growth :
+    ∀ {σ t : ℝ}, -(1 / 2 : ℝ) ≤ σ → σ ≤ 2 → t₀ ≤ |t| →
+      ‖riemannZeta (σ + Complex.I * t : ℂ)‖ ≤ C * (|t| + 2)
+
+/--
+P3 stop-gate after P2: the Borel--Caratheodory/Jensen and local
+factorization step that turns a strip-growth input into the two
+logarithmic-derivative estimates required by the repaired zero-free-region
+pipeline.
+
+The diagnostic script samples the P2 normalization
+`|ζ(σ+it)| / (|t|+2)` on `-1/2 ≤ σ ≤ 2`, `|t| ≥ 1`; the maximum on the current
+grid is approximately `0.418`.  The structure below does not use the numerical
+sample as proof: it records the remaining complex-analysis construction once
+the vertical-growth input is available.
+-/
+structure ZetaBorelJensenFactorizationAtHeight
+    (G : ZetaLinearVerticalGrowthInStripAtHeight) where
+  C : ℝ
+  C_nonneg : 0 ≤ C
+  log_derivative_bounds :
+    (∀ {σ t : ℝ}, 1 < σ → σ ≤ 2 → G.t₀ ≤ |t| →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        C * Real.log (|t| + 2)) ∧
+    (∀ {σ β t : ℝ}, 1 < σ → σ ≤ 2 → β ≤ 1 → G.t₀ ≤ |t| →
+      riemannZeta (β + Complex.I * t : ℂ) = 0 →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        -1 / (σ - β) + C * Real.log (|t| + 2))
+
+/--
+Legacy assembled R4 package.  The newer P2/P3 split above refines this
+monolithic stop-gate into the strip-growth input and the remaining
+Borel--Jensen/factorization step.
+-/
 structure ZetaBorelJensenLogDerivDiscEstimateAtHeight where
   t₀ : ℝ
   t₀_pos : 0 < t₀
@@ -1020,6 +1062,18 @@ structure ZetaBorelJensenLogDerivDiscEstimateAtHeight where
       (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
           riemannZeta (σ + Complex.I * t : ℂ)).re ≤
         -1 / (σ - β) + C * Real.log (|t| + 2))
+
+/-- The P2/P3 split reassembles the existing R4 package. -/
+noncomputable def zetaBorelJensenLogDerivDiscEstimateAtHeight_of_factorization
+    {G : ZetaLinearVerticalGrowthInStripAtHeight}
+    (H : ZetaBorelJensenFactorizationAtHeight G) :
+    ZetaBorelJensenLogDerivDiscEstimateAtHeight :=
+  { t₀ := G.t₀
+    t₀_pos := G.t₀_pos
+    t₀_le_one := G.t₀_le_one
+    C := H.C
+    C_nonneg := H.C_nonneg
+    borel_jensen_bound := H.log_derivative_bounds }
 
 /-- The R4 complex-analysis package is exactly enough to instantiate R1. -/
 noncomputable def zetaLogDerivDiscBoundAtHeight_of_borelJensen

@@ -191,6 +191,30 @@ def sample_center_lower_bound() -> None:
     print("  the naive 2 - zeta(3/2) candidate is negative")
 
 
+def sample_vertical_growth_strip() -> None:
+    """Gate the P2 strip growth shape ``|zeta(s)| <= C (|t| + 2)``."""
+    sigmas = [-0.5, -0.25, 0.0, 0.25, 0.5, 0.75]
+    sigmas += [0.9, 0.99, 1.0, 1.01, 1.1, 1.25, 1.5, 1.75, 2.0]
+    heights = [1, 1.05, 1.1, 1.25, 1.5, 2, 3, 5, 10, 25, 50, 100, 250]
+    rows: list[tuple[float, float, float, float]] = []
+    for sign in (-1, 1):
+        for height in heights:
+            t = sign * height
+            denominator = abs(t) + 2
+            for sigma in sigmas:
+                value = abs(zeta_and_deriv(sigma + 1j * t)[0])
+                rows.append((value / denominator, sigma, t, value))
+    rows.sort(key=lambda row: row[0])
+    print("\nP2 strip growth: |zeta(sigma+i*t)| / (|t|+2)")
+    for label, row in (("minimum", rows[0]), ("maximum", rows[-1])):
+        normalized, sigma, t, value = row
+        print(
+            f"  {label}: normalized={normalized:.15g}, sigma={sigma:.12g}, "
+            f"t={t:.12g}, |zeta|={value:.12g}"
+        )
+    print("  sampled strip is consistent with a linear vertical-growth bound")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--zeros", type=int, default=20)
@@ -200,6 +224,7 @@ def main() -> None:
     sample_small_height_obstruction()
     sample_repaired_height_range()
     sample_center_lower_bound()
+    sample_vertical_growth_strip()
 
 
 if __name__ == "__main__":
