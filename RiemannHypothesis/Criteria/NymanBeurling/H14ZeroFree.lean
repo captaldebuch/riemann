@@ -252,6 +252,192 @@ structure ZetaLogDerivDiscBound where
           riemannZeta (σ + Complex.I * t : ℂ)).re ≤
         -1 / (σ - β) + C * Real.log (|t| + 2)
 
+private lemma three_four_one_forces_repulsion
+    {A C l logHeight delta x : ℝ}
+    (hA : 0 ≤ A) (hC : 0 ≤ C) (hl : 0 < l)
+    (hlL : l ≤ logHeight) (hL : 0 < logHeight)
+    (hδ : 0 < delta) (hx : 0 ≤ x)
+    (hδsmall : delta ≤ 1 / (10 * (3 * A / l + 6 * C + 1)))
+    (hmain :
+      0 ≤ 3 * logHeight / delta + 3 * A -
+        4 / (delta / logHeight + x) + 6 * C * logHeight) :
+    delta / 4 ≤ x * logHeight := by
+  by_contra hn
+  have hxlt : x * logHeight < delta / 4 := lt_of_not_ge hn
+  have hqpos : 0 < delta / logHeight + x :=
+    add_pos_of_pos_of_nonneg (div_pos hδ hL) hx
+  have hqLt :
+      delta / logHeight + x < 5 * delta / (4 * logHeight) := by
+    calc
+      delta / logHeight + x =
+          (delta + x * logHeight) / logHeight := by field_simp
+      _ < (delta + delta / 4) / logHeight :=
+        (div_lt_div_iff_of_pos_right hL).2 (by linarith)
+      _ = 5 * delta / (4 * logHeight) := by field_simp; norm_num
+  have hinv :
+      4 * logHeight / (5 * delta) < 1 / (delta / logHeight + x) := by
+    have h := one_div_lt_one_div_of_lt hqpos hqLt
+    calc
+      4 * logHeight / (5 * delta) =
+          1 / (5 * delta / (4 * logHeight)) := by field_simp
+      _ < 1 / (delta / logHeight + x) := h
+  have hBpos : 0 < 3 * A / l + 6 * C + 1 := by positivity
+  have hδB : delta * (3 * A / l + 6 * C + 1) ≤ 1 / 10 := by
+    have h := (le_div_iff₀
+      (by positivity : 0 < 10 * (3 * A / l + 6 * C + 1))).mp hδsmall
+    nlinarith
+  have hAl : A / logHeight ≤ A / l :=
+    div_le_div_of_nonneg_left hA hl hlL
+  have htarget :
+      3 * A + 6 * C * logHeight < logHeight / (5 * delta) := by
+    have haux : delta * (3 * A / logHeight + 6 * C) < 1 / 5 := by
+      have hcomp : delta * (3 * A / logHeight + 6 * C) ≤
+          delta * (3 * A / l + 6 * C) := by gcongr
+      nlinarith
+    apply (lt_div_iff₀ (by positivity : 0 < 5 * delta)).2
+    calc
+      (3 * A + 6 * C * logHeight) * (5 * delta) =
+          5 * logHeight * (delta * (3 * A / logHeight + 6 * C)) := by
+        field_simp
+      _ < 5 * logHeight * (1 / 5) := by gcongr
+      _ = logHeight := by ring
+  have hfour :
+      16 * logHeight / (5 * delta) < 4 / (delta / logHeight + x) := by
+    calc
+      16 * logHeight / (5 * delta) =
+          4 * (4 * logHeight / (5 * delta)) := by ring
+      _ < 4 * (1 / (delta / logHeight + x)) := by gcongr
+      _ = 4 / (delta / logHeight + x) := by ring
+  have hneg :
+      -4 / (delta / logHeight + x) <
+        -16 * logHeight / (5 * delta) := by
+    calc
+      -4 / (delta / logHeight + x) =
+          -(4 / (delta / logHeight + x)) := by ring
+      _ < -(16 * logHeight / (5 * delta)) := neg_lt_neg hfour
+      _ = -16 * logHeight / (5 * delta) := by ring
+  have hbad :
+      0 < 3 * logHeight / delta + 3 * A -
+        16 * logHeight / (5 * delta) + 6 * C * logHeight := by
+    linarith
+  have hid :
+      3 * logHeight / delta + 3 * A -
+          16 * logHeight / (5 * delta) + 6 * C * logHeight =
+        3 * A + 6 * C * logHeight - logHeight / (5 * delta) := by
+    field_simp
+    ring
+  rw [hid] at hbad
+  linarith
+
+/--
+Z4, nonreal part: the disc logarithmic-derivative package and the proved
+`3-4-1`/pole estimates repel every nonreal zeta zero from the line `Re s = 1`
+by a uniform logarithmic distance.  No assumption on the zero's multiplicity
+is made.
+-/
+theorem deLaValleePoussin_nonreal_zero_repulsion
+    (H : ZetaLogDerivDiscBound) :
+    ∃ c > 0, ∀ {β t : ℝ}, β ≤ 1 → t ≠ 0 →
+      riemannZeta (β + Complex.I * t : ℂ) = 0 →
+      c ≤ (1 - β) * Real.log (|t| + 2) := by
+  rcases deLaValleePoussin_neg_logDeriv_real_le_pole_add_const with
+    ⟨A, hA, hApole⟩
+  let l : ℝ := Real.log 2
+  let B : ℝ := 3 * A / l + 6 * H.C + 1
+  let delta : ℝ := min (l / 2) (1 / (10 * B))
+  have hl : 0 < l := by
+    dsimp [l]
+    exact Real.log_pos (by norm_num)
+  have hB : 0 < B := by
+    dsimp [B]
+    have hquot : 0 ≤ 3 * A / l := div_nonneg (by positivity) hl.le
+    nlinarith [H.C_nonneg]
+  have hδ : 0 < delta := by
+    dsimp [delta]
+    exact lt_min (div_pos hl (by norm_num)) (one_div_pos.mpr (by positivity))
+  refine ⟨delta / 4, div_pos hδ (by norm_num), ?_⟩
+  intro β t hβ ht hz
+  let logHeight : ℝ := Real.log (|t| + 2)
+  let x : ℝ := 1 - β
+  let σ : ℝ := 1 + delta / logHeight
+  have hL : 0 < logHeight := by
+    dsimp [logHeight]
+    exact Real.log_pos (by linarith [abs_nonneg t])
+  have hlL : l ≤ logHeight := by
+    dsimp [l, logHeight]
+    exact Real.log_le_log (by norm_num) (by linarith [abs_nonneg t])
+  have hx : 0 ≤ x := by dsimp [x]; linarith
+  have hδsmall : delta ≤ 1 / (10 * B) := by
+    dsimp [delta]
+    exact min_le_right _ _
+  have hδhalf : delta ≤ l / 2 := by
+    dsimp [delta]
+    exact min_le_left _ _
+  have hσ1 : 1 < σ := by
+    dsimp [σ]
+    exact lt_add_of_pos_right 1 (div_pos hδ hL)
+  have hσ2 : σ ≤ 2 := by
+    have hδL : delta ≤ logHeight / 2 := hδhalf.trans (by linarith)
+    dsimp [σ]
+    have hquot : delta / logHeight ≤ 1 / 2 := by
+      apply (div_le_iff₀ hL).2
+      simpa [div_eq_mul_inv, mul_comm] using hδL
+    linarith
+  have hzero := H.zero_contribution_bound hσ1 hσ2 hβ ht hz
+  have hzero' :
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        -1 / (delta / logHeight + x) + H.C * logHeight := by
+    calc
+      _ ≤ -1 / (σ - β) + H.C * Real.log (|t| + 2) := hzero
+      _ = -1 / (delta / logHeight + x) + H.C * logHeight := by
+        dsimp [σ, x, logHeight]
+        congr 2
+        ring
+  have hpole := hApole σ hσ1 hσ2
+  have hpole' :
+      (-deriv riemannZeta (σ : ℂ) / riemannZeta (σ : ℂ)).re ≤
+        logHeight / delta + A := by
+    calc
+      _ ≤ 1 / (σ - 1) + A := hpole
+      _ = logHeight / delta + A := by
+        dsimp [σ]
+        field_simp [ne_of_gt hL, ne_of_gt hδ]
+        ring
+  have htwo_ne : 2 * t ≠ 0 := mul_ne_zero (by norm_num) ht
+  have hdouble := H.vertical_bound hσ1 hσ2 htwo_ne
+  have hlogdouble : Real.log (|2 * t| + 2) ≤ 2 * logHeight := by
+    have habs : |2 * t| = 2 * |t| := by rw [abs_mul]; norm_num
+    have harg : 2 * |t| + 2 ≤ (|t| + 2) ^ 2 := by
+      nlinarith [abs_nonneg t, sq_nonneg (|t| + 1)]
+    calc
+      Real.log (|2 * t| + 2) = Real.log (2 * |t| + 2) := by rw [habs]
+      _ ≤ Real.log ((|t| + 2) ^ 2) :=
+        Real.log_le_log (by positivity) harg
+      _ = 2 * logHeight := by simp [Real.log_pow, logHeight]
+  have hdouble' :
+      (-deriv riemannZeta (σ + Complex.I * (2 * t) : ℂ) /
+          riemannZeta (σ + Complex.I * (2 * t) : ℂ)).re ≤
+        H.C * (2 * logHeight) := by
+    calc
+      _ ≤ H.C * Real.log (|2 * t| + 2) := by
+        simpa only [Complex.ofReal_mul, Complex.ofReal_ofNat] using hdouble
+      _ ≤ H.C * (2 * logHeight) :=
+        mul_le_mul_of_nonneg_left hlogdouble H.C_nonneg
+  have hpos := deLaValleePoussin_logDeriv_three_four_one_nonneg
+    (σ := σ) (t := t) hσ1
+  have hmain :
+      0 ≤ 3 * logHeight / delta + 3 * A -
+        4 / (delta / logHeight + x) + 6 * H.C * logHeight := by
+    have hmain' :
+        0 ≤ 3 * (logHeight / delta + A) +
+          4 * (-1 / (delta / logHeight + x) + H.C * logHeight) +
+          H.C * (2 * logHeight) := by
+      linarith
+    convert hmain' using 1 <;> ring
+  exact three_four_one_forces_repulsion hA.le H.C_nonneg hl hlL hL hδ hx
+    (by simpa [B] using hδsmall) hmain
+
 end ZetaLogDerivativeDiscBound
 
 end RH.Criteria.NymanBeurling.MobiusSummatory
