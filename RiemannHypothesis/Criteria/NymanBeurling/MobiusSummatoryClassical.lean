@@ -1060,6 +1060,81 @@ lemma abs_mobiusFractHyperbolaSum_le_cutoff (H : ClassicalMertensDecay)
         (by simpa [K] using abs_mobiusFractTail_le_of_decay H N Q hK)
     _ = _ := by rfl
 
+/-- Integer cutoff used in the quantitative Axer decomposition. -/
+noncomputable def axerExpCutoff (a : ℝ) (N : ℕ) : ℕ :=
+  ⌊Real.exp ((a / 8) * Real.sqrt (Real.log (N : ℝ)))⌋₊
+
+lemma axerExpCutoff_succ_le_nat_sqrt {a : ℝ} (ha : 0 < a)
+    (N : ℕ) (hN : 1 ≤ N)
+    (hy : 2 * (a / 8) + 4 ≤ Real.sqrt (Real.log (N : ℝ))) :
+    axerExpCutoff a N + 1 ≤ Nat.sqrt N := by
+  let b := a / 8
+  let y := Real.sqrt (Real.log (N : ℝ))
+  let x := Real.exp (b * y)
+  let Q := axerExpCutoff a N
+  have hb : 0 < b := by simp [b]; positivity
+  have hy_nonneg : 0 ≤ y := Real.sqrt_nonneg _
+  have hlog_nonneg : 0 ≤ Real.log (N : ℝ) :=
+    Real.log_nonneg (by exact_mod_cast hN)
+  have hy_sq : y ^ 2 = Real.log (N : ℝ) := by
+    simp [y, Real.sq_sqrt hlog_nonneg]
+  have hx_pos : 0 < x := Real.exp_pos _
+  have hx_one : 1 ≤ x := Real.one_le_exp (mul_nonneg hb.le hy_nonneg)
+  have hQ_le_x : (Q : ℝ) ≤ x := by
+    simpa [Q, axerExpCutoff, x, b, y] using
+      (Nat.floor_le hx_pos.le)
+  have hQ1_le_two_x : (Q + 1 : ℕ) ≤ (2 * x : ℝ) := by
+    push_cast
+    linarith
+  have hquad : 2 + b * y ≤ y ^ 2 / 2 := by
+    have hgap : 0 ≤ y - (2 * b + 4) := by simpa [b, y] using hy
+    have hprod := mul_nonneg hgap hy_nonneg
+    nlinarith
+  have he2 : (2 : ℝ) < Real.exp 1 := by
+    have h := Real.add_one_lt_exp (x := (1 : ℝ)) one_ne_zero
+    norm_num at h ⊢
+    exact h
+  have he4 : (4 : ℝ) ≤ Real.exp 2 := by
+    rw [show (2 : ℝ) = 1 + 1 by norm_num, Real.exp_add]
+    have hprod : 0 < (Real.exp 1 - 2) * (Real.exp 1 + 2) :=
+      mul_pos (sub_pos.mpr he2) (add_pos (Real.exp_pos 1) (by norm_num))
+    nlinarith
+  have hfour_x : 4 * x ≤ Real.sqrt (N : ℝ) := by
+    calc
+      4 * x ≤ Real.exp 2 * x := mul_le_mul_of_nonneg_right he4 hx_pos.le
+      _ = Real.exp (2 + b * y) := by simp [x, Real.exp_add]
+      _ ≤ Real.exp (y ^ 2 / 2) := Real.exp_le_exp.mpr hquad
+      _ = Real.sqrt (N : ℝ) := by
+        rw [hy_sq, Real.exp_half, Real.exp_log]
+        exact_mod_cast (lt_of_lt_of_le (by omega : 0 < 1) hN)
+  have htwo_Q1 : (2 * (Q + 1) : ℕ) ≤ Real.sqrt (N : ℝ) := by
+    push_cast
+    linarith
+  have hsqrt_lt : Real.sqrt (N : ℝ) < (Nat.sqrt N + 1 : ℕ) := by
+    rw [Real.sqrt_lt' (by positivity)]
+    exact_mod_cast Nat.lt_succ_sqrt' N
+  have hQ_sqrt_real : ((Q + 1 : ℕ) : ℝ) ≤ Nat.sqrt N := by
+    have hQ1pos : (1 : ℝ) ≤ (Q + 1 : ℕ) := by norm_cast; omega
+    push_cast at htwo_Q1 hsqrt_lt ⊢
+    linarith
+  exact_mod_cast hQ_sqrt_real
+
+lemma nat_le_sqrt_pow_four (N : ℕ) (hN : 16 ≤ N) :
+    N ≤ (Nat.sqrt N) ^ 4 := by
+  let S := Nat.sqrt N
+  have hS4 : 4 ≤ S := by
+    have hsqrt_mono := Nat.sqrt_le_sqrt hN
+    norm_num [S] at hsqrt_mono ⊢
+    exact hsqrt_mono
+  have hlt : N < (S + 1) ^ 2 := by
+    simpa [S] using Nat.lt_succ_sqrt' N
+  have hpoly : (S + 1) ^ 2 ≤ S ^ 4 := by
+    have hbase : S + 1 ≤ S ^ 2 := by nlinarith
+    calc
+      (S + 1) ^ 2 ≤ (S ^ 2) ^ 2 := by gcongr
+      _ = S ^ 4 := by ring
+  exact (Nat.le_of_lt hlt).trans hpoly
+
 /--
 Residual non-Mertens inputs needed to assemble the existing
 `ClassicalMertensAPI`.
