@@ -546,6 +546,65 @@ theorem mobius_floor_hyperbola_identity (N : ℕ) (hN : 1 ≤ N) :
               ring
         _ = 1 := by rw [hold, hdivsum, add_zero]
 
+/-- The fractional-part sum occurring in the quantitative Axer identity. -/
+noncomputable def mobiusFractHyperbolaSum (N : ℕ) : ℝ :=
+  ∑ k ∈ Finset.Icc 1 N,
+    ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+      Int.fract ((N : ℝ) / (k : ℝ))
+
+lemma nat_div_add_fract_natCast_div (N k : ℕ) :
+    ((N / k : ℕ) : ℝ) + Int.fract ((N : ℝ) / (k : ℝ)) =
+      (N : ℝ) / (k : ℝ) := by
+  have hnonneg : 0 ≤ (N : ℝ) / (k : ℝ) := by positivity
+  calc
+    ((N / k : ℕ) : ℝ) + Int.fract ((N : ℝ) / (k : ℝ)) =
+        (⌊(N : ℝ) / (k : ℝ)⌋₊ : ℝ) +
+          Int.fract ((N : ℝ) / (k : ℝ)) := by
+            rw [Nat.floor_div_eq_div]
+    _ = ((⌊(N : ℝ) / (k : ℝ)⌋ : ℤ) : ℝ) +
+          Int.fract ((N : ℝ) / (k : ℝ)) := by
+            rw [natCast_floor_eq_intCast_floor hnonneg]
+    _ = _ := Int.floor_add_fract _
+
+/--
+Exact floor/fractional-part decomposition of the Möbius hyperbola identity:
+`N * ∑_{k≤N} μ(k)/k = 1 + ∑_{k≤N} μ(k) {N/k}`.
+-/
+theorem mobius_overK_fract_decomposition (N : ℕ) (hN : 1 ≤ N) :
+    (N : ℝ) * mobiusOverKPartial N = 1 + mobiusFractHyperbolaSum N := by
+  have hhyperbola :
+      (∑ k ∈ Finset.Icc 1 N,
+        ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+          ((N / k : ℕ) : ℝ)) = 1 := by
+    have h := congrArg (fun z : ℤ => (z : ℝ))
+      (mobius_floor_hyperbola_identity N hN)
+    push_cast at h
+    exact h
+  unfold mobiusOverKPartial mobiusFractHyperbolaSum
+  calc
+    (N : ℝ) *
+        (∑ k ∈ Finset.Icc 1 N,
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) / (k : ℝ)) =
+        ∑ k ∈ Finset.Icc 1 N,
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+            (((N / k : ℕ) : ℝ) + Int.fract ((N : ℝ) / (k : ℝ))) := by
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro k hk
+      rw [nat_div_add_fract_natCast_div]
+      ring
+    _ = (∑ k ∈ Finset.Icc 1 N,
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+            ((N / k : ℕ) : ℝ)) +
+        ∑ k ∈ Finset.Icc 1 N,
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+            Int.fract ((N : ℝ) / (k : ℝ)) := by
+      rw [← Finset.sum_add_distrib]
+      apply Finset.sum_congr rfl
+      intro k _
+      ring
+    _ = _ := by rw [hhyperbola]
+
 /--
 Quantitative and boundary-value inputs for the linear Mobius/Dirichlet bridge.
 This isolates the still-unformalized classical analytic number theory from the
