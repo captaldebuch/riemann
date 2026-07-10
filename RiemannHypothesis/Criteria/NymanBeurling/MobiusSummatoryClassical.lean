@@ -2609,4 +2609,156 @@ noncomputable def linear_mobius_dirichlet_estimates_of_classical_api
   linear_mobius_dirichlet_estimates_of_pnt_style
     (mobius_pnt_style_of_classical_api api)
 
+-- ---------------------------------------------------------------------------
+-- H14 final field, B1. Convergence of the logarithmic boundary series
+-- ---------------------------------------------------------------------------
+
+/--
+Tail Cauchy bound for the logarithmic cutoff Abel transform, using only an
+explicit quadratic-log bound for `mobiusLogSummatory`.
+-/
+lemma cutoffMobiusLogOverKSum_difference_bound_of_log_summatory_bound
+    {C_L : ℝ} (hC_L_nonneg : 0 ≤ C_L)
+    (hL : ∀ N : ℕ,
+      |mobiusLogSummatory N| ≤ C_L * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2)
+    (N R : ℕ) (hNR : N ≤ R) :
+    |cutoffMobiusLogOverKSum R - cutoffMobiusLogOverKSum N| ≤
+      6 * C_L / Real.log (N + 2 : ℝ) := by
+  have hshift :
+      cutoffMobiusLogOverKSum R - cutoffMobiusLogOverKSum N =
+        (cutoffMobiusLogOverKSum R + 1) - (cutoffMobiusLogOverKSum N + 1) := by
+    ring
+  rw [hshift, cutoffMobiusLogOverKSum_eq_abel_sum, cutoffMobiusLogOverKSum_eq_abel_sum]
+  have hcancel :
+      (1 + ∑ k ∈ Finset.Icc 1 R,
+          mobiusLogSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))) -
+        (1 + ∑ k ∈ Finset.Icc 1 N,
+          mobiusLogSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))) =
+      (∑ k ∈ Finset.Icc 1 R,
+          mobiusLogSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))) -
+        ∑ k ∈ Finset.Icc 1 N,
+          mobiusLogSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+    ring
+  rw [hcancel, sum_Icc_one_sub_sum_Icc_one _ N R hNR]
+  calc
+    |∑ k ∈ Finset.Icc (N + 1) R,
+        mobiusLogSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))|
+      ≤ ∑ k ∈ Finset.Icc (N + 1) R,
+          |mobiusLogSummatory k * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))| :=
+        abs_sum_le_sum_abs _ _
+    _ ≤ ∑ k ∈ Finset.Icc (N + 1) R,
+        C_L * (1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2)) := by
+          apply Finset.sum_le_sum
+          intro k hk
+          have hkpos : 0 < k := lt_of_lt_of_le (by omega) (Finset.mem_Icc.mp hk).1
+          have hkR : (0 : ℝ) < k := by exact_mod_cast hkpos
+          have hdiff : 0 ≤ 1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ) := by
+            exact sub_nonneg.mpr (one_div_le_one_div_of_le hkR (by norm_cast; omega))
+          rw [abs_mul, abs_of_nonneg hdiff]
+          calc
+            |mobiusLogSummatory k| * (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ))
+              ≤ (C_L * (k : ℝ) / Real.log (k + 2 : ℝ) ^ 2) *
+                  (1 / (k : ℝ) - 1 / ((k + 1 : ℕ) : ℝ)) := by
+                    exact mul_le_mul_of_nonneg_right (hL k) hdiff
+            _ = C_L *
+                (1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2)) := by
+                  field_simp
+                  norm_num [Nat.cast_add]
+    _ = C_L * (∑ k ∈ Finset.Icc (N + 1) R,
+        1 / (((k + 1 : ℕ) : ℝ) * Real.log (k + 2 : ℝ) ^ 2)) := by
+          rw [Finset.mul_sum]
+    _ ≤ C_L * (6 / Real.log (N + 2 : ℝ)) := by
+          exact mul_le_mul_of_nonneg_left (finite_log_tail_bound N R) hC_L_nonneg
+    _ = _ := by ring
+
+/--
+The logarithmic cutoff Abel transform is Cauchy under
+`ClassicalMertensDecay`.
+-/
+lemma cutoffMobiusLogOverKSum_cauchySeq_of_decay (H : ClassicalMertensDecay) :
+    CauchySeq cutoffMobiusLogOverKSum := by
+  rcases mobiusLogSummatory_bound_of_decay H with ⟨C_L, hC_L_pos, hL⟩
+  refine cauchySeq_of_le_tendsto_0 (fun N : ℕ => 6 * C_L / Real.log (N + 2 : ℝ)) ?_ ?_
+  · intro n m N hNn hNm
+    have hlogN : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+    by_cases hnm : n ≤ m
+    · have hdiff :=
+        cutoffMobiusLogOverKSum_difference_bound_of_log_summatory_bound
+          hC_L_pos.le hL n m hnm
+      have hmono : Real.log (N + 2 : ℝ) ≤ Real.log (n + 2 : ℝ) := by
+        exact Real.log_le_log (by positivity) (by norm_cast; omega)
+      have htail :
+          6 * C_L / Real.log (n + 2 : ℝ) ≤
+            6 * C_L / Real.log (N + 2 : ℝ) := by
+        have hcoeff : 0 ≤ 6 * C_L := by positivity
+        exact mul_le_mul_of_nonneg_left
+          (by simpa [one_div] using one_div_le_one_div_of_le hlogN hmono) hcoeff
+      calc
+        dist (cutoffMobiusLogOverKSum n) (cutoffMobiusLogOverKSum m)
+            = |cutoffMobiusLogOverKSum m - cutoffMobiusLogOverKSum n| := by
+              rw [Real.dist_eq, abs_sub_comm]
+        _ ≤ 6 * C_L / Real.log (n + 2 : ℝ) := hdiff
+        _ ≤ 6 * C_L / Real.log (N + 2 : ℝ) := htail
+    · have hmn : m ≤ n := le_of_not_ge hnm
+      have hdiff :=
+        cutoffMobiusLogOverKSum_difference_bound_of_log_summatory_bound
+          hC_L_pos.le hL m n hmn
+      have hmono : Real.log (N + 2 : ℝ) ≤ Real.log (m + 2 : ℝ) := by
+        exact Real.log_le_log (by positivity) (by norm_cast; omega)
+      have htail :
+          6 * C_L / Real.log (m + 2 : ℝ) ≤
+            6 * C_L / Real.log (N + 2 : ℝ) := by
+        have hcoeff : 0 ≤ 6 * C_L := by positivity
+        exact mul_le_mul_of_nonneg_left
+          (by simpa [one_div] using one_div_le_one_div_of_le hlogN hmono) hcoeff
+      calc
+        dist (cutoffMobiusLogOverKSum n) (cutoffMobiusLogOverKSum m)
+            = |cutoffMobiusLogOverKSum n - cutoffMobiusLogOverKSum m| := by
+              rw [Real.dist_eq]
+        _ ≤ 6 * C_L / Real.log (m + 2 : ℝ) := hdiff
+        _ ≤ 6 * C_L / Real.log (N + 2 : ℝ) := htail
+  · simpa [div_eq_mul_inv, mul_assoc] using
+      ((tendsto_const_nhds : Tendsto (fun _ : ℕ => 6 * C_L) atTop (𝓝 (6 * C_L))).mul
+        tendsto_inv_log_nat_add_two)
+
+/-- The endpoint term in logarithmic Abel summation tends to zero. -/
+lemma mobiusLog_ratio_tendsto_zero_of_decay (H : ClassicalMertensDecay) :
+    Tendsto (fun N : ℕ => mobiusLogSummatory N / ((N + 1 : ℕ) : ℝ)) atTop (𝓝 0) := by
+  rcases mobiusLogSummatory_bound_of_decay H with ⟨C_L, hC_L_pos, hL⟩
+  have hmajorant :
+      Tendsto (fun N : ℕ => C_L * (1 / Real.log (N + 2 : ℝ)) ^ 2) atTop (𝓝 0) := by
+    simpa using (tendsto_const_nhds.mul (tendsto_inv_log_nat_add_two.pow 2))
+  rw [tendsto_zero_iff_abs_tendsto_zero]
+  refine squeeze_zero' (Eventually.of_forall fun N : ℕ => abs_nonneg _)
+    (Eventually.of_forall fun N : ℕ => ?_) hmajorant
+  calc
+    |mobiusLogSummatory N / ((N + 1 : ℕ) : ℝ)| =
+        |mobiusLogSummatory N| / ((N + 1 : ℕ) : ℝ) := by
+          rw [abs_div]
+          congr 1
+          exact abs_of_pos (by exact_mod_cast Nat.succ_pos N)
+    _ ≤ (C_L * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2) /
+          ((N + 1 : ℕ) : ℝ) := by
+            gcongr
+            exact hL N
+    _ ≤ C_L * (1 / Real.log (N + 2 : ℝ)) ^ 2 := by
+          have hlog : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+          have hN : (N : ℝ) ≤ ((N + 1 : ℕ) : ℝ) := by norm_cast; omega
+          field_simp
+          nlinarith [hC_L_pos]
+
+/--
+B1: the partial sums `∑_{k≤N} μ(k) log(k) / k` converge under the single
+de la Vallée Poussin Mertens decay input.
+-/
+theorem mobiusLogOverKPartial_convergent_of_decay (H : ClassicalMertensDecay) :
+    ∃ ℓ : ℝ, Tendsto mobiusLogOverKPartial atTop (𝓝 ℓ) := by
+  rcases cauchySeq_tendsto_of_complete (cutoffMobiusLogOverKSum_cauchySeq_of_decay H) with
+    ⟨ℓ, hℓ⟩
+  refine ⟨ℓ, ?_⟩
+  have hsum := hℓ.add (mobiusLog_ratio_tendsto_zero_of_decay H)
+  simpa using hsum.congr' (Eventually.of_forall fun N => by
+    rw [cutoffMobiusLogOverKSum_eq_partial_sub]
+    ring)
+
 end RH.Criteria.NymanBeurling.MobiusSummatory
