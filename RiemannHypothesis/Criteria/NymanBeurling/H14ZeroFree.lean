@@ -1032,6 +1032,76 @@ structure ZetaRightHalfLinearVerticalGrowthAtHeight where
       ‖riemannZeta (σ + Complex.I * t : ℂ)‖ ≤ C * (|t| + 2)
 
 /--
+V-R stop-gate: the concrete Euler--Maclaurin/Abel decomposition needed to
+inhabit the right-half vertical-growth field.
+
+The intended instantiation is the classical choice `X = ⌈|t|⌉ + 2`, with
+`partialSum σ t = ∑_{n≤X} n^{-(σ+it)}`,
+`poleTerm σ t = X^{1-(σ+it)} / ((σ+it)-1)`, and `tailTerm` the fractional-part
+integral `-(σ+it) ∫_X^∞ {u} u^{-(σ+it)-1} du`.  Mathlib currently provides
+the Dirichlet-series identity only for `Re s > 1`; the missing formal bridge is
+this explicit continuation formula and its three elementary estimates on
+`1/2 ≤ σ ≤ 2`, `|t| ≥ t₀`.
+-/
+structure ZetaRightHalfEulerMaclaurinComponentsAtHeight where
+  t₀ : ℝ
+  t₀_pos : 0 < t₀
+  t₀_le_one : t₀ ≤ 1
+  partialSum : ℝ → ℝ → ℂ
+  poleTerm : ℝ → ℝ → ℂ
+  tailTerm : ℝ → ℝ → ℂ
+  C_sum : ℝ
+  C_pole : ℝ
+  C_tail : ℝ
+  C_sum_nonneg : 0 ≤ C_sum
+  C_pole_nonneg : 0 ≤ C_pole
+  C_tail_nonneg : 0 ≤ C_tail
+  decomposition :
+    ∀ {σ t : ℝ}, (1 / 2 : ℝ) ≤ σ → σ ≤ 2 → t₀ ≤ |t| →
+      riemannZeta (σ + Complex.I * t : ℂ) =
+        partialSum σ t + poleTerm σ t + tailTerm σ t
+  partial_sum_bound :
+    ∀ {σ t : ℝ}, (1 / 2 : ℝ) ≤ σ → σ ≤ 2 → t₀ ≤ |t| →
+      ‖partialSum σ t‖ ≤ C_sum * (|t| + 2)
+  pole_bound :
+    ∀ {σ t : ℝ}, (1 / 2 : ℝ) ≤ σ → σ ≤ 2 → t₀ ≤ |t| →
+      ‖poleTerm σ t‖ ≤ C_pole * (|t| + 2)
+  tail_bound :
+    ∀ {σ t : ℝ}, (1 / 2 : ℝ) ≤ σ → σ ≤ 2 → t₀ ≤ |t| →
+      ‖tailTerm σ t‖ ≤ C_tail * (|t| + 2)
+
+/--
+The Euler--Maclaurin component package is sufficient for the Stage V right-half
+vertical-growth field.
+-/
+noncomputable def zetaRightHalfLinearVerticalGrowthAtHeight_of_eulerMaclaurinComponents
+    (H : ZetaRightHalfEulerMaclaurinComponentsAtHeight) :
+    ZetaRightHalfLinearVerticalGrowthAtHeight :=
+  { t₀ := H.t₀
+    t₀_pos := H.t₀_pos
+    t₀_le_one := H.t₀_le_one
+    C := H.C_sum + H.C_pole + H.C_tail
+    C_nonneg := add_nonneg (add_nonneg H.C_sum_nonneg H.C_pole_nonneg) H.C_tail_nonneg
+    right_half_growth := by
+      intro σ t hσlow hσhigh ht
+      have hsum := H.partial_sum_bound hσlow hσhigh ht
+      have hpole := H.pole_bound hσlow hσhigh ht
+      have htail := H.tail_bound hσlow hσhigh ht
+      calc
+        ‖riemannZeta (σ + Complex.I * t : ℂ)‖ =
+            ‖H.partialSum σ t + H.poleTerm σ t + H.tailTerm σ t‖ := by
+          rw [H.decomposition hσlow hσhigh ht]
+        _ ≤ ‖H.partialSum σ t + H.poleTerm σ t‖ + ‖H.tailTerm σ t‖ :=
+          norm_add_le _ _
+        _ ≤ (‖H.partialSum σ t‖ + ‖H.poleTerm σ t‖) + ‖H.tailTerm σ t‖ := by
+          exact add_le_add (norm_add_le _ _) le_rfl
+        _ ≤ (H.C_sum * (|t| + 2) + H.C_pole * (|t| + 2)) +
+            H.C_tail * (|t| + 2) := by
+          gcongr
+        _ = (H.C_sum + H.C_pole + H.C_tail) * (|t| + 2) := by
+          ring }
+
+/--
 Stage V left-strip target: the functional-equation/gamma-factor transport
 needed to extend the right-half vertical-growth bound from
 `1/2 ≤ σ ≤ 2` to the frozen full strip `-1/2 ≤ σ ≤ 2`.
