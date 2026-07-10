@@ -80,4 +80,37 @@ theorem baez_duarte_criterion_implies_RH_via_NBForward :
   RH_of_baezDuarteCriterion_of_NBForward
     NBForward_of_nyman_beurling_criterion_iff_RH
 
+-- ---------------------------------------------------------------------------
+-- NB1 stop-gate: Mellin--Plancherel on the critical line
+-- ---------------------------------------------------------------------------
+
+/-- The point `1/2 + it` on the critical line. -/
+noncomputable def criticalLinePoint (t : ℝ) : ℂ :=
+  ((1 / 2 : ℝ) : ℂ) + Complex.I * (t : ℂ)
+
+/-- The ordinary L² norm-square over the positive half-line. -/
+noncomputable def positiveHalfLineL2NormSq (f : ℝ → ℂ) : ℝ :=
+  ∫ x in Set.Ioi (0 : ℝ), ‖f x‖ ^ 2
+
+/-- The critical-line Mellin norm-square. -/
+noncomputable def mellinCriticalLineL2NormSq (f : ℝ → ℂ) : ℝ :=
+  ∫ t : ℝ, ‖mellin f (criticalLinePoint t)‖ ^ 2
+
+/--
+Named stop-gate for NB1(b): the Mellin transform should be unitary from
+`L²(0,∞)` to the critical line, up to the classical `1 / (2π)` normalization.
+
+Mathlib already has the ingredients (`mellin_eq_fourier` and Fourier
+Plancherel on `L²`), but not this project-facing positive-half-line wrapper.
+This structure states the exact wrapper needed by the Nyman--Beurling forward
+argument without adding an axiom or a `sorry`.
+-/
+structure MellinPlancherelUnitary where
+  plancherel :
+    ∀ f : ℝ → ℂ,
+      MeasureTheory.MemLp f 2
+        (MeasureTheory.volume.restrict (Set.Ioi (0 : ℝ))) →
+      positiveHalfLineL2NormSq f =
+        (1 / (2 * Real.pi)) * mellinCriticalLineL2NormSq f
+
 end RH.Criteria.NymanBeurling.NymanBeurlingForward
