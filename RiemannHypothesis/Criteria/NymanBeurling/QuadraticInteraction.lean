@@ -1185,6 +1185,32 @@ theorem cutoffMobiusBernoulliCenteredPartial_tendsto (N : ℕ) :
   simpa [cutoffMobiusBernoulliCenteredPartial, add_assoc] using hcentered
 
 /--
+The one genuinely quadratic estimate not supplied by classical Mertens decay.
+
+Its second absolute value is the limit of
+`cutoffMobiusBernoulliCenteredPartial`; hence the field states the actual
+Möbius--Bernoulli correlation estimate exposed by BBLS Proposition 48, rather
+than merely renaming the norm residual.  Diagnostics at `N = 20, 50, 100, 300`
+gave `package * log(N+2)^2 = 4.01, 3.11, 2.38, 1.56`, motivating the displayed
+full spare logarithm.
+
+The parameter `H` records the intended background input.  It is not sufficient
+by itself in the present proof: the pointwise inner sums grow in the numerical
+gate, and their outer `1/m` series is only conditionally convergent.
+-/
+structure QuadraticInteractionBernoulliCorrelationEstimate
+    (_H : MobiusSummatory.ClassicalMertensDecay) where
+  C_correlation : ℝ
+  C_correlation_nonneg : 0 ≤ C_correlation
+  centered_correlation_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogGammaComponent N| +
+          |explicitQuadraticLogRatioComponent N +
+              cutoffMobiusBernoulliCorrelationValue N - 1 +
+                2 * (explicitLinearMobiusSum N + 1)|
+        ≤ C_correlation / Real.log (N + 2 : ℝ) ^ 2
+
+/--
 The single residual analytic input left by the norm-square finish attempt.
 
 It packages exactly the part not supplied by H14's linear Möbius estimates:
@@ -1201,6 +1227,41 @@ structure QuadraticInteractionNormResidual where
       |explicitQuadraticLogGammaComponent N| +
           |cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N|
         ≤ C_norm / Real.log (N + 2 : ℝ)
+
+/-- The centered BBLS correlation estimate, with its observed spare logarithm,
+implies the norm residual required by the existing H15 finish bridge. -/
+noncomputable def quadraticInteractionNormResidual_of_bernoulliCorrelation
+    (H : MobiusSummatory.ClassicalMertensDecay)
+    (Hcorr : QuadraticInteractionBernoulliCorrelationEstimate H) :
+    QuadraticInteractionNormResidual := by
+  let logTwo := Real.log (2 : ℝ)
+  refine
+    { C_norm := Hcorr.C_correlation / logTwo
+      C_norm_nonneg := div_nonneg Hcorr.C_correlation_nonneg
+        (Real.log_pos (by norm_num)).le
+      norm_loggamma_package_bound := ?_ }
+  intro N
+  rw [cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value]
+  have hcorr := Hcorr.centered_correlation_bound N
+  have hlogTwo : 0 < logTwo := Real.log_pos (by norm_num)
+  have hlogN : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+  have hmono : logTwo ≤ Real.log (N + 2 : ℝ) := by
+    exact Real.log_le_log (by norm_num) (by norm_cast; omega)
+  have hratio :
+      Hcorr.C_correlation / Real.log (N + 2 : ℝ) ≤
+        Hcorr.C_correlation / logTwo :=
+    div_le_div_of_nonneg_left Hcorr.C_correlation_nonneg hlogTwo hmono
+  calc
+    |explicitQuadraticLogGammaComponent N| +
+          |explicitQuadraticLogRatioComponent N +
+              cutoffMobiusBernoulliCorrelationValue N - 1 +
+                2 * (explicitLinearMobiusSum N + 1)|
+        ≤ Hcorr.C_correlation / Real.log (N + 2 : ℝ) ^ 2 := hcorr
+    _ = (Hcorr.C_correlation / Real.log (N + 2 : ℝ)) /
+          Real.log (N + 2 : ℝ) := by ring
+    _ ≤ (Hcorr.C_correlation / logTwo) /
+          Real.log (N + 2 : ℝ) :=
+      div_le_div_of_nonneg_right hratio hlogN.le
 
 /-- The residual package gives the log-gamma field of
 `QuadraticInteractionEstimates`. -/
@@ -1288,6 +1349,17 @@ noncomputable def quadraticInteractionEstimates_of_mertens_and_normResidual
   quadraticInteractionEstimates_of_linearDirichlet_and_normResidual
     (MobiusSummatory.linear_mobius_dirichlet_estimates_of_classical_api H_mertens)
     H_res
+
+/-- Final C4 wiring: classical Mertens decay supplies every H14 input, while
+the single centered Möbius--Bernoulli correlation estimate supplies the
+remaining H15 norm residual. -/
+noncomputable def quadraticInteractionEstimates_of_decay_and_bernoulliCorrelation
+    (H : MobiusSummatory.ClassicalMertensDecay)
+    (Hcorr : QuadraticInteractionBernoulliCorrelationEstimate H) :
+    QuadraticInteractionEstimates :=
+  quadraticInteractionEstimates_of_mertens_and_normResidual
+    (MobiusSummatory.ClassicalMertensAPI.ofDecayOnly H)
+    (quadraticInteractionNormResidual_of_bernoulliCorrelation H Hcorr)
 
 end KernelNormFinish
 
