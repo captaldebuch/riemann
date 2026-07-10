@@ -1321,6 +1321,170 @@ theorem mobiusFractHyperbolaSum_quantitative_of_decay
         gcongr
         exact le_max_right _ _
 
+lemma abs_mobiusOverKPartial_le_two (N : ℕ) (hN : 1 ≤ N) :
+    |mobiusOverKPartial N| ≤ 2 := by
+  have hNpos : 0 < (N : ℝ) := by exact_mod_cast (lt_of_lt_of_le zero_lt_one hN)
+  have heq : (N : ℝ) * |mobiusOverKPartial N| =
+      |1 + mobiusFractHyperbolaSum N| := by
+    calc
+      (N : ℝ) * |mobiusOverKPartial N| =
+          |(N : ℝ)| * |mobiusOverKPartial N| := by
+        rw [abs_of_pos hNpos]
+      _ = |(N : ℝ) * mobiusOverKPartial N| := (abs_mul _ _).symm
+      _ = _ := congrArg abs (mobius_overK_fract_decomposition N hN)
+  apply le_of_mul_le_mul_left _ hNpos
+  rw [heq]
+  calc
+    |1 + mobiusFractHyperbolaSum N| ≤ 1 + |mobiusFractHyperbolaSum N| := by
+      simpa using abs_add_le (1 : ℝ) (mobiusFractHyperbolaSum N)
+    _ ≤ 1 + (N : ℝ) := by
+      gcongr
+      simpa [mobiusFractHyperbolaSum] using abs_mobiusFractHead_le N N
+    _ ≤ (N : ℝ) * 2 := by
+      have : (1 : ℝ) ≤ N := by exact_mod_cast hN
+      linarith
+
+lemma eventually_abs_mobiusOverKPartial_le_exp (H : ClassicalMertensDecay) :
+    ∀ᶠ N : ℕ in atTop,
+      |mobiusOverKPartial N| ≤
+        (2 + 2 * H.C) *
+          Real.exp (-(H.a / 8) * Real.sqrt (Real.log (N : ℝ))) := by
+  let b := H.a / 8
+  have hb : 0 < b := div_pos H.a_pos (by norm_num)
+  have hnat : Tendsto (fun N : ℕ => (N : ℝ)) atTop atTop :=
+    tendsto_natCast_atTop_atTop
+  have hyTop : Tendsto
+      (fun N : ℕ => Real.sqrt (Real.log (N : ℝ))) atTop atTop :=
+    Real.tendsto_sqrt_atTop.comp (Real.tendsto_log_atTop.comp hnat)
+  filter_upwards
+    [eventually_abs_mobiusFractHyperbolaSum_le_exp H,
+      hyTop.eventually_ge_atTop b, eventually_ge_atTop (2 : ℕ)] with N hfract hy hN
+  let y := Real.sqrt (Real.log (N : ℝ))
+  have hNpos : 0 < (N : ℝ) := by exact_mod_cast (by omega : 0 < N)
+  have hlog_nonneg : 0 ≤ Real.log (N : ℝ) :=
+    Real.log_nonneg (by exact_mod_cast (show 1 ≤ N by omega))
+  have hy_sq : y ^ 2 = Real.log (N : ℝ) := by
+    simp [y, Real.sq_sqrt hlog_nonneg]
+  have hy_nonneg : 0 ≤ y := Real.sqrt_nonneg _
+  have hexponent : 0 ≤ Real.log (N : ℝ) - b * y := by
+    have hy' : b ≤ y := by simpa [y] using hy
+    have hprod := mul_nonneg (sub_nonneg.mpr hy') hy_nonneg
+    nlinarith
+  have hscale : 1 ≤ (N : ℝ) * Real.exp (-b * y) := by
+    calc
+      1 = Real.exp 0 := Real.exp_zero.symm
+      _ ≤ Real.exp (Real.log (N : ℝ) - b * y) :=
+        Real.exp_le_exp.mpr hexponent
+      _ = (N : ℝ) * Real.exp (-b * y) := by
+        rw [Real.exp_sub, Real.exp_log hNpos]
+        simp [Real.exp_neg, div_eq_mul_inv]
+  have heq : (N : ℝ) * |mobiusOverKPartial N| =
+      |1 + mobiusFractHyperbolaSum N| := by
+    calc
+      (N : ℝ) * |mobiusOverKPartial N| =
+          |(N : ℝ)| * |mobiusOverKPartial N| := by rw [abs_of_pos hNpos]
+      _ = |(N : ℝ) * mobiusOverKPartial N| := (abs_mul _ _).symm
+      _ = _ := congrArg abs
+        (mobius_overK_fract_decomposition N (by omega))
+  apply le_of_mul_le_mul_left _ hNpos
+  rw [heq]
+  calc
+    |1 + mobiusFractHyperbolaSum N| ≤ 1 + |mobiusFractHyperbolaSum N| := by
+      simpa using abs_add_le (1 : ℝ) (mobiusFractHyperbolaSum N)
+    _ ≤ (N : ℝ) * Real.exp (-b * y) +
+        (1 + 2 * H.C) * (N : ℝ) * Real.exp (-b * y) :=
+      add_le_add hscale (by simpa [b, y] using hfract)
+    _ = (N : ℝ) * ((2 + 2 * H.C) * Real.exp
+        (-(H.a / 8) * Real.sqrt (Real.log (N : ℝ)))) := by
+      simp [b, y]
+      ring
+
+/-- Quantitative Axer bound for the partial sums `∑_{k≤N} μ(k)/k`. -/
+theorem mobiusOverK_quantitative_of_decay (H : ClassicalMertensDecay) :
+    ∃ C' c' : ℝ, 0 < C' ∧ 0 < c' ∧
+      ∀ N : ℕ, 2 ≤ N →
+        |mobiusOverKPartial N| ≤
+          C' * Real.exp (-c' * Real.sqrt (Real.log (N : ℝ))) := by
+  let b := H.a / 8
+  have hb : 0 < b := div_pos H.a_pos (by norm_num)
+  rcases eventually_atTop.1 (eventually_abs_mobiusOverKPartial_le_exp H) with
+    ⟨N₀, hlarge⟩
+  let R := max N₀ 2
+  let E := Real.exp (b * Real.sqrt (Real.log (R : ℝ)))
+  let C' := max (2 + 2 * H.C) (2 * E)
+  have hR2 : 2 ≤ R := le_max_right _ _
+  have hEpos : 0 < E := Real.exp_pos _
+  have hCpos : 0 < C' := by
+    exact (mul_pos (by norm_num) hEpos).trans_le (le_max_right _ _)
+  refine ⟨C', b, hCpos, hb, ?_⟩
+  intro N hN
+  by_cases hNlarge : N₀ ≤ N
+  · have h := hlarge N hNlarge
+    calc
+      |mobiusOverKPartial N| ≤
+          (2 + 2 * H.C) * Real.exp
+            (-(H.a / 8) * Real.sqrt (Real.log (N : ℝ))) := h
+      _ ≤ C' * Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+        dsimp [b]
+        gcongr
+        exact le_max_left _ _
+      _ = _ := rfl
+  · have hNR : N ≤ R :=
+      (Nat.le_of_lt (lt_of_not_ge hNlarge)).trans (le_max_left _ _)
+    have hNpos : 0 < (N : ℝ) := by exact_mod_cast (by omega : 0 < N)
+    have hlog : Real.log (N : ℝ) ≤ Real.log (R : ℝ) :=
+      Real.log_le_log hNpos (by exact_mod_cast hNR)
+    have hsqrt : Real.sqrt (Real.log (N : ℝ)) ≤
+        Real.sqrt (Real.log (R : ℝ)) := Real.sqrt_le_sqrt hlog
+    have hexp : Real.exp (b * Real.sqrt (Real.log (N : ℝ))) ≤ E := by
+      dsimp [E]
+      exact Real.exp_le_exp.mpr (mul_le_mul_of_nonneg_left hsqrt hb.le)
+    have hscale : 1 ≤ E *
+        Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+      calc
+        1 = Real.exp (b * Real.sqrt (Real.log (N : ℝ))) *
+            Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+          rw [← Real.exp_add]
+          ring_nf
+          simp
+        _ ≤ E * Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) :=
+          mul_le_mul_of_nonneg_right hexp (Real.exp_pos _).le
+    calc
+      |mobiusOverKPartial N| ≤ 2 := abs_mobiusOverKPartial_le_two N (by omega)
+      _ ≤ (2 * E) * Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+        nlinarith [mul_nonneg (by norm_num : (0 : ℝ) ≤ 2)
+          (sub_nonneg.mpr hscale)]
+      _ ≤ C' * Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+        exact mul_le_mul_of_nonneg_right (le_max_right _ _) (Real.exp_pos _).le
+
+/-- The quantitative Axer estimate identifies the boundary value as zero. -/
+theorem mobiusOverK_tendsto_zero_of_decay (H : ClassicalMertensDecay) :
+    Tendsto mobiusOverKPartial atTop (𝓝 0) := by
+  rcases mobiusOverK_quantitative_of_decay H with
+    ⟨C', c', hC', hc', hbound⟩
+  have hnat : Tendsto (fun N : ℕ => (N : ℝ)) atTop atTop :=
+    tendsto_natCast_atTop_atTop
+  have hyTop : Tendsto
+      (fun N : ℕ => Real.sqrt (Real.log (N : ℝ))) atTop atTop :=
+    Real.tendsto_sqrt_atTop.comp (Real.tendsto_log_atTop.comp hnat)
+  have hcyTop : Tendsto
+      (fun N : ℕ => c' * Real.sqrt (Real.log (N : ℝ))) atTop atTop :=
+    Tendsto.const_mul_atTop hc' hyTop
+  have hexp : Tendsto
+      (fun N : ℕ => Real.exp (-c' * Real.sqrt (Real.log (N : ℝ))))
+      atTop (𝓝 0) := by
+    simpa [Function.comp_def, neg_mul] using
+      (Real.tendsto_exp_neg_atTop_nhds_zero.comp hcyTop)
+  have hmajorant : Tendsto
+      (fun N : ℕ => C' * Real.exp (-c' * Real.sqrt (Real.log (N : ℝ))))
+      atTop (𝓝 0) := by
+    simpa using (tendsto_const_nhds.mul hexp)
+  rw [tendsto_zero_iff_abs_tendsto_zero]
+  refine squeeze_zero' (Eventually.of_forall fun N => abs_nonneg _)
+    ?_ hmajorant
+  filter_upwards [eventually_ge_atTop (2 : ℕ)] with N hN
+  exact hbound N hN
+
 /--
 Residual non-Mertens inputs needed to assemble the existing
 `ClassicalMertensAPI`.
@@ -2242,6 +2406,13 @@ structure MobiusOverKLimitIsZero where
   limit_eq_zero :
     ∀ ℓ : ℝ, Tendsto mobiusOverKPartial atTop (𝓝 ℓ) → ℓ = 0
 
+/-- Classical Mertens decay discharges the Axer normalization residual. -/
+theorem mobiusOverKLimitIsZero_of_decay
+    (H : ClassicalMertensDecay) : MobiusOverKLimitIsZero where
+  limit_eq_zero := by
+    intro ℓ hℓ
+    exact tendsto_nhds_unique hℓ (mobiusOverK_tendsto_zero_of_decay H)
+
 /--
 The old `mobius_sum_zero` field follows from decay plus the remaining Axer
 normalization residual.
@@ -2319,6 +2490,30 @@ noncomputable def ClassicalMertensAPI.ofDecay''
       (Classical.choose_spec (mobiusLogSummatory_bound_of_decay H)).2
     mobius_sum_zero :=
       mobius_sum_zero_of_decay_and_limit_zero H R.mobius_overK_limit_zero
+    mobiusLog_sum_neg_one := R.mobiusLog_sum_neg_one }
+
+/--
+The sole remaining H14 boundary input after the quantitative Axer step has
+been derived from `ClassicalMertensDecay`.
+-/
+structure ClassicalMertensLogBoundaryResidualInput where
+  mobiusLog_sum_neg_one : Tendsto mobiusLogOverKPartial atTop (𝓝 (-1))
+
+/--
+Assemble the classical H14 API from decay and only the logarithmic boundary
+normalization.  Earlier constructors are intentionally left unchanged.
+-/
+noncomputable def ClassicalMertensAPI.ofDecay'''
+    (H : ClassicalMertensDecay)
+    (R : ClassicalMertensLogBoundaryResidualInput) : ClassicalMertensAPI :=
+  { C_M := Classical.choose (mertens_bound_of_decay H)
+    C_L := Classical.choose (mobiusLogSummatory_bound_of_decay H)
+    C_M_pos := (Classical.choose_spec (mertens_bound_of_decay H)).1
+    C_L_pos := (Classical.choose_spec (mobiusLogSummatory_bound_of_decay H)).1
+    mertens_bound := (Classical.choose_spec (mertens_bound_of_decay H)).2
+    mobiusLogSummatory_bound :=
+      (Classical.choose_spec (mobiusLogSummatory_bound_of_decay H)).2
+    mobius_sum_zero := mobiusOverK_tendsto_zero_of_decay H
     mobiusLog_sum_neg_one := R.mobiusLog_sum_neg_one }
 
 lemma ClassicalMertensAPI.logOverK_difference_bound (api : ClassicalMertensAPI)
