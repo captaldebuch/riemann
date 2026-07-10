@@ -506,10 +506,16 @@ Three analytic debts (H13, H14, H15) toward a proved Báez-Duarte criterion:
                                        bridges to full QuadraticInteractionEstimates
                                        from H14 inputs are proved
 
-Total analytic debt toward a theorem-proved Báez-Duarte criterion: FOUR
-named statements (1 decay + 2 normalizations + 1 energy bound), all
-classical-flavored, none RH-circular — plus the separate Nyman–Beurling ⇒ RH
-bridge axiom (§10) for unconditional RH.
+Total analytic debt toward a theorem-proved Báez-Duarte criterion: TWO
+named statements — ClassicalMertensDecay (the 1899 de la Vallée Poussin
+Mertens bound; the ENTIRE H14 API now follows from it alone, tag
+verified-h14-complete-from-decay) and the centered Möbius–Bernoulli
+correlation estimate (single 1/log²-rate field, tag
+verified-h15-bernoulli-correlation, numerically supported with headroom;
+proved bridges deliver the full quadratic estimates from these two) — plus
+the separate Nyman–Beurling ⇒ RH bridge axiom (§10) for unconditional RH.
+A companion LaTeX exposition for external mathematicians is at
+docs/rh_pipeline_report.tex.
 
 A fourth, separate gap beyond all three debts:
   nyman_beurling_criterion_iff_RH:    still a bare axiom; a staged plan exists,
