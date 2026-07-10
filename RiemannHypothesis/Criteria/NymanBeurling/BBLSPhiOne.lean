@@ -581,7 +581,6 @@ theorem bernoulliB1_rat_reflect (hq : 0 < q) :
     push_cast [Nat.cast_sub hrq]
     ring
   have harg : ((q : ℝ) - r) * ((p : ℝ) / q) = -((r : ℝ) * ((p : ℝ) / q)) + (p : ℕ) := by
-    push_cast
     field_simp
     ring
   rw [hcast, harg, bernoulliB1_add_nat, bernoulliB1_neg]

@@ -284,7 +284,6 @@ theorem tendsto_fract_sq_integral_nat :
         fun N : ℕ => -(Real.eulerMascheroniSeq N) - (Real.log ((N : ℝ) + 1) - Real.log N) := by
       funext N
       unfold Real.eulerMascheroniSeq
-      push_cast
       ring
     rw [h1]
     have := (hgamma.neg).sub hlogshift
@@ -395,7 +394,7 @@ theorem tendsto_fract_div_sq_interval_zero {θ : ℝ} (hθ : 0 < θ) :
     simpa using h3
 
 /-- Generic squeeze: `(1/(cx))·Δ(x) → 0` for eventually-bounded `Δ`. -/
-theorem tendsto_one_div_mul_bounded_zero (C c : ℝ) (hC : 0 ≤ C) (hc : 0 < c)
+theorem tendsto_one_div_mul_bounded_zero (C c : ℝ) (_hC : 0 ≤ C) (hc : 0 < c)
     (Δ : ℝ → ℝ) (hΔ : ∀ x : ℝ, 1 ≤ x → |Δ x| ≤ C) :
     Tendsto (fun x : ℝ => 1 / (c * x) * Δ x) atTop (𝓝 0) := by
   have hb : ∀ᶠ x : ℝ in atTop, ‖1 / (c * x) * Δ x‖ ≤ C / (c * x) := by
