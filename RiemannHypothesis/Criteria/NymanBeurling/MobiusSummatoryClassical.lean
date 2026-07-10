@@ -3076,5 +3076,96 @@ theorem mobiusLog_LSeries_tendsto_boundary
   simp only [Function.comp_apply]
   rw [show (1 + (s - 1) : ℝ) = s by ring]
 
+-- ---------------------------------------------------------------------------
+-- H14 final field, B4. The zeta-pole normalization
+-- ---------------------------------------------------------------------------
+
+/-- The simple pole of `ζ` at `1`, removed by multiplication and update. -/
+noncomputable def zetaPoleRemoved (s : ℂ) : ℂ :=
+  Function.update (fun z : ℂ => (z - 1) * riemannZeta z) 1 1 s
+
+@[simp]
+lemma zetaPoleRemoved_one : zetaPoleRemoved 1 = 1 := by
+  simp [zetaPoleRemoved]
+
+lemma zetaPoleRemoved_of_ne_one {s : ℂ} (hs : s ≠ 1) :
+    zetaPoleRemoved s = (s - 1) * riemannZeta s := by
+  simp [zetaPoleRemoved, Function.update_of_ne hs]
+
+/-- The pole-removed zeta function is analytic at the former pole. -/
+lemma zetaPoleRemoved_analyticAt_one : AnalyticAt ℂ zetaPoleRemoved 1 := by
+  apply Complex.analyticAt_of_differentiable_on_punctured_nhds_of_continuousAt
+  · filter_upwards [self_mem_nhdsWithin] with s hs
+    have hprod : DifferentiableAt ℂ (fun z : ℂ => (z - 1) * riemannZeta z) s :=
+      (differentiableAt_id.sub_const 1).mul (differentiableAt_riemannZeta hs)
+    apply hprod.congr_of_eventuallyEq
+    filter_upwards [eventually_ne_nhds hs] with z hz
+    exact zetaPoleRemoved_of_ne_one hz
+  · change ContinuousAt
+      (Function.update (fun z : ℂ => (z - 1) * riemannZeta z) 1 1) 1
+    simpa only [continuousAt_update_same] using
+      deLaValleePoussin_zeta_residue_one
+
+/-- Derivative formula for the pole-removed zeta function away from `1`. -/
+lemma deriv_zetaPoleRemoved_of_ne_one {s : ℂ} (hs : s ≠ 1) :
+    deriv zetaPoleRemoved s =
+      riemannZeta s + (s - 1) * deriv riemannZeta s := by
+  have heq : zetaPoleRemoved =ᶠ[𝓝 s]
+      (fun z : ℂ => (z - 1) * riemannZeta z) := by
+    filter_upwards [eventually_ne_nhds hs] with z hz
+    exact zetaPoleRemoved_of_ne_one hz
+  rw [heq.deriv_eq]
+  convert ((hasDerivAt_id s).sub_const 1).mul
+    (differentiableAt_riemannZeta hs).hasDerivAt |>.deriv using 1 <;>
+      simp only [id_eq] <;> ring
+
+/-- Algebraic form of `ζ'/ζ²` after removal of the simple pole. -/
+lemma zeta_deriv_div_sq_eq_poleRemoved {s : ℂ} (hs : s ≠ 1)
+    (hz : riemannZeta s ≠ 0) :
+    deriv riemannZeta s / riemannZeta s ^ 2 =
+      ((s - 1) * deriv zetaPoleRemoved s - zetaPoleRemoved s) /
+        zetaPoleRemoved s ^ 2 := by
+  rw [zetaPoleRemoved_of_ne_one hs, deriv_zetaPoleRemoved_of_ne_one hs]
+  have hsub : s - 1 ≠ 0 := sub_ne_zero.mpr hs
+  field_simp [hsub, hz]
+  ring
+
+/-- B4: the pole of `ζ` anchors `ζ'(s)/ζ(s)^2` at `-1`. -/
+theorem zeta_deriv_div_sq_tendsto_neg_one :
+    Tendsto (fun s : ℝ =>
+      (deriv riemannZeta (s : ℂ) / riemannZeta (s : ℂ) ^ 2).re)
+      (𝓝[>] (1 : ℝ)) (𝓝 (-1 : ℝ)) := by
+  have hcoe : Tendsto (fun s : ℝ => (s : ℂ)) (𝓝[>] (1 : ℝ)) (𝓝 (1 : ℂ)) :=
+    (Complex.continuous_ofReal.tendsto 1).mono_left nhdsWithin_le_nhds
+  have hG : Tendsto (fun s : ℝ => zetaPoleRemoved (s : ℂ))
+      (𝓝[>] (1 : ℝ)) (𝓝 (1 : ℂ)) :=
+    by simpa only [Function.comp_apply, zetaPoleRemoved_one] using
+      zetaPoleRemoved_analyticAt_one.continuousAt.tendsto.comp hcoe
+  have hG' : Tendsto (fun s : ℝ => deriv zetaPoleRemoved (s : ℂ))
+      (𝓝[>] (1 : ℝ)) (𝓝 (deriv zetaPoleRemoved 1)) :=
+    zetaPoleRemoved_analyticAt_one.deriv.continuousAt.tendsto.comp hcoe
+  have hsub : Tendsto (fun s : ℝ => (s : ℂ) - 1)
+      (𝓝[>] (1 : ℝ)) (𝓝 (0 : ℂ)) := by
+    simpa using hcoe.sub_const (1 : ℂ)
+  have hexpr : Tendsto (fun s : ℝ =>
+      (((s : ℂ) - 1) * deriv zetaPoleRemoved (s : ℂ) -
+        zetaPoleRemoved (s : ℂ)) / zetaPoleRemoved (s : ℂ) ^ 2)
+      (𝓝[>] (1 : ℝ)) (𝓝 (-1 : ℂ)) := by
+    convert ((hsub.mul hG').sub hG).div (hG.pow 2) (by norm_num) using 1 <;> simp
+  have hre : Tendsto (fun s : ℝ =>
+      ((((s : ℂ) - 1) * deriv zetaPoleRemoved (s : ℂ) -
+        zetaPoleRemoved (s : ℂ)) / zetaPoleRemoved (s : ℂ) ^ 2).re)
+      (𝓝[>] (1 : ℝ)) (𝓝 (-1 : ℝ)) := by
+    simpa using Complex.continuous_re.tendsto (-1) |>.comp hexpr
+  apply hre.congr'
+  filter_upwards [self_mem_nhdsWithin] with s hs
+  have hs1 : (s : ℂ) ≠ 1 := by
+    exact_mod_cast ne_of_gt hs
+  have hz : riemannZeta (s : ℂ) ≠ 0 :=
+    riemannZeta_ne_zero_of_one_lt_re (by simpa using hs)
+  exact congrArg Complex.re (zeta_deriv_div_sq_eq_poleRemoved hs1 hz).symm
+
+
+
 
 end RH.Criteria.NymanBeurling.MobiusSummatory
