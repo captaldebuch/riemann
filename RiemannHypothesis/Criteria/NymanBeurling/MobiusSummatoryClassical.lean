@@ -885,6 +885,52 @@ lemma abs_mobiusFractBlock_le_of_summatory_bound
       Finset.Icc_eq_empty (by simpa [A, B] using hAB)
     simp [mobiusFractBlock, hempty, hD]
 
+lemma abs_mobiusFractHead_le (N K : ℕ) :
+    |∑ k ∈ Finset.Icc 1 K,
+      ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+        Int.fract ((N : ℝ) / (k : ℝ))| ≤ K := by
+  calc
+    |∑ k ∈ Finset.Icc 1 K,
+        ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+          Int.fract ((N : ℝ) / (k : ℝ))| ≤
+        ∑ k ∈ Finset.Icc 1 K,
+          |((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+            Int.fract ((N : ℝ) / (k : ℝ))| :=
+      abs_sum_le_sum_abs _ _
+    _ ≤ ∑ _k ∈ Finset.Icc 1 K, (1 : ℝ) := by
+      apply Finset.sum_le_sum
+      intro k _
+      rw [abs_mul, abs_of_nonneg
+        (Int.fract_nonneg ((N : ℝ) / (k : ℝ)))]
+      have hmu : |((ArithmeticFunction.moebius k : ℤ) : ℝ)| ≤ 1 := by
+        exact_mod_cast ArithmeticFunction.abs_moebius_le_one (n := k)
+      calc
+        |((ArithmeticFunction.moebius k : ℤ) : ℝ)| *
+            Int.fract ((N : ℝ) / (k : ℝ)) ≤
+            1 * Int.fract ((N : ℝ) / (k : ℝ)) :=
+          mul_le_mul_of_nonneg_right hmu (Int.fract_nonneg _)
+        _ ≤ 1 := by simpa using (Int.fract_lt_one _).le
+    _ ≤ K := by
+      rw [Finset.sum_const, nsmul_eq_mul, mul_one]
+      have hcard : (Finset.Icc 1 K).card ≤ K := by
+        rw [Nat.card_Icc]
+        omega
+      exact_mod_cast hcard
+
+lemma mobiusFractHyperbolaSum_eq_head_add_tail (N K : ℕ) (hKN : K ≤ N) :
+    mobiusFractHyperbolaSum N =
+      (∑ k ∈ Finset.Icc 1 K,
+        ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+          Int.fract ((N : ℝ) / (k : ℝ))) +
+      ∑ k ∈ Finset.Icc (K + 1) N,
+        ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+          Int.fract ((N : ℝ) / (k : ℝ)) := by
+  unfold mobiusFractHyperbolaSum
+  have htail := sum_Icc_succ_eq_sum_Icc_one_sub
+    (fun k : ℕ => ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+      Int.fract ((N : ℝ) / (k : ℝ))) K N hKN
+  linarith
+
 /--
 Quantitative and boundary-value inputs for the linear Mobius/Dirichlet bridge.
 This isolates the still-unformalized classical analytic number theory from the
@@ -921,6 +967,98 @@ structure ClassicalMertensDecay where
   mertens_decay :
     ∀ N : ℕ, 2 ≤ N →
       |mobiusSummatory N| ≤ C * (N : ℝ) * Real.exp (-a * Real.sqrt (Real.log N))
+
+lemma abs_mobiusFractTail_le_of_decay (H : ClassicalMertensDecay)
+    (N Q : ℕ) (hK : 2 ≤ N / (Q + 1)) :
+    |∑ k ∈ Finset.Icc (N / (Q + 1) + 1) N,
+      ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+        Int.fract ((N : ℝ) / (k : ℝ))| ≤
+      2 * H.C * (Q : ℝ) * (N : ℝ) *
+        Real.exp (-H.a *
+          Real.sqrt (Real.log ((N / (Q + 1) : ℕ) : ℝ))) := by
+  let K := N / (Q + 1)
+  let D := H.C * (N : ℝ) *
+    Real.exp (-H.a * Real.sqrt (Real.log (K : ℝ)))
+  have hD : 0 ≤ D := by
+    exact mul_nonneg (mul_nonneg H.C_pos.le (by positivity)) (Real.exp_pos _).le
+  have hblock : ∀ q ∈ Finset.Icc 1 Q, |mobiusFractBlock N q| ≤ 2 * D := by
+    intro q hq
+    rcases Finset.mem_Icc.mp hq with ⟨hq1, hqQ⟩
+    apply abs_mobiusFractBlock_le_of_summatory_bound N q D hq1 hD
+    intro k hk
+    rcases Finset.mem_Icc.mp hk with ⟨hlower, hkN⟩
+    have hKlower : K ≤ N / (q + 1) := by
+      exact Nat.div_le_div_left (by omega) (by omega)
+    have hKk : K ≤ k := hKlower.trans hlower
+    have hK2 : 2 ≤ K := by simpa [K] using hK
+    have hk2 : 2 ≤ k := hK2.trans hKk
+    have hKpos : 0 < (K : ℝ) := by
+      exact_mod_cast (lt_of_lt_of_le (by omega : 0 < 2) (by simpa [K] using hK))
+    have hlog : Real.log (K : ℝ) ≤ Real.log (k : ℝ) := by
+      exact Real.log_le_log hKpos (by exact_mod_cast hKk)
+    have hsqrt : Real.sqrt (Real.log (K : ℝ)) ≤
+        Real.sqrt (Real.log (k : ℝ)) := Real.sqrt_le_sqrt hlog
+    have hexp : Real.exp (-H.a * Real.sqrt (Real.log (k : ℝ))) ≤
+        Real.exp (-H.a * Real.sqrt (Real.log (K : ℝ))) := by
+      apply Real.exp_le_exp.mpr
+      nlinarith [H.a_pos]
+    calc
+      |mobiusSummatory k| ≤ H.C * (k : ℝ) *
+          Real.exp (-H.a * Real.sqrt (Real.log k)) := H.mertens_decay k hk2
+      _ ≤ H.C * (N : ℝ) *
+          Real.exp (-H.a * Real.sqrt (Real.log k)) := by
+        apply mul_le_mul_of_nonneg_right
+        · exact mul_le_mul_of_nonneg_left (by exact_mod_cast hkN) H.C_pos.le
+        · exact (Real.exp_pos _).le
+      _ ≤ D := by
+        unfold D
+        exact mul_le_mul_of_nonneg_left hexp
+          (mul_nonneg H.C_pos.le (by positivity))
+  rw [mobiusFractTail_eq_sum_blocks]
+  calc
+    |∑ q ∈ Finset.Icc 1 Q, mobiusFractBlock N q| ≤
+        ∑ q ∈ Finset.Icc 1 Q, |mobiusFractBlock N q| :=
+      abs_sum_le_sum_abs _ _
+    _ ≤ ∑ _q ∈ Finset.Icc 1 Q, 2 * D := by
+      exact Finset.sum_le_sum hblock
+    _ = 2 * D * (Q : ℝ) := by
+      rw [Finset.sum_const, nsmul_eq_mul]
+      have hcard : (Finset.Icc 1 Q).card = Q := by simp
+      rw [hcard]
+      ring
+    _ = _ := by simp [D, K]; ring
+
+/--
+Abstract-cutoff form of the quantitative Axer fractional-part estimate.
+-/
+lemma abs_mobiusFractHyperbolaSum_le_cutoff (H : ClassicalMertensDecay)
+    (N Q : ℕ) (hK : 2 ≤ N / (Q + 1)) :
+    |mobiusFractHyperbolaSum N| ≤
+      ((N / (Q + 1) : ℕ) : ℝ) +
+        2 * H.C * (Q : ℝ) * (N : ℝ) *
+          Real.exp (-H.a *
+            Real.sqrt (Real.log ((N / (Q + 1) : ℕ) : ℝ))) := by
+  let K := N / (Q + 1)
+  have hKN : K ≤ N := by exact Nat.div_le_self N (Q + 1)
+  rw [mobiusFractHyperbolaSum_eq_head_add_tail N K hKN]
+  calc
+    |(∑ k ∈ Finset.Icc 1 K,
+        ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+          Int.fract ((N : ℝ) / (k : ℝ))) +
+      ∑ k ∈ Finset.Icc (K + 1) N,
+        ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+          Int.fract ((N : ℝ) / (k : ℝ))| ≤
+        |∑ k ∈ Finset.Icc 1 K,
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+            Int.fract ((N : ℝ) / (k : ℝ))| +
+        |∑ k ∈ Finset.Icc (K + 1) N,
+          ((ArithmeticFunction.moebius k : ℤ) : ℝ) *
+            Int.fract ((N : ℝ) / (k : ℝ))| := abs_add_le _ _
+    _ ≤ (K : ℝ) + 2 * H.C * (Q : ℝ) * (N : ℝ) *
+        Real.exp (-H.a * Real.sqrt (Real.log (K : ℝ))) := by
+      exact add_le_add (abs_mobiusFractHead_le N K)
+        (by simpa [K] using abs_mobiusFractTail_le_of_decay H N Q hK)
+    _ = _ := by rfl
 
 /--
 Residual non-Mertens inputs needed to assemble the existing
