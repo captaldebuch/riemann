@@ -795,6 +795,308 @@ lemma mertens_bound_of_decay (H : ClassicalMertensDecay) :
       _ = max (8 * H.C * C₃) 100 * (N : ℝ) /
             Real.log (N + 2 : ℝ) ^ 3 := by ring
 
+lemma log_nat_succ_sub_log_nat_le_inv (k : ℕ) (hk : 1 ≤ k) :
+    Real.log ((k + 1 : ℕ) : ℝ) - Real.log (k : ℝ) ≤ 1 / (k : ℝ) := by
+  have hkpos : (0 : ℝ) < k := by exact_mod_cast (lt_of_lt_of_le Nat.zero_lt_one hk)
+  have hksuccpos : (0 : ℝ) < (k + 1 : ℕ) := by positivity
+  calc
+    Real.log ((k + 1 : ℕ) : ℝ) - Real.log (k : ℝ) =
+        Real.log (((k + 1 : ℕ) : ℝ) / (k : ℝ)) := by
+          rw [Real.log_div hksuccpos.ne' hkpos.ne']
+    _ ≤ (((k + 1 : ℕ) : ℝ) / (k : ℝ)) - 1 :=
+      Real.log_le_sub_one_of_pos (div_pos hksuccpos hkpos)
+    _ = 1 / (k : ℝ) := by
+      push_cast
+      field_simp
+      ring
+
+lemma one_le_log_nat_add_two (k : ℕ) (hk : 1 ≤ k) :
+    1 ≤ Real.log (k + 2 : ℝ) := by
+  have hargpos : (0 : ℝ) < k + 2 := by positivity
+  rw [Real.le_log_iff_exp_le hargpos]
+  exact Real.exp_one_lt_three.le.trans (by exact_mod_cast (show 3 ≤ k + 2 by omega))
+
+lemma finite_inv_log_cube_head_le (S : ℕ) :
+    (∑ k ∈ Finset.Icc 1 S, 1 / Real.log (k + 2 : ℝ) ^ 3) ≤ (S : ℝ) := by
+  calc
+    (∑ k ∈ Finset.Icc 1 S, 1 / Real.log (k + 2 : ℝ) ^ 3)
+        ≤ ∑ _k ∈ Finset.Icc 1 S, (1 : ℝ) := by
+          apply Finset.sum_le_sum
+          intro k hk
+          have hk1 : 1 ≤ k := (Finset.mem_Icc.mp hk).1
+          have hlog := one_le_log_nat_add_two k hk1
+          have hlogpos : 0 < Real.log (k + 2 : ℝ) := zero_lt_one.trans_le hlog
+          rw [div_le_one (pow_pos hlogpos 3)]
+          nlinarith [sq_nonneg (Real.log (k + 2 : ℝ))]
+    _ ≤ S := by
+          rw [Finset.sum_const, nsmul_eq_mul, mul_one]
+          have hcard : (Finset.Icc 1 S).card ≤ S := by
+            rw [Nat.card_Icc]
+            omega
+          exact_mod_cast hcard
+
+lemma finite_inv_log_cube_tail_le (S N : ℕ) :
+    (∑ k ∈ Finset.Icc (S + 1) N, 1 / Real.log (k + 2 : ℝ) ^ 3) ≤
+      (N : ℝ) / Real.log (S + 2 : ℝ) ^ 3 := by
+  have hlogSpos : 0 < Real.log (S + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+  calc
+    (∑ k ∈ Finset.Icc (S + 1) N, 1 / Real.log (k + 2 : ℝ) ^ 3)
+        ≤ ∑ _k ∈ Finset.Icc (S + 1) N,
+            1 / Real.log (S + 2 : ℝ) ^ 3 := by
+          apply Finset.sum_le_sum
+          intro k hk
+          have hSk : S + 1 ≤ k := (Finset.mem_Icc.mp hk).1
+          have hlogpos : 0 < Real.log (k + 2 : ℝ) :=
+            Real.log_pos (by norm_cast; omega)
+          have hlogle : Real.log (S + 2 : ℝ) ≤ Real.log (k + 2 : ℝ) := by
+            exact Real.log_le_log (by positivity) (by exact_mod_cast (show S + 2 ≤ k + 2 by omega))
+          have hpowle : Real.log (S + 2 : ℝ) ^ 3 ≤ Real.log (k + 2 : ℝ) ^ 3 := by
+            gcongr
+          exact one_div_le_one_div_of_le (pow_pos hlogSpos 3) hpowle
+    _ ≤ N * (1 / Real.log (S + 2 : ℝ) ^ 3) := by
+          rw [Finset.sum_const, nsmul_eq_mul]
+          gcongr
+          rw [Nat.card_Icc]
+          omega
+    _ = (N : ℝ) / Real.log (S + 2 : ℝ) ^ 3 := by ring
+
+lemma log_nat_add_two_le_two_log_sqrt_add_two (N : ℕ) :
+    Real.log (N + 2 : ℝ) ≤ 2 * Real.log (Nat.sqrt N + 2 : ℝ) := by
+  have hsquare : (N + 2 : ℝ) ≤ (Nat.sqrt N + 2 : ℝ) ^ 2 := by
+    have hsqrt := Nat.lt_succ_sqrt' N
+    have hsqrtNat : N + 1 ≤ (Nat.sqrt N + 1) ^ 2 := by
+      simpa [Nat.succ_eq_add_one] using (Nat.succ_le_iff.mpr hsqrt)
+    have hsqrtReal : ((N + 1 : ℕ) : ℝ) ≤ ((Nat.sqrt N + 1 : ℕ) : ℝ) ^ 2 := by
+      exact_mod_cast hsqrtNat
+    have hsqrt_nonneg : (0 : ℝ) ≤ Nat.sqrt N := by positivity
+    push_cast at hsqrtReal ⊢
+    nlinarith
+  have hargpos : (0 : ℝ) < N + 2 := by positivity
+  calc
+    Real.log (N + 2 : ℝ) ≤ Real.log ((Nat.sqrt N + 2 : ℝ) ^ 2) :=
+      Real.log_le_log hargpos hsquare
+    _ = 2 * Real.log (Nat.sqrt N + 2 : ℝ) := by
+      rw [Real.log_pow]
+      norm_num
+
+lemma log_nat_add_two_sq_le_sixteen_sqrt (N : ℕ) :
+    Real.log (N + 2 : ℝ) ^ 2 ≤ 16 * Real.sqrt (N + 2 : ℝ) := by
+  have hx : (0 : ℝ) ≤ N + 2 := by positivity
+  have hlog_nonneg : 0 ≤ Real.log (N + 2 : ℝ) :=
+    Real.log_nonneg (by norm_cast; omega)
+  have hpow_nonneg : 0 ≤ (N + 2 : ℝ) ^ (1 / 4 : ℝ) :=
+    (Real.rpow_nonneg hx _)
+  have hlog := Real.log_le_rpow_div hx (show (0 : ℝ) < 1 / 4 by norm_num)
+  have hpow_sq : ((N + 2 : ℝ) ^ (1 / 4 : ℝ)) ^ 2 = Real.sqrt (N + 2 : ℝ) := by
+    calc
+      ((N + 2 : ℝ) ^ (1 / 4 : ℝ)) ^ 2 =
+          (N + 2 : ℝ) ^ ((1 / 4 : ℝ) * 2) :=
+            (Real.rpow_mul_natCast hx (1 / 4 : ℝ) 2).symm
+      _ = Real.sqrt (N + 2 : ℝ) := by
+            rw [show (1 / 4 : ℝ) * 2 = 1 / 2 by norm_num, ← Real.sqrt_eq_rpow]
+  rw [show (N + 2 : ℝ) ^ (1 / 4 : ℝ) / (1 / 4 : ℝ) =
+      4 * (N + 2 : ℝ) ^ (1 / 4 : ℝ) by ring] at hlog
+  nlinarith
+
+lemma nat_sqrt_le_fortyeight_mul_div_log_sq (N : ℕ) (hN : 1 ≤ N) :
+    (Nat.sqrt N : ℝ) ≤ 48 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+  have hlogpos : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+  rw [le_div_iff₀ (pow_pos hlogpos 2)]
+  have hsqrtN : (Nat.sqrt N : ℝ) ≤ Real.sqrt (N : ℝ) :=
+    Real.nat_sqrt_le_real_sqrt
+  have hsqrtmono : Real.sqrt (N : ℝ) ≤ Real.sqrt (N + 2 : ℝ) := by
+    gcongr
+    norm_num
+  have hsqrt_nonneg : 0 ≤ (Nat.sqrt N : ℝ) := by positivity
+  have hlog_sq_nonneg : 0 ≤ Real.log (N + 2 : ℝ) ^ 2 := sq_nonneg _
+  have hprod := mul_le_mul (hsqrtN.trans hsqrtmono)
+    (log_nat_add_two_sq_le_sixteen_sqrt N) hlog_sq_nonneg (Real.sqrt_nonneg _)
+  have hsqrt_sq : Real.sqrt (N + 2 : ℝ) * Real.sqrt (N + 2 : ℝ) = N + 2 := by
+    rw [Real.mul_self_sqrt]
+    positivity
+  have hN2 : (N + 2 : ℝ) ≤ 3 * N := by
+    have hNreal : (1 : ℝ) ≤ N := by exact_mod_cast hN
+    nlinarith
+  nlinarith [hprod, hsqrt_sq]
+
+lemma sum_Icc_one_eq_head_add_tail (f : ℕ → ℝ) (S N : ℕ) (hSN : S ≤ N) :
+    (∑ k ∈ Finset.Icc 1 N, f k) =
+      (∑ k ∈ Finset.Icc 1 S, f k) + ∑ k ∈ Finset.Icc (S + 1) N, f k := by
+  have hdiff :
+      (∑ k ∈ Finset.Icc 1 N, f k) - (∑ k ∈ Finset.Icc 1 S, f k) =
+        ∑ k ∈ Finset.Icc (S + 1) N, f k := by
+    induction N, hSN using Nat.le_induction with
+    | base => simp
+    | succ N hSN ih =>
+        have h1N : 1 ≤ N + 1 := by omega
+        have hSN' : S + 1 ≤ N + 1 := by omega
+        rw [Finset.sum_Icc_succ_top h1N, Finset.sum_Icc_succ_top hSN']
+        linarith
+  linarith
+
+lemma finite_inv_log_cube_sum_bound (N : ℕ) :
+    (∑ k ∈ Finset.Icc 1 N, 1 / Real.log (k + 2 : ℝ) ^ 3) ≤
+      100 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+  by_cases hN0 : N = 0
+  · subst N
+    simp
+  have hN : 1 ≤ N := Nat.pos_of_ne_zero hN0
+  let S := Nat.sqrt N
+  have hSN : S ≤ N := Nat.sqrt_le_self N
+  have hsplit := sum_Icc_one_eq_head_add_tail
+    (fun k : ℕ => 1 / Real.log (k + 2 : ℝ) ^ 3) S N hSN
+  have hhead := finite_inv_log_cube_head_le S
+  have htail := finite_inv_log_cube_tail_le S N
+  have hlogNpos : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+  have hlogSpos : 0 < Real.log (S + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+  have hlogcompare : Real.log (N + 2 : ℝ) ≤ 2 * Real.log (S + 2 : ℝ) := by
+    simpa [S] using log_nat_add_two_le_two_log_sqrt_add_two N
+  have hhead' :
+      (∑ k ∈ Finset.Icc 1 S, 1 / Real.log (k + 2 : ℝ) ^ 3) ≤
+        48 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 :=
+    hhead.trans (by simpa [S] using nat_sqrt_le_fortyeight_mul_div_log_sq N hN)
+  have htail' :
+      (∑ k ∈ Finset.Icc (S + 1) N, 1 / Real.log (k + 2 : ℝ) ^ 3) ≤
+        48 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+    calc
+      _ ≤ (N : ℝ) / Real.log (S + 2 : ℝ) ^ 3 := htail
+      _ ≤ 48 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+            have hlogN_one : 1 ≤ Real.log (N + 2 : ℝ) := one_le_log_nat_add_two N hN
+            rw [div_le_div_iff₀ (pow_pos hlogSpos 3) (pow_pos hlogNpos 2)]
+            have hNnonneg : 0 ≤ (N : ℝ) := by positivity
+            have hscalar :
+                Real.log (N + 2 : ℝ) ^ 2 ≤
+                  48 * Real.log (S + 2 : ℝ) ^ 3 := by
+              nlinarith [sq_nonneg (Real.log (S + 2 : ℝ)),
+                sq_nonneg (Real.log (N + 2 : ℝ))]
+            convert mul_le_mul_of_nonneg_left hscalar hNnonneg using 1
+            all_goals ring
+  have htotal :
+      (∑ k ∈ Finset.Icc 1 N, 1 / Real.log (k + 2 : ℝ) ^ 3) =
+        (∑ k ∈ Finset.Icc 1 S, 1 / Real.log (k + 2 : ℝ) ^ 3) +
+          ∑ k ∈ Finset.Icc (S + 1) N, 1 / Real.log (k + 2 : ℝ) ^ 3 := by
+    linarith
+  rw [htotal]
+  calc
+    _ ≤ 48 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 +
+          48 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := add_le_add hhead' htail'
+    _ = 96 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by ring
+    _ ≤ 100 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+      gcongr
+      norm_num
+
+/--
+The classical Mertens decay also gives the logarithmic Möbius summatory bound
+needed by `ClassicalMertensAPI`.
+
+The proof first applies finite Abel summation. The endpoint is controlled by
+the existing cubic-log Mertens estimate, while the difference sum is reduced
+to `finite_inv_log_cube_sum_bound` using
+`log (k + 1) - log k ≤ 1 / k`.
+-/
+theorem mobiusLogSummatory_bound_of_decay (H : ClassicalMertensDecay) :
+    ∃ C_L : ℝ, 0 < C_L ∧
+      ∀ N : ℕ,
+        |mobiusLogSummatory N| ≤
+          C_L * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+  rcases mertens_bound_of_decay H with ⟨C_M, hC_M_pos, hM⟩
+  refine ⟨max (101 * C_M) 1,
+    lt_of_lt_of_le zero_lt_one (le_max_right _ _), ?_⟩
+  intro N
+  by_cases hN0 : N = 0
+  · subst N
+    simp [mobiusLogSummatory]
+  have hN : 1 ≤ N := Nat.pos_of_ne_zero hN0
+  have hlogN2pos : 0 < Real.log (N + 2 : ℝ) :=
+    Real.log_pos (by norm_cast; omega)
+  have hlogN1nonneg : 0 ≤ Real.log (N + 1 : ℝ) :=
+    Real.log_nonneg (by norm_cast; omega)
+  have hlogN1leN2 : Real.log (N + 1 : ℝ) ≤ Real.log (N + 2 : ℝ) := by
+    exact Real.log_le_log (by positivity) (by norm_num)
+  have hendpoint :
+      |mobiusSummatory N * Real.log (N + 1 : ℝ)| ≤
+        C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+    rw [abs_mul, abs_of_nonneg hlogN1nonneg]
+    calc
+      |mobiusSummatory N| * Real.log (N + 1 : ℝ)
+          ≤ (C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 3) *
+              Real.log (N + 1 : ℝ) := by
+            gcongr
+            exact hM N
+      _ ≤ (C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 3) *
+              Real.log (N + 2 : ℝ) := by
+            gcongr
+      _ = C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+            field_simp
+  have hterm :
+      ∀ k ∈ Finset.Icc 1 N,
+        |mobiusSummatory k *
+            (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ))| ≤
+          C_M * (1 / Real.log (k + 2 : ℝ) ^ 3) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Icc.mp hk).1
+    have hkpos : (0 : ℝ) < k := by exact_mod_cast (lt_of_lt_of_le Nat.zero_lt_one hk1)
+    have hksuccpos : (0 : ℝ) < (k + 1 : ℕ) := by positivity
+    have hlogmono : Real.log (k : ℝ) ≤ Real.log ((k + 1 : ℕ) : ℝ) :=
+      Real.strictMonoOn_log.monotoneOn hkpos hksuccpos (by norm_num)
+    have hdiff_nonneg :
+        0 ≤ Real.log ((k + 1 : ℕ) : ℝ) - Real.log (k : ℝ) := sub_nonneg.mpr hlogmono
+    have hdiff := log_nat_succ_sub_log_nat_le_inv k hk1
+    have hlogpos : 0 < Real.log (k + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+    have hupper_nonneg :
+        0 ≤ C_M * (k : ℝ) / Real.log (k + 2 : ℝ) ^ 3 := by positivity
+    calc
+      |mobiusSummatory k *
+          (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ))| =
+          |mobiusSummatory k| *
+            (Real.log ((k + 1 : ℕ) : ℝ) - Real.log (k : ℝ)) := by
+            rw [abs_mul, abs_of_nonpos (sub_nonpos.mpr hlogmono)]
+            ring
+      _ ≤ (C_M * (k : ℝ) / Real.log (k + 2 : ℝ) ^ 3) *
+            (1 / (k : ℝ)) := by
+            exact mul_le_mul (hM k) hdiff hdiff_nonneg hupper_nonneg
+      _ = C_M * (1 / Real.log (k + 2 : ℝ) ^ 3) := by
+            field_simp
+  have hsum :
+      |∑ k ∈ Finset.Icc 1 N,
+          mobiusSummatory k *
+            (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ))| ≤
+        100 * C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+    calc
+      |∑ k ∈ Finset.Icc 1 N,
+          mobiusSummatory k *
+            (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ))| ≤
+          ∑ k ∈ Finset.Icc 1 N,
+            |mobiusSummatory k *
+              (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ))| :=
+            abs_sum_le_sum_abs _ _
+      _ ≤ ∑ k ∈ Finset.Icc 1 N,
+            C_M * (1 / Real.log (k + 2 : ℝ) ^ 3) := by
+            exact Finset.sum_le_sum hterm
+      _ = C_M *
+          (∑ k ∈ Finset.Icc 1 N, 1 / Real.log (k + 2 : ℝ) ^ 3) := by
+            rw [Finset.mul_sum]
+      _ ≤ C_M * (100 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2) := by
+            exact mul_le_mul_of_nonneg_left (finite_inv_log_cube_sum_bound N) hC_M_pos.le
+      _ = 100 * C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by ring
+  rw [mobiusLogSummatory_eq_abel_endpoint_add_sum]
+  calc
+    |mobiusSummatory N * Real.log (N + 1 : ℝ) +
+        ∑ k ∈ Finset.Icc 1 N,
+          mobiusSummatory k *
+            (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ))| ≤
+        |mobiusSummatory N * Real.log (N + 1 : ℝ)| +
+          |∑ k ∈ Finset.Icc 1 N,
+            mobiusSummatory k *
+              (Real.log (k : ℝ) - Real.log ((k + 1 : ℕ) : ℝ))| := abs_add_le _ _
+    _ ≤ C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 +
+          100 * C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 :=
+      add_le_add hendpoint hsum
+    _ = 101 * C_M * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by ring
+    _ ≤ max (101 * C_M) 1 * (N : ℝ) / Real.log (N + 2 : ℝ) ^ 2 := by
+      gcongr
+      exact le_max_left _ _
+
 /--
 Constructor bridge from the single classical Mertens decay hypothesis plus the
 remaining non-Mertens residual inputs to the existing Phase 14 API.
