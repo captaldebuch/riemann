@@ -1253,6 +1253,75 @@ lemma eventually_abs_mobiusFractHyperbolaSum_le_exp
       ring
 
 /--
+Global quantitative form of the Axer fractional-part estimate.  The finitely
+many values before the asymptotic cutoff are absorbed into the constant.
+-/
+theorem mobiusFractHyperbolaSum_quantitative_of_decay
+    (H : ClassicalMertensDecay) :
+    ∃ C' c' : ℝ, 0 < C' ∧ 0 < c' ∧
+      ∀ N : ℕ, 2 ≤ N →
+        |mobiusFractHyperbolaSum N| ≤
+          C' * (N : ℝ) *
+            Real.exp (-c' * Real.sqrt (Real.log (N : ℝ))) := by
+  let b := H.a / 8
+  have hb : 0 < b := div_pos H.a_pos (by norm_num)
+  rcases eventually_atTop.1
+      (eventually_abs_mobiusFractHyperbolaSum_le_exp H) with ⟨N₀, hlarge⟩
+  let R := max N₀ 2
+  let E := Real.exp (b * Real.sqrt (Real.log (R : ℝ)))
+  let C' := max (1 + 2 * H.C) E
+  have hR2 : 2 ≤ R := le_max_right _ _
+  have hEpos : 0 < E := Real.exp_pos _
+  have hCpos : 0 < C' := hEpos.trans_le (le_max_right _ _)
+  refine ⟨C', b, hCpos, hb, ?_⟩
+  intro N hN
+  by_cases hNlarge : N₀ ≤ N
+  · have h := hlarge N hNlarge
+    have hcoeff : 1 + 2 * H.C ≤ C' := le_max_left _ _
+    calc
+      |mobiusFractHyperbolaSum N| ≤
+          (1 + 2 * H.C) * (N : ℝ) *
+            Real.exp (-(H.a / 8) * Real.sqrt (Real.log (N : ℝ))) := h
+      _ ≤ C' * (N : ℝ) *
+          Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+        dsimp [b]
+        gcongr
+      _ = _ := rfl
+  · have hNR : N ≤ R := by
+      exact (Nat.le_of_lt (lt_of_not_ge hNlarge)).trans (le_max_left _ _)
+    have hNpos : 0 < (N : ℝ) := by exact_mod_cast (by omega : 0 < N)
+    have hRpos : 0 < (R : ℝ) := by exact_mod_cast (by omega : 0 < R)
+    have hlog : Real.log (N : ℝ) ≤ Real.log (R : ℝ) :=
+      Real.log_le_log hNpos (by exact_mod_cast hNR)
+    have hsqrt : Real.sqrt (Real.log (N : ℝ)) ≤
+        Real.sqrt (Real.log (R : ℝ)) := Real.sqrt_le_sqrt hlog
+    have hexp : Real.exp (b * Real.sqrt (Real.log (N : ℝ))) ≤ E := by
+      dsimp [E]
+      exact Real.exp_le_exp.mpr (mul_le_mul_of_nonneg_left hsqrt hb.le)
+    have hscale : 1 ≤ E *
+        Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+      calc
+        1 = Real.exp (b * Real.sqrt (Real.log (N : ℝ))) *
+            Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+          rw [← Real.exp_add]
+          ring_nf
+          simp
+        _ ≤ E * Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) :=
+          mul_le_mul_of_nonneg_right hexp (Real.exp_pos _).le
+    have htrivial : |mobiusFractHyperbolaSum N| ≤ (N : ℝ) := by
+      simpa [mobiusFractHyperbolaSum] using abs_mobiusFractHead_le N N
+    calc
+      |mobiusFractHyperbolaSum N| ≤ (N : ℝ) := htrivial
+      _ ≤ E * (N : ℝ) *
+          Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+        have hNnonneg : 0 ≤ (N : ℝ) := by positivity
+        nlinarith [mul_nonneg hNnonneg (sub_nonneg.mpr hscale)]
+      _ ≤ C' * (N : ℝ) *
+          Real.exp (-b * Real.sqrt (Real.log (N : ℝ))) := by
+        gcongr
+        exact le_max_right _ _
+
+/--
 Residual non-Mertens inputs needed to assemble the existing
 `ClassicalMertensAPI`.
 
