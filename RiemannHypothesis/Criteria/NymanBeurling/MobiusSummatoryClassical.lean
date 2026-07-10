@@ -1072,7 +1072,9 @@ lemma axerExpCutoff_succ_le_nat_sqrt {a : ℝ} (ha : 0 < a)
   let y := Real.sqrt (Real.log (N : ℝ))
   let x := Real.exp (b * y)
   let Q := axerExpCutoff a N
-  have hb : 0 < b := by simp [b]; positivity
+  have hb : 0 < b := by
+    dsimp [b]
+    exact div_pos ha (by norm_num)
   have hy_nonneg : 0 ≤ y := Real.sqrt_nonneg _
   have hlog_nonneg : 0 ≤ Real.log (N : ℝ) :=
     Real.log_nonneg (by exact_mod_cast hN)
@@ -1134,6 +1136,121 @@ lemma nat_le_sqrt_pow_four (N : ℕ) (hN : 16 ≤ N) :
       (S + 1) ^ 2 ≤ (S ^ 2) ^ 2 := by gcongr
       _ = S ^ 4 := by ring
   exact (Nat.le_of_lt hlt).trans hpoly
+
+lemma eventually_abs_mobiusFractHyperbolaSum_le_exp
+    (H : ClassicalMertensDecay) :
+    ∀ᶠ N : ℕ in atTop,
+      |mobiusFractHyperbolaSum N| ≤
+        (1 + 2 * H.C) * (N : ℝ) *
+          Real.exp (-(H.a / 8) * Real.sqrt (Real.log (N : ℝ))) := by
+  have hnat : Tendsto (fun N : ℕ => (N : ℝ)) atTop atTop :=
+    tendsto_natCast_atTop_atTop
+  have hyTop : Tendsto
+      (fun N : ℕ => Real.sqrt (Real.log (N : ℝ))) atTop atTop :=
+    Real.tendsto_sqrt_atTop.comp (Real.tendsto_log_atTop.comp hnat)
+  filter_upwards
+    [hyTop.eventually_ge_atTop (2 * (H.a / 8) + 4),
+      eventually_ge_atTop (16 : ℕ)] with N hy hN
+  let b := H.a / 8
+  let y := Real.sqrt (Real.log (N : ℝ))
+  let x := Real.exp (b * y)
+  let Q := axerExpCutoff H.a N
+  let S := Nat.sqrt N
+  let K := N / (Q + 1)
+  have hb : 0 < b := by
+    dsimp [b]
+    exact div_pos H.a_pos (by norm_num)
+  have hy_nonneg : 0 ≤ y := Real.sqrt_nonneg _
+  have hN1 : 1 ≤ N := by omega
+  have hQsqrt : Q + 1 ≤ S := by
+    simpa [Q, S, b, y] using axerExpCutoff_succ_le_nat_sqrt H.a_pos N hN1 hy
+  have hS4 : 4 ≤ S := by
+    have hsqrt_mono := Nat.sqrt_le_sqrt hN
+    norm_num [S] at hsqrt_mono ⊢
+    exact hsqrt_mono
+  have hS_mul : S * (Q + 1) ≤ N :=
+    (Nat.mul_le_mul_left S hQsqrt).trans (Nat.sqrt_le N)
+  have hSK : S ≤ K := by
+    exact (Nat.le_div_iff_mul_le (by omega)).mpr hS_mul
+  have hK2 : 2 ≤ K := (by omega : 2 ≤ S).trans hSK
+  have hcut := abs_mobiusFractHyperbolaSum_le_cutoff H N Q
+    (by simpa [K] using hK2)
+  have hx_pos : 0 < x := Real.exp_pos _
+  have hx_le_Q1 : x ≤ (Q + 1 : ℕ) := by
+    exact (by simpa [x, Q, b, y, axerExpCutoff] using
+      (Nat.lt_floor_add_one (Real.exp (b * y))).le)
+  have hKmul : K * (Q + 1) ≤ N := by
+    simpa [K] using Nat.div_mul_le_self N (Q + 1)
+  have hKx : (K : ℝ) * x ≤ (N : ℝ) := by
+    calc
+      (K : ℝ) * x ≤ (K : ℝ) * (Q + 1 : ℕ) :=
+        mul_le_mul_of_nonneg_left hx_le_Q1 (by positivity)
+      _ ≤ (N : ℝ) := by exact_mod_cast hKmul
+  have hhead : (K : ℝ) ≤
+      (N : ℝ) * Real.exp (-b * y) := by
+    have hdiv : (K : ℝ) ≤ (N : ℝ) / x :=
+      (le_div_iff₀ hx_pos).mpr hKx
+    simpa [x, Real.exp_neg, div_eq_mul_inv] using hdiv
+  have hQle : (Q : ℝ) ≤ x := by
+    simpa [Q, axerExpCutoff, x, b, y] using
+      (Nat.floor_le (Real.exp_pos (b * y)).le)
+  have hNKpow : N ≤ K ^ 4 := by
+    exact (nat_le_sqrt_pow_four N hN).trans (by gcongr)
+  have hNpos : 0 < (N : ℝ) := by exact_mod_cast (by omega : 0 < N)
+  have hKpos : 0 < (K : ℝ) := by exact_mod_cast (by omega : 0 < K)
+  have hlogN_nonneg : 0 ≤ Real.log (N : ℝ) :=
+    Real.log_nonneg (by exact_mod_cast hN1)
+  have hlogK_nonneg : 0 ≤ Real.log (K : ℝ) :=
+    Real.log_nonneg (by exact_mod_cast (show 1 ≤ K by omega))
+  have hlog : Real.log (N : ℝ) ≤ 4 * Real.log (K : ℝ) := by
+    calc
+      Real.log (N : ℝ) ≤ Real.log ((K : ℝ) ^ 4) :=
+        Real.log_le_log hNpos (by exact_mod_cast hNKpow)
+      _ = 4 * Real.log (K : ℝ) := by rw [Real.log_pow]; norm_num
+  let z := Real.sqrt (Real.log (K : ℝ))
+  have hz_nonneg : 0 ≤ z := Real.sqrt_nonneg _
+  have hy_sq : y ^ 2 = Real.log (N : ℝ) := by
+    simp [y, Real.sq_sqrt hlogN_nonneg]
+  have hz_sq : z ^ 2 = Real.log (K : ℝ) := by
+    simp [z, Real.sq_sqrt hlogK_nonneg]
+  have hy_le_two_z : y ≤ 2 * z := by
+    nlinarith
+  have hexponent : b * y - H.a * z ≤ -b * y := by
+    have hgap : 0 ≤ z - y / 2 := by linarith
+    have hprod := mul_nonneg H.a_pos.le hgap
+    have hay := mul_nonneg H.a_pos.le hy_nonneg
+    dsimp [b]
+    nlinarith
+  have hQexp : (Q : ℝ) * Real.exp (-H.a * z) ≤
+      Real.exp (-b * y) := by
+    calc
+      (Q : ℝ) * Real.exp (-H.a * z) ≤
+          x * Real.exp (-H.a * z) :=
+        mul_le_mul_of_nonneg_right hQle (Real.exp_pos _).le
+      _ = Real.exp (b * y - H.a * z) := by
+        dsimp [x]
+        rw [← Real.exp_add]
+        congr 1
+        ring
+      _ ≤ Real.exp (-b * y) := Real.exp_le_exp.mpr hexponent
+  calc
+    |mobiusFractHyperbolaSum N| ≤
+        (K : ℝ) + 2 * H.C * (Q : ℝ) * (N : ℝ) *
+          Real.exp (-H.a * z) := by simpa [K, z] using hcut
+    _ ≤ (N : ℝ) * Real.exp (-b * y) +
+        2 * H.C * (N : ℝ) * Real.exp (-b * y) := by
+      apply add_le_add hhead
+      calc
+        2 * H.C * (Q : ℝ) * (N : ℝ) * Real.exp (-H.a * z) =
+            (2 * H.C * (N : ℝ)) *
+              ((Q : ℝ) * Real.exp (-H.a * z)) := by ring
+        _ ≤ (2 * H.C * (N : ℝ)) * Real.exp (-b * y) :=
+          mul_le_mul_of_nonneg_left hQexp
+            (mul_nonneg (mul_nonneg (by norm_num) H.C_pos.le) (by positivity))
+    _ = (1 + 2 * H.C) * (N : ℝ) *
+        Real.exp (-(H.a / 8) * Real.sqrt (Real.log (N : ℝ))) := by
+      simp [b, y]
+      ring
 
 /--
 Residual non-Mertens inputs needed to assemble the existing
