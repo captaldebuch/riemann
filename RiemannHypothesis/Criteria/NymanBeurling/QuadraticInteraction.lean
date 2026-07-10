@@ -7,6 +7,8 @@ namespace RH.Criteria.NymanBeurling.QuadraticInteraction
 
 open RH.Criteria.NymanBeurling.CutoffMobiusKernels
 open RH.Criteria.NymanBeurling.VasyuninGram
+open Filter
+open Topology
 
 -- ---------------------------------------------------------------------------
 -- 1. Unified Interaction Kernel
@@ -1023,6 +1025,164 @@ theorem explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear
   unfold cutoffMobiusDefectEnergy cutoffMobiusGramNormIntegral
   rw [cutoffMobiusChiRhoCross_eq_neg_explicitLinearMobiusSum]
   ring
+
+/-! ### The BBLS Bernoulli-series form of the cotangent interaction -/
+
+/-- The Möbius-weighted Bernoulli inner sum exposed by BBLS Proposition 48. -/
+noncomputable def cutoffMobiusBernoulliInner (N m h : ℕ) : ℝ :=
+  ∑ k ∈ Finset.Icc 1 N,
+    cutoffMobiusCoeff N k *
+      bernoulliB1 ((m : ℝ) * ((h : ℝ) / (k : ℝ)))
+
+/-- The finite `m`-partial sum of the reordered symmetric cotangent interaction. -/
+noncomputable def cutoffMobiusBernoulliCorrelationPartial (N M : ℕ) : ℝ :=
+  -2 * ∑ m ∈ Finset.Icc 1 M,
+    (∑ h ∈ Finset.Icc 1 N,
+      cutoffMobiusCoeff N h / (h : ℝ) * cutoffMobiusBernoulliInner N m h) /
+        (m : ℝ)
+
+/-- The reordered partial sum is exactly the corresponding finite triple sum. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_eq_triple (N M : ℕ) :
+    cutoffMobiusBernoulliCorrelationPartial N M =
+      -2 * ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+          (∑ m ∈ Finset.Icc 1 M,
+            bernoulliB1 ((m : ℝ) * ((h : ℝ) / (k : ℝ))) / (m : ℝ)) := by
+  classical
+  unfold cutoffMobiusBernoulliCorrelationPartial cutoffMobiusBernoulliInner
+  congr 1
+  simp_rw [Finset.mul_sum, Finset.sum_div]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro h _
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro k _
+  apply Finset.sum_congr rfl
+  intro m _
+  ring
+
+/-- The BBLS limit value of the reordered Bernoulli correlation. -/
+noncomputable def cutoffMobiusBernoulliCorrelationValue (N : ℕ) : ℝ :=
+  -2 * ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+    (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+      (Real.pi / (2 * (k : ℝ)) * cotangentSumVFormula h k)
+
+/-- BBLS Proposition 48 evaluates every finite `(h,k)` series in the
+reordered correlation, so its finite `m`-partials converge to the displayed
+cotangent value. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_tendsto (N : ℕ) :
+    Tendsto (cutoffMobiusBernoulliCorrelationPartial N) atTop
+      (𝓝 (cutoffMobiusBernoulliCorrelationValue N)) := by
+  have hpairs : Tendsto (fun M : ℕ =>
+      ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+          (∑ m ∈ Finset.Icc 1 M,
+            bernoulliB1 ((m : ℝ) * ((h : ℝ) / (k : ℝ))) / (m : ℝ)))
+      atTop
+      (𝓝 (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+          (Real.pi / (2 * (k : ℝ)) * cotangentSumVFormula h k))) := by
+    apply tendsto_finset_sum
+    intro h hh
+    apply tendsto_finset_sum
+    intro k hk
+    have hhpos : 0 < h :=
+      lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hh).1
+    have hkpos : 0 < k :=
+      lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hk).1
+    exact tendsto_const_nhds.mul
+      (tendsto_bernoulliB1_sum_div_rat h k hhpos hkpos)
+  have hscaled := hpairs.const_mul (-2)
+  apply hscaled.congr'
+  filter_upwards [] with M
+  rw [cutoffMobiusBernoulliCorrelationPartial_eq_triple]
+
+/-- The BBLS Bernoulli correlation value is exactly the symmetric cotangent
+component already used in the explicit quadratic decomposition. -/
+theorem cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent (N : ℕ) :
+    cutoffMobiusBernoulliCorrelationValue N =
+      explicitQuadraticCotangentComponent N := by
+  classical
+  let S := Finset.Icc 1 N
+  let A := ∑ h ∈ S, ∑ k ∈ S,
+    cutoffMobiusCoeff N h * cutoffMobiusCoeff N k *
+      (-(Real.pi / (2 * (h : ℝ) * (k : ℝ)) * cotangentSumVFormula h k))
+  let B := ∑ h ∈ S, ∑ k ∈ S,
+    cutoffMobiusCoeff N h * cutoffMobiusCoeff N k *
+      (-(Real.pi / (2 * (h : ℝ) * (k : ℝ)) * cotangentSumVFormula k h))
+  have hvalue : cutoffMobiusBernoulliCorrelationValue N = A + A := by
+    unfold cutoffMobiusBernoulliCorrelationValue
+    dsimp [A, S]
+    rw [Finset.mul_sum]
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro h _
+    rw [Finset.mul_sum]
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  have hswap : B = A := by
+    dsimp [A, B]
+    rw [Finset.sum_comm]
+    apply Finset.sum_congr rfl
+    intro h _
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  have hexplicit : explicitQuadraticCotangentComponent N = A + B := by
+    unfold explicitQuadraticCotangentComponent
+    dsimp [A, B, S]
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro h _
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  rw [hvalue, hexplicit, hswap]
+
+/-- The reordered Bernoulli partials converge to the existing cotangent
+component, with no extra analytic hypothesis. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_tendsto_cotangent (N : ℕ) :
+    Tendsto (cutoffMobiusBernoulliCorrelationPartial N) atTop
+      (𝓝 (explicitQuadraticCotangentComponent N)) := by
+  simpa [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent] using
+    cutoffMobiusBernoulliCorrelationPartial_tendsto N
+
+/-- The corrected defect is the log-ratio term plus the BBLS Bernoulli
+correlation main term and the already-controlled H14 linear centering. -/
+theorem cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value (N : ℕ) :
+    cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N =
+      explicitQuadraticLogRatioComponent N +
+        cutoffMobiusBernoulliCorrelationValue N - 1 +
+          2 * (explicitLinearMobiusSum N + 1) := by
+  rw [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent]
+  have h :=
+    explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear N
+  unfold explicitQuadraticInteractionRemainder
+    explicitQuadraticLogCotangentInteraction at h
+  linarith
+
+/-- The finite centered partial whose limit is the corrected defect. -/
+noncomputable def cutoffMobiusBernoulliCenteredPartial (N M : ℕ) : ℝ :=
+  explicitQuadraticLogRatioComponent N +
+    cutoffMobiusBernoulliCorrelationPartial N M - 1 +
+      2 * (explicitLinearMobiusSum N + 1)
+
+/-- The centered Bernoulli correlation partials converge exactly to the
+completed-square defect after subtraction of the log-gamma term. -/
+theorem cutoffMobiusBernoulliCenteredPartial_tendsto (N : ℕ) :
+    Tendsto (cutoffMobiusBernoulliCenteredPartial N) atTop
+      (𝓝 (cutoffMobiusDefectEnergy N -
+        explicitQuadraticLogGammaComponent N)) := by
+  have h := cutoffMobiusBernoulliCorrelationPartial_tendsto N
+  have hcentered :=
+    (((h.const_add (explicitQuadraticLogRatioComponent N)).sub_const 1).add_const
+      (2 * (explicitLinearMobiusSum N + 1)))
+  rw [cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value]
+  simpa [cutoffMobiusBernoulliCenteredPartial, add_assoc] using hcentered
 
 /--
 The single residual analytic input left by the norm-square finish attempt.
