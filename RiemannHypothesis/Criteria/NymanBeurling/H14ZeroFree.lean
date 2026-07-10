@@ -2,6 +2,7 @@ import RiemannHypothesis.Criteria.NymanBeurling.MobiusSummatoryClassical
 import Mathlib.Analysis.Complex.BorelCaratheodory
 import Mathlib.Analysis.Complex.JensenFormula
 import Mathlib.NumberTheory.LSeries.ZetaZeros
+import Mathlib.Topology.MetricSpace.Thickening
 
 /-! # H14M-B: de la Vallée Poussin zero-free-region assembly -/
 
@@ -703,6 +704,71 @@ structure ZetaLogDerivDiscBoundAtHeight where
       (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
           riemannZeta (σ + Complex.I * t : ℂ)).re ≤
         -1 / (σ - β) + C * Real.log (|t| + 2)
+
+/-- R2: every bounded-height portion of the line `Re s = 1` has a uniform
+zero-free neighborhood to its left.  This is purely compactness: the
+pole-removed zeta function is continuous and nonzero on the compact vertical
+segment. -/
+theorem exists_lowHeight_zeta_zeroFree_left_strip (t₀ : ℝ) (_ht₀ : 0 ≤ t₀) :
+    ∃ delta : ℝ, 0 < delta ∧
+      ∀ {σ t : ℝ}, 1 - delta ≤ σ → σ ≤ 1 → |t| ≤ t₀ →
+        riemannZeta (σ + Complex.I * t : ℂ) ≠ 0 := by
+  let lineMap : ℝ → ℂ := fun t => (1 : ℂ) + Complex.I * t
+  let K : Set ℂ := lineMap '' Set.Icc (-t₀) t₀
+  let U : Set ℂ := {s | zetaPoleRemoved s ≠ 0}
+  have hline : Continuous lineMap := by
+    dsimp [lineMap]
+    exact continuous_const.add (continuous_const.mul Complex.continuous_ofReal)
+  have hK : IsCompact K := by
+    dsimp [K]
+    exact isCompact_Icc.image hline
+  have hGcontinuous : Continuous zetaPoleRemoved :=
+    continuous_iff_continuousAt.mpr fun s =>
+      (zetaPoleRemoved_analyticAt s).continuousAt
+  have hU : IsOpen U := by
+    dsimp [U]
+    exact isOpen_compl_singleton.preimage hGcontinuous
+  have hKU : K ⊆ U := by
+    rintro s ⟨t, ht, rfl⟩
+    dsimp [U, lineMap]
+    by_cases htzero : t = 0
+    · subst t
+      simp
+    · have hs_ne : (1 + Complex.I * t : ℂ) ≠ 1 := by
+        intro h
+        have him : (1 + Complex.I * t : ℂ).im = (1 : ℂ).im :=
+          congrArg Complex.im h
+        simpa using htzero (by simpa using him)
+      rw [zetaPoleRemoved_of_ne_one hs_ne]
+      exact mul_ne_zero (sub_ne_zero.mpr hs_ne)
+        (riemannZeta_ne_zero_of_one_le_re (by simp))
+  rcases hK.exists_thickening_subset_open hU hKU with
+    ⟨radius, hradius, hthick⟩
+  refine ⟨radius / 2, div_pos hradius (by norm_num), ?_⟩
+  intro σ t hσleft hσright ht
+  let center : ℂ := (1 : ℂ) + Complex.I * t
+  have htIcc : t ∈ Set.Icc (-t₀) t₀ := by
+    rw [Set.mem_Icc]
+    exact ⟨(neg_le_of_abs_le ht), (le_of_abs_le ht)⟩
+  have hcenter : center ∈ K := by
+    exact ⟨t, htIcc, rfl⟩
+  have hdist : dist (σ + Complex.I * t : ℂ) center < radius := by
+    have hsub : (σ + Complex.I * t : ℂ) - center = ((σ - 1 : ℝ) : ℂ) := by
+      dsimp [center]
+      push_cast
+      ring
+    rw [dist_eq_norm, hsub, Complex.norm_real, Real.norm_eq_abs,
+      abs_of_nonpos (by linarith)]
+    linarith
+  have hmem : (σ + Complex.I * t : ℂ) ∈ Metric.thickening radius K :=
+    Metric.mem_thickening_iff.mpr ⟨center, hcenter, hdist⟩
+  have hG : zetaPoleRemoved (σ + Complex.I * t : ℂ) ≠ 0 :=
+    hthick hmem
+  by_cases hsone : (σ + Complex.I * t : ℂ) = 1
+  · rw [hsone]
+    exact riemannZeta_one_ne_zero
+  · rw [zetaPoleRemoved_of_ne_one hsone] at hG
+    exact (mul_ne_zero_iff.mp hG).2
 
 end RepairedDiscBound
 
