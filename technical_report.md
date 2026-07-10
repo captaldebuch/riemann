@@ -443,7 +443,7 @@ On that basis a lettered plan (H14M-A…I) was drawn up and its first two steps 
 
 **Honestly not done, stated in the code's own docstrings**: no *instance* of `DeLaValleePoussinZeroFreeRegion` is constructed — that requires combining the positivity across `σ, σ+it, σ+2it`, handling zeros of arbitrary multiplicity (the residue lemma above covers only simple zeros), and the global contour/growth estimates.
 
-**Architecture finalized** (tag `verified-h14-finalized-decay`): the quantitative Mertens debt is now reduced to a *single* classical statement, `ClassicalMertensDecay` (`|M(N)| ≤ C·N·exp(−a√(log N))` — exactly the output of the 1899 de la Vallée Poussin zero-free region), with the conversion to the project's `N/log³N` bound **proved unconditionally** (`mertens_bound_of_decay`, via elementary `t^A·e^{−a√t}` calculus). The three fields not yet derived from decay (`mobiusLogSummatory_bound`, `mobius_sum_zero`, `mobiusLog_sum_neg_one` — the Abel/Axer-type arguments) remain explicitly named in `ClassicalMertensResidualInputs`, and `ClassicalMertensAPI.ofDecay` assembles the full API from the two. The H14 track is **parked here**: its debt is one classical decay statement plus a three-field named residual.
+**Architecture finalized** (tag `verified-h14-finalized-decay`): the quantitative Mertens debt is now reduced to a *single* classical statement, `ClassicalMertensDecay` (`|M(N)| ≤ C·N·exp(−a√(log N))` — exactly the output of the 1899 de la Vallée Poussin zero-free region), with the conversion to the project's `N/log³N` bound **proved unconditionally** (`mertens_bound_of_decay`, via elementary `t^A·e^{−a√t}` calculus). The three fields not yet derived from decay (`mobiusLogSummatory_bound`, `mobius_sum_zero`, `mobiusLog_sum_neg_one` — the Abel/Axer-type arguments) remain explicitly named in `ClassicalMertensResidualInputs`, and `ClassicalMertensAPI.ofDecay` assembles the full API from the two. Since then, the residual has been actively shrunk (tags `verified-h14-residuals-partial`, `verified-h14-r1-logbound`): the log-summatory bound `|L(N)| ≤ C_L·N/log²(N+2)` is now **derived from the decay statement alone** (split-sum tail estimate + the conversion calculus), and the convergence of `∑ μ(k)/k` to *some* limit is proved under decay (Abel/Cauchy argument). H14's remaining debt is the decay statement plus **exactly two normalization identifications**: `MobiusOverKLimitIsZero` (the Axer step — that the limit is `0`) and `mobiusLog_sum_neg_one` (the `−1` limit). A quantitative Axer attempt (hyperbola identity + blockwise Abel against the Möbius summatory, targeting `|∑_{k≤N}μ(k)/k| ≤ C·e^{−c√log N}`, which would also unlock the `−1` limit via a Chebyshev-`O(N)` argument) is in flight.
 
 ## 9. Phase 15: Quadratic Log-Cotangent Interaction
 
@@ -472,7 +472,9 @@ With the Vasyunin bridge proved (§7.4), the interaction kernel acquired an **un
 - The **norm identity**, proved for a general weight and instantiated at the Möbius cutoff: `∑∑ c(h)c(k)·K(h,k) = ∫₀^∞ (∑ c(h)·{1/(hx)})² dx − (log 2π − γ)·(∑ c(h)/h)·(∑ c(k))`, wired all the way to `explicitQuadraticInteractionRemainder`.
 - **The first unconditional inequality on the H15 quadratic form** (`quadratic_form_ge_neg_linear`), free from the positive-semidefiniteness of the norm term.
 
-**What this changes**: the "mysterious broad cancellation across gcd strata" from the §9 diagnostics is now *structural* — the wild per-stratum cotangent fluctuations live inside a manifestly nonnegative squared L²-norm, and per-stratum bounding is provably the wrong decomposition. H15's open content is restated in its sharpest form: the Nyman–Beurling **energy of the specific Möbius cutoff vector** minus H14-governed linear sums minus 1, at rate `O(1/log N)`. The hard analytic content remains open, but it is now directly connected to the linear (H14) machinery and the certificate/energy infrastructure, and a staged finish attempt (conditional on H14's classical inputs, with any residue isolated as a single named hypothesis, under a strict no-RH-circularity guard) has been scoped.
+**What this changes**: the "mysterious broad cancellation across gcd strata" from the §9 diagnostics is now *structural* — the wild per-stratum cotangent fluctuations live inside a manifestly nonnegative squared L²-norm, and per-stratum bounding is provably the wrong decomposition.
+
+The staged finish attempt then ran to its designed conclusion (tag `verified-h15-norm-residual`): exact χ–ρ cross identities and the completed-square decomposition are proved; H14's linear machinery provably controls the centered linear term; and everything that resists is isolated in **one field** — `QuadraticInteractionNormResidual`, a single `C/log(N+2)` bound on the defect-energy/log-gamma package — with proved bridges delivering full `QuadraticInteractionEstimates` from (H14 classical inputs) + (that one field). A strict no-RH-circularity guard governed the whole derivation (nothing on the conclusion side of the Báez-Duarte criterion was assumed). Numerical diagnostics (independently re-run) confirm the isolated bound holds with room to spare: the remainder empirically decays like `≈ 0.72/log²N`, a full logarithm faster than required. H15's open content is that single bound.
 
 ## 10. The Fourth Debt: Nyman–Beurling ⇒ RH
 
@@ -494,14 +496,20 @@ Three analytic debts (H13, H14, H15) toward a proved Báez-Duarte criterion:
   H13 (Vasyunin local bridge):        CLOSED (§7.4, tag verified-h13-complete) — the
                                        full BBLS chain incl. Props 48/87/88/89 and the
                                        period reduction; all Bridge sorries discharged
-  H14 (linear Möbius/Dirichlet):      FINALIZED + PARKED (§8.1) — debt reduced to the
-                                       single ClassicalMertensDecay statement plus a
-                                       three-field named residual (ofDecay bridge proved)
-  H15 (quadratic log-cotangent):      open core now in NORM FORM (§9.2): NB-energy of
-                                       the Möbius cutoff vector minus H14-type linear
-                                       sums; first unconditional inequality banked; the
-                                       O(1/log N) estimate itself remains the deepest
-                                       open debt
+  H14 (linear Möbius/Dirichlet):      debt = ClassicalMertensDecay + exactly TWO
+                                       normalization fields (§8.1): the Axer limit-zero
+                                       identification and the −1 log-limit; both
+                                       quantitative bounds now DERIVED from decay
+  H15 (quadratic log-cotangent):      debt = ONE named field (§9.2):
+                                       QuadraticInteractionNormResidual, a C/log(N+2)
+                                       defect-energy bound, numerically ~1/log²N;
+                                       bridges to full QuadraticInteractionEstimates
+                                       from H14 inputs are proved
+
+Total analytic debt toward a theorem-proved Báez-Duarte criterion: FOUR
+named statements (1 decay + 2 normalizations + 1 energy bound), all
+classical-flavored, none RH-circular — plus the separate Nyman–Beurling ⇒ RH
+bridge axiom (§10) for unconditional RH.
 
 A fourth, separate gap beyond all three debts:
   nyman_beurling_criterion_iff_RH:    still a bare axiom; a staged plan exists,
