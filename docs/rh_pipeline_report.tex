@@ -1,0 +1,198 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newcommand{\fract}[1]{\{#1\}}
+\title{A Machine-Verified Reduction of the Nyman--Beurling--B\'aez-Duarte
+Criterion to Two Classical Statements\\[1ex]
+\large An LLM-guided formalization pipeline in Lean~4 --- a working route, not a proof}
+\author{Xavier Fresquet \and G\'erard Biau\\[0.5ex]
+\small Sorbonne Universit\'e}
+\date{July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report on an experiment in AI-assisted mathematics. Large language models
+were used to \emph{navigate} the classical literature around the
+Nyman--Beurling--B\'aez-Duarte (NB--BD) criterion for the Riemann Hypothesis,
+proposing decompositions, catching false statements, and drafting proofs;
+the Lean~4 proof assistant (with Mathlib) was used as the sole arbiter of
+correctness. \textbf{We do not claim a proof of RH, nor of any new theorem of
+independent strength.} The contribution is methodological: starting from a
+trust-nothing state (1{,}364 unaudited axioms), the pipeline has produced a
+fully machine-checked reduction in which the B\'aez-Duarte criterion follows
+from exactly \emph{two} precisely-stated analytic assertions --- one being the
+classical 1899 de la Vall\'ee Poussin Mertens bound, the other a single
+numerically-supported correlation estimate --- with every reduction step
+verified by the Lean kernel (\texttt{\#print axioms} audits throughout).
+We describe the route, the key identities that were formalized along the way
+(several of which required correcting false statements caught numerically),
+and the two open statements, in the hope that a professional analytic number
+theorist may recognize the remaining distance --- or close it.
+\end{abstract}
+
+\section{Framing: what this is and is not}
+The role of the LLMs here is \emph{navigation}: surveying candidate routes
+(digamma identities, Estermann zeta contours, Farey-cell correlations,
+iterated cotangent reciprocity), discarding dead ends cheaply, and proposing
+the next well-scoped lemma. The role of Lean is \emph{rigour}: no step enters
+the trusted corpus unless the kernel accepts it, and every claimed theorem is
+audited down to its axioms. Numerical verification precedes every
+formalization step; this discipline caught three false statements that would
+otherwise have poisoned the development (\S\ref{sec:false}).
+Nothing below should be read as a claim on RH. The honest summary is:
+\emph{a certified reduction with two explicit, named debts}.
+
+\section{The criterion and the Vasyunin Gram matrix}
+Let $\rho_k(x)=\fract{1/(kx)}$ on $(0,\infty)$ and $\chi=\mathbf 1_{(0,1]}$.
+B\'aez-Duarte (2003): RH holds iff $\chi$ lies in the $L^2(0,\infty)$-closure
+of $\mathrm{span}\{\rho_k : k\ge 1\}$. The finite-$N$ analysis rests on the
+Gram integrals
+\[
+G_{h,k}=\int_0^\infty \fract{\tfrac1{hx}}\fract{\tfrac1{kx}}\,dx ,
+\]
+for which Vasyunin's explicit formula holds (now a Lean theorem, see below):
+\[
+G_{h,k}
+=\frac{\log 2\pi-\gamma}{2}\Bigl(\frac1h+\frac1k\Bigr)
++\frac{k-h}{2hk}\log\frac hk
+-\frac{\pi}{2hk}\bigl(V(h,k)+V(k,h)\bigr),
+\qquad
+V(h,k)=\sum_{a=1}^{k-1}\fract{\tfrac{ah}{k}}\cot\frac{\pi a}{k}.
+\]
+
+\section{What is machine-proved (selected milestones)}
+\subsection{The Vasyunin bridge (closed)}
+Following B\'aez-Duarte--Balazard--Landreau--Saias (Ramanujan J.\ 9 (2005);
+arXiv:math/0306251), the full period-reduction chain was formalized:
+their Propositions 12, 15, 16 (a Frullani-type identity, proved for all real
+$\theta,x>0$), 21 (rational case), 22 (the Stieltjes identity), 48, 87, 88, 89.
+Two representative statements, both Lean theorems with clean axiom audits:
+\[
+\varphi_1\!\Bigl(\frac pq\Bigr):=\sum_{k\ge1}\frac{B_1(kp/q)}{k}
+=\frac{\pi}{2q}V(p,q)
+\quad\text{(all $p,q\ge1$, \emph{no} coprimality)},
+\qquad
+A(1)=\int_0^\infty\frac{\fract t^2}{t^2}\,dt=\log 2\pi-\gamma,
+\]
+where $B_1$ is the Dedekind sawtooth. The $x\to\infty$ limit of Proposition~22
+gives the autocorrelation $A(k/h)$ in closed cotangent form, whence the
+period reduction and Vasyunin's formula for $G_{h,k}$ ($h,k\ge1$)
+unconditionally. Notably, the digamma reflection input was rebuilt from a
+real-variable Mittag-Leffler cotangent expansion, avoiding any digamma API.
+
+\subsection{The linear (M\"obius--Dirichlet) debt: collapsed to one classical bound}
+Define the single hypothesis
+\[
+\textsf{ClassicalMertensDecay}:\qquad
+\exists\,C,a>0:\ |M(N)|=\Bigl|\sum_{k\le N}\mu(k)\Bigr|\le C\,N\,e^{-a\sqrt{\log N}}
+\quad(N\ge2),
+\]
+i.e.\ exactly the output of de la Vall\'ee Poussin's 1899 zero-free region.
+The following are now Lean theorems \emph{conditional only on this}:
+the quantitative bounds $|M(N)|\le C_M N/\log^3(N{+}2)$ and
+$|L(N)|\le C_L N/\log^2(N{+}2)$ for $L(N)=\sum_{k\le N}\mu(k)\log k$;
+a quantitative Axer normalization
+\[
+\Bigl|\sum_{k\le N}\frac{\mu(k)}{k}\Bigr|\le C' e^{-c'\sqrt{\log N}}
+\]
+(via the hyperbola identity $\sum_{k\le N}\mu(k)\lfloor N/k\rfloor=1$ and a
+blockwise Abel argument on the monotone pieces of $k\mapsto\fract{N/k}$); and
+the limit $\sum_{k\le N}\mu(k)\log k/k\to-1$, obtained \emph{without} PNT
+normalization by an Abelian boundary theorem for Dirichlet series combined
+with $\sum\mu(n)\log n\,n^{-s}=\zeta'(s)/\zeta(s)^2\to-1$ as $s\to1^+$,
+anchored at the pole via the analytic function $(s-1)\zeta(s)$. In Lean:
+\[
+\texttt{ClassicalMertensAPI.ofDecayOnly}:\ \textsf{ClassicalMertensDecay}
+\longrightarrow \texttt{ClassicalMertensAPI}.
+\]
+
+\subsection{The quadratic (interaction) debt: reduced to one centered estimate}
+The interaction kernel of the quadratic remainder turned out to be, literally,
+\[
+K(h,k)=G_{h,k}-\frac{\log2\pi-\gamma}{2}\Bigl(\frac1h+\frac1k\Bigr),
+\]
+so that for any weights $c$,
+\[
+\sum_{h,k\le N}c(h)c(k)K(h,k)
+=\int_0^\infty\Bigl(\sum_{h\le N}c(h)\fract{\tfrac1{hx}}\Bigr)^{\!2}dx
+-(\log2\pi-\gamma)\Bigl(\sum_{h\le N}\frac{c(h)}{h}\Bigr)\Bigl(\sum_{k\le N}c(k)\Bigr),
+\]
+a manifestly positive-semidefinite norm term minus a product of linear sums
+(both identities are Lean theorems). Numerical diagnostics had shown that
+per-gcd-stratum bounds are individually false; the norm form explains the
+observed global cancellation structurally. An exact BBLS-style triple-series
+rearrangement of the M\"obius-weighted cotangent sum is also proved, together
+with the \emph{negative} finding that its pointwise inner sums grow
+($\approx2.9\to14.6$ for $N=10^2\to3\cdot10^3$): only the \emph{centered}
+package can be bounded. The remaining debt is the single field
+\[
+\bigl|\Lambda_\gamma(N)\bigr|
++\bigl|\Lambda_{\mathrm{ratio}}(N)+\mathcal B(N)-1+2(\mathcal L(N)+1)\bigr|
+\;\le\;\frac{C}{\log^2(N{+}2)},
+\tag{$\ast$}
+\]
+where $\mathcal B$ is a cutoff M\"obius--Bernoulli correlation value,
+$\mathcal L$ the explicit linear M\"obius sum, and
+$\Lambda_\gamma,\Lambda_{\mathrm{ratio}}$ the log-gamma/log-ratio components.
+Numerically $(\ast)\cdot\log^2(N{+}2)$ decreases $4.0\to1.6$ over
+$N=20\to300$. Lean-proved bridges give: \textsf{ClassicalMertensDecay}
+$+\;(\ast)\;\Longrightarrow$ the full quadratic estimates.
+
+\section{Falsehoods caught by the pipeline}\label{sec:false}
+Three statements in the development were \emph{false as recorded} and caught
+by mandatory numerics or by the kernel: an interval-tsum identity for
+$G_{h,k}$ missing its tail; an axiomatized rational upper bound for $\pi$
+that was strictly below $\pi$; and the hypothesis-free form of Vasyunin's
+formula, false at $h=0$ (the Gram integrand vanishes identically while the
+formula does not). Each was corrected, re-verified, and its $\sim$2{,}000
+call sites mechanically patched. We consider this catch-rate the strongest
+argument for the methodology.
+
+\section{Current state and the two open statements}
+The entire pipeline --- Vasyunin bridge, linear estimates, quadratic
+estimates, finite PSD certificates up to $N=50$ --- is machine-checked, with
+exactly one decorative \texttt{sorry} (the general-real-$\theta$ form of BBLS
+Proposition~21, used by nothing) and a short, audited axiom list. The
+B\'aez-Duarte criterion is a Lean theorem conditional on precisely:
+\begin{enumerate}
+\item \textsf{ClassicalMertensDecay} --- classical (dVP 1899); its
+formalization is staged (the $3$-$4$-$1$ positivity ingredients, von Mangoldt
+cosine expansion, and local zeta wrappers are already proved) but the
+zero-free region instance and effective Perron argument remain a substantial
+classical formalization project;
+\item the centered correlation estimate $(\ast)$ --- to our knowledge not a
+named theorem in the literature; numerically robust; we would be grateful for
+expert opinion on whether it follows from known results (Landau/Axer-style
+normalizations, Estermann zeta growth, or correlation estimates of
+Matom\"aki--Radziwi\l\l--Tao type) or constitutes genuinely open territory.
+\end{enumerate}
+Beyond these sits the NB--BD equivalence itself (currently an axiom in the
+development; only the forward direction criterion~$\Rightarrow$~RH would be
+needed, via a Mellin vanishing argument).
+
+\section*{Invitation}
+All Lean sources, verification scripts, and numerical diagnostics are
+available for inspection; every theorem named above can be audited with
+\texttt{\#print axioms} in minutes. We would value a mathematician's
+judgement on statement $(\ast)$ above all.
+
+\begin{thebibliography}{9}\small
+\bibitem{BD} L.~B\'aez-Duarte, \emph{A strengthening of the Nyman--Beurling
+criterion for the Riemann hypothesis}, Rend.\ Lincei Mat.\ Appl.\ 14 (2003).
+\bibitem{BBLS} L.~B\'aez-Duarte, M.~Balazard, B.~Landreau, E.~Saias,
+\emph{\'Etude de l'autocorr\'elation multiplicative de la fonction «partie
+fractionnaire»}, Ramanujan J.\ 9 (2005); arXiv:math/0306251.
+\bibitem{Vas} V.~I. Vasyunin, \emph{On a biorthogonal system associated with
+the Riemann hypothesis}, St.~Petersburg Math.\ J.\ 7 (1996).
+\bibitem{dVP} C.-J. de la Vall\'ee Poussin, M\'em.\ Couronn\'es Acad.\ Roy.\
+Belgique 59 (1899).
+\bibitem{Lean} The mathlib Community, \emph{The Lean mathematical library},
+CPP 2020; L.~de Moura, S.~Ullrich, CADE-28 (2021).
+\end{thebibliography}
+\end{document}
