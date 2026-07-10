@@ -1015,6 +1015,66 @@ structure ZetaLinearVerticalGrowthInStripAtHeight where
       ‖riemannZeta (σ + Complex.I * t : ℂ)‖ ≤ C * (|t| + 2)
 
 /--
+Stage V right-half target: the elementary partial-summation route advertised
+for P2.  It is deliberately separated from the frozen full-strip field because
+the current `ZetaLinearVerticalGrowthInStripAtHeight` asks for
+`-1/2 ≤ σ ≤ 2`, whereas the `X = ⌈|t|⌉ + 2` Abel estimate naturally covers
+only `1/2 ≤ σ ≤ 2`.
+-/
+structure ZetaRightHalfLinearVerticalGrowthAtHeight where
+  t₀ : ℝ
+  t₀_pos : 0 < t₀
+  t₀_le_one : t₀ ≤ 1
+  C : ℝ
+  C_nonneg : 0 ≤ C
+  right_half_growth :
+    ∀ {σ t : ℝ}, (1 / 2 : ℝ) ≤ σ → σ ≤ 2 → t₀ ≤ |t| →
+      ‖riemannZeta (σ + Complex.I * t : ℂ)‖ ≤ C * (|t| + 2)
+
+/--
+Stage V left-strip target: the functional-equation/gamma-factor transport
+needed to extend the right-half vertical-growth bound from
+`1/2 ≤ σ ≤ 2` to the frozen full strip `-1/2 ≤ σ ≤ 2`.
+-/
+structure ZetaLeftStripLinearVerticalGrowthAtHeight where
+  t₀ : ℝ
+  t₀_pos : 0 < t₀
+  t₀_le_one : t₀ ≤ 1
+  C : ℝ
+  C_nonneg : 0 ≤ C
+  left_strip_growth :
+    ∀ {σ t : ℝ}, -(1 / 2 : ℝ) ≤ σ → σ ≤ (1 / 2 : ℝ) → t₀ ≤ |t| →
+      ‖riemannZeta (σ + Complex.I * t : ℂ)‖ ≤ C * (|t| + 2)
+
+/--
+The two natural Stage V sub-bounds reassemble the exact frozen P2 package.
+-/
+noncomputable def zetaLinearVerticalGrowthInStripAtHeight_of_rightHalf_and_leftStrip
+    (R : ZetaRightHalfLinearVerticalGrowthAtHeight)
+    (S : ZetaLeftStripLinearVerticalGrowthAtHeight) :
+    ZetaLinearVerticalGrowthInStripAtHeight :=
+  { t₀ := max R.t₀ S.t₀
+    t₀_pos := lt_of_lt_of_le R.t₀_pos (le_max_left _ _)
+    t₀_le_one := max_le R.t₀_le_one S.t₀_le_one
+    C := R.C + S.C
+    C_nonneg := add_nonneg R.C_nonneg S.C_nonneg
+    vertical_growth := by
+      intro σ t hσlow hσhigh ht
+      have htR : R.t₀ ≤ |t| := le_trans (le_max_left _ _) ht
+      have htS : S.t₀ ≤ |t| := le_trans (le_max_right _ _) ht
+      have hx_nonneg : 0 ≤ |t| + 2 := by positivity
+      by_cases hhalf : (1 / 2 : ℝ) ≤ σ
+      · have hR := R.right_half_growth hhalf hσhigh htR
+        have hSterm : 0 ≤ S.C * (|t| + 2) :=
+          mul_nonneg S.C_nonneg hx_nonneg
+        nlinarith
+      · have hσle : σ ≤ (1 / 2 : ℝ) := le_of_not_ge hhalf
+        have hS := S.left_strip_growth hσlow hσle htS
+        have hRterm : 0 ≤ R.C * (|t| + 2) :=
+          mul_nonneg R.C_nonneg hx_nonneg
+        nlinarith }
+
+/--
 P3 stop-gate after P2: the Borel--Caratheodory/Jensen and local
 factorization step that turns a strip-growth input into the two
 logarithmic-derivative estimates required by the repaired zero-free-region
