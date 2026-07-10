@@ -605,6 +605,91 @@ theorem mobius_overK_fract_decomposition (N : ℕ) (hN : 1 ≤ N) :
       ring
     _ = _ := by rw [hhyperbola]
 
+/-- Finite Abel summation on an arbitrary natural interval. -/
+theorem finite_abel_sum_Icc_mul_eq_endpoint_add_sum_partial_from
+    (a b : ℕ → ℝ) (A B : ℕ) (hAB : A ≤ B) :
+    (∑ k ∈ Finset.Icc A B, a k * b k) =
+      (∑ j ∈ Finset.Icc A B, a j) * b (B + 1) +
+        ∑ k ∈ Finset.Icc A B,
+          (∑ j ∈ Finset.Icc A k, a j) * (b k - b (k + 1)) := by
+  induction B, hAB using Nat.le_induction with
+  | base =>
+      simp
+      ring
+  | succ B hAB ih =>
+      have hAB' : A ≤ B + 1 := by omega
+      rw [Finset.sum_Icc_succ_top hAB', Finset.sum_Icc_succ_top hAB',
+        Finset.sum_Icc_succ_top hAB']
+      rw [ih]
+      rw [Finset.sum_Icc_succ_top hAB']
+      ring
+
+lemma sum_Icc_sub_succ_add_endpoint (b : ℕ → ℝ) (A B : ℕ) (hAB : A ≤ B) :
+    b (B + 1) + ∑ k ∈ Finset.Icc A B, (b k - b (k + 1)) = b A := by
+  induction B, hAB using Nat.le_induction with
+  | base => simp
+  | succ B hAB ih =>
+      rw [Finset.sum_Icc_succ_top (by omega)]
+      linarith
+
+/--
+Abel's inequality on a finite interval for a nonnegative decreasing weight.
+
+If every local partial sum of `a` is bounded in absolute value by `D`, and
+`b` decreases from a value at most `1`, then the weighted block sum is also
+bounded by `D`.
+-/
+theorem abs_sum_Icc_mul_le_of_partial_sum_le_of_antitone
+    (a b : ℕ → ℝ) (A B : ℕ) (D : ℝ)
+    (hAB : A ≤ B) (hD : 0 ≤ D)
+    (hb_nonneg : ∀ k ∈ Finset.Icc A (B + 1), 0 ≤ b k)
+    (hb_antitone : ∀ k ∈ Finset.Icc A B, b (k + 1) ≤ b k)
+    (hbA : b A ≤ 1)
+    (hpartial : ∀ k ∈ Finset.Icc A B,
+      |∑ j ∈ Finset.Icc A k, a j| ≤ D) :
+    |∑ k ∈ Finset.Icc A B, a k * b k| ≤ D := by
+  have hBmem : B ∈ Finset.Icc A B := Finset.mem_Icc.mpr ⟨hAB, le_rfl⟩
+  have hB1mem : B + 1 ∈ Finset.Icc A (B + 1) :=
+    Finset.mem_Icc.mpr ⟨hAB.trans (by omega), le_rfl⟩
+  have hAmem : A ∈ Finset.Icc A (B + 1) :=
+    Finset.mem_Icc.mpr ⟨le_rfl, hAB.trans (by omega)⟩
+  have hdiff_nonneg :
+      ∀ k ∈ Finset.Icc A B, 0 ≤ b k - b (k + 1) := by
+    intro k hk
+    exact sub_nonneg.mpr (hb_antitone k hk)
+  rw [finite_abel_sum_Icc_mul_eq_endpoint_add_sum_partial_from a b A B hAB]
+  calc
+    |(∑ j ∈ Finset.Icc A B, a j) * b (B + 1) +
+        ∑ k ∈ Finset.Icc A B,
+          (∑ j ∈ Finset.Icc A k, a j) * (b k - b (k + 1))| ≤
+        |(∑ j ∈ Finset.Icc A B, a j) * b (B + 1)| +
+          |∑ k ∈ Finset.Icc A B,
+            (∑ j ∈ Finset.Icc A k, a j) * (b k - b (k + 1))| :=
+      abs_add_le _ _
+    _ ≤ D * b (B + 1) +
+        ∑ k ∈ Finset.Icc A B, D * (b k - b (k + 1)) := by
+      gcongr
+      · rw [abs_mul, abs_of_nonneg (hb_nonneg _ hB1mem)]
+        exact mul_le_mul_of_nonneg_right (hpartial B hBmem)
+          (hb_nonneg _ hB1mem)
+      · calc
+          |∑ k ∈ Finset.Icc A B,
+              (∑ j ∈ Finset.Icc A k, a j) * (b k - b (k + 1))| ≤
+              ∑ k ∈ Finset.Icc A B,
+                |(∑ j ∈ Finset.Icc A k, a j) * (b k - b (k + 1))| :=
+            abs_sum_le_sum_abs _ _
+          _ ≤ ∑ k ∈ Finset.Icc A B, D * (b k - b (k + 1)) := by
+            apply Finset.sum_le_sum
+            intro k hk
+            rw [abs_mul, abs_of_nonneg (hdiff_nonneg k hk)]
+            exact mul_le_mul_of_nonneg_right (hpartial k hk)
+              (hdiff_nonneg k hk)
+    _ = D * b A := by
+      rw [← Finset.mul_sum, ← mul_add,
+        sum_Icc_sub_succ_add_endpoint b A B hAB]
+    _ ≤ D := by
+      nlinarith [hb_nonneg A hAmem]
+
 /--
 Quantitative and boundary-value inputs for the linear Mobius/Dirichlet bridge.
 This isolates the still-unformalized classical analytic number theory from the
