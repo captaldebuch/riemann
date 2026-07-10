@@ -1191,6 +1191,20 @@ theorem cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value (N : ℕ) :
     explicitQuadraticLogCotangentInteraction at h
   linarith
 
+/-- The centered Bernoulli package preserves the exact cancellation between
+the log-ratio term, the BBLS correlation main term `1`, and the doubled H14
+linear correction. -/
+theorem centeredBernoulliPair_eq_interactionRemainder_add_linear (N : ℕ) :
+    explicitQuadraticLogRatioComponent N +
+        cutoffMobiusBernoulliCorrelationValue N - 1 +
+          2 * (explicitLinearMobiusSum N + 1) =
+      explicitQuadraticInteractionRemainder N +
+        2 * (explicitLinearMobiusSum N + 1) := by
+  rw [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent]
+  unfold explicitQuadraticInteractionRemainder
+    explicitQuadraticLogCotangentInteraction
+  ring
+
 /-- The finite centered partial whose limit is the corrected defect. -/
 noncomputable def cutoffMobiusBernoulliCenteredPartial (N M : ℕ) : ℝ :=
   explicitQuadraticLogRatioComponent N +
@@ -1235,6 +1249,70 @@ structure QuadraticInteractionBernoulliCorrelationEstimate
               cutoffMobiusBernoulliCorrelationValue N - 1 +
                 2 * (explicitLinearMobiusSum N + 1)|
         ≤ C_correlation / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The separately absolute smooth-product sub-debt in the S1 estimate.
+
+The H14 toolkit proves an `O(1 / log N)` bound for its inverse-index factor
+(`cutoffMobiusCoeff_div_sum_bound_of_decay`), but its available bound for the
+unweighted factor grows like `N * exp (-c * sqrt (log N))`.  Multiplying those
+separate majorants does not prove decay.  Numerically,
+`|explicitQuadraticLogGammaComponent N| * log(N+2)^2` was
+`0.986, 0.539, 0.228, 0.082, 0.047, 0.006, 0.039` at
+`N = 100, 300, 1000, 3000, 10^4, 10^5, 10^6`.
+-/
+structure QuadraticInteractionSmoothProductLogSqEstimate
+    (_H : MobiusSummatory.ClassicalMertensDecay) where
+  C_smooth : ℝ
+  C_smooth_nonneg : 0 ≤ C_smooth
+  smooth_product_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogGammaComponent N| ≤
+        C_smooth / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The content-bearing centered main-term sub-debt left by the numerical S1
+gate.  It keeps `logRatio + Bernoulli - 1` paired before adding the doubled
+linear correction; no pointwise bound on `cutoffMobiusBernoulliInner` is used.
+
+At `N = 500, 1000, 2000`, the first pairing cancels its three constituents by
+factors about `315, 738, 291`, and the final centered expression multiplied by
+`log(N+2)^2` was `0.975, 0.925, 1.010`.
+-/
+structure QuadraticInteractionCenteredBernoulliPairEstimate
+    (_H : MobiusSummatory.ClassicalMertensDecay) where
+  C_centered : ℝ
+  C_centered_nonneg : 0 ≤ C_centered
+  centered_pair_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogRatioComponent N +
+          cutoffMobiusBernoulliCorrelationValue N - 1 +
+            2 * (explicitLinearMobiusSum N + 1)| ≤
+        C_centered / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The two precisely isolated S1 sub-estimates assemble mechanically into the
+existing Bernoulli-correlation interface.  This theorem adds no analytic
+assumption beyond the two displayed content-bearing fields. -/
+noncomputable def quadraticInteractionBernoulliCorrelationEstimate_of_subEstimates
+    (H : MobiusSummatory.ClassicalMertensDecay)
+    (H_smooth : QuadraticInteractionSmoothProductLogSqEstimate H)
+    (H_centered : QuadraticInteractionCenteredBernoulliPairEstimate H) :
+    QuadraticInteractionBernoulliCorrelationEstimate H := by
+  refine
+    { C_correlation := H_smooth.C_smooth + H_centered.C_centered
+      C_correlation_nonneg :=
+        add_nonneg H_smooth.C_smooth_nonneg H_centered.C_centered_nonneg
+      centered_correlation_bound := ?_ }
+  intro N
+  calc
+    |explicitQuadraticLogGammaComponent N| +
+          |explicitQuadraticLogRatioComponent N +
+              cutoffMobiusBernoulliCorrelationValue N - 1 +
+                2 * (explicitLinearMobiusSum N + 1)|
+        ≤ H_smooth.C_smooth / Real.log (N + 2 : ℝ) ^ 2 +
+            H_centered.C_centered / Real.log (N + 2 : ℝ) ^ 2 :=
+      add_le_add (H_smooth.smooth_product_bound N)
+        (H_centered.centered_pair_bound N)
+    _ = (H_smooth.C_smooth + H_centered.C_centered) /
+          Real.log (N + 2 : ℝ) ^ 2 := by ring
 
 /--
 The single residual analytic input left by the norm-square finish attempt.
