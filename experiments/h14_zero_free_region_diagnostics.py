@@ -180,6 +180,17 @@ def sample_repaired_height_range() -> None:
     print("  sampled range is bounded; the frozen repaired API keeps C existential")
 
 
+def sample_center_lower_bound() -> None:
+    """Gate the standard center lower bound used in the Borel--Jensen route."""
+    zeta_three_halves = zeta_and_deriv(1.5)[0].real
+    zeta_three = zeta_and_deriv(3.0)[0].real
+    print("\nCenter lower-bound constants at sigma0 = 3/2")
+    print(f"  zeta(3/2) ~= {zeta_three_halves:.15g}")
+    print(f"  2 - zeta(3/2) ~= {2 - zeta_three_halves:.15g}")
+    print(f"  zeta(3) / zeta(3/2) ~= {zeta_three / zeta_three_halves:.15g}")
+    print("  the naive 2 - zeta(3/2) candidate is negative")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--zeros", type=int, default=20)
@@ -188,6 +199,7 @@ def main() -> None:
     sample_z3(args.zeros)
     sample_small_height_obstruction()
     sample_repaired_height_range()
+    sample_center_lower_bound()
 
 
 if __name__ == "__main__":

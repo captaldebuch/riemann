@@ -960,6 +960,55 @@ noncomputable def deLaValleePoussinZeroFreeRegion_of_logDerivDiscBoundAtHeight
     rw [hs_cart]
     exact hlow hleft hre_lt.le himlow
 
+/--
+R4 stop-gate: the single quantitative output needed from the classical
+Borel--Caratheodory/Jensen/partial-fraction argument at fixed positive height.
+
+The preceding search found Mathlib's Borel--Caratheodory theorem, Jensen's
+formula, zeta-zero discreteness, and analytic-order infrastructure, but not the
+polynomial vertical growth bound for `ζ` in a strip nor the assembled
+partial-fraction estimate for `ζ'/ζ`.  This package names precisely that
+assembled complex-analysis output without changing the repaired disc-bound API.
+-/
+structure ZetaBorelJensenLogDerivDiscEstimateAtHeight where
+  t₀ : ℝ
+  t₀_pos : 0 < t₀
+  t₀_le_one : t₀ ≤ 1
+  C : ℝ
+  C_nonneg : 0 ≤ C
+  borel_jensen_bound :
+    (∀ {σ t : ℝ}, 1 < σ → σ ≤ 2 → t₀ ≤ |t| →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        C * Real.log (|t| + 2)) ∧
+    (∀ {σ β t : ℝ}, 1 < σ → σ ≤ 2 → β ≤ 1 → t₀ ≤ |t| →
+      riemannZeta (β + Complex.I * t : ℂ) = 0 →
+      (-deriv riemannZeta (σ + Complex.I * t : ℂ) /
+          riemannZeta (σ + Complex.I * t : ℂ)).re ≤
+        -1 / (σ - β) + C * Real.log (|t| + 2))
+
+/-- The R4 complex-analysis package is exactly enough to instantiate R1. -/
+noncomputable def zetaLogDerivDiscBoundAtHeight_of_borelJensen
+    (H : ZetaBorelJensenLogDerivDiscEstimateAtHeight) :
+    ZetaLogDerivDiscBoundAtHeight :=
+  { t₀ := H.t₀
+    t₀_pos := H.t₀_pos
+    t₀_le_one := H.t₀_le_one
+    C := H.C
+    C_nonneg := H.C_nonneg
+    vertical_bound := H.borel_jensen_bound.1
+    zero_contribution_bound := H.borel_jensen_bound.2 }
+
+/--
+R4 conditional headline: the named Borel/Jensen disc-control output feeds the
+R3 repair and hence gives the frozen de la Vallee Poussin zero-free package.
+-/
+noncomputable def deLaValleePoussinZeroFreeRegion_of_borelJensenDiscEstimateAtHeight
+    (H : ZetaBorelJensenLogDerivDiscEstimateAtHeight) :
+    DeLaValleePoussinZeroFreeRegion :=
+  deLaValleePoussinZeroFreeRegion_of_logDerivDiscBoundAtHeight
+    (zetaLogDerivDiscBoundAtHeight_of_borelJensen H)
+
 end RepairedDiscBound
 
 end ZetaLogDerivativeDiscBound
