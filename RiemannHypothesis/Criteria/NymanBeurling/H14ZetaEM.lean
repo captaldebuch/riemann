@@ -535,5 +535,90 @@ theorem emTail_hasDerivAt {s₀ : ℂ} (hs₀ : 0 < s₀.re) {X : ℝ} (hX : 1 �
     filter_upwards with u hu
     exact emTailIntegrand_hasDerivAt (le_trans hX (le_of_lt hu)) s₀
 
+/-! ## E2b: continuation of the identity to the open quadrants of `Re s > 0` -/
+
+/-- The Euler–Maclaurin right-hand side as a single function of `s`. -/
+noncomputable def emRHS (X : ℕ) (s : ℂ) : ℂ :=
+  (∑ n ∈ Finset.Icc 1 X, (n : ℂ) ^ (-s)) +
+    (X : ℂ) ^ (1 - s) / (s - 1) - s * emTail s (X : ℝ)
+
+theorem emTail_differentiableAt {s : ℂ} (hs : 0 < s.re) {X : ℝ} (hX : 1 ≤ X) :
+    DifferentiableAt ℂ (fun z : ℂ => emTail z X) s :=
+  (emTail_hasDerivAt hs hX).differentiableAt
+
+theorem emRHS_differentiableAt {X : ℕ} (hX : 1 ≤ X) {s : ℂ}
+    (hs : 0 < s.re) (hs1 : s ≠ 1) :
+    DifferentiableAt ℂ (emRHS X) s := by
+  have hXpos : (0 : ℕ) < X := hX
+  have hXne : (X : ℂ) ≠ 0 := by
+    exact_mod_cast Nat.pos_iff_ne_zero.mp hXpos
+  have h1 : DifferentiableAt ℂ
+      (fun z : ℂ => ∑ n ∈ Finset.Icc 1 X, (n : ℂ) ^ (-z)) s := by
+    apply DifferentiableAt.fun_sum
+    intro n hn
+    have hne : (n : ℂ) ≠ 0 := by
+      exact_mod_cast Nat.pos_iff_ne_zero.mp (Finset.mem_Icc.mp hn).1
+    exact (differentiableAt_id.neg).const_cpow (Or.inl hne)
+  have h2 : DifferentiableAt ℂ (fun z : ℂ => (X : ℂ) ^ (1 - z) / (z - 1)) s := by
+    apply DifferentiableAt.div
+    · exact (differentiableAt_const _).sub differentiableAt_id |>.const_cpow (Or.inl hXne)
+    · exact differentiableAt_id.sub (differentiableAt_const _)
+    · exact sub_ne_zero.mpr hs1
+  have h3 : DifferentiableAt ℂ (fun z : ℂ => z * emTail z (X : ℝ)) s :=
+    differentiableAt_id.mul (emTail_differentiableAt hs (by exact_mod_cast hX))
+  exact (h1.add h2).sub h3
+
+/-- The identity theorem step on one convex piece of the right half-plane. -/
+theorem emIdentity_eqOn_of_convex {X : ℕ} (hX : 1 ≤ X) {U : Set ℂ}
+    (hUopen : IsOpen U) (hUconv : Convex ℝ U)
+    (hUre : ∀ z ∈ U, 0 < z.re) (hUone : (1 : ℂ) ∉ U)
+    {z₀ : ℂ} (hz₀U : z₀ ∈ U) (hz₀re : 1 < z₀.re) :
+    Set.EqOn riemannZeta (emRHS X) U := by
+  have hζ : AnalyticOnNhd ℂ riemannZeta U := by
+    apply DifferentiableOn.analyticOnNhd _ hUopen
+    intro z hz
+    exact (differentiableAt_riemannZeta
+      (fun h1 => hUone (h1 ▸ hz))).differentiableWithinAt
+  have hR : AnalyticOnNhd ℂ (emRHS X) U := by
+    apply DifferentiableOn.analyticOnNhd _ hUopen
+    intro z hz
+    exact (emRHS_differentiableAt hX (hUre z hz)
+      (fun h1 => hUone (h1 ▸ hz))).differentiableWithinAt
+  apply hζ.eqOn_of_preconnected_of_eventuallyEq hR hUconv.isPreconnected hz₀U
+  have hopen1 : IsOpen {z : ℂ | 1 < z.re} := isOpen_lt continuous_const Complex.continuous_re
+  filter_upwards [hopen1.mem_nhds hz₀re] with z hz
+  exact emIdentity_of_one_lt_re hz hX
+
+/-- E2 main: the Euler–Maclaurin identity continues to `Re s > 0`, `Im s ≠ 0`. -/
+theorem emIdentity_of_pos_re_of_im_ne_zero {s : ℂ} (h0 : 0 < s.re)
+    (him : s.im ≠ 0) {X : ℕ} (hX : 1 ≤ X) :
+    riemannZeta s = (∑ n ∈ Finset.Icc 1 X, (n : ℂ) ^ (-s)) +
+      (X : ℂ) ^ (1 - s) / (s - 1) - s * emTail s (X : ℝ) := by
+  have him' := lt_or_gt_of_ne him
+  have h1re : (1 : ℂ).im = 0 := rfl
+  rcases him' with hlt | hgt
+  · have := emIdentity_eqOn_of_convex hX
+      (U := {z : ℂ | 0 < z.re} ∩ {z : ℂ | z.im < 0})
+      (IsOpen.inter (isOpen_lt continuous_const Complex.continuous_re)
+        (isOpen_lt Complex.continuous_im continuous_const))
+      ((convex_halfSpace_re_gt 0).inter (convex_halfSpace_im_lt 0))
+      (fun z hz => hz.1)
+      (by intro h; exact absurd h.2 (by norm_num [h1re]))
+      (z₀ := 2 - Complex.I)
+      (by constructor <;> simp)
+      (by simp)
+    exact this ⟨h0, hlt⟩
+  · have := emIdentity_eqOn_of_convex hX
+      (U := {z : ℂ | 0 < z.re} ∩ {z : ℂ | 0 < z.im})
+      (IsOpen.inter (isOpen_lt continuous_const Complex.continuous_re)
+        (isOpen_lt continuous_const Complex.continuous_im))
+      ((convex_halfSpace_re_gt 0).inter (convex_halfSpace_im_gt 0))
+      (fun z hz => hz.1)
+      (by intro h; exact absurd h.2 (by norm_num [h1re]))
+      (z₀ := 2 + Complex.I)
+      (by constructor <;> simp)
+      (by simp)
+    exact this ⟨h0, hgt⟩
+
 end RH.Criteria.NymanBeurling.H14ZetaEM
 
