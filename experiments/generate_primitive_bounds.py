@@ -88,6 +88,8 @@ def get_buffer(name):
         buffers[name].append("import Mathlib.Tactic.Ring")
         buffers[name].append("import Mathlib.Algebra.BigOperators.Intervals")
         buffers[name].append("")
+        buffers[name].append("set_option linter.style.longLine false")
+        buffers[name].append("")
         buffers[name].append("namespace RH.Certificates.Generated")
         buffers[name].append("open RH.Criteria.NymanBeurling.VasyuninGram")
         buffers[name].append("open RH.Certificates.Generated.ChiRhoBoundsN50")
@@ -319,6 +321,8 @@ master_out.append("import RiemannHypothesis.Certificates.Generated.VasyuninPrimi
 for name in ["K10", "K20", "K30", "K40", "K50"]:
     if name in buffers:
         master_out.append(f"import RiemannHypothesis.Certificates.Generated.VasyuninPrimitiveBounds{name}")
+master_out.append("")
+master_out.append("set_option linter.style.longLine false")
 with open("RiemannHypothesis/Certificates/Generated/VasyuninPrimitiveBoundsGenerated.lean", "w") as f:
     f.write("\n".join(master_out) + "\n")
 print("Generated master file RiemannHypothesis/Certificates/Generated/VasyuninPrimitiveBoundsGenerated.lean")

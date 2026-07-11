@@ -157,6 +157,8 @@ def emit_lean_certificate(N: int, out_path: str, interval_mode: bool, M_orig, M_
         f"import RiemannHypothesis.Criteria.NymanBeurling.VasyuninPrimitiveBounds",
         f"import Mathlib",
         f"",
+        f"set_option linter.style.longLine false",
+        f"",
         f"namespace RH.Criteria.NymanBeurling.Generated.VasyuninIntervalsN{N}",
         f"open RH.Criteria.NymanBeurling.VasyuninGram",
         f"open RH.Certificates.Generated",
@@ -561,6 +563,7 @@ Indices convention:
 Data Source: {source_tag}
 -/
 
+set_option linter.style.longLine false
 set_option maxHeartbeats 10000000
 open scoped BigOperators
 

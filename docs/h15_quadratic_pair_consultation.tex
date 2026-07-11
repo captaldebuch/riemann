@@ -335,4 +335,33 @@ If the answer is A3, the project should replace
 \texttt{QuadraticInteractionCenteredBernoulliPairEstimate} by the sharper named
 correlation package suggested by the consultation.
 
+\section{Current Lean ledger after this consultation}
+
+The verified baseline \texttt{verified-h15-consultation-note} contains this
+consultation note but not the final A6 proof.  Consequently no theorem named
+\texttt{riemannHypothesis\_of\_pair\_and\_NBforward} is stated from this note
+alone.  The intended final assembly is still gated by the centered pair
+estimate above: once that estimate is supplied, the existing Lean bridges are
+designed to route it through
+\texttt{quadraticInteractionEstimates\_of\_decay\_and\_bernoulliCorrelation}
+and the Nyman--Beurling forward bridge, or the current NB/RH axiom.
+
+The generator hygiene performed after the consultation is intentionally
+orthogonal to the mathematics: future certificate emitters now insert
+\texttt{set\_option linter.style.longLine false} headers, but no generated
+certificate file was regenerated and no public definition value was changed.
+
+
+\paragraph{Update (post \texttt{verified-final-assembly}).}
+The endgame is now a single Lean theorem,
+\texttt{riemannHypothesis\_of\_pair\_and\_NBforward}: RH from four explicit
+hypotheses (the 1899 Mertens decay; the centered correlation estimate
+$(\ast)$; the Vasyunin local-debt bundle, already dischargeable; and the
+forward Nyman--Beurling implication), with kernel-audited axiom list exactly
+$\{\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}\}$ plus
+one documented integral-substitution bridge. The classical iff-axiom is not
+in the trust chain. The distance from this development to unconditional RH
+is precisely: a staged classical formalization (de la Vall\'ee Poussin),
+statement $(\ast)$, and a Mellin-route forward implication.
+
 \end{document}
