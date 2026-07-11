@@ -2,26 +2,44 @@
 
 **Authors:** Xavier Fresquet and Gérard Biau, Sorbonne Université
 
-## Closing-state ledger (2026-07-11)
+## Closing-state ledger (2026-07-11, updated post `verified-final-assembly`)
 
-The latest verified baseline for this ledger is `verified-h15-consultation-note`.
-At that point the project has a clean external consultation note for the
-remaining H15 quadratic pair estimate, but the final theorem
-`riemannHypothesis_of_pair_and_NBforward` is **not** added: its intended A6
-premise, the proved centered quadratic pair estimate, has not landed in the
-verified tree.  The current honest end-state is therefore:
+The latest verified baseline is `verified-final-assembly` (main `8c029e1`).
+The endgame theorem now EXISTS, honestly parameterized:
 
-```text
-Nyman-Beurling forward bridge, or the existing NB/RH axiom
-+ the remaining centered H15 quadratic pair estimate
-+ the already-formalized H13/H14/H15 reductions
-=> RH through the existing analytic-debts pipeline.
+```lean
+theorem riemannHypothesis_of_pair_and_NBforward
+    (H_decay : ClassicalMertensDecay)
+    (H_pair  : QuadraticInteractionBernoulliCorrelationEstimate H_decay)
+    (H_vasyunin : VasyuninBridgeLocalDebts)
+    (h_forward : NBForward) : RiemannHypothesis
 ```
 
-This branch performs only hygiene that is safe independently of A6:
-generator-level long-line linter headers were added to the Lean certificate
-emitters, without regenerating any certificate files.  Stale worktree and
-branch deletion remains intentionally unperformed pending human confirmation.
+Independently audited on the merged tree, its `#print axioms` list is exactly
+`[propext, Classical.choice, Quot.sound, setIntegral_Ioo_inv_substitution_bridge]`
+— three standard axioms plus the one documented Gram-integral substitution
+bridge. Notably, the historical `nyman_beurling_criterion_iff_RH` axiom is
+NOT in this theorem's trust chain: the forward implication enters as an
+explicit hypothesis (`NBForward`, from the NB0 split).
+
+Of the four hypotheses: `H_vasyunin` is dischargeable today (all three of its
+fields are proved post-H13-closure; the instance-construction micro-task is
+dispatched, after which RH follows from THREE named statements);
+`H_decay` is the 1899 de la Vallée Poussin Mertens bound, with a fully staged
+formalization route (Euler–Maclaurin continuation → left-strip functional
+equation transport → Borel–Jensen factorization → zero-free region →
+effective Perron → contour shift), each stage a named structure with proved
+consumers; `H_pair` is the centered Möbius–Bernoulli correlation estimate —
+numerically robust, four independent decomposition attempts proved or
+demonstrated insufficient, and the subject of the external consultation
+(`docs/rh_pipeline_report.tex`, `docs/h15_quadratic_pair_consultation.tex`);
+`NBForward` is the forward Nyman–Beurling implication (Mellin route staged,
+Plancherel stop-gate identified).
+
+Hygiene performed alongside: generator-level long-line linter headers (no
+certificates regenerated); stale worktree/branch deletion pending human
+confirmation. One decorative `sorry` project-wide (`baezDuarte_prop21`,
+paper-fidelity, used by nothing).
 
 ## 0. Methodology: A Digital Humanities Approach to the Riemann Hypothesis
 

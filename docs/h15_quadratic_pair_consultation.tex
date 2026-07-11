@@ -351,4 +351,17 @@ orthogonal to the mathematics: future certificate emitters now insert
 \texttt{set\_option linter.style.longLine false} headers, but no generated
 certificate file was regenerated and no public definition value was changed.
 
+
+\paragraph{Update (post \texttt{verified-final-assembly}).}
+The endgame is now a single Lean theorem,
+\texttt{riemannHypothesis\_of\_pair\_and\_NBforward}: RH from four explicit
+hypotheses (the 1899 Mertens decay; the centered correlation estimate
+$(\ast)$; the Vasyunin local-debt bundle, already dischargeable; and the
+forward Nyman--Beurling implication), with kernel-audited axiom list exactly
+$\{\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}\}$ plus
+one documented integral-substitution bridge. The classical iff-axiom is not
+in the trust chain. The distance from this development to unconditional RH
+is precisely: a staged classical formalization (de la Vall\'ee Poussin),
+statement $(\ast)$, and a Mellin-route forward implication.
+
 \end{document}
