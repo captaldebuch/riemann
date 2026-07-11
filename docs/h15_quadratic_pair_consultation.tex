@@ -1,0 +1,338 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{Consultation note: the remaining H15 quadratic pair estimate}
+\author{RiemannHypothesis Lean project}
+\date{July 2026}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Llin}{\mathcal{L}}
+\newcommand{\Lg}{\Lambda_{\gamma}}
+\newcommand{\Lr}{\Lambda_{\mathrm{ratio}}}
+\newcommand{\Pcent}{\mathcal{P}}
+\newcommand{\fract}[1]{\left\{#1\right\}}
+
+\begin{document}
+\maketitle
+
+\section{Purpose}
+
+This note isolates the current H15 obstruction in the Lean formalization of the
+B\'aez--Duarte/Nyman--Beurling route to RH.  The Lean development has reduced
+the quadratic interaction estimate to a very specific centered
+M\"obius--Bernoulli/cotangent correlation.  The aim of this consultation is not
+to ask for a new Lean proof.  It is to decide the analytic status of the
+remaining estimate:
+
+\begin{quote}
+Is the centered quadratic pair estimate below a known consequence of classical
+Mertens/PNT-strength decay, or does it require a genuinely stronger
+two-linear-forms M\"obius correlation theorem?
+\end{quote}
+
+The relevant Lean file is
+\[
+\texttt{RiemannHypothesis/Criteria/NymanBeurling/QuadraticInteraction.lean}.
+\]
+The final residual structures are
+\[
+\begin{array}{ll}
+\texttt{QuadraticInteractionSmoothProductLogSqEstimate},&
+\texttt{QuadraticInteractionCenteredBernoulliPairEstimate},\\[2mm]
+\texttt{QuadraticInteractionBernoulliCorrelationEstimate},&
+\texttt{quadraticInteractionEstimates\_of\_decay\_and\_bernoulliCorrelation}.
+\end{array}
+\]
+
+\section{Notation}
+
+For $1\le k\le N$, set
+\[
+  w_N(k)=1-\frac{k}{N+1},\qquad
+  c_N(k)=-\mu(k)w_N(k),
+\]
+matching Lean's \texttt{cutoffMobiusCoeff}.  The relevant Vasyunin/cotangent
+sum is denoted $V(h,k)$, i.e. Lean's \texttt{cotangentSumVFormula h k}.
+
+The smooth log-gamma piece is
+\[
+  \Lg(N)
+  =
+  \sum_{h,k\le N} c_N(h)c_N(k)
+  \frac{\log(2\pi)-\gamma}{2}
+  \left(\frac1h+\frac1k\right).
+\]
+Lean proves the product identity
+\[
+  \Lg(N)
+  =
+  (\log(2\pi)-\gamma)
+  \left(\sum_{h\le N}\frac{c_N(h)}h\right)
+  \left(\sum_{k\le N}c_N(k)\right).
+  \tag{1}
+\]
+
+The log-ratio piece is
+\[
+  \Lr(N)=
+  \sum_{h,k\le N} c_N(h)c_N(k)
+  \frac{k-h}{2hk}\log\frac hk.
+\]
+
+The BBLS Bernoulli/cotangent value is
+\[
+  \B(N)
+  =
+  -2\sum_{h,k\le N}
+  \frac{c_N(h)c_N(k)}{h}
+  \left(\frac{\pi}{2k}V(h,k)\right).
+  \tag{2}
+\]
+Lean proves that this is exactly the symmetric cotangent component already used
+in the quadratic decomposition:
+\[
+  \texttt{cutoffMobiusBernoulliCorrelationValue\_eq\_cotangentComponent}.
+\]
+
+The H14-controlled linear term is
+\[
+  \Llin(N)=\texttt{explicitLinearMobiusSum }N.
+\]
+Classical Mertens decay, formalized as
+\texttt{ClassicalMertensDecay}, already gives
+\[
+  |\Llin(N)+1|\ll \frac1{\log(N+2)}.
+\]
+
+\section{The exact remaining estimates}
+
+The H15 finish now asks for two estimates.  The first is a smooth-product
+estimate:
+\[
+  |\Lg(N)|\le \frac{C_{\mathrm{smooth}}}{\log^2(N+2)}.
+  \tag{S}
+\]
+This is \texttt{QuadraticInteractionSmoothProductLogSqEstimate}.  H14 controls
+the factor $\sum c_N(h)/h$, but the currently available separate bound for
+$\sum c_N(k)$ is too crude to prove (S) by multiplying absolute-value
+majorants.
+
+The second, decisive estimate is the centered Bernoulli pair estimate:
+\[
+  \left|
+    \Lr(N)+\B(N)-1+2(\Llin(N)+1)
+  \right|
+  \le
+  \frac{C_{\mathrm{centered}}}{\log^2(N+2)}.
+  \tag{C}
+\]
+This is \texttt{QuadraticInteractionCenteredBernoulliPairEstimate}.  The
+centering is not cosmetic: the $-1$ and doubled linear correction are the
+mechanism by which the large log-ratio and cotangent/Bernoulli constituents
+cancel.
+
+Lean proves the following implications:
+\[
+  (S)+(C)
+  \Longrightarrow
+  \texttt{QuadraticInteractionBernoulliCorrelationEstimate},
+\]
+and, under \texttt{ClassicalMertensDecay},
+\[
+  \texttt{QuadraticInteractionBernoulliCorrelationEstimate}
+  \Longrightarrow
+  \texttt{QuadraticInteractionEstimates}.
+  \tag{3}
+\]
+Thus the present consultation is exactly about (S) and especially (C).
+
+\section{Lean-proved structural reductions}
+
+Several possible sources of the main term or error have already been eliminated
+or converted into exact identities.
+
+\begin{enumerate}[label=\textbf{R\arabic*.},leftmargin=2.2em]
+  \item The diagonal contribution is exactly zero:
+  \[
+    \texttt{quadraticInteractionDiagonal\_eq\_zero}.
+  \]
+  The target $+1$ does not come from the diagonal.
+
+  \item The interaction kernel is a Gram entry minus the smooth product:
+  \[
+    K(h,k)
+    =
+    G_{h,k}
+    -
+    \frac{\log(2\pi)-\gamma}{2}
+    \left(\frac1h+\frac1k\right).
+    \tag{4}
+  \]
+  Consequently, for arbitrary finite weights $c$,
+  \[
+  \sum_{h,k\le N}c(h)c(k)K(h,k)
+  =
+  \int_0^\infty
+  \left(
+    \sum_{h\le N}c(h)\fract{\frac1{hx}}
+  \right)^2dx
+  -
+  (\log(2\pi)-\gamma)
+  \left(\sum_{h\le N}\frac{c(h)}h\right)
+  \left(\sum_{k\le N}c(k)\right).
+  \tag{5}
+  \]
+  This is
+  \texttt{quadratic\_form\_eq\_normSq\_sub\_linear}.
+
+  \item Non-squarefree gcd slices vanish identically:
+  \[
+    \texttt{quadraticInteractionGcdSlice\_eq\_zero\_of\_not\_squarefree}.
+  \]
+  This validates gcd stratification but does not by itself control the
+  squarefree strata.
+
+  \item The BBLS Bernoulli/Fourier representation is proved as a partial-sum
+  limit:
+  \[
+    \texttt{cotangent\_component\_eq\_mode\_partial\_limit}.
+  \]
+  Lean deliberately does not claim absolute/unordered summability of the mode
+  series without an explicit summability hypothesis.
+\end{enumerate}
+
+\section{Numerical negatives that shape the question}
+
+The diagnostics below were re-run in this worktree using the bundled Python
+runtime.  They are not proofs, but they prevent us from freezing the wrong
+analytic target.
+
+\subsection{Per-mode bounds do not look viable}
+
+Writing the cotangent/Bernoulli component as
+\[
+  C(N)=\sum_{j\ge1}W_j(N),
+\]
+the first mode is stable near $1$, but the remaining absolute mass does not
+decay in a way compatible with a simple per-mode estimate.
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+$N$ & $W_1(N)$ & $\sum_{1\le j\le8}|W_j(N)|$
+& $\sum_{9\le j\le96}|W_j(N)|$\\
+\hline
+300  & $1.01533$ & $1.48639$ & $3.11909$\\
+1000 & $1.03192$ & $1.55252$ & $3.28921$
+\end{tabular}
+\end{center}
+
+The exact small-$N$ check of $S_2=C-W_1$ also does not show decay:
+\[
+\begin{array}{c|c|c|c}
+N & C(N) & W_1(N)-1 & S_2(N)\\
+\hline
+100 & 0.74471 & -0.03951 & -0.21578\\
+200 & 1.14859 &  0.00505 &  0.14354\\
+400 & 0.80217 &  0.02285 & -0.22068
+\end{array}
+\]
+So the estimate should not be split as ``$W_1-1$ plus a decaying mode tail''.
+The cancellation appears to couple the non-$j=1$ modes with the log-ratio,
+log-gamma, and linear correction terms.
+
+\subsection{The centered package is small}
+
+The Lean comments record the decisive centered numerics:
+\[
+  \left(
+    |\Lg(N)|+
+    \left|\Lr(N)+\B(N)-1+2(\Llin(N)+1)\right|
+  \right)\log^2(N+2)
+\]
+takes the values
+\[
+  4.01,\ 3.11,\ 2.38,\ 1.56
+  \qquad (N=20,50,100,300).
+\]
+For the centered pair alone, Lean records:
+\[
+  \left|\Lr(N)+\B(N)-1+2(\Llin(N)+1)\right|\log^2(N+2)
+  \approx
+  0.975,\ 0.925,\ 1.010
+\]
+at $N=500,1000,2000$.
+
+\section{The consultation question}
+
+Please assess the following statement.
+
+\begin{quote}
+Assume classical Mertens decay, for instance
+\[
+  M(x)=\sum_{n\le x}\mu(n)
+  \ll x\exp(-a\sqrt{\log x})
+\]
+with some $a>0$, plus the standard consequences already formalized in H14.
+Do the estimates (S) and (C) follow?
+\end{quote}
+
+More specifically:
+
+\begin{enumerate}[label=\textbf{Q\arabic*.},leftmargin=2.2em]
+  \item Can (S) be proved by a classical bilinear/Abel argument controlling the
+  product in (1), or does it require a genuinely two-factor cancellation not
+  implied by separate bounds?
+
+  \item Is (C) a known consequence of BBLS/Estermann autocorrelation theory,
+  Vasyunin cotangent-sum identities, or standard de la Vall\'ee
+  Poussin/Perron technology?
+
+  \item If (C) is not a consequence of one-variable Mertens decay, what is the
+  minimal known arithmetic hypothesis that implies it?  In particular, does it
+  require a uniform two-linear-forms correlation estimate of schematic type
+  \[
+    \sum_{m\le M}
+      \mu(a m+r)\mu(q m+s)\,W(m)
+    \ll
+    \frac{\|W\|_1}{\log^A N},
+  \]
+  summed over Farey-cell parameters?
+
+  \item Is there an alternative centering identity that makes the $+1$ main
+  term and the correction $2(\Llin(N)+1)$ automatic, avoiding a two-linear
+  forms hypothesis?
+
+  \item If the displayed estimate is false or too strong, what asymptotic
+  should replace it so that the Lean reduction remains mathematically honest?
+\end{enumerate}
+
+\section{What would be enough for Lean}
+
+For the formal project, a satisfactory external answer can be one of:
+
+\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=2.2em]
+  \item a proof of (S) and (C) from \texttt{ClassicalMertensDecay};
+  \item a proof from a precisely stated classical theorem stronger than
+  \texttt{ClassicalMertensDecay};
+  \item a correction showing that (C) needs a new named hypothesis, together
+  with the cleanest mathematically standard statement of that hypothesis;
+  \item a counter-asymptotic showing that the current centered estimate should
+  be weakened or re-centered.
+\end{enumerate}
+
+The Lean side is already prepared for option A1 or A2 through
+\[
+\texttt{quadraticInteractionEstimates\_of\_decay\_and\_bernoulliCorrelation}.
+\]
+If the answer is A3, the project should replace
+\texttt{QuadraticInteractionCenteredBernoulliPairEstimate} by the sharper named
+correlation package suggested by the consultation.
+
+\end{document}
