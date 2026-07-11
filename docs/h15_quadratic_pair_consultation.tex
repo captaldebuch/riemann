@@ -364,4 +364,62 @@ in the trust chain. The distance from this development to unconditional RH
 is precisely: a staged classical formalization (de la Vall\'ee Poussin),
 statement $(\ast)$, and a Mellin-route forward implication.
 
+
+\paragraph{Update 2.} The Vasyunin local-debt bundle has since been
+discharged (\texttt{vasyuninBridgeLocalDebts\_of\_proved\_chain}); RH is now
+a Lean theorem from exactly \emph{three} hypotheses (decay, $(\ast)$,
+NB-forward), same audited axiom list. The sharpest known form of $(\ast)$'s
+resisting core is the uniform-in-$A$ weighted M\"obius--sawtooth correlation
+$\sum_{k\le N}\mu(k)\bigl(1-\tfrac{k}{N+1}\bigr)B_1(A/k)$.
+
+\paragraph{Update 3 (numerical gating of the M\"obius--sawtooth framings).}
+Write $S_N(A)=\sum_{k\le N}\mu(k)\bigl(1-\tfrac{k}{N+1}\bigr)B_1(A/k)$ with
+$B_1(x)=\{x\}-\tfrac12$. We numerically gated the natural strengthened
+framings of $(\ast)$ before proposing any of them; \emph{all sup- and
+absolute-value-based versions fail}, and this failure is structural
+information for the consultation:
+\begin{itemize}
+\item \textbf{Pointwise uniform bound is false.} $\sup_A|S_N(A)|$
+\emph{grows} with $N$: over an unrestricted grid it reached
+$7.6,\,10.9,\,24.1,\,57.3$ at $N=500,\,2000,\,8000,\,32000$ (maximizers at
+$A\sim N^{3/2}$), and even restricted to $A\le N$ it reached
+$4.7,\,13.6,\,24.7,\,72.5,\,80.0$ at
+$N=10^3,\,4\cdot10^3,\,1.6\cdot10^4,\,6.4\cdot10^4,\,1.2\cdot10^5$
+(maximizers near $A\approx N$). No statement of the form
+$\sup_A|S_N(A)|\le C/\log^2N$ can be true.
+\item \textbf{Dyadic decomposition loses the game.} Per-block suprema
+$\sup_A|\sum_{K\le k<2K}\mu(k)B_1(A/k)|$ sit at $(0.6\hbox{--}1.3)\cdot
+K/\log^2K$; since the global smallness visibly relies on cancellation
+\emph{between} dyadic blocks, no absolute dyadic summation can recover it.
+\item \textbf{$\ell^1$-averaging in $A$ also fails.}
+$\sum_{h\le N}|S_N(h)|/h$ grows ($2.7\to34.6$ over the same $N$ range).
+\item \textbf{Only the fully signed, centered object is small.} The signed
+double sum $\sum_{h\le N}\mu(h)(1-\tfrac{h}{N+1})S_N(h)/h$ is numerically
+\emph{constant} $\approx+0.124$ across $N=10^3$ to $6.4\cdot10^4$; the
+centering terms present in the actual Lean residual are exactly what
+subtract such constants. The residual's smallness therefore uses the signs
+of \emph{both} M\"obius factors and the centering; it is genuinely a
+bilinear phenomenon, not a linear-in-$k$ estimate applied uniformly.
+\end{itemize}
+Consequently the right expert formulation is not a uniform sawtooth bound
+but a \emph{signed bilinear form with Kloosterman-fraction phases}: after a
+truncated Fourier (Vaaler-type) expansion of $B_1$, the resisting core of
+$(\ast)$ is a family
+\[
+  \sum_{m\ge1}\frac{1}{m}\;
+  \sum_{h,k\le N}\frac{\mu(h)\mu(k)}{h}\,
+  w_N(h)\,w_N(k)\,\frac{1}{k}\,e\!\left(m\,\frac{h}{k}\right)
+\]
+with smooth cutoffs $w_N$, where the required saving is a $\log^{-2}$ over
+the trivial bound \emph{after} the centering subtraction. Bilinear forms
+with phases $e(A/(mn))$ (``Kloosterman fractions'') are treated by
+Duke--Friedlander--Iwaniec (Invent.\ Math.\ 128 (1997), 23--43), and
+combinatorial decompositions of $\mu$ (Vaughan's identity) reduce
+M\"obius-weighted versions to such Type~I/Type~II bilinear estimates; the
+non-oscillatory ranges ($k$ large relative to $mh$) are controlled by
+PNT-strength Mertens decay, which this project already assumes as its 1899
+hypothesis. The consultation question, in its sharpest honest form, is
+whether this signed, centered bilinear object admits a logarithmic saving
+by these (or any) methods.
+
 \end{document}
