@@ -26,6 +26,7 @@ import RiemannHypothesis.Criteria.NymanBeurling.H14ZetaEM
 import RiemannHypothesis.Criteria.NymanBeurling.H14ZetaFETransport
 import RiemannHypothesis.Criteria.NymanBeurling.H15FractionalTail
 import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
+import RiemannHypothesis.Criteria.NymanBeurling.NBChiMellin
 import RiemannHypothesis.Criteria.NymanBeurling.H15MellinEnergy
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDMellin
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDBaseIntegral
