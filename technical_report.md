@@ -2,6 +2,27 @@
 
 **Authors:** Xavier Fresquet and Gérard Biau, Sorbonne Université
 
+## Closing-state ledger (2026-07-11)
+
+The latest verified baseline for this ledger is `verified-h15-consultation-note`.
+At that point the project has a clean external consultation note for the
+remaining H15 quadratic pair estimate, but the final theorem
+`riemannHypothesis_of_pair_and_NBforward` is **not** added: its intended A6
+premise, the proved centered quadratic pair estimate, has not landed in the
+verified tree.  The current honest end-state is therefore:
+
+```text
+Nyman-Beurling forward bridge, or the existing NB/RH axiom
++ the remaining centered H15 quadratic pair estimate
++ the already-formalized H13/H14/H15 reductions
+=> RH through the existing analytic-debts pipeline.
+```
+
+This branch performs only hygiene that is safe independently of A6:
+generator-level long-line linter headers were added to the Lean certificate
+emitters, without regenerating any certificate files.  Stale worktree and
+branch deletion remains intentionally unperformed pending human confirmation.
+
 ## 0. Methodology: A Digital Humanities Approach to the Riemann Hypothesis
 
 This project applies a **Digital Humanities (DH) and Knowledge Engineering methodology** to the Riemann Hypothesis. Rather than attempting a direct, isolated mathematical attack, it treats the centuries-long history of RH research as a vast corpus to be mapped, filtered, and reverse-engineered — using machine-verified formal proof as the ultimate rigour gate.
