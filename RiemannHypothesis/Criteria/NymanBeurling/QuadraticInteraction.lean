@@ -1067,6 +1067,43 @@ noncomputable def cutoffMobiusBernoulliCorrelationPartial (N M : ℕ) : ℝ :=
       cutoffMobiusCoeff N h / (h : ℝ) * cutoffMobiusBernoulliInner N m h) /
         (m : ℝ)
 
+/-- The individual BBLS Fourier mode in the reordered cotangent interaction.
+
+The index `m = 0` is harmless as a definition, but all correlation partials
+below sum this mode only over `m ≥ 1`, matching the analytic series
+`∑_{m≥1} B₁(m·h/k)/m`. -/
+noncomputable def cutoffMobiusBernoulliMode (N m : ℕ) : ℝ :=
+  -2 *
+    ((∑ h ∈ Finset.Icc 1 N,
+      cutoffMobiusCoeff N h / (h : ℝ) * cutoffMobiusBernoulliInner N m h) /
+        (m : ℝ))
+
+/-- Zero-based indexing for the positive modes: index `j` is analytic mode
+`m = j + 1`. -/
+noncomputable def cutoffMobiusBernoulliModeFromZero (N j : ℕ) : ℝ :=
+  cutoffMobiusBernoulliMode N (j + 1)
+
+/-- The finite correlation partial is exactly the sum of its first `M`
+positive Fourier modes. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_eq_mode_sum (N M : ℕ) :
+    cutoffMobiusBernoulliCorrelationPartial N M =
+      ∑ m ∈ Finset.Icc 1 M, cutoffMobiusBernoulliMode N m := by
+  unfold cutoffMobiusBernoulliCorrelationPartial cutoffMobiusBernoulliMode
+  rw [Finset.mul_sum]
+
+/-- The same positive-mode sum, written with zero-based `range` indexing. -/
+theorem cutoffMobiusBernoulliModeFromZero_sum_range_eq_Icc (N M : ℕ) :
+    (∑ j ∈ Finset.range M, cutoffMobiusBernoulliModeFromZero N j) =
+      ∑ m ∈ Finset.Icc 1 M, cutoffMobiusBernoulliMode N m := by
+  rw [Finset.range_eq_Ico]
+  rw [show (∑ j ∈ Finset.Ico 0 M, cutoffMobiusBernoulliModeFromZero N j) =
+      ∑ j ∈ Finset.Ico 0 M, cutoffMobiusBernoulliMode N (1 + j) by
+        apply Finset.sum_congr rfl
+        intro j _
+        simp [cutoffMobiusBernoulliModeFromZero, Nat.add_comm]]
+  rw [Finset.sum_Ico_add]
+  simp [Finset.Ico_add_one_right_eq_Icc]
+
 /-- The reordered partial sum is exactly the corresponding finite triple sum. -/
 theorem cutoffMobiusBernoulliCorrelationPartial_eq_triple (N M : ℕ) :
     cutoffMobiusBernoulliCorrelationPartial N M =
@@ -1124,6 +1161,36 @@ theorem cutoffMobiusBernoulliCorrelationPartial_tendsto (N : ℕ) :
   filter_upwards [] with M
   rw [cutoffMobiusBernoulliCorrelationPartial_eq_triple]
 
+/-- The BBLS cotangent/Bernoulli correlation is the limit of its finite mode
+partials, indexed from zero as `m = j + 1`.
+
+This is the exact conditional-Fourier statement supplied by BBLS Proposition
+48.  It deliberately uses `Tendsto` of ordinary partial sums rather than an
+unconditional `tsum`: the proved rational `φ₁` series in this project is a
+partial-sum limit theorem, not an absolute-summability theorem. -/
+theorem cutoffMobiusBernoulliCorrelationValue_eq_mode_partial_limit (N : ℕ) :
+    Tendsto (fun M : ℕ =>
+      ∑ j ∈ Finset.range M, cutoffMobiusBernoulliModeFromZero N j) atTop
+      (𝓝 (cutoffMobiusBernoulliCorrelationValue N)) := by
+  have h := cutoffMobiusBernoulliCorrelationPartial_tendsto N
+  apply h.congr'
+  filter_upwards [] with M
+  rw [cutoffMobiusBernoulliCorrelationPartial_eq_mode_sum]
+  rw [← cutoffMobiusBernoulliModeFromZero_sum_range_eq_Icc]
+
+/-- If the zero-based mode series is summable in Lean's `tsum` sense, then
+its `tsum` agrees with the BBLS cotangent/Bernoulli value.  The summability
+hypothesis is intentionally explicit: it is stronger than the currently
+proved BBLS partial-sum convergence statement. -/
+theorem cutoffMobiusBernoulliCorrelationValue_eq_tsum_modes_of_summable
+    (N : ℕ)
+    (hs : Summable (cutoffMobiusBernoulliModeFromZero N)) :
+    cutoffMobiusBernoulliCorrelationValue N =
+      ∑' j : ℕ, cutoffMobiusBernoulliModeFromZero N j := by
+  exact tendsto_nhds_unique
+    (cutoffMobiusBernoulliCorrelationValue_eq_mode_partial_limit N)
+    hs.hasSum.tendsto_sum_nat
+
 /-- The BBLS Bernoulli correlation value is exactly the symmetric cotangent
 component already used in the explicit quadratic decomposition. -/
 theorem cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent (N : ℕ) :
@@ -1176,6 +1243,28 @@ theorem cutoffMobiusBernoulliCorrelationPartial_tendsto_cotangent (N : ℕ) :
       (𝓝 (explicitQuadraticCotangentComponent N)) := by
   simpa [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent] using
     cutoffMobiusBernoulliCorrelationPartial_tendsto N
+
+/-- The cotangent component is the partial-sum limit of the BBLS Fourier
+modes.  This is the safe regrouping identity used by the mode-split
+diagnostics. -/
+theorem cotangent_component_eq_mode_partial_limit (N : ℕ) :
+    Tendsto (fun M : ℕ =>
+      ∑ j ∈ Finset.range M, cutoffMobiusBernoulliModeFromZero N j) atTop
+      (𝓝 (explicitQuadraticCotangentComponent N)) := by
+  simpa [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent] using
+    cutoffMobiusBernoulliCorrelationValue_eq_mode_partial_limit N
+
+/-- Conditional `tsum` form of `cotangent_component_eq_mode_partial_limit`.
+The explicit summability hypothesis prevents the theorem from claiming an
+absolute/unordered summability result not supplied by the current BBLS
+infrastructure. -/
+theorem cotangent_component_eq_tsum_modes_of_summable
+    (N : ℕ)
+    (hs : Summable (cutoffMobiusBernoulliModeFromZero N)) :
+    explicitQuadraticCotangentComponent N =
+      ∑' j : ℕ, cutoffMobiusBernoulliModeFromZero N j := by
+  rw [← cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent]
+  exact cutoffMobiusBernoulliCorrelationValue_eq_tsum_modes_of_summable N hs
 
 /-- The corrected defect is the log-ratio term plus the BBLS Bernoulli
 correlation main term and the already-controlled H14 linear centering. -/
