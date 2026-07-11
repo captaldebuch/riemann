@@ -75,4 +75,61 @@ def NymanBeurlingRHBridgeDebts_of_forward_debt
   nyman_implies_no_zeros_right_half := hforward
   no_zeros_right_half_implies_RH := no_zeros_right_half_implies_RH
 
+/-! ## NB0-d: Mellin sub-debts -/
+
+/-- The Mellin-transform identities and the closure-to-vanishing estimate
+needed by the forward Nyman--Beurling argument.
+
+The generator index is the actual zero-based index of `rhoBD` in `bdApprox`:
+the corresponding dilation is `k + 1`.  The last field is deliberately the
+transport statement itself; proving it requires the Mellin/Plancherel
+analysis, so it remains an explicit content-bearing debt rather than an
+axiom or a `sorry` theorem.
+-/
+structure MellinNymanBridgeDebts where
+  mellin_chi_eval :
+    ∀ s : ℂ, 1 / 2 < s.re → s.re < 1 → s ≠ 0 →
+      mellin (fun x : ℝ => (chi01 x : ℂ)) s = 1 / s
+  mellin_generator_eval :
+    ∀ (k : ℕ) (s : ℂ), 1 / 2 < s.re → s.re < 1 → s ≠ 0 →
+      mellin (fun x : ℝ => (rhoBD k x : ℂ)) s =
+        -(riemannZeta s) / (s * ((k + 1 : ℕ) : ℂ) ^ s)
+  eval_functional_continuous :
+    ∀ s₀ : ℂ, 1 / 2 < s₀.re → s₀.re < 1 → s₀ ≠ 0 →
+      ∃ C : ℝ, 0 ≤ C ∧
+        ∀ (N : ℕ) (coeffs : Fin N → ℝ),
+          ‖mellin
+              (fun x : ℝ =>
+                ((chi01 x - bdApprox N coeffs x : ℝ) : ℂ)) s₀‖ ≤
+            C * Real.sqrt (BaezDuarteL2Error N coeffs)
+  vanishing_transport :
+    ∀ s₀ : ℂ, 1 / 2 < s₀.re → s₀.re < 1 → s₀ ≠ 0 →
+      NymanBeurlingCriterion →
+      (∀ k : ℕ,
+        mellin (fun x : ℝ => (rhoBD k x : ℂ)) s₀ = 0) →
+      mellin (fun x : ℝ => (chi01 x : ℂ)) s₀ = 0
+
+/-- The Mellin sub-debts mechanically imply the first RH bridge debt.  The
+only analytic content used here is the explicitly stored closure transport;
+the generator formula turns a hypothetical zeta zero into vanishing of every
+generator transform, while the chi transform is `1/s` and hence nonzero. -/
+theorem no_zeros_right_half_of_mellinNymanBridgeDebts
+    (D : MellinNymanBridgeDebts) :
+    NymanBeurlingCriterion →
+      ∀ s : ℂ, 1 / 2 < s.re → s.re < 1 → riemannZeta s ≠ 0 := by
+  intro hcriterion s hsright hslt
+  intro hszero
+  have hsne : s ≠ 0 := by
+    intro hs0
+    subst hs0
+    norm_num at hsright
+  have hgens :
+      ∀ k : ℕ, mellin (fun x : ℝ => (rhoBD k x : ℂ)) s = 0 := by
+    intro k
+    rw [D.mellin_generator_eval k s hsright hslt hsne]
+    simp [hszero]
+  have hchi := D.vanishing_transport s hsright hslt hsne hcriterion hgens
+  rw [D.mellin_chi_eval s hsright hslt hsne] at hchi
+  exact (one_div_ne_zero hsne) hchi
+
 end RH.Criteria.NymanBeurling.RHBridge
