@@ -607,3 +607,40 @@ A fourth, separate gap beyond all three debts:
 - The mathlib Community, *The Lean mathematical library*, Proc. 9th ACM SIGPLAN Conf. on Certified Programs and Proofs (CPP 2020), 367–381.
 - L. de Moura, S. Ullrich, *The Lean 4 theorem prover and programming language*, Proc. 28th Int. Conf. on Automated Deduction (CADE-28), 2021, 625–635.
 - A. Kontorovich et al., *PrimeNumberTheoremAnd*, Lean 4 formalization repository, `github.com/AlexKontorovich/PrimeNumberTheoremAnd`. (Consulted for the §8.1 inventory; no code imported.)
+
+---
+
+## Session addendum (2026-07-11): A1/A2 proved, NB debts collapsing
+
+**H14 (dVP chain).** A1 (Euler–Maclaurin continuation of ζ) fully proved
+(`H14ZetaEM.lean`): the identity `ζ(s) = Σ_{n≤X} n^{−s} + X^{1−s}/(s−1) − s∫_X^∞{u}u^{−s−1}du`
+on `Re s > 1` by a tsum–integral counting swap, continued to `Re s > 0` off the real axis by
+the identity theorem on the two convex quadrants, with the three height bounds
+(`X = ⌊|t|⌋₊+2`, constants 2/1/2, numerics-gated) inhabiting the frozen component structure —
+discharging the V-R vertical-growth debt. A2 (left-strip FE transport, `H14ZetaFETransport.lean`,
+`H14FEFactorBound.lean`): sqrt-strength (`6√(|t|+2)` on `[1/2,2]`) and log-strength
+(`4(1+log(|t|+2))` on `[1,2]`) exports; the functional equation in factor form proved from
+Mathlib's `riemannZeta_one_sub`; the three-regime transport proved; and the exact boundary
+moduli of the FE factor proved (`|F(1/2+it)| = 1`, `|F(−1/2+it)| = |1/2−it|/(2π)` — the
+`cosh`-cancellation makes both closed-form). The single remaining A2 debt is interior
+Phragmén–Lindelöf interpolation between these two proved boundary lines
+(`FEFactorInteriorInterpolation`); numerics gate: the sup ratio is exactly 1.
+
+**NB bridge.** NB0 structural split merged: `NBForward` = (criterion ⇒ right-half zero-free)
+∘ (right-half zero-free ⇒ RH), the second implication proved from the existing `zero_symmetry`
+axiom. Of the four frozen Mellin fields, three are now theorems: `mellin({1/x})(s) = −ζ(s)/s`
+(from the A1 tail machinery meeting the `mellin_comp_inv` reduction), the generator formula
+`mellin(ρ_k)(s) = −ζ(s)/(s(k+1)^s)`, and `mellin(χ)(s) = 1/s`. Remaining: the evaluation-continuity
+and vanishing-transport fields (the genuine Plancherel content) and the Route-1 energy identity.
+
+**H15.** Fractional-tail split (`defectEnergy = reciprocalTailEnergy + inverseIndexEnergy`,
+numerics-exact), cutoff Dirichlet polynomial with `P_N(1) → 0` from decay. The uniform-in-A
+Möbius–sawtooth framings of (∗) were numerically REFUTED (sup grows to 80 by N=1.2·10⁵);
+only the fully signed centered bilinear object is small — the consultation document now poses
+the question in signed bilinear Kloosterman-fraction form (Duke–Friedlander–Iwaniec).
+
+Tags: `verified-h15-fractional-tail`, `verified-a1-em-continuation`, `verified-nb0-mellin-wave`,
+`verified-base-mellin-discharge`, `verified-a2-fe-transport`, `verified-nb-chi-mellin`
+(+ FE-factor boundary merge pending final verify). All new theorems audit to
+`[propext, Classical.choice, Quot.sound]` (the symmetry half additionally uses the
+pre-existing `zero_symmetry`).
