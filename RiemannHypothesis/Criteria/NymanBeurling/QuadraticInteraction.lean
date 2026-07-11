@@ -225,6 +225,48 @@ theorem quadraticInteractionGcdSlice_eq_coprimeScaled (N g : ℕ) (hg : 0 < g) :
       dsimp [T, scaledF]
       rw [Finset.sum_filter, Finset.sum_product]
 
+/-!
+The common-gcd variable does not carry a second Möbius sign.  Once
+`g` is coprime to `a * b`, multiplicativity gives
+`μ (g*a) μ (g*b) = μ a μ b μ g²`; if it is not coprime, at least one
+factor vanishes.  This exact identity is the arithmetic preconditioning
+for the fractional-tail route to H15.
+-/
+
+theorem moebius_mul_gcd_factor
+    (g a b : ℕ) (hgab : Nat.Coprime g (a * b)) :
+    ArithmeticFunction.moebius (g * a) * ArithmeticFunction.moebius (g * b) =
+      ArithmeticFunction.moebius a * ArithmeticFunction.moebius b *
+        (ArithmeticFunction.moebius g) ^ 2 := by
+  have hga : Nat.Coprime g a :=
+    hgab.coprime_dvd_right (dvd_mul_right a b)
+  have hgb : Nat.Coprime g b :=
+    hgab.coprime_dvd_right (dvd_mul_left b a)
+  rw [ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hga,
+    ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hgb]
+  ring
+
+theorem cutoffMobiusCoeff_mul_gcd_factor
+    (N g a b : ℕ) (hgab : Nat.Coprime g (a * b)) :
+    cutoffMobiusCoeff N (g * a) * cutoffMobiusCoeff N (g * b) =
+      (((ArithmeticFunction.moebius a : ℤ) : ℝ) *
+          ((ArithmeticFunction.moebius b : ℤ) : ℝ) *
+          (((ArithmeticFunction.moebius g : ℤ) : ℝ) ^ 2)) *
+        (cutoffWeight N (g * a) * cutoffWeight N (g * b)) := by
+  unfold cutoffMobiusCoeff
+  have hga : Nat.Coprime g a :=
+    hgab.coprime_dvd_right (dvd_mul_right a b)
+  have hgb : Nat.Coprime g b :=
+    hgab.coprime_dvd_right (dvd_mul_left b a)
+  rw [ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hga,
+    ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hgb]
+  push_cast
+  ring
+
 -- ---------------------------------------------------------------------------
 -- 4. Off-Diagonal GCD Stratification
 -- ---------------------------------------------------------------------------
