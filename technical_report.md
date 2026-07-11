@@ -11,7 +11,6 @@ The endgame theorem now EXISTS, honestly parameterized:
 theorem riemannHypothesis_of_pair_and_NBforward
     (H_decay : ClassicalMertensDecay)
     (H_pair  : QuadraticInteractionBernoulliCorrelationEstimate H_decay)
-    (H_vasyunin : VasyuninBridgeLocalDebts)
     (h_forward : NBForward) : RiemannHypothesis
 ```
 
@@ -22,9 +21,9 @@ bridge. Notably, the historical `nyman_beurling_criterion_iff_RH` axiom is
 NOT in this theorem's trust chain: the forward implication enters as an
 explicit hypothesis (`NBForward`, from the NB0 split).
 
-Of the four hypotheses: `H_vasyunin` is dischargeable today (all three of its
-fields are proved post-H13-closure; the instance-construction micro-task is
-dispatched, after which RH follows from THREE named statements);
+RH now follows from exactly THREE named statements (`H_vasyunin` was
+discharged: `vasyuninBridgeLocalDebts_of_proved_chain`, constructed from the
+proved H13 chain, tag `verified-rh-three-hypotheses`). Of the three:
 `H_decay` is the 1899 de la Vallée Poussin Mertens bound, with a fully staged
 formalization route (Euler–Maclaurin continuation → left-strip functional
 equation transport → Borel–Jensen factorization → zero-free region →
@@ -32,7 +31,10 @@ effective Perron → contour shift), each stage a named structure with proved
 consumers; `H_pair` is the centered Möbius–Bernoulli correlation estimate —
 numerically robust, four independent decomposition attempts proved or
 demonstrated insufficient, and the subject of the external consultation
-(`docs/rh_pipeline_report.tex`, `docs/h15_quadratic_pair_consultation.tex`);
+(`docs/rh_pipeline_report.tex`, `docs/h15_quadratic_pair_consultation.tex`) —
+its sharpest known form is the uniform-in-`A` weighted Möbius–sawtooth
+correlation `∑_{k≤N} μ(k)(1−k/(N+1))·B₁(A/k)`, which classical Mertens decay
+does not control;
 `NBForward` is the forward Nyman–Beurling implication (Mellin route staged,
 Plancherel stop-gate identified).
 
