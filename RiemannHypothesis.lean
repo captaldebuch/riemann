@@ -27,4 +27,5 @@ import RiemannHypothesis.Criteria.NymanBeurling.H15FractionalTail
 import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 import RiemannHypothesis.Criteria.NymanBeurling.H15MellinEnergy
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDMellin
+import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDBaseIntegral
 import RiemannHypothesis.Criteria.NymanBeurling.FinalAssembly
