@@ -620,5 +620,231 @@ theorem emIdentity_of_pos_re_of_im_ne_zero {s : ℂ} (h0 : 0 < s.re)
       (by simp)
     exact this ⟨h0, hgt⟩
 
+/-! ## E3: the three elementary bounds and the frozen structure instance
+
+Numerics gate (recorded): closed-form evaluation of the tail confirms the
+decomposition within rigorous truncation remainders (e.g. `5.0e-11` vs bound
+`1.1e-10` at `σ=2, t=1`), and the constants below have at least a factor-2
+margin over the observed suprema (max ratio `0.52` for the pole at
+`σ=1/2, |t|=1`). -/
+
+/-- Telescoping square-root bound for the critical-line partial sum. -/
+theorem sum_rpow_neg_half_le (X : ℕ) :
+    (∑ n ∈ Finset.Icc 1 X, ((n : ℝ)) ^ (-(1 / 2 : ℝ))) ≤ 2 * Real.sqrt X := by
+  have hstep : ∀ i : ℕ, ((i + 1 : ℕ) : ℝ) ^ (-(1 / 2 : ℝ)) ≤
+      2 * Real.sqrt ((i + 1 : ℕ) : ℝ) - 2 * Real.sqrt ((i : ℕ) : ℝ) := by
+    intro i
+    push_cast
+    set a : ℝ := Real.sqrt ((i : ℝ) + 1) with ha
+    set b : ℝ := Real.sqrt (i : ℝ) with hb
+    have ha2 : a ^ 2 = (i : ℝ) + 1 := by
+      rw [ha, Real.sq_sqrt (by positivity)]
+    have hb2 : b ^ 2 = (i : ℝ) := by
+      rw [hb, Real.sq_sqrt (by positivity)]
+    have hapos : 0 < a := by
+      rw [ha]
+      apply Real.sqrt_pos.mpr
+      positivity
+    have hbnn : 0 ≤ b := Real.sqrt_nonneg _
+    have hcast : ((i : ℝ) + 1) ^ (-(1 / 2 : ℝ)) = 1 / a := by
+      rw [Real.rpow_neg (by positivity), ha, Real.sqrt_eq_rpow]
+      exact (one_div _).symm
+    rw [hcast, div_le_iff₀ hapos]
+    nlinarith [sq_nonneg (a - b), sq_nonneg (a + b)]
+  have hconv : (∑ n ∈ Finset.Icc 1 X, ((n : ℝ)) ^ (-(1 / 2 : ℝ))) =
+      ∑ i ∈ Finset.range X, ((i + 1 : ℕ) : ℝ) ^ (-(1 / 2 : ℝ)) := by
+    rw [show Finset.Icc 1 X = Finset.Ico 1 (X + 1) from by ext n; simp,
+      Finset.sum_Ico_eq_sum_range]
+    simp only [Nat.add_sub_cancel]
+    apply Finset.sum_congr rfl
+    intro i _
+    congr 1
+    push_cast
+    ring
+  rw [hconv]
+  calc (∑ i ∈ Finset.range X, ((i + 1 : ℕ) : ℝ) ^ (-(1 / 2 : ℝ)))
+      ≤ ∑ i ∈ Finset.range X,
+          (2 * Real.sqrt ((i + 1 : ℕ) : ℝ) - 2 * Real.sqrt ((i : ℕ) : ℝ)) :=
+        Finset.sum_le_sum fun i _ => hstep i
+    _ = 2 * Real.sqrt ((X : ℕ) : ℝ) - 2 * Real.sqrt ((0 : ℕ) : ℝ) :=
+        Finset.sum_range_sub (f := fun n : ℕ => 2 * Real.sqrt ((n : ℕ) : ℝ)) X
+    _ ≤ 2 * Real.sqrt X := by simp
+
+/-- The real part of `σ + I t` is `σ`. -/
+theorem re_sigma_add_I_mul (σ t : ℝ) : (σ + Complex.I * t : ℂ).re = σ := by
+  simp
+
+/-- The imaginary part of `σ + I t` is `t`. -/
+theorem im_sigma_add_I_mul (σ t : ℝ) : (σ + Complex.I * t : ℂ).im = t := by
+  simp
+
+/-- E3 partial-sum bound. -/
+theorem partialSum_norm_le {σ : ℝ} (hσ : (1 / 2 : ℝ) ≤ σ) (t : ℝ) (X : ℕ) :
+    ‖∑ n ∈ Finset.Icc 1 X, (n : ℂ) ^ (-(σ + Complex.I * t : ℂ))‖ ≤
+      2 * Real.sqrt X := by
+  calc ‖∑ n ∈ Finset.Icc 1 X, (n : ℂ) ^ (-(σ + Complex.I * t : ℂ))‖
+      ≤ ∑ n ∈ Finset.Icc 1 X, ‖(n : ℂ) ^ (-(σ + Complex.I * t : ℂ))‖ :=
+        norm_sum_le _ _
+    _ ≤ ∑ n ∈ Finset.Icc 1 X, ((n : ℝ)) ^ (-(1 / 2 : ℝ)) := by
+        apply Finset.sum_le_sum
+        intro n hn
+        have hn1 : 1 ≤ n := (Finset.mem_Icc.mp hn).1
+        have hnpos : (0 : ℝ) < (n : ℝ) := by exact_mod_cast hn1
+        rw [Complex.norm_natCast_cpow_of_pos (by omega)]
+        have hre : (-(σ + Complex.I * t : ℂ)).re = -σ := by
+          rw [Complex.neg_re, re_sigma_add_I_mul]
+        rw [hre]
+        apply Real.rpow_le_rpow_of_exponent_le (by exact_mod_cast hn1)
+        linarith
+    _ ≤ 2 * Real.sqrt X := sum_rpow_neg_half_le X
+
+/-- E3 tail-integral bound. -/
+theorem emTail_norm_le {s : ℂ} (hs : (1 / 2 : ℝ) ≤ s.re) {X : ℝ} (hX : 1 ≤ X) :
+    ‖emTail s X‖ ≤ X ^ (-s.re) / s.re := by
+  have hs0 : 0 < s.re := lt_of_lt_of_le (by norm_num) hs
+  have hXpos : (0 : ℝ) < X := lt_of_lt_of_le one_pos hX
+  have hmaj : IntegrableOn (fun u : ℝ => u ^ (-s.re - 1)) (Ioi X) := by
+    apply integrableOn_Ioi_rpow_of_lt _ hXpos
+    linarith
+  calc ‖emTail s X‖ ≤ ∫ u in Ioi X, ‖emTailIntegrand s u‖ :=
+        MeasureTheory.norm_integral_le_integral_norm _
+    _ ≤ ∫ u in Ioi X, u ^ (-s.re - 1) := by
+        apply MeasureTheory.setIntegral_mono_on
+          ((emTailIntegrand_integrableOn hs0 hX).norm) hmaj measurableSet_Ioi
+        intro u hu
+        exact emTailIntegrand_norm_le (le_trans hX (le_of_lt hu))
+    _ = X ^ (-s.re) / s.re := by
+        rw [integral_Ioi_rpow_of_lt (by linarith) hXpos]
+        rw [show -s.re - 1 + 1 = -s.re from by ring]
+        field_simp
+
+/-- E3 assembled: the frozen Euler–Maclaurin components structure is
+inhabited, with `t₀ = 1`, `X = ⌊|t|⌋₊ + 2`, and constants `2, 1, 2`. -/
+noncomputable def zetaRightHalfEulerMaclaurinComponents :
+    RH.Criteria.NymanBeurling.MobiusSummatory.ZetaRightHalfEulerMaclaurinComponentsAtHeight where
+  t₀ := 1
+  t₀_pos := one_pos
+  t₀_le_one := le_rfl
+  partialSum σ t :=
+    ∑ n ∈ Finset.Icc 1 (⌊|t|⌋₊ + 2), (n : ℂ) ^ (-(σ + Complex.I * t : ℂ))
+  poleTerm σ t :=
+    ((⌊|t|⌋₊ + 2 : ℕ) : ℂ) ^ (1 - (σ + Complex.I * t : ℂ)) /
+      ((σ + Complex.I * t : ℂ) - 1)
+  tailTerm σ t :=
+    -((σ + Complex.I * t : ℂ) *
+      emTail (σ + Complex.I * t : ℂ) ((⌊|t|⌋₊ + 2 : ℕ) : ℝ))
+  C_sum := 2
+  C_pole := 1
+  C_tail := 2
+  C_sum_nonneg := by norm_num
+  C_pole_nonneg := by norm_num
+  C_tail_nonneg := by norm_num
+  decomposition := by
+    intro σ t hσlow hσhigh ht
+    have h0 : 0 < (σ + Complex.I * t : ℂ).re := by
+      rw [re_sigma_add_I_mul]
+      linarith
+    have him : (σ + Complex.I * t : ℂ).im ≠ 0 := by
+      rw [im_sigma_add_I_mul]
+      intro h
+      rw [h] at ht
+      simp at ht
+      linarith
+    have hX : 1 ≤ ⌊|t|⌋₊ + 2 := by omega
+    have hid := emIdentity_of_pos_re_of_im_ne_zero h0 him hX
+    rw [hid]
+    push_cast
+    ring
+  partial_sum_bound := by
+    intro σ t hσlow hσhigh ht
+    have hfloor : (⌊|t|⌋₊ : ℝ) ≤ |t| := Nat.floor_le (abs_nonneg t)
+    calc ‖∑ n ∈ Finset.Icc 1 (⌊|t|⌋₊ + 2), (n : ℂ) ^ (-(σ + Complex.I * t : ℂ))‖
+        ≤ 2 * Real.sqrt ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) := partialSum_norm_le hσlow t _
+      _ ≤ 2 * Real.sqrt (|t| + 2) := by
+          apply mul_le_mul_of_nonneg_left _ (by norm_num)
+          apply Real.sqrt_le_sqrt
+          push_cast
+          linarith
+      _ ≤ 2 * (|t| + 2) := by
+          apply mul_le_mul_of_nonneg_left _ (by norm_num)
+          exact (Real.sqrt_le_left (by positivity)).mpr (by nlinarith [abs_nonneg t])
+  pole_bound := by
+    intro σ t hσlow hσhigh ht
+    have hX2 : (2 : ℝ) ≤ ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) := by
+      push_cast
+      linarith [Nat.cast_nonneg (α := ℝ) ⌊|t|⌋₊]
+    have hXpos : (0 : ℕ) < ⌊|t|⌋₊ + 2 := by omega
+    have hnormnum : ‖((⌊|t|⌋₊ + 2 : ℕ) : ℂ) ^ (1 - (σ + Complex.I * t : ℂ))‖ =
+        ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) ^ (1 - σ) := by
+      rw [Complex.norm_natCast_cpow_of_pos hXpos]
+      congr 1
+      rw [Complex.sub_re, Complex.one_re, re_sigma_add_I_mul]
+    have hdenom : (1 : ℝ) ≤ ‖(σ + Complex.I * t : ℂ) - 1‖ := by
+      calc (1 : ℝ) ≤ |t| := ht
+        _ = |((σ + Complex.I * t : ℂ) - 1).im| := by
+            rw [Complex.sub_im, Complex.one_im, im_sigma_add_I_mul]
+            simp
+        _ ≤ ‖(σ + Complex.I * t : ℂ) - 1‖ := Complex.abs_im_le_norm _
+    rw [norm_div, hnormnum]
+    calc ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) ^ (1 - σ) / ‖(σ + Complex.I * t : ℂ) - 1‖
+        ≤ ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) ^ (1 - σ) / 1 := by
+          apply div_le_div_of_nonneg_left _ one_pos hdenom
+          positivity
+      _ = ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) ^ (1 - σ) := by rw [div_one]
+      _ ≤ ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) ^ (1 / 2 : ℝ) := by
+          apply Real.rpow_le_rpow_of_exponent_le (by linarith)
+          linarith
+      _ = Real.sqrt ((⌊|t|⌋₊ + 2 : ℕ) : ℝ) := by
+          rw [Real.sqrt_eq_rpow]
+      _ ≤ Real.sqrt (|t| + 2) := by
+          apply Real.sqrt_le_sqrt
+          push_cast
+          linarith [Nat.floor_le (abs_nonneg t)]
+      _ ≤ |t| + 2 :=
+          (Real.sqrt_le_left (by positivity)).mpr (by nlinarith [abs_nonneg t])
+      _ = 1 * (|t| + 2) := by ring
+  tail_bound := by
+    intro σ t hσlow hσhigh ht
+    set s : ℂ := σ + Complex.I * t with hsdef
+    set X : ℕ := ⌊|t|⌋₊ + 2 with hXdef
+    have hsre : s.re = σ := re_sigma_add_I_mul σ t
+    have hX1 : (1 : ℝ) ≤ ((X : ℕ) : ℝ) := by
+      rw [hXdef]
+      push_cast
+      linarith [Nat.cast_nonneg (α := ℝ) ⌊|t|⌋₊]
+    have hXpos : (0 : ℝ) < ((X : ℕ) : ℝ) := lt_of_lt_of_le one_pos hX1
+    have htail : ‖emTail s ((X : ℕ) : ℝ)‖ ≤ ((X : ℕ) : ℝ) ^ (-s.re) / s.re := by
+      apply emTail_norm_le _ hX1
+      rw [hsre]
+      exact hσlow
+    have hXpow : ((X : ℕ) : ℝ) ^ (-s.re) ≤ 1 := by
+      rw [hsre]
+      calc ((X : ℕ) : ℝ) ^ (-σ) ≤ ((X : ℕ) : ℝ) ^ (0 : ℝ) := by
+            apply Real.rpow_le_rpow_of_exponent_le hX1
+            linarith
+        _ = 1 := Real.rpow_zero _
+    have hsnorm : ‖s‖ ≤ |t| + 2 := by
+      rw [hsdef]
+      calc ‖(σ : ℂ) + Complex.I * t‖ ≤ ‖(σ : ℂ)‖ + ‖Complex.I * (t : ℂ)‖ :=
+            norm_add_le _ _
+        _ = |σ| + |t| := by
+            rw [Complex.norm_real, norm_mul, Complex.norm_I, one_mul,
+              Complex.norm_real]
+            simp [Real.norm_eq_abs]
+        _ ≤ 2 + |t| := by
+            have : |σ| ≤ 2 := abs_le.mpr ⟨by linarith, hσhigh⟩
+            linarith
+        _ = |t| + 2 := by ring
+    calc ‖-(s * emTail s ((X : ℕ) : ℝ))‖ = ‖s‖ * ‖emTail s ((X : ℕ) : ℝ)‖ := by
+          rw [norm_neg, norm_mul]
+      _ ≤ (|t| + 2) * (((X : ℕ) : ℝ) ^ (-s.re) / s.re) := by
+          apply mul_le_mul hsnorm htail (norm_nonneg _) (by positivity)
+      _ ≤ (|t| + 2) * (1 / (1 / 2 : ℝ)) := by
+          apply mul_le_mul_of_nonneg_left _ (by positivity)
+          apply div_le_div₀ (by norm_num) hXpow (by norm_num)
+          rw [hsre]
+          exact hσlow
+      _ = 2 * (|t| + 2) := by ring
+
 end RH.Criteria.NymanBeurling.H14ZetaEM
 
