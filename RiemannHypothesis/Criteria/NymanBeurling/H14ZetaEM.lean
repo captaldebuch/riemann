@@ -387,5 +387,153 @@ theorem emIdentity_of_one_lt_re {s : ℂ} (hs : 1 < s.re) {X : ℕ} (hX : 1 ≤ 
     rw [h1, h2, h3, mul_sub, h4]
   linear_combination hchain
 
+/-! ## E2a: differentiability of the tail integral in `s` -/
+
+/-- The `s`-derivative of the tail integrand. -/
+noncomputable def emTailDerivIntegrand (s : ℂ) (u : ℝ) : ℂ :=
+  -(((Int.fract u : ℝ) : ℂ) * ((Real.log u : ℝ) : ℂ) * (u : ℂ) ^ (-s - 1))
+
+theorem emTailDerivIntegrand_norm_le {s : ℂ} {u : ℝ} (hu : 1 ≤ u) :
+    ‖emTailDerivIntegrand s u‖ ≤ Real.log u * u ^ (-s.re - 1) := by
+  have hupos : (0 : ℝ) < u := lt_of_lt_of_le one_pos hu
+  have hlog : (0 : ℝ) ≤ Real.log u := Real.log_nonneg hu
+  unfold emTailDerivIntegrand
+  rw [norm_neg, norm_mul, norm_mul]
+  have h1 : ‖((Int.fract u : ℝ) : ℂ)‖ ≤ 1 := by
+    rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg (Int.fract_nonneg u)]
+    exact (Int.fract_lt_one u).le
+  have h2 : ‖((Real.log u : ℝ) : ℂ)‖ = Real.log u := by
+    rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hlog]
+  have h3 : ‖(u : ℂ) ^ (-s - 1)‖ = u ^ (-s.re - 1) := by
+    rw [Complex.norm_cpow_eq_rpow_re_of_pos hupos]
+    norm_num
+  calc ‖((Int.fract u : ℝ) : ℂ)‖ * ‖((Real.log u : ℝ) : ℂ)‖ * ‖(u : ℂ) ^ (-s - 1)‖
+      ≤ 1 * ‖((Real.log u : ℝ) : ℂ)‖ * ‖(u : ℂ) ^ (-s - 1)‖ := by
+        apply mul_le_mul_of_nonneg_right _ (norm_nonneg _)
+        exact mul_le_mul_of_nonneg_right h1 (norm_nonneg _)
+    _ = Real.log u * u ^ (-s.re - 1) := by rw [one_mul, h2, h3]
+
+/-- Elementary log-power bound: `log u ≤ u^δ/δ` for `u ≥ 1`, `δ > 0`. -/
+theorem log_le_rpow_div_self {u δ : ℝ} (hu : 1 ≤ u) (hδ : 0 < δ) :
+    Real.log u ≤ u ^ δ / δ := by
+  have hupos : (0 : ℝ) < u := lt_of_lt_of_le one_pos hu
+  have hpow : (0 : ℝ) < u ^ δ := Real.rpow_pos_of_pos hupos δ
+  have h1 : Real.log (u ^ δ) ≤ u ^ δ - 1 := Real.log_le_sub_one_of_pos hpow
+  rw [Real.log_rpow hupos] at h1
+  have h2 : δ * Real.log u ≤ u ^ δ := le_trans h1 (by linarith)
+  calc Real.log u = δ * Real.log u / δ := by field_simp
+    _ ≤ u ^ δ / δ := div_le_div_of_nonneg_right h2 hδ.le
+
+/-- Integrability of `log·rpow` majorants on rays. -/
+theorem integrableOn_log_mul_rpow {X : ℝ} (hX : 1 ≤ X) {a : ℝ} (ha : a < -1) :
+    IntegrableOn (fun u : ℝ => Real.log u * u ^ a) (Ioi X) := by
+  have hXpos : (0 : ℝ) < X := lt_of_lt_of_le one_pos hX
+  set δ : ℝ := (-1 - a) / 2 with hδdef
+  have hδ : 0 < δ := by simp only [hδdef]; linarith
+  have hexp : a + δ < -1 := by simp only [hδdef]; linarith
+  have hmaj : IntegrableOn (fun u : ℝ => u ^ (a + δ) / δ) (Ioi X) :=
+    (integrableOn_Ioi_rpow_of_lt hexp hXpos).div_const δ
+  apply Integrable.mono' hmaj
+  · exact (Real.measurable_log.mul (measurable_id.pow_const a)).aestronglyMeasurable
+  · rw [MeasureTheory.ae_restrict_iff' measurableSet_Ioi]
+    filter_upwards with u hu
+    have hu1 : (1 : ℝ) ≤ u := le_trans hX (le_of_lt hu)
+    have hupos : (0 : ℝ) < u := lt_of_lt_of_le one_pos hu1
+    have hlog : (0 : ℝ) ≤ Real.log u := Real.log_nonneg hu1
+    have hpowpos : (0 : ℝ) ≤ u ^ a := (Real.rpow_pos_of_pos hupos a).le
+    rw [Real.norm_eq_abs, abs_of_nonneg (mul_nonneg hlog hpowpos)]
+    calc Real.log u * u ^ a ≤ u ^ δ / δ * u ^ a :=
+          mul_le_mul_of_nonneg_right (log_le_rpow_div_self hu1 hδ) hpowpos
+      _ = u ^ (a + δ) / δ := by
+          rw [div_mul_eq_mul_div, ← Real.rpow_add hupos, add_comm]
+
+theorem emTailDerivIntegrand_aestronglyMeasurable (s : ℂ) {X : ℝ} :
+    AEStronglyMeasurable (emTailDerivIntegrand s) (volume.restrict (Ioi X)) := by
+  apply Measurable.aestronglyMeasurable
+  unfold emTailDerivIntegrand
+  apply Measurable.neg
+  apply Measurable.mul
+  · apply Measurable.mul
+    · exact Complex.measurable_ofReal.comp measurable_fract
+    · exact Complex.measurable_ofReal.comp Real.measurable_log
+  · apply Measurable.pow
+    · exact Complex.measurable_ofReal
+    · exact measurable_const
+
+/-- Pointwise `s`-derivative of the tail integrand. -/
+theorem emTailIntegrand_hasDerivAt {u : ℝ} (hu : 1 ≤ u) (s : ℂ) :
+    HasDerivAt (fun z : ℂ => emTailIntegrand z u) (emTailDerivIntegrand s u) s := by
+  have hupos : (0 : ℝ) < u := lt_of_lt_of_le one_pos hu
+  have hne : (u : ℂ) ≠ 0 := by exact_mod_cast ne_of_gt hupos
+  have h1 : HasDerivAt (fun z : ℂ => -z - 1) (-1) s := by
+    simpa using ((hasDerivAt_id s).neg.sub_const 1)
+  have h2 : HasDerivAt (fun z : ℂ => (u : ℂ) ^ (-z - 1))
+      ((u : ℂ) ^ (-s - 1) * Complex.log (u : ℂ) * (-1)) s :=
+    HasDerivAt.const_cpow h1 (Or.inl hne)
+  have h3 := h2.const_mul ((Int.fract u : ℝ) : ℂ)
+  have hlogeq : Complex.log (u : ℂ) = ((Real.log u : ℝ) : ℂ) :=
+    (Complex.ofReal_log hupos.le).symm
+  convert h3 using 1
+  unfold emTailDerivIntegrand
+  rw [hlogeq]
+  ring
+
+/-- E2a main: the tail integral is complex-differentiable in `s` on `Re s > 0`. -/
+theorem emTail_hasDerivAt {s₀ : ℂ} (hs₀ : 0 < s₀.re) {X : ℝ} (hX : 1 ≤ X) :
+    HasDerivAt (fun s : ℂ => emTail s X)
+      (∫ u in Ioi X, emTailDerivIntegrand s₀ u) s₀ := by
+  have hXpos : (0 : ℝ) < X := lt_of_lt_of_le one_pos hX
+  set ε : ℝ := s₀.re / 2 with hεdef
+  have hε : 0 < ε := by simp only [hεdef]; linarith
+  have hres : ∀ z ∈ Metric.ball s₀ ε, ε ≤ z.re := by
+    intro z hz
+    have hd : |(z - s₀).re| ≤ ‖z - s₀‖ := Complex.abs_re_le_norm _
+    rw [Metric.mem_ball, dist_eq_norm] at hz
+    have : |(z - s₀).re| < ε := lt_of_le_of_lt hd hz
+    rw [Complex.sub_re, abs_lt] at this
+    simp only [hεdef] at this ⊢
+    linarith [this.1]
+  have hbound_int : IntegrableOn (fun u : ℝ => Real.log u * u ^ (-ε - 1)) (Ioi X) :=
+    integrableOn_log_mul_rpow hX (by linarith)
+  have key := hasDerivAt_integral_of_dominated_loc_of_lip
+    (F := fun s u => emTailIntegrand s u)
+    (F' := fun u => emTailDerivIntegrand s₀ u)
+    (x₀ := s₀)
+    (bound := fun u => Real.log u * u ^ (-ε - 1))
+    (μ := volume.restrict (Ioi X))
+    (Metric.ball_mem_nhds s₀ hε)
+    ?_ ?_ ?_ ?_ ?_ ?_
+  · exact key.2
+  · filter_upwards with s
+    exact emTailIntegrand_aestronglyMeasurable s
+  · exact emTailIntegrand_integrableOn hs₀ hX
+  · exact emTailDerivIntegrand_aestronglyMeasurable s₀
+  · rw [MeasureTheory.ae_restrict_iff' measurableSet_Ioi]
+    filter_upwards with u hu
+    have hu1 : (1 : ℝ) ≤ u := le_trans hX (le_of_lt hu)
+    have hlog : (0 : ℝ) ≤ Real.log u := Real.log_nonneg hu1
+    have hpow : (0 : ℝ) ≤ u ^ (-ε - 1) :=
+      (Real.rpow_pos_of_pos (lt_of_lt_of_le one_pos hu1) _).le
+    apply LipschitzOnWith.mono _ (Set.Subset.refl _)
+    apply (convex_ball s₀ ε).lipschitzOnWith_of_nnnorm_hasDerivWithin_le
+      (f' := fun z => emTailDerivIntegrand z u)
+    · intro z _
+      exact ((emTailIntegrand_hasDerivAt hu1 z)).hasDerivWithinAt
+    · intro z hz
+      rw [← NNReal.coe_le_coe]
+      calc (‖emTailDerivIntegrand z u‖₊ : ℝ) = ‖emTailDerivIntegrand z u‖ := rfl
+        _ ≤ Real.log u * u ^ (-z.re - 1) := emTailDerivIntegrand_norm_le hu1
+        _ ≤ Real.log u * u ^ (-ε - 1) := by
+            apply mul_le_mul_of_nonneg_left _ hlog
+            apply Real.rpow_le_rpow_of_exponent_le hu1
+            have := hres z hz
+            linarith
+        _ ≤ (Real.nnabs (Real.log u * u ^ (-ε - 1)) : ℝ) := by
+            rw [Real.coe_nnabs, abs_of_nonneg (mul_nonneg hlog hpow)]
+  · exact hbound_int
+  · rw [MeasureTheory.ae_restrict_iff' measurableSet_Ioi]
+    filter_upwards with u hu
+    exact emTailIntegrand_hasDerivAt (le_trans hX (le_of_lt hu)) s₀
+
 end RH.Criteria.NymanBeurling.H14ZetaEM
 
