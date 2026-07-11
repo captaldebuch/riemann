@@ -33,6 +33,15 @@ theorem rhoBD_mellin_eq_scaled_base (k : ℕ) (s : ℂ) :
     Complex.ofReal_natCast] using
     (mellin_comp_mul_left (fun x : ℝ => (rhoBDBase x : ℂ)) s ha)
 
+/-- Inversion turns the base generator into the Mellin transform of the ordinary
+fractional-part function.  This is the exact change of variables underlying the
+classical integral proof of the remaining base formula. -/
+theorem rhoBDBase_mellin_eq_mellin_fract_inv (s : ℂ) :
+    mellin (fun x : ℝ => (rhoBDBase x : ℂ)) s =
+      mellin (fun x : ℝ => ((Int.fract x : ℝ) : ℂ)) (-s : ℂ) := by
+  simpa [rhoBDBase, one_div] using
+    (mellin_comp_inv (fun x : ℝ => ((Int.fract x : ℝ) : ℂ)) s)
+
 /-! ## The single remaining base Mellin debt -/
 
 /-- The exact analytic base identity needed for the generator formula.  It is
