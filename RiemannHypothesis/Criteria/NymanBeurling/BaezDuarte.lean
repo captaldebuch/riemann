@@ -169,6 +169,23 @@ theorem nymanBeurlingCriterion_iff_baezDuarteCriterion :
     push Not at hall
     linarith [le_ciInf hall]
 
+/-- The exact remaining analytical debt in the forward Nyman--Beurling route
+to RH. Keeping it as data makes every RH-producing theorem explicitly
+conditional, without adding an axiom to the environment. -/
+structure NymanBeurlingRHBridgeDebts where
+  /-- Nyman--Beurling completeness rules out zeta zeros off the critical line. -/
+  RH_of_nymanBeurlingCriterion :
+    NymanBeurlingCriterion → RH.Basic.RiemannHypothesis
+
+/-- The conditional Báez--Duarte-to-RH bridge. The finite-dimensional
+criterion conversion is proved above; only the named Nyman--Beurling
+analytical debt is supplied by the caller. -/
+theorem baez_duarte_criterion_implies_RH
+    (debt : NymanBeurlingRHBridgeDebts) (c : BaezDuarteCriterion) :
+    RH.Basic.RiemannHypothesis :=
+  debt.RH_of_nymanBeurlingCriterion
+    (nymanBeurlingCriterion_iff_baezDuarteCriterion.mpr c)
+
 /- The Nyman-Beurling theorem: the completeness criterion is equivalent to RH.
     Source: Nyman (1950) proved → direction; Beurling (1955) strengthened;
     Báez-Duarte (2003) established that integer dilations {ρ_k} suffice.

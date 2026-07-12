@@ -53,12 +53,13 @@ axiom mellin_finite_implies_criterion : NymanBeurling.MellinCriticalLine.MellinC
 The Nyman-Beurling / Báez-Duarte Strategy. 
 Maps finite exact rational certificates to L²(0,∞) approximation rates, then to the RH.
 -/
-noncomputable def NymanBeurlingBaezDuarteStrategy : RHStrategy := {
+noncomputable def NymanBeurlingBaezDuarteStrategy
+    (debt : NymanBeurling.BaezDuarte.NymanBeurlingRHBridgeDebts) : RHStrategy := {
   name := "Nyman-Beurling (Báez-Duarte L²(0,∞))"
   finiteCertificate := VerifiedApproximationRate
   analyticCriterion := NymanBeurling.BaezDuarte.BaezDuarteCriterion
-  finite_to_criterion := verified_rate_gives_nyman_beurling
-  criterion_to_RH := NymanBeurling.BaezDuarte.baez_duarte_criterion_implies_RH
+  finite_to_criterion := verified_rate_gives_nyman_beurling_axiom
+  criterion_to_RH := NymanBeurling.BaezDuarte.baez_duarte_criterion_implies_RH debt
 }
 
 /-- 
@@ -68,9 +69,9 @@ Maps finite rational PSD kernel matrices to infinite Weil Distribution positivit
 noncomputable def WeilPositivityStrategy : RHStrategy := {
   name := "Weil Positivity"
   -- We wrap the universal quantification over n into a type for the interface
-  finiteCertificate := ∀ n, ∃ C : FiniteWeilKernelCertificate n, True
+  finiteCertificate := PLift (∀ n, ∃ C : FiniteWeilKernelCertificate n, True)
   analyticCriterion := WeilPositivity.WeilPositivity
-  finite_to_criterion := finite_weil_certificates_imply_weil_positivity
+  finite_to_criterion := fun h ↦ finite_weil_certificates_imply_weil_positivity h.down
   criterion_to_RH := WeilPositivity.weil_positivity_implies_RH
 }
 

@@ -615,11 +615,12 @@ theorem baezDuarteCriterion_of_linear_dirichlet_and_quadratic_interaction_estima
   exact baezDuarteCriterion_of_cutoffMobius_log_energy Hlog
 
 theorem RH_of_linear_dirichlet_and_quadratic_interaction_estimates
+    (debt : NymanBeurlingRHBridgeDebts)
     (H_vasyunin : RH.Criteria.NymanBeurling.VasyuninGram.VasyuninBridgeLocalDebts)
     (HL : LinearMobiusDirichletEstimates)
     (HQ : QuadraticInteractionEstimates) :
     RH.Basic.RiemannHypothesis := by
-  exact baez_duarte_criterion_implies_RH
+  exact baez_duarte_criterion_implies_RH debt
     (baezDuarteCriterion_of_linear_dirichlet_and_quadratic_interaction_estimates H_vasyunin HL HQ)
 
 end RH.Criteria.NymanBeurling.CutoffMobiusKernels
