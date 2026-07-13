@@ -1,16 +1,19 @@
 import RiemannHypothesis.Criteria.NymanBeurling.QuadraticInteraction
 
 /-!
-# A structured interface for the H15 Farey-cell correlation debt
+# Retired cellwise interface for the H15 Farey correlation debt
 
 The original `FareyCellMobiusCorrelationEstimate` allowed an arbitrary weight
-`w : ℕ → ℝ`.  That interface is inconsistent with a logarithmic saving: a
-one-point weight defeats any fixed saving as the ambient cutoff grows.  This
-file replaces that unrestricted input by a geometric-decay weight class.
+`w : ℕ → ℝ`, which is inconsistent with a logarithmic saving: a one-point
+weight defeats any fixed saving as the ambient cutoff grows.  The geometric
+weight class below does not repair that issue, because it still contains a
+one-point weight after rescaling its envelope constant.
 
-The binary Möbius correlation estimate itself remains an explicit hypothesis.
-The finite Farey-cell partition and the bridge to the existing gcd-slice
-interface are proved here; no Chowla/DFI estimate is asserted.
+This file is retained as an exploratory record of finite Farey bookkeeping;
+it is not the official H15 input and is not used by `FinalAssembly`.  The
+corrected research target is `H15CenteredAggregateEstimate`, which bounds the
+specific coupled cutoff-Möbius aggregate without independent cellwise weight
+quantifiers.  No Chowla/DFI estimate is asserted here.
 -/
 
 namespace RH.Criteria.NymanBeurling.QuadraticInteraction
@@ -122,11 +125,11 @@ theorem fareyCellPairs_sum_partition (N : ℕ) (F : ℕ × ℕ → ℝ) :
   ext p
   simp [s, fareyCellPairs, g, and_assoc, and_left_comm, and_comm]
 
-/-! ## 3. Restricted correlation hypothesis -/
+/-! ## 3. Retired restricted correlation hypothesis -/
 
-/-- The corrected correlation interface.  The weight is required to lie in
-`FareyCellWeightClass`; the estimate remains a hypothesis because the needed
-two-linear-forms Möbius cancellation is research-level mathematics. -/
+/-- An exploratory cellwise interface retained for its finite bookkeeping.
+It is not a viable H15 hypothesis: `FareyCellWeightClass` admits point masses,
+so a fixed logarithmic saving cannot hold uniformly over this class. -/
 structure FareyCellMobiusCorrelationEstimate_Restricted where
   C_correlation : ℝ
   C_correlation_nonneg : 0 ≤ C_correlation

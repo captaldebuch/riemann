@@ -1,5 +1,5 @@
 import RiemannHypothesis.Criteria.NymanBeurling.QuadraticInteraction
-import RiemannHypothesis.Criteria.NymanBeurling.H15StructuredCorrelationEstimate
+import RiemannHypothesis.Criteria.NymanBeurling.H15CenteredAggregateEstimate
 import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 
 /-!
@@ -7,10 +7,10 @@ import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 
 This module records the exact endgame wiring without asserting either of the
 remaining analytic inputs.  A classical Mertens decay package supplies the
-linear estimates, while the centered Bernoulli correlation package supplies
-the quadratic estimates.  The Vasyunin local bridge is constructed from the
+linear estimates, while the corrected centered H15 aggregate supplies the
+quadratic estimates.  The Vasyunin local bridge is constructed from the
 proved H13 period-reduction chain.  A forward Nyman--Beurling implication then
-yields RH.  The correlation package and the forward implication remain
+yields RH.  The aggregate estimate and the forward implication remain
 explicit hypotheses, so this theorem does not hide an analytic debt.
 -/
 
@@ -57,37 +57,22 @@ theorem riemannHypothesis_of_pair_and_NBforward
       vasyuninBridgeLocalDebts_of_proved_chain H_linear H_quadratic
   exact h_forward (nymanBeurlingCriterion_iff_baezDuarteCriterion.mpr h_baez)
 
-/-- Parallel endgame wiring for the redesigned Farey-cell interface.  The
-restricted binary correlation estimate is still a hypothesis, as are the
-exact cell decomposition and the independently separated BBLS/smooth/residue
-inputs; this theorem only connects those packages to the existing H15 and NB
-bridges. -/
-theorem riemannHypothesis_of_weight_restricted_correlation_and_NBforward
+/--
+The official final conditional RH wiring.  Unlike the retired cellwise
+interfaces, `H_aggregate` is the exact coupled H15 residual with its specific
+cutoff-Möbius weights and its necessary centered cancellations.
+-/
+theorem riemannHypothesis_of_centeredAggregate_and_NBforward
     (H_decay : ClassicalMertensDecay)
-    (Hcorr : FareyCellMobiusCorrelationEstimate_Restricted)
-    (HBBLS : BBLS_EstermannContourPackage)
-    (D : FareyCellGcdSliceErrorDecomposition_Restricted Hcorr HBBLS.mainTerm)
-    (C_loggamma C_residue : ℝ)
-    (C_pos :
-      0 < C_loggamma +
-        (quadraticInteractionDiagonalEstimate_zero.C_diagonal + D.C_error +
-          HBBLS.C_main) + C_residue)
-    (loggamma_bound :
-      ∀ N : ℕ,
-        |explicitQuadraticLogGammaComponent N| ≤ C_loggamma /
-          Real.log (N + 2 : ℝ))
-    (residue_bound :
-      ∀ N : ℕ,
-        |explicitCutoffResidueComponent N| ≤ C_residue /
-          Real.log (N + 2 : ℝ))
+    (H_aggregate : H15CenteredAggregateEstimate)
     (h_forward : NBForward) :
     RH.Basic.RiemannHypothesis := by
+  let H_quadratic : QuadraticInteractionEstimates :=
+    quadraticInteractionEstimates_of_decay_and_h15CenteredAggregate
+      H_decay H_aggregate
   let H_linear : LinearMobiusDirichletEstimates :=
     linear_mobius_dirichlet_estimates_of_classical_api
       (ClassicalMertensAPI.ofDecayOnly H_decay)
-  let H_quadratic : QuadraticInteractionEstimates :=
-    quadraticInteractionEstimates_of_weightRestrictedCorrelation
-      Hcorr HBBLS D C_loggamma C_residue C_pos loggamma_bound residue_bound
   have h_baez : BaezDuarteCriterion :=
     baezDuarteCriterion_of_linear_dirichlet_and_quadratic_interaction_estimates
       vasyuninBridgeLocalDebts_of_proved_chain H_linear H_quadratic

@@ -1,37 +1,20 @@
 import RiemannHypothesis.Criteria.NymanBeurling.FinalAssembly
+import RiemannHypothesis.Criteria.NymanBeurling.H15StructuredCorrelationEstimate
 
 /-!
-# H15 Möbius correlation: an explicit open-problem boundary
+# H15 centered aggregate: an explicit open-problem boundary
 
-The restricted Farey-cell interface already states the exact analytic estimate
-needed by the quadratic-interaction assembly:
+The earlier cellwise Farey interface is not a valid H15 target: its weight
+class contains point masses, so no fixed logarithmic saving can hold uniformly
+for all of its weights.  The corrected object is the coupled, centered
+aggregate `H15CenteredAggregateEstimate`, whose terms retain the cancellations
+created by the actual cutoff-Möbius kernel.
 
-* two Möbius factors on distinct affine-linear forms;
-* coprime Farey parameters and residue ranges;
-* a geometric-decay weight class; and
-* a logarithmic saving uniform in the cutoff.
-
-Mathlib and the vendored project sources contain no formal result of this
-strength.  In particular, the available arithmetic-function and Chebyshev
-files do not contain Chowla, Tao--Teräväinen, or Harper--Klurman--Mangerel
-correlation estimates.  The three plausible research routes are therefore
-recorded as documentation, not silently converted into Lean proofs:
-
-1. averaged Chowla / Matomäki--Radziwiłł--Tao;
-2. logarithmically averaged correlations / Tao--Teräväinen; and
-3. character-theoretic estimates / Harper--Klurman--Mangerel.
-
-The proposition below is the existing content-bearing restricted interface,
-wrapped in a named open-problem proposition.  This wrapper adds no analytic
-claim and no `sorryAx`; it makes the remaining research assumption explicit
-to downstream conditional theorems.
-
-The local reconnaissance also gives a sharper stop condition.  A fixed-shift
-averaged Chowla statement of the form `μ(n) * μ(n + h)` would not by itself
-prove this target: the existing interface is uniform over affine forms
-`a * m + r` and `q * m + s`, over Farey parameters, and over an entire weight
-class.  The missing transfer is therefore a genuine two-linear-forms estimate,
-not merely a missing summation lemma.
+This is a theorem-matching problem before it is a Lean formalization problem.
+Potential routes include a Vaaler reciprocal-phase reduction followed by
+Type-I/Type-II estimates, or a suitably matched averaged multiplicative
+correlation theorem.  None of those routes is asserted to imply the exact
+aggregate below until its weights and uniformity have been checked.
 -/
 
 namespace RH.Criteria.NymanBeurling.QuadraticInteraction
@@ -73,27 +56,23 @@ def h15MobiusCorrelationObstacles : List H15MobiusCorrelationObstacle :=
 /-! ## Named open proposition -/
 
 /--
-The H15 two-linear-forms Möbius correlation estimate as an explicit open
-problem.  Its definition is intentionally `Nonempty` rather than an axiom:
-an eventual proof must provide an inhabitant of the already-frozen
-`FareyCellMobiusCorrelationEstimate_Restricted` structure.
-
-The exact quantifiers and majorant are therefore inherited from that structure
-instead of being duplicated here.  This avoids weakening or accidentally
-strengthening the research target.
+The corrected H15 aggregate estimate as an explicit open problem.  Its
+definition is intentionally `Nonempty` rather than an axiom: an eventual proof
+must provide the one content-bearing analytic estimate used by the final
+conditional RH chain.
 -/
-def FareyCellMobiusCorrelationEstimate_Restricted_open_problem : Prop :=
-  Nonempty FareyCellMobiusCorrelationEstimate_Restricted
+def H15CenteredAggregateEstimate_open_problem : Prop :=
+  Nonempty H15CenteredAggregateEstimate
 
-theorem fareyCellMobiusCorrelationEstimate_Restricted_open_problem_iff :
-    FareyCellMobiusCorrelationEstimate_Restricted_open_problem ↔
-      Nonempty FareyCellMobiusCorrelationEstimate_Restricted :=
+theorem h15CenteredAggregateEstimate_open_problem_iff :
+    H15CenteredAggregateEstimate_open_problem ↔
+      Nonempty H15CenteredAggregateEstimate :=
   Iff.rfl
 
-/-- Extract the correlation estimate when the open problem is supplied. -/
-noncomputable def fareyCellMobiusCorrelationEstimate_of_open_problem
-    (H : FareyCellMobiusCorrelationEstimate_Restricted_open_problem) :
-    FareyCellMobiusCorrelationEstimate_Restricted :=
+/-- Extract the corrected aggregate estimate when the open problem is supplied. -/
+noncomputable def h15CenteredAggregateEstimate_of_open_problem
+    (H : H15CenteredAggregateEstimate_open_problem) :
+    H15CenteredAggregateEstimate :=
   Classical.choice H
 
 theorem open_problem_routes_are_documentary :
@@ -104,40 +83,40 @@ theorem open_problem_obstacle_audit_length :
     h15MobiusCorrelationObstacles.length = 4 := by
   rfl
 
+/-! ## Retired compatibility boundary -/
+
+/-- Retained with its original value for downstream compatibility.  This is
+not a viable H15 target: its underlying cellwise weight class admits point
+masses.  Use `H15CenteredAggregateEstimate_open_problem` for the corrected
+research boundary. -/
+def FareyCellMobiusCorrelationEstimate_Restricted_open_problem : Prop :=
+  Nonempty FareyCellMobiusCorrelationEstimate_Restricted
+
+theorem fareyCellMobiusCorrelationEstimate_Restricted_open_problem_iff :
+    FareyCellMobiusCorrelationEstimate_Restricted_open_problem ↔
+      Nonempty FareyCellMobiusCorrelationEstimate_Restricted :=
+  Iff.rfl
+
+/-- Extract the retired cellwise package only for compatibility with older
+exploratory code.  It is not used by the corrected final assembly. -/
+noncomputable def fareyCellMobiusCorrelationEstimate_of_open_problem
+    (H : FareyCellMobiusCorrelationEstimate_Restricted_open_problem) :
+    FareyCellMobiusCorrelationEstimate_Restricted :=
+  Classical.choice H
+
 /-! ## Conditional endgame wiring -/
 
 /--
-The RH conditional result with the correlation debt named explicitly.
-
-All other inputs use the project's existing assembly shape: H14 decay,
-the BBLS main-term package, a Farey-cell decomposition, smooth/residue bounds,
-and the forward Nyman--Beurling implication.  Supplying the open proposition
-only supplies the correlation package; it does not discharge any other H15 or
-NB field.
+The RH conditional result with the corrected H15 debt named explicitly.
+Supplying the open proposition only supplies that analytic estimate; it does
+not discharge the forward Nyman--Beurling implication.
 -/
-theorem riemannHypothesis_assuming_correlation_open_problem
-    (H_open : FareyCellMobiusCorrelationEstimate_Restricted_open_problem)
+theorem riemannHypothesis_assuming_centeredAggregate_open_problem
+    (H_open : H15CenteredAggregateEstimate_open_problem)
     (H_decay : MobiusSummatory.ClassicalMertensDecay)
-    (HBBLS : BBLS_EstermannContourPackage)
-    (D : FareyCellGcdSliceErrorDecomposition_Restricted
-      (fareyCellMobiusCorrelationEstimate_of_open_problem H_open) HBBLS.mainTerm)
-    (C_loggamma C_residue : ℝ)
-    (C_pos :
-      0 < C_loggamma +
-        (quadraticInteractionDiagonalEstimate_zero.C_diagonal + D.C_error +
-          HBBLS.C_main) + C_residue)
-    (loggamma_bound :
-      ∀ N : ℕ,
-        |explicitQuadraticLogGammaComponent N| ≤ C_loggamma /
-          Real.log (N + 2 : ℝ))
-    (residue_bound :
-      ∀ N : ℕ,
-        |explicitCutoffResidueComponent N| ≤ C_residue /
-          Real.log (N + 2 : ℝ))
     (h_forward : NBForward) :
     RH.Basic.RiemannHypothesis := by
-  exact FinalAssembly.riemannHypothesis_of_weight_restricted_correlation_and_NBforward
-    H_decay (fareyCellMobiusCorrelationEstimate_of_open_problem H_open) HBBLS D
-    C_loggamma C_residue C_pos loggamma_bound residue_bound h_forward
+  exact FinalAssembly.riemannHypothesis_of_centeredAggregate_and_NBforward
+    H_decay (h15CenteredAggregateEstimate_of_open_problem H_open) h_forward
 
 end RH.Criteria.NymanBeurling.QuadraticInteraction
