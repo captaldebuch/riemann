@@ -18,6 +18,58 @@ open MobiusSummatory
 open H14ZetaEM
 open H14ZetaFETransport
 
+/-!
+## A weaker effective-Perron interface
+
+The final H14 consumer only needs a decay estimate for `mobiusSummatory`.  It
+does not need an exact, untruncated Perron identity in the API.  The following
+package records a weaker route: a chosen (eventual) contour/main term, a
+quantified approximation error, and a quantified bound for that main term.
+The contour construction and both estimates remain analytic hypotheses; the
+assembly into `ClassicalMertensDecay` is elementary and theorem-level.
+-/
+
+structure WeakEffectivePerronPackage where
+  contourTerm : ℕ → ℝ
+  C_main : ℝ
+  C_error : ℝ
+  a : ℝ
+  C_main_pos : 0 < C_main
+  C_error_pos : 0 < C_error
+  a_pos : 0 < a
+  contour_term_bound :
+    ∀ N : ℕ, 2 ≤ N →
+      |contourTerm N| ≤ C_main * (N : ℝ) *
+        Real.exp (-a * Real.sqrt (Real.log N))
+  approximation_error_bound :
+    ∀ N : ℕ, 2 ≤ N →
+      |MobiusSummatory.mobiusSummatory N - contourTerm N| ≤
+        C_error * (N : ℝ) * Real.exp (-a * Real.sqrt (Real.log N))
+
+noncomputable def classicalMertensDecay_of_weakEffectivePerron
+    (P : WeakEffectivePerronPackage) :
+    MobiusSummatory.ClassicalMertensDecay := by
+  refine
+    { C := P.C_main + P.C_error
+      a := P.a
+      C_pos := by linarith [P.C_main_pos, P.C_error_pos]
+      a_pos := P.a_pos
+      mertens_decay := ?_ }
+  intro N hN
+  have hmain := P.contour_term_bound N hN
+  have herr := P.approximation_error_bound N hN
+  calc
+    |MobiusSummatory.mobiusSummatory N| =
+        |(MobiusSummatory.mobiusSummatory N - P.contourTerm N) +
+          P.contourTerm N| := by ring_nf
+    _ ≤ |MobiusSummatory.mobiusSummatory N - P.contourTerm N| +
+        |P.contourTerm N| := abs_add_le _ _
+    _ ≤ P.C_error * (N : ℝ) * Real.exp (-P.a * Real.sqrt (Real.log N)) +
+        P.C_main * (N : ℝ) * Real.exp (-P.a * Real.sqrt (Real.log N)) :=
+      add_le_add herr hmain
+    _ = (P.C_main + P.C_error) * (N : ℝ) *
+        Real.exp (-P.a * Real.sqrt (Real.log N)) := by ring
+
 /--
 The E1/E2 Euler--Maclaurin continuation and the V-R component estimates give
 an unconditional right-half vertical-growth package (with `t₀ = 1`).
