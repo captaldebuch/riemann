@@ -1,4 +1,4 @@
-import RiemannHypothesis.Criteria.NymanBeurling.NymanBeurlingForward
+import RiemannHypothesis.Criteria.NymanBeurling.BaezDuarte
 
 /-!
 # Phase NB0 — structural Nyman--Beurling/RH bridge debts
@@ -20,7 +20,10 @@ namespace RH.Criteria.NymanBeurling.RHBridge
 open scoped BigOperators
 
 open RH.Criteria.NymanBeurling.BaezDuarte
-open RH.Criteria.NymanBeurling.NymanBeurlingForward
+
+/-- The forward Nyman--Beurling implication needed for the RH pipeline. -/
+def NBForward : Prop :=
+  NymanBeurlingCriterion → RH.Basic.RiemannHypothesis
 
 /-! ## NB0-b: the two-debt bridge -/
 

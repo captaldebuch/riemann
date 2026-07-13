@@ -1,5 +1,5 @@
-import RiemannHypothesis.Criteria.NymanBeurling.NymanBeurlingForward
 import RiemannHypothesis.Criteria.NymanBeurling.QuadraticInteraction
+import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 
 /-!
 # Final conditional assembly
@@ -18,7 +18,7 @@ namespace RH.Criteria.NymanBeurling.FinalAssembly
 open RH.Criteria.NymanBeurling.BaezDuarte
 open RH.Criteria.NymanBeurling.CutoffMobiusKernels
 open RH.Criteria.NymanBeurling.MobiusSummatory
-open RH.Criteria.NymanBeurling.NymanBeurlingForward
+open RH.Criteria.NymanBeurling.RHBridge
 open RH.Criteria.NymanBeurling.QuadraticInteraction
 open RH.Criteria.NymanBeurling.VasyuninGram
 
