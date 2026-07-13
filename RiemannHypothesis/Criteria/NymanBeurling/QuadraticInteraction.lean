@@ -7,6 +7,8 @@ namespace RH.Criteria.NymanBeurling.QuadraticInteraction
 
 open RH.Criteria.NymanBeurling.CutoffMobiusKernels
 open RH.Criteria.NymanBeurling.VasyuninGram
+open Filter
+open Topology
 
 -- ---------------------------------------------------------------------------
 -- 1. Unified Interaction Kernel
@@ -222,6 +224,48 @@ theorem quadraticInteractionGcdSlice_eq_coprimeScaled (N g : ℕ) (hg : 0 < g) :
       unfold quadraticInteractionCoprimeScaledSlice
       dsimp [T, scaledF]
       rw [Finset.sum_filter, Finset.sum_product]
+
+/-!
+The common-gcd variable does not carry a second Möbius sign.  Once
+`g` is coprime to `a * b`, multiplicativity gives
+`μ (g*a) μ (g*b) = μ a μ b μ g²`; if it is not coprime, at least one
+factor vanishes.  This exact identity is the arithmetic preconditioning
+for the fractional-tail route to H15.
+-/
+
+theorem moebius_mul_gcd_factor
+    (g a b : ℕ) (hgab : Nat.Coprime g (a * b)) :
+    ArithmeticFunction.moebius (g * a) * ArithmeticFunction.moebius (g * b) =
+      ArithmeticFunction.moebius a * ArithmeticFunction.moebius b *
+        (ArithmeticFunction.moebius g) ^ 2 := by
+  have hga : Nat.Coprime g a :=
+    hgab.coprime_dvd_right (dvd_mul_right a b)
+  have hgb : Nat.Coprime g b :=
+    hgab.coprime_dvd_right (dvd_mul_left b a)
+  rw [ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hga,
+    ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hgb]
+  ring
+
+theorem cutoffMobiusCoeff_mul_gcd_factor
+    (N g a b : ℕ) (hgab : Nat.Coprime g (a * b)) :
+    cutoffMobiusCoeff N (g * a) * cutoffMobiusCoeff N (g * b) =
+      (((ArithmeticFunction.moebius a : ℤ) : ℝ) *
+          ((ArithmeticFunction.moebius b : ℤ) : ℝ) *
+          (((ArithmeticFunction.moebius g : ℤ) : ℝ) ^ 2)) *
+        (cutoffWeight N (g * a) * cutoffWeight N (g * b)) := by
+  unfold cutoffMobiusCoeff
+  have hga : Nat.Coprime g a :=
+    hgab.coprime_dvd_right (dvd_mul_right a b)
+  have hgb : Nat.Coprime g b :=
+    hgab.coprime_dvd_right (dvd_mul_left b a)
+  rw [ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hga,
+    ArithmeticFunction.IsMultiplicative.map_mul_of_coprime
+      ArithmeticFunction.isMultiplicative_moebius hgb]
+  push_cast
+  ring
 
 -- ---------------------------------------------------------------------------
 -- 4. Off-Diagonal GCD Stratification
@@ -1011,6 +1055,32 @@ theorem explicitQuadraticLogGammaComponent_eq_smooth_product (N : ℕ) :
   unfold explicitQuadraticLogGammaComponent
   exact smooth_part_quadratic_sum_eq_linear_product N (cutoffMobiusCoeff N)
 
+/-- The inverse-index factor in the smooth product is exactly the negative
+H14 cutoff Dirichlet sum. -/
+theorem cutoffMobiusCoeff_div_sum_eq_neg_overK (N : ℕ) :
+    (∑ h ∈ Finset.Icc 1 N, cutoffMobiusCoeff N h / (h : ℝ)) =
+      -cutoffMobiusOverKSum N := by
+  unfold cutoffMobiusCoeff cutoffWeight cutoffMobiusOverKSum
+  rw [← Finset.sum_neg_distrib]
+  apply Finset.sum_congr rfl
+  intro h _
+  ring
+
+/-- Classical Mertens decay controls the inverse-index factor of the smooth
+product.  The other factor `∑ k, cutoffMobiusCoeff N k` is deliberately not
+discarded: the separate absolute value in the H15 target requires genuine
+control of their product. -/
+theorem cutoffMobiusCoeff_div_sum_bound_of_decay
+    (H : MobiusSummatory.ClassicalMertensDecay) :
+    ∃ C > 0, ∀ N : ℕ,
+      |∑ h ∈ Finset.Icc 1 N, cutoffMobiusCoeff N h / (h : ℝ)| ≤
+        C / Real.log (N + 2 : ℝ) := by
+  let api := MobiusSummatory.ClassicalMertensAPI.ofDecayOnly H
+  refine ⟨12 * api.C_M, mul_pos (by norm_num) api.C_M_pos, ?_⟩
+  intro N
+  rw [cutoffMobiusCoeff_div_sum_eq_neg_overK, abs_neg]
+  exact api.overK_bound N
+
 /-- The interaction remainder written as completed-square energy plus the
 H14-controlled linear centered error. -/
 theorem explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear
@@ -1023,6 +1093,357 @@ theorem explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear
   unfold cutoffMobiusDefectEnergy cutoffMobiusGramNormIntegral
   rw [cutoffMobiusChiRhoCross_eq_neg_explicitLinearMobiusSum]
   ring
+
+/-! ### The BBLS Bernoulli-series form of the cotangent interaction -/
+
+/-- The Möbius-weighted Bernoulli inner sum exposed by BBLS Proposition 48. -/
+noncomputable def cutoffMobiusBernoulliInner (N m h : ℕ) : ℝ :=
+  ∑ k ∈ Finset.Icc 1 N,
+    cutoffMobiusCoeff N k *
+      bernoulliB1 ((m : ℝ) * ((h : ℝ) / (k : ℝ)))
+
+/-- The finite `m`-partial sum of the reordered symmetric cotangent interaction. -/
+noncomputable def cutoffMobiusBernoulliCorrelationPartial (N M : ℕ) : ℝ :=
+  -2 * ∑ m ∈ Finset.Icc 1 M,
+    (∑ h ∈ Finset.Icc 1 N,
+      cutoffMobiusCoeff N h / (h : ℝ) * cutoffMobiusBernoulliInner N m h) /
+        (m : ℝ)
+
+/-- The individual BBLS Fourier mode in the reordered cotangent interaction.
+
+The index `m = 0` is harmless as a definition, but all correlation partials
+below sum this mode only over `m ≥ 1`, matching the analytic series
+`∑_{m≥1} B₁(m·h/k)/m`. -/
+noncomputable def cutoffMobiusBernoulliMode (N m : ℕ) : ℝ :=
+  -2 *
+    ((∑ h ∈ Finset.Icc 1 N,
+      cutoffMobiusCoeff N h / (h : ℝ) * cutoffMobiusBernoulliInner N m h) /
+        (m : ℝ))
+
+/-- Zero-based indexing for the positive modes: index `j` is analytic mode
+`m = j + 1`. -/
+noncomputable def cutoffMobiusBernoulliModeFromZero (N j : ℕ) : ℝ :=
+  cutoffMobiusBernoulliMode N (j + 1)
+
+/-- The finite correlation partial is exactly the sum of its first `M`
+positive Fourier modes. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_eq_mode_sum (N M : ℕ) :
+    cutoffMobiusBernoulliCorrelationPartial N M =
+      ∑ m ∈ Finset.Icc 1 M, cutoffMobiusBernoulliMode N m := by
+  unfold cutoffMobiusBernoulliCorrelationPartial cutoffMobiusBernoulliMode
+  rw [Finset.mul_sum]
+
+/-- The same positive-mode sum, written with zero-based `range` indexing. -/
+theorem cutoffMobiusBernoulliModeFromZero_sum_range_eq_Icc (N M : ℕ) :
+    (∑ j ∈ Finset.range M, cutoffMobiusBernoulliModeFromZero N j) =
+      ∑ m ∈ Finset.Icc 1 M, cutoffMobiusBernoulliMode N m := by
+  rw [Finset.range_eq_Ico]
+  rw [show (∑ j ∈ Finset.Ico 0 M, cutoffMobiusBernoulliModeFromZero N j) =
+      ∑ j ∈ Finset.Ico 0 M, cutoffMobiusBernoulliMode N (1 + j) by
+        apply Finset.sum_congr rfl
+        intro j _
+        simp [cutoffMobiusBernoulliModeFromZero, Nat.add_comm]]
+  rw [Finset.sum_Ico_add]
+  simp [Finset.Ico_add_one_right_eq_Icc]
+
+/-- The reordered partial sum is exactly the corresponding finite triple sum. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_eq_triple (N M : ℕ) :
+    cutoffMobiusBernoulliCorrelationPartial N M =
+      -2 * ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+          (∑ m ∈ Finset.Icc 1 M,
+            bernoulliB1 ((m : ℝ) * ((h : ℝ) / (k : ℝ))) / (m : ℝ)) := by
+  classical
+  unfold cutoffMobiusBernoulliCorrelationPartial cutoffMobiusBernoulliInner
+  congr 1
+  simp_rw [Finset.mul_sum, Finset.sum_div]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro h _
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro k _
+  apply Finset.sum_congr rfl
+  intro m _
+  ring
+
+/-- The BBLS limit value of the reordered Bernoulli correlation. -/
+noncomputable def cutoffMobiusBernoulliCorrelationValue (N : ℕ) : ℝ :=
+  -2 * ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+    (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+      (Real.pi / (2 * (k : ℝ)) * cotangentSumVFormula h k)
+
+/-- BBLS Proposition 48 evaluates every finite `(h,k)` series in the
+reordered correlation, so its finite `m`-partials converge to the displayed
+cotangent value. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_tendsto (N : ℕ) :
+    Tendsto (cutoffMobiusBernoulliCorrelationPartial N) atTop
+      (𝓝 (cutoffMobiusBernoulliCorrelationValue N)) := by
+  have hpairs : Tendsto (fun M : ℕ =>
+      ∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+          (∑ m ∈ Finset.Icc 1 M,
+            bernoulliB1 ((m : ℝ) * ((h : ℝ) / (k : ℝ))) / (m : ℝ)))
+      atTop
+      (𝓝 (∑ h ∈ Finset.Icc 1 N, ∑ k ∈ Finset.Icc 1 N,
+        (cutoffMobiusCoeff N h * cutoffMobiusCoeff N k / (h : ℝ)) *
+          (Real.pi / (2 * (k : ℝ)) * cotangentSumVFormula h k))) := by
+    apply tendsto_finset_sum
+    intro h hh
+    apply tendsto_finset_sum
+    intro k hk
+    have hhpos : 0 < h :=
+      lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hh).1
+    have hkpos : 0 < k :=
+      lt_of_lt_of_le Nat.zero_lt_one (Finset.mem_Icc.mp hk).1
+    exact tendsto_const_nhds.mul
+      (tendsto_bernoulliB1_sum_div_rat h k hhpos hkpos)
+  have hscaled := hpairs.const_mul (-2)
+  apply hscaled.congr'
+  filter_upwards [] with M
+  rw [cutoffMobiusBernoulliCorrelationPartial_eq_triple]
+
+/-- The BBLS cotangent/Bernoulli correlation is the limit of its finite mode
+partials, indexed from zero as `m = j + 1`.
+
+This is the exact conditional-Fourier statement supplied by BBLS Proposition
+48.  It deliberately uses `Tendsto` of ordinary partial sums rather than an
+unconditional `tsum`: the proved rational `φ₁` series in this project is a
+partial-sum limit theorem, not an absolute-summability theorem. -/
+theorem cutoffMobiusBernoulliCorrelationValue_eq_mode_partial_limit (N : ℕ) :
+    Tendsto (fun M : ℕ =>
+      ∑ j ∈ Finset.range M, cutoffMobiusBernoulliModeFromZero N j) atTop
+      (𝓝 (cutoffMobiusBernoulliCorrelationValue N)) := by
+  have h := cutoffMobiusBernoulliCorrelationPartial_tendsto N
+  apply h.congr'
+  filter_upwards [] with M
+  rw [cutoffMobiusBernoulliCorrelationPartial_eq_mode_sum]
+  rw [← cutoffMobiusBernoulliModeFromZero_sum_range_eq_Icc]
+
+/-- If the zero-based mode series is summable in Lean's `tsum` sense, then
+its `tsum` agrees with the BBLS cotangent/Bernoulli value.  The summability
+hypothesis is intentionally explicit: it is stronger than the currently
+proved BBLS partial-sum convergence statement. -/
+theorem cutoffMobiusBernoulliCorrelationValue_eq_tsum_modes_of_summable
+    (N : ℕ)
+    (hs : Summable (cutoffMobiusBernoulliModeFromZero N)) :
+    cutoffMobiusBernoulliCorrelationValue N =
+      ∑' j : ℕ, cutoffMobiusBernoulliModeFromZero N j := by
+  exact tendsto_nhds_unique
+    (cutoffMobiusBernoulliCorrelationValue_eq_mode_partial_limit N)
+    hs.hasSum.tendsto_sum_nat
+
+/-- The BBLS Bernoulli correlation value is exactly the symmetric cotangent
+component already used in the explicit quadratic decomposition. -/
+theorem cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent (N : ℕ) :
+    cutoffMobiusBernoulliCorrelationValue N =
+      explicitQuadraticCotangentComponent N := by
+  classical
+  let S := Finset.Icc 1 N
+  let A := ∑ h ∈ S, ∑ k ∈ S,
+    cutoffMobiusCoeff N h * cutoffMobiusCoeff N k *
+      (-(Real.pi / (2 * (h : ℝ) * (k : ℝ)) * cotangentSumVFormula h k))
+  let B := ∑ h ∈ S, ∑ k ∈ S,
+    cutoffMobiusCoeff N h * cutoffMobiusCoeff N k *
+      (-(Real.pi / (2 * (h : ℝ) * (k : ℝ)) * cotangentSumVFormula k h))
+  have hvalue : cutoffMobiusBernoulliCorrelationValue N = A + A := by
+    unfold cutoffMobiusBernoulliCorrelationValue
+    dsimp [A, S]
+    rw [Finset.mul_sum]
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro h _
+    rw [Finset.mul_sum]
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  have hswap : B = A := by
+    dsimp [A, B]
+    rw [Finset.sum_comm]
+    apply Finset.sum_congr rfl
+    intro h _
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  have hexplicit : explicitQuadraticCotangentComponent N = A + B := by
+    unfold explicitQuadraticCotangentComponent
+    dsimp [A, B, S]
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro h _
+    rw [← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl
+    intro k _
+    ring
+  rw [hvalue, hexplicit, hswap]
+
+/-- The reordered Bernoulli partials converge to the existing cotangent
+component, with no extra analytic hypothesis. -/
+theorem cutoffMobiusBernoulliCorrelationPartial_tendsto_cotangent (N : ℕ) :
+    Tendsto (cutoffMobiusBernoulliCorrelationPartial N) atTop
+      (𝓝 (explicitQuadraticCotangentComponent N)) := by
+  simpa [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent] using
+    cutoffMobiusBernoulliCorrelationPartial_tendsto N
+
+/-- The cotangent component is the partial-sum limit of the BBLS Fourier
+modes.  This is the safe regrouping identity used by the mode-split
+diagnostics. -/
+theorem cotangent_component_eq_mode_partial_limit (N : ℕ) :
+    Tendsto (fun M : ℕ =>
+      ∑ j ∈ Finset.range M, cutoffMobiusBernoulliModeFromZero N j) atTop
+      (𝓝 (explicitQuadraticCotangentComponent N)) := by
+  simpa [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent] using
+    cutoffMobiusBernoulliCorrelationValue_eq_mode_partial_limit N
+
+/-- Conditional `tsum` form of `cotangent_component_eq_mode_partial_limit`.
+The explicit summability hypothesis prevents the theorem from claiming an
+absolute/unordered summability result not supplied by the current BBLS
+infrastructure. -/
+theorem cotangent_component_eq_tsum_modes_of_summable
+    (N : ℕ)
+    (hs : Summable (cutoffMobiusBernoulliModeFromZero N)) :
+    explicitQuadraticCotangentComponent N =
+      ∑' j : ℕ, cutoffMobiusBernoulliModeFromZero N j := by
+  rw [← cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent]
+  exact cutoffMobiusBernoulliCorrelationValue_eq_tsum_modes_of_summable N hs
+
+/-- The corrected defect is the log-ratio term plus the BBLS Bernoulli
+correlation main term and the already-controlled H14 linear centering. -/
+theorem cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value (N : ℕ) :
+    cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N =
+      explicitQuadraticLogRatioComponent N +
+        cutoffMobiusBernoulliCorrelationValue N - 1 +
+          2 * (explicitLinearMobiusSum N + 1) := by
+  rw [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent]
+  have h :=
+    explicitQuadraticInteractionRemainder_eq_defect_sub_loggamma_sub_linear N
+  unfold explicitQuadraticInteractionRemainder
+    explicitQuadraticLogCotangentInteraction at h
+  linarith
+
+/-- The centered Bernoulli package preserves the exact cancellation between
+the log-ratio term, the BBLS correlation main term `1`, and the doubled H14
+linear correction. -/
+theorem centeredBernoulliPair_eq_interactionRemainder_add_linear (N : ℕ) :
+    explicitQuadraticLogRatioComponent N +
+        cutoffMobiusBernoulliCorrelationValue N - 1 +
+          2 * (explicitLinearMobiusSum N + 1) =
+      explicitQuadraticInteractionRemainder N +
+        2 * (explicitLinearMobiusSum N + 1) := by
+  rw [cutoffMobiusBernoulliCorrelationValue_eq_cotangentComponent]
+  unfold explicitQuadraticInteractionRemainder
+    explicitQuadraticLogCotangentInteraction
+  ring
+
+/-- The finite centered partial whose limit is the corrected defect. -/
+noncomputable def cutoffMobiusBernoulliCenteredPartial (N M : ℕ) : ℝ :=
+  explicitQuadraticLogRatioComponent N +
+    cutoffMobiusBernoulliCorrelationPartial N M - 1 +
+      2 * (explicitLinearMobiusSum N + 1)
+
+/-- The centered Bernoulli correlation partials converge exactly to the
+completed-square defect after subtraction of the log-gamma term. -/
+theorem cutoffMobiusBernoulliCenteredPartial_tendsto (N : ℕ) :
+    Tendsto (cutoffMobiusBernoulliCenteredPartial N) atTop
+      (𝓝 (cutoffMobiusDefectEnergy N -
+        explicitQuadraticLogGammaComponent N)) := by
+  have h := cutoffMobiusBernoulliCorrelationPartial_tendsto N
+  have hcentered :=
+    (((h.const_add (explicitQuadraticLogRatioComponent N)).sub_const 1).add_const
+      (2 * (explicitLinearMobiusSum N + 1)))
+  rw [cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value]
+  simpa [cutoffMobiusBernoulliCenteredPartial, add_assoc] using hcentered
+
+/--
+The one genuinely quadratic estimate not supplied by classical Mertens decay.
+
+Its second absolute value is the limit of
+`cutoffMobiusBernoulliCenteredPartial`; hence the field states the actual
+Möbius--Bernoulli correlation estimate exposed by BBLS Proposition 48, rather
+than merely renaming the norm residual.  Diagnostics at `N = 20, 50, 100, 300`
+gave `package * log(N+2)^2 = 4.01, 3.11, 2.38, 1.56`, motivating the displayed
+full spare logarithm.
+
+The parameter `H` records the intended background input.  It is not sufficient
+by itself in the present proof: the pointwise inner sums grow in the numerical
+gate, and their outer `1/m` series is only conditionally convergent.
+-/
+structure QuadraticInteractionBernoulliCorrelationEstimate
+    (_H : MobiusSummatory.ClassicalMertensDecay) where
+  C_correlation : ℝ
+  C_correlation_nonneg : 0 ≤ C_correlation
+  centered_correlation_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogGammaComponent N| +
+          |explicitQuadraticLogRatioComponent N +
+              cutoffMobiusBernoulliCorrelationValue N - 1 +
+                2 * (explicitLinearMobiusSum N + 1)|
+        ≤ C_correlation / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The separately absolute smooth-product sub-debt in the S1 estimate.
+
+The H14 toolkit proves an `O(1 / log N)` bound for its inverse-index factor
+(`cutoffMobiusCoeff_div_sum_bound_of_decay`), but its available bound for the
+unweighted factor grows like `N * exp (-c * sqrt (log N))`.  Multiplying those
+separate majorants does not prove decay.  Numerically,
+`|explicitQuadraticLogGammaComponent N| * log(N+2)^2` was
+`0.986, 0.539, 0.228, 0.082, 0.047, 0.006, 0.039` at
+`N = 100, 300, 1000, 3000, 10^4, 10^5, 10^6`.
+-/
+structure QuadraticInteractionSmoothProductLogSqEstimate
+    (_H : MobiusSummatory.ClassicalMertensDecay) where
+  C_smooth : ℝ
+  C_smooth_nonneg : 0 ≤ C_smooth
+  smooth_product_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogGammaComponent N| ≤
+        C_smooth / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The content-bearing centered main-term sub-debt left by the numerical S1
+gate.  It keeps `logRatio + Bernoulli - 1` paired before adding the doubled
+linear correction; no pointwise bound on `cutoffMobiusBernoulliInner` is used.
+
+At `N = 500, 1000, 2000`, the first pairing cancels its three constituents by
+factors about `315, 738, 291`, and the final centered expression multiplied by
+`log(N+2)^2` was `0.975, 0.925, 1.010`.
+-/
+structure QuadraticInteractionCenteredBernoulliPairEstimate
+    (_H : MobiusSummatory.ClassicalMertensDecay) where
+  C_centered : ℝ
+  C_centered_nonneg : 0 ≤ C_centered
+  centered_pair_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogRatioComponent N +
+          cutoffMobiusBernoulliCorrelationValue N - 1 +
+            2 * (explicitLinearMobiusSum N + 1)| ≤
+        C_centered / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The two precisely isolated S1 sub-estimates assemble mechanically into the
+existing Bernoulli-correlation interface.  This theorem adds no analytic
+assumption beyond the two displayed content-bearing fields. -/
+noncomputable def quadraticInteractionBernoulliCorrelationEstimate_of_subEstimates
+    (H : MobiusSummatory.ClassicalMertensDecay)
+    (H_smooth : QuadraticInteractionSmoothProductLogSqEstimate H)
+    (H_centered : QuadraticInteractionCenteredBernoulliPairEstimate H) :
+    QuadraticInteractionBernoulliCorrelationEstimate H := by
+  refine
+    { C_correlation := H_smooth.C_smooth + H_centered.C_centered
+      C_correlation_nonneg :=
+        add_nonneg H_smooth.C_smooth_nonneg H_centered.C_centered_nonneg
+      centered_correlation_bound := ?_ }
+  intro N
+  calc
+    |explicitQuadraticLogGammaComponent N| +
+          |explicitQuadraticLogRatioComponent N +
+              cutoffMobiusBernoulliCorrelationValue N - 1 +
+                2 * (explicitLinearMobiusSum N + 1)|
+        ≤ H_smooth.C_smooth / Real.log (N + 2 : ℝ) ^ 2 +
+            H_centered.C_centered / Real.log (N + 2 : ℝ) ^ 2 :=
+      add_le_add (H_smooth.smooth_product_bound N)
+        (H_centered.centered_pair_bound N)
+    _ = (H_smooth.C_smooth + H_centered.C_centered) /
+          Real.log (N + 2 : ℝ) ^ 2 := by ring
 
 /--
 The single residual analytic input left by the norm-square finish attempt.
@@ -1041,6 +1462,41 @@ structure QuadraticInteractionNormResidual where
       |explicitQuadraticLogGammaComponent N| +
           |cutoffMobiusDefectEnergy N - explicitQuadraticLogGammaComponent N|
         ≤ C_norm / Real.log (N + 2 : ℝ)
+
+/-- The centered BBLS correlation estimate, with its observed spare logarithm,
+implies the norm residual required by the existing H15 finish bridge. -/
+noncomputable def quadraticInteractionNormResidual_of_bernoulliCorrelation
+    (H : MobiusSummatory.ClassicalMertensDecay)
+    (Hcorr : QuadraticInteractionBernoulliCorrelationEstimate H) :
+    QuadraticInteractionNormResidual := by
+  let logTwo := Real.log (2 : ℝ)
+  refine
+    { C_norm := Hcorr.C_correlation / logTwo
+      C_norm_nonneg := div_nonneg Hcorr.C_correlation_nonneg
+        (Real.log_pos (by norm_num)).le
+      norm_loggamma_package_bound := ?_ }
+  intro N
+  rw [cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value]
+  have hcorr := Hcorr.centered_correlation_bound N
+  have hlogTwo : 0 < logTwo := Real.log_pos (by norm_num)
+  have hlogN : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+  have hmono : logTwo ≤ Real.log (N + 2 : ℝ) := by
+    exact Real.log_le_log (by norm_num) (by norm_cast; omega)
+  have hratio :
+      Hcorr.C_correlation / Real.log (N + 2 : ℝ) ≤
+        Hcorr.C_correlation / logTwo :=
+    div_le_div_of_nonneg_left Hcorr.C_correlation_nonneg hlogTwo hmono
+  calc
+    |explicitQuadraticLogGammaComponent N| +
+          |explicitQuadraticLogRatioComponent N +
+              cutoffMobiusBernoulliCorrelationValue N - 1 +
+                2 * (explicitLinearMobiusSum N + 1)|
+        ≤ Hcorr.C_correlation / Real.log (N + 2 : ℝ) ^ 2 := hcorr
+    _ = (Hcorr.C_correlation / Real.log (N + 2 : ℝ)) /
+          Real.log (N + 2 : ℝ) := by ring
+    _ ≤ (Hcorr.C_correlation / logTwo) /
+          Real.log (N + 2 : ℝ) :=
+      div_le_div_of_nonneg_right hratio hlogN.le
 
 /-- The residual package gives the log-gamma field of
 `QuadraticInteractionEstimates`. -/
@@ -1128,6 +1584,17 @@ noncomputable def quadraticInteractionEstimates_of_mertens_and_normResidual
   quadraticInteractionEstimates_of_linearDirichlet_and_normResidual
     (MobiusSummatory.linear_mobius_dirichlet_estimates_of_classical_api H_mertens)
     H_res
+
+/-- Final C4 wiring: classical Mertens decay supplies every H14 input, while
+the single centered Möbius--Bernoulli correlation estimate supplies the
+remaining H15 norm residual. -/
+noncomputable def quadraticInteractionEstimates_of_decay_and_bernoulliCorrelation
+    (H : MobiusSummatory.ClassicalMertensDecay)
+    (Hcorr : QuadraticInteractionBernoulliCorrelationEstimate H) :
+    QuadraticInteractionEstimates :=
+  quadraticInteractionEstimates_of_mertens_and_normResidual
+    (MobiusSummatory.ClassicalMertensAPI.ofDecayOnly H)
+    (quadraticInteractionNormResidual_of_bernoulliCorrelation H Hcorr)
 
 end KernelNormFinish
 

@@ -143,6 +143,8 @@ def generate():
 import Mathlib.NumberTheory.Harmonic.EulerMascheroni
 import RiemannHypothesis.Certificates.IntervalCertificate
 
+set_option linter.style.longLine false
+
 namespace RH.Certificates.Generated
 
 open RH.Certificates

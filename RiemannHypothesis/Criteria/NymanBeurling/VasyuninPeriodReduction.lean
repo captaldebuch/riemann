@@ -282,7 +282,7 @@ theorem card_filter_mul_eq_eq_div {h k X Y : ℕ} (hh : 0 < h) (hk : 0 < k)
                 by simpa [Nat.mul_comm] using hht⟩,
                 Finset.mem_Icc.mpr ⟨Nat.succ_le_of_lt (Nat.mul_pos hk htpos),
                   by simpa [Nat.mul_comm] using hkt⟩⟩
-            · simp [Nat.mul_assoc, Nat.mul_left_comm, Nat.mul_comm]
+            · simp [Nat.mul_left_comm, Nat.mul_comm]
           · intro t₁ ht₁ t₂ ht₂ hEq
             exact Nat.eq_of_mul_eq_mul_left hh (by simpa using congrArg Prod.fst hEq)
           · intro p hp
@@ -305,7 +305,7 @@ theorem card_filter_mul_eq_eq_div {h k X Y : ℕ} (hh : 0 < h) (hk : 0 < k)
                 _ = p.2 * h := by simpa [ht] using hpEq
             refine ⟨t, Finset.mem_Icc.mpr ⟨Nat.succ_le_of_lt htpos, htle⟩, ?_⟩
             ext <;> simp [ht, hkeq]
-    _ = X / h := by simpa using Nat.card_Icc 1 (X / h)
+    _ = X / h := by simp
 
 /-- Purely finite/natural-number form of Báez-Duarte–Balazard–Landreau–Saias Proposition 12,
     assuming the two monotonicity bounds needed to realize both floor sums on the full rectangle. -/
@@ -1029,6 +1029,7 @@ theorem fract_mul_div_sq_intervalIntegrable {c a b : ℝ} (hpos : 0 < min a b) :
         gcongr
       _ ≤ 1 / (min a b) ^ 2 := hden
 
+set_option linter.flexible false in
 /-- Linear fractional-part scaling under the substitution `u = θ*t`.
 
 This is the non-quadratic companion to `fract_sq_scaled_integral`, and is the substitution
@@ -1313,6 +1314,7 @@ theorem baezDuarte_prop16_frullani {θ x : ℝ} (hθ : 0 < θ) (hx : 0 < x) :
     rw [hinterval]
     ring
 
+set_option linter.flexible false in
 /-- Quadratic scaling identity used in the proof of BBLS Proposition 22.
 
 The identity appears explicitly in the proof on page 12 of
@@ -1356,6 +1358,7 @@ theorem intervalIntegrable_of_bound_on_Ioc {f : ℝ → ℝ} {x C : ℝ} (hx : 0
     have huIoc : u ∈ Set.Ioc (0 : ℝ) x := by simpa [Set.uIoc_of_le hx] using hu
     simpa [Real.norm_eq_abs] using hbound u huIoc
 
+set_option linter.flexible false in
 /-- **Proposition 22, rational case** (`θ = k/h`, coprime, `h,k > 0`), from
     Báez-Duarte--Balazard--Landreau--Saias, arXiv:math/0306251.
 
@@ -1400,7 +1403,7 @@ theorem baezDuarte_prop22_rat {h k : ℕ} (hh : 0 < h) (hk : 0 < k)
         intro u hu
         have huIoc : u ∈ Set.Ioc (0 : ℝ) y := by simpa [Set.uIoc_of_le hy.le] using hu
         have hfl : ⌊u⌋₊ = 0 := Nat.floor_eq_zero.mpr (lt_of_le_of_lt huIoc.2 hlt1)
-        show (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = 0
+        change (∑ m ∈ Finset.Icc 1 ⌊u⌋₊, a m) / u ^ 2 = 0
         rw [hfl]
         simp
       exact (intervalIntegrable_congr hzero).2 intervalIntegrable_const

@@ -314,7 +314,7 @@ theorem hasDerivAt_mittagLefflerTerm {a y : ℝ} (ha : y ≠ a) (ha' : y ≠ -a)
     have hsub : HasDerivAt (fun z : ℝ => z - a) 1 y := (hasDerivAt_id y).sub_const a
     have hne : y - a ≠ 0 := sub_ne_zero.mpr ha
     have := hsub.inv hne
-    simp only [one_div, inv_one] at this ⊢
+    simp only [one_div] at this ⊢
     convert this using 1
     field_simp
   have h2 : HasDerivAt (fun z : ℝ => 1 / (z + a)) (-(1 / (y + a) ^ 2)) y := by
@@ -322,7 +322,7 @@ theorem hasDerivAt_mittagLefflerTerm {a y : ℝ} (ha : y ≠ a) (ha' : y ≠ -a)
     have hne : y + a ≠ 0 := by
       intro h; apply ha'; linarith
     have := hadd.inv hne
-    simp only [one_div, inv_one] at this ⊢
+    simp only [one_div] at this ⊢
     convert this using 1
     field_simp
   simpa using h1.add h2
