@@ -1,0 +1,19 @@
+name = "NBMellinTools"
+version = "0.1.0"
+defaultTargets = ["NBMellinTools"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+
+[[require]]
+name = "RiemannHypothesis"
+path = ".."
+
+[[require]]
+name = "mathlib"
+path = "../.lake/packages/mathlib"
+
+[[lean_lib]]
+name = "NBMellinTools"
