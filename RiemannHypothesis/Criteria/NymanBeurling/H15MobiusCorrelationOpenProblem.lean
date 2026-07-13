@@ -25,6 +25,13 @@ The proposition below is the existing content-bearing restricted interface,
 wrapped in a named open-problem proposition.  This wrapper adds no analytic
 claim and no `sorryAx`; it makes the remaining research assumption explicit
 to downstream conditional theorems.
+
+The local reconnaissance also gives a sharper stop condition.  A fixed-shift
+averaged Chowla statement of the form `μ(n) * μ(n + h)` would not by itself
+prove this target: the existing interface is uniform over affine forms
+`a * m + r` and `q * m + s`, over Farey parameters, and over an entire weight
+class.  The missing transfer is therefore a genuine two-linear-forms estimate,
+not merely a missing summation lemma.
 -/
 
 namespace RH.Criteria.NymanBeurling.QuadraticInteraction
@@ -46,6 +53,22 @@ inductive H15MobiusCorrelationRoute
 
 def h15MobiusCorrelationRoutes : List H15MobiusCorrelationRoute :=
   [.averagedChowla, .taoTeravainenLogAverage, .characterTheoretic]
+
+/-- Audit labels for the independent obstructions found during reconnaissance.
+They are documentation markers, not propositions asserting mathematical
+nonexistence. -/
+inductive H15MobiusCorrelationObstacle
+  | noAveragedChowlaInMathlib
+  | noLogAveragedCorrelationInMathlib
+  | noCharacterConductorCorrelationInMathlib
+  | fixedShiftDoesNotMatchFareyTwoForms
+  deriving DecidableEq, Repr
+
+def h15MobiusCorrelationObstacles : List H15MobiusCorrelationObstacle :=
+  [.noAveragedChowlaInMathlib,
+    .noLogAveragedCorrelationInMathlib,
+    .noCharacterConductorCorrelationInMathlib,
+    .fixedShiftDoesNotMatchFareyTwoForms]
 
 /-! ## Named open proposition -/
 
@@ -75,6 +98,10 @@ noncomputable def fareyCellMobiusCorrelationEstimate_of_open_problem
 
 theorem open_problem_routes_are_documentary :
     h15MobiusCorrelationRoutes.length = 3 := by
+  rfl
+
+theorem open_problem_obstacle_audit_length :
+    h15MobiusCorrelationObstacles.length = 4 := by
   rfl
 
 /-! ## Conditional endgame wiring -/
