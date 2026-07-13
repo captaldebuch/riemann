@@ -1,7 +1,7 @@
 name = "RiemannHypothesis"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["RiemannHypothesis"]
+defaultTargets = ["RiemannHypothesis", "NBMellinTools"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -16,3 +16,7 @@ rev = "v4.30.0"
 
 [[lean_lib]]
 name = "RiemannHypothesis"
+
+[[lean_lib]]
+name = "NBMellinTools"
+srcDir = "mathlib"
