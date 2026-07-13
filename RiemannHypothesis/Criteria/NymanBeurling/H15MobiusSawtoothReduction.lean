@@ -71,4 +71,38 @@ theorem cutoffMobiusBernoulliCorrelationPartial_eq_mobiusSawtoothSum
   intro m _
   exact cutoffMobiusBernoulliMode_eq_mobiusSawtoothSum N m
 
+/-- The centered H15 mode partial written entirely in terms of the exact
+cutoff Möbius--sawtooth sums.  The finite parameter `M` is retained because
+the outer harmonic mode series is conditionally, not absolutely, convergent. -/
+noncomputable def h15CenteredSawtoothModePartial (N M : ℕ) : ℝ :=
+  explicitQuadraticLogRatioComponent N +
+    2 * ∑ m ∈ Finset.Icc 1 M,
+      ((∑ h ∈ Finset.Icc 1 N,
+        cutoffMobiusCoeff N h / (h : ℝ) *
+          mobiusSawtoothSum N (m * h)) / (m : ℝ)) -
+      1 + 2 * (explicitLinearMobiusSum N + 1)
+
+/-- The centered partial is exactly the existing BBLS centered partial;
+this rewrites its Fourier contribution into the one-variable sawtooth form. -/
+theorem h15CenteredSawtoothModePartial_eq_centeredPartial
+    (N M : ℕ) :
+    h15CenteredSawtoothModePartial N M =
+      cutoffMobiusBernoulliCenteredPartial N M := by
+  unfold h15CenteredSawtoothModePartial cutoffMobiusBernoulliCenteredPartial
+  rw [← cutoffMobiusBernoulliCorrelationPartial_eq_mobiusSawtoothSum]
+
+/-- The actual centered H15 sawtooth residual is the ordinary partial-sum
+limit of its explicit Möbius--sawtooth mode partials.  This completes the
+algebraic/convergence reduction; a quantitative rate for this limit is the
+separate Route A2 problem. -/
+theorem h15CenteredSawtoothModePartial_tendsto
+    (N : ℕ) :
+    Filter.Tendsto (h15CenteredSawtoothModePartial N) Filter.atTop
+      (nhds (h15CenteredSawtoothResidual N)) := by
+  have h := cutoffMobiusBernoulliCenteredPartial_tendsto N
+  rw [cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value] at h
+  apply h.congr'
+  filter_upwards [] with M
+  exact (h15CenteredSawtoothModePartial_eq_centeredPartial N M).symm
+
 end RH.Criteria.NymanBeurling.QuadraticInteraction
