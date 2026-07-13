@@ -10,9 +10,9 @@ definitionally zero placeholder.  They do not yet contain the infinite
 cutoff, boundary correction, or a theorem identifying those corrections with
 that placeholder.  This file therefore records the exact algebraic interface
 needed once those analytic objects are supplied.  In particular, the
-truncation and boundary estimates remain separate fields; the aggregation
-theorem below is unconditional and introduces no analytic assumption under a
-new name.
+truncation and boundary estimates remain separate fields; the following
+aggregation result is unconditional and introduces no analytic assumption
+under a new name.
 -/
 
 namespace RH.Criteria.NymanBeurling.QuadraticInteraction
