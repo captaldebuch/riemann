@@ -9,12 +9,13 @@ Möbius--sawtooth reduction.  It deliberately separates three issues:
 * a finite Vaaler approximation of the project's endpoint-corrected `B₁`;
 * estimates for the resulting reciprocal phases; and
 * the logarithmic summation needed to return from the finite mode partials
-  to the H15 residual.
+  to the centered sawtooth residual.
 
 The third point is not a consequence of a pointwise sawtooth estimate.  It is
 therefore a separate interface, which keeps Routes A1--A3 mathematically
 honest: A1 supplies a sawtooth estimate, A3 supplies a phase estimate through
-Vaaler, and A2 supplies the remaining harmonic-mode summation.
+Vaaler, and A2 supplies the remaining harmonic-mode summation.  The smooth
+log-gamma component is a separate H15 input and is recombined only at Phase 0.
 -/
 
 namespace RH.Criteria.NymanBeurling.QuadraticInteraction
@@ -131,15 +132,15 @@ noncomputable def uniformMobiusSawtoothEstimate_of_reciprocalPhase
 /-! ## The harmonic-mode summation boundary -/
 
 /-- Route A2: the additional logarithmic averaging/cancellation statement
-needed to turn a pointwise sawtooth bound into the complete H15 residual.
+needed to turn a pointwise sawtooth bound into the centered sawtooth bound.
 This is intentionally independent of the Vaaler reduction: the exact finite
 identity has an outer `1/m` mode sum, and this field is where that convergence
 is controlled. -/
 structure H15SawtoothLogAverageReduction
     (sawtoothMajorant : ℕ → ℝ) where
-  residual_bound_of_uniform_sawtooth :
+  sawtooth_bound_of_uniform_sawtooth :
     UniformMobiusSawtoothEstimate sawtoothMajorant →
-      H15CenteredResidualBound
+      H15CenteredSawtoothBound
 
 /-- Route A1 may supply the uniform sawtooth estimate directly, for example
 from a properly matched mollified-Chowla theorem.  The named package prevents
@@ -149,35 +150,60 @@ structure MollifiedChowlaSawtoothEstimate
   uniform_sawtooth_estimate :
     UniformMobiusSawtoothEstimate sawtoothMajorant
 
-/-- Route A1 followed by Route A2 reaches the exact H15 residual bound. -/
-noncomputable def h15CenteredResidualBound_of_mollifiedChowla
+/-- Route A1 followed by Route A2 reaches the centered sawtooth bound. -/
+noncomputable def h15CenteredSawtoothBound_of_mollifiedChowla
     {sawtoothMajorant : ℕ → ℝ}
     (A1 : MollifiedChowlaSawtoothEstimate sawtoothMajorant)
     (A2 : H15SawtoothLogAverageReduction sawtoothMajorant) :
-    H15CenteredResidualBound :=
-  A2.residual_bound_of_uniform_sawtooth A1.uniform_sawtooth_estimate
+    H15CenteredSawtoothBound :=
+  A2.sawtooth_bound_of_uniform_sawtooth A1.uniform_sawtooth_estimate
 
-/-- Routes A3, Vaaler, and A2 reach the exact H15 residual bound. -/
-noncomputable def h15CenteredResidualBound_of_reciprocalPhase
+/-- Routes A3, Vaaler, and A2 reach the centered sawtooth bound. -/
+noncomputable def h15CenteredSawtoothBound_of_reciprocalPhase
     {phaseMajorant : ℕ → ℕ → ℤ → ℝ}
     {sawtoothMajorant : ℕ → ℝ}
     (A3 : MobiusReciprocalPhaseEstimate phaseMajorant)
     (R : VaalerSawtoothReduction phaseMajorant sawtoothMajorant)
     (A2 : H15SawtoothLogAverageReduction sawtoothMajorant) :
-    H15CenteredResidualBound :=
-  A2.residual_bound_of_uniform_sawtooth
+    H15CenteredSawtoothBound :=
+  A2.sawtooth_bound_of_uniform_sawtooth
     (uniformMobiusSawtoothEstimate_of_reciprocalPhase A3 R)
 
-/-- The full A3 → Vaaler → A2 route reaches the existing quadratic norm
-residual interface. -/
+/-- Route A1 together with the separate smooth estimate reaches the exact
+Phase 0 residual bound. -/
+noncomputable def h15CenteredResidualBound_of_mollifiedChowla_and_smooth
+    {sawtoothMajorant : ℕ → ℝ}
+    (H_smooth : H15CenteredSmoothLogGammaBound)
+    (A1 : MollifiedChowlaSawtoothEstimate sawtoothMajorant)
+    (A2 : H15SawtoothLogAverageReduction sawtoothMajorant) :
+    H15CenteredResidualBound :=
+  h15CenteredResidualBound_of_smooth_and_sawtooth H_smooth
+    (h15CenteredSawtoothBound_of_mollifiedChowla A1 A2)
+
+/-- Routes A3, Vaaler, and A2 together with the separate smooth estimate
+reach the exact Phase 0 residual bound. -/
+noncomputable def h15CenteredResidualBound_of_reciprocalPhase_and_smooth
+    {phaseMajorant : ℕ → ℕ → ℤ → ℝ}
+    {sawtoothMajorant : ℕ → ℝ}
+    (H_smooth : H15CenteredSmoothLogGammaBound)
+    (A3 : MobiusReciprocalPhaseEstimate phaseMajorant)
+    (R : VaalerSawtoothReduction phaseMajorant sawtoothMajorant)
+    (A2 : H15SawtoothLogAverageReduction sawtoothMajorant) :
+    H15CenteredResidualBound :=
+  h15CenteredResidualBound_of_smooth_and_sawtooth H_smooth
+    (h15CenteredSawtoothBound_of_reciprocalPhase A3 R A2)
+
+/-- The full A3 → Vaaler → A2 route, supplied with the independent smooth
+input, reaches the existing quadratic norm residual interface. -/
 noncomputable def quadraticInteractionNormResidual_of_reciprocalPhase
     {phaseMajorant : ℕ → ℕ → ℤ → ℝ}
     {sawtoothMajorant : ℕ → ℝ}
+    (H_smooth : H15CenteredSmoothLogGammaBound)
     (A3 : MobiusReciprocalPhaseEstimate phaseMajorant)
     (R : VaalerSawtoothReduction phaseMajorant sawtoothMajorant)
     (A2 : H15SawtoothLogAverageReduction sawtoothMajorant) :
     QuadraticInteractionNormResidual :=
   quadraticInteractionNormResidual_of_h15CenteredResidual_bound
-    (h15CenteredResidualBound_of_reciprocalPhase A3 R A2)
+    (h15CenteredResidualBound_of_reciprocalPhase_and_smooth H_smooth A3 R A2)
 
 end RH.Criteria.NymanBeurling.QuadraticInteraction

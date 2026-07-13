@@ -56,6 +56,58 @@ structure H15CenteredResidualBound where
       h15CenteredResidual N ≤
         C_residual / Real.log (N + 2 : ℝ) ^ 2
 
+/-- The centered sawtooth component of H15, isolated from the smooth
+log-gamma term.  This is the output genuinely targeted by the
+Möbius--sawtooth, Vaaler, and reciprocal-phase routes. -/
+structure H15CenteredSawtoothBound where
+  C_sawtooth : ℝ
+  C_sawtooth_nonneg : 0 ≤ C_sawtooth
+  sawtooth_bound :
+    ∀ N : ℕ,
+      |h15CenteredSawtoothResidual N| ≤
+        C_sawtooth / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The smooth log-gamma component of H15, isolated from the oscillatory
+sawtooth problem. -/
+structure H15CenteredSmoothLogGammaBound where
+  C_smooth : ℝ
+  C_smooth_nonneg : 0 ≤ C_smooth
+  smooth_bound :
+    ∀ N : ℕ,
+      |explicitQuadraticLogGammaComponent N| ≤
+        C_smooth / Real.log (N + 2 : ℝ) ^ 2
+
+/-- The pre-existing smooth-product H15 interface supplies the smooth half
+of the Phase 0 residual package without adding new analysis. -/
+noncomputable def h15CenteredSmoothLogGammaBound_of_smoothProduct
+    {H : MobiusSummatory.ClassicalMertensDecay}
+    (S : QuadraticInteractionSmoothProductLogSqEstimate H) :
+    H15CenteredSmoothLogGammaBound :=
+  { C_smooth := S.C_smooth
+    C_smooth_nonneg := S.C_smooth_nonneg
+    smooth_bound := S.smooth_product_bound }
+
+/-- Recombine the genuinely separate smooth and sawtooth estimates into the
+exact Phase 0 residual estimate. -/
+noncomputable def h15CenteredResidualBound_of_smooth_and_sawtooth
+    (H_smooth : H15CenteredSmoothLogGammaBound)
+    (H_sawtooth : H15CenteredSawtoothBound) :
+    H15CenteredResidualBound :=
+  { C_residual := H_smooth.C_smooth + H_sawtooth.C_sawtooth
+    C_residual_nonneg :=
+      add_nonneg H_smooth.C_smooth_nonneg H_sawtooth.C_sawtooth_nonneg
+    residual_bound := by
+      intro N
+      unfold h15CenteredResidual
+      calc
+        |explicitQuadraticLogGammaComponent N| +
+            |h15CenteredSawtoothResidual N|
+          ≤ H_smooth.C_smooth / Real.log (N + 2 : ℝ) ^ 2 +
+              H_sawtooth.C_sawtooth / Real.log (N + 2 : ℝ) ^ 2 :=
+            add_le_add (H_smooth.smooth_bound N) (H_sawtooth.sawtooth_bound N)
+        _ = (H_smooth.C_smooth + H_sawtooth.C_sawtooth) /
+            Real.log (N + 2 : ℝ) ^ 2 := by ring }
+
 /--
 The sole content-bearing H15 input in the corrected final route.
 
