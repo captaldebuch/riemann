@@ -31,6 +31,7 @@ import RiemannHypothesis.Criteria.NymanBeurling.H14DvpChain
 import RiemannHypothesis.Criteria.NymanBeurling.H15FractionalTail
 import RiemannHypothesis.Criteria.NymanBeurling.NBChiMellin
 import RiemannHypothesis.Criteria.NymanBeurling.NymanBeurlingRHBridgeDischarge
+import RiemannHypothesis.Criteria.NymanBeurling.NymanBeurlingMellinContinuity
 import RiemannHypothesis.Criteria.NymanBeurling.H15MellinEnergy
 import RiemannHypothesis.Criteria.NymanBeurling.H15ForwardSpine
 import RiemannHypothesis.Criteria.NymanBeurling.H15StructuredCorrelationEstimate
