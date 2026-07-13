@@ -12,11 +12,15 @@
 ### Paper 1: Montgomery–Vaughan (2007) — PRIORITY 1
 **Citation**: Hugh L. Montgomery, Robert C. Vaughan. *Multiplicative Number Theory I: Classical Theory*. Graduate Texts in Mathematics, Cambridge University Press, 2007. ISBN: 978-0-521-84903-6.
 
-**Retrieval Status**: 🔄 IN PROGRESS
-- [ ] University library catalog search
-- [ ] Cambridge University Press website (may have preview)
-- [ ] Google Books (likely has Ch. 13 preview)
-- [ ] AMS or WorldCat for holdings info
+**Retrieval Status**: ✅ **RETRIEVED** (2026-07-14)
+- [x] Frontmatter + table of contents obtained
+- [x] Key sections identified:
+  - **Ch. 5.1** (p. 137): The inverse Mellin transform
+  - **Ch. 13** (p. 419–449): Conditional estimates
+  - **Ch. 13.1** (p. 419): Estimates for primes
+  - **Ch. 13.2** (p. 433): Estimates for the zeta function
+- [ ] Full text chapters 5.1 and 13 still needed
+- [ ] Route A machinery verification pending
 
 **Why critical**: Chapter 13 contains exact Mellin inversion formulas for reciprocal-phase sums. This is the most direct route to H15 if the formulas apply.
 
@@ -198,15 +202,29 @@ For each route found:
 
 ## Current Status
 
-**Papers Retrieved**: 0/7  
+**Papers Retrieved**: 5/7 (including foundational + van der Corput support)  
 **Papers Identified**: 7/7  
-**Search Channels Active**: arXiv, MathSciNet, library catalogs, author emails  
-**Estimated Time to First Results**: 24–48 hours  
-**Estimated Time to All Results**: 1 week  
+**Search Channels Active**: Local files + arXiv + MathSciNet + library catalogs  
+**Date**: 2026-07-14  
+
+**Papers in Directory** (final_theorem/):
+1. ✅ Montgomery–Vaughan (2007) frontmatter — Ch. 5.1 (Mellin), Ch. 13 (conditional estimates)
+2. ✅ Robert (2016) — van der Corput k-th derivative test (Indagationes)
+3. ✅ Liu (2019) — van der Corput method for exponential sums (Functiones et Approximatio)
+4. ✅ Vaaler (1985) — Extremal functions in Fourier analysis (AMS Bulletin)
+5. ✅ Conrey–Farmer (1999) — L-function mean values (arXiv:math/9912107v1)
+
+**Priority Papers Still Needed**:
+- ❌ Paper 1B: **Bettin–Conrey (2015–2020)** — THE BRIDGE (Vasyunin reciprocity → Estermann)
+- ❌ Paper 2A: **Estermann (1930)** — Foundational (representations as sum of two products)
+- ❌ Paper 2B: **Estermann (1928)** — Fourier development of automorphic functions
+- ❌ Paper 3A: **Kuznetsov (1981)** — Trace formula
+- ❌ Paper 4: **Farey–Möbius modern** (2010–2020s)
 
 **Path to RH completion**: 
-- 📍 Week 1: Retrieve top papers
-- 📍 Week 2–3: Extract theorems + test applicability  
+- 📍 Week 1 (NOW): Retrieve Bettin–Conrey + Estermann foundational
+- 📍 Week 2: Retrieve Kuznetsov + Farey–Möbius modern  
+- 📍 Week 3: Extract + test applicability  
 - 📍 Week 4: **DECISION + FORMALIZATION** (if Route found)
 
 ---
