@@ -35,6 +35,27 @@ needs the total mass of this package, not a cellwise estimate. -/
 noncomputable def h15CenteredAggregateResidual (N : ℕ) : ℝ :=
   |explicitQuadraticLogGammaComponent N| + |h15CenteredSawtoothResidual N|
 
+/-- The Phase 0 name for the exact residual.  It is definitionally the same
+quantity as `h15CenteredAggregateResidual`; the separate name makes clear that
+this is the object to reduce analytically before selecting a proof route. -/
+noncomputable def h15CenteredResidual (N : ℕ) : ℝ :=
+  |explicitQuadraticLogGammaComponent N| + |h15CenteredSawtoothResidual N|
+
+theorem h15CenteredResidual_eq_aggregateResidual (N : ℕ) :
+    h15CenteredResidual N = h15CenteredAggregateResidual N :=
+  rfl
+
+/-- The Phase 0 H15 hypothesis, stated directly in terms of the exact
+centered residual.  Nonnegativity, rather than strict positivity, permits the
+sharp case in which the residual vanishes. -/
+structure H15CenteredResidualBound where
+  C_residual : ℝ
+  C_residual_nonneg : 0 ≤ C_residual
+  residual_bound :
+    ∀ N : ℕ,
+      h15CenteredResidual N ≤
+        C_residual / Real.log (N + 2 : ℝ) ^ 2
+
 /--
 The sole content-bearing H15 input in the corrected final route.
 
@@ -50,6 +71,18 @@ structure H15CenteredAggregateEstimate where
     ∀ N : ℕ,
       h15CenteredAggregateResidual N ≤
         C_aggregate / Real.log (N + 2 : ℝ) ^ 2
+
+/-- Convert the Phase 0 residual interface to the existing final H15
+aggregate interface.  This is an exact repackaging, with no analytic content.
+-/
+noncomputable def h15CenteredAggregateEstimate_of_residualBound
+    (H_residual : H15CenteredResidualBound) : H15CenteredAggregateEstimate :=
+  { C_aggregate := H_residual.C_residual
+    C_aggregate_nonneg := H_residual.C_residual_nonneg
+    aggregate_bound := by
+      intro N
+      rw [← h15CenteredResidual_eq_aggregateResidual]
+      exact H_residual.residual_bound N }
 
 /-- The corrected aggregate is definitionally the existing centered
 Möbius--Bernoulli package.  This is a bookkeeping conversion, not an
@@ -74,6 +107,42 @@ noncomputable def quadraticInteractionNormResidual_of_h15CenteredAggregate
   quadraticInteractionNormResidual_of_bernoulliCorrelation H_decay
     (quadraticInteractionBernoulliCorrelationEstimate_of_h15CenteredAggregate
       H_decay H_aggregate)
+
+/-- Phase 0 closes directly: the exact centered-residual bound gives the
+norm-residual interface without assuming a particular analytic proof of that
+bound. -/
+noncomputable def quadraticInteractionNormResidual_of_h15CenteredResidual_bound
+    (H_residual : H15CenteredResidualBound) :
+    QuadraticInteractionNormResidual := by
+  let logTwo := Real.log (2 : ℝ)
+  refine
+    { C_norm := H_residual.C_residual / logTwo
+      C_norm_nonneg := div_nonneg H_residual.C_residual_nonneg
+        (Real.log_pos (by norm_num)).le
+      norm_loggamma_package_bound := ?_ }
+  intro N
+  rw [cutoffMobiusDefectEnergy_sub_loggamma_eq_bernoulli_value]
+  have hresidual := H_residual.residual_bound N
+  rw [h15CenteredResidual] at hresidual
+  have hlogTwo : 0 < logTwo := Real.log_pos (by norm_num)
+  have hlogN : 0 < Real.log (N + 2 : ℝ) := Real.log_pos (by norm_cast; omega)
+  have hmono : logTwo ≤ Real.log (N + 2 : ℝ) := by
+    exact Real.log_le_log (by norm_num) (by norm_cast; omega)
+  have hratio :
+      H_residual.C_residual / Real.log (N + 2 : ℝ) ≤
+        H_residual.C_residual / logTwo :=
+    div_le_div_of_nonneg_left H_residual.C_residual_nonneg hlogTwo hmono
+  calc
+    |explicitQuadraticLogGammaComponent N| +
+          |explicitQuadraticLogRatioComponent N +
+              cutoffMobiusBernoulliCorrelationValue N - 1 +
+                2 * (explicitLinearMobiusSum N + 1)|
+        ≤ H_residual.C_residual / Real.log (N + 2 : ℝ) ^ 2 := hresidual
+    _ = (H_residual.C_residual / Real.log (N + 2 : ℝ)) /
+          Real.log (N + 2 : ℝ) := by ring
+    _ ≤ (H_residual.C_residual / logTwo) /
+          Real.log (N + 2 : ℝ) :=
+      div_le_div_of_nonneg_right hratio hlogN.le
 
 /-- H14 decay and the corrected H15 aggregate yield the existing quadratic
 interaction estimates. -/
