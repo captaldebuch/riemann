@@ -25,6 +25,7 @@ import RiemannHypothesis.Criteria.NymanBeurling.H14ZeroFree
 import RiemannHypothesis.Criteria.NymanBeurling.H14ZetaEM
 import RiemannHypothesis.Criteria.NymanBeurling.H14ZetaFETransport
 import RiemannHypothesis.Criteria.NymanBeurling.H14FEFactorBound
+import RiemannHypothesis.Criteria.NymanBeurling.H14DvpChain
 import RiemannHypothesis.Criteria.NymanBeurling.H15FractionalTail
 import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 import RiemannHypothesis.Criteria.NymanBeurling.NBChiMellin
