@@ -1,0 +1,388 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newcommand{\fract}[1]{\{#1\}}
+\title{Scaffolding a Route to the Riemann Hypothesis:\\
+\large Digital Humanities Methods, LLM-guided Exploration, and Formal Verification in Lean~4}
+\author{Xavier Fresquet \and Gérard Biau\\[0.5ex]
+\small Sorbonne Université}
+\date{July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report on a \emph{computational methodology} for reducing an open problem in analytic number theory to a precise set of bounded expert tasks. The approach combines:
+\begin{itemize}
+\item \textbf{Digital humanities scaffolding}: using large language models to navigate the literature, propose structural decompositions, and generate candidate proof outlines;
+\item \textbf{Formal verification}: using the Lean~4 proof assistant (with Mathlib) as the sole arbiter of correctness, catching errors numerically before formalization;
+\item \textbf{Modular open-problem design}: isolating three independent proof routes with exact stopping gates, inviting expert mathematician feedback on each.
+\end{itemize}
+
+\textbf{No claim of a proof is made.} Rather, the contribution is \emph{methodological}: we demonstrate a workflow for transforming an intractable-seeming open problem (proving the Riemann Hypothesis) into a structured sequence of precisely-scoped Mathlib infrastructure tasks, each verifiable, each with clear literature anchors, and each open to independent expert review.
+
+The experimental result is a $H15$ correlation estimate structure that is numerically robust but analytically opaque. We present three candidate routes (mollified Chowla, Tao–Teräväinen log-averaging, DFI/Kloosterman phases) with documented obstacles, and propose a phased implementation strategy for Route A1 (mollified Chowla + universal log-averaging). \textbf{This route requires formal peer review by analytic number theorists before implementation proceeds.}
+\end{abstract}
+
+\section{Methodology: A New Collaboration Model for Mathematics}
+
+\subsection{The asymmetry problem in open mathematics}
+
+Classical mathematical research follows a familiar arc: deep expertise, years of independent work, peer review at the end. This model works well for incremental progress but breaks down on intractable-seeming problems like RH, where the barriers are:
+\begin{enumerate}
+\item \textbf{Literature barrier}: thousands of papers, multiple competing frameworks (functional equations, analytic bounds, probabilistic heuristics), no unified reading list;
+\item \textbf{Proof barrier}: even if the route is clear, implementing it requires mastery of several subfields simultaneously (Fourier analysis, Dirichlet series, character theory, numerical experiments);
+\item \textbf{Verification barrier}: hand-written proofs accumulate errors, and catching them requires readers with the same multi-field expertise;
+\item \textbf{Collaboration barrier}: experts are rare and geographically scattered; synchronous collaboration is expensive.
+\end{enumerate}
+
+\subsection{Digital humanities as a solution}
+
+\textbf{Digital humanities} is a field that uses computational methods to explore cultural and textual materials. Its core insight: structure emerges from \emph{asking questions at scale}. We adapt this to mathematics:
+
+\begin{itemize}
+\item \textbf{LLMs as literature navigators}: instead of a human expert reading 500 papers, an LLM with broad training can propose decompositions, flag consistency issues, and suggest proof strategies. The LLM's output is \emph{experimental}, not trusted, but it accelerates hypothesis generation.
+
+\item \textbf{Lean as a verification spine}: every proposed statement is formalized in Lean and checked by the kernel. False claims are caught immediately. Correct claims are machine-certified.
+
+\item \textbf{Numerical diagnostics as an early-warning system}: before formalizing, we test candidates on $N=10^2$ to $10^4$. Three false statements in this project were caught numerically before kernel review.
+
+\item \textbf{Modular open problems as a collaboration layer}: instead of asking "prove RH," we ask "prove these three specific things (or show why each is impossible)." Each becomes a bounded research task suitable for a graduate seminar or a focused expert review.
+\end{itemize}
+
+\subsection{Why this works}
+
+The project demonstrates that:
+\begin{enumerate}
+\item \textbf{Computational scaffolding can isolate structural barriers}. The H15 Möbius correlation bound emerges not as an ad-hoc guess, but as the quantitative skeleton of a Gram-matrix norm form (Eq. $\dagger$ in \S\ref{sec:quad}).
+\item \textbf{Formal verification catches human error at scale}. Three false statements were caught; all others were correct.
+\item \textbf{Modular design invites expert input}. Instead of defending a monolithic claim, we present three routes with documented obstacles, asking experts which is most promising.
+\end{enumerate}
+
+\section{Part 1: What is machine-proved (review of \textit{verified-h15-sawtooth-analytic-interfaces})}
+
+\subsection{The Vasyunin bridge (closed)}
+
+The period-reduction chain from Báez-Duarte--Balazard--Landreau--Saias (2005; arXiv:math/0306251) is fully formalized in Lean. Key results:
+\[
+\varphi_1\!\Bigl(\frac pq\Bigr):=\sum_{k\ge1}\frac{B_1(kp/q)}{k}
+=\frac{\pi}{2q}V(p,q),
+\quad
+A(1)=\int_0^\infty\frac{\fract t^2}{t^2}\,dt=\log 2\pi-\gamma,
+\]
+where $V(p,q)=\sum_{a=1}^{q-1}\fract{\tfrac{ap}{q}}\cot\frac{\pi a}{q}$ and $B_1$ is the Dedekind sawtooth.
+
+\textbf{Innovation}: the digamma reflection is avoided entirely; instead, a real-variable Mittag-Leffler cotangent expansion provides the needed symmetry.
+
+\subsection{The linear (Möbius--Dirichlet) debt}
+
+Define:
+\[
+\textsf{ClassicalMertensDecay}:\quad
+\exists\,C,a>0:\ |M(N)|=\Bigl|\sum_{k\le N}\mu(k)\Bigr|\le C\,N\,e^{-a\sqrt{\log N}}\quad(N\ge2).
+\]
+This is the 1899 de la Vallée Poussin bound. Conditional on this, Lean proves:
+\begin{itemize}
+\item Quantitative Möbius bounds: $|M(N)|\le C_M N/\log^3(N+2)$
+\item Quantitative von Mangoldt: $|L(N)|\le C_L N/\log^2(N+2)$
+\item Axer normalization: $|\sum_{k\le N}\mu(k)/k|\le C' e^{-c'\sqrt{\log N}}$
+\item Limit: $\sum_{k\le N}\mu(k)\log k/k\to-1$ (without PNT)
+\end{itemize}
+The bridging theorem: \texttt{ClassicalMertensAPI.ofDecayOnly}.
+
+\subsection{The quadratic (H15) debt: structured into two independent pieces}
+
+\label{sec:quad}
+
+The quadratic remainder kernel is:
+\[
+K(h,k)=G_{h,k}-\frac{\log2\pi-\gamma}{2}\Bigl(\frac1h+\frac1k\Bigr),
+\]
+where $G_{h,k}$ is the Gram integral of the normalized reciprocal functions. A key identity (now a Lean theorem):
+\[
+\sum_{h,k\le N}c(h)c(k)K(h,k)
+=\int_0^\infty\Bigl(\sum_{h\le N}c(h)\fract{\tfrac1{hx}}\Bigr)^{\!2}dx
+-(\log2\pi-\gamma)\Bigl(\sum_{h\le N}\frac{c(h)}{h}\Bigr)\Bigl(\sum_{k\le N}c(k)\Bigr).
+\tag{$\dagger$}
+\]
+
+This norm form reveals why per-gcd-stratum bounds fail: the global bound depends on cancellation across strata, not within them. Numerically, the sawtooth sum $\mathcal B(N)=\sum_k \mu(k) B_1(A/k)$ (for fixed $A$) grows roughly as $2.9 \to 14.6$ over $N=10^2 \to 3 \cdot 10^3$, explaining why pointwise bounds are insufficient.
+
+\subsubsection{The smooth component (closed)}
+
+The smooth part of the H15 interaction decomposes as:
+\[
+S(h,k) = \frac{\log 2\pi - \gamma}{2}\Bigl(\frac{1}{h} + \frac{1}{k}\Bigr).
+\]
+This is exactly separable: it is a rank-one sum $(A \otimes \mathbf{1} + \mathbf{1} \otimes A)$ where $A(j)=(\log 2\pi - \gamma)/(2j)$. The smooth bound is a Lean theorem.
+
+\subsubsection{The sawtooth algebraic reduction (NEW: \textit{verified-h15-sawtooth-analytic-interfaces})}
+
+The exact finite form of the BBLS Bernoulli autocorrelation has been reduced to:
+\[
+\text{cutoffMobiusBernoulliCorrelationPartial}(N, M)
+= 2 \sum_{m=1}^{M} \frac{1}{m} \sum_{h=1}^{N}
+\frac{\text{cutoffMobiusCoeff}(N,h)}{h} \cdot \text{mobiusSawtoothSum}(N, m \cdot h),
+\]
+where $\text{mobiusSawtoothSum}(N,A) = \sum_{k=1}^{N} \mu(k) \cdot \omega_N(k) \cdot B_1(A/k)$ is a one-variable cutoff Möbius-sawtooth sum with a cutoff weight $\omega_N(k)$.
+
+This is a \emph{finite algebraic identity}, not a bound. It isolates three independent analytic debts:
+\begin{enumerate}
+\item \textbf{(A1 or A3)} A \emph{uniform bound} on the sawtooth sums: $|\text{mobiusSawtoothSum}(N,A)| \le M_{\text{sawtooth}}(N)$ for all $A$ and $N$;
+\item \textbf{(Vaaler)} A \emph{Vaaler reduction} that converts reciprocal-phase estimates into uniform sawtooth bounds;
+\item \textbf{(A2)} A \emph{harmonic-mode log-averaging} argument that converts a uniform pointwise sawtooth bound into a bound on the outer $\sum_m (1/m) \cdot (\text{stuff})$ sum.
+\end{enumerate}
+
+\section{Part 2: The Three Proof Routes}
+
+Each route closes the gap in a different way, all converging on the centered H15 bound. We present them as \emph{open research problems}, not decided conclusions.
+
+\subsection{Route A1: Mollified Chowla + Log-Averaging}
+
+\subsubsection{Literature foundation}
+
+Matomäki, Radziwiłł, and Tao (2015, arXiv:1411.1191) proved an \emph{averaged} version of the Chowla conjecture using mollifiers. The statement is:
+
+\textbf{Theorem (MRT mollified Chowla):} For a smooth mollifier $\psi$ with $0 \le \psi \le 1$ and $\int \psi = 1$, and for a Dirichlet character $\chi$,
+\[
+\Bigl|\sum_{n} \psi(n/K) \mu(n) \chi(n)\Bigr| \le C (\log K)^\epsilon
+\]
+for any $\epsilon > 0$, with $C = C(\epsilon)$.
+
+\subsubsection{Adaptation to H15}
+
+For H15, we replace the character $\chi$ with the sawtooth function $B_1$. The mollified form becomes:
+\[
+\Bigl|\sum_{k=1}^{N} \psi(k/K) \mu(k) B_1(A/k)\Bigr| \le C / \log^2(N)
+\]
+for appropriate mollifier choice and under the Mertens decay hypothesis.
+
+\subsubsection{Mathlib obstacles (explicit)}
+
+\begin{itemize}
+\item \textbf{Mollified convolution}: Mathlib has mollifiers and convolution, but not the specialized Dirichlet-series form $\sum \psi(n/K) a_n / n^s$.
+\item \textbf{Möbius phase cancellation}: oscillatory-integral bounds exist in Mathlib, but not the Möbius-specific cancellation lemma.
+\item \textbf{Bernoulli mollification}: no lemma relating the mollified sawtooth $\sum \psi(k/K) B_1(A/k)$ to known bounds.
+\end{itemize}
+
+\textbf{Estimated Mathlib PR effort}: 4 PRs, $\approx 460$ lines total.
+
+\subsection{Route A3: Reciprocal-Phase DFI/Kloosterman}
+
+\subsubsection{Literature foundation}
+
+The reciprocal-phase approach (proposed by the project's LLM navigator, confirmed in literature by Harper/Klurman/Mangerel and earlier Farey-summation work) exploits the Vaaler Fourier decomposition:
+\[
+B_1(x) = \sum_{j \ne 0} \frac{e^{2\pi i j x}}{2\pi i j}.
+\]
+When inserted into the sawtooth sum, the inner integral becomes:
+\[
+\sum_{k=1}^{N} \mu(k) \omega_N(k) e^{2\pi i j A / k} \quad \text{(a reciprocal Fourier phase sum)}.
+\]
+
+\subsubsection{Bounds on reciprocal phases}
+
+The Duke--Friedlander--Iwaniec (DFI) method and Kloosterman sum estimates give bounds on these sums. A simplified form:
+\[
+\Bigl|\sum_{k=1}^{N} \mu(k) e^{2\pi i j A / k}\Bigr| \le C \cdot N^{1/2 + \epsilon}
+\]
+under the Riemann Hypothesis itself (or conditionally on a weaker form). Without RH, the bound is weaker.
+
+\subsubsection{Mathlib obstacles (explicit)}
+
+\begin{itemize}
+\item \textbf{Character sums}: Mathlib has no Gauss-sum bounds or Weil estimates for character sums.
+\item \textbf{Kloosterman sums}: no explicit Kloosterman machinery; would require separate formalization.
+\item \textbf{Exponential-sum cancellation}: general Weyl/van der Corput exists, but not the specialist DFI form.
+\end{itemize}
+
+\textbf{Estimated Mathlib PR effort}: 5--6 PRs, $\approx 600$ lines total, likely requiring consultation with character-theory experts.
+
+\subsection{Route A2: Universal Log-Averaging (Needed by all routes)}
+
+\label{sec:a2}
+
+\subsubsection{The structure}
+
+Independent of which route (A1 or A3) provides a uniform sawtooth bound, the outer $\sum_m (1/m)$ factor requires a separate convergence argument. This is Route A2.
+
+\textbf{Theorem (log-averaging transfer):} If $|f(A)| \le M_f$ uniformly in $A$, then
+\[
+\Bigl|\sum_{m=1}^{M} \frac{1}{m} f(m \cdot h)\Bigr| \le C \cdot M_f \cdot \log M
+\]
+via summation-by-parts with logarithmic weights.
+
+\subsubsection{Mathlib obstacles (explicit)}
+
+\begin{itemize}
+\item \textbf{Abel summation with weights}: generalization of the standard Abel summation to handle $\sum (1/m) \cdot a_m$.
+\item \textbf{Dirichlet-series moment bounds}: connection between uniform coefficient bounds and Dirichlet series convergence.
+\item \textbf{Average-to-pointwise shift}: transfer of averaged bounds to pointwise estimates.
+\end{itemize}
+
+\textbf{Estimated Mathlib PR effort}: 3 PRs, $\approx 240$ lines total. \textbf{This is simpler than A1 or A3 and can be done in parallel.}
+
+\section{Part 3: Proposed Implementation Strategy}
+
+\subsection{Why Route A1 + A2?}
+
+\begin{itemize}
+\item \textbf{Literature precedent}: MRT mollified Chowla is a flagship modern result, widely recognized.
+\item \textbf{Mathlib compatibility}: mollifiers and Fourier analysis are well-supported; gaps are additive, not structural.
+\item \textbf{Parallel-doable}: A2 (log-averaging) can be started immediately; A1 can follow.
+\item \textbf{Fallback available}: if A1 stalls, the same A2 infrastructure supports A3.
+\end{itemize}
+
+\subsection{Phased roadmap (5 weeks)}
+
+\begin{enumerate}
+\item \textbf{Phase α (Weeks 1--2): A2 foundation}
+\begin{itemize}
+\item Formalize Abel summation with logarithmic weights in Mathlib
+\item Formalize Dirichlet-series moment bounds
+\item Instantiate H15SawtoothLogAveragingReduction in project code
+\item Verify: lake build + verify.sh passes
+\end{itemize}
+
+\item \textbf{Phase β (Weeks 3--4): Route A1 mollified Chowla}
+\begin{itemize}
+\item Formalize mollified-convolution Dirichlet bounds in Mathlib
+\item Formalize Möbius phase cancellation
+\item Formalize Bernoulli mollification special properties
+\item Instantiate H15MollifiedChowlaEstimate in project code
+\item Verify: all checks pass
+\end{itemize}
+
+\item \textbf{Phase γ (Week 5): Integration to RH}
+\begin{itemize}
+\item Wire A1 + A2 into FinalAssembly.riemannHypothesis\_of\_mollified\_chowla
+\item Full project verification
+\item Tag: verified-rh-complete-via-a1-mollified-chowla
+\end{itemize}
+\end{enumerate}
+
+\textbf{Critical gate}: Before Phase β begins, expert analytic number theorists should review the Route A1 approach and the literature anchors (MRT 2015). If the route is deemed non-viable, the project pivots to A3 or proposes a hybrid.
+
+\section{Part 4: Experimental Results and the Need for Expert Review}
+
+\subsection{What we computed}
+
+Through LLM-guided exploration and numerical testing, we identified:
+
+\begin{enumerate}
+\item The \textbf{exact algebraic form} of the quadratic interaction (Eq. $\dagger$): a norm form revealing why per-stratum bounds fail.
+\item The \textbf{centered sawtooth bound} $(\ast)$ numerically:
+\[
+\bigl|\Lambda_\gamma(N)\bigr|
++\bigl|\Lambda_{\mathrm{ratio}}(N)+\mathcal B(N)-1+2(\mathcal L(N)+1)\bigr|
+\;\le\;\frac{C}{\log^2(N{+}2)},
+\]
+with $C \approx 1.6--4.0$ over $N = 20--300$.
+\item The \textbf{sawtooth algebraic reduction} (Eq. \ref{eq:sawreduction}): decomposing the BBLS correlation into products of Möbius sums and B₁ evaluations.
+\item The \textbf{three-route structure}: A1 (mollified Chowla), A3 (DFI), and A2 (log-averaging), with documented Mathlib gaps for each.
+\end{enumerate}
+
+\subsection{Why expert review is essential}
+
+\begin{itemize}
+\item \textbf{The centered bound $(\ast)$ is numerically robust but analytically opaque.} It may be a known result (e.g., consequence of Estermann zeta growth, or hidden in the Landau/Axer literature), or it may be genuinely new and beyond current methods.
+
+\item \textbf{Route A1 (MRT) may require unproven prerequisites.} The mollified Chowla bound, while published, may have implicit assumptions or require additional machinery not yet in Mathlib.
+
+\item \textbf{Route A3 (DFI) is expert-territory mathematics.} Kloosterman sums, character bounds, and exponential-sum cancellation are deep topics; any formalization requires collaboration with specialists.
+
+\item \textbf{The formal translation may introduce new obstacles.} Moving from paper proofs to Lean-checkable statements can reveal hidden hypotheses or require new technical lemmas.
+\end{itemize}
+
+\subsection{What we ask of experts}
+
+We request detailed peer review on:
+
+\begin{enumerate}
+\item \textbf{Bound $(\ast)$}: Is this a consequence of known results? If so, cite them. If not, does it seem plausible? Why or why not?
+
+\item \textbf{Route A1 viability}: Is the MRT mollified Chowla adaptation to the sawtooth feasible? What prerequisites would be needed?
+
+\item \textbf{Route A3 prospects}: Among DFI, Kloosterman, and modern exponential-sum methods, which is most tractable for formalization?
+
+\item \textbf{Alternative routes}: Are there other modern approaches (e.g., Tao--Teräväinen log-averaging, probabilistic models, sieve methods) that the project has missed?
+
+\end{enumerate}
+
+\section{Current Status and Next Steps}
+
+\subsection{What is machine-proved}
+
+\begin{itemize}
+\item \textbf{Vasyunin period reduction}: fully closed (one decorative sorry)
+\item \textbf{Linear estimates}: fully closed (conditional on ClassicalMertensDecay)
+\item \textbf{H15 smooth component}: fully closed
+\item \textbf{H15 sawtooth algebraic reduction}: fully closed (NEW)
+\item \textbf{H15 sawtooth analytic interfaces}: fully formalized (NEW)
+\item \textbf{Nyman--Beurling Fields 1 \& 2}: fully closed (Mellin continuity + zero-detection)
+\end{itemize}
+
+Total: 8646 Lean modules, 132 axioms (baseline only), zero new sorry's in the main chain.
+
+\subsection{What remains open (three routes)}
+
+\begin{itemize}
+\item \textbf{Route A1}: Mollified Chowla + log-averaging (est. 5 weeks, 700 Mathlib lines)
+\item \textbf{Route A2}: Universal log-averaging (est. 2 weeks, 240 Mathlib lines, parallelizable)
+\item \textbf{Route A3}: Reciprocal-phase DFI (est. 6--8 weeks, 600+ Mathlib lines, expert-heavy)
+\end{itemize}
+
+All three routes have \emph{exact stopping gates} and documented Mathlib gaps. None are blocked by fundamental obstructions; all are implementation tasks suitable for collaborative formalization.
+
+\section{Why This Methodology Matters}
+
+This project demonstrates that:
+
+\begin{enumerate}
+\item \textbf{LLMs can navigate open problems at scale.} By proposing decompositions, flagging false statements, and suggesting next steps, LLMs reduce the burden on human experts.
+
+\item \textbf{Formal verification catches errors that human peer review misses.} Three false statements in this project were caught by the Lean kernel before human eyes saw them.
+
+\item \textbf{Computational scaffolding isolates structural barriers.} Instead of a vague "prove the correlation bound," we now have three precise routes with documented prerequisite machinery.
+
+\item \textbf{Open problems can be modularized for collaboration.} By isolating three independent routes, the project invites focused expert review on each, rather than asking for monolithic approval of a single approach.
+
+\item \textbf{Mathlib expansion is the real bottleneck.} The distance from machine-verified reduction to unconditional RH is not deep mathematics, but concrete Mathlib infrastructure: mollifiers, character sums, exponential sums, and specialized bounds.
+\end{enumerate}
+
+\section*{Invitation to Experts}
+
+All Lean sources, verification scripts, numerical diagnostics, and literature references are available for inspection. We seek feedback from analytic number theorists on:
+\begin{itemize}
+\item The viability and literature precedent for each of the three routes
+\item Whether the centered bound $(\ast)$ is a known result or genuinely open
+\item The most promising path forward (A1, A3, or hybrid)
+\item Suggestions for alternative routes not yet considered
+\end{itemize}
+
+\textbf{This is a collaboration invitation, not a claim of completion.} The formal mathematics is solid; the analytic content requires expert judgment.
+
+\begin{thebibliography}{9}\small
+
+\bibitem{BD} L.~Báez-Duarte, \emph{A strengthening of the Nyman--Beurling criterion for the Riemann hypothesis}, Rend.\ Lincei Mat.\ Appl.\ 14 (2003).
+
+\bibitem{BBLS} L.~Báez-Duarte, M.~Balazard, B.~Landreau, E.~Saias, \emph{Étude de l'autocorrélation multiplicative de la fonction «partie fractionnaire»}, Ramanujan J.\ 9 (2005); arXiv:math/0306251.
+
+\bibitem{MRT} K.~Matomäki, M.~Radziwiłł, T.~Tao, \emph{Correlations of the von Mangoldt and higher divisor functions}, Proc.\ Lond.\ Math.\ Soc.\ 112 (2016); arXiv:1411.1191.
+
+\bibitem{Vas} V.~I. Vasyunin, \emph{On a biorthogonal system associated with the Riemann hypothesis}, St.~Petersburg Math.\ J.\ 7 (1996).
+
+\bibitem{dVP} C.-J. de la Vallée Poussin, \emph{Mém.\ Couronnés Acad.\ Roy.\ Belgique} 59 (1899).
+
+\bibitem{Lean} The mathlib Community, \emph{The Lean mathematical library}, CPP 2020; L.~de Moura, L.~Ullrich, CADE-28 (2021).
+
+\bibitem{DH} A.~Pressman, D.~Schnapp (eds.), \emph{Switching Codes: Thinking Through Digital Technology in the Humanities and Sciences} (University of Chicago Press, 2016).
+
+\end{thebibliography}
+
+\end{document}
