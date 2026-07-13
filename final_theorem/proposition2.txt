@@ -1,0 +1,107 @@
+**Landscape of two-linear-forms Möbius correlation estimates**  
+The problem is to bound sums of the shape  
+\[
+\sum_{h,k} \mu(h)\mu(k)\, w(h,k)
+\]  
+where \(\mu\) is the Möbius function, \(h,k\) range over an interval \([1,N]\) (or a dyadic block), and \(w\) is a weight function that often arises from Farey dissection (e.g. \(w(h,k)\) localises \(h/k\) near a rational \(a/q\)). The target is a saving of \(1/\log N\):  
+\[
+\Bigl|\sum_{h,k}\mu(h)\mu(k) w(h,k)\Bigr| \ll \frac{\sum_{h,k}|w(h,k)|}{\log N}.
+\]  
+Unlike the classical Chowla conjecture which fixes one shift, two‑linear‑form estimates require simultaneous control over *both* variables; this brings in the theory of double character sums, the large sieve, or advanced structural results for multiplicative functions.
+
+Three distinct modern approaches have emerged.
+
+---
+
+### 1. Averaged Chowla (Matomäki–Radziwiłł–Tao, 2015)
+**Core technique.** Mollification and the Turán–Kubilius inequality.  
+They prove that for any fixed tuple of shifts \(h_1,\dots,h_k\), the logarithmically averaged Chowla conjecture holds:
+\[
+\frac{1}{\log N}\sum_{n\le N}\frac{\mu(n+h_1)\cdots\mu(n+h_k)}{n} = o(1).
+\]
+The argument introduces a carefully crafted sieve weight \(\rho\) (the “mollifier”) to remove small prime factors, uses the Turán‑Kubilius inequality to control the resulting errors, and finally applies a large‑sieve bound.  
+**Two‑linear‑form potential.**  
+In principle, one can decompose a weight \(w(h,k)\) into a sum of indicator‑like functions and apply the averaged Chowla bounds for each fixed shift difference. However, the known results give pointwise control only for fixed shifts; extending to a double average with arbitrary smooth weight requires significant additional work (e.g., a “double mollification”).  
+**Key lemmas/theorems.**  
+- Turán–Kubilius inequality for strongly additive functions.  
+- A mollification lemma: for a suitable sieve weight \(\rho\), \(\|\mu-\mu\ast\rho\|_{U^2}\) is small.  
+- A large‑sieve estimate for prime‑supported sequences.  
+- The averaged Chowla theorem itself, which relies on the above.  
+
+**Mathlib feasibility.** Very low. None of the core ingredients (Turán‑Kubilius, mollification, the combinatorial sieve, the \(U^2\)‑norm control) are currently in Mathlib. Formalising them would require a multi‑year effort.
+
+---
+
+### 2. Log‑averaged structure theorem (Tao–Teräväinen, 2019)
+**Core technique.** Nilsequences, polynomial phases, and the entropy decrement method.  
+They show that the logarithmically averaged correlations of \(\mu\) are asymptotically controlled by nilsequences:
+\[
+\frac{1}{\log\omega}\sum_{n\le\omega}\frac{\mu(n+1)\cdots\mu(n+k)}{n} \approx \text{(nilsequence factor)}.
+\]
+The proof uses ergodic theory and the inverse theorem for the Gowers uniformity norms, translated into an entropy decrement argument.  
+**Two‑linear‑form potential.**  
+Two‑linear‑form correlations can be reinterpreted as correlations of \(\mu\otimes\mu\) with a function on \(\mathbb{Z}^2\); thus they fall under the general structure theorem. The bound one obtains would be of high quality, but the machinery required is immense.  
+**Key lemmas/theorems.**  
+- Existence and properties of nilsequences and polynomial phases.  
+- The inverse conjecture for the Gowers \(U^3\)‑norm on cyclic groups.  
+- Entropy decrement (a combinatorial/probabilistic lemma).  
+- A correlation estimate for nilsequences.  
+
+**Mathlib feasibility.** Negligible. Almost nothing exists: no nilmanifolds, no Gowers norms, no entropy decrement. Even a partial formalisation would be a multi‑decade project.
+
+---
+
+### 3. Large sieve and character sums (Harper, Klurman–Mangerel, and classical methods)
+**Core technique.** Circle method, Dirichlet character expansion, large sieve, Pólya–Vinogradov, and the Prime Number Theorem.  
+Write the two‑linear form as an integral over the circle:
+\[
+\sum_{h,k}\mu(h)\mu(k) w(h,k) = \int_0^1 \bigl|\sum_{n\le N}\mu(n)e(n\alpha)\bigr|^2 \widehat{w}(\alpha)\,d\alpha,
+\]
+where \(\widehat{w}\) is a Fourier transform of the weight (assuming \(w\) depends only on \(h-k\); the general case follows by linearity and approximation). The circle is split into major arcs (neighbourhoods of rationals \(a/q\) with small \(q\)) and minor arcs. On the minor arcs, the large sieve (Mathlib: `NumberTheory.LargeSieve`) gives a power‑saving bound. On the major arcs, the exponential sum is expanded using Dirichlet characters:
+\[
+\sum_{n\le N}\mu(n)e(an/q) = \frac{1}{\varphi(q)}\sum_{\chi\bmod q} \chi(a)\,\tau(\overline{\chi})\sum_{n\le N}\mu(n)\chi(n),
+\]
+with Gauss sum \(\tau(\chi)\). The inner sums are bounded for non‑principal characters by the Pólya–Vinogradov inequality (Mathlib: `NumberTheory.PolyaVinogradov`), and for the principal character they reduce to \(\sum_{n\le N,\,(n,q)=1}\mu(n)\). Removing the coprimality condition via Möbius inversion introduces the full Mertens sum \(M(x)=\sum_{n\le x}\mu(n)\). A suitable form of the Prime Number Theorem (e.g., \(M(x)\ll x/\log^A x\)) completes the bound.  
+**Two‑linear‑form capability.**  
+This is the classical approach to correlation estimates; it works exactly for two‑linear forms with a smooth (or periodic) weight. The method is modular and each component has a clean algebraic/combinatorial flavour.  
+
+**Key lemmas/theorems.**  
+1. **Analytic large sieve.**  
+   \[
+   \sum_{q\le Q}\sum_{a\bmod q}\Bigl|\sum_{n\le N}a_n e(an/q)\Bigr|^2 \le (N+Q^2)\sum_{n\le N}|a_n|^2.
+   \]  
+   *Status:* **Formalised** in Mathlib (`NumberTheory.LargeSieve`).  
+
+2. **Fourier expansion on \(\mathbb{Q}/\mathbb{Z}\).**  
+   Every weight can be approximated by a finite sum of additive characters \(e(an/q)\); rigorous approximation uses smooth partitions and Poisson summation. This is a routine harmonic analysis step.  
+
+3. **Dirichlet character expansion of additive characters.**  
+   For \((a,q)=1\),  
+   \[
+   e(an/q) = \frac{1}{\varphi(q)}\sum_{\chi\bmod q} \chi(a)\tau(\overline{\chi})\,\chi(n).
+   \]  
+   *Status:* Mathlib has Dirichlet characters, Gauss sums (`NumberTheory.DirichletCharacter`), and the orthogonality relations; proving this identity is straightforward.  
+
+4. **Pólya–Vinogradov inequality.**  
+   For a primitive Dirichlet character \(\chi\) modulo \(q\),  
+   \[
+   \Bigl|\sum_{n\le N}\chi(n)\Bigr| \le 2\sqrt{q}\log q.
+   \]  
+   *Status:* **Formalised** (or very nearly so) in Mathlib (`NumberTheory.PolyaVinogradov`). This gives a non‑trivial bound for all non‑principal character sums without any analytic input.  
+
+5. **Möbius sum bound (Prime Number Theorem).**  
+   A result of the shape  
+   \[
+   \bigl|\sum_{n\le x}\mu(n)\bigr| \ll \frac{x}{(\log x)^A}\qquad (A>0)
+   \]  
+   is required to treat the principal character component.  
+   *Status:* **Not yet in Mathlib.** The full PNT with a logarithmic error term is missing. However, this is a single, well‑defined theorem; a formalisation using Newman’s method or the Turán–Kubilius approach is an active goal. Once available, the whole character‑sum route becomes viable.
+
+---
+
+### Feasibility assessment and recommended route
+- **Route A1 (MRT)**: requires mollification, Turán–Kubilius, large sieve, and a deep structural decomposition; virtually nothing is in Mathlib.  
+- **Route A2 (Tao–Teräväinen)**: requires nilsequences, Gowers norms, entropy decrement; completely out of reach.  
+- **Route A3 (large sieve + character sums)**: the core analytic engine (the large sieve) is already formalised, the Pólya–Vinogradov inequality is available, and the remaining harmonic‑analytic scaffolding is elementary. The only missing piece is a sufficiently strong PNT, a theorem that is itself a primary formalisation target in the number‑theory community.  
+
+**Conclusion.** The large‑sieve/character‑sum route (A3) is overwhelmingly the most feasible path to formalising two‑linear‑form Möbius correlation estimates in Mathlib 4. It builds on existing formalised components, decomposes the problem into well‑separated lemmas, and the one major gap (the Möbius sum bound) can initially be taken as an external hypothesis, allowing the rest of the argument to be formalised and proved correct today. Once the PNT becomes available, replacing the hypothesis with the actual theorem will close the whole chain.

@@ -1,0 +1,294 @@
+There is an important correction first: the current Lean correlation interface is still too strong.
+The stated field is essentially:
+\[
+\left|\sum_{m\le M}\mu(am+r)\mu(qm+s)w(m)\right|
+\le
+\frac{C\,\|w\|_1}{\log(N+2)}
+\]uniformly in all Farey parameters and all weights in FareyCellWeightClass.
+But that class still contains the point mass \(w(1)=1,\;w(m)=0\) for \(m>1\). Taking
+\[
+g=a=q=M=1,\qquad r=s=0
+\]gives a left side equal to \(1\), while the right side is \(C/\log(N+2)\), which tends to zero. Thus the current universal field is uninhabited for any fixed \(C\).
+The relevant definitions are in [`H15StructuredCorrelationEstimate.lean`](/Users/xavierfresquet/Documents/Musicologie/CAPTAL-LAB/4-MISC/math/riemann/RiemannHypothesis/Criteria/NymanBeurling/H15StructuredCorrelationEstimate.lean) and [`QuadraticInteraction.lean`](/Users/xavierfresquet/Documents/Musicologie/CAPTAL-LAB/4-MISC/math/riemann/RiemannHypothesis/Criteria/NymanBeurling/QuadraticInteraction.lean).
+The actual missing theorem should instead be a centered, aggregate estimate for the specific \(N\)-dependent cell weights produced by the H15 kernel:
+\[
+\sum_{g\le N}
+\left|
+\sum_{\text{Farey cells at }g}
+\sum_{m}
+\mu(am+r)\mu(qm+s)\,
+W_{N,g,a,q,r,s,M}(m)
+\right|
+\ll \frac{1}{\log^2(N+2)},
+\]or an equivalent signed estimate whose main terms are paired with the \(W_1-1\), logarithmic, and linear components. It cannot quantify over arbitrary independent weights or bound every cell separately by a vanishing \(1/\log N\) factor.
+A realistic research project would have four stages:
+Specification audit: derive the exact \(W_{N,\dots}(m)\) from the kernel and freeze a corrected global Lean proposition.
+
+Literature matching: determine whether the resulting sum is covered by:
+averaged Chowla/Möbius correlation,
+logarithmically averaged Elliott-type estimates, or
+bilinear Kloosterman/DFI estimates.
+
+Analytic prototype: prove a restricted theorem for smooth dyadic weights, averaged Farey parameters, or fixed gcd strata using Vaughan/Heath-Brown decompositions and Type-I/Type-II estimates.
+
+Lean formalization: formalize the finite Fourier/Farey bookkeeping first, then import the proven analytic estimate as the sole content-bearing theorem.
+
+This is a research-level analytic-number-theory project, not merely missing Mathlib plumbing. The first useful deliverable is therefore a corrected centered aggregate interface; only after that can we tell whether an existing theorem actually supplies the needed bound.
+
+
+I would **not** make the next route “formalize any of A1/A2/A3 in Mathlib” yet.
+
+The best next route is:
+
+```text
+Turn the H15 Möbius correlation estimate into a standalone analytic-number-theory paper problem,
+then do theorem-matching / expert consultation before any large formalization.
+```
+
+The reason is simple: your current gap is not “Mathlib lacks paper X.” It is:
+
+```text
+Does paper X actually imply the exact H15 correlation bound?
+```
+
+That is not yet established. So the next move should be mathematical, not Lean-heavy.
+
+## First correction: be precise about the current status
+
+I would avoid saying:
+
+```text
+The Riemann Hypothesis is formally proved in Lean.
+```
+
+Say instead:
+
+```text
+The RH reduction pipeline is formally complete, conditional on one explicitly stated H15 Möbius correlation estimate.
+```
+
+That is stronger, cleaner, and harder to attack. The current theorem is:
+
+```lean
+H15_Möbius_correlation_bound →
+RH.Basic.RiemannHypothesis
+```
+
+That is a major formal result, but it is still conditional.
+
+Also, I would be cautious with:
+
+```text
+formalizing any of A1/A2/A3 would complete the RH proof
+```
+
+Better:
+
+```text
+formalizing a theorem strong enough to imply the exact H15_Möbius_correlation_bound would complete the conditional chain.
+```
+
+Averaged Chowla, log-averaged Chowla, and short-interval multiplicative results may be relevant, but they may not match the exact weights, quantifiers, and uniformity.
+
+## Best next route
+
+### Route 0 — freeze the exact H15 theorem as a research object
+
+Before choosing MRT / Tao–Teräväinen / Harper–Klurman–Mangerel, write the exact missing estimate in a two-page mathematical note.
+
+It should include:
+
+```text
+1. Exact definition of H15_Möbius_correlation_bound.
+2. Exact normalization.
+3. Exact weights.
+4. Required uniformity.
+5. Whether the estimate is pointwise, averaged, dyadic, or signed.
+6. The numerical evidence.
+7. The theorem chain:
+   H15_Möbius_correlation_bound → RH.
+```
+
+This note should be the object you send to analytic number theorists.
+
+## Best mathematical attack
+
+The most promising path is not “averaged Chowla” in the abstract. It is the **reciprocal-phase / Bernoulli-sawtooth formulation**.
+
+The target should be phrased as something like:
+
+```text
+S_N(A) =
+∑_{k≤N} μ(k) (1 - k/(N+1)) B₁(A/k)
+```
+
+or the exact signed centered version in your Lean file.
+
+Then ask:
+
+```text
+Can one prove S_N(A) ≪ 1 / log² N, uniformly in A,
+or at least the exact bound required by QuadraticInteractionNormResidual?
+```
+
+The Fourier/Vaaler route converts this to sums of the form:
+
+```text
+∑_{k≤N} μ(k) e(λ/k)
+```
+
+This is much sharper and more searchable than “quadratic interaction.”
+
+## Concrete research plan
+
+### Step 1 — Vaaler approximation
+
+Do not use the raw Fourier series of `B₁`. Use Vaaler’s trigonometric approximation to the sawtooth.
+
+Goal:
+
+```text
+B₁(A/k)
+=
+finite trigonometric polynomial
++
+controlled error.
+```
+
+Then reduce the H15 residual to finitely many reciprocal-phase sums.
+
+### Step 2 — dyadic decomposition
+
+Work on blocks:
+
+```text
+K < k ≤ 2K
+```
+
+Study:
+
+```text
+∑_{K<k≤2K} μ(k) w(k/K) e(λ/k).
+```
+
+This is the clean analytic object.
+
+### Step 3 — split frequency regimes
+
+The phase derivative changes size depending on `λ/K²`.
+
+Use three regimes:
+
+```text
+λ/K² small:
+  Mertens/PNT-style partial summation may suffice.
+
+λ/K² ≈ 1:
+  transition range; likely hardest.
+
+λ/K² large:
+  van der Corput / Vaughan / Heath-Brown / Kloosterman-fraction methods.
+```
+
+### Step 4 — ask whether known results apply
+
+Now match against literature:
+
+```text
+Davenport-type μ exponential sums
+Vaughan/Heath-Brown identity with nonlinear phase
+DFI bilinear forms with Kloosterman fractions
+reciprocal monomial exponential sums
+averaged Chowla only if the final H15 expression really has the required averaging
+```
+
+This is the right expert question.
+
+## Why I would not pick A1/A2/A3 directly
+
+### A1 — Matomäki–Radziwiłł–Tao
+
+Highly relevant, but likely about averaged Chowla/short intervals. It may not give the **pointwise uniform reciprocal sawtooth** estimate you need.
+
+### A2 — Tao–Teräväinen
+
+Powerful, but often logarithmically averaged. Your H15 residual may not be log-averaged. If the weights can be converted into a log average, great — but that must be proved first.
+
+### A3 — Harper–Klurman–Mangerel
+
+Potentially relevant but probably the heaviest formalization path. I would not start there unless theorem matching shows it directly fits.
+
+## Best formalization move
+
+In Lean, do **not** formalize the modern paper yet.
+
+Instead, create a minimal interface:
+
+```lean
+structure UniformMobiusSawtoothEstimate where
+  C : ℝ
+  C_pos : 0 < C
+  bound :
+    ∀ N A,
+      |mobiusSawtoothResidual N A|
+        ≤ C / (Real.log (N + 2 : ℝ)) ^ 2
+```
+
+Then prove:
+
+```lean
+theorem QuadraticInteractionNormResidual_of_uniformMobiusSawtooth
+    (H : UniformMobiusSawtoothEstimate) :
+    QuadraticInteractionNormResidual
+```
+
+If this bridge is already essentially done, clean it and make it the official final residual.
+
+That gives you:
+
+```text
+UniformMobiusSawtoothEstimate →
+RH
+```
+
+which is the cleanest expert-facing reduction.
+
+## Best next practical sequence
+
+```text
+1. Clean the final status language:
+   “conditional RH pipeline complete,” not “RH proved.”
+
+2. Freeze the exact H15 estimate in a short TeX note.
+
+3. Prove in Lean:
+   UniformMobiusSawtoothEstimate → QuadraticInteractionNormResidual,
+   if not already done.
+
+4. Send the TeX note to experts.
+
+5. In parallel, run a literature check specifically for:
+   μ(k)e(λ/k),
+   Möbius reciprocal phases,
+   Vaaler sawtooth + Möbius,
+   DFI/Kloosterman fractions.
+
+6. Only after theorem matching, decide whether to formalize:
+   MRT,
+   Tao–Teräväinen,
+   Harper–Klurman–Mangerel,
+   or a more classical Vaughan/DFI proof.
+```
+
+## Summary
+
+The best next route is:
+
+```text
+Do not formalize a whole modern analytic-number-theory paper yet.
+First turn H15 into the cleanest possible standalone theorem:
+a uniform Möbius–sawtooth / reciprocal-phase estimate.
+Then theorem-match that exact estimate against the literature and experts.
+```
+
+If an expert says “yes, this follows from theorem X,” then formalize theorem X. If not, you have a new precise research problem, which is itself a serious output of the experiment.
