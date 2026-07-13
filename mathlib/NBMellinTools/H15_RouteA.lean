@@ -321,25 +321,38 @@ theorem dedekind_sawtooth_fourier (x : ℂ) (hx : 0 < x.re) :
     ∑' j : ℤ, if j ≠ 0 then
       Complex.exp (2 * π * ι * j * x) / (2 * π * ι * j)
     else 0 := by
-  -- The Dedekind sawtooth B₁(x) = {x} - 1/2 (where {x} is fractional part)
-  -- has the classical Fourier series expansion:
+  -- The Dedekind sawtooth B₁(x) = {x} - 1/2 (fractional part minus 1/2)
+  -- has the well-known Fourier series expansion:
   -- B₁(x) = ∑_{j ≠ 0} e(jx)/(2πij)  for Re(x) > 0
   --
-  -- Proof sketch:
-  -- 1. For Re(x) > 0, the series ∑_j e(jx)/(2πij) converges absolutely
-  --    by comparison with ∑ 1/|j| · e^(Re(x)·log|j|) ~ O(1/|j|^(1-ε))
+  -- PROOF STRUCTURE:
+  -- ================
   --
-  -- 2. The Fourier coefficients of B₁ are:
-  --    c_j = (1/1) ∫₀¹ ({t} - 1/2) e^(-2πijt) dt
-  --    = (1/(2πij)) for j ≠ 0 (by standard calculation)
+  -- Step 1: Fourier Coefficient Calculation
+  --        For periodic function f with period 1:
+  --        c_j = ∫₀¹ f(t) e^(-2πijt) dt
   --
-  -- 3. By the Riemann-Lebesgue lemma and Dirichlet convergence test,
-  --    the series converges to B₁(x) for x with Re(x) > 0.
+  --        For B₁(t) = {t} - 1/2 on [0,1]:
+  --        c_j = ∫₀¹ (t - 1/2) e^(-2πijt) dt
+  --            = 0 for j = 0
+  --            = 1/(2πij) for j ≠ 0 (by integration by parts)
   --
-  -- 4. The formula then extends meromorphically to the complex plane.
+  -- Step 2: Convergence for Re(x) > 0
+  --        Series ∑_j |1/(2πij)| · |e(jx)| = ∑_j 1/(2π|j|) · e^(jx·Im) · e^(-jx·Re)
+  --        Since Re(x) > 0: e^(-jx·Re) decays exponentially in |j|
+  --        Comparison with ∑ e^(-c|j|) shows absolute convergence
   --
-  -- This is Theorem 1 in many complex analysis texts (e.g., Ahlfors, Ch. 5).
-  sorry  -- Fourier series of sawtooth: standard classical analysis result
+  -- Step 3: Pointwise Convergence
+  --        By Dirichlet's convergence test, the series converges pointwise to B₁(x)
+  --        for all x with Re(x) > 0
+  --
+  -- Step 4: Meromorphic Extension
+  --        The formula extends meromorphically to ℂ \ {negative reals}
+  --        via analytic continuation
+  --
+  -- This is a classical result from complex analysis.
+  -- Reference: Ahlfors "Complex Analysis", Chapter V
+  sorry  -- Fourier series of sawtooth (classical, convergent for Re(x) > 0)
 
 /-- H15 sum expressed via Fourier decomposition
 
@@ -353,30 +366,38 @@ theorem h15_fourier_decomposition (A N : ℕ) (AN_pos : 0 < A ∧ 0 < N) :
     ∑' j : ℤ, if j ≠ 0 then
       (1 / (2 * π * ι * j)) * reciprocal_phase_möbius_sum j A N
     else 0 := by
-  -- Proof by summation interchange (finite × infinite series):
+  -- Proof: Summation Interchange (Finite × Infinite Series)
   --
-  -- Step 1: Apply Fourier decomposition to each term
-  -- By dedekind_sawtooth_fourier: B₁(A/k) = ∑_j≠0 e(jA/k)/(2πij)
+  -- STRATEGY:
+  -- =========
   --
-  -- Step 2: Substitute into the main sum
-  -- ∑_k μ(k)(1-k/(N+1)) · B₁(A/k)
-  -- = ∑_k μ(k)(1-k/(N+1)) · [∑_j≠0 e(jA/k)/(2πij)]
+  -- Starting point: ∑_k μ(k)(1-k/(N+1))B₁(A/k)
+  -- Apply Fourier: B₁(A/k) = ∑_j e(jA/k)/(2πij)  [from dedekind_sawtooth_fourier]
   --
-  -- Step 3: Interchange the sum order
-  -- Since we sum over finite k ∈ [1,N] first, then infinite j,
-  -- absolute convergence of Fourier series justifies reordering:
-  -- = ∑_j≠0 [(∑_k∈[1,N] μ(k)(1-k/(N+1)) e(jA/k)) · (1/(2πij))]
-  -- = ∑_j≠0 [(1/(2πij)) · S_j(N,A)]
+  -- Get: ∑_k μ(k)(1-k/(N+1)) · [∑_j≠0 e(jA/k)/(2πij)]
   --
-  -- Step 4: Extend to tsum with j = 0 term as 0
-  -- = ∑' j : ℤ, if j ≠ 0 then (1/(2πij)) · S_j(N,A) else 0
+  -- Interchange order: ∑_j≠0 [∑_k μ(k)(1-k/(N+1)) e(jA/k)] · (1/(2πij))
+  --                  = ∑_j≠0 (1/(2πij)) · S_j(N,A)
   --
-  -- This interchange is valid because:
-  -- - Finset.range N is finite (interchange costs nothing)
-  -- - Fourier series converges absolutely for Re(A/k) > 0
-  -- - Möbius weights |μ(k)| ≤ 1
-  -- - Weight (1 - k/(N+1)) ≤ 1
-  sorry  -- Summation interchange: finite sum × absolutely convergent series
+  -- where S_j(N,A) = ∑_k μ(k)(1-k/(N+1)) e(jA/k)
+  --
+  -- JUSTIFICATION FOR INTERCHANGE:
+  -- ==============================
+  -- We're interchanging a finite sum (over k ∈ [1,N]) with an infinite sum (over j).
+  --
+  -- Absolute convergence:
+  -- |∑_k μ(k)(1-k/(N+1)) · ∑_j e(jA/k)/(2πij)|
+  -- ≤ ∑_k |μ(k)| · |1-k/(N+1)| · ∑_j |e(jA/k)|/(2π|j|)
+  -- ≤ ∑_k 1 · 1 · ∑_j e^(-(j·Re(A/k)))/(2π|j|)
+  -- ≤ N · constant (by exponential decay for Re(A/k) > 0)
+  --
+  -- Therefore the interchange is valid and we get the claimed formula.
+  --
+  -- FORMAL JUSTIFICATION:
+  -- Uses Fubini/Tonelli for absolutely convergent double series
+  -- (finite × infinite → finite summation commutes with tsum)
+
+  sorry  -- Summation interchange: Fubini for finite × infinite absolutely convergent series
 
 end ReciprocalPhaseExponentialSums
 
