@@ -478,7 +478,11 @@ The staged finish attempt then ran to its designed conclusion (tag `verified-h15
 
 ## 10. The Fourth Debt: Nyman–Beurling ⇒ RH
 
-Even a fully closed set of analytic debts (§7–9) only yields a theorem-proved Báez–Duarte criterion. The step from there to unconditional RH is `nyman_beurling_criterion_iff_RH` (`BaezDuarte.lean`), still a bare, explicitly-labeled axiom — the classical Nyman (1950) / Beurling (1955) / Báez-Duarte (2003) theorem itself. A staged plan for this ("Phase NB") exists but has not been started: split the bare `↔` into two one-directional theorems and pursue only the forward direction (`NymanBeurlingCriterion → RH`, the direction that actually turns this project's work into RH) via a Mellin-transform vanishing argument, deferring the converse (the full classical Beurling density/cyclicity theorem) indefinitely. Notably, `nymanBeurlingCriterion_iff_baezDuarteCriterion` — a step the plan initially assumed was still open — is **already proved** in the repo (Phase 10A); the actual remaining gap is narrower than it first appears.
+Even a fully closed set of analytic debts (§7–9) only yields a theorem-proved Báez–Duarte criterion. The historical `nyman_beurling_criterion_iff_RH` axiom has been removed from the active bridge. The forward implication is now isolated as `NBForward`, and its concrete Mellin formulas are theorem-level (`mellin_chi_eval_proved` and `mellin_generator_eval_proved`). The remaining analytic content is the pair of transport statements in `NymanBeurlingMellinTransportDebts`: continuity of Mellin evaluation under the L² approximation and the zero-detection transport from the generators to χ. The converse (the full Beurling density/cyclicity direction) remains deferred.
+
+`NBForward_of_mellin_transport_debts` proves the forward bridge from that named package, while `NBForward_of_split_mellin_transport_debts` exposes the two fields separately. The finite conversion `nymanBeurlingCriterion_iff_baezDuarteCriterion` is already proved (Phase 10A), so the remaining gap is now exactly the Mellin/Plancherel transport rather than the criterion conversion.
+
+Mathlib provides `mellin_eq_fourier` (`Analysis/MellinInversion.lean`) and the full-line L² identity `MeasureTheory.Lp.norm_fourier_eq` (`Analysis/Fourier/LpSpace.lean`). It does not provide the project-facing half-line Mellin-Plancherel wrapper, continuity of the off-critical-line Mellin evaluation for the relevant L² approximants, or the zero-detection argument that turns vanishing generator transforms into the nonzero χ transform contradiction. These are recorded as explicit hypothesis fields rather than unsupported negative claims or new `sorry` declarations.
 
 ## 11. Current Honest Status
 
@@ -512,8 +516,8 @@ classical-flavored, none RH-circular — plus the separate Nyman–Beurling ⇒ 
 bridge axiom (§10) for unconditional RH.
 
 A fourth, separate gap beyond all three debts:
-  nyman_beurling_criterion_iff_RH:    still a bare axiom; a staged plan exists,
-                                       not yet started
+  NymanBeurlingMellinTransportDebts:  two explicit transport fields (§10),
+                                       with a proved conditional `NBForward`
 ```
 
 **This project is, honestly, a certified reduction with explicit, named, individually-tracked analytic debts — not a proof of the Riemann Hypothesis.** What has changed since the original 1,364-axiom, trust-everything state is that every remaining gap is now precisely named, precisely stated, and independently `#print axioms`-auditable — nothing is hidden inside a misleadingly "green" build. Closing H13, H14, H15, and the Nyman–Beurling bridge would yield a genuine, unconditional, machine-checked proof of RH; each of the four remaining pieces is, on its own merits, a substantial, multi-session (or genuinely open-research-level) undertaking, and none should be assumed tractable merely because the surrounding architecture is now clean.
