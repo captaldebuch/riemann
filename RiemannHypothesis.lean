@@ -3,7 +3,7 @@ import RiemannHypothesis.Basic.Zeta
 import RiemannHypothesis.Basic.CriticalStrip
 import RiemannHypothesis.Criteria.Li
 import RiemannHypothesis.Criteria.NymanBeurling.BaezDuarte
-import RiemannHypothesis.Criteria.NymanBeurling.NymanBeurlingForward
+import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 import RiemannHypothesis.Criteria.NymanBeurling.MellinCriticalLine
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninGram
 import RiemannHypothesis.Criteria.WeilPositivity
@@ -21,14 +21,16 @@ import RiemannHypothesis.Criteria.NymanBeurling.VasyuninCotangentRecognition
 import RiemannHypothesis.Criteria.NymanBeurling.BBLSPhiOne
 import RiemannHypothesis.Criteria.NymanBeurling.BBLSAutocorrelation
 import RiemannHypothesis.Criteria.NymanBeurling.VasyuninPeriodReduction
+import RiemannHypothesis.Criteria.NymanBeurling.Phase15ModeSpectrum
 import RiemannHypothesis.Criteria.NymanBeurling.H14ZeroFree
 import RiemannHypothesis.Criteria.NymanBeurling.H14ZetaEM
 import RiemannHypothesis.Criteria.NymanBeurling.H14ZetaFETransport
 import RiemannHypothesis.Criteria.NymanBeurling.H14FEFactorBound
+import RiemannHypothesis.Criteria.NymanBeurling.H14DvpChain
 import RiemannHypothesis.Criteria.NymanBeurling.H15FractionalTail
-import RiemannHypothesis.Criteria.NymanBeurling.RHBridge
 import RiemannHypothesis.Criteria.NymanBeurling.NBChiMellin
 import RiemannHypothesis.Criteria.NymanBeurling.H15MellinEnergy
+import RiemannHypothesis.Criteria.NymanBeurling.H15ForwardSpine
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDMellin
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDBaseIntegral
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDBaseDischarge

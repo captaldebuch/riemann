@@ -2,47 +2,6 @@
 
 **Authors:** Xavier Fresquet and Gérard Biau, Sorbonne Université
 
-## Closing-state ledger (2026-07-11, updated post `verified-final-assembly`)
-
-The latest verified baseline is `verified-final-assembly` (main `8c029e1`).
-The endgame theorem now EXISTS, honestly parameterized:
-
-```lean
-theorem riemannHypothesis_of_pair_and_NBforward
-    (H_decay : ClassicalMertensDecay)
-    (H_pair  : QuadraticInteractionBernoulliCorrelationEstimate H_decay)
-    (h_forward : NBForward) : RiemannHypothesis
-```
-
-Independently audited on the merged tree, its `#print axioms` list is exactly
-`[propext, Classical.choice, Quot.sound, setIntegral_Ioo_inv_substitution_bridge]`
-— three standard axioms plus the one documented Gram-integral substitution
-bridge. Notably, the historical `nyman_beurling_criterion_iff_RH` axiom is
-NOT in this theorem's trust chain: the forward implication enters as an
-explicit hypothesis (`NBForward`, from the NB0 split).
-
-RH now follows from exactly THREE named statements (`H_vasyunin` was
-discharged: `vasyuninBridgeLocalDebts_of_proved_chain`, constructed from the
-proved H13 chain, tag `verified-rh-three-hypotheses`). Of the three:
-`H_decay` is the 1899 de la Vallée Poussin Mertens bound, with a fully staged
-formalization route (Euler–Maclaurin continuation → left-strip functional
-equation transport → Borel–Jensen factorization → zero-free region →
-effective Perron → contour shift), each stage a named structure with proved
-consumers; `H_pair` is the centered Möbius–Bernoulli correlation estimate —
-numerically robust, four independent decomposition attempts proved or
-demonstrated insufficient, and the subject of the external consultation
-(`docs/rh_pipeline_report.tex`, `docs/h15_quadratic_pair_consultation.tex`) —
-its sharpest known form is the uniform-in-`A` weighted Möbius–sawtooth
-correlation `∑_{k≤N} μ(k)(1−k/(N+1))·B₁(A/k)`, which classical Mertens decay
-does not control;
-`NBForward` is the forward Nyman–Beurling implication (Mellin route staged,
-Plancherel stop-gate identified).
-
-Hygiene performed alongside: generator-level long-line linter headers (no
-certificates regenerated); stale worktree/branch deletion pending human
-confirmation. One decorative `sorry` project-wide (`baezDuarte_prop21`,
-paper-fidelity, used by nothing).
-
 ## 0. Methodology: A Digital Humanities Approach to the Riemann Hypothesis
 
 This project applies a **Digital Humanities (DH) and Knowledge Engineering methodology** to the Riemann Hypothesis. Rather than attempting a direct, isolated mathematical attack, it treats the centuries-long history of RH research as a vast corpus to be mapped, filtered, and reverse-engineered — using machine-verified formal proof as the ultimate rigour gate.
@@ -547,16 +506,10 @@ Three analytic debts (H13, H14, H15) toward a proved Báez-Duarte criterion:
                                        bridges to full QuadraticInteractionEstimates
                                        from H14 inputs are proved
 
-Total analytic debt toward a theorem-proved Báez-Duarte criterion: TWO
-named statements — ClassicalMertensDecay (the 1899 de la Vallée Poussin
-Mertens bound; the ENTIRE H14 API now follows from it alone, tag
-verified-h14-complete-from-decay) and the centered Möbius–Bernoulli
-correlation estimate (single 1/log²-rate field, tag
-verified-h15-bernoulli-correlation, numerically supported with headroom;
-proved bridges deliver the full quadratic estimates from these two) — plus
-the separate Nyman–Beurling ⇒ RH bridge axiom (§10) for unconditional RH.
-A companion LaTeX exposition for external mathematicians is at
-docs/rh_pipeline_report.tex.
+Total analytic debt toward a theorem-proved Báez-Duarte criterion: FOUR
+named statements (1 decay + 2 normalizations + 1 energy bound), all
+classical-flavored, none RH-circular — plus the separate Nyman–Beurling ⇒ RH
+bridge axiom (§10) for unconditional RH.
 
 A fourth, separate gap beyond all three debts:
   nyman_beurling_criterion_iff_RH:    still a bare axiom; a staged plan exists,
@@ -607,40 +560,3 @@ A fourth, separate gap beyond all three debts:
 - The mathlib Community, *The Lean mathematical library*, Proc. 9th ACM SIGPLAN Conf. on Certified Programs and Proofs (CPP 2020), 367–381.
 - L. de Moura, S. Ullrich, *The Lean 4 theorem prover and programming language*, Proc. 28th Int. Conf. on Automated Deduction (CADE-28), 2021, 625–635.
 - A. Kontorovich et al., *PrimeNumberTheoremAnd*, Lean 4 formalization repository, `github.com/AlexKontorovich/PrimeNumberTheoremAnd`. (Consulted for the §8.1 inventory; no code imported.)
-
----
-
-## Session addendum (2026-07-11): A1/A2 proved, NB debts collapsing
-
-**H14 (dVP chain).** A1 (Euler–Maclaurin continuation of ζ) fully proved
-(`H14ZetaEM.lean`): the identity `ζ(s) = Σ_{n≤X} n^{−s} + X^{1−s}/(s−1) − s∫_X^∞{u}u^{−s−1}du`
-on `Re s > 1` by a tsum–integral counting swap, continued to `Re s > 0` off the real axis by
-the identity theorem on the two convex quadrants, with the three height bounds
-(`X = ⌊|t|⌋₊+2`, constants 2/1/2, numerics-gated) inhabiting the frozen component structure —
-discharging the V-R vertical-growth debt. A2 (left-strip FE transport, `H14ZetaFETransport.lean`,
-`H14FEFactorBound.lean`): sqrt-strength (`6√(|t|+2)` on `[1/2,2]`) and log-strength
-(`4(1+log(|t|+2))` on `[1,2]`) exports; the functional equation in factor form proved from
-Mathlib's `riemannZeta_one_sub`; the three-regime transport proved; and the exact boundary
-moduli of the FE factor proved (`|F(1/2+it)| = 1`, `|F(−1/2+it)| = |1/2−it|/(2π)` — the
-`cosh`-cancellation makes both closed-form). The single remaining A2 debt is interior
-Phragmén–Lindelöf interpolation between these two proved boundary lines
-(`FEFactorInteriorInterpolation`); numerics gate: the sup ratio is exactly 1.
-
-**NB bridge.** NB0 structural split merged: `NBForward` = (criterion ⇒ right-half zero-free)
-∘ (right-half zero-free ⇒ RH), the second implication proved from the existing `zero_symmetry`
-axiom. Of the four frozen Mellin fields, three are now theorems: `mellin({1/x})(s) = −ζ(s)/s`
-(from the A1 tail machinery meeting the `mellin_comp_inv` reduction), the generator formula
-`mellin(ρ_k)(s) = −ζ(s)/(s(k+1)^s)`, and `mellin(χ)(s) = 1/s`. Remaining: the evaluation-continuity
-and vanishing-transport fields (the genuine Plancherel content) and the Route-1 energy identity.
-
-**H15.** Fractional-tail split (`defectEnergy = reciprocalTailEnergy + inverseIndexEnergy`,
-numerics-exact), cutoff Dirichlet polynomial with `P_N(1) → 0` from decay. The uniform-in-A
-Möbius–sawtooth framings of (∗) were numerically REFUTED (sup grows to 80 by N=1.2·10⁵);
-only the fully signed centered bilinear object is small — the consultation document now poses
-the question in signed bilinear Kloosterman-fraction form (Duke–Friedlander–Iwaniec).
-
-Tags: `verified-h15-fractional-tail`, `verified-a1-em-continuation`, `verified-nb0-mellin-wave`,
-`verified-base-mellin-discharge`, `verified-a2-fe-transport`, `verified-nb-chi-mellin`
-(+ FE-factor boundary merge pending final verify). All new theorems audit to
-`[propext, Classical.choice, Quot.sound]` (the symmetry half additionally uses the
-pre-existing `zero_symmetry`).

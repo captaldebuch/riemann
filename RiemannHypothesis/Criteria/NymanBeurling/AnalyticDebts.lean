@@ -58,11 +58,13 @@ open RH.Criteria.NymanBeurling.QuadraticInteraction
   Then the Riemann Hypothesis is true.
 -/
 noncomputable def RH_of_analytic_debts
+    (debt : RH.Criteria.NymanBeurling.BaezDuarte.NymanBeurlingRHBridgeDebts)
     (H_vasyunin : RH.Criteria.NymanBeurling.VasyuninGram.VasyuninBridgeLocalDebts)
     (H_linear : MobiusSummatoryEstimates)
     (H_quadratic : QuadraticInteractionEstimates) :
     RH.Basic.RiemannHypothesis :=
   let H_dirichlet := linear_mobius_dirichlet_estimates_of_summatory_estimates H_linear
-  RH_of_linear_dirichlet_and_quadratic_interaction_estimates H_vasyunin H_dirichlet H_quadratic
+  RH_of_linear_dirichlet_and_quadratic_interaction_estimates
+    debt H_vasyunin H_dirichlet H_quadratic
 
 end RH.Criteria.NymanBeurling.AnalyticDebts
