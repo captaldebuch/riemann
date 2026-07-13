@@ -36,7 +36,7 @@ structure ZetaJensenDiscInput where
   outer_bound : ∀ z ∈ sphere center |outerRadius|, ‖riemannZeta z‖ ≤ bound
 
 /-- Jensen's inequality for the ζ zeros in the inner disc.  This is a real
-theorem using Mathlib's `AnalyticOnNhd.sum_divisor_le`; no zeta zero-counting
+result using Mathlib's `AnalyticOnNhd.sum_divisor_le`; no zeta zero-counting
 or factorization axiom is introduced. -/
 theorem zeta_jensen_disc_zero_count
     (H : ZetaJensenDiscInput) :
