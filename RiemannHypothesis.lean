@@ -35,6 +35,7 @@ import RiemannHypothesis.Criteria.NymanBeurling.H15MellinEnergy
 import RiemannHypothesis.Criteria.NymanBeurling.H15ForwardSpine
 import RiemannHypothesis.Criteria.NymanBeurling.H15StructuredCorrelationEstimate
 import RiemannHypothesis.Criteria.NymanBeurling.H15BBLSMainTerm
+import RiemannHypothesis.Criteria.NymanBeurling.H15SmoothComponentBound
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDMellin
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDBaseIntegral
 import RiemannHypothesis.Criteria.NymanBeurling.H15RhoBDBaseDischarge
