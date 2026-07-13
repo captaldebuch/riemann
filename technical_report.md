@@ -486,6 +486,46 @@ On that basis a lettered plan (H14M-A…I) was drawn up and its first two steps 
 
 **Architecture finalized** (tag `verified-h14-finalized-decay`): the quantitative Mertens debt is now reduced to a *single* classical statement, `ClassicalMertensDecay` (`|M(N)| ≤ C·N·exp(−a√(log N))` — exactly the output of the 1899 de la Vallée Poussin zero-free region), with the conversion to the project's `N/log³N` bound **proved unconditionally** (`mertens_bound_of_decay`, via elementary `t^A·e^{−a√t}` calculus). The three fields not yet derived from decay (`mobiusLogSummatory_bound`, `mobius_sum_zero`, `mobiusLog_sum_neg_one` — the Abel/Axer-type arguments) remain explicitly named in `ClassicalMertensResidualInputs`, and `ClassicalMertensAPI.ofDecay` assembles the full API from the two. Since then, the residual has been actively shrunk (tags `verified-h14-residuals-partial`, `verified-h14-r1-logbound`): the log-summatory bound `|L(N)| ≤ C_L·N/log²(N+2)` is now **derived from the decay statement alone** (split-sum tail estimate + the conversion calculus), and the convergence of `∑ μ(k)/k` to *some* limit is proved under decay (Abel/Cauchy argument). H14's remaining debt is the decay statement plus **exactly two normalization identifications**: `MobiusOverKLimitIsZero` (the Axer step — that the limit is `0`) and `mobiusLog_sum_neg_one` (the `−1` limit). A quantitative Axer attempt (hyperbola identity + blockwise Abel against the Möbius summatory, targeting `|∑_{k≤N}μ(k)/k| ≤ C·e^{−c√log N}`, which would also unlock the `−1` limit via a Chebyshev-`O(N)` argument) is in flight.
 
+#### H14 dVP chain: exact Mathlib stop-gates (2026-07-13)
+
+The proved H14 modules now cover E1/E2 Euler--Maclaurin continuation and the
+right-half vertical bound (`H14ZetaEM.lean`, assembled in
+`H14DvpChain.lean`). The remaining three dVP gaps are concrete Mathlib
+absences, not missing tactic glue:
+
+1. **FE-factor interpolation.** `H14FEFactorBound.lean:342-348` freezes
+   `FEFactorInteriorInterpolation`. Mathlib's
+   `Analysis/Complex/Hadamard.lean:600-611` supplies three-lines interpolation,
+   but requires a globally bounded closed strip. The proved left boundary norm
+   is unbounded (`H14FEFactorBound.lean:243-245`), so applying three-lines needs
+   a Phragmén--Lindelöf regularization and a complex vertical Gamma estimate.
+   `Analysis/SpecialFunctions/Stirling.lean:13-18,230-245` is Stirling for
+   factorials, not complex `Γ(σ+it)`; `Analysis/SpecialFunctions/Gamma/Basic.lean:23-29,319-320`
+   gives only the complex Gamma integral/recurrence. No vertical Gamma bound is
+   exposed there.
+
+2. **Borel--Jensen factorization.** Mathlib has generic Jensen zero counting
+   (`Analysis/Complex/JensenFormula.lean:385-393`) and generic
+   Borel--Caratheodory (`Analysis/Complex/BorelCaratheodory.lean:105-111`),
+   but neither provides a zeta-specific finite zero multiset, Hadamard product,
+   or quantitative partial-fraction bound for `ζ'/ζ`. The project therefore
+   retains the content-bearing residual
+   `H14ZeroFree.lean:1159-1172`,
+   `ZetaBorelJensenFactorizationAtHeight`; referencing Mathlib's Hadamard file
+   alone does not discharge it.
+
+3. **Effective Perron/contour decay.** The Mathlib tree contains no
+   number-theoretic truncated Perron theorem. The only Perron hit is a
+   generalized box-integral context
+   (`Analysis/BoxIntegral/Partition/Filter.lean:254`), not an effective
+   Dirichlet-series formula. A weaker, honest interface is now in
+   `H14DvpChain.lean:32-71`: `WeakEffectivePerronPackage` assumes an
+   approximate contour/main term and separate decay bounds for its error and
+   main term; `classicalMertensDecay_of_weakEffectivePerron` assembles these by
+   `abs_add_le`. This lowers the identity requirement, but still requires
+   contour estimates at the `N·exp(-a√log N)` scale; it is not an analytic
+   proof of the package.
+
 ## 9. Phase 15: Quadratic Log-Cotangent Interaction
 
 The deepest of the three analytic debts. The target, `explicitQuadraticInteractionRemainder N = (double sum of an interaction kernel) - 1 → 0` at rate `O(1/log N)`, was deliberately **not** approached by attempting the bound directly. Per this project's own rule for problems at this scale — freeze the exact object, gather numerical evidence, decompose structurally, and only then consider an actual estimate — the sequence so far:
