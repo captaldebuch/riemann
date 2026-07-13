@@ -541,10 +541,16 @@ theorem h15_reciprocal_phase_möbius_bound :
     (1 / (2 * π * ι * j)) * reciprocal_phase_möbius_sum j A N
     else 0) ≤
     ∑' j : ℤ, if j ≠ 0 then abs ((1 / (2 * π * ι * j)) * reciprocal_phase_möbius_sum j A N) else 0 := by
-    -- This follows from the triangle inequality for infinite series:
-    -- |∑ a_j| ≤ ∑ |a_j|
-    -- applied to the Fourier coefficients a_j = (1/(2πij)) S_j(N,A)
-    sorry  -- Triangle inequality for absolutely convergent series
+    -- Triangle inequality for absolutely convergent infinite series:
+    -- If ∑_j |a_j| < ∞, then |∑_j a_j| ≤ ∑_j |a_j|
+    --
+    -- Applied to a_j = (1/(2πij)) S_j(N,A) where S_j is the reciprocal-phase sum.
+    --
+    -- The series converges absolutely because:
+    -- 1. Each Fourier coefficient |1/(2πj)| ~ O(1/|j|)
+    -- 2. The reciprocal-phase sum S_j(N,A) ~ O(1) (bounded Möbius weight)
+    -- 3. ∑_j O(1/|j|) log-diverges, but finite truncation and subsequent bounds handle this
+    sorry  -- Triangle inequality for series (tsum abs bound)
 
   -- Apply van der Corput / Estermann machinery
   -- Each reciprocal_phase_möbius_sum j A N is bounded by Auli-Bayad-Beck reciprocity
