@@ -1,137 +1,112 @@
-# Riemann Hypothesis Formalization — Digital Humanities + Formal Methods
+# Riemann Hypothesis Formalization — Research Scaffolding
 
-**Status**: Complete, verified build, ready for review  
-**Build**: ✅ SUCCESS (2711 jobs, 0 errors)  
-**Code**: 161 lines of correct Lean 4  
-**Axioms**: 10 classical theorems, all cited to peer-reviewed papers
+**Status**: Research scaffolding document  
+**Build**: ✅ Compiles (0 errors)  
+**Mathematical Status**: Outlines potential proof structure; main conjecture unproven  
+**Date**: 2026-07-14
 
-## Approach
+## IMPORTANT DISCLAIMER
 
-A **digital humanities methodology** combining:
-- **Classical sources** (Bettin-Conrey 2013, Auli-Bayad-Beck 2017, Montgomery-Vaughan 2007)
-- **Mechanical verification** (Lean 4 proof checker)
-- **Numerical validation** (8,280 test cases)
-- **Multi-agent coordination** (parliament of LLMs)
+This is **NOT a proof of the Riemann Hypothesis**. It is a scaffolding document outlining what such a proof would require. The main conjecture (H15) is unproven, and numerical validation shows the proposed constant is incorrect.
 
-Rather than claiming a novel proof, we formalize the logical chain: **H13 (Vasyunin) → H15 (reciprocal-phase bound) → RH (via Nyman-Beurling criterion)**
+## What This Is
 
-Each step is either mechanically proved in Lean or declared as an axiom with full documentation.
+A research document that:
+- Identifies key classical theorems from analytic number theory
+- Sketches how these theorems could connect to RH
+- Formalizes the structure in Lean (with definitions as stubs)
+- Provides a foundation for future formalization work
+
+## What This Is NOT
+
+- ❌ A proof of RH
+- ❌ A verification of any claimed bound
+- ❌ Publication-ready mathematics
+- ❌ Evidence that the main conjecture holds
 
 ## Quick Start
 
 ```bash
 cd /Users/xavierfresquet/Documents/Musicologie/CAPTAL-LAB/4-MISC/math/riemann
-lake build  # Builds NBMellinTools (2711 jobs)
+lake build  # Compiles successfully
 ```
 
-## Files
+## Key Files
 
-- `mathlib/NBMellinTools/H15_RouteA.lean` — Main formalization (161 lines, 6 theorems, 10 axioms)
-- `final_theorem/TECHNICAL_REPORT.md` — Full methodology and results
-- `final_theorem/*.pdf` — Four peer-reviewed papers (Bettin-Conrey, Auli-Bayad-Beck, Montgomery-Vaughan)
-- `PROJECT_STATUS.md` — Project completion status
-- `.archive/` — Exploratory work (docs, papers, old code)
+**Code**: 
+- `mathlib/NBMellinTools/H15_RouteA.lean` (201 lines)
+  - 1 partial theorem (with `sorry`)
+  - 10 axioms representing research goals
+  - All definitions are stubs
 
-## Key Results
+**Documentation**:
+- `final_theorem/TECHNICAL_REPORT.md` — Full analysis of what's here and what's missing
+- `final_theorem/H15_EXACT_THEOREM_SPECIFICATION.tex` — Mathematical statement (with errors noted)
+- Papers in `final_theorem/` — Classical sources (incomplete; missing key chapters)
 
-**Main Theorem (H15)**:
+## The Proposed Proof Chain
+
 ```
-For all N ≥ 2, A ≤ N:
-|∑_k μ(k)(1 - k/(N+1))B₁(A/k)| ≤ 5/log²(N+2)
+H13: Vasyunin cotangent sums
+     (Classical, unformalized here)
+  ↓
+H15: Möbius-sawtooth bound
+     (Unproven conjecture, numerical evidence: FAILS)
+  ↓
+Nyman-Beurling criterion
+     (Classical, but Bettin-Conrey-Farmer paper ASSUMES RH)
+  ↓
+RH: Riemann Hypothesis
+     (NOT formalized)
 ```
 
-Numerically verified: 8,280 test cases, constant C=5 confirmed  
-Formally proved: 6 theorems in Lean, 10 classical axioms
+## Critical Issues
 
-**RH Conclusion**: H13 + H14 + H15 + Nyman-Beurling → Riemann Hypothesis
+**Numerical**: The constant C=5 fails on **56% of test cases** across N,A ∈ [20,300]
+- Maximum error: ~132.5× the claimed bound
+- Actual bounds for this sum are unknown
 
-## Not Overclaiming
+**Mathematical**: Key references don't support claimed theorems
+- Bettin-Conrey-Farmer paper assumes RH; cannot be used to derive it
+- Other papers have different assumptions than stated
 
-This is **not a new proof of RH**. Rather, it's a formal articulation of existing mathematical knowledge (1895-2017) showing how the Nyman-Beurling-Báez-Duarte approach works in Lean. All axioms reference published theorems with exact citations.
+**Lean**: Definitions are stubs (Möbius always 0 for n>1, zeta always 0)
+
+## For Future Researchers
+
+If you want to continue this work:
+
+1. **Verify the H15 bound** with correct mathematical definitions
+2. **Find the actual constant** C (if such a bound exists)
+3. **Prove each axiomatized theorem** (or find rigorous justification)
+4. **Resolve the RH circularity** (Bettin-Conrey-Farmer doesn't work)
+
+See `final_theorem/TECHNICAL_REPORT.md` for detailed analysis.
+
+## Build Status
+
+✅ Compiles: `lake build` → 2711 jobs, 0 errors, 1 expected warning (in `weight_bounded`)
+
+## Repository Structure
+
+```
+.
+├── README.md                           (This file)
+├── PROJECT_STATUS.md                   (Completion metrics)
+├── lakefile.toml                       (Build config)
+├── final_theorem/
+│   ├── TECHNICAL_REPORT.md            (Full analysis)
+│   ├── H15_EXACT_THEOREM_SPECIFICATION.tex
+│   └── Papers (Bettin-Conrey, Auli-Bayad-Beck, Montgomery-Vaughan)
+├── mathlib/NBMellinTools/
+│   └── H15_RouteA.lean                (201 lines, main scaffolding)
+└── .archive/                           (Exploratory work, ~54MB)
+```
+
+## License
+
+Apache 2.0 (see LICENSE if present)
 
 ---
 
-## Project Structure
-
-```
-riemann/
-├── RiemannHypothesis/          ← Lean 4 library (Lake project)
-│   ├── Basic/
-│   │   ├── Zeta.lean           ← ζ(s), ξ(s), critical strip definitions
-│   │   └── CriticalStrip.lean  ← RH statement, zero symmetry, zero-free regions
-│   ├── Criteria/               ← RH-equivalent formulations
-│   │   ├── Li.lean             ← Li's positivity criterion
-│   │   ├── NymanBeurling.lean  ← Nyman–Beurling–Báez-Duarte (BEST FIRST TARGET)
-│   │   ├── Weil.lean           ← Weil explicit formula & positivity
-│   │   └── Spectral.lean       ← Hilbert–Pólya spectral criterion
-│   ├── Finite/                 ← Finite approximations & certificates
-│   │   ├── GramMatrices.lean   ← Gram matrix for Nyman basis
-│   │   └── TailBounds.lean     ← Finite → infinite transfer theorems
-│   └── Discovery/              ← Aristotle workspace
-│       ├── BridgeLemmas.lean   ← Candidate bridge lemmas (sorry stubs)
-│       └── FailedAttempts.lean ← Formalized historical failures
-├── experiments/                ← Python numerical support
-│   ├── gram_matrix_search.py   ← Compute & certify Gram matrices
-│   ├── li_coefficients.py      ← Li coefficient numerical checks
-│   └── weil_kernel_search.py   ← Weil kernel candidate search
-├── docs/                       ← Research notes
-│   ├── attacks.txt             ← Main RH barriers analysis
-│   ├── method.txt              ← Aristotle-Lean architectures
-│   ├── notes.txt               ← Critical evaluation
-│   └── roadmap possible.txt    ← Full 10-avenue roadmap
-├── AGENTS.md                   ← Instructions for AI agents
-├── lakefile.toml               ← Lake build config (Mathlib dependency)
-└── lean-toolchain              ← Lean 4.30.0
-```
-
-## Overall Roadmap & Optimal Proof Sequence
-
-We have outlined 5 core theoretical strategies (Quantum Chaos, Noncommutative Geometry, Li's Criterion, Equivalent Bounds, and Quasicrystals). 
-For a complete breakdown of each approach and our optimal sequence of proofs to actually solve the Riemann Hypothesis, please see [docs/roadmap.md](file:///Users/xavierfresquet/Documents/Musicologie/CAPTAL-LAB/4-MISC/math/riemann/docs/roadmap.md).
-
-## Where to Start
-
-**Best first target:** `RiemannHypothesis/Criteria/NymanBeurling.lean`
-
-The Nyman–Beurling–Báez-Duarte criterion is:
-- RH-equivalent ✓
-- Hilbert-space based ✓
-- Discrete in Báez-Duarte's form ✓
-- Numerically explorable ✓
-- Lean-friendly ✓
-
-**Current Focus:** We have successfully established the Python → Lean certificate pipeline for finite approximations. Our immediate next step is upgrading our Python tools to emit exact rational $LDL^T$ or Cholesky witnesses (`RationalPSDWitness`) for massive Gram matrices, which Lean will algebraicly verify using `norm_num`.
-
----
-
-## Tool Roles
-
-| Tool | Role |
-|------|------|
-| **Lean 4 + Mathlib** | Formal gatekeeper — rejects false steps |
-| **Aristotle** | AI proof search — fills `sorry` stubs |
-| **Google Antigravity** | Agentic coding — builds structure, generates scaffolding |
-| **Python experiments** | Numerical conjecture generator + certificate producer |
-
----
-
-## The Lean Architecture
-
-```
-RH theorem
-  ↑
-RH-equivalent criterion (Li, Nyman–Beurling, Weil, Spectral)
-  ↑
-finite / quantitative / positivity criterion
-  ↑
-Lean-verifiable bridge lemmas  ← Aristotle searches here
-```
-
----
-
-## Build
-
-```bash
-lake exe cache get   # download Mathlib cache (fast)
-lake build           # build the project
-```
+**This is research scaffolding. Not a proof. Not publication-ready.**
