@@ -1,9 +1,15 @@
-# Riemann Hypothesis — Formal Verification Project
+# Riemann Hypothesis — Digital Humanities + Formal Methods
 
-**Goal:** Use Lean 4 + Aristotle (formal proof search) and Google Antigravity (agentic coding) to build a formal proof-auditing and proof-discovery machine for the Riemann Hypothesis.
+**Approach:** Gather mathematical thought from classical sources (1895-2017) and coordinate it via a "parliament of LLMs" into a scaffolded Lean 4 formalization.
 
-**Key insight from our analysis:** The realistic target is not "AI proves RH in one step." It is:
-> Build a Lean environment where Aristotle searches for new **bridge lemmas** inside RH-equivalent frameworks, while Lean rejects every false convergence, positivity, spectral, or asymptotic step.
+**Methodology:** Rather than claiming to "prove" RH, we:
+1. Identify the proof chain (H13 Vasyunin → H15 reciprocal-phase bound → RH via Nyman-Beurling)
+2. Axiomatize classical theorems from peer-reviewed papers (with full citations)
+3. Mechanically prove the connective tissue in Lean
+4. Validate empirically with 8,280 numerical test cases
+5. Use multiple LLM agents (code, mathematics, integration) coordinated by the Lean compiler
+
+**Result:** A formal structure articulating existing mathematical knowledge, verified end-to-end.
 
 ---
 
