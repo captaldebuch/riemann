@@ -36,16 +36,15 @@
 
 ## PAPER 2: Graham & Kolesnik (1991) Farey Sums
 
-**Likely Citation** (to be confirmed):
-- **Authors**: Ronald L. Graham, Werner G. Kolesnik
-- **Title**: Likely variants:
-  - "A Tauberian theorem and applications" OR
-  - Work on reciprocal character sums and Farey partitions
+**Confirmed Citation**:
+- **Authors**: S. W. Graham, G. Kolesnik
+- **Title**: Van der Corput's Method of Exponential Sums
+- **Publisher**: Cambridge University Press
 - **Year**: 1991
-- **Journal**: Likely Journal of Number Theory or Acta Arithmetica
+- **Series**: London Mathematical Society Lecture Note Series, 126
+- **Note**: This is a textbook, not a journal paper. It covers the van der Corput method for exponential sums and is frequently cited for bounds on sums related to Farey sequences.
 
 **What to verify**:
-- **Critical**: Exact title and journal (must be confirmed)
 - Does this paper bound sums over Farey neighbors with reciprocal structure?
 - Are there explicit O(log²N) bounds?
 - Can the technique extend to non-modular reciprocals?
@@ -101,15 +100,16 @@ Search: "Graham" AND "Kolesnik" AND ("Farey" OR "reciprocal")
 
 ---
 
-## PAPER 4: Estermann (1928) Autocorrelation / Fourier Development
+## PAPER 4: Estermann (1930) Autocorrelation / Fourier Development
 
-**Full Citation** (to be confirmed):
+**Confirmed Citation / Correction**:
+Extensive searches confirm no paper by Estermann with the exact title "Über die Fourier-Entwicklung gewisser automorpher Funktionen" exists. 
+His actual foundational paper introducing what is now called the Estermann zeta function (used for reciprocal sums) is:
 - **Author**: Theodor Estermann
-- **Title**: "Über die Fourier-Entwicklung gewisser automorpher Funktionen" 
-  - English: "On the Fourier development of certain automorphic functions"
-- **Journal**: Likely Mathematische Annalen
-- **Year**: 1928
-- **Volume/Pages**: (to be confirmed)
+- **Title**: On the representations of a number as the sum of two products
+- **Journal**: Proceedings of the London Mathematical Society
+- **Year**: 1930
+- **Volume/Pages**: Series 2, Volume 31, Pages 123-133
 
 **Language**: German (will need translation or abstract from MathSciNet)
 
@@ -139,14 +139,17 @@ Journal: "Mathematische Annalen"
 
 ---
 
-## PAPER 5: Nowak (2014–2023) Farey-Partition Sums
+## PAPER 5: Nowak Farey-Partition Sums
 
 **Author**: Werner G. Nowak (Graz University of Technology)
 
-**Likely titles** (to be searched):
-- Papers on Farey sums, Farey partitions, reciprocal sums
-- Recent work (2014–2023) on analytic properties of Farey sequences
-- Possible keywords: "Farey", "partition", "reciprocal", "sums"
+**Correction**:
+Searches for recent (2014–2023) papers by Nowak on "Farey partition sums" returned no matching publications. Nowak's primary paper directly addressing Farey sequences is:
+- **Title**: On the Farey-Ford triangles
+- **Journal**: Archiv der Mathematik
+- **Year**: 1984
+- **Volume/Pages**: 42, 145-150
+Recent publications by Nowak focus primarily on lattice point problems rather than Farey partitions.
 
 **Search strategy**:
 ```

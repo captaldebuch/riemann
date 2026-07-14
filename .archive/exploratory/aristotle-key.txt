@@ -1,0 +1,11 @@
+
+
+arstl_e88qzrLKJ22RjrdO4ExvlOnqG5iF6s3tsSmOExY6c44
+
+
+Store your API key securely — it won't be shown again
+
+You can avoid having to type your api key frequently, by adding this to your ~/.bashrc, ~/.zshrc, or similar.
+
+export ARISTOTLE_API_KEY=arstl_e88qzrLKJ22RjrdO4ExvlOnqG5iF6s3tsSmOExY6c44
+
