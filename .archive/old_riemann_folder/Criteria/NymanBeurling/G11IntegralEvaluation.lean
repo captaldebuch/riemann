@@ -96,14 +96,57 @@ theorem G11OriginalIntegrand_inv_mul_abs_deriv_eq_transformed
   rw [h1]
   ring
 
-axiom setIntegral_Ioo_inv_substitution_bridge
+-- The Mathlib substitution theorem used below is stronger than this interface: it does not
+-- require the two regularity assumptions.  We retain them to keep existing call sites stable.
+set_option linter.unusedVariables false in
+theorem setIntegral_Ioo_inv_substitution_bridge
     {R : ℝ} (hR : 1 < R)
     {f : ℝ → ℝ}
     (hf_meas : Measurable f)
     (hf_int : MeasureTheory.IntegrableOn f (Set.Ioo (1 / R) R)) :
     (∫ x in Set.Ioo (1 / R) R, f (1 / x))
       =
-    (∫ t in Set.Ioo (1 / R) R, f t * (1 / t ^ 2))
+    (∫ t in Set.Ioo (1 / R) R, f t * (1 / t ^ 2)) := by
+  have hRpos : 0 < R := by linarith
+  have hle : 1 / R ≤ R := one_div_le_self_of_one_lt hR
+  have hzero : ∀ x ∈ Set.Icc (1 / R) R, x ≠ 0 := by
+    intro x hx
+    exact ne_of_gt (lt_of_lt_of_le (one_div_pos.mpr hRpos) hx.1)
+  have hsub := intervalIntegral.integral_comp_mul_deriv_of_deriv_nonpos
+    (a := 1 / R) (b := R)
+    (f := fun x : ℝ => 1 / x)
+    (f' := fun x : ℝ => -(1 / x ^ 2))
+    (g := fun u : ℝ => f (1 / u))
+    (by
+      rw [Set.uIcc_of_le hle]
+      exact continuousOn_const.div₀ continuousOn_id hzero)
+    (by
+      intro x hx
+      have hx0 : x ≠ 0 := by
+        rw [min_eq_left hle, max_eq_right hle] at hx
+        exact ne_of_gt (lt_trans (one_div_pos.mpr hRpos) hx.1)
+      simpa only [one_div, inv_pow] using hasDerivAt_inv hx0)
+    (by
+      intro x _
+      exact neg_nonpos.mpr (by positivity))
+  simp only [Function.comp_apply, one_div_one_div] at hsub
+  have hleft :
+      (∫ x in (1 / R)..R, f x * (-(1 / x ^ 2))) =
+        -(∫ x in (1 / R)..R, f x * (1 / x ^ 2)) := by
+    rw [← intervalIntegral.integral_neg]
+    apply intervalIntegral.integral_congr
+    intro x _
+    ring
+  have hright :
+      (∫ u in R..(1 / R), f (1 / u)) =
+        -(∫ u in (1 / R)..R, f (1 / u)) := by
+    exact intervalIntegral.integral_symm (1 / R) R
+  rw [hleft, hright] at hsub
+  rw [← MeasureTheory.integral_Ioc_eq_integral_Ioo,
+      ← MeasureTheory.integral_Ioc_eq_integral_Ioo,
+      ← intervalIntegral.integral_of_le hle,
+      ← intervalIntegral.integral_of_le hle]
+  linarith
 
 /-- Int.fract squared is Borel-measurable on ℝ.
     Follows from measurability of Int.fract (Mathlib: `measurable_fract`) and
