@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  jena-fuseki:
+    image: stain/jena-fuseki:4.8.0
+    container_name: rh-sparql-server
+    ports:
+      - "3030:3030"
+    environment:
+      FUSEKI_OPTS: "--mem"
+    volumes:
+      # Mount RDF data directory
+      - ./rdf_output:/rdf
+      # Mount Fuseki data directory (persistent)
+      - ./fuseki_data:/jena/run
+    command: >
+      /jena/fuseki-server
+      --loc=/jena/run/tdb
+      /rh
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3030/rh/query"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      - rh-network
+
+  # Optional: LodView frontend for automatic RDF-to-HTML conversion
+  lodview:
+    image: mariadb/mariadb:latest
+    container_name: rh-lodview
+    environment:
+      MYSQL_ROOT_PASSWORD: fuseki
+      MYSQL_DATABASE: lodview
+    volumes:
+      - ./lodview_data:/var/lib/mysql
+    networks:
+      - rh-network
+    # Note: This is optional; can also use Fuseki's built-in HTML view
+
+networks:
+  rh-network:
+    driver: bridge
+
+# ===== USAGE =====
+#
+# 1. Start services:
+#    docker-compose up -d
+#
+# 2. Load RDF data (one-time):
+#    docker exec rh-sparql-server bash -c "
+#      curl -X PUT \
+#        --data-binary @/rdf/corpus.ttl \
+#        -H 'Content-Type: text/turtle' \
+#        http://localhost:3030/rh/data
+#    "
+#
+# 3. Access endpoints:
+#    - SPARQL Query:  http://localhost:3030/rh/query
+#    - SPARQL Update: http://localhost:3030/rh/update
+#    - Linked Data:   http://localhost:3030/rh/data/
+#    - Web UI:        http://localhost:3030/
+#
+# 4. Run example query:
+#    curl -X GET \
+#      --data-urlencode 'query=SELECT ?title WHERE { ?s <http://purl.org/dc/terms/title> ?title . } LIMIT 10' \
+#      http://localhost:3030/rh/query
+#
+# 5. Stop services:
+#    docker-compose down
+#
+# 6. View logs:
+#    docker-compose logs -f jena-fuseki
