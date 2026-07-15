@@ -2,52 +2,80 @@
 **Date:** 2026-07-15  
 **Trigger:** 27 new papers added; H15-classified papers now include alternative techniques
 
+> **Source-audit update:** Angle 1 is no longer the recommended proof route.
+> ArXiv `1409.1634` was misidentified in the corpus, `1601.06839` contains
+> Estermann/cotangent reciprocity rather than character bounds, and the exact
+> character expansion leaves a Mobius-twisted character sum plus non-unit
+> strata. See `H15_CHARACTER_SUM_ROUTE_AUDIT.md` for the derivation and revised
+> ranking.
+
 ---
 
 ## Current H15 Status Recap
 
 **Blocked Route:** Direct analytic approach via DFI/Bettin–Chandee (bound 8× too weak)
 
-**Missing Piece:** Estermann/Kuznetsov machinery for modulus-dependent amplitude estimation $\beta_q(b)$ under sign oscillations.
+**Missing Piece:** A centered Estermann/Kuznetsov asymptotic with an explicit
+main term matching the scalar and logarithmic pieces of the BCF energy.
 
 **Decision:** Research-only (not formalized). But with expanded corpus, three NEW angles emerge.
 
 ---
 
-## Angle 1: Character Sum Approach (NEW)
+## Angle 1: Character Sum Diagnostic (AUDITED)
 
 ### Hypothesis
-The Möbius/period-function bilinear correlation can be reformulated as a **weighted Dirichlet character sum**, enabling leverage of classical character sum bounds.
+The unit-residue part of the Möbius/period-function correlation admits an
+exact weighted Dirichlet-character expansion. The audit asks what remains
+after that finite rewrite; it does not assume classical bounds close H15.
 
-### Papers to Investigate
-- **1409.1634:** "Dirichlet Character Sums" (Beck et al., 2014) — currently H13, but contains character bounds
-- **1601.06839:** "Reciprocal Relations and Theorems" (Auli, Bayad, Beck, 2017) — explicitly links reciprocal sums to character theory
+### Papers and source corrections
+- **0804.0645:** Beck--Halloran, *Finite Trigonometric Character Sums Via
+  Discrete Fourier Analysis* -- supports exact finite character identities,
+  not the required varying-modulus bound.
+- **1601.06839:** Auli--Bayad--Beck, *Reciprocity Theorems for Bettin--Conrey
+  Sums* -- supports the Estermann route, not a character-bound route.
+- **1409.1634:** Bourgain--Demeter, *Decouplings for curves and hypersurfaces
+  with nonzero Gaussian curvature* -- unrelated to the proposed character
+  reduction and misidentified in the corpus.
 
 ### Key Insight
-Dirichlet characters encode modular structure. If we can write:
-$$\sum_{g \leq N} \mu(g)^2 \cdot \omega(g) = \sum_{q} \chi(q) \cdot S_q(N)$$
-where $\chi$ is a character and $S_q$ is a controlled partial sum, then **character sum bounds automatically encode the modular-dependent amplitude structure**.
+For `(b,q)=1`, multiplicative Fourier inversion expresses `beta_q(b)` using
+only odd nonprincipal characters. After the additive H15 phase is inserted,
+Gauss sums leave a varying-modulus, Mobius-twisted character sum. Non-unit
+residues require additional quotient-modulus strata. This is a precise
+diagnostic, not automatic cancellation.
 
 ### Technical Route
-1. **Factorization via characters:** Express $\mu(g)$ evaluation mod $q$ using character decomposition
-2. **Orthogonalit relations:** Use $\sum_\chi \chi(a)\overline{\chi(b)} = \phi(q) \cdot \mathbb{1}_{a \equiv b \pmod q}$ to isolate modular contributions
-3. **Character sum bounds:** Apply classical bounds (e.g., Pólya–Vinogradov, Montgomery–Vaughan) to each character's contribution
-4. **Cancellation assembly:** Show that the character-wise bounds **automatically give the O(1/log N) when aggregated**
+1. **Factorization via characters:** restrict `beta_q` to `(b,q)=1` and take
+   its multiplicative Fourier transform.
+2. **Orthogonality relations:** Use $\sum_\chi \chi(a)\overline{\chi(b)} = \phi(q) \cdot \mathbb{1}_{a \equiv b \pmod q}$ to isolate modular contributions
+3. **Character sum audit:** identify the resulting Mobius-twisted sums and
+   non-unit strata explicitly.
+4. **Decision gate:** do not claim `O(1/log N)` unless the complete centered
+   main term and the varying-modulus remainder are both controlled.
 
-### Why This Might Work
-- Avoids Estermann machinery entirely (shifts to character theory, which is in Mathlib)
-- Reciprocity laws automatically encode the sign oscillations
-- Character sums have tight bounds tailored to modular structure (exactly what we need)
+### Audited outcome
+- Characters diagonalize the unit stratum exactly.
+- They do not avoid Estermann machinery for the complete H15 phase.
+- Classical untwisted character bounds do not control the resulting
+  Mobius-twisted partial sums.
+- Character-wise absolute bounds do not generate the centered main term.
 
 ### Lean Feasibility
-✅ **HIGH** — Character sums are standard in analytic number theory; bounds exist in literature.
+Finite orthogonality is **high feasibility**, but the needed analytic bounds
+are **low feasibility** in the current library. Mathlib contains character
+orthogonality but no identified Polya--Vinogradov or Burgess theorem here.
+No H15 Lean work should begin from this angle.
 
 ---
 
 ## Angle 2: Automorphic Forms / GL(2) Route (NEW)
 
 ### Hypothesis
-The bilinear cotangent cancellation encodes the **spectral properties of GL(2) automorphic forms**, specifically the Fourier coefficients of Eisenstein series and their cancellation.
+The cotangent/Estermann object inside the Gram kernel may encode spectral
+properties of a GL(2) Eisenstein series. This is an identification problem,
+not yet a theorem about the raw Nyman generator.
 
 ### Papers to Investigate
 - **1503.05121:** "Fourier Analysis on GL(2)" (2015) — representation theory angle on Fourier expansion
@@ -59,18 +87,24 @@ Automorphic forms on GL(2) are exactly the objects that encode:
 - Functional equations (via the Mellin transform)
 - Character theory (via Hecke eigenvalues)
 
-The Nyman–Beurling period function $\psi_\theta(x) = \{1/x\}$ might have a natural automorphic interpretation as a **coefficient of an Eisenstein series or theta series**.
+The Bettin--Conrey period function has an Eisenstein-series origin. It has not
+been shown here that the raw Nyman generator $x\mapsto\{1/x\}$ is itself an
+automorphic coefficient with the required BCF truncation and centering.
 
 ### Technical Route
-1. **Identify the automorphic form:** Find $F \in L^2(\Gamma \backslash GL(2, \mathbb{R})^+)$ such that $\psi_\theta$ is a coefficient of $F$
+1. **Identification gate:** exhibit an exact automorphic object whose
+   coefficient is the complete centered BCF kernel, including its truncation.
 2. **Spectral decomposition:** Write $F = \sum_\phi c_\phi \phi$ where $\phi$ ranges over automorphic spectrum
-3. **Cancellation from orthogonality:** Use Petersson inner product to show that **cross-term cancellation is automatic from spectral orthogonality**
+3. **Cancellation test:** determine exactly which cross terms are removed by
+   Petersson orthogonality and which weighted remainder survives.
 4. **Bound via L-function growth:** Apply bounds on $L(1/2 + it, \pi)$ to control the cancellation rate
 
 ### Why This Might Work
-- Automorphic forms ALREADY encode modular structure, zero distribution, and functional equations
-- Eisenstein series have explicit formulas (easier than digging for Estermann machinery)
-- The cancellation might simply be a **consequence of spectral orthogonality**, not a new result
+- Automorphic forms encode modular structure and functional equations.
+- Eisenstein-series expansions may identify the missing diagonal or polar
+  contribution.
+- Spectral orthogonality is useful only after the exact centered BCF object and
+  its coefficients have been identified.
 
 ### Lean Feasibility
 ⚠️ **MEDIUM** — Automorphic forms exist in some Mathlib/research formalization, but GL(2) machinery is sparse. Requires careful porting.
@@ -80,7 +114,9 @@ The Nyman–Beurling period function $\psi_\theta(x) = \{1/x\}$ might have a nat
 ## Angle 3: Kuznetsov Trace Formula / Spectral Method (NEW)
 
 ### Hypothesis
-The Kuznetsov trace formula (which we identified as missing) might be **avoided entirely** by working at the spectral level rather than the pointwise level. Instead of estimating $\beta_q(b)$ pointwise, estimate its **L²-norm or spectral norm**.
+Use a Kuznetsov/Estermann trace or reciprocity formula directly at the
+spectral level, with the diagonal or polar main term retained. Estimating only
+the L² norm of $\beta_q$ has already been shown insufficient.
 
 ### Papers to Investigate
 - **1601.06839:** Reciprocal relations (might contain trace formula insights)
@@ -90,18 +126,25 @@ The Kuznetsov trace formula (which we identified as missing) might be **avoided 
 The Kuznetsov trace formula is:
 $$\sum_{\text{automorphic}} \lambda_\pi(n) \lambda_\pi(m) = \delta_{n,m} + \text{(oscillating terms)}$$
 
-Instead of asking "what is $\beta_q(b)$ pointwise?", ask "what is $\|\beta_q\|_2^2$ spectrally?". This might have a **closed-form answer via trace formulas**, bypassing the pointwise estimation entirely.
+The diagonal term, not merely spectral norm cancellation, is the prospective
+source of the scalar and logarithmic terms needed by the centered BCF energy.
+The off-diagonal must then be estimated only after summing the exact Mobius
+logarithmic weights.
 
 ### Technical Route
-1. **L² formulation:** Reformulate the O(1/log N) problem as $\|\sum_q \mu(q)^2 \cdot \text{(error)} \|_2 \leq C/\log N$
-2. **Plancherel/Parseval:** Expand the squared norm using orthogonal decomposition
-3. **Trace formula application:** Apply Kuznetsov (or a simpler variant) to the sum of squared contributions
-4. **Bound harvest:** Show that the trace formula automatically gives the O(1/log N)
+1. **Exact insertion:** place the primitive Estermann spectrum into the full
+   centered BCF identity without taking componentwise absolute values.
+2. **Trace/reciprocity formula:** identify the diagonal or polar main term.
+3. **Main-term matching:** prove that this term cancels the explicit scalar
+   and log-ratio contributions with the required residual constant.
+4. **Off-diagonal estimate:** control the total weighted remainder at
+   `o(1/log N)` or better.
 
 ### Why This Might Work
-- Shifts from pointwise to spectral, where cancellation is automatic
-- Kuznetsov formula is an identity (not an estimate), so it gives exact results
-- The O(1/log N) might emerge from **spectral gap properties** of Hecke operators, not amplitude estimation
+- It preserves the main term that generic norm estimates discard.
+- A trace formula separates diagonal and off-diagonal contributions exactly.
+- It matches the Estermann spectrum already proved for `beta_q`; success is
+  still contingent on a sufficiently strong weighted remainder theorem.
 
 ### Lean Feasibility
 ⚠️ **LOW-MEDIUM** — Trace formulas are advanced; spectral theory formalization is sparse. But worth exploring conceptually.
@@ -124,18 +167,27 @@ This creates a **strong empirical foundation** for expert escalation and might g
 - **2607.04632:** "Möbius Correlations and Cancellation" (new, 2026) — might show empirical cancellation
 
 ### Technical Route
-1. **Conditional formulation:** Assume $\beta_q(b) \leq B / \sqrt{q}$ (a reasonable estimate)
-2. **Compute the implied bound:** Show that this assumption gives exactly O(1/log N)
+1. **Conditional formulation:** use a correctly normalized aggregate
+   assumption. The pointwise claim $|\beta_q(b)|\le B/\sqrt q$ is incompatible
+   with the known prime second moment; only `beta_q(b)/q` has RMS scale
+   `q^(-1/2)`.
+2. **Compute the actual implication:** retain the centered identity and test
+   whether the stated aggregate hypothesis is sufficient; do not infer the
+   target from a pointwise RMS-scale guess.
 3. **Numerical validation:** For N = 10, 100, 1000, 10000, compute actual cancellation vs. theoretical bound
 4. **Report findings:** If empirics match theory, highlight which assumption(s) are tight
 
 ### Why This Might Work
 - Experts are often guided by empirical evidence
-- A conditional proof + numerical validation is a **publishable research contribution** even if not fully unconditional
+- A precisely stated conditional theorem plus reproducible numerics can be a
+  useful research artifact if it is clearly separated from an unconditional
+  result.
 - Guides future proof work (shows exactly where tightness lies)
 
 ### Lean Feasibility
-✅ **HIGH** — Lean can check numerical bounds; empirical validation is straightforward.
+Numerical feasibility is **high outside Lean**. Numerical evidence is not a
+formal theorem, and an `N=10^6` computation should not be presented as a Lean
+proof of an asymptotic statement.
 
 ---
 
@@ -143,8 +195,8 @@ This creates a **strong empirical foundation** for expert escalation and might g
 
 | Week | Angle | Action | Deliverable |
 |------|-------|--------|-------------|
-| **1** | **Angle 1 (Chars)** | Deep-read 1409.1634 + 1601.06839 | Character sum factorization sketch |
-| **2** | **Angle 1 (Chars)** | Attempt Dirichlet character reformulation | Proof outline or refutation |
+| **1** | **Angle 1 (Chars)** | Source audit + exact unit-stratum transform | Completed diagnostic factorization |
+| **2** | **Angle 1 (Chars)** | Trace non-unit and Mobius-twisted remainders | Completed obstruction audit |
 | **3** | **Angle 2 (Auto)** | Study 1503.05121 + 1807.08249 | Automorphic form identification (if exists) |
 | **4** | **Angle 2 (Auto)** | Sketch GL(2) spectral orthogonality argument | Plausibility assessment |
 | **5** | **Angle 3 (Spectral)** | Literature review: trace formulas in modern form | Applicable formula(s) identified |
@@ -166,8 +218,11 @@ This creates a **strong empirical foundation** for expert escalation and might g
 
 1. **Corpus expanded:** 27 new papers provide fresh perspectives
 2. **H15 gap identified:** We know EXACTLY what's missing (Estermann/Kuznetsov)
-3. **Three new H15 papers (2026):** May contain recent breakthroughs
-4. **Character sum + automorphic form literature:** Well-developed, in Mathlib/arXiv
+3. **Three newly catalogued H15 papers (2026):** Their metadata and theorem
+   relevance still require source validation.
+4. **Character and automorphic literature:** Mathematically developed, but
+   the analytic bounds and GL(2) machinery needed here are not present in the
+   checked Mathlib package.
 5. **Project status:** 67% complete — can afford 4–8 week exploratory investment
 
 ---
@@ -176,7 +231,7 @@ This creates a **strong empirical foundation** for expert escalation and might g
 
 | Angle | Risk | Mitigation |
 |-------|------|-----------|
-| **Chars** | Character sum bounds might be weaker than needed | Validate on small cases; check literature |
+| **Chars** | Untwisted bounds miss the Mobius weight and centered main term | Retain only as a diagnostic unless a sufficient varying-modulus theorem is found |
 | **Auto** | GL(2) machinery not in Mathlib | Focus on conceptual sketch, not formalization |
 | **Spectral** | Trace formulas might not simplify the problem | Start with literature review to assess |
 | **Conditional** | Empirical validation is not a proof | Position as "research foundation" not solution |
@@ -185,8 +240,12 @@ This creates a **strong empirical foundation** for expert escalation and might g
 
 ## Recommendation
 
-**Start with Angle 1 (Character Sums)** — it's the most self-contained, builds on existing H13 work (Dirichlet characters), and has the highest Lean feasibility. If character sums don't close the gap, pivot to Angle 4 (conditional + numerical validation) to build empirical foundation for expert escalation.
+**Start with the centered Estermann/Kuznetsov main-term question.** Keep the
+character expansion as a diagnostic and normalization check. If the spectral
+main term cannot yet be proved, use Angle 4 only with corrected normalization
+and the complete centered energy, then prepare the exact expert question in
+`H15_CHARACTER_SUM_ROUTE_AUDIT.md`.
 
 ---
 
-**Status:** READY FOR RESEARCH EXPLORATION ✅
+**Status:** CHARACTER ROUTE AUDITED; CENTERED SPECTRAL MAIN TERM REMAINS OPEN
