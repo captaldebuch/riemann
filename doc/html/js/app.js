@@ -448,47 +448,61 @@ function renderConceptDetail(conceptId) {
 
 function renderMathematicians() {
   const allAuthors = Object.values(STATE.db.authors).sort((a,b) => (a.birth_year || 2000) - (b.birth_year || 2000));
-  
-  let listHtml = '<div style="position:relative; padding-left:1.5rem; border-left:2px solid #e2e8f0; margin-top:2rem;">';
-  listHtml += allAuthors.map(a => `
-    <div style="position:relative; margin-bottom:2rem;">
-      <div style="position:absolute; left:-1.8rem; top:0.5rem; width:10px; height:10px; background:#3b82f6; border-radius:50%;"></div>
-      <div class="glass-card">
-        <h3 style="margin:0; font-size:1.25rem;">
-          <a href="#author/${a.id}" style="color:inherit;text-decoration:none;">${a.name}</a>
-          <span style="font-size:0.9rem; color:#64748b; margin-left:0.5rem;">(b. ${a.birth_year || 'Unknown'})</span>
-        </h3>
-        <p class="text-muted" style="margin:0.5rem 0; font-size:0.95rem;">${a.bio || 'Analytic Number Theorist'}</p>
-        <p class="text-small" style="margin:0; font-weight:600;"><a href="#author/${a.id}">${a.papers.length} paper(s) in corpus →</a></p>
+
+  // Group authors by era
+  const eras = {
+    classical: { label: 'Classical Era (1859–1920)', range: [1859, 1920], authors: [] },
+    modern: { label: 'Modern Era (1921–1970)', range: [1921, 1970], authors: [] },
+    contemporary: { label: 'Contemporary (1971–2000)', range: [1971, 2000], authors: [] },
+    recent: { label: 'Recent (2001+)', range: [2001, 2100], authors: [] }
+  };
+
+  allAuthors.forEach(a => {
+    const year = a.birth_year || 2000;
+    if (year <= 1920) eras.classical.authors.push(a);
+    else if (year <= 1970) eras.modern.authors.push(a);
+    else if (year <= 2000) eras.contemporary.authors.push(a);
+    else eras.recent.authors.push(a);
+  });
+
+  const eraHtml = Object.entries(eras)
+    .filter(([_, e]) => e.authors.length > 0)
+    .map(([_, era]) => `
+      <div style="margin-bottom:3rem;">
+        <h3 style="color:#3b82f6; font-size:1.1rem; margin-bottom:1.5rem; padding-bottom:0.75rem; border-bottom:2px solid #e2e8f0;">${era.label}</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1.5rem;">
+          ${era.authors.map(a => `
+            <div class="glass-card" style="padding:1.25rem;">
+              <h4 style="margin:0 0 0.5rem 0; font-size:1.05rem;">
+                <a href="#author/${a.id}" style="color:inherit;text-decoration:none;">${a.name}</a>
+              </h4>
+              <p style="margin:0.25rem 0; color:#64748b; font-size:0.9rem;">b. ${a.birth_year || '?'}</p>
+              <p class="text-muted" style="margin:0.75rem 0 0.5rem 0; font-size:0.9rem; line-height:1.4;">${a.bio || 'Mathematician'}</p>
+              <p style="margin:0.5rem 0; font-size:0.85rem; color:#3b82f6; font-weight:600;">
+                <a href="#author/${a.id}" style="color:inherit;text-decoration:none;">📄 ${a.papers.length} paper${a.papers.length !== 1 ? 's' : ''}</a>
+              </p>
+            </div>
+          `).join('')}
+        </div>
       </div>
-    </div>
-  `).join('');
-  listHtml += '</div>';
+    `).join('');
 
   return `
     <section class="view-section active">
-      <h2>Intellectual Lineage (Chronology)</h2>
+      <h2>Intellectual Lineage (Grouped by Era)</h2>
       <p>This lineage focuses specifically on the mathematicians whose intuitions laid the groundwork for the Nyman-Beurling approach. We selected these authors not just for their fame, but because their theoretical leaps—such as transforming the Zeta function into Hilbert spaces or bounding Cotangent sums—provided the exact algorithmic structures necessary for our modern Lean 4 formalization attempts.</p>
-      <div class="split-layout mt-lg">
-        <div>
-          ${listHtml}
-        </div>
-        
-        <div>
-          <div class="glass-card" style="margin-bottom:2rem;">
-            <h2 style="margin-top:0;">Why these Authors?</h2>
-            <p class="math-text" style="font-size:1.05rem;">
-              The Riemann Hypothesis spans 160+ years of mathematics, but formal verification requires highly rigid, algorithmic bounds. The authors tracked in this repository were chosen because their work bridges classical analysis with discrete computational structures.
-              <br><br>
-              For example, <strong>Arne Beurling</strong> intuited that RH is equivalent to the closure of indicator functions in $L^2(0,1)$. This intuition shifted the problem from complex analysis to functional analysis. Decades later, <strong>Aleksandr Vasyunin</strong> pushed this intuition further, providing explicit cotangent bounds that could be mechanically checked by algorithms.
-            </p>
-          </div>
-          <div class="glass-card">
-            <h2 style="margin-top:0;">Aleksandr Vasyunin</h2>
-            <p class="math-text">Proved the Vasyunin cotangent identity, which expresses the Nyman-Beurling problem in terms of weighted sums of cotangent functions.</p>
-            <a href="#author/author:aleksandr-vasyunin" class="pill" style="background:#3b82f6;color:white;text-decoration:none;">View Author Profile</a>
-          </div>
-        </div>
+
+      <div style="margin-top:2rem;">
+        ${eraHtml}
+      </div>
+
+      <div style="margin-top:3rem; padding:2rem; background:#f0f9ff; border-radius:8px; border-left:4px solid #3b82f6;">
+        <h3 style="margin-top:0;">Why these Authors?</h3>
+        <p class="math-text" style="font-size:1rem;">
+          The Riemann Hypothesis spans 160+ years of mathematics, but formal verification requires highly rigid, algorithmic bounds. The authors tracked in this repository were chosen because their work bridges classical analysis with discrete computational structures.
+          <br><br>
+          For example, <strong>Arne Beurling</strong> intuited that RH is equivalent to the closure of indicator functions in $L^2(0,1)$. This intuition shifted the problem from complex analysis to functional analysis. Decades later, <strong>Aleksandr Vasyunin</strong> pushed this intuition further, providing explicit cotangent bounds that could be mechanically checked by algorithms.
+        </p>
       </div>
     </section>
   `;
