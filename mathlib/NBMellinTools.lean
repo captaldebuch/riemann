@@ -5,3 +5,4 @@ import NBMellinTools.NB2BaseMellin
 import NBMellinTools.BaezDuarteTail
 import NBMellinTools.NB3MellinContinuity
 import NBMellinTools.NB4ZeroDetection
+import NBMellinTools.NB5FunctionalEquationClosure

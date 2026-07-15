@@ -20,8 +20,9 @@ Detailed metrics and completion estimate:
 | H14 (Linear Möbius) | ✅ Complete in reference branch | Audited at `b499bf2`; classical unconditional Mertens decay, not a square-root bound. |
 | H15 (Quadratic interaction) | ❌ Open research | BCF amplitude diagonalized; centered Estermann/Kuznetsov main-term theorem remains missing. |
 | NB2 | ✅ Complete in active package | Unconditional base Mellin formula and dilations. |
-| NB Fields 1–2 | ✅ Historical proofs audited | Core endpoints clean; active-package port still required. |
-| NB forward bridge | 🟡 Conditional | Current wrapper still depends on `RH.Basic.zero_symmetry`. |
+| NB Fields 1–2 | ✅ Active-package proof | Mellin continuity and right-half zero detection are audited on `766acdc`. |
+| NB5 closure | ✅ Active-package proof | Functional-equation zero reflection closes the full critical-strip statement without project assumptions. |
+| NB forward bridge | 🟡 Conditional | `NymanBeurlingCriterion → CriticalStripRiemannHypothesis` is proved; the criterion itself remains an assumption. |
 | **RH completion percentage** | **Not assigned** | H15 and the remaining NB bridge contain genuine mathematical gaps. |
 
 ---
