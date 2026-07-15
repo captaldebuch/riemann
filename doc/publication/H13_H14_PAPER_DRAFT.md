@@ -6,7 +6,7 @@
 
 ## Abstract
 
-We report two components of a Lean 4 formalization motivated by the Nyman–Beurling–Báez-Duarte approach to the Riemann hypothesis. The first component (H13) formalizes the rational Báez-Duarte–Balazard–Landreau–Saias (BBLS) autocorrelation and period-reduction chain leading to Vasyunin's finite cotangent expression. The rational BBLS theorems and the period-reduction theorem have no project-specific axioms in their audited dependency graphs. The final identification of the original Gram integral with the explicit Vasyunin entry, however, still depends on one explicitly declared project axiom: a bounded inversion change-of-variables formula. Thus H13 is a substantial formalization of the rational reduction, but its headline Gram-entry identity is not yet an axiom-free theorem.
+We report two components of a Lean 4 formalization motivated by the Nyman–Beurling–Báez-Duarte approach to the Riemann hypothesis. The first component (H13) formalizes the rational Báez-Duarte–Balazard–Landreau–Saias (BBLS) autocorrelation and period-reduction chain leading to Vasyunin's finite cotangent expression. The rational BBLS theorems, the period-reduction theorem, and the final identification of the original Gram integral with the explicit Vasyunin entry have no project-specific axioms in their audited dependency graphs. The formerly axiomatized bounded inversion substitution is now proved from Mathlib's one-dimensional change-of-variables theorem.
 
 The second component (H14) formalizes unconditional linear Möbius cancellation. It proves both the qualitative bound \(M(x)=o(x)\) and an effective estimate
 
@@ -77,13 +77,13 @@ theorem vasyuninBEntry_correct_axiom
     baezDuarteGramEntry h k = vasyuninBEntry h k
 ```
 
-is a theorem syntactically, despite its historical name. Its audited dependency graph contains one additional project declaration:
+is a theorem despite its historical name. The bridge it uses is now the proved declaration
 
 ```text
 setIntegral_Ioo_inv_substitution_bridge
 ```
 
-This axiom asserts the expected inversion substitution on a bounded interval, under measurability and integrability assumptions. It is used to pass from the original \(x\)-integral to the transformed integral on which the axiom-free BBLS period reduction operates. Discharging this single change-of-variables declaration is therefore the precise remaining task required to advertise the H13 Gram-entry identity itself as project-axiom-free.
+This theorem applies `intervalIntegral.integral_comp_mul_deriv_of_deriv_nonpos` to the decreasing involution \(x\mapsto 1/x\) on \([1/R,R]\), cancels the two orientation signs, and converts the interval integrals back to set integrals. It passes from the original \(x\)-integral to the transformed integral on which the BBLS period reduction operates. Fresh axiom inspection of both this substitution theorem and `vasyuninBEntry_correct_axiom` reports only `propext`, `Classical.choice`, and `Quot.sound`.
 
 The file also retains a `sorry` in the general-real version `baezDuarte_prop21`. The rational specialization required by `baezDuarte_prop22_rat` is separately proved, and the audited rational theorem graph does not depend on the general-real declaration.
 
@@ -129,7 +129,7 @@ The qualitative and effective paths coexist. `H14LinearMobiusCompletion.lean` co
 
 ### 3.1. H13 modules
 
-The H13 source of record is historical commit `6eda2ff7f35f561d153deeac56bece3da35809a3`, tagged `verified-h13-complete`. Its relevant modules are:
+The H13 source of record is commit `c57c7aa6ed87f47fcd8d1d73251c7f167ef880d5` on branch `codex/h13-substitution-discharge`, based on historical commit `6eda2ff7f35f561d153deeac56bece3da35809a3` tagged `verified-h13-complete`. Its relevant modules are:
 
 | Module | Role |
 |---|---|
@@ -171,7 +171,8 @@ The following table records theorem-level dependency audits, rather than merely 
 | H13 `bbls_A_one` | 0 | Proved. |
 | H13 `bbls_A_rat` | 0 | Proved for arbitrary positive integer indices. |
 | H13 period unfolding and cotangent reduction | 0 | Proved in the audited rational chain. |
-| H13 `vasyuninBEntry_correct_axiom` | 1 | Depends on `setIntegral_Ioo_inv_substitution_bridge`. |
+| H13 `setIntegral_Ioo_inv_substitution_bridge` | 0 | Proved by bounded inversion change of variables. |
+| H13 `vasyuninBEntry_correct_axiom` | 0 | Final Gram-entry identity is project-axiom-free. |
 | H14 qualitative Mertens completion API | 0 | All audited declarations report standard Lean foundations only. |
 | H14 effective Mertens API | 0 | All audited declarations report standard Lean foundations only. |
 | H14 RH–square-root-Mertens equivalence file | 2 explicit `Prop` hypotheses | Conditional theorem, not an unconditional completion result. |
@@ -185,11 +186,11 @@ This record reports checks performed on 15 July 2026 and intentionally distingui
 | Artifact | Fresh result | Interpretation |
 |---|---|---|
 | H14 commit `b499bf2` | `bash mathlib/verify.sh` completed successfully after 8,521 build jobs; both H14 audit files ran. | Full branch verification passed. Each named H14 completion theorem printed only `propext`, `Classical.choice`, and `Quot.sound`. |
-| H13 commit `6eda2ff` | Relevant H13 modules built successfully; a targeted `#print axioms` audit ran successfully. | Rational BBLS results are project-axiom-free; final Gram bridge has the one substitution axiom described above. |
-| H13 full historical verifier | Began successfully but was interrupted while compiling the much larger generated certificate corpus. | The tag `verified-h13-complete` records an earlier historical verification, but this audit does not present it as a fresh end-to-end pass. |
-| Current default branch `b65f11c` | Default package builds, with an H15 `sorry` warning. `mathlib/verify.sh` fails because `NBMellinTools/Audit.lean` is absent. | The current default branch is not a reproducible source of the H13/H14 completion claims. It archives most of that library and imports exploratory H15 material. |
+| H13 commit `c57c7aa` | `G11IntegralEvaluation`, `VasyuninBridge`, and `VasyuninPrimitiveBounds` built successfully; a targeted `#print axioms` audit ran successfully. | The substitution theorem, rational BBLS results, and final Gram bridge are project-axiom-free. |
+| H13 full historical verifier | Reached job 8,551 of 8,616 without failure, then was stopped after 792 seconds while rebuilding the 54,000-line generated primitive-bounds core. | The tag `verified-h13-complete` records an earlier historical verification, but this audit does not present the substitution-discharge commit as having a fresh end-to-end pass. |
+| Current default branch `ad1b8aa` plus working tree | The active `NBMellinTools` package and its scoped `mathlib/verify.sh` pass; exploratory H15 is excluded from the umbrella. | The default package now contains the NB2 Mellin bridge, but is still not the publication source for the historical H13/H14 modules. |
 
-These facts imply two release tasks before submission: (i) discharge or explicitly retain and document the H13 inversion-substitution axiom, and (ii) assemble a clean artifact branch that imports H13 and H14 without H15 and has one passing top-level verification command.
+These facts leave one packaging task before submission: assemble a clean artifact branch that imports H13 and H14 without H15 and has one passing top-level verification command.
 
 ## 6. Limitations and explicit nonclaims
 
@@ -202,10 +203,9 @@ These facts imply two release tasks before submission: (i) discharge or explicit
    ```
 
    only after receiving `PerronMertensGap` and `MobiusContinuationGap` as explicit hypotheses. It is not an unconditional equivalence closure.
-4. **One H13 project axiom remains on the headline path.** The rational BBLS chain is clean, but the original Gram-integral identification requires `setIntegral_Ioo_inv_substitution_bridge`.
-5. **The general-real BBLS Proposition 21 is not complete.** A `sorry` remains there; the completed rational specialization is the theorem used by the audited H13 path.
-6. **H15 is out of scope.** No quadratic Möbius–Vasyunin cancellation theorem is claimed here.
-7. **Active-main packaging is presently inconsistent with publication.** Passing checks must be reproduced from the source commits named above until a clean release branch is assembled.
+4. **The general-real BBLS Proposition 21 is not complete.** A `sorry` remains there; the completed rational specialization is the theorem used by the audited H13 path.
+5. **H15 is out of scope.** No quadratic Möbius–Vasyunin cancellation theorem is claimed here.
+6. **Active-main packaging is presently inconsistent with publication.** Passing checks must be reproduced from the source branches named above until a clean release branch is assembled.
 
 ## 7. Reproducibility
 
@@ -224,11 +224,11 @@ The expected final audit output lists the qualitative and effective H14 declarat
 
 ### 7.2. H13
 
-Create a detached worktree at the historical tagged commit:
+Create a worktree at the audited substitution-discharge branch:
 
 ```bash
-git worktree add --detach ../riemann-h13-artifact \
-  6eda2ff7f35f561d153deeac56bece3da35809a3
+git worktree add ../riemann-h13-artifact \
+  codex/h13-substitution-discharge
 cd ../riemann-h13-artifact
 ```
 
@@ -247,6 +247,7 @@ An audit file importing `VasyuninBridge` and `BBLSAutocorrelation` should contai
 
 ```lean
 #print axioms baezDuarte_prop22_rat
+#print axioms setIntegral_Ioo_inv_substitution_bridge
 #print axioms bbls_A_one
 #print axioms bbls_A_rat
 #print axioms bbls_tsum_eq_vasyuninBEntry
@@ -255,7 +256,7 @@ An audit file importing `VasyuninBridge` and `BBLSAutocorrelation` should contai
 #print axioms vasyuninBEntry_correct_axiom
 ```
 
-The first six audited endpoints are expected to show only standard foundations; the last additionally shows `setIntegral_Ioo_inv_substitution_bridge`. Exact namespaces may be required when running this outside the original audit file.
+Every audited endpoint is expected to show only standard foundations. Exact namespaces may be required when running this outside the original audit file.
 
 For a publication artifact, these commands should be converted into a checked-in, non-stale audit module and a single verifier that fails on unexpected axioms, `sorry`, or `native_decide` in the declared scope.
 
@@ -264,7 +265,7 @@ For a publication artifact, these commands should be converted into a checked-in
 The mathematical exposition can be divided into two papers or one two-part artifact paper. A defensible first release should:
 
 1. state the H13 rational BBLS formalization as the main H13 result;
-2. either prove the standard inversion substitution in Lean or label it prominently as the sole remaining H13 project axiom;
+2. include the proved inversion-substitution theorem and its axiom audit;
 3. present H14 as an unconditional formalization of classical Mertens decay, with the effective theorem as the principal endpoint;
 4. include generated `#print axioms` output for every advertised endpoint;
 5. exclude H15 and conditional RH wrappers from the release library's default import;
@@ -273,7 +274,7 @@ The mathematical exposition can be divided into two papers or one two-part artif
 
 The strongest accurate headline at the current audited state is:
 
-> A project-axiom-free Lean formalization of the rational BBLS/Vasyunin period-reduction chain, with one explicit classical substitution axiom at the original Gram bridge, together with a project-axiom-free formalization of unconditional qualitative and effective Mertens decay.
+> A project-axiom-free Lean formalization of the rational BBLS/Vasyunin Gram-entry identity, together with a project-axiom-free formalization of unconditional qualitative and effective Mertens decay.
 
 ## References
 
@@ -285,4 +286,3 @@ The strongest accurate headline at the current audited state is:
 6. The Mathlib Community, *The Lean Mathematical Library*, Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs, 2020, 367–381.
 7. L. de Moura and S. Ullrich, *The Lean 4 theorem prover and programming language*, Automated Deduction—CADE 28, Lecture Notes in Computer Science 12699, 2021, 625–635.
 8. A. Kontorovich et al., *PrimeNumberTheoremAnd*, Lean 4 formalization repository, pinned here at commit `80c12dfd932e99874e004d65537c57ef6421ff2b`.
-
