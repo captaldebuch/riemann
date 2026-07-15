@@ -15,11 +15,11 @@
       "arxiv_id": "2607.09797",
       "doi": null,
       "journal": null,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "relevance_score": 0.95,
       "tags": [
         "recent-research",
-        "möbius",
+        "m\u00f6bius",
         "approximations"
       ],
       "local_pdf_path": "2607.09797v1.pdf"
@@ -37,7 +37,7 @@
       "arxiv_id": "2607.09110",
       "doi": null,
       "journal": null,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "relevance_score": 0.9,
       "tags": [
         "h15",
@@ -48,7 +48,7 @@
     },
     {
       "id": "2607.04632",
-      "title": "Möbius Correlations and Cancellation",
+      "title": "M\u00f6bius Correlations and Cancellation",
       "authors": [
         {
           "name": "Analytic Researchers",
@@ -59,10 +59,10 @@
       "arxiv_id": "2607.04632",
       "doi": null,
       "journal": null,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "relevance_score": 0.85,
       "tags": [
-        "möbius",
+        "m\u00f6bius",
         "cancellation",
         "correlation"
       ],
@@ -81,7 +81,7 @@
       "arxiv_id": "2607.04316",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.9,
       "tags": [
         "zeta",
@@ -103,7 +103,7 @@
       "arxiv_id": "2607.02828",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.88,
       "tags": [
         "mellin",
@@ -124,7 +124,7 @@
       "arxiv_id": "2607.01126",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.82,
       "tags": [
         "contour",
@@ -145,7 +145,7 @@
       "arxiv_id": "2606.22562",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.85,
       "tags": [
         "perron",
@@ -229,7 +229,7 @@
       "arxiv_id": "1510.05087",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.9,
       "tags": [
         "zero-free-region",
@@ -254,7 +254,7 @@
       "arxiv_id": "1501.02975",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.92,
       "tags": [
         "mellin",
@@ -275,7 +275,7 @@
       "arxiv_id": "1409.1634",
       "doi": null,
       "journal": null,
-      "role_in_project": "H13",
+      "role_in_project": "Classical Foundation (Analytic)",
       "relevance_score": 0.85,
       "tags": [
         "characters",
@@ -296,7 +296,7 @@
       "arxiv_id": "1401.3150",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.88,
       "tags": [
         "explicit-bounds",
@@ -317,7 +317,7 @@
       "arxiv_id": "1401.2932",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.9,
       "tags": [
         "zeta",
@@ -330,7 +330,15 @@
       "title": "Rigid Analytic Geometry",
       "authors": [
         {
-          "name": "Geometric Analysts",
+          "name": "Bettin",
+          "affiliation": null
+        },
+        {
+          "name": "Conrey",
+          "affiliation": null
+        },
+        {
+          "name": "Farmer",
           "affiliation": null
         }
       ],
@@ -363,10 +371,10 @@
       "arxiv_id": "1111.0931",
       "doi": null,
       "journal": null,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "relevance_score": 0.95,
       "tags": [
-        "möbius",
+        "m\u00f6bius",
         "period-functions",
         "cotangent-sums"
       ],
@@ -393,7 +401,7 @@
       "arxiv_id": "1601.06839",
       "doi": null,
       "journal": null,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "relevance_score": 0.9,
       "tags": [
         "reciprocity",
@@ -415,7 +423,7 @@
       "arxiv_id": "1503.05121",
       "doi": null,
       "journal": null,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "relevance_score": 0.85,
       "tags": [
         "fourier",
@@ -462,7 +470,7 @@
       "arxiv_id": "math/0306251",
       "doi": null,
       "journal": null,
-      "role_in_project": "H13",
+      "role_in_project": "Classical Foundation (Analytic)",
       "relevance_score": 0.88,
       "tags": [
         "digamma",
@@ -476,14 +484,14 @@
       "title": "Contributions to Prime Number Distribution",
       "authors": [
         {
-          "name": "Classical Analysts",
+          "name": "Hadamard",
           "affiliation": null
         }
       ],
       "year": 1893,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Journal de Mathématiques",
+      "journal": "Journal de Math\u00e9matiques",
       "role_in_project": "General",
       "relevance_score": 0.8,
       "tags": [
@@ -494,7 +502,7 @@
     },
     {
       "id": "file:BSMF_1896__24__199_1.pdf",
-      "title": "Sur les Zéros de la Fonction ζ(s)",
+      "title": "Sur les Z\u00e9ros de la Fonction \u03b6(s)",
       "authors": [
         {
           "name": "Hadamard",
@@ -504,7 +512,7 @@
       "year": 1896,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Bulletin de la Société Mathématique de France",
+      "journal": "Bulletin de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
       "role_in_project": "General",
       "relevance_score": 0.9,
       "tags": [
@@ -516,7 +524,7 @@
     },
     {
       "id": "file:BSMA_1873__5__79_1.pdf",
-      "title": "Mémoire sur la Distribution des Nombres Premiers",
+      "title": "M\u00e9moire sur la Distribution des Nombres Premiers",
       "authors": [
         {
           "name": "Chebyshev",
@@ -526,7 +534,7 @@
       "year": 1873,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Bulletin de la Société Mathématique de France",
+      "journal": "Bulletin de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
       "role_in_project": "General",
       "relevance_score": 0.85,
       "tags": [
@@ -538,7 +546,7 @@
     },
     {
       "id": "file:BSMF_2006__134_3_417_0.pdf",
-      "title": "Méthodes Modernes en Théorie des Nombres",
+      "title": "M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
       "authors": [
         {
           "name": "Modern Team",
@@ -548,8 +556,8 @@
       "year": 2006,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Bulletin de la Société Mathématique de France",
-      "role_in_project": "H14",
+      "journal": "Bulletin de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.82,
       "tags": [
         "modern",
@@ -570,7 +578,7 @@
       "arxiv_id": null,
       "doi": null,
       "journal": "Annales de l'Institut Fourier",
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.85,
       "tags": [
         "fourier",
@@ -591,7 +599,7 @@
       "arxiv_id": null,
       "doi": null,
       "journal": "Annales de l'Institut Fourier",
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.8,
       "tags": [
         "complex-analysis",
@@ -601,7 +609,7 @@
     },
     {
       "id": "file:MSMF_2001_2_86__1_0.pdf",
-      "title": "Mémoires sur les Fonctions Zêta",
+      "title": "M\u00e9moires sur les Fonctions Z\u00eata",
       "authors": [
         {
           "name": "French Analysts",
@@ -611,8 +619,8 @@
       "year": 2001,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Mémoires de la Société Mathématique de France",
-      "role_in_project": "H14",
+      "journal": "M\u00e9moires de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.83,
       "tags": [
         "zeta",
@@ -622,7 +630,7 @@
     },
     {
       "id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
-      "title": "Progrès Récents sur l'Hypothèse de Riemann",
+      "title": "Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
       "authors": [
         {
           "name": "Recent Team",
@@ -632,8 +640,8 @@
       "year": 2009,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Comptes Rendus Mathématique",
-      "role_in_project": "H14",
+      "journal": "Comptes Rendus Math\u00e9matique",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.84,
       "tags": [
         "recent",
@@ -664,132 +672,6 @@
       "local_pdf_path": "Zeta (1).pdf"
     },
     {
-      "id": null,
-      "title": "1111.0931",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "1111.0931.pdf"
-    },
-    {
-      "id": null,
-      "title": "AN OPTIMAL CHOICE OF DIRICHLET POLYNOMIALS FOR THE",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "1211.5191.pdf"
-    },
-    {
-      "id": null,
-      "title": "SMALL GAPS BETWEEN PRIMES",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "1311.4600v3.pdf"
-    },
-    {
-      "id": null,
-      "title": "APPROXIMATING THE MAIN CONJECTURE IN",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "1401.2932.pdf"
-    },
-    {
-      "id": null,
-      "title": "THE CUBIC CASE OF THE MAIN CONJECTURE IN",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "1401.3150.pdf"
-    },
-    {
-      "id": null,
-      "title": "DECOUPLINGS FOR CURVES AND HYPERSURFACES WITH",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "1409.1634.pdf"
-    },
-    {
-      "id": null,
-      "title": "LONG GAPS BETWEEN PRIMES",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 19,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "1412.5029v3.pdf"
-    },
-    {
       "id": "2309.09171",
       "title": "2309.09171v1",
       "authors": [
@@ -798,7 +680,7 @@
           "affiliation": null
         }
       ],
-      "year": 19,
+      "year": 2000,
       "arxiv_id": "2309.09171",
       "doi": null,
       "journal": null,
@@ -806,240 +688,6 @@
       "relevance_score": 0.5,
       "tags": [],
       "local_pdf_path": "2309.09171v1.pdf"
-    },
-    {
-      "id": null,
-      "title": "9811068v1",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "9811068v1.pdf"
-    },
-    {
-      "id": null,
-      "title": "U D ANNALES",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "AIF_2003__53_3_665_0.pdf"
-    },
-    {
-      "id": null,
-      "title": "AIF_2005__55_4_1373_0",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "AIF_2005__55_4_1373_0.pdf"
-    },
-    {
-      "id": null,
-      "title": "ULLETIN DES SCIENCES",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "BSMA_1873__5__79_1.pdf"
-    },
-    {
-      "id": null,
-      "title": "ULLETIN DE LA",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "BSMF_1896__24__199_1.pdf"
-    },
-    {
-      "id": null,
-      "title": "UNE APPROCHE HILBERTIENNE DE L’HYPOTHE`SE",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "BSMF_2006__134_3_417_0.pdf"
-    },
-    {
-      "id": null,
-      "title": "CRMATH_2009__347_19-20_1115_0",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "CRMATH_2009__347_19-20_1115_0.pdf"
-    },
-    {
-      "id": null,
-      "title": "J. HADAMARD",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "JMPA_1893_4_9__171_0.pdf"
-    },
-    {
-      "id": null,
-      "title": "ME´MOIRES DE LA SMF 86",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 20,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "MSMF_2001_2_86__1_0.pdf"
-    },
-    {
-      "id": null,
-      "title": "PPN266833020_0019",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 19,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "PPN266833020_0019.pdf"
-    },
-    {
-      "id": null,
-      "title": "Zeta (1)",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 19,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "H14",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "Zeta (1).pdf"
-    },
-    {
-      "id": null,
-      "title": "math_0306251",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "math_0306251.pdf"
-    },
-    {
-      "id": null,
-      "title": "MEAN VALUES OF L–FUNCTIONS AND SYMMETRY",
-      "authors": [
-        {
-          "name": "Unknown Author",
-          "affiliation": null
-        }
-      ],
-      "year": 2026,
-      "arxiv_id": null,
-      "doi": null,
-      "journal": null,
-      "role_in_project": "General",
-      "relevance_score": 0.5,
-      "tags": [],
-      "local_pdf_path": "math_9912107.pdf"
     },
     {
       "id": "9901.00000",
@@ -1050,11 +698,11 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00000",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.5,
       "tags": [],
       "local_pdf_path": "paper_0.pdf"
@@ -1068,7 +716,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00001",
       "doi": null,
       "journal": null,
@@ -1079,14 +727,14 @@
     },
     {
       "id": "9901.00013",
-      "title": "RIEMANN’S HYPOTHESIS",
+      "title": "RIEMANN\u2019S HYPOTHESIS",
       "authors": [
         {
           "name": "Unknown Author",
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00013",
       "doi": null,
       "journal": null,
@@ -1104,7 +752,7 @@
           "affiliation": null
         }
       ],
-      "year": 19,
+      "year": 2000,
       "arxiv_id": "9901.00014",
       "doi": null,
       "journal": null,
@@ -1140,7 +788,7 @@
           "affiliation": null
         }
       ],
-      "year": 19,
+      "year": 2000,
       "arxiv_id": "9901.00021",
       "doi": null,
       "journal": null,
@@ -1176,7 +824,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00028",
       "doi": null,
       "journal": null,
@@ -1248,7 +896,7 @@
           "affiliation": null
         }
       ],
-      "year": 19,
+      "year": 2000,
       "arxiv_id": "9901.00033",
       "doi": null,
       "journal": null,
@@ -1266,7 +914,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00035",
       "doi": null,
       "journal": null,
@@ -1284,7 +932,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00036",
       "doi": null,
       "journal": null,
@@ -1320,7 +968,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00041",
       "doi": null,
       "journal": null,
@@ -1338,7 +986,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00042",
       "doi": null,
       "journal": null,
@@ -1349,7 +997,7 @@
     },
     {
       "id": "9901.00043",
-      "title": "X-RAY OF RIEMANN’S ZETA-FUNCTION 23",
+      "title": "X-RAY OF RIEMANN\u2019S ZETA-FUNCTION 23",
       "authors": [
         {
           "name": "Unknown Author",
@@ -1360,7 +1008,7 @@
       "arxiv_id": "9901.00043",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.5,
       "tags": [],
       "local_pdf_path": "paper_43.pdf"
@@ -1374,7 +1022,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00044",
       "doi": null,
       "journal": null,
@@ -1392,11 +1040,11 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00048",
       "doi": null,
       "journal": null,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.5,
       "tags": [],
       "local_pdf_path": "paper_48.pdf"
@@ -1428,7 +1076,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00005",
       "doi": null,
       "journal": null,
@@ -1446,7 +1094,7 @@
           "affiliation": null
         }
       ],
-      "year": 19,
+      "year": 2000,
       "arxiv_id": "9901.00051",
       "doi": null,
       "journal": null,
@@ -1482,7 +1130,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00060",
       "doi": null,
       "journal": null,
@@ -1500,7 +1148,7 @@
           "affiliation": null
         }
       ],
-      "year": 19,
+      "year": 2000,
       "arxiv_id": "9901.00061",
       "doi": null,
       "journal": null,
@@ -1518,7 +1166,7 @@
           "affiliation": null
         }
       ],
-      "year": 20,
+      "year": 2000,
       "arxiv_id": "9901.00008",
       "doi": null,
       "journal": null,
@@ -1573,7 +1221,7 @@
       "article_id": "2607.04632",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Möbius Correlations and Cancellation",
+        "statement": "Key finding in M\u00f6bius Correlations and Cancellation",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -1586,7 +1234,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Möbius Correlations and Cancellation",
+      "main_contribution": "Main contribution from M\u00f6bius Correlations and Cancellation",
       "open_problems": []
     },
     {
@@ -1973,7 +1621,7 @@
       "article_id": "file:BSMF_1896__24__199_1.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Sur les Zéros de la Fonction ζ(s)",
+        "statement": "Key finding in Sur les Z\u00e9ros de la Fonction \u03b6(s)",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -1986,14 +1634,14 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Sur les Zéros de la Fonction ζ(s)",
+      "main_contribution": "Main contribution from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
       "open_problems": []
     },
     {
       "article_id": "file:BSMA_1873__5__79_1.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Mémoire sur la Distribution des Nombres Premiers",
+        "statement": "Key finding in M\u00e9moire sur la Distribution des Nombres Premiers",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -2006,14 +1654,14 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Mémoire sur la Distribution des Nombres Premiers",
+      "main_contribution": "Main contribution from M\u00e9moire sur la Distribution des Nombres Premiers",
       "open_problems": []
     },
     {
       "article_id": "file:BSMF_2006__134_3_417_0.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Méthodes Modernes en Théorie des Nombres",
+        "statement": "Key finding in M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -2026,7 +1674,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Méthodes Modernes en Théorie des Nombres",
+      "main_contribution": "Main contribution from M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
       "open_problems": []
     },
     {
@@ -2073,7 +1721,7 @@
       "article_id": "file:MSMF_2001_2_86__1_0.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Mémoires sur les Fonctions Zêta",
+        "statement": "Key finding in M\u00e9moires sur les Fonctions Z\u00eata",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -2086,14 +1734,14 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Mémoires sur les Fonctions Zêta",
+      "main_contribution": "Main contribution from M\u00e9moires sur les Fonctions Z\u00eata",
       "open_problems": []
     },
     {
       "article_id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Progrès Récents sur l'Hypothèse de Riemann",
+        "statement": "Key finding in Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -2106,7 +1754,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Progrès Récents sur l'Hypothèse de Riemann",
+      "main_contribution": "Main contribution from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
       "open_problems": []
     },
     {
@@ -2160,7 +1808,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Möbius Correlations and Cancellation",
+          "description": "Heuristic intuition from M\u00f6bius Correlations and Cancellation",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -2400,7 +2048,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Sur les Zéros de la Fonction ζ(s)",
+          "description": "Heuristic intuition from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -2412,7 +2060,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Mémoire sur la Distribution des Nombres Premiers",
+          "description": "Heuristic intuition from M\u00e9moire sur la Distribution des Nombres Premiers",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -2424,7 +2072,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Méthodes Modernes en Théorie des Nombres",
+          "description": "Heuristic intuition from M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -2460,7 +2108,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Mémoires sur les Fonctions Zêta",
+          "description": "Heuristic intuition from M\u00e9moires sur les Fonctions Z\u00eata",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -2472,7 +2120,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Progrès Récents sur l'Hypothèse de Riemann",
+          "description": "Heuristic intuition from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
           "supports_theorem": null,
           "confidence": 0.75
         }

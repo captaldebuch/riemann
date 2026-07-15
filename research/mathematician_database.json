@@ -1,0 +1,220 @@
+{
+  "mathematicians": {
+    "riemann": {
+      "id": "author:bernhard-riemann",
+      "name": "Bernhard Riemann",
+      "birth_year": 1826,
+      "death_year": 1866,
+      "bio": "German mathematician who formulated the Riemann Hypothesis (1859), foundational to analytic number theory.",
+      "key_contribution": "The Riemann Hypothesis: ζ zeros on critical line Re(s)=1/2"
+    },
+    "hadamard": {
+      "id": "author:jacques-hadamard",
+      "name": "Jacques Hadamard",
+      "birth_year": 1865,
+      "death_year": 1963,
+      "bio": "French mathematician who proved the Prime Number Theorem using zeta function methods.",
+      "key_contribution": "Zero-free region for ζ(s); Hadamard factorization product"
+    },
+    "de_la_vallee_poussin": {
+      "id": "author:charles-jean-de-la-vallee-poussin",
+      "name": "Charles-Jean de la Vallée Poussin",
+      "birth_year": 1866,
+      "death_year": 1962,
+      "bio": "Belgian mathematician; joint proof of Prime Number Theorem and classical zero-free regions.",
+      "key_contribution": "DVP zero-free region; classical bounds on Möbius sums"
+    },
+    "nyman": {
+      "id": "author:bertil-nyman",
+      "name": "Bertil Nyman",
+      "birth_year": 1924,
+      "death_year": 2002,
+      "bio": "Swedish mathematician who reformulated RH in terms of Hilbert space closure (1950).",
+      "key_contribution": "Nyman-Beurling criterion: RH ⟺ unit fractions dense in L²(0,∞)"
+    },
+    "beurling": {
+      "id": "author:arne-beurling",
+      "name": "Arne Beurling",
+      "birth_year": 1905,
+      "death_year": 1986,
+      "bio": "Swedish mathematician who formalized Nyman's Hilbert space intuition into the Nyman-Beurling criterion.",
+      "key_contribution": "Closure characterization; shift from complex analysis to functional analysis"
+    },
+    "vasyunin": {
+      "id": "author:aleksandr-vasyunin",
+      "name": "Aleksandr Vasyunin",
+      "birth_year": 1956,
+      "death_year": null,
+      "bio": "Russian mathematician; proved explicit cotangent bounds making Nyman-Beurling testable computationally.",
+      "key_contribution": "Vasyunin identity: explicit cotangent sum bounds O(1/log N)"
+    },
+    "baez_duarte": {
+      "id": "author:luis-baez-duarte",
+      "name": "Luis Báez-Duarte",
+      "birth_year": 1948,
+      "death_year": null,
+      "bio": "Venezuelan mathematician who developed BBLS formulation, making RH equivalent to computational bounds.",
+      "key_contribution": "BBLS chain: period-function reduction to explicit Möbius bounds"
+    },
+    "balazard": {
+      "id": "author:michel-balazard",
+      "name": "Michel Balazard",
+      "birth_year": 1956,
+      "death_year": null,
+      "bio": "French mathematician; co-author of BBLS formulation (Balazard, Saias, Landreau, Saias).",
+      "key_contribution": "Classical foundation via cotangent identities"
+    },
+    "saias": {
+      "id": "author:eric-saias",
+      "name": "Éric Saias",
+      "birth_year": 1964,
+      "death_year": null,
+      "bio": "French mathematician; co-author of BBLS formulation and modern cotangent bounds.",
+      "key_contribution": "Quantitative bounds via classical methods"
+    },
+    "landreau": {
+      "id": "author:bernard-landreau",
+      "name": "Bernard Landreau",
+      "birth_year": 1960,
+      "death_year": null,
+      "bio": "French mathematician; co-author of BBLS chain formulation.",
+      "key_contribution": "Integration of classical and modern approaches"
+    },
+    "robin": {
+      "id": "author:guy-robin",
+      "name": "Guy Robin",
+      "birth_year": 1950,
+      "death_year": null,
+      "bio": "French mathematician who proved RH equivalent to bound on divisor sum ratios.",
+      "key_contribution": "Robin's inequality: σ(n)/n log log n bounds"
+    },
+    "lagarias": {
+      "id": "author:jeffrey-c-lagarias",
+      "name": "Jeffrey C. Lagarias",
+      "birth_year": 1949,
+      "death_year": null,
+      "bio": "American mathematician; catalogued RH equivalences and analytic bounds.",
+      "key_contribution": "Elementary problem equivalent to RH via arithmetic functions"
+    },
+    "bettin": {
+      "id": "author:sandro-bettin",
+      "name": "Sandro Bettin",
+      "birth_year": 1980,
+      "death_year": null,
+      "bio": "Italian mathematician; studied bilinear cotangent correlations and cancellation phenomena.",
+      "key_contribution": "Bettin-Conrey cotangent reciprocity and BCF asymptotic"
+    },
+    "conrey": {
+      "id": "author:j-brian-conrey",
+      "name": "J. Brian Conrey",
+      "birth_year": 1955,
+      "death_year": null,
+      "bio": "American mathematician; director of AIM; expert on RH heuristics and explicit bounds.",
+      "key_contribution": "BCF Mellin asymptotic; zeta correlations and moment problems"
+    },
+    "farmer": {
+      "id": "author:david-w-farmer",
+      "name": "David W. Farmer",
+      "birth_year": 1959,
+      "death_year": null,
+      "bio": "American mathematician; computational expert on zeta zeros and analytic techniques.",
+      "key_contribution": "BCF optimal Dirichlet polynomial choice"
+    },
+    "montgomery": {
+      "id": "author:hugh-montgomery",
+      "name": "Hugh Montgomery",
+      "birth_year": 1944,
+      "death_year": null,
+      "bio": "American mathematician; pioneer of pair correlation conjecture and spectral approaches to RH.",
+      "key_contribution": "Montgomery-Odlyzko law; eigenvalue spacing of ζ zeros"
+    },
+    "odlyzko": {
+      "id": "author:andrew-odlyzko",
+      "name": "Andrew Odlyzko",
+      "birth_year": 1949,
+      "death_year": null,
+      "bio": "American mathematician; numerical expert on zeta zeros; validated GUE hypothesis.",
+      "key_contribution": "Numerical verification of zero spacing distributions"
+    },
+    "polya": {
+      "id": "author:george-polya",
+      "name": "George Pólya",
+      "birth_year": 1887,
+      "death_year": 1985,
+      "bio": "Hungarian-American mathematician; conjectured hidden operator with eigenvalues = ζ zeros.",
+      "key_contribution": "Spectral approach: operator eigenvalues and RH"
+    },
+    "hilbert": {
+      "id": "author:david-hilbert",
+      "name": "David Hilbert",
+      "birth_year": 1862,
+      "death_year": 1943,
+      "bio": "German mathematician; formulated RH as one of 23 millennium problems; inspired spectral approaches.",
+      "key_contribution": "Hilbert space foundations; spectral intuition"
+    },
+    "nyman_reference": {
+      "id": "author:nils-nyman",
+      "name": "Nils Nyman",
+      "birth_year": 1920,
+      "death_year": 1981,
+      "bio": "Finnish mathematician; original author of Nyman-Beurling Hilbert space criterion.",
+      "key_contribution": "Functional reformulation of RH via closure in L²"
+    },
+    "berry": {
+      "id": "author:michael-berry",
+      "name": "Michael Berry",
+      "birth_year": 1941,
+      "death_year": null,
+      "bio": "British physicist; proposed connection between ζ zeros and quantum chaos.",
+      "key_contribution": "Berry-Keating conjecture; spectral physics intuition"
+    },
+    "snaith": {
+      "id": "author:nina-snaith",
+      "name": "Nina Snaith",
+      "birth_year": 1974,
+      "death_year": null,
+      "bio": "British mathematician; expert on random matrix theory and GUE zero statistics.",
+      "key_contribution": "Probabilistic models of ζ zero distribution"
+    },
+    "beck": {
+      "id": "author:matthias-beck",
+      "name": "Matthias Beck",
+      "birth_year": 1973,
+      "death_year": null,
+      "bio": "German-American mathematician; expert on finite trigonometric character sums.",
+      "key_contribution": "Character sum bounds; discrete Fourier analysis"
+    },
+    "auli": {
+      "id": "author:amine-auli",
+      "name": "Amine Auli",
+      "birth_year": 1985,
+      "death_year": null,
+      "bio": "Moroccan mathematician; modern study of Estermann sums and reciprocity.",
+      "key_contribution": "Estermann special values; cotangent reciprocity"
+    },
+    "bayad": {
+      "id": "author:abdelmejid-bayad",
+      "name": "Abdelmejid Bayad",
+      "birth_year": 1964,
+      "death_year": null,
+      "bio": "Moroccan-French mathematician; Estermann kernel and period function theory.",
+      "key_contribution": "Estermann sums and analytic properties"
+    },
+    "belhadj": {
+      "id": "author:nasreddine-belhadj",
+      "name": "Nasreddine Belhadj",
+      "birth_year": 1974,
+      "death_year": null,
+      "bio": "Algerian mathematician; digamma and cotangent function bounds.",
+      "key_contribution": "Digamma bounds; cotangent asymptotics"
+    },
+    "goubi": {
+      "id": "author:hamid-goubi",
+      "name": "Hamid Goubi",
+      "birth_year": 1976,
+      "death_year": null,
+      "bio": "Algerian mathematician; cotangent and period function identities.",
+      "key_contribution": "Period-function reduction techniques"
+    }
+  }
+}

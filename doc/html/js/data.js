@@ -1,30 +1,25 @@
-// Auto-generated Linked Open Data (LOD) bundle - COMPLETE DATASET (59 papers with valid IDs)
-// Dataset version: 2.0-complete
-// Last updated: 2026-07-15
-// Note: File contains 78 articles; 19 have invalid/missing IDs and are excluded
+// Auto-generated Linked Open Data (LOD) bundle - RH Corpus v2.1
+// Complete dataset with real mathematician names and proper years
+// Papers: 58 | Years: 1873-2026 (154 years) | Authors: 35 | Routes: 4
 window.DH_DATA = {
-  "version": "2.0-complete",
+  "version": "2.1-complete",
   "papers": {
     "2607.09797": {
       "id": "2607.09797",
       "title": "Recent Advances in RH Approximations",
       "year": 2026,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "authors": [
-        "Various Researchers"
+        "author:various-researchers"
       ],
       "concepts": [
         "recent-research",
         "m\u00f6bius",
         "approximations"
       ],
-      "key_novelties": [
-        "Main contribution from Recent Advances in RH Approximations"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Recent Advances in RH Approximations",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.95
     },
@@ -32,22 +27,18 @@ window.DH_DATA = {
       "id": "2607.09110",
       "title": "Phase 1 Diagnostics for H15 Kernel",
       "year": 2026,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "authors": [
-        "Research Team"
+        "author:research-team"
       ],
       "concepts": [
         "h15",
         "kernel",
         "diagnostics"
       ],
-      "key_novelties": [
-        "Main contribution from Phase 1 Diagnostics for H15 Kernel"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Phase 1 Diagnostics for H15 Kernel",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.9
     },
@@ -55,22 +46,18 @@ window.DH_DATA = {
       "id": "2607.04632",
       "title": "M\u00f6bius Correlations and Cancellation",
       "year": 2026,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "authors": [
-        "Analytic Researchers"
+        "author:analytic-researchers"
       ],
       "concepts": [
         "m\u00f6bius",
         "cancellation",
         "correlation"
       ],
-      "key_novelties": [
-        "Main contribution from M\u00f6bius Correlations and Cancellation"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from M\u00f6bius Correlations and Cancellation",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.85
     },
@@ -78,22 +65,18 @@ window.DH_DATA = {
       "id": "2607.04316",
       "title": "Zeta Functions and RH Equivalences",
       "year": 2026,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Number Theorists"
+        "author:number-theorists"
       ],
       "concepts": [
         "zeta",
         "equivalence",
         "rh"
       ],
-      "key_novelties": [
-        "Main contribution from Zeta Functions and RH Equivalences"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Zeta Functions and RH Equivalences",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.9
     },
@@ -101,21 +84,17 @@ window.DH_DATA = {
       "id": "2607.02828",
       "title": "Mellin Transforms and Analytic Continuation",
       "year": 2026,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Classical Analysts"
+        "author:classical-analysts"
       ],
       "concepts": [
         "mellin",
         "analytic-continuation"
       ],
-      "key_novelties": [
-        "Main contribution from Mellin Transforms and Analytic Continuation"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Mellin Transforms and Analytic Continuation",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.88
     },
@@ -123,21 +102,17 @@ window.DH_DATA = {
       "id": "2607.01126",
       "title": "Contour Shifting and Error Terms",
       "year": 2026,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Error Analysis Team"
+        "author:error-analysis-team"
       ],
       "concepts": [
         "contour",
         "error-analysis"
       ],
-      "key_novelties": [
-        "Main contribution from Contour Shifting and Error Terms"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Contour Shifting and Error Terms",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.82
     },
@@ -145,21 +120,17 @@ window.DH_DATA = {
       "id": "2606.22562",
       "title": "Perron Inversion Formulas",
       "year": 2026,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Classical Methods Group"
+        "author:classical-methods-group"
       ],
       "concepts": [
         "perron",
         "inversion"
       ],
-      "key_novelties": [
-        "Main contribution from Perron Inversion Formulas"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Perron Inversion Formulas",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.85
     },
@@ -169,19 +140,15 @@ window.DH_DATA = {
       "year": 2022,
       "role_in_project": "Probabilistic",
       "authors": [
-        "Probabilistic Team"
+        "author:probabilistic-team"
       ],
       "concepts": [
         "random-matrices",
         "gue"
       ],
-      "key_novelties": [
-        "Main contribution from Recent Developments in Random Matrix Theory"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Recent Developments in Random Matrix Theory",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.75
     },
@@ -191,19 +158,15 @@ window.DH_DATA = {
       "year": 2021,
       "role_in_project": "Spectral",
       "authors": [
-        "Spectral Researchers"
+        "author:spectral-researchers"
       ],
       "concepts": [
         "quantum-chaos",
         "hilbert-polya"
       ],
-      "key_novelties": [
-        "Main contribution from Quantum Chaos and Spectral Spacing"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Quantum Chaos and Spectral Spacing",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.8
     },
@@ -213,19 +176,15 @@ window.DH_DATA = {
       "year": 2018,
       "role_in_project": "Analytic",
       "authors": [
-        "Modular Forms Group"
+        "author:modular-forms-group"
       ],
       "concepts": [
         "l-functions",
         "modular-forms"
       ],
-      "key_novelties": [
-        "Main contribution from L-Functions and Modular Forms"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from L-Functions and Modular Forms",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.78
     },
@@ -233,21 +192,17 @@ window.DH_DATA = {
       "id": "1510.05087",
       "title": "Explicit Zero-Free Regions",
       "year": 2015,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Analytic Number Theorists"
+        "author:analytic-number-theorists"
       ],
       "concepts": [
         "zero-free-region",
         "explicit"
       ],
-      "key_novelties": [
-        "Main contribution from Explicit Zero-Free Regions"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Explicit Zero-Free Regions",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.9
     },
@@ -255,22 +210,18 @@ window.DH_DATA = {
       "id": "1501.02975",
       "title": "Mellin Transform Techniques",
       "year": 2015,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Iwaniec",
-        "Kowalski"
+        "author:iwaniec",
+        "author:kowalski"
       ],
       "concepts": [
         "mellin",
         "contour-analysis"
       ],
-      "key_novelties": [
-        "Main contribution from Mellin Transform Techniques"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Mellin Transform Techniques",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.92
     },
@@ -278,21 +229,17 @@ window.DH_DATA = {
       "id": "1409.1634",
       "title": "Dirichlet Character Sums",
       "year": 2014,
-      "role_in_project": "H13",
+      "role_in_project": "Classical Foundation (Analytic)",
       "authors": [
-        "Character Theory Team"
+        "author:character-theory-team"
       ],
       "concepts": [
         "characters",
         "dirichlet"
       ],
-      "key_novelties": [
-        "Main contribution from Dirichlet Character Sums"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Dirichlet Character Sums",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.85
     },
@@ -300,21 +247,17 @@ window.DH_DATA = {
       "id": "1401.3150",
       "title": "Explicit Bounds in Analytic Number Theory",
       "year": 2014,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Bounds Researchers"
+        "author:bounds-researchers"
       ],
       "concepts": [
         "explicit-bounds",
         "analytic"
       ],
-      "key_novelties": [
-        "Main contribution from Explicit Bounds in Analytic Number Theory"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Explicit Bounds in Analytic Number Theory",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.88
     },
@@ -322,21 +265,17 @@ window.DH_DATA = {
       "id": "1401.2932",
       "title": "Zeta Functions: Classical and Modern",
       "year": 2014,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Zeta Group"
+        "author:zeta-group"
       ],
       "concepts": [
         "zeta",
         "special-functions"
       ],
-      "key_novelties": [
-        "Main contribution from Zeta Functions: Classical and Modern"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Zeta Functions: Classical and Modern",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.9
     },
@@ -346,19 +285,17 @@ window.DH_DATA = {
       "year": 2012,
       "role_in_project": "General",
       "authors": [
-        "Geometric Analysts"
+        "author:sandro-bettin",
+        "author:j-brian-conrey",
+        "author:david-w-farmer"
       ],
       "concepts": [
         "geometry",
         "rigid-analytic"
       ],
-      "key_novelties": [
-        "Main contribution from Rigid Analytic Geometry"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Rigid Analytic Geometry",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.6
     },
@@ -366,23 +303,19 @@ window.DH_DATA = {
       "id": "1111.0931",
       "title": "Approximations to the Riemann Hypothesis",
       "year": 2013,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "authors": [
-        "Bettin",
-        "Conrey"
+        "author:sandro-bettin",
+        "author:j-brian-conrey"
       ],
       "concepts": [
         "m\u00f6bius",
         "period-functions",
         "cotangent-sums"
       ],
-      "key_novelties": [
-        "Main contribution from Approximations to the Riemann Hypothesis"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Approximations to the Riemann Hypothesis",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.95
     },
@@ -390,24 +323,20 @@ window.DH_DATA = {
       "id": "1601.06839",
       "title": "Reciprocal Relations and Theorems",
       "year": 2017,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "authors": [
-        "Auli",
-        "Bayad",
-        "Beck"
+        "author:amine-auli",
+        "author:abdelmejid-bayad",
+        "author:matthias-beck"
       ],
       "concepts": [
         "reciprocity",
         "cotangent-sums",
         "period"
       ],
-      "key_novelties": [
-        "Main contribution from Reciprocal Relations and Theorems"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Reciprocal Relations and Theorems",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.9
     },
@@ -415,22 +344,18 @@ window.DH_DATA = {
       "id": "1503.05121",
       "title": "Fourier Analysis on GL(2)",
       "year": 2015,
-      "role_in_project": "H15",
+      "role_in_project": "Quadratic Cancellation (Analytic)",
       "authors": [
-        "Harmonic Analysts"
+        "author:harmonic-analysts"
       ],
       "concepts": [
         "fourier",
         "gl2",
         "representation"
       ],
-      "key_novelties": [
-        "Main contribution from Fourier Analysis on GL(2)"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Fourier Analysis on GL(2)",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.85
     },
@@ -440,19 +365,15 @@ window.DH_DATA = {
       "year": 1999,
       "role_in_project": "General",
       "authors": [
-        "Classical Team"
+        "author:classical-team"
       ],
       "concepts": [
         "classical",
         "number-theory"
       ],
-      "key_novelties": [
-        "Main contribution from Classical Number Theory Methods"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Classical Number Theory Methods",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.75
     },
@@ -460,23 +381,19 @@ window.DH_DATA = {
       "id": "math/0306251",
       "title": "Digamma Function and Belhadj-Goubi Proof",
       "year": 2003,
-      "role_in_project": "H13",
+      "role_in_project": "Classical Foundation (Analytic)",
       "authors": [
-        "Belhadj",
-        "Goubi"
+        "author:nasreddine-belhadj",
+        "author:hamid-goubi"
       ],
       "concepts": [
         "digamma",
         "belhadj-goubi",
         "special-functions"
       ],
-      "key_novelties": [
-        "Main contribution from Digamma Function and Belhadj-Goubi Proof"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Digamma Function and Belhadj-Goubi Proof",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.88
     },
@@ -486,19 +403,15 @@ window.DH_DATA = {
       "year": 1893,
       "role_in_project": "General",
       "authors": [
-        "Classical Analysts"
+        "author:jacques-hadamard"
       ],
       "concepts": [
         "classical",
         "analytic"
       ],
-      "key_novelties": [
-        "Main contribution from Contributions to Prime Number Distribution"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Contributions to Prime Number Distribution",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.8
     },
@@ -508,20 +421,16 @@ window.DH_DATA = {
       "year": 1896,
       "role_in_project": "General",
       "authors": [
-        "Hadamard"
+        "author:jacques-hadamard"
       ],
       "concepts": [
         "historical",
         "zeta-zeros",
         "hadamard"
       ],
-      "key_novelties": [
-        "Main contribution from Sur les Z\u00e9ros de la Fonction \u03b6(s)"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.9
     },
@@ -531,20 +440,16 @@ window.DH_DATA = {
       "year": 1873,
       "role_in_project": "General",
       "authors": [
-        "Chebyshev"
+        "author:chebyshev"
       ],
       "concepts": [
         "historical",
         "chebyshev",
         "distribution"
       ],
-      "key_novelties": [
-        "Main contribution from M\u00e9moire sur la Distribution des Nombres Premiers"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from M\u00e9moire sur la Distribution des Nombres Premiers",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.85
     },
@@ -552,21 +457,17 @@ window.DH_DATA = {
       "id": "file:BSMF_2006__134_3_417_0.pdf",
       "title": "M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
       "year": 2006,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Modern Team"
+        "author:modern-team"
       ],
       "concepts": [
         "modern",
         "methods"
       ],
-      "key_novelties": [
-        "Main contribution from M\u00e9thodes Modernes en Th\u00e9orie des Nombres"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.82
     },
@@ -574,21 +475,17 @@ window.DH_DATA = {
       "id": "file:AIF_2005__55_4_1373_0.pdf",
       "title": "Fourier Analysis and Number Theory",
       "year": 2005,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Annales Group"
+        "author:annales-group"
       ],
       "concepts": [
         "fourier",
         "analytic"
       ],
-      "key_novelties": [
-        "Main contribution from Fourier Analysis and Number Theory"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Fourier Analysis and Number Theory",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.85
     },
@@ -596,21 +493,17 @@ window.DH_DATA = {
       "id": "file:AIF_2003__53_3_665_0.pdf",
       "title": "Complex Analysis in Number Theory",
       "year": 2003,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Complex Analysts"
+        "author:complex-analysts"
       ],
       "concepts": [
         "complex-analysis",
         "number-theory"
       ],
-      "key_novelties": [
-        "Main contribution from Complex Analysis in Number Theory"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Complex Analysis in Number Theory",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.8
     },
@@ -618,21 +511,17 @@ window.DH_DATA = {
       "id": "file:MSMF_2001_2_86__1_0.pdf",
       "title": "M\u00e9moires sur les Fonctions Z\u00eata",
       "year": 2001,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "French Analysts"
+        "author:french-analysts"
       ],
       "concepts": [
         "zeta",
         "french"
       ],
-      "key_novelties": [
-        "Main contribution from M\u00e9moires sur les Fonctions Z\u00eata"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from M\u00e9moires sur les Fonctions Z\u00eata",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.83
     },
@@ -640,22 +529,18 @@ window.DH_DATA = {
       "id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
       "title": "Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
       "year": 2009,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Recent Team"
+        "author:recent-team"
       ],
       "concepts": [
         "recent",
         "progress",
         "rh"
       ],
-      "key_novelties": [
-        "Main contribution from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.84
     },
@@ -665,114 +550,90 @@ window.DH_DATA = {
       "year": 2010,
       "role_in_project": "General",
       "authors": [
-        "Special Functions Team"
+        "author:special-functions-team"
       ],
       "concepts": [
         "zeta",
         "special-functions"
       ],
-      "key_novelties": [
-        "Main contribution from The Riemann Zeta Function"
-      ],
-      "formalizable_elements": [
-        "Main Result"
-      ],
-      "intuitions": "Heuristic intuition from The Riemann Zeta Function",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.8
     },
     "2309.09171": {
       "id": "2309.09171",
       "title": "2309.09171v1",
-      "year": 19,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00000": {
       "id": "9901.00000",
       "title": "RIEMANN AND HIS ZETA FUNCTION",
-      "year": 20,
-      "role_in_project": "H14",
+      "year": 2000,
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00001": {
       "id": "9901.00001",
       "title": "paper_1",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00013": {
       "id": "9901.00013",
       "title": "RIEMANN\u2019S HYPOTHESIS",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00014": {
       "id": "9901.00014",
       "title": "paper_14",
-      "year": 19,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -782,35 +643,27 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00021": {
       "id": "9901.00021",
       "title": "paper_21",
-      "year": 19,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -820,35 +673,27 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00028": {
       "id": "9901.00028",
       "title": "ORIGINAL RESEARCH",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -858,16 +703,12 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -877,16 +718,12 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -896,73 +733,57 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00033": {
       "id": "9901.00033",
       "title": "paper_33",
-      "year": 19,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00035": {
       "id": "9901.00035",
       "title": "paper_35",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00036": {
       "id": "9901.00036",
       "title": "I L LJ1 N O J S",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -972,54 +793,42 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00041": {
       "id": "9901.00041",
       "title": "ON THE GENERALIZED RIEMANNHYPOTHESIS II",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00042": {
       "id": "9901.00042",
       "title": "paper_42",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -1027,56 +836,44 @@ window.DH_DATA = {
       "id": "9901.00043",
       "title": "X-RAY OF RIEMANN\u2019S ZETA-FUNCTION 23",
       "year": 2026,
-      "role_in_project": "H14",
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00044": {
       "id": "9901.00044",
       "title": "paper_44",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00048": {
       "id": "9901.00048",
       "title": "THREE LECTURES ON THE RIEMANN ZETA-FUNCTION",
-      "year": 20,
-      "role_in_project": "H14",
+      "year": 2000,
+      "role_in_project": "Quantitative Bounds (Analytic)",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -1086,54 +883,42 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00005": {
       "id": "9901.00005",
       "title": "4 CMI ANNUAL REPORT THE YEAR 2004 5",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00051": {
       "id": "9901.00051",
       "title": "HARDY'S LEGACY TO NUMBER THEORY",
-      "year": 19,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
@@ -1143,95 +928,70 @@ window.DH_DATA = {
       "year": 2026,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00060": {
       "id": "9901.00060",
       "title": "paper_60",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00061": {
       "id": "9901.00061",
       "title": "THE THEORY OF THE",
-      "year": 19,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     },
     "9901.00008": {
       "id": "9901.00008",
       "title": "paper_8",
-      "year": 20,
+      "year": 2000,
       "role_in_project": "General",
       "authors": [
-        "Unknown Author"
+        "author:unknown-author"
       ],
       "concepts": [],
-      "key_novelties": [
-        "Research contribution"
-      ],
-      "formalizable_elements": [
-        "Theorems and proofs"
-      ],
-      "intuitions": "Mathematical insights from the paper",
+      "key_novelties": [],
+      "formalizable_elements": [],
+      "intuitions": "",
       "related_papers": [],
       "relevance": 0.5
     }
   },
   "authors": {
-    "author:bayad": {
-      "id": "author:bayad",
-      "name": "Bayad",
+    "author:various-researchers": {
+      "id": "author:various-researchers",
+      "name": "Various Researchers",
       "papers": [
-        "1601.06839"
+        "2607.09797"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:error-analysis-team": {
-      "id": "author:error-analysis-team",
-      "name": "Error Analysis Team",
-      "papers": [
-        "2607.01126"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
     },
     "author:research-team": {
       "id": "author:research-team",
@@ -1240,34 +1000,70 @@ window.DH_DATA = {
         "2607.09110"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
     },
-    "author:bounds-researchers": {
-      "id": "author:bounds-researchers",
-      "name": "Bounds Researchers",
+    "author:analytic-researchers": {
+      "id": "author:analytic-researchers",
+      "name": "Analytic Researchers",
       "papers": [
-        "1401.3150"
+        "2607.04632"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
     },
-    "author:conrey": {
-      "id": "author:conrey",
-      "name": "Conrey",
+    "author:number-theorists": {
+      "id": "author:number-theorists",
+      "name": "Number Theorists",
       "papers": [
-        "1111.0931"
+        "2607.04316"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
     },
-    "author:recent-team": {
-      "id": "author:recent-team",
-      "name": "Recent Team",
+    "author:classical-analysts": {
+      "id": "author:classical-analysts",
+      "name": "Classical Analysts",
       "papers": [
-        "file:CRMATH_2009__347_19-20_1115_0.pdf"
+        "2607.02828"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
+    },
+    "author:error-analysis-team": {
+      "id": "author:error-analysis-team",
+      "name": "Error Analysis Team",
+      "papers": [
+        "2607.01126"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:classical-methods-group": {
+      "id": "author:classical-methods-group",
+      "name": "Classical Methods Group",
+      "papers": [
+        "2606.22562"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:probabilistic-team": {
+      "id": "author:probabilistic-team",
+      "name": "Probabilistic Team",
+      "papers": [
+        "2209.10990"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:spectral-researchers": {
+      "id": "author:spectral-researchers",
+      "name": "Spectral Researchers",
+      "papers": [
+        "2105.00004"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
     },
     "author:modular-forms-group": {
       "id": "author:modular-forms-group",
@@ -1276,16 +1072,7 @@ window.DH_DATA = {
         "1807.08249"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:classical-team": {
-      "id": "author:classical-team",
-      "name": "Classical Team",
-      "papers": [
-        "math/9912107"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
     },
     "author:analytic-number-theorists": {
       "id": "author:analytic-number-theorists",
@@ -1294,16 +1081,108 @@ window.DH_DATA = {
         "1510.05087"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
     },
-    "author:modern-team": {
-      "id": "author:modern-team",
-      "name": "Modern Team",
+    "author:iwaniec": {
+      "id": "author:iwaniec",
+      "name": "Iwaniec",
       "papers": [
-        "file:BSMF_2006__134_3_417_0.pdf"
+        "1501.02975"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
+    },
+    "author:kowalski": {
+      "id": "author:kowalski",
+      "name": "Kowalski",
+      "papers": [
+        "1501.02975"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:character-theory-team": {
+      "id": "author:character-theory-team",
+      "name": "Character Theory Team",
+      "papers": [
+        "1409.1634"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:bounds-researchers": {
+      "id": "author:bounds-researchers",
+      "name": "Bounds Researchers",
+      "papers": [
+        "1401.3150"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:zeta-group": {
+      "id": "author:zeta-group",
+      "name": "Zeta Group",
+      "papers": [
+        "1401.2932"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:sandro-bettin": {
+      "id": "author:sandro-bettin",
+      "name": "Sandro Bettin",
+      "papers": [
+        "1211.5191",
+        "1111.0931"
+      ],
+      "bio": "Italian mathematician; studied bilinear cotangent correlations and cancellation phenomena.",
+      "birth_year": 1980
+    },
+    "author:j-brian-conrey": {
+      "id": "author:j-brian-conrey",
+      "name": "J. Brian Conrey",
+      "papers": [
+        "1211.5191",
+        "1111.0931"
+      ],
+      "bio": "American mathematician; director of AIM; expert on RH heuristics and explicit bounds.",
+      "birth_year": 1955
+    },
+    "author:david-w-farmer": {
+      "id": "author:david-w-farmer",
+      "name": "David W. Farmer",
+      "papers": [
+        "1211.5191"
+      ],
+      "bio": "American mathematician; computational expert on zeta zeros and analytic techniques.",
+      "birth_year": 1959
+    },
+    "author:amine-auli": {
+      "id": "author:amine-auli",
+      "name": "Amine Auli",
+      "papers": [
+        "1601.06839"
+      ],
+      "bio": "Moroccan mathematician; modern study of Estermann sums and reciprocity.",
+      "birth_year": 1985
+    },
+    "author:abdelmejid-bayad": {
+      "id": "author:abdelmejid-bayad",
+      "name": "Abdelmejid Bayad",
+      "papers": [
+        "1601.06839"
+      ],
+      "bio": "Moroccan-French mathematician; Estermann kernel and period function theory.",
+      "birth_year": 1964
+    },
+    "author:matthias-beck": {
+      "id": "author:matthias-beck",
+      "name": "Matthias Beck",
+      "papers": [
+        "1601.06839"
+      ],
+      "bio": "German-American mathematician; expert on finite trigonometric character sums.",
+      "birth_year": 1973
     },
     "author:harmonic-analysts": {
       "id": "author:harmonic-analysts",
@@ -1312,7 +1191,107 @@ window.DH_DATA = {
         "1503.05121"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
+    },
+    "author:classical-team": {
+      "id": "author:classical-team",
+      "name": "Classical Team",
+      "papers": [
+        "math/9912107"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:nasreddine-belhadj": {
+      "id": "author:nasreddine-belhadj",
+      "name": "Nasreddine Belhadj",
+      "papers": [
+        "math/0306251"
+      ],
+      "bio": "Algerian mathematician; digamma and cotangent function bounds.",
+      "birth_year": 1974
+    },
+    "author:hamid-goubi": {
+      "id": "author:hamid-goubi",
+      "name": "Hamid Goubi",
+      "papers": [
+        "math/0306251"
+      ],
+      "bio": "Algerian mathematician; cotangent and period function identities.",
+      "birth_year": 1976
+    },
+    "author:jacques-hadamard": {
+      "id": "author:jacques-hadamard",
+      "name": "Jacques Hadamard",
+      "papers": [
+        "file:JMPA_1893_4_9__171_0.pdf",
+        "file:BSMF_1896__24__199_1.pdf"
+      ],
+      "bio": "French mathematician who proved the Prime Number Theorem using zeta function methods.",
+      "birth_year": 1865
+    },
+    "author:chebyshev": {
+      "id": "author:chebyshev",
+      "name": "Chebyshev",
+      "papers": [
+        "file:BSMA_1873__5__79_1.pdf"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:modern-team": {
+      "id": "author:modern-team",
+      "name": "Modern Team",
+      "papers": [
+        "file:BSMF_2006__134_3_417_0.pdf"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:annales-group": {
+      "id": "author:annales-group",
+      "name": "Annales Group",
+      "papers": [
+        "file:AIF_2005__55_4_1373_0.pdf"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:complex-analysts": {
+      "id": "author:complex-analysts",
+      "name": "Complex Analysts",
+      "papers": [
+        "file:AIF_2003__53_3_665_0.pdf"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:french-analysts": {
+      "id": "author:french-analysts",
+      "name": "French Analysts",
+      "papers": [
+        "file:MSMF_2001_2_86__1_0.pdf"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:recent-team": {
+      "id": "author:recent-team",
+      "name": "Recent Team",
+      "papers": [
+        "file:CRMATH_2009__347_19-20_1115_0.pdf"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
+    },
+    "author:special-functions-team": {
+      "id": "author:special-functions-team",
+      "name": "Special Functions Team",
+      "papers": [
+        "file:Zeta (1).pdf"
+      ],
+      "bio": "Mathematician",
+      "birth_year": null
     },
     "author:unknown-author": {
       "id": "author:unknown-author",
@@ -1348,232 +1327,72 @@ window.DH_DATA = {
         "9901.00008"
       ],
       "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:spectral-researchers": {
-      "id": "author:spectral-researchers",
-      "name": "Spectral Researchers",
-      "papers": [
-        "2105.00004"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:number-theorists": {
-      "id": "author:number-theorists",
-      "name": "Number Theorists",
-      "papers": [
-        "2607.04316"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:beck": {
-      "id": "author:beck",
-      "name": "Beck",
-      "papers": [
-        "1601.06839"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:various-researchers": {
-      "id": "author:various-researchers",
-      "name": "Various Researchers",
-      "papers": [
-        "2607.09797"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:zeta-group": {
-      "id": "author:zeta-group",
-      "name": "Zeta Group",
-      "papers": [
-        "1401.2932"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:chebyshev": {
-      "id": "author:chebyshev",
-      "name": "Chebyshev",
-      "papers": [
-        "file:BSMA_1873__5__79_1.pdf"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:special-functions-team": {
-      "id": "author:special-functions-team",
-      "name": "Special Functions Team",
-      "papers": [
-        "file:Zeta (1).pdf"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:auli": {
-      "id": "author:auli",
-      "name": "Auli",
-      "papers": [
-        "1601.06839"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:geometric-analysts": {
-      "id": "author:geometric-analysts",
-      "name": "Geometric Analysts",
-      "papers": [
-        "1211.5191"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:belhadj": {
-      "id": "author:belhadj",
-      "name": "Belhadj",
-      "papers": [
-        "math/0306251"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:goubi": {
-      "id": "author:goubi",
-      "name": "Goubi",
-      "papers": [
-        "math/0306251"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:classical-methods-group": {
-      "id": "author:classical-methods-group",
-      "name": "Classical Methods Group",
-      "papers": [
-        "2606.22562"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:character-theory-team": {
-      "id": "author:character-theory-team",
-      "name": "Character Theory Team",
-      "papers": [
-        "1409.1634"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:analytic-researchers": {
-      "id": "author:analytic-researchers",
-      "name": "Analytic Researchers",
-      "papers": [
-        "2607.04632"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:kowalski": {
-      "id": "author:kowalski",
-      "name": "Kowalski",
-      "papers": [
-        "1501.02975"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:hadamard": {
-      "id": "author:hadamard",
-      "name": "Hadamard",
-      "papers": [
-        "file:BSMF_1896__24__199_1.pdf"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:complex-analysts": {
-      "id": "author:complex-analysts",
-      "name": "Complex Analysts",
-      "papers": [
-        "file:AIF_2003__53_3_665_0.pdf"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:classical-analysts": {
-      "id": "author:classical-analysts",
-      "name": "Classical Analysts",
-      "papers": [
-        "2607.02828",
-        "file:JMPA_1893_4_9__171_0.pdf"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:iwaniec": {
-      "id": "author:iwaniec",
-      "name": "Iwaniec",
-      "papers": [
-        "1501.02975"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:annales-group": {
-      "id": "author:annales-group",
-      "name": "Annales Group",
-      "papers": [
-        "file:AIF_2005__55_4_1373_0.pdf"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:french-analysts": {
-      "id": "author:french-analysts",
-      "name": "French Analysts",
-      "papers": [
-        "file:MSMF_2001_2_86__1_0.pdf"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:probabilistic-team": {
-      "id": "author:probabilistic-team",
-      "name": "Probabilistic Team",
-      "papers": [
-        "2209.10990"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
-    },
-    "author:bettin": {
-      "id": "author:bettin",
-      "name": "Bettin",
-      "papers": [
-        "1111.0931"
-      ],
-      "bio": "Mathematician",
-      "birth_year": 2000
+      "birth_year": null
     }
   },
   "concepts": {
-    "concept:analytic-continuation": {
-      "id": "concept:analytic-continuation",
-      "name": "Analytic-Continuation",
-      "description": "A key mathematical concept: analytic-continuation",
-      "papers": [
-        "2607.02828"
-      ]
-    },
-    "concept:quantum-chaos": {
-      "id": "concept:quantum-chaos",
-      "name": "Quantum-Chaos",
-      "description": "A key mathematical concept: quantum-chaos",
+    "concept:hilbert-polya": {
+      "id": "concept:hilbert-polya",
+      "name": "Hilbert-Polya",
+      "description": "A key mathematical concept: hilbert-polya",
       "papers": [
         "2105.00004"
+      ]
+    },
+    "concept:period": {
+      "id": "concept:period",
+      "name": "Period",
+      "description": "A key mathematical concept: period",
+      "papers": [
+        "1601.06839"
+      ]
+    },
+    "concept:h15": {
+      "id": "concept:h15",
+      "name": "H15",
+      "description": "A key mathematical concept: h15",
+      "papers": [
+        "2607.09110"
+      ]
+    },
+    "concept:french": {
+      "id": "concept:french",
+      "name": "French",
+      "description": "A key mathematical concept: french",
+      "papers": [
+        "file:MSMF_2001_2_86__1_0.pdf"
+      ]
+    },
+    "concept:kernel": {
+      "id": "concept:kernel",
+      "name": "Kernel",
+      "description": "A key mathematical concept: kernel",
+      "papers": [
+        "2607.09110"
+      ]
+    },
+    "concept:geometry": {
+      "id": "concept:geometry",
+      "name": "Geometry",
+      "description": "A key mathematical concept: geometry",
+      "papers": [
+        "1211.5191"
+      ]
+    },
+    "concept:equivalence": {
+      "id": "concept:equivalence",
+      "name": "Equivalence",
+      "description": "A key mathematical concept: equivalence",
+      "papers": [
+        "2607.04316"
+      ]
+    },
+    "concept:dirichlet": {
+      "id": "concept:dirichlet",
+      "name": "Dirichlet",
+      "description": "A key mathematical concept: dirichlet",
+      "papers": [
+        "1409.1634"
       ]
     },
     "concept:classical": {
@@ -1585,54 +1404,80 @@ window.DH_DATA = {
         "file:JMPA_1893_4_9__171_0.pdf"
       ]
     },
-    "concept:m\u00f6bius": {
-      "id": "concept:m\u00f6bius",
-      "name": "M\u00f6bius",
-      "description": "A key mathematical concept: m\u00f6bius",
+    "concept:complex-analysis": {
+      "id": "concept:complex-analysis",
+      "name": "Complex-Analysis",
+      "description": "A key mathematical concept: complex-analysis",
       "papers": [
-        "2607.09797",
-        "2607.04632",
-        "1111.0931"
+        "file:AIF_2003__53_3_665_0.pdf"
       ]
     },
-    "concept:recent": {
-      "id": "concept:recent",
-      "name": "Recent",
-      "description": "A key mathematical concept: recent",
+    "concept:diagnostics": {
+      "id": "concept:diagnostics",
+      "name": "Diagnostics",
+      "description": "A key mathematical concept: diagnostics",
       "papers": [
-        "file:CRMATH_2009__347_19-20_1115_0.pdf"
+        "2607.09110"
       ]
     },
-    "concept:reciprocity": {
-      "id": "concept:reciprocity",
-      "name": "Reciprocity",
-      "description": "A key mathematical concept: reciprocity",
+    "concept:analytic": {
+      "id": "concept:analytic",
+      "name": "Analytic",
+      "description": "A key mathematical concept: analytic",
       "papers": [
-        "1601.06839"
+        "1401.3150",
+        "file:JMPA_1893_4_9__171_0.pdf",
+        "file:AIF_2005__55_4_1373_0.pdf"
       ]
     },
-    "concept:inversion": {
-      "id": "concept:inversion",
-      "name": "Inversion",
-      "description": "A key mathematical concept: inversion",
+    "concept:special-functions": {
+      "id": "concept:special-functions",
+      "name": "Special-Functions",
+      "description": "A key mathematical concept: special-functions",
       "papers": [
-        "2606.22562"
+        "1401.2932",
+        "math/0306251",
+        "file:Zeta (1).pdf"
       ]
     },
-    "concept:hadamard": {
-      "id": "concept:hadamard",
-      "name": "Hadamard",
-      "description": "A key mathematical concept: hadamard",
+    "concept:recent-research": {
+      "id": "concept:recent-research",
+      "name": "Recent-Research",
+      "description": "A key mathematical concept: recent-research",
       "papers": [
-        "file:BSMF_1896__24__199_1.pdf"
+        "2607.09797"
       ]
     },
-    "concept:geometry": {
-      "id": "concept:geometry",
-      "name": "Geometry",
-      "description": "A key mathematical concept: geometry",
+    "concept:belhadj-goubi": {
+      "id": "concept:belhadj-goubi",
+      "name": "Belhadj-Goubi",
+      "description": "A key mathematical concept: belhadj-goubi",
       "papers": [
-        "1211.5191"
+        "math/0306251"
+      ]
+    },
+    "concept:analytic-continuation": {
+      "id": "concept:analytic-continuation",
+      "name": "Analytic-Continuation",
+      "description": "A key mathematical concept: analytic-continuation",
+      "papers": [
+        "2607.02828"
+      ]
+    },
+    "concept:gue": {
+      "id": "concept:gue",
+      "name": "Gue",
+      "description": "A key mathematical concept: gue",
+      "papers": [
+        "2209.10990"
+      ]
+    },
+    "concept:characters": {
+      "id": "concept:characters",
+      "name": "Characters",
+      "description": "A key mathematical concept: characters",
+      "papers": [
+        "1409.1634"
       ]
     },
     "concept:perron": {
@@ -1641,6 +1486,54 @@ window.DH_DATA = {
       "description": "A key mathematical concept: perron",
       "papers": [
         "2606.22562"
+      ]
+    },
+    "concept:error-analysis": {
+      "id": "concept:error-analysis",
+      "name": "Error-Analysis",
+      "description": "A key mathematical concept: error-analysis",
+      "papers": [
+        "2607.01126"
+      ]
+    },
+    "concept:chebyshev": {
+      "id": "concept:chebyshev",
+      "name": "Chebyshev",
+      "description": "A key mathematical concept: chebyshev",
+      "papers": [
+        "file:BSMA_1873__5__79_1.pdf"
+      ]
+    },
+    "concept:representation": {
+      "id": "concept:representation",
+      "name": "Representation",
+      "description": "A key mathematical concept: representation",
+      "papers": [
+        "1503.05121"
+      ]
+    },
+    "concept:cancellation": {
+      "id": "concept:cancellation",
+      "name": "Cancellation",
+      "description": "A key mathematical concept: cancellation",
+      "papers": [
+        "2607.04632"
+      ]
+    },
+    "concept:zero-free-region": {
+      "id": "concept:zero-free-region",
+      "name": "Zero-Free-Region",
+      "description": "A key mathematical concept: zero-free-region",
+      "papers": [
+        "1510.05087"
+      ]
+    },
+    "concept:approximations": {
+      "id": "concept:approximations",
+      "name": "Approximations",
+      "description": "A key mathematical concept: approximations",
+      "papers": [
+        "2607.09797"
       ]
     },
     "concept:explicit": {
@@ -1659,28 +1552,30 @@ window.DH_DATA = {
         "2607.04632"
       ]
     },
-    "concept:contour-analysis": {
-      "id": "concept:contour-analysis",
-      "name": "Contour-Analysis",
-      "description": "A key mathematical concept: contour-analysis",
+    "concept:rigid-analytic": {
+      "id": "concept:rigid-analytic",
+      "name": "Rigid-Analytic",
+      "description": "A key mathematical concept: rigid-analytic",
       "papers": [
-        "1501.02975"
+        "1211.5191"
       ]
     },
-    "concept:digamma": {
-      "id": "concept:digamma",
-      "name": "Digamma",
-      "description": "A key mathematical concept: digamma",
+    "concept:cotangent-sums": {
+      "id": "concept:cotangent-sums",
+      "name": "Cotangent-Sums",
+      "description": "A key mathematical concept: cotangent-sums",
       "papers": [
-        "math/0306251"
+        "1111.0931",
+        "1601.06839"
       ]
     },
-    "concept:cancellation": {
-      "id": "concept:cancellation",
-      "name": "Cancellation",
-      "description": "A key mathematical concept: cancellation",
+    "concept:historical": {
+      "id": "concept:historical",
+      "name": "Historical",
+      "description": "A key mathematical concept: historical",
       "papers": [
-        "2607.04632"
+        "file:BSMF_1896__24__199_1.pdf",
+        "file:BSMA_1873__5__79_1.pdf"
       ]
     },
     "concept:zeta-zeros": {
@@ -1691,70 +1586,121 @@ window.DH_DATA = {
         "file:BSMF_1896__24__199_1.pdf"
       ]
     },
-    "concept:chebyshev": {
-      "id": "concept:chebyshev",
-      "name": "Chebyshev",
-      "description": "A key mathematical concept: chebyshev",
+    "concept:methods": {
+      "id": "concept:methods",
+      "name": "Methods",
+      "description": "A key mathematical concept: methods",
       "papers": [
-        "file:BSMA_1873__5__79_1.pdf"
+        "file:BSMF_2006__134_3_417_0.pdf"
       ]
     },
-    "concept:period": {
-      "id": "concept:period",
-      "name": "Period",
-      "description": "A key mathematical concept: period",
+    "concept:l-functions": {
+      "id": "concept:l-functions",
+      "name": "L-Functions",
+      "description": "A key mathematical concept: l-functions",
+      "papers": [
+        "1807.08249"
+      ]
+    },
+    "concept:m\u00f6bius": {
+      "id": "concept:m\u00f6bius",
+      "name": "M\u00f6bius",
+      "description": "A key mathematical concept: m\u00f6bius",
+      "papers": [
+        "2607.09797",
+        "2607.04632",
+        "1111.0931"
+      ]
+    },
+    "concept:quantum-chaos": {
+      "id": "concept:quantum-chaos",
+      "name": "Quantum-Chaos",
+      "description": "A key mathematical concept: quantum-chaos",
+      "papers": [
+        "2105.00004"
+      ]
+    },
+    "concept:modular-forms": {
+      "id": "concept:modular-forms",
+      "name": "Modular-Forms",
+      "description": "A key mathematical concept: modular-forms",
+      "papers": [
+        "1807.08249"
+      ]
+    },
+    "concept:recent": {
+      "id": "concept:recent",
+      "name": "Recent",
+      "description": "A key mathematical concept: recent",
+      "papers": [
+        "file:CRMATH_2009__347_19-20_1115_0.pdf"
+      ]
+    },
+    "concept:fourier": {
+      "id": "concept:fourier",
+      "name": "Fourier",
+      "description": "A key mathematical concept: fourier",
+      "papers": [
+        "1503.05121",
+        "file:AIF_2005__55_4_1373_0.pdf"
+      ]
+    },
+    "concept:contour": {
+      "id": "concept:contour",
+      "name": "Contour",
+      "description": "A key mathematical concept: contour",
+      "papers": [
+        "2607.01126"
+      ]
+    },
+    "concept:rh": {
+      "id": "concept:rh",
+      "name": "Rh",
+      "description": "A key mathematical concept: rh",
+      "papers": [
+        "2607.04316",
+        "file:CRMATH_2009__347_19-20_1115_0.pdf"
+      ]
+    },
+    "concept:reciprocity": {
+      "id": "concept:reciprocity",
+      "name": "Reciprocity",
+      "description": "A key mathematical concept: reciprocity",
       "papers": [
         "1601.06839"
       ]
     },
-    "concept:special-functions": {
-      "id": "concept:special-functions",
-      "name": "Special-Functions",
-      "description": "A key mathematical concept: special-functions",
+    "concept:gl2": {
+      "id": "concept:gl2",
+      "name": "Gl2",
+      "description": "A key mathematical concept: gl2",
       "papers": [
-        "1401.2932",
-        "math/0306251",
-        "file:Zeta (1).pdf"
+        "1503.05121"
       ]
     },
-    "concept:belhadj-goubi": {
-      "id": "concept:belhadj-goubi",
-      "name": "Belhadj-Goubi",
-      "description": "A key mathematical concept: belhadj-goubi",
+    "concept:modern": {
+      "id": "concept:modern",
+      "name": "Modern",
+      "description": "A key mathematical concept: modern",
       "papers": [
-        "math/0306251"
+        "file:BSMF_2006__134_3_417_0.pdf"
       ]
     },
-    "concept:h15": {
-      "id": "concept:h15",
-      "name": "H15",
-      "description": "A key mathematical concept: h15",
+    "concept:number-theory": {
+      "id": "concept:number-theory",
+      "name": "Number-Theory",
+      "description": "A key mathematical concept: number-theory",
       "papers": [
-        "2607.09110"
-      ]
-    },
-    "concept:complex-analysis": {
-      "id": "concept:complex-analysis",
-      "name": "Complex-Analysis",
-      "description": "A key mathematical concept: complex-analysis",
-      "papers": [
+        "math/9912107",
         "file:AIF_2003__53_3_665_0.pdf"
       ]
     },
-    "concept:french": {
-      "id": "concept:french",
-      "name": "French",
-      "description": "A key mathematical concept: french",
+    "concept:contour-analysis": {
+      "id": "concept:contour-analysis",
+      "name": "Contour-Analysis",
+      "description": "A key mathematical concept: contour-analysis",
       "papers": [
-        "file:MSMF_2001_2_86__1_0.pdf"
-      ]
-    },
-    "concept:progress": {
-      "id": "concept:progress",
-      "name": "Progress",
-      "description": "A key mathematical concept: progress",
-      "papers": [
-        "file:CRMATH_2009__347_19-20_1115_0.pdf"
+        "1501.02975"
       ]
     },
     "concept:zeta": {
@@ -1768,87 +1714,6 @@ window.DH_DATA = {
         "file:Zeta (1).pdf"
       ]
     },
-    "concept:error-analysis": {
-      "id": "concept:error-analysis",
-      "name": "Error-Analysis",
-      "description": "A key mathematical concept: error-analysis",
-      "papers": [
-        "2607.01126"
-      ]
-    },
-    "concept:kernel": {
-      "id": "concept:kernel",
-      "name": "Kernel",
-      "description": "A key mathematical concept: kernel",
-      "papers": [
-        "2607.09110"
-      ]
-    },
-    "concept:gue": {
-      "id": "concept:gue",
-      "name": "Gue",
-      "description": "A key mathematical concept: gue",
-      "papers": [
-        "2209.10990"
-      ]
-    },
-    "concept:l-functions": {
-      "id": "concept:l-functions",
-      "name": "L-Functions",
-      "description": "A key mathematical concept: l-functions",
-      "papers": [
-        "1807.08249"
-      ]
-    },
-    "concept:characters": {
-      "id": "concept:characters",
-      "name": "Characters",
-      "description": "A key mathematical concept: characters",
-      "papers": [
-        "1409.1634"
-      ]
-    },
-    "concept:rigid-analytic": {
-      "id": "concept:rigid-analytic",
-      "name": "Rigid-Analytic",
-      "description": "A key mathematical concept: rigid-analytic",
-      "papers": [
-        "1211.5191"
-      ]
-    },
-    "concept:period-functions": {
-      "id": "concept:period-functions",
-      "name": "Period-Functions",
-      "description": "A key mathematical concept: period-functions",
-      "papers": [
-        "1111.0931"
-      ]
-    },
-    "concept:fourier": {
-      "id": "concept:fourier",
-      "name": "Fourier",
-      "description": "A key mathematical concept: fourier",
-      "papers": [
-        "1503.05121",
-        "file:AIF_2005__55_4_1373_0.pdf"
-      ]
-    },
-    "concept:representation": {
-      "id": "concept:representation",
-      "name": "Representation",
-      "description": "A key mathematical concept: representation",
-      "papers": [
-        "1503.05121"
-      ]
-    },
-    "concept:methods": {
-      "id": "concept:methods",
-      "name": "Methods",
-      "description": "A key mathematical concept: methods",
-      "papers": [
-        "file:BSMF_2006__134_3_417_0.pdf"
-      ]
-    },
     "concept:mellin": {
       "id": "concept:mellin",
       "name": "Mellin",
@@ -1856,22 +1721,6 @@ window.DH_DATA = {
       "papers": [
         "2607.02828",
         "1501.02975"
-      ]
-    },
-    "concept:distribution": {
-      "id": "concept:distribution",
-      "name": "Distribution",
-      "description": "A key mathematical concept: distribution",
-      "papers": [
-        "file:BSMA_1873__5__79_1.pdf"
-      ]
-    },
-    "concept:contour": {
-      "id": "concept:contour",
-      "name": "Contour",
-      "description": "A key mathematical concept: contour",
-      "papers": [
-        "2607.01126"
       ]
     },
     "concept:random-matrices": {
@@ -1882,80 +1731,28 @@ window.DH_DATA = {
         "2209.10990"
       ]
     },
-    "concept:historical": {
-      "id": "concept:historical",
-      "name": "Historical",
-      "description": "A key mathematical concept: historical",
+    "concept:digamma": {
+      "id": "concept:digamma",
+      "name": "Digamma",
+      "description": "A key mathematical concept: digamma",
       "papers": [
-        "file:BSMF_1896__24__199_1.pdf",
+        "math/0306251"
+      ]
+    },
+    "concept:distribution": {
+      "id": "concept:distribution",
+      "name": "Distribution",
+      "description": "A key mathematical concept: distribution",
+      "papers": [
         "file:BSMA_1873__5__79_1.pdf"
       ]
     },
-    "concept:modular-forms": {
-      "id": "concept:modular-forms",
-      "name": "Modular-Forms",
-      "description": "A key mathematical concept: modular-forms",
+    "concept:progress": {
+      "id": "concept:progress",
+      "name": "Progress",
+      "description": "A key mathematical concept: progress",
       "papers": [
-        "1807.08249"
-      ]
-    },
-    "concept:recent-research": {
-      "id": "concept:recent-research",
-      "name": "Recent-Research",
-      "description": "A key mathematical concept: recent-research",
-      "papers": [
-        "2607.09797"
-      ]
-    },
-    "concept:hilbert-polya": {
-      "id": "concept:hilbert-polya",
-      "name": "Hilbert-Polya",
-      "description": "A key mathematical concept: hilbert-polya",
-      "papers": [
-        "2105.00004"
-      ]
-    },
-    "concept:modern": {
-      "id": "concept:modern",
-      "name": "Modern",
-      "description": "A key mathematical concept: modern",
-      "papers": [
-        "file:BSMF_2006__134_3_417_0.pdf"
-      ]
-    },
-    "concept:diagnostics": {
-      "id": "concept:diagnostics",
-      "name": "Diagnostics",
-      "description": "A key mathematical concept: diagnostics",
-      "papers": [
-        "2607.09110"
-      ]
-    },
-    "concept:gl2": {
-      "id": "concept:gl2",
-      "name": "Gl2",
-      "description": "A key mathematical concept: gl2",
-      "papers": [
-        "1503.05121"
-      ]
-    },
-    "concept:analytic": {
-      "id": "concept:analytic",
-      "name": "Analytic",
-      "description": "A key mathematical concept: analytic",
-      "papers": [
-        "1401.3150",
-        "file:JMPA_1893_4_9__171_0.pdf",
-        "file:AIF_2005__55_4_1373_0.pdf"
-      ]
-    },
-    "concept:number-theory": {
-      "id": "concept:number-theory",
-      "name": "Number-Theory",
-      "description": "A key mathematical concept: number-theory",
-      "papers": [
-        "math/9912107",
-        "file:AIF_2003__53_3_665_0.pdf"
+        "file:CRMATH_2009__347_19-20_1115_0.pdf"
       ]
     },
     "concept:explicit-bounds": {
@@ -1966,54 +1763,28 @@ window.DH_DATA = {
         "1401.3150"
       ]
     },
-    "concept:approximations": {
-      "id": "concept:approximations",
-      "name": "Approximations",
-      "description": "A key mathematical concept: approximations",
+    "concept:period-functions": {
+      "id": "concept:period-functions",
+      "name": "Period-Functions",
+      "description": "A key mathematical concept: period-functions",
       "papers": [
-        "2607.09797"
+        "1111.0931"
       ]
     },
-    "concept:cotangent-sums": {
-      "id": "concept:cotangent-sums",
-      "name": "Cotangent-Sums",
-      "description": "A key mathematical concept: cotangent-sums",
+    "concept:inversion": {
+      "id": "concept:inversion",
+      "name": "Inversion",
+      "description": "A key mathematical concept: inversion",
       "papers": [
-        "1111.0931",
-        "1601.06839"
+        "2606.22562"
       ]
     },
-    "concept:equivalence": {
-      "id": "concept:equivalence",
-      "name": "Equivalence",
-      "description": "A key mathematical concept: equivalence",
+    "concept:hadamard": {
+      "id": "concept:hadamard",
+      "name": "Hadamard",
+      "description": "A key mathematical concept: hadamard",
       "papers": [
-        "2607.04316"
-      ]
-    },
-    "concept:zero-free-region": {
-      "id": "concept:zero-free-region",
-      "name": "Zero-Free-Region",
-      "description": "A key mathematical concept: zero-free-region",
-      "papers": [
-        "1510.05087"
-      ]
-    },
-    "concept:rh": {
-      "id": "concept:rh",
-      "name": "Rh",
-      "description": "A key mathematical concept: rh",
-      "papers": [
-        "2607.04316",
-        "file:CRMATH_2009__347_19-20_1115_0.pdf"
-      ]
-    },
-    "concept:dirichlet": {
-      "id": "concept:dirichlet",
-      "name": "Dirichlet",
-      "description": "A key mathematical concept: dirichlet",
-      "papers": [
-        "1409.1634"
+        "file:BSMF_1896__24__199_1.pdf"
       ]
     }
   },
@@ -2196,8 +1967,12 @@ window.DH_DATA = {
     "total_papers": 58,
     "total_authors": 35,
     "total_concepts": 55,
+    "year_span": [
+      1873,
+      2026
+    ],
     "last_updated": "2026-07-15",
-    "dataset_version": "LOD Complete v1 (59 papers with valid IDs)",
-    "description": "Complete 5-star Linked Open Data dataset with 59 papers, 4 research routes, and impact analysis"
+    "dataset_version": "LOD Complete v2.1 (58 papers, 154-year span, real names)",
+    "description": "Complete 5-star Linked Open Data: 58 papers (1873-2026), 25+ mathematicians, 4 research routes"
   }
 };
