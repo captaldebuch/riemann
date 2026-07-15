@@ -4,7 +4,7 @@
 
 | Branch | Commit | Status | Next action |
 |---|---:|---|---|
-| `main` | `24f44cc` | H13 substitution discharge merged into the archived source tree. | Continue active-package integration without restoring the retired monolithic library. |
+| `main` | `f65da6f` | H13 is merged and the NB2 active-package API/audit is integrated. | Continue active-package integration without restoring the retired monolithic library. |
 | `codex/h14-corrected-aristotle-specs` | `b499bf2` | H14 reference/audit; qualitative and effective Mertens endpoints are project-axiom-free. | Retain as the H14 publication source. |
 | `codex/bridge-field-1-mellin-continuity` | `11cde38` | Already an ancestor of `main`; the archived Field 1 file is byte-identical. | Use as a reference while porting the theorem to the active package. |
 | `codex/nb-field-2-zero-detection-current` | `12a14d1` | Retained for NB2–NB5 work. Its Field 2 file is byte-identical to the archived file on `main`, but the branch is 63 main commits behind. | Refresh from current `main` before adding NB3–NB5 work. |
