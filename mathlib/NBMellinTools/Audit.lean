@@ -14,3 +14,9 @@ that umbrella while its mathematics remains unsettled.
 #print axioms NBMellinTools.NB2.mellin_rhoBase
 #print axioms NBMellinTools.NB2.mellin_rhoTheta
 #print axioms NBMellinTools.NB2.mellin_rhoBD
+#print axioms NBMellinTools.NB2.baezDuarteL2Error_nonneg
+#print axioms NBMellinTools.NB2.chi_sub_bdApprox_eq_tail_of_one_lt
+#print axioms NBMellinTools.NB3.mellin_evaluation_continuous_on_critical_strip
+#print axioms NBMellinTools.NB4.vanishing_transport_of_field_1
+#print axioms NBMellinTools.NB4.vanishing_transport
+#print axioms NBMellinTools.NB4.riemannZeta_ne_zero_of_nymanBeurlingCriterion

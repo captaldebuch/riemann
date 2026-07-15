@@ -3,3 +3,5 @@ import NBMellinTools.MellinEvaluation
 import NBMellinTools.NB2Mellin
 import NBMellinTools.NB2BaseMellin
 import NBMellinTools.BaezDuarteTail
+import NBMellinTools.NB3MellinContinuity
+import NBMellinTools.NB4ZeroDetection
