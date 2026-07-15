@@ -15,8 +15,11 @@
 
 **Blocked Route:** Direct analytic approach via DFI/Bettin–Chandee (bound 8× too weak)
 
-**Missing Piece:** A centered Estermann/Kuznetsov asymptotic with an explicit
-main term matching the scalar and logarithmic pieces of the BCF energy.
+**Missing Piece:** Unconditionally, a centered asymptotic strong enough to
+imply RH. The exact Estermann insertion has now been checked, and the
+published BCF main term is known to arise from zeta-zero residues under RH
+and a reciprocal zeta-derivative moment hypothesis. See
+`H15_CENTERED_ESTERMANN_THEOREM_MATCH.md`.
 
 **Decision:** Research-only (not formalized). But with expanded corpus, three NEW angles emerge.
 
@@ -70,16 +73,22 @@ No H15 Lean work should begin from this angle.
 
 ---
 
-## Angle 2: Automorphic Forms / GL(2) Route (NEW)
+## Angle 2: Automorphic Forms / GL(2) Route (SOURCE-BLOCKED)
 
 ### Hypothesis
 The cotangent/Estermann object inside the Gram kernel may encode spectral
 properties of a GL(2) Eisenstein series. This is an identification problem,
 not yet a theorem about the raw Nyman generator.
 
-### Papers to Investigate
-- **1503.05121:** "Fourier Analysis on GL(2)" (2015) — representation theory angle on Fourier expansion
-- **1807.08249:** "L-Functions and Modular Forms" (2018) — connects L-functions to modular structure
+### Source audit
+- **1503.05121** is *An averaged form of Chowla's conjecture* by
+  Matomaki--Radziwill--Tao, not *Fourier Analysis on GL(2)*.
+- **1807.08249** is an astrophysics habilitation on weak cosmological
+  lensing, not *L-Functions and Modular Forms*.
+
+These records cannot support the proposed GL(2) route. A replacement primary
+source with an exact theorem for the centered BCF object has not been
+identified.
 
 ### Key Insight
 Automorphic forms on GL(2) are exactly the objects that encode:
@@ -111,16 +120,22 @@ automorphic coefficient with the required BCF truncation and centering.
 
 ---
 
-## Angle 3: Kuznetsov Trace Formula / Spectral Method (NEW)
+## Angle 3: Kuznetsov Trace Formula / Spectral Method (AUDITED)
 
 ### Hypothesis
 Use a Kuznetsov/Estermann trace or reciprocity formula directly at the
 spectral level, with the diagonal or polar main term retained. Estimating only
 the L² norm of $\beta_q$ has already been shown insufficient.
 
-### Papers to Investigate
-- **1601.06839:** Reciprocal relations (might contain trace formula insights)
-- **1807.08249:** L-functions and modular forms (trace formulas connect L-functions to automorphic spectrum)
+### Papers checked
+- **1111.0931:** gives exact cotangent/period-function reciprocity, but its
+  reciprocal companion does not match the symmetric BCF pair after the
+  modular-inverse substitution.
+- **1601.06839:** gives Bettin--Conrey sum reciprocity and Estermann special
+  values, not a Kuznetsov theorem.
+- **1411.7764:** gives mean-square results for zeta times finite Dirichlet
+  polynomials in specified length regimes; its ideal trilinear estimate is
+  conjectural and would imply Lindelof.
 
 ### Key Insight
 The Kuznetsov trace formula is:
@@ -139,6 +154,13 @@ logarithmic weights.
    and log-ratio contributions with the required residual constant.
 4. **Off-diagonal estimate:** control the total weighted remainder at
    `o(1/log N)` or better.
+
+### Audited outcome
+The exact insertion is equation (3) of
+`H15_CENTERED_ESTERMANN_THEOREM_MATCH.md`. The `1/2` in the primitive
+Estermann spectrum has zero real contribution, so it does not itself produce
+the scalar/logarithmic centering. The verified BCF main term instead comes
+from residues at zeta zeros after Mellin--Plancherel and contour shifting.
 
 ### Why This Might Work
 - It preserves the main term that generic norm estimates discard.
@@ -240,12 +262,14 @@ proof of an asymptotic statement.
 
 ## Recommendation
 
-**Start with the centered Estermann/Kuznetsov main-term question.** Keep the
-character expansion as a diagnostic and normalization check. If the spectral
-main term cannot yet be proved, use Angle 4 only with corrected normalization
-and the complete centered energy, then prepare the exact expert question in
-`H15_CHARACTER_SUM_ROUTE_AUDIT.md`.
+**Use the published conditional BCF mechanism as the next theorem package.**
+Keep the character and Estermann formulae as exact diagnostics. The next
+formalizable slice is the algebraic Mellin identity for the BCF polynomial,
+followed by Mellin--Plancherel; RH and the reciprocal `zeta'` moment must be
+explicit hypotheses of the asymptotic. Do not relabel the missing
+unconditional estimate as a classical trace-formula consequence.
 
 ---
 
-**Status:** CHARACTER ROUTE AUDITED; CENTERED SPECTRAL MAIN TERM REMAINS OPEN
+**Status:** CHARACTER AND CENTERED ESTERMANN ROUTES AUDITED; CONDITIONAL BCF
+MECHANISM IDENTIFIED; UNCONDITIONAL H15 REMAINS OPEN
