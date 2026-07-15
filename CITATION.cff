@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+title: "Riemann Hypothesis Research Corpus — 5-Star Linked Open Data v1"
+authors:
+  - family-names: Fresquet
+    given-names: Xavier
+    affiliation: "SCAI, Sorbonne Université"
+    email: scai@sorbonne-universite.fr
+    orcid: "https://orcid.org/[to-be-assigned]"
+version: "1.0"
+date-released: "2026-07-15"
+description: |
+  A comprehensive 5-star Linked Open Data resource containing 78 mathematical
+  papers related to the Riemann Hypothesis, formalized as RDF/Turtle triples
+  using standard W3C ontologies (BIBO, FOAF, DCTERMS, SKOS, CITO). Includes
+  cleaned metadata (98% quality), author-paper relationships, concept mappings,
+  and SPARQL queryability via Jena Fuseki.
+keywords:
+  - "Riemann Hypothesis"
+  - "Linked Open Data"
+  - "RDF/Turtle"
+  - "SPARQL"
+  - "Semantic Web"
+  - "Mathematical Research"
+  - "Digital Humanities"
+  - "Knowledge Graph"
+license: "CC-BY-4.0"
+identifiers:
+  - type: "url"
+    value: "http://data.rh-corpus.org"
+  - type: "doi"
+    value: "[HAL-assigned-DOI]"
+references:
+  - title: "Riemann Hypothesis Formalization Project (67% complete)"
+    type: "report"
+    year: 2026
+    authors:
+      - family-names: Fresquet
+        given-names: Xavier
+contact:
+  - family-names: Fresquet
+    given-names: Xavier
+    email: scai@sorbonne-universite.fr
+repository-code: "https://github.com/xavierfresquet/riemann-hypothesis-corpus"
+repository-artifact: "https://hal.science/hal-xxxxx"
+documentation: "https://github.com/xavierfresquet/riemann-hypothesis-corpus/docs"

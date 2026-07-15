@@ -6,7 +6,9 @@ const STATE = {
   db: null,
   currentRoute: 'home',
   routeParams: null,
-  isLoading: true
+  isLoading: true,
+  sparqlAvailable: false,
+  sparqlClient: null
 };
 
 // Initialize Application
@@ -18,7 +20,19 @@ async function initApp() {
       console.warn("Could not load DH_DATA.");
       STATE.db = { papers: {}, authors: {}, concepts: {} };
     }
-    
+
+    // Initialize SPARQL client (Phase 4: LOD Integration)
+    if (typeof RHSPARQLClient !== 'undefined') {
+      STATE.sparqlClient = new RHSPARQLClient();
+      // Test SPARQL availability
+      try {
+        await testSPARQLEndpoint();
+      } catch (e) {
+        console.log("SPARQL endpoint not available - using JSON data fallback");
+        STATE.sparqlAvailable = false;
+      }
+    }
+
     STATE.isLoading = false;
     setupRouter();
     handleRoute();
@@ -29,6 +43,24 @@ async function initApp() {
         <strong>Error Loading Data:</strong> Failed to initialize DH repository data.
       </div>`;
   }
+}
+
+// Test SPARQL Endpoint Availability (Phase 4)
+async function testSPARQLEndpoint() {
+  if (!STATE.sparqlClient) return false;
+  try {
+    const result = await STATE.sparqlClient.query(
+      'SELECT (COUNT(*) AS ?count) WHERE { ?s ?p ?o } LIMIT 1'
+    );
+    if (result.results && result.results.bindings) {
+      STATE.sparqlAvailable = true;
+      console.log("✓ SPARQL endpoint available (LOD v1)");
+      return true;
+    }
+  } catch (e) {
+    STATE.sparqlAvailable = false;
+  }
+  return false;
 }
 
 // Router
@@ -220,10 +252,22 @@ function renderCorpus() {
         </div>
       </div>
 
-      <!-- Search Input (client-side filtering stub) -->
+      <!-- Search Input (client-side + SPARQL) -->
       <div style="margin-bottom:2rem;">
-        <input type="text" id="corpus-search" placeholder="Search by title or author..."
+        ${STATE.sparqlAvailable ? `
+          <div style="margin-bottom:1rem; padding:0.75rem; background:#dbeafe; border-left:3px solid #0ea5e9; border-radius:4px;">
+            <strong style="color:#0c4a6e;">🔵 Live LOD Search</strong> — Searching Linked Open Data (SPARQL v1)
+          </div>
+        ` : ''}
+        <input type="text" id="corpus-search" placeholder="${STATE.sparqlAvailable ? 'Search papers (live LOD data)...' : 'Search by title or author...'}"
           style="width:100%; padding:0.75rem; border:1px solid #e5e7eb; border-radius:6px; font-size:1rem;" />
+        ${STATE.sparqlAvailable ? `
+          <div style="margin-top:0.5rem; font-size:0.85rem; color:#64748b;">
+            <button id="sparql-search-btn" style="background:#0ea5e9; color:white; border:none; padding:0.5rem 1rem; border-radius:4px; cursor:pointer; font-weight:500;">
+              Advanced SPARQL Search
+            </button>
+          </div>
+        ` : ''}
       </div>
 
       <!-- Papers by Phase -->
