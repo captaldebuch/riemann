@@ -14,9 +14,10 @@ independent of Mellin--Plancherel and Hardy-space arguments.  It proves the
 transform of `χ_(0,1]` and reduces every Báez--Duarte generator to the single
 fractional-part transform supplied by the zeta/Euler--Maclaurin calculation.
 
-No analytic continuation statement is assumed globally: the final assembly
-theorem takes the exact base-transform equality at the point in question as an
-explicit hypothesis.
+The `_of_base` results below are reusable algebraic assembly lemmas.  Their
+analytic input is discharged unconditionally on `0 < Re s < 1` in
+`NB2BaseMellin`, which supplies the canonical theorems `mellin_rhoBase`,
+`mellin_rhoTheta`, and `mellin_rhoBD`.
 -/
 
 open MeasureTheory Set Complex intervalIntegral
