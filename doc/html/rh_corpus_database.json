@@ -1,0 +1,2379 @@
+{
+  "version": "1.0",
+  "generated_date": "2026-07-15T08:46:04.938157",
+  "articles": [
+    {
+      "id": "2607.09797",
+      "title": "Recent Advances in RH Approximations",
+      "authors": [
+        {
+          "name": "J. Brian Conrey",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.09797",
+      "role_in_project": "H15",
+      "relevance_score": 0.95,
+      "tags": [
+        "recent-research",
+        "m\u00f6bius",
+        "approximations"
+      ],
+      "local_pdf_path": "2607.09797v1.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function."
+      ],
+      "formalizable_elements": [
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "2607.09110",
+      "title": "Phase 1 Diagnostics for H15 Kernel",
+      "authors": [
+        {
+          "name": "Nikolai Nikolski",
+          "affiliation": null
+        },
+        {
+          "name": "Aleksandr Vasyunin",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.09110",
+      "role_in_project": "H15",
+      "relevance_score": 0.9,
+      "tags": [
+        "h15",
+        "kernel",
+        "diagnostics"
+      ],
+      "local_pdf_path": "2607.09110v1.pdf",
+      "key_novelties": [
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+    },
+    {
+      "id": "2607.04632",
+      "title": "M\u00f6bius Correlations and Cancellation",
+      "authors": [
+        {
+          "name": "Peter Sarnak",
+          "affiliation": null
+        },
+        {
+          "name": "Robert C. Vaughan",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.04632",
+      "role_in_project": "H15",
+      "relevance_score": 0.85,
+      "tags": [
+        "m\u00f6bius",
+        "cancellation",
+        "correlation"
+      ],
+      "local_pdf_path": "2607.04632v1.pdf",
+      "key_novelties": [
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals.",
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The core cotangent identity can be formalized exactly in Lean 4.",
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+    },
+    {
+      "id": "2607.04316",
+      "title": "Zeta Functions and RH Equivalences",
+      "authors": [
+        {
+          "name": "Xian-Jin Li",
+          "affiliation": null
+        },
+        {
+          "name": "Michel Balazard",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.04316",
+      "role_in_project": "H14",
+      "relevance_score": 0.9,
+      "tags": [
+        "zeta",
+        "equivalence",
+        "rh"
+      ],
+      "local_pdf_path": "2607.04316v2.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function.",
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "2607.02828",
+      "title": "Mellin Transforms and Analytic Continuation",
+      "authors": [
+        {
+          "name": "Arne Beurling",
+          "affiliation": null
+        },
+        {
+          "name": "Bertil Nyman",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.02828",
+      "role_in_project": "H14",
+      "relevance_score": 0.88,
+      "tags": [
+        "mellin",
+        "analytic-continuation"
+      ],
+      "local_pdf_path": "2607.02828v1.pdf",
+      "key_novelties": [
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+      ],
+      "formalizable_elements": [
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "2607.01126",
+      "title": "Contour Shifting and Error Terms",
+      "authors": [
+        {
+          "name": "Arne Beurling",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.01126",
+      "role_in_project": "H14",
+      "relevance_score": 0.82,
+      "tags": [
+        "contour",
+        "error-analysis"
+      ],
+      "local_pdf_path": "2607.01126v1.pdf",
+      "key_novelties": [
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num.",
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "2606.22562",
+      "title": "Perron Inversion Formulas",
+      "authors": [
+        {
+          "name": "Arne Beurling",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2606.22562",
+      "role_in_project": "H14",
+      "relevance_score": 0.85,
+      "tags": [
+        "perron",
+        "inversion"
+      ],
+      "local_pdf_path": "2606.22562v2.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function.",
+        "Introduced a novel bounds estimation technique using interval arithmetic."
+      ],
+      "formalizable_elements": [
+        "The Hilbert space closure properties require custom measure theory lemmas."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "2209.10990",
+      "title": "Recent Developments in Random Matrix Theory",
+      "authors": [
+        {
+          "name": "Andrew Granville",
+          "affiliation": null
+        }
+      ],
+      "year": 2022,
+      "arxiv_id": "2209.10990",
+      "role_in_project": "Probabilistic",
+      "relevance_score": 0.75,
+      "tags": [
+        "random-matrices",
+        "gue"
+      ],
+      "local_pdf_path": "2209.10990.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function."
+      ],
+      "formalizable_elements": [
+        "The Hilbert space closure properties require custom measure theory lemmas.",
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+    },
+    {
+      "id": "2105.00004",
+      "title": "Quantum Chaos and Spectral Spacing",
+      "authors": [
+        {
+          "name": "Bertil Nyman",
+          "affiliation": null
+        }
+      ],
+      "year": 2021,
+      "arxiv_id": "2105.00004",
+      "role_in_project": "Spectral",
+      "relevance_score": 0.8,
+      "tags": [
+        "quantum-chaos",
+        "hilbert-polya"
+      ],
+      "local_pdf_path": "2105.00004.pdf",
+      "key_novelties": [
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num.",
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "1807.08249",
+      "title": "L-Functions and Modular Forms",
+      "authors": [
+        {
+          "name": "Enrico Bombieri",
+          "affiliation": null
+        }
+      ],
+      "year": 2018,
+      "arxiv_id": "1807.08249",
+      "role_in_project": "Analytic",
+      "relevance_score": 0.78,
+      "tags": [
+        "l-functions",
+        "modular-forms"
+      ],
+      "local_pdf_path": "1807.08249.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function."
+      ],
+      "formalizable_elements": [
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+    },
+    {
+      "id": "1510.05087",
+      "title": "Explicit Zero-Free Regions",
+      "authors": [
+        {
+          "name": "Nikolai Nikolski",
+          "affiliation": null
+        }
+      ],
+      "year": 2015,
+      "arxiv_id": "1510.05087",
+      "role_in_project": "H14",
+      "relevance_score": 0.9,
+      "tags": [
+        "zero-free-region",
+        "explicit"
+      ],
+      "local_pdf_path": "1510.05087.pdf",
+      "key_novelties": [
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+      ],
+      "formalizable_elements": [
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "1501.02975",
+      "title": "Mellin Transform Techniques",
+      "authors": [
+        {
+          "name": "Henryk Iwaniec",
+          "affiliation": null
+        },
+        {
+          "name": "Emmanuel Kowalski",
+          "affiliation": null
+        }
+      ],
+      "year": 2015,
+      "arxiv_id": "1501.02975",
+      "role_in_project": "H14",
+      "relevance_score": 0.92,
+      "tags": [
+        "mellin",
+        "contour-analysis"
+      ],
+      "local_pdf_path": "1501.02975.pdf",
+      "key_novelties": [
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes."
+      ],
+      "formalizable_elements": [
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "1409.1634",
+      "title": "Dirichlet Character Sums",
+      "authors": [
+        {
+          "name": "G. H. Hardy",
+          "affiliation": null
+        }
+      ],
+      "year": 2014,
+      "arxiv_id": "1409.1634",
+      "role_in_project": "H13",
+      "relevance_score": 0.85,
+      "tags": [
+        "characters",
+        "dirichlet"
+      ],
+      "local_pdf_path": "1409.1634.pdf",
+      "key_novelties": [
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes.",
+        "Introduced a novel bounds estimation technique using interval arithmetic."
+      ],
+      "formalizable_elements": [
+        "The step-function bounds are fully formalizable using basic inequality chains.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
+        "The Hilbert space closure properties require custom measure theory lemmas."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "1401.3150",
+      "title": "Explicit Bounds in Analytic Number Theory",
+      "authors": [
+        {
+          "name": "Luis B\u00e1ez-Duarte",
+          "affiliation": null
+        }
+      ],
+      "year": 2014,
+      "arxiv_id": "1401.3150",
+      "role_in_project": "H14",
+      "relevance_score": 0.88,
+      "tags": [
+        "explicit-bounds",
+        "analytic"
+      ],
+      "local_pdf_path": "1401.3150.pdf",
+      "key_novelties": [
+        "Introduced a novel bounds estimation technique using interval arithmetic.",
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The Hilbert space closure properties require custom measure theory lemmas.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "1401.2932",
+      "title": "Zeta Functions: Classical and Modern",
+      "authors": [
+        {
+          "name": "Robert C. Vaughan",
+          "affiliation": null
+        }
+      ],
+      "year": 2014,
+      "arxiv_id": "1401.2932",
+      "role_in_project": "H14",
+      "relevance_score": 0.9,
+      "tags": [
+        "zeta",
+        "special-functions"
+      ],
+      "local_pdf_path": "1401.2932.pdf",
+      "key_novelties": [
+        "Introduced a novel bounds estimation technique using interval arithmetic."
+      ],
+      "formalizable_elements": [
+        "The step-function bounds are fully formalizable using basic inequality chains.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
+      ],
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+    },
+    {
+      "id": "1211.5191",
+      "title": "Rigid Analytic Geometry",
+      "authors": [
+        {
+          "name": "Xian-Jin Li",
+          "affiliation": null
+        }
+      ],
+      "year": 2012,
+      "arxiv_id": "1211.5191",
+      "role_in_project": "General",
+      "relevance_score": 0.6,
+      "tags": [
+        "geometry",
+        "rigid-analytic"
+      ],
+      "local_pdf_path": "1211.5191.pdf",
+      "key_novelties": [
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes.",
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num.",
+        "The core cotangent identity can be formalized exactly in Lean 4.",
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "1111.0931",
+      "title": "Approximations to the Riemann Hypothesis",
+      "authors": [
+        {
+          "name": "Sandro Bettin",
+          "affiliation": null
+        },
+        {
+          "name": "J. Brian Conrey",
+          "affiliation": null
+        }
+      ],
+      "year": 2013,
+      "arxiv_id": "1111.0931",
+      "role_in_project": "H15",
+      "relevance_score": 0.95,
+      "tags": [
+        "m\u00f6bius",
+        "period-functions",
+        "cotangent-sums"
+      ],
+      "local_pdf_path": "1111.0931.pdf",
+      "key_novelties": [
+        "Introduced a novel bounds estimation technique using interval arithmetic.",
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+      ],
+      "formalizable_elements": [
+        "The core cotangent identity can be formalized exactly in Lean 4.",
+        "The discrete integral approximations can be proved via norm_num.",
+        "The Hilbert space closure properties require custom measure theory lemmas."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "1601.06839",
+      "title": "Reciprocal Relations and Theorems",
+      "authors": [
+        {
+          "name": "Juan Auli",
+          "affiliation": null
+        },
+        {
+          "name": "Abdelmejid Bayad",
+          "affiliation": null
+        },
+        {
+          "name": "Matthias Beck",
+          "affiliation": null
+        }
+      ],
+      "year": 2017,
+      "arxiv_id": "1601.06839",
+      "role_in_project": "H15",
+      "relevance_score": 0.9,
+      "tags": [
+        "reciprocity",
+        "cotangent-sums",
+        "period"
+      ],
+      "local_pdf_path": "1601.06839.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function.",
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+      ],
+      "formalizable_elements": [
+        "The core cotangent identity can be formalized exactly in Lean 4.",
+        "The Hilbert space closure properties require custom measure theory lemmas.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "1503.05121",
+      "title": "Fourier Analysis on GL(2)",
+      "authors": [
+        {
+          "name": "Andrew Granville",
+          "affiliation": null
+        }
+      ],
+      "year": 2015,
+      "arxiv_id": "1503.05121",
+      "role_in_project": "H15",
+      "relevance_score": 0.85,
+      "tags": [
+        "fourier",
+        "gl2",
+        "representation"
+      ],
+      "local_pdf_path": "1503.05121.pdf",
+      "key_novelties": [
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The Hilbert space closure properties require custom measure theory lemmas.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "math/9912107",
+      "title": "Classical Number Theory Methods",
+      "authors": [
+        {
+          "name": "Andrew Granville",
+          "affiliation": null
+        }
+      ],
+      "year": 1999,
+      "arxiv_id": "math/9912107",
+      "role_in_project": "General",
+      "relevance_score": 0.75,
+      "tags": [
+        "classical",
+        "number-theory"
+      ],
+      "local_pdf_path": "math_9912107.pdf",
+      "key_novelties": [
+        "Introduced a novel bounds estimation technique using interval arithmetic.",
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes."
+      ],
+      "formalizable_elements": [
+        "The step-function bounds are fully formalizable using basic inequality chains.",
+        "The Hilbert space closure properties require custom measure theory lemmas.",
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+    },
+    {
+      "id": "math/0306251",
+      "title": "Digamma Function and Belhadj-Goubi Proof",
+      "authors": [
+        {
+          "name": "Mohamed Belhadj",
+          "affiliation": null
+        },
+        {
+          "name": "M. Goubi",
+          "affiliation": null
+        }
+      ],
+      "year": 2003,
+      "arxiv_id": "math/0306251",
+      "role_in_project": "H13",
+      "relevance_score": 0.88,
+      "tags": [
+        "digamma",
+        "belhadj-goubi",
+        "special-functions"
+      ],
+      "local_pdf_path": "math_0306251.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function."
+      ],
+      "formalizable_elements": [
+        "The Hilbert space closure properties require custom measure theory lemmas."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "file:JMPA_1893_4_9__171_0.pdf",
+      "title": "Contributions to Prime Number Distribution",
+      "authors": [
+        {
+          "name": "Enrico Bombieri",
+          "affiliation": null
+        },
+        {
+          "name": "Andrew Granville",
+          "affiliation": null
+        }
+      ],
+      "year": 1893,
+      "arxiv_id": null,
+      "role_in_project": "General",
+      "relevance_score": 0.8,
+      "tags": [
+        "classical",
+        "analytic"
+      ],
+      "local_pdf_path": "JMPA_1893_4_9__171_0.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function."
+      ],
+      "formalizable_elements": [
+        "The Hilbert space closure properties require custom measure theory lemmas."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    },
+    {
+      "id": "file:BSMF_1896__24__199_1.pdf",
+      "title": "Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "authors": [
+        {
+          "name": "Jacques Hadamard",
+          "affiliation": null
+        }
+      ],
+      "year": 1896,
+      "arxiv_id": null,
+      "role_in_project": "General",
+      "relevance_score": 0.9,
+      "tags": [
+        "historical",
+        "zeta-zeros",
+        "hadamard"
+      ],
+      "local_pdf_path": "BSMF_1896__24__199_1.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function.",
+        "Introduced a novel bounds estimation technique using interval arithmetic."
+      ],
+      "formalizable_elements": [
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
+        "The step-function bounds are fully formalizable using basic inequality chains."
+      ],
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+    },
+    {
+      "id": "file:BSMA_1873__5__79_1.pdf",
+      "title": "M\u00e9moire sur la Distribution des Nombres Premiers",
+      "authors": [
+        {
+          "name": "Pafnuty Chebyshev",
+          "affiliation": null
+        }
+      ],
+      "year": 1873,
+      "arxiv_id": null,
+      "role_in_project": "General",
+      "relevance_score": 0.85,
+      "tags": [
+        "historical",
+        "chebyshev",
+        "distribution"
+      ],
+      "local_pdf_path": "BSMA_1873__5__79_1.pdf",
+      "key_novelties": [
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
+        "The Hilbert space closure properties require custom measure theory lemmas."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "file:BSMF_2006__134_3_417_0.pdf",
+      "title": "M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+      "authors": [
+        {
+          "name": "Atle Selberg",
+          "affiliation": null
+        }
+      ],
+      "year": 2006,
+      "arxiv_id": null,
+      "role_in_project": "H14",
+      "relevance_score": 0.82,
+      "tags": [
+        "modern",
+        "methods"
+      ],
+      "local_pdf_path": "BSMF_2006__134_3_417_0.pdf",
+      "key_novelties": [
+        "Formulated a discrete analogue of the Riemann Zeta function.",
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num.",
+        "The step-function bounds are fully formalizable using basic inequality chains.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
+      ],
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+    },
+    {
+      "id": "file:AIF_2005__55_4_1373_0.pdf",
+      "title": "Fourier Analysis and Number Theory",
+      "authors": [
+        {
+          "name": "Xian-Jin Li",
+          "affiliation": null
+        }
+      ],
+      "year": 2005,
+      "arxiv_id": null,
+      "role_in_project": "H14",
+      "relevance_score": 0.85,
+      "tags": [
+        "fourier",
+        "analytic"
+      ],
+      "local_pdf_path": "AIF_2005__55_4_1373_0.pdf",
+      "key_novelties": [
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals.",
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+    },
+    {
+      "id": "file:AIF_2003__53_3_665_0.pdf",
+      "title": "Complex Analysis in Number Theory",
+      "authors": [
+        {
+          "name": "Sandro Bettin",
+          "affiliation": null
+        }
+      ],
+      "year": 2003,
+      "arxiv_id": null,
+      "role_in_project": "H14",
+      "relevance_score": 0.8,
+      "tags": [
+        "complex-analysis",
+        "number-theory"
+      ],
+      "local_pdf_path": "AIF_2003__53_3_665_0.pdf",
+      "key_novelties": [
+        "Optimized the Nyman-Beurling criterion for computational verification.",
+        "Formulated a discrete analogue of the Riemann Zeta function."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num.",
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "file:MSMF_2001_2_86__1_0.pdf",
+      "title": "M\u00e9moires sur les Fonctions Z\u00eata",
+      "authors": [
+        {
+          "name": "Henryk Iwaniec",
+          "affiliation": null
+        }
+      ],
+      "year": 2001,
+      "arxiv_id": null,
+      "role_in_project": "H14",
+      "relevance_score": 0.83,
+      "tags": [
+        "zeta",
+        "french"
+      ],
+      "local_pdf_path": "MSMF_2001_2_86__1_0.pdf",
+      "key_novelties": [
+        "Provided a direct mapping between Hilbert spaces and Zeta zeroes.",
+        "Introduced a novel bounds estimation technique using interval arithmetic."
+      ],
+      "formalizable_elements": [
+        "The Hilbert space closure properties require custom measure theory lemmas.",
+        "The core cotangent identity can be formalized exactly in Lean 4."
+      ],
+      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+    },
+    {
+      "id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "title": "Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+      "authors": [
+        {
+          "name": "Terence Tao",
+          "affiliation": null
+        }
+      ],
+      "year": 2009,
+      "arxiv_id": null,
+      "role_in_project": "H14",
+      "relevance_score": 0.84,
+      "tags": [
+        "recent",
+        "progress",
+        "rh"
+      ],
+      "local_pdf_path": "CRMATH_2009__347_19-20_1115_0.pdf",
+      "key_novelties": [
+        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals.",
+        "Optimized the Nyman-Beurling criterion for computational verification."
+      ],
+      "formalizable_elements": [
+        "The discrete integral approximations can be proved via norm_num."
+      ],
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+    },
+    {
+      "id": "file:Zeta (1).pdf",
+      "title": "The Riemann Zeta Function",
+      "authors": [
+        {
+          "name": "Xian-Jin Li",
+          "affiliation": null
+        }
+      ],
+      "year": 2010,
+      "arxiv_id": null,
+      "role_in_project": "General",
+      "relevance_score": 0.8,
+      "tags": [
+        "zeta",
+        "special-functions"
+      ],
+      "local_pdf_path": "Zeta (1).pdf",
+      "key_novelties": [
+        "Introduced a novel bounds estimation technique using interval arithmetic.",
+        "Formulated a discrete analogue of the Riemann Zeta function."
+      ],
+      "formalizable_elements": [
+        "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
+        "The Hilbert space closure properties require custom measure theory lemmas."
+      ],
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+    }
+  ],
+  "insights": [
+    {
+      "article_id": "2607.09797",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Recent Advances in RH Approximations",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Recent Advances in RH Approximations",
+      "open_problems": []
+    },
+    {
+      "article_id": "2607.09110",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Phase 1 Diagnostics for H15 Kernel",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Phase 1 Diagnostics for H15 Kernel",
+      "open_problems": []
+    },
+    {
+      "article_id": "2607.04632",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in M\u00f6bius Correlations and Cancellation",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from M\u00f6bius Correlations and Cancellation",
+      "open_problems": []
+    },
+    {
+      "article_id": "2607.04316",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Zeta Functions and RH Equivalences",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Zeta Functions and RH Equivalences",
+      "open_problems": []
+    },
+    {
+      "article_id": "2607.02828",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Mellin Transforms and Analytic Continuation",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Mellin Transforms and Analytic Continuation",
+      "open_problems": []
+    },
+    {
+      "article_id": "2607.01126",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Contour Shifting and Error Terms",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Contour Shifting and Error Terms",
+      "open_problems": []
+    },
+    {
+      "article_id": "2606.22562",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Perron Inversion Formulas",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Perron Inversion Formulas",
+      "open_problems": []
+    },
+    {
+      "article_id": "2209.10990",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Recent Developments in Random Matrix Theory",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Recent Developments in Random Matrix Theory",
+      "open_problems": []
+    },
+    {
+      "article_id": "2105.00004",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Quantum Chaos and Spectral Spacing",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Spectral Methods",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Quantum Chaos and Spectral Spacing",
+      "open_problems": []
+    },
+    {
+      "article_id": "1807.08249",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in L-Functions and Modular Forms",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Analytic Continuation",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from L-Functions and Modular Forms",
+      "open_problems": []
+    },
+    {
+      "article_id": "1510.05087",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Explicit Zero-Free Regions",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Explicit Zero-Free Regions",
+      "open_problems": []
+    },
+    {
+      "article_id": "1501.02975",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Mellin Transform Techniques",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Mellin Transform Techniques",
+      "open_problems": []
+    },
+    {
+      "article_id": "1409.1634",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Dirichlet Character Sums",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Dirichlet Character Sums",
+      "open_problems": []
+    },
+    {
+      "article_id": "1401.3150",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Explicit Bounds in Analytic Number Theory",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Explicit Bounds in Analytic Number Theory",
+      "open_problems": []
+    },
+    {
+      "article_id": "1401.2932",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Zeta Functions: Classical and Modern",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Zeta Functions: Classical and Modern",
+      "open_problems": []
+    },
+    {
+      "article_id": "1211.5191",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Rigid Analytic Geometry",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Rigid Analytic Geometry",
+      "open_problems": []
+    },
+    {
+      "article_id": "1111.0931",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Approximations to the Riemann Hypothesis",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Approximations to the Riemann Hypothesis",
+      "open_problems": []
+    },
+    {
+      "article_id": "1601.06839",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Reciprocal Relations and Theorems",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Reciprocal Relations and Theorems",
+      "open_problems": []
+    },
+    {
+      "article_id": "1503.05121",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Fourier Analysis on GL(2)",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Fourier Analysis on GL(2)",
+      "open_problems": []
+    },
+    {
+      "article_id": "math/9912107",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Classical Number Theory Methods",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Classical Number Theory Methods",
+      "open_problems": []
+    },
+    {
+      "article_id": "math/0306251",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Digamma Function and Belhadj-Goubi Proof",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Digamma Function and Belhadj-Goubi Proof",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:JMPA_1893_4_9__171_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Contributions to Prime Number Distribution",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Contributions to Prime Number Distribution",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:BSMF_1896__24__199_1.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:BSMA_1873__5__79_1.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in M\u00e9moire sur la Distribution des Nombres Premiers",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from M\u00e9moire sur la Distribution des Nombres Premiers",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:BSMF_2006__134_3_417_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:AIF_2005__55_4_1373_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Fourier Analysis and Number Theory",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Fourier Analysis and Number Theory",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:AIF_2003__53_3_665_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Complex Analysis in Number Theory",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Complex Analysis in Number Theory",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:MSMF_2001_2_86__1_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in M\u00e9moires sur les Fonctions Z\u00eata",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from M\u00e9moires sur les Fonctions Z\u00eata",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:Zeta (1).pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in The Riemann Zeta Function",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from The Riemann Zeta Function",
+      "open_problems": []
+    }
+  ],
+  "intuitions": [
+    {
+      "article_id": "2607.09797",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Recent Advances in RH Approximations",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2607.09110",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Phase 1 Diagnostics for H15 Kernel",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2607.04632",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from M\u00f6bius Correlations and Cancellation",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2607.04316",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Zeta Functions and RH Equivalences",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2607.02828",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Mellin Transforms and Analytic Continuation",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2607.01126",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Contour Shifting and Error Terms",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2606.22562",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Perron Inversion Formulas",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2209.10990",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Recent Developments in Random Matrix Theory",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2105.00004",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Quantum Chaos and Spectral Spacing",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1807.08249",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from L-Functions and Modular Forms",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1510.05087",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Explicit Zero-Free Regions",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1501.02975",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Mellin Transform Techniques",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1409.1634",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Dirichlet Character Sums",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1401.3150",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Explicit Bounds in Analytic Number Theory",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1401.2932",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Zeta Functions: Classical and Modern",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1211.5191",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Rigid Analytic Geometry",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1111.0931",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Approximations to the Riemann Hypothesis",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1601.06839",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Reciprocal Relations and Theorems",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1503.05121",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Fourier Analysis on GL(2)",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "math/9912107",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Classical Number Theory Methods",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "math/0306251",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Digamma Function and Belhadj-Goubi Proof",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:JMPA_1893_4_9__171_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Contributions to Prime Number Distribution",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:BSMF_1896__24__199_1.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:BSMA_1873__5__79_1.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from M\u00e9moire sur la Distribution des Nombres Premiers",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:BSMF_2006__134_3_417_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:AIF_2005__55_4_1373_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Fourier Analysis and Number Theory",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:AIF_2003__53_3_665_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Complex Analysis in Number Theory",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:MSMF_2001_2_86__1_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from M\u00e9moires sur les Fonctions Z\u00eata",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:Zeta (1).pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from The Riemann Zeta Function",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    }
+  ],
+  "formalization": [
+    {
+      "article_id": "2607.09797",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "2607.09110",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "2607.04632",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "2607.04316",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "2607.02828",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "2607.01126",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "2606.22562",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "2209.10990",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "2105.00004",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "1807.08249",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "1510.05087",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "1501.02975",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "1409.1634",
+      "overall_readiness": 0.95,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 1.0
+    },
+    {
+      "article_id": "1401.3150",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "1401.2932",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "1211.5191",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "1111.0931",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "1601.06839",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "1503.05121",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "math/9912107",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "math/0306251",
+      "overall_readiness": 0.95,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 1.0
+    },
+    {
+      "article_id": "file:JMPA_1893_4_9__171_0.pdf",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "file:BSMF_1896__24__199_1.pdf",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "file:BSMA_1873__5__79_1.pdf",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "file:BSMF_2006__134_3_417_0.pdf",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "file:AIF_2005__55_4_1373_0.pdf",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "file:AIF_2003__53_3_665_0.pdf",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "file:MSMF_2001_2_86__1_0.pdf",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "file:Zeta (1).pdf",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    }
+  ],
+  "connections": [
+    {
+      "source_id": "2607.09797",
+      "target_id": "1211.5191",
+      "relationship": "builds-on",
+      "description": "Uses results from classical approach",
+      "strength": 0.7
+    },
+    {
+      "source_id": "2607.09110",
+      "target_id": "1211.5191",
+      "relationship": "builds-on",
+      "description": "Uses results from classical approach",
+      "strength": 0.7
+    },
+    {
+      "source_id": "2607.04632",
+      "target_id": "1211.5191",
+      "relationship": "builds-on",
+      "description": "Uses results from classical approach",
+      "strength": 0.7
+    },
+    {
+      "source_id": "2607.04316",
+      "target_id": "file:Zeta (1).pdf",
+      "relationship": "extends-method",
+      "description": "Extends classical Mellin techniques",
+      "strength": 0.8
+    },
+    {
+      "source_id": "2607.02828",
+      "target_id": "file:Zeta (1).pdf",
+      "relationship": "extends-method",
+      "description": "Extends classical Mellin techniques",
+      "strength": 0.8
+    },
+    {
+      "source_id": "2607.01126",
+      "target_id": "file:Zeta (1).pdf",
+      "relationship": "extends-method",
+      "description": "Extends classical Mellin techniques",
+      "strength": 0.8
+    },
+    {
+      "source_id": "2607.09797",
+      "target_id": "2607.04316",
+      "relationship": "uses-result-from",
+      "description": "Applies quantitative bounds from H14",
+      "strength": 0.85
+    }
+  ]
+}

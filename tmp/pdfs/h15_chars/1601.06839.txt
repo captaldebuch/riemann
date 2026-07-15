@@ -1,0 +1,1410 @@
+                                                 RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS
+
+                                                        JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+                                                                    Dedicated to the memory of Tom M. Apostol
+
+
+
+
+arXiv:1601.06839v3 [math.NT] 20 Jan 2017
+                                                   A BSTRACT. Recent work of Bettin and Conrey on the period functions of
+                                                   Eisenstein series naturally gave rise to the Dedekind-like sum
+                                                                                                  
+                                                                         h          k−1
+                                                                                               π mh         m
+                                                                     ca       = k ∑ cot
+                                                                                  a
+                                                                                                     ζ −a,      ,
+                                                                         k          m=1          k           k
+                                                   where a ∈ C, h and k are positive coprime integers, and ζ (a, x) denotes the
+                                                   Hurwitz zeta function. We derive a new reciprocity theorem for these Bettin–
+                                                   Conrey sums, which in the case of an odd negative integer a can be explicitly
+                                                   given in terms of Bernoulli numbers. This, in turn, implies explicit formulas for
+                                                   the period functions appearing in Bettin–Conrey’s work. We study generaliza-
+                                                   tions of Bettin–Conrey sums involving zeta derivatives and multiple cotangent
+                                                   factors and relate these to special values of the Estermann zeta function.
+
+
+
+
+                                                          1. I NTRODUCTION AND S TATEMENT OF R ESULTS
+                                              Our point of departure is recent work of Bettin and Conrey [7,8] on the period
+                                           functions of Eisenstein series. Their initial motivation was the derivation of an
+                                           exact formula for the second moments of the Riemann zeta function, but their
+                                           work naturally gave rise to a family of finite arithmetic sums of the form
+                                                                                           
+                                                                  h          k−1
+                                                                                       π mh            m
+                                                             ca        = k ∑ cot
+                                                                           a
+                                                                                               ζ −a,      ,
+                                                                  k          m=1         k             k
+                                           where a ∈ C, h and k are positive coprime integers, and ζ (a, x) denotes the Hur-
+                                           witz zeta function
+                                                                                   ∞
+                                                                                         1
+                                                                      ζ (a, x) = ∑            a
+                                                                                                ,
+                                                                                  n=0 (n + x)
+                                           initially defined for ℜ(a) > 1 and meromorphically continued to the a-plane. We
+                                           call ca ( hk ) and its natural generalizations appearing below Bettin–Conrey sums.
+                                               There are two major motivations to study these sums. The first is that c0 ( hk )
+                                           is essentially a Vasyunin sum, which in turn makes a critical appearance in the
+                                           Nyman–Beurling–Báez-Duarte approach to the Riemann hypothesis through the
+                                           twisted mean-square of the Riemann zeta function on the critical line (see, e.g.,
+                                              Date: 20 January 2017.
+                                              2010 Mathematics Subject Classification. Primary 11F20; Secondary 11L03, 11M35.
+                                              Key words and phrases. Dedekind sum, cotangent sum, Bettin–Conrey sum, reciprocity the-
+                                           orem, Hurwitz zeta function, period function, quantum modular form, Estermann zeta function.
+                                                                                          1
+2              JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+[5,16]). Bettin–Conrey’s work, for a = 0, implies that there is a hidden symmetry
+of this mean-square.
+    The second motivation, and the central theme of our paper, is that the Bettin–
+Conrey sums satisfy a reciprocity theorem:
+                       1+a  
+                     h       k             −k      ka a ζ (1 − a)
+                 ca      −           ca         +
+                     k       h             h             πh
+extends from its initiation domain Q to an (explicit) analytic function on C \ R≤0 ,
+making ca nearly an example of a quantum modular form in the sense of Zagier
+[18]. In fact, Zagier’s “Example 0” is the Dedekind sum
+                                                 
+                               1 k−1        π mh         πm
+                     s(h, k) =    ∑
+                               4k m=1
+                                      cot
+                                              k
+                                                   cot
+                                                          k
+                                                               ,
+
+which is, up to a trivial factor, c−1 ( hk ). Dedekind sums first appeared in the trans-
+formation properties of the Dedekind eta function and satisfy the reciprocity the-
+orem [10, 11]
+                                                                  
+                                              1   1 h 1          k
+                   s(h, k) + s(k, h) = − +               + +         .
+                                              4 12 k hk h
+We now recall the precise form of Bettin–Conrey’s reciprocity theorem.
+
+Theorem 1.1 (Bettin–Conrey [7]). If h and k are positive coprime integers then
+           1+a                                                
+         h       k         −k        ka a ζ (1 − a)                  h
+     ca      −         ca         +                 = −i ζ (−a) ψa
+         k       h          h              πh                        k
+where
+                                i ζ (1 − a)    i      πa     ga (z)
+                  ψa (z) =                  − 1+a cot    +i
+                               π z ζ (−a)    z         2    ζ (−a)
+and
+                                          B2n
+        ga (z) = − 2    ∑ (−1)n (2n)! ζ (1 − 2n − a)(2π z)2n−1
+                       1≤n≤M
+                               Z
+                         1                                              cos π2a
+                       +                        ζ (s) ζ (s − a) Γ(s)             (2π z)−s ds .
+                         πi        (− 12 −2M)                          sin π s−a
+                                                                              2
+
+Here Bk denotes the kth Bernoulli number, M is any integer ≥ − 12 min(0, ℜ(a)),
+and the integral notation indicates that our integration path is over the vertical
+line ℜ(s) = − 12 − 2M.
+
+    We note that Bettin and Conrey initially defined ψa (z) through
+                                                     
+                                            1            1
+                     ψa (z) = Ea+1 (z) − a+1 Ea+1 −          ,
+                                          z              z
+                RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                       3
+
+in other words, ψa (z) is the period function of the Eisenstein series of weight
+a + 1,
+                                        2
+                    Ea+1 (z) = 1 +           ∑ σa (n) e2π inz,
+                                     ζ (−a) n≥1
+where σa (n) = ∑d|n d a , and then showed that ψa (z) satisfies the properties of
+Theorem 1.1.
+    We have several goals. We start by showing that the right-hand side of Theo-
+rem 1.1 can be simplified by employing an integration technique for Dedekind-
+like sums that goes back to Rademacher [11]. This yields our first main result:
+
+Theorem 1.2. Let ℜ(a) > 1 and suppose h and k are positive coprime integers.
+                         
+Then for any 0 < ε < min h1 , 1k ,
+                                                   Z
+ 1−a       h     1−a      k        a ζ (a + 1) (hk)1−a        cot(π hz) cot(π kz)
+h c−a         +k     c−a        =             −                                   dz .
+           k              h          π (hk) a     2i     (ε )         za
+   Theorem 1.2 implies that the function
+                               Z
+                                      cot(π hz) cot(π kz)
+                     F(a) =                               dz
+                                 (ε )         za
+has a holomorphic continuation to the whole complex plane. In particular, in this
+sense Theorem 1.2 can be extended to all complex a.
+   Second, we employ Theorem 1.2 to show that in the case that a is an odd
+negative integer, the right-hand side of the reciprocity theorem can be explicitly
+given in terms of Bernoulli numbers.
+
+Theorem 1.3. Let n > 1 be an odd integer and suppose h and k are positive
+coprime integers. Then
+                              
+     1−n        h      1−n       k
+   h c−n           +k      c−n        =
+                k                h
+               n                                                   !
+                                        n+1 
+           2π i        1                      n+1
+                               n Bn+1 + ∑          Bm Bn+1−m hm kn+1−m .
+           hk      i(n + 1)!            m=0    m
+
+    Our third main result is, in turn, a consequence of Theorem 1.3: in conjunc-
+tion with Theorem 1.1, it implies the following explicit formulas for ψa (z) and
+ga (z) when a is an odd negative integer.
+
+Theorem 1.4. If n > 1 is an odd integer then for all z ∈ C \ R≤0
+                                      n+1       
+                           (2π i)n         n+1
+           ψ−n (z) =                  ∑ m Bm Bn+1−m zm−1
+                        ζ (n)(n + 1)! m=0
+and                                          
+                           (2π i)n n      n+1
+                g−n (z) =           ∑ m + 1 Bm+1 Bn−m zm.
+                          i(n + 1)! m=0
+4                JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+    In [7, Theorem 2], Bettin and Conrey computed the Taylor series of ga (z)
+                                                          (m)
+and remarked that, if a is a negative integer, π ga (1) is a rational polynomial
+in π 2 . Theorem 1.4 generalizes this remark. We will prove Theorems 1.2–1.4 in
+Section 2. We note that both Theorem 1.3 and 1.4 can also be derived directly
+from Theorem 1.1.
+    Our next goal is to study natural generalizations of ca ( hk ). Taking a leaf from
+Zagier’s generalization of s(h, k) to higher-dimensional Dedekind sums [17] and
+its variation involving cotangent derivatives [9], let k0 , k1 , . . . , kn be positive inte-
+gers such that (k0 , k j ) = 1 for j = 1, 2, . . ., n, let m0 , m1 , . . . , mn be nonnegative
+integers, a 6= −1 a complex number, and define the generalized Bettin–Conrey
+sum
+                                                               n                         
+                                                                               (m j ) π k j l
+                                        k0 −1
+           k0 k1 · · · kn                                      l
+                                  = k0 ∑ ζ
+                                                              k0 ∏
+                                      a          (m0 )
+    ca                                                   −a,               cot                  .
+          m0 m1 · · · mn                 l=1                        j=1                k0
+
+Here ζ (m0 ) (a, z) denotes the mth
+                                  0 derivative of the Hurwitz zeta function with
+respect to z.
+   This notation mimics that of Dedekind cotangent sums; note that
+                                                 
+                                  h           k h
+                              cs      = cs            .
+                                  k           0 0
+In Section 3, we will prove reciprocity theorems for generalized Bettin–Conrey
+sums, paralleling Theorems 1.2 and 1.3, as well as more special cases that give,
+we think, interesting identities.
+   Our final goal is to relate the particular generalized Bettin–Conrey sum
+                                q−1                 
+                                ∑ cot (π mx) ζ −a, q
+                                        (k)        m
+                               m=1
+                                                                           2π inx
+with evaluations of the Estermann zeta function ∑n≥1 σa (n) e ns                    at integers s;
+see Section 4.
+
+
+                            2. P ROOFS OF M AIN R ESULTS
+    In order to prove Theorem 1.2, we need two lemmas.
+
+Lemma 2.1. Let m be a nonnegative integer. Then
+                                         (
+                                           ∓i if m = 0,
+                 lim cot(m) π (x ± iy) =
+                 y→∞                       0    if m > 0.
+
+Furthermore, this convergence is uniform with respect to x in a fixed bounded
+interval.
+                RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                                      5
+
+                       i(eiz +e−iz )
+Proof. Since cot z =     eiz −e−iz
+                                     , we may estimate
+                                     2                        2                 2
+   |i + cot π (x + iy)| =                     ≤                           =              .
+                             ei(2π x) − e2π y         ei(2π x) − |e2π y |   |1 − e2π y |
+Given that the rightmost term in this inequality vanishes as y → ∞, we see that
+                                lim cot π (x + iy) = −i .
+                               y→∞
+
+Similarly, the inequality
+                                       2                          2                2
+  |−i + cot π (x − iy)| =                        ≤                          =
+                              ei(2π x) e2π y − 1         ei(2π x) e2π y − 1   |e2π y − 1|
+implies that limy→∞ cot π (x − iy) = i. Since
+                               2eπ y                        2eπ y                  2eπ y
+  |csc π (x + iy)| =                           ≤                              =              ,
+                       |eiπ x − e−iπ x e2π y |   ||eiπ x | − |e−iπ x e2π y ||   |1 − e2π y |
+it follows that limy→∞ csc π (x + iy) = 0. Similarly,
+                                2eπ y                       2eπ y                  2eπ y
+  |csc π (x − iy)| =                           ≤                              =
+                       |eiπ x e2π y − e−iπ x |   ||eiπ x e2π y | − |e−iπ x ||   |e2π y − 1|
+implies that limy→∞ csc π (x − iy) = 0. We remark that dz
+                                                       d
+                                                          (cot z) = − csc2 z and
+                               d
+                                 (csc z) = − csc z cot z ,
+                              dz
+so all the derivatives of cot z have a csc z factor, and therefore,
+                                                (
+                                                  ∓i if m = 0,
+                      lim cot(m) π (x ± iy) =
+                     y→∞                          0     if m > 0.
+Since the convergence above is independent of x, the limit is uniform with respect
+to x in a fixed bounded interval.                                               
+
+   Lemma 2.1 implies that
+                                                         (
+                                                          ∓i                if m = 0,
+       lim cot(m) π h(x ± iy) = lim cot(m) π k(x ± iy) =
+       y→∞                      y→∞                       0                 if m > 0,
+uniformly with respect to x in a fixed bounded interval.
+   The proof of the following lemma is hinted at by Apostol [3].
+
+Lemma 2.2. If ℜ(a) > 1 and R > 0, then ζ (a, x + iy) vanishes uniformly with
+respect to x ∈ [0, R] as y → ±∞.
+
+Proof. We begin by showing that ζ (a, z) vanishes as ℑ(z) → ±∞ if ℜ(z) > 0.
+Since ℜ(a) > 1 and ℜ(z) > 0, we have the integral representation [14, eq. 25.11.25]
+                                               Z ∞ a−1 −zt
+                                        1            t e
+                            ζ (a, z) =                        dt,
+                                       Γ(a)      0    1 − e−t
+6                JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+which may be written as
+                                                Z ∞ a−1 −t ℜ(z)
+                                  1                  t     e
+(2.1)                 ζ (a, z) =                                    e−itℑ(z) dt.
+                                 Γ(a)            0       1 − e−t
+Note that for fixed ℜ(z),
+                        Z ∞ a−1 −tℜ(z)
+                               t     e
+                                                  dt = ζ (a, ℜ(z))Γ(a)
+                          0        1 − e−t
+and
+     Z ∞                           Z ∞ ℜ(a)−1 −t ℜ(z)
+           t a−1 e−t ℜ(z)                   t      e
+                          dt =                               dt = ζ (ℜ(a), ℜ(z))Γ(ℜ(a)) ,
+      0       1 − e−t                  0        1 − e−t
+
+so the Riemann–Lebesgue lemma (see, for example, [13, Theorem 16]) implies
+that
+                             Z ∞ a−1 −tℜ(z)
+                                 t e
+                                          −t
+                                               e−itℑ(z) dt
+                              0     1 −  e
+vanishes as ℑ(z) → ±∞. By (2.1), this means that for ℜ(z) fixed, ζ (a, z) vanishes
+as ℑ(z) → ±∞. In other words, ζ (a, x + iy) → 0 pointwise with respect to x > 0
+as y → ±∞.
+    Moreover, the vanishing of ζ (a, x + iy) as y → ±∞ is uniform with respect to
+                                   a−1 −tR
+x ∈ [0, R]. Indeed, denote g(t) = t 1−ee−t , then (2.1) implies that
+                                   Z ∞
+                                            g(t)dt = Γ(a) ζ (a, R)
+                                       0
+and                      Z ∞
+                               |g(t)|dt = Γ(ℜ(a)) ζ (ℜ(a), R) .
+                          0
+                                                                                    R
+It then follows from the Riemann–Lebesgue lemma that lim|z|→∞ 0∞ g(t)e−itzdt =
+0. If x ∈ (0, R], we may write
+                               Z ∞ a−1 −tx                         Z ∞
+                                           t e
+        Γ(a) ζ (a, x ± iy) =                        e∓ity dt =           g(t) e−it(±y−i(x−R))dt.
+                                   0        1 − e−t                 0
+
+   Since g(t) does not depend on x, the speed at which ζ (a, x ± iy) vanishes
+depends on R and y2 + (x − R)2 . However, we know that 0 ≤ |x − R| < R, so the
+speed of the vanishing depends only on R.
+   Finally, note that
+                 ∞                ∞
+                        1                  1            1                        1
+    ζ (a, iy) = ∑            a
+                               = ∑                a
+                                                    +      a
+                                                             = ζ (a, 1 + iy) +       ,
+                n=0 (iy + n)     n=0 (1 + iy + n)     (iy)                     (iy)a
+so ζ (a, iy) → 0 as y → ±∞, and the speed at which ζ (s, iy) vanishes depends
+on that of ζ (s, 1 + iy). Thus, ζ (s, x + iy) → 0 uniformly as y → ±∞, as long as
+x ∈ [0, R].                                                                    
+                RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                        7
+
+Proof of Theorem 1.2. The idea is to use Cauchy’s residue theorem to integrate
+the function
+
+                         f (z) = cot(π hz) cot(π kz) ζ (a, z)
+
+along C(M, ε ) as M → ∞, where C(M, ε ) denotes the positively oriented rectan-
+gle with vertices 1 + ε + iM, ε + iM, ε − iM and 1 + ε − iM, for M > 0 and
+            
+0 < ε < min 1h , 1k (see Figure 1).
+
+
+
+
+                    F IGURE 1. The closed contour C(M, ε ).
+
+
+    Henceforth, a ∈ C is such that ℜ(a) > 1, (h, k) is a pair of coprime positive in-
+tergers, and f (z) and C(M, ε ) are as above, unless otherwise stated. Since ζ (a, z)
+is analytic inside C(M, ε ), the only poles of f (z) are those of the cotangent fac-
+tors. Thus, the fact that h and k are coprime implies that a complete list of the
+possible poles of f (z) inside C(M, ε ) is
+                                                              
+                                1          h−1 1      k−1
+                       E=         , . . .,    , ,...,     ,1
+                                h           h k        k
+8                  JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+and each of these poles is (at most) simple, with the exception of 1, which is (at
+most) double. For m ∈ {1, 2, . . ., h − 1},
+                                                    m
+                               π km                                 1
+           Res  f (z) = cot              cos( π m) ζ  a,   Res
+              m
+           z= h                   h                      h z= h sin(π hz)
+                                                              m
+                                          
+                          1          π km          m
+                      =      cot            ζ a,       .
+                         πh            h            h
+Of course, an analogous result is true for Resz= mk f (z) for all m ∈ {1, 2, . . ., k −1},
+and therefore
+
+    ∑ Res
+      z=z0
+           f (z) =
+    z0 ∈E
+                                                                       
+                         1 h−1        π km        m  1 k−1          π hm        m
+            Res f (z) +
+            z=1
+                            ∑
+                        π h m=1
+                                cot
+                                        h
+                                            ζ  a,
+                                                  h
+                                                     +     ∑
+                                                       π k m=1
+                                                               cot
+                                                                       k
+                                                                           ζ  a,
+                                                                                 k
+or, equivalently,
+(2.2)                                                                 !              !
+                        
+            h             k
+   1−a
+  h c−a
+            k
+                    1−a
+                 + k c−a
+                          h
+                             = π (hk)1−a                 ∑ Res
+                                                           z=z0
+                                                                f (z) − Res f (z) .
+                                                                        z=1
+                                                        z0 ∈E
+
+   We now determine Resz=1 f (z). The Laurent series of the cotangent function
+about 0 is given by
+                                1 1          1        2 5
+                         cot z =  − z − z3 −             z +··· ,
+                                z 3         45      945
+so, by the periodicity of cot z, for z 6= 1 in a small neighborhood of z = 1,
+                
+                 1      1       πk             (π k)3            2(π k)5
+ cot(π kz) =                − (z − 1) −               (z − 1)3 −         (z − 1)5 + · · ·
+                πk z − 1         3               45               945
+and, similarly,
+               
+                1    1    πh         (π h)3            2(π h)5
+cot(π hz) =              − (z − 1) −        (z − 1)3 −         (z − 1)5 + · · · .
+                πh z − 1   3          45                945
+    Since ζ (a, z) is analytic in a small neighborhood of 1, Taylor’s theorem im-
+plies that
+                                            ∞
+                                 ζ (a, z) = ∑ bn (z − 1)n,
+                                           n=0
+          ζ (n) (a,1)
+where bn = n! for n = 0, 1, 2, . . . (derivatives relative to z). Thus, the expan-
+sion of f (z) about 1 is of the form
+                             2        
+                 b0       1           b1    1
+                                  +             + (analytic part).
+                π hk z − 1
+                 2                   π hk z − 1
+                                      2
+
+      Given that a 6= 0, 1, we know that ∂∂z ζ (a, z) = −a ζ (a+1, z) [14, eq. 25.11.17],
+                                                                                 a ζ (a+1)
+so b1 = −a ζ (a + 1, 1) = −a ζ (a + 1). We conclude that Resz=1 f (z) = −           π 2 hk
+                      RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                                          9
+
+and it then follows from (2.2) that
+                                
+                  h                 k   a ζ (a + 1)      π
+                                                      (hk)a−1 z0∑
+         1−a              1−a
+(2.3) h c−a            + k c−a        =             +              Res f (z).
+                  k                 h     π (hk) a
+                                                                ∈E
+                                                                   z=z0
+
+   We now turn to the computation of ∑ Res f (z) via Cauchy’s residue theo-
+                                                                   z=z0
+                                                         z0 ∈E
+rem, which together with (2.3) will provide the reciprocity we are after. Note that
+the function f (z) is analytic on any two closed contours C(M1 , ε ) and C(M2, ε )
+and since the poles inside these two contours are the same, we may apply Cauchy’s
+residue theorem to both contours and deduce that
+                             Z                             Z
+                                             f (z) dz =                     f (z) dz .
+                                 C(M1 ,ε )                     C(M2 ,ε )
+
+In particular, this implies that
+                                  Z
+(2.4)                      lim                    f (z) dz = 2π i ∑ Res f (z) .
+                           M→∞ C(M,ε )                                  z0 ∈E
+                                                                                z=z0
+
+    Let γ1 be the path along C(M, ε ) from 1 + ε + iM to ε + iM. Similarly, define
+γ2 from ε − iM to 1 + ε − iM, γ3 from ε + iM to ε − iM, and γ4 from 1 + ε − iM
+to 1 + ε + iM (see Figure 1). Since ℜ(a) > 1,
+                                 ∞                 ∞
+                                       1                 1                   1
+        ζ (a, z + 1) = ∑                      a
+                                                = ∑           a
+                                                                = ζ (a, z) − a ,
+                              n=0 (n + z + 1)     n=1 (n + z)               z
+and so the periodicity of cot z implies that
+             Z                           Z                     Z
+                                                                  cot(π hz) cot(π kz)
+                      f (z) dz = −                f (z) dz +                          dz .
+                 γ4                          γ3                γ3         za
+Lemmas 2.1 and 2.2 imply that f (z) vanishes uniformly as M → ∞ (uniformity
+with respect to ℜ(z) ∈ [ε , 1 + ε ]) so
+                                  Z                                        Z
+                           lim         f (z) dz = 0 = lim                        f (z) dz .
+                           M→∞ γ1                                  M→∞ γ2
+
+This means that
+                       Z                                   Z                          Z               
+              lim                  f (z) dz = lim                       f (z) dz +          f (z) dz
+             M→∞ C(M,ε )                             M→∞           γ3                  γ4
+and it follows from (2.3) and (2.4) that
+                                     
+              1−a      h       1−a       k
+             h c−a         + k c−a         =
+                       k                 h
+                                                        Z ε −i∞
+                       a ζ (a + 1) (hk)1−a                      cot(π hz) cot(π kz)
+                                  +                                                 dz .
+                         π (hk)a      2i                  ε +i∞         za
+This completes the proof of Theorem 1.2.                                                                   
+
+    To prove Theorem 1.3, we now turn to the particular case in which a = n > 1
+is an odd integer and study Bettin–Conrey sums of the form c−n .
+10            JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+   Let Ψ(n) (z) denote the (n + 2)-th polygamma function (see, for example, [14,
+Sec. 5.15]). It is well known that for n a positive integer,
+                                       (−1)n+1 Ψ(n) (z)
+                         ζ (n + 1, z) =
+                                              n!
+whenever ℜ(z) > 0 (see, for instance, [14, eq. 25.11.12]), so for n > 1, we may
+write
+                                                          
+                h          (−1)n k−1           π mh     (n−1) m
+           c−n
+                k
+                     = n             ∑ cot k Ψ
+                         k (n − 1)! m=1                        k
+                                                                   .
+
+By the reflection formula for the polygamma functions [14, eq. 5.15.6],
+
+              Ψ(n) (1 − z) + (−1)n+1 Ψ(n) (z) = (−1)n π cot(n) (π z),
+
+we know that if n is odd, then
+                             m            m                  πm
+              Ψ(n−1) 1 −           − Ψ(n−1)        = π cot(n−1)
+                               k              k                    k
+for each m ∈ {1, 2, . . ., k − 1}. Therefore,
+                                                           
+   k−1
+            π mh        (n−1) m
+                                        k−1
+                                                  π mh     (n−1) m
+ 2 ∑ cot           Ψ                 = ∑ cot             Ψ
+  m=1         k                  k     m=1          k             k
+                                                                       
+                                            k−1
+                                                      π (k − m)h              m
+                                         + ∑ cot                   Ψ(n−1) 1 −    ,
+                                            m=1            k                  k
+which implies that
+                                   
+            k−1
+                    π mh      (n−1) m
+          2 ∑ cot           Ψ
+           m=1        k              k
+                                
+                  k−1
+                            π mh  (n−1)  m                  m 
+               = ∑ cot               Ψ             − Ψ(n−1) 1 −
+                  m=1         k                k                k
+                                                  
+                      k−1
+                                π mh       (n−1) π m
+               = −π ∑ cot              cot             .
+                      m=1         k                k
+This means that for n > 1 odd, c−n is essentially a Dedekind cotangent sum.
+Indeed, using the notation in [9],
+                                                               
+                 h             π      k−1
+                                                π mh      (n−1) π m
+           c−n
+                 k
+                      =               ∑
+                         2kn (n − 1)! m=1
+                                          cot
+                                                  k
+                                                       cot
+                                                                 k
+                                                        
+                                          k     h    1
+                              π
+                      =            c n −1 0 n −1 .
+                         2(n − 1)!        0     0    0
+   Thus Theorem 1.3 is an instance of Theorem 1.2. Its significance is a reci-
+procity instance for Bettin–Conrey sums of the form c−n in terms of Bernoulli
+numbers. For this reason we give the details of its proof.
+                RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                     11
+
+Proof of Theorem 1.3. We consider the closed contour e   C(M, ε ) defined as the
+positively oriented rectangle with vertices 1 + iM, iM, −iM and 1 − iM, with
+                                                   
+indentations (to the right) of radius 0 < ε < min h1 , 1k around 0 and 1 (see
+Figure 2).
+
+
+
+
+                                                  e
+                    F IGURE 2. The closed contour C(M, ε ).
+
+           e
+    Since C(M,  ε ) contains the same poles of f (z) = cot(π hz) cot(π kz) ζ (n, z)
+as the closed contour C(M, ε ) in Figure 1 used to prove Theorem 1.2, we may
+apply Cauchy’s residue theorem, letting M → ∞, and we only need to determine
+         R
+limM→∞ C(M,e ε ) f (z) dz in order to deduce a reciprocity law for the sums c−n .
+    As in the case of C(M, ε ), the integrals along the horizontal paths vanish, so
+using the periodicity of the cotangent to add integrals along parallel paths, as we
+did when considering C(M, ε ), we obtain
+            Z                         Z iε           Z −iM          Z
+(2.5) lim            f (z) dz = lim         g(z) dz +        g(z) dz + g(z) dz ,
+          e ε)
+      M→∞ C(M,                  M→∞    iM            −iε               γ3
+where γ3 denotes the indented path around 0 and
+                                     cot(π kz) cot(π hz)
+                           g(z) =                        .
+                                             zn
+Given that g(z) is an odd function, the vertical integrals cancel and we may apply
+Cauchy’s residue theorem to integrate g(z) along the positively oriented circle of
+radius ε and centered at 0, to deduce that
+                            Z
+                      lim          f (z) dz = −π i Res g(z) .
+                         e ε)
+                     M→∞ C(M,                      z=0
+12             JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+This is the main reason to use the contour e    C(M, ε ) instead of C(M, ε ). Indeed,
+                   e
+integration along C(M,   ε ) exploits the parity of the function g(z), allowing us to
+cancel the vertical integrals in (2.5).
+    The expansion of the cotangent function is
+                                           ∞
+                                              (2π i)m Bm m
+                         π z cot(π z) = ∑               z ,
+                                          m=0    m!
+with the convention that B1 must be redefined to be zero. Thus, we have the
+expansion
+                                 ∞
+                                     (2i)(2π ik)mBm+1 m
+                   cot(π kz) = ∑                      z
+                               m=−1       (m + 1)!
+and of course, an analogous result holds for h. Hence,
+                                               
+                        (2i)(2π i)n n+1 n + 1
+(2.6)     Res g(z) =
+          z=0
+                                    ∑
+                       π hk(n + 1)! m=0 m
+                                                  Bm Bn+1−m hm kn+1−m ,
+
+                                π i)n+1
+and given that ζ (n + 1) = − (2
+                              2(n+1)! Bn+1 [14, eq. 25.6.2], the Cauchy residue
+theorem and (2.3) yield
+                                                                       !
+                                      n+1 
+           2π i n      1                     n+1
+(2.7)                          nBn+1 + ∑            Bm Bn+1−m hm kn+1−m
+            hk     i(n + 1)!            m=0    m
+                                           
+                    1−n      h       1−n      k
+               = h c−n            + k c−n        .
+                             k                h
+   Finally, note that the convention B1 := 0 is irrelevant in (2.7), since B1 in this
+sum is always multiplied by a Bernoulli number with odd index larger than 1. 
+
+    Note that Theorem 1.3 is essentially the same as the reciprocity deduced by
+Apostol for Dedekind–Apostol sums [2]. This is a consequence of the fact that
+                                     
+for n > 1 an odd integer, c−n hk is a multiple of the Dedekind–Apostol sum
+sn (h, k). Indeed, for such n [3, Theorem 1]
+                                                       
+                                                       h
+                          sn (h, k) = i n! (2π i) c−n
+                                                 −n
+                                                          .
+                                                       k
+It is worth mentioning that although the Dedekind–Apostol sum sn (h, k) is trivial
+for n even [2, eq. (4.13)], in the sense that sn (h, k) is independent of h, the Bettin–
+                     
+Conrey sum c−n hk is not.
+     The following corollary is an immediate consequence of Theorems 1.2 and 1.3.
+
+Corollary 2.3. Let n > 1 be an odd integer and suppose h and k are positive
+                                            
+coprime integers, then for any 0 < ε < min h1 , 1k ,
+ Z ε −i∞                                            
+         cot(π hz) cot(π kz)       2(2π i)n n+1 n + 1
+  ε +i∞          zn
+                             dz =             ∑ m BmBn+1−mhmkn+1−m .
+                                  hk(n + 1)! m=0
+                RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                      13
+                                                   
+Proof of Theorem 1.4. Given that c−n −k           k
+                                       h = −c−n h , it follows from Theo-
+rems 1.1 and 1.3 that
+                                    n+1                m−1
+                  h        (2π i)n         n+1              h
+(2.8)      ψ−n
+                  k
+                      =               ∑
+                        ζ (n)(n + 1)! m=0 m
+                                                Bm Bn+1−m
+                                                            k
+                                                                   .
+
+The function
+                                       n+1     
+                            (2π i)n         n+1
+               φ−n (z) =               ∑ m BmBn+1−m zm−1
+                         ζ (n)(n + 1)! m=0
+
+is analytic on C\R≤0 and, by [7, Theorem 1], so is ψ−n . Let
+
+                    Sn = {z ∈ C\R≤0 | ψ−n (z) = φ−n (z)} .
+
+Since all positive rationals can be written in reduced form, it follows from (2.8)
+that Q>0 ⊆ Sn . Thus, Sn is not a discrete set and given that both ψ−n and φ−n are
+analytic on the connected open set C\R≤0 , Theorem 1.2(ii) in [12, p. 90] implies
+that ψ−n = φ−n on C\R≤0 . That is,
+                                       n+1     
+                            (2π i)n         n+1
+               ψ−n (z) =               ∑ m BmBn+1−m zm−1
+                         ζ (n)(n + 1)! m=0
+
+for all z ∈ C\R≤0 . Now
+                                                   
+                        i ζ (1 + n)            −π n      g−n (z)
+             ψ−n (z) =                  n−1
+                                    − iz cot          +i         ,
+                       π z ζ (n)                2         ζ (n)
+                                                     π i)n+1
+and since n is odd, cot −2π n = 0 and ζ (n + 1) = − (2
+                                                    2(n+1)! Bn+1 [14, eq. 25.6.2],
+so
+
+                                       
+                          i(2π i)nBn+1  1
+                g−n (z) =                  − i ζ (n) ψ−n (z)
+                            (n + 1)!    z
+                                             
+                          −i(2π i)n n+1 n + 1
+                        =           ∑ m BmBn+1−m zm−1
+                          (n + 1)! m=1
+                                             
+                          −i(2π i)n n    n+1
+                        =           ∑ m + 1 Bm+1 Bn−m zm .
+                          (n + 1)! m=0
+                                                                                 
+
+
+   Clearly, Theorem 1.4 is a particular case of Bettin–Conrey’s [7, Theorem 3].
+However, the proofs are independent, so Theorem 1.4 is stronger (in the partic-
+ular case a = −n, with n > 1 an odd integer), because it completely determines
+g−n and shows that g−n is a polynomial. In particular, it becomes obvious that if
+                                             (m)
+a ∈ Z≤1 is odd and (a, m) 6= (0, 0), then π ga (1) is a rational polynomial in π 2 .
+14                     JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+                       3. G ENERALIZATIONS OF B ETTIN –C ONREY S UMS
+     Now we study generalized Bettin–Conrey sum
+                                                      n                    
+                                                                 (m j ) π k j l
+                                    k0 −1
+          k0 k1 · · · kn                              l
+                                                     k0 ∏
+     ca                       = k0 ∑ ζ
+                                  a       (m0 )
+                                                 −a,         cot                  .
+          m0 m1 · · · mn             l=1                 j=1             k0
+Henceforth, Bn denotes the n-th Bernoulli number with the convention B1 := 0.
+  The following reciprocity theorem generalizes Theorem 1.2.
+
+Theorem 3.1. Let d ≥ 2 and suppose that k1 , . . ., kd is a list of pairwise coprime
+                   n mo0 , m1 , . . ., md are nonnegative integers. If ℜ(a) > 1 and
+positive integers and
+0 < ε < min1≤ j≤d k1j then
+                                                                                              
+     d                                                                            d
+           (−1)m j                                              mj
+     ∑        π                  ∑                               b
+                                                    l0 , . . . , l j , . . . , ld
+                                                                                   ∏(π kt )lt  ka−1 c−a ( j) =
+                                                                                     t=1
+                                                                                                  j
+     j=1               l0 +···+lbj +···+ld =m j
+                                                                              t6= j
+                           l0 ,...,lbj ,...,ld ≥0
+                                                               !                         Z ε −i∞
+      m1 +···+md +d−1                                   d
+                                                                        (−1)m0 a(m0 )           ∏dj=1 cot(m j ) (π k j z)
+−               ∑                        ∑              ∏ al j +           2π i           ε +i∞        za+m0
+                                                                                                                          dz .
+               l0 =0           l1 +···+ld =−l0 −1 j=0
+
+where x(n) = ∏n−1
+              l=0 (x + l) is the rising factorial,
+                                                                                                          !
+                                            kj       k1              ···      kbj    ···     kd
+           c−a ( j) = c−a                                                                                     ,
+                                          m0 + l 0 m1 + l 1                \
+                                                                     · · · m j + l j · · · md + l d
+and for j = 0, 1, . . ., d, we define
+          
+           (−1)m0 +l0 a(m0 +l0 ) ζ (a+m0 +l0 )
+          
+                                                                           if j = 0 and l0 ≥ 0,
+          
+                                l0 !
+          
+           (2i)l j +m j +1 Bl j +m j +1 (π k j )l j +m j (l j +1)(m j )
+                                                                            if j 6= 0 and l j ≥ 0,
+   al j =                         (l j +m j +1)!
+          
+          
+                   m
+            (−1) j m j !
+          
+               πk j                                                        if j 6= 0 and l j = −(m j + 1),
+          
+          
+          0                                                                otherwise.
+   The proof of this theorem is analogous to that of Theorem 1.2. Henceforth,
+              . . . , kd is a list of pairwise coprime positive integers and 0 < ε <
+ℜ(a) > 1,nk1 ,o
+min1≤ j≤d k1j . In addition, m0 , m1 , . . ., md is a list of nonnegative integers,
+                                                                    d
+                                      f (z) = ζ (m0) (a, z) ∏ cot(m j ) (π k j z)
+                                                                   j=1
+
+and, as before, C(M, ε ) denotes the positively oriented rectangle with vertices
+1 + ε + iM, ε + iM, ε − iM and 1 + ε − iM, where M > 0 (see Figure 1).
+                                                          
+Proof of Theorem 3.1. For each j, we know that cot π k j z is analytic on and in-
+                                                                                  k −1
+side C(M, ε ), with the exception of the poles k1j , . . ., jk j . This means that except
+for the aforementioned poles, cot(m j ) (π k j z) is analytic on and inside C(M, ε ), so
+                          RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                                                              15
+
+the analyticity of ζ (m0 ) (a, z) on and inside C(M, ε ) implies that a complete list of
+(possible) poles of f is
+                                                                          
+                               1          k1 − 1        1         kd − 1
+                   E =           , . . .,        , . . . , . . .,        ,1 .
+                              k1            k1          kd          kd
+
+                            q∈ {1, 2, . . ., k j −1}, then the Laurent series of cot(π k j z)
+   Let j ∈ {1, 2, . . .d} and
+about kqj is of the form                      1
+                                             πk j
+                                                         1
+                                                       z− kq
+                                                             + (analytic part), so near kqj ,
+                                                             j
+
+                                                        
+                                    (−1)m j m j !     q −(m j +1)
+         cot   (m j )
+                        (π k j z) =                z−             + (analytic part) .
+                                       πkj            kj
+
+Since (k j , kt ) = 1 for t 6= j, it follows from Taylor’s theorem that for t 6= j the
+expansion
+                                                       ∞                            
+                                                (π kt )lt    (mt +lt ) π kt q       q lt
+                cot     (mt )
+                                (π kt z) = ∑              cot                    z−
+                                           lt =0 lt !                   kj          kj
+
+is valid near kqj . Taylor’s theorem also yields that
+                                                                                     
+                                                                                  q          
+                                                             ∞ ζ (m0 +l0 )     a, k j      q l0
+                           ζ (m0 ) (a, z) = ∑                                           z−
+                                                           l0 =0          l0 !             kj
+
+near kqj . Hence, we may write Resz= q f (z) as
+                                                                   kj
+
+                                                                        
+                                                       ζ (m0 +l0 ) a, kqj d (π k )lt                                        
+    (−1)m j m j !                                                                                                     π kt q
+                                     ∑                                        ∏
+                                                                                        t             (mt +lt )
+                                                                                                    cot                        .
+         πkj              l0 +···+lbj +···+ld =m j
+                                                                   l0 !       t=1     lt !                             kj
+                                                                              t6= j
+                              l0 ,...,lbj ,...,ld ≥0
+
+
+                  k −1
+Therefore ∑q=1
+            j
+               Resz= q f (z) is given by
+                                        kj
+
+                                                                                         
+                                                                             d
+  (−1)m j                                                   mj
+     π                    ∑                                  b
+                                                 l0 , . . ., l j , . . ., ld
+                                                                              ∏(π kt )lt 
+               l0 +···+lbj +···+ld =m j                                         t=1
+                                                                             t6= j
+                   l0 ,...,lbj ,..., ld ≥0
+
+                        k −1                                                      
+                    1 j                         q d                 (mt +lt ) π kt q
+                         ∑ζ                    kj ∏
+                             (m0 +l0 )
+                 ×                        a,                  cot
+                    k j q=1                             t=1                    kj
+                                                        t6= j
+                                                                                    
+                m                                                    d
+           (−1)   j                                mj
+         =
+             π             ∑           l   , . . ., b
+                                                    l   , . . ., l
+                                                                       ∏(π kt )lt  ka−1 c−a ( j) .
+                                                                                       j
+                          b              0            j
+                                l0 +···+l j +···+ld =m j           d       t=1
+                                                                                            t6= j
+                                    l0 ,...,lbj ,...,ld ≥0
+16                    JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+Given that this holds for all j, we conclude that
+(3.1)
+
+        ∑         Res f (z) =
+     z0 ∈E\{1} {z=z0 }
+                                                                                                         
+            d                                                                            d
+                  (−1)m j                                                 mj
+            ∑       π                 ∑                                    b
+                                                              l0 , . . . , l j , . . ., ld
+                                                                                           ∏(π kt )lt  ka−1 c−a ( j) .
+                                                                                                          j
+            j=1             l0 +···+lbj +···+ld =m j                                        t=1
+                                                                                          t6= j
+                                l0 ,...,lbj ,...,ld ≥0
+
+We now compute Resz=1 f (z). For each j ∈ {1, 2, . . ., d}, we know that cot(π k j z)
+has an expansion about 1 of the form
+                                                ∞ (2i)n+1 B
+                                                            n+1 (π k j )
+                                                                         n
+                                        1
+                  cot(π k j z) =              +∑                           (z − 1)n,
+                                 π k j (z − 1) n=0     (n + 1)!
+so the Laurent expansion of cot(m j ) (π k j z) about 1 is given by
+                                                                     l j +m j +1 (π k j )
+                           (−1)m j m j !         ∞ (2i)l j +m j +1 B                      l j +m j (l + 1)(m j )
+                                               ∑
+                                                                                                     j
+cot(m j ) (π k j z) =                       +                                                                    (z − 1)l j
+                         π k j (z − 1) j
+                                      m  +1
+                                              l j =0                     (l j + m j +   1)!
+                            ∞
+                     =    ∑ al j (z − 1)l j ,
+                         l j =−∞
+
+where
+                       l +m +1
+                      
+                       (2i) j j Bl j +m j +1 (π k j )l j +m j (l j +1)(m j )
+                      
+                                     (l +m +1)!                                      if l j ≥ 0,
+                                                  j       j
+                                mj
+             al j =       (−1) m j !
+                                                                                      if l j = −(m j + 1),
+                      
+                            πk j
+                      
+                      0                                                              otherwise.
+Now, Taylor’s theorem implies that the expansion of ζ (m0) (a, z) about 1 is of the
+form
+                                                                     ∞
+                                        ζ (m0 ) (a, z) = ∑ al0 (z − 1)l0 ,
+                                                                   l0 =0
+where
+                          ζ (m0 +l0 ) (a, 1) (−1)m0 +l0 a(m0 +l0 ) ζ (a + m0 + l0 )
+                  al0 =                     =                                       .
+                                 l0 !                        l0 !
+Therefore,
+                                             m1 +···+md +d−1                                      d
+                         Res f (z) =
+                          z=1
+                                                         ∑                      ∑              ∏ al j .
+                                                         l0 =0           l1 +···+ld =−l0 −1 j=0
+
+Since ∂∂z ζ (a, z) = −a ζ (a + 1, z),
+                                                                                                           ∞
+                                                                                                                     1
+ζ (m0 ) (a, z + 1) = (−1)m0 ζ (a + m0, z + 1)a(m0) = (−1)m0 a(m0 ) ∑                                                      a+m0
+                                                                                                          n=0 (n + z + 1)
+                                                                           
+                                                                         1                       (−1)m0 a(m0 )
+                        = (−1) a     m0 (m0 )
+                                                       ζ (a + m0 , z) − a+m   = ζ (m0 )
+                                                                                        (a, z) −               .
+                                                                       z 0                         za+m0
+                         RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                                                      17
+
+This means that
+Z 1+ε +iM                       Z ε −iM                                              Z ε −iM
+                                                                         m0 (m0 )              ∏dj=1 cot(m j ) (π k j z)
+               f (z) dz +                       f (z) dz = (−1) a                                                        dz .
+ 1+ε −iM                          ε +iM                                                  ε +iM        za+m0
+As in the proof of Theorem 1.2, it follows from Lemmas 2.1 and 2.2 that the
+integrals along the horizontal segments of C(M, ε ) vanish, so the Cauchy residue
+theorem implies that
+                                                                     Z ε −i∞
+                                 (−1)m0 a(m0 )                                ∏dj=1 cot(m j ) (π k j z)
+                ∑ z=z0
+                     Res f (z) =
+                                    2π i                                ε +i∞        za+m0
+                                                                                                        dz .
+               z0 ∈E
+
+The result then follows from (3.1) and the computation of Resz=1 f (z).                                                   
+
+    An analogue Theorem 1.3 is valid for generalized Bettin–Conrey sums.
+
+Theorem 3.2. Let d ≥ 2 and suppose that k1 , . . ., kd is a list of pairwise coprime
+positive integers and m0 , m1 , . . . , md are nonnegative integers. If n > 1 is an inte-
+ger and m0 + n + d + ∑dj=1 m j is odd, then
+                                                                          
+ d        m                                                   d
+    (−1)    j                              mj
+∑ π                ∑          l   , . . . , b
+                                            l   , . . . , l
+                                                               ∏(π kt )lt  kn−1 c−n ( j) =
+                                                                              j
+j=1               b             0
+                   l0 +···+l j +···+ld =m j   j             d    t=1
+                                                                                 t6= j
+                       l0 ,...,lbj ,...,ld ≥0
+                                                                   !
+      m1 +···+md +d−1                                     d
+                                                                            (−1)m0 +1 n(m0)                     d
+−               ∑                         ∑              ∏ al j         +
+                                                                                 2                   ∑         ∏   al j
+               l0 =0           l1 +···+ld =−l0 −1 j=0                                       l1 +···+l =n+m0 −1 j=1
+                                                                                                           d
+
+where
+                                                                                                                 !
+                                             kj       k1     ···      kbj    ···     kd
+         c−n ( j) = c−n
+                                                                   \
+                                           m0 + l 0 m1 + l 1 · · · m j + l j · · · md + l d
+and
+               
+                (−1)m0 +l0 n(m0 +l0 ) ζ (n+m0 +l0 )
+               
+                                                                                if j = 0 and l0 ≥ 0,
+               
+                                       l0 !
+               
+                (2i)
+                      l j +m j +1
+                                  B l j +m j +1 (π k j )
+                                                         l j +m j         (m )
+                                                                  (l j +1) j
+                                                                                 if j 6= 0 and l j ≥ 0,
+      al j =                             (l j +m j +1)!
+               
+                (−1)m j m j !
+               
+                   πk j                                                         if j 6= 0 and l j = −(m j + 1),
+               
+               
+               0                                                                otherwise.
+
+Proof. As in the proof of Theorem 1.3, the contour C(M,   e    ε ) is defined as the
+positively oriented rectangle with vertices 1 + iM, iM,   n −iM
+                                                              o and 1 − iM, with
+indentations (to the right) of radius 0 < ε < min1≤ j≤d k j around 0 and 1 (see
+                                                            1
+
+Figure 2). Since this closed contour contains the same poles of f as C(M, ε ),
+we may apply Cauchy’s residue theorem, letting M → ∞, and we only need to
+                    R
+determine limM→∞ e    C(M,ε )
+                              f (z) dz in order to deduce a reciprocity law for the
+generalized Bettin–Conrey sums of the form c−n .
+18                 JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+     Given that m0 + n + d + ∑dj=1 m j is odd, the function
+                                              (−1)m0 n(m0 ) ∏dj=1 cot(m j ) (π k j z)
+                          g(z) =
+                                                                   zn+m0
+is odd:
+        (−1)m0+d+∑ j=1 m j n(m0 ) d                           (−1)d+∑ j=1 m j
+                                  d                                                                 d
+
+g(−z) =
+           (−1)n+m0 zn+m0        ∏    cot (m j )
+                                                 ( π k j z) =
+                                                                (−1)n+m0
+                                                                              g(z) = −g(z) .
+                                  j=1
+
+Let γ (M, ε ) be the indentation around zero along C(M,
+                                                     e    ε ), then
+       Z                          Z εi           Z −iM          Z
+  lim            f (z) dz = lim         g(z) dz +       g(z) dz +                                                  g(z) dz
+         e ε)
+     M→∞ C(M,                             M→∞           iM                 −ε i                         γ (M,ε )
+                                          Z
+                                  =                    g(z) dz .
+                                            γ (M,ε )
+Given that g is odd, the Cauchy residue theorem implies that
+                                      Z
+                                                     g(z) dz = −π i Res g(z)
+                                          γ (M,ε )                         z=0
+
+and it follows that
+                                                                       1
+                                      ∑ Res
+                                        z=z0
+                                             f (z) = − Res g(z) .
+                                                      2 z=0
+                                      z0 ∈E
+For each j ∈ {1, 2, . . ., d} we have an expansion of the form
+                                                                       ∞
+                                          cot(m j ) (π k j z) =      ∑ al j z l j ,
+                                                                   l j =−∞
+
+where
+                    l +m +1                       l +m         (m )
+                   
+                    (2i) j j Bl j +m j +1 (π k j ) j j (l j +1) j
+                   
+                                  (l j +m j +1)!                                     if l j ≥ 0,
+                             mj
+          al j =      (−1) m j !
+                                                                                      if l j = −(m j + 1),
+                   
+                        πk j
+                   
+                   0                                                                 otherwise.
+Thus Resz=0 g(z) is given by
+                                                                                   d
+                              (−1)m0 n(m0 )                        ∑              ∏ al j .
+                                                        l1 +···+ld =n+m0 −1 j=1
+
+Therefore,
+                                               (−1)m0 +1 n(m0 )                     d
+              ∑ Res f (z) =
+                      z=z0                          2                    ∑         ∏ al j ,
+              z0 ∈E                                             l1 +···+l =n+m0 −1 j=1
+                                                                                  d
+
+which concludes our proof.                                                                                                   
+
+     From Theorems 3.1 and 3.2, we deduce a computation of the integral
+                                      Z ε −i∞
+                                                 ∏dj=1 cot(m j ) (π k j z)
+                                                                           dz
+                                           ε +i∞        zn+m0
+                     RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                                       19
+
+in terms of the sequences B(m j )l j , whenever n ∈ Z>1 and m0 + n + d + ∑dj=1 m j
+is odd, which generalizes Corollary 2.3:
+
+Corollary 3.3. Let d ≥ 2 and suppose that k1 , . . . , kd is a list of pairwise co-
+prime positive integers and m0 , m1 , . . . , md are nonnegative integers. If n >
+                                                                                n1 o
+                                                                                   is
+an integer and m0 + n + d + ∑dj=1 m j is odd, then for all 0 < ε < min1≤ j≤d k1j ,
+              Z ε −i∞
+                      ∏dj=1 cot(m j ) (π k j z)                             d
+
+                ε +i∞        zn+m0
+                                                dz = −π i         ∑        ∏ al j ,
+                                                          l +···+l =n+m −1 j=1
+                                                                  1       d      0
+
+where the sequences {al j } are as in Theorem 3.2, for j = 1, 2, . . ., d.
+
+    The consideration of the case m0 = m1 = · · · = mn = 0 leads to the definition
+of higher-dimensional Bettin–Conrey sums,
+                                                     k0 −1                     
+                                 k0 k1 · · · kn                m n           π kl m
+ca (k0 ; k1 , . . ., kn ) = ca
+                                 0 0 ··· 0
+                                                  = k0 ∑ ζ −a,
+                                                     a
+                                                                    ∏ cot k0 ,
+                                                               k0 l=1
+                                                       m=1
+
+for a 6= −1 complex and k0 , k1 , . . . , kn a list of positive numbers such that (k0 , k j ) =
+1 for each j 6= 0.
+    Of course, higher-dimensional Bettin–Conrey     o       sums satisfy Theorems 3.1 and
+3.2. In particular, if 0 < ε < min1≤l≤d kl , ℜ(a) > 1 and k1 , . . . , kd is a list of
+                                                  1
+
+pairwise coprime positive integers, then
+         d
+        ∑ ka−1                      b
+           j c−a (k j ; k1 , . . ., k j , . . . , kd ) =
+        j=1
+                                                                      Z ε −i∞
+                    d−1
+                                                            1                ∏dj=1 cot(π k j z)
+              −π ∑            ∑         al0 al1 · · · ald +                                     dz ,
+                l0 =0 l1 +···+l =−l0 −1                     2i         ε +i∞        za
+                                   d
+
+where                          
+                                (−1)l0 a(l0 ) ζ (a+l0 )
+                               
+                                                            if j = 0 and l0 ≥ 0,
+                               
+                                         l0 !
+                                    l +1               l
+                                (2i) j Bl j +1 (π k j ) j
+                                                             if j 6= 0 and l j ≥ 0,
+                      al j =              (l j +1)!
+                               
+                                 1
+                                                             if j 6= 0 and l j = −1,
+                               
+                                πk j
+                               
+                               
+                               0                            otherwise.
+
+          4. D ERIVATIVE C OTANGENT S UMS AND C RITICAL VALUES OF
+                               E STERMANN Z ETA
+  As usual, for a, x ∈ C, let σa (n) = ∑d|n d a and e(x) = e2π ix . For a given rational
+number x, the Estermann zeta function is defined through the Dirichlet series
+
+(4.1)                          E(s, x, a) = ∑ σa (n) e(nx) n−s,
+                                                  n≥1
+20             JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+initially defined for ℜ(s) > max (1, ℜ(a) + 1) and analytically continued to the
+whole s-plane with possible poles at s = 1, a + 1. For x = qp with (p, q) = 1 and
+q > 1,
+                         E(s, x, a) − q1+a−2s ζ (s − a)ζ (s)
+is an entire function of s. By use of the Hurwitz zeta function we observe that
+                                  q                       
+(4.2)       E(s, x, a) = q  a−2s
+                                 ∑    e(mnx) ζ  s − a, q ζ s, q .
+                                                       m       n
+                                  m,n=1
+
+We consider the sums
+                           q−1                            
+(4.3)      C(a, s, x) = qa ∑ e(mx) Φ(−s, 1, e(mx)) ζ −a, mq ,
+                            m=1
+                              nλ
+where Φ(s, z, λ ) = ∑n≥0 (z+n)    s is Lerch’s transcendent function, defined for z 6=
+
+0, −1, −2, . . ., |λ | < 1; ℜ(s) > 1, |λ | = 1, and analytically continued in λ .
+
+   The purpose of this section is to establish relationships between C(a, s, x) and
+values of the Estermann zeta function at integers s. We start with some prelimi-
+nary results.
+
+Lemma 4.1. Let k be a nonnegative integer. Then
+
+(4.4)           λ Φ(s, z + 1, λ ) = Φ(s, z, λ ) − z−s
+                                     Bk+1 (z; λ )
+(4.5)              Φ(−k, z, λ ) = −
+                                    ( k+1
+                                      1
+                                        cot(π x) − 21      if k = 1,
+(4.6)               Bk (0; e(x)) = 2ik
+                                     (2i)k
+                                           cot (k−1) (π x) if k > 1.
+
+Proof. Equation (4.4) follows from the special case m = 1 in [14, (25.14.4)].
+Equation (4.5) can be found in [4, p.164]. Equation (4.6) follows from [1, Lemma
+2.1] and [6, Theorem 4].                                                       
+
+    Lemma 4.1 implies that for a positive integer s = k, the sum C(a, k, x) defined
+in (4.3) is, up to a constant factor, the kth -derivative cotangent sum
+
+                                 1       q−1                          
+             C(a, k, x) = −          q a
+                              (2i)k+1 m=1∑   cot (k)
+                                                     ( π mx) ζ   −a, m
+                                                                     q .
+
+
+Lemma 4.2. Let p, q be coprime positive integers and x = qp . For any n ∈ Z and
+z ∈ C with ℜ(z) > 0,
+              q−1                 
+                                 m
+(4.7)         ∑ e(mnx) ζ s, z + q = qs Φ(s, qz, e(nx)) .
+              m=0
+                RECIPROCITY THEOREMS FOR BETTIN–CONREY SUMS                      21
+
+Proof. Writing m = kq + j with j = 0, . . . , q − 1, we have
+                                 ∞               q−1          ∞
+                                     e(nmx)                           1
+      qs Φ(s, qz, e(nx)) = qs ∑              s
+                                               = ∑   e(n jx) ∑            j s.   
+                                m=0 (m + qz)     j=0         k=0 (k + z +  )
+                                                                         q
+
+Proposition 4.3. Let p, q be coprime positive integers and x = qp . Then
+                          q−1       
+ E(−s, x, a − s) = q ∑ e(mx) ζ −a, q Φ(−s, 1, e(mx)) + qaζ (−s) ζ (−a)
+                      a            m
+                          m=1
+                          q−1        
+ E(−s, x, a − s) = q ∑s
+                       e(nx) ζ  −s, q Φ(−a, 1, e(nx)) + q ζ (−a) ζ (−s) .
+                                    n                    s
+                          n=1
+
+Theorem 4.4. Let a, k be nonnegative integers. Then
+          E (−k, x, a − k) = C(a, k, x) + qaζ (−k) ζ (−a)        if k ≥ 1,
+          E (−k, x, a − k) = C(k, a, x) + qk ζ (−k) ζ (−a)       if a ≥ 1,
+and
+                 E (0, x, a) = C(a, 0, x) − 21 ζ (−a)
+                 E (0, x, a) = C(0, a, x) − 12 ζ (−a) with a ≥ 1.
+
+Corollary 4.5. Let a, k be nonnegative integers. For any rational number x 6= 0,
+                              (
+                               0                          if k = 0 or a = 0,
+    C(a, k, x) −C(k, a, x) =             
+                                q − q ζ (−k) ζ (−a) otherwise.
+                                 a     k
+
+
+Acknowledgements. We thank Sandro Bettin and an anonymous referee for
+valuable comments. Abdelmejid Bayad was partially supported by the FDIR of
+the Université d’Evry Val d’Essonne; Matthias Beck was partially supported by
+the US National Science Foundation (DMS-1162638).
+
+                                     R EFERENCES
+[1] Victor S. Adamchik, On the Hurwitz function for rational arguments, Ap-
+    plied Math. Comp. 187 (2007), 3–12.
+[2] Tom M. Apostol, Generalized Dedekind sums and transformation formulae
+    of certain Lambert series, Duke Math. J. 17 (1950), 147–157.
+[3]         , Theorems on generalized Dedekind sums, Pacific J. Math. 2 (1952),
+    1– 9.
+[4]         , On the Lerch zeta function, Pacific J. Math. 1 (1951), no. 2, 161–
+    167.
+[5] Luis Báez-Duarte, Michel Balazard, Bernard Landreau, and Eric Saias,
+    Étude de l’autocorrélation multiplicative de la fonction ‘partie fraction-
+    naire’, Ramanujan J. 9 (2005), no. 1-2, 215– 240.
+22              JUAN S. AULI, ABDELMEJID BAYAD, AND MATTHIAS BECK
+
+ [6] Abdelmejid Bayad and Jamel Chikhi, Möbius inversion formulae for
+     Apostol–Bernoulli type polynomials and numbers, Math. Comp. 82 (2013),
+     no. 284, 2327–2332.
+ [7] Sandro Bettin and J. Brian Conrey, Period functions and cotangent sums,
+     Algebra Number Theory 7 (2013), no. 1, 215– 242.
+ [8]          , A reciprocity formula for a cotangent sum, Int. Math. Res. Not.
+     IMRN (2013), no. 24, 5709–5726.
+ [9] Matthias Beck, Dedekind cotangent sums, Acta Arith. 109 (2003), no. 2,
+     109–130.
+[10] Richard Dedekind, Erläuterungen zu den Fragmenten XXVIII, Collected
+     Works of Bernhard Riemann, Dover Publ., New York, 1953, pp. 466– 478.
+[11] Hans Rademacher and Emil Grosswald, Dedekind Sums, The Mathematical
+     Association of America, Washington, D.C., 1972.
+[12] Serge Lang, Complex Analysis, fourth ed., Graduate Texts in Mathematics,
+     vol. 103, Springer-Verlag, New York, 1999.
+[13] Michael J. Lighthill, An Introduction to Fourier Analysis and Generalised
+     Functions, Cambridge University Press, 1958.
+[14] Frank W. J. Olver, Daniel W. Lozier, Ronald F. Boisvert, and Charles W.
+     Clark (eds.), NIST Handbook of Mathematical Functions, U.S. Department
+     of Commerce, National Institute of Standards and Technology, Washington,
+     DC; Cambridge University Press, Cambridge, 2010.
+[15] Walter Rudin, Real and Complex Analysis, third ed., McGraw-Hill Book
+     Co., New York, 1987.
+[16] Vasily I. Vasyunin, On a biorthogonal system associated with the Riemann
+     hypothesis, Algebra i Analiz 7 (1995), no. 3, 118–135.
+[17] Don Zagier, Higher dimensional Dedekind sums, Math. Ann. 202 (1973),
+     149–172.
+[18]           , Quantum modular forms, Quanta of maths, Clay Math. Proc.,
+     vol. 11, Amer. Math. Soc., Providence, RI, 2010, pp. 659– 675.
+     D EPARTMENT OF M ATHEMATICS , DARTMOUTH C OLLEGE , H ANOVER , NH 03755, U.S.A.
+     E-mail address: juan.s.auli.gr@dartmouth.edu
+
+   A BDELMEJID BAYAD , U NIVERSIT É D ’ É VRY VAL D ’E SSONNE , L ABORATOIRE DE M ATH ÉMATIQUES
+ET M OD ÉLISATION D ’ É VRY (CNRS-UMR 8071), I.B.G.B.I., 23 B D . DE F RANCE , 91037
+É VRY C EDEX , F RANCE
+     E-mail address: abayad@maths.univ-evry.fr
+
+   D EPARTMENT OF M ATHEMATICS , S AN F RANCISCO S TATE U NIVERSITY, S AN F RAN -
+CISCO , CA 94132, U.S.A.
+     E-mail address: mattbeck@sfsu.edu
+

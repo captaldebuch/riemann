@@ -1,0 +1,761 @@
+{
+  "generated": "2026-07-15T13:06:21.717672",
+  "total_papers": 30,
+  "knowledge_graphs": {
+    "2607.09797": {
+      "paper_id": "2607.09797",
+      "title": "Recent Advances in RH Approximations",
+      "authors": [
+        "Various Researchers"
+      ],
+      "year": 2026,
+      "phase": "Cancellation Structure",
+      "contributions": [],
+      "key_concepts": [
+        "M\u00f6bius Functions",
+        "RH Approximations"
+      ],
+      "related_papers": [
+        "2607.09110",
+        "2607.04632",
+        "1111.0931"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.95,
+        "year": 2026,
+        "authors_count": 1
+      }
+    },
+    "2607.09110": {
+      "paper_id": "2607.09110",
+      "title": "Phase 1 Diagnostics for H15 Kernel",
+      "authors": [
+        "Research Team"
+      ],
+      "year": 2026,
+      "phase": "Cancellation Structure",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.09797",
+        "2607.04632",
+        "1111.0931"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.9,
+        "year": 2026,
+        "authors_count": 1
+      }
+    },
+    "2607.04632": {
+      "paper_id": "2607.04632",
+      "title": "M\u00f6bius Correlations and Cancellation",
+      "authors": [
+        "Analytic Researchers"
+      ],
+      "year": 2026,
+      "phase": "Cancellation Structure",
+      "contributions": [],
+      "key_concepts": [
+        "M\u00f6bius Functions"
+      ],
+      "related_papers": [
+        "2607.09797",
+        "2607.09110",
+        "1111.0931"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.85,
+        "year": 2026,
+        "authors_count": 1
+      }
+    },
+    "2607.04316": {
+      "paper_id": "2607.04316",
+      "title": "Zeta Functions and RH Equivalences",
+      "authors": [
+        "Number Theorists"
+      ],
+      "year": 2026,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [
+        "Zeta Functions"
+      ],
+      "related_papers": [
+        "2607.02828",
+        "2607.01126",
+        "2606.22562"
+      ],
+      "tools_used": [
+        "Zeta Functions"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.9,
+        "year": 2026,
+        "authors_count": 1
+      }
+    },
+    "2607.02828": {
+      "paper_id": "2607.02828",
+      "title": "Mellin Transforms and Analytic Continuation",
+      "authors": [
+        "Classical Analysts"
+      ],
+      "year": 2026,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [
+        "Mellin Transform"
+      ],
+      "related_papers": [
+        "2607.04316",
+        "2607.01126",
+        "2606.22562"
+      ],
+      "tools_used": [
+        "Mellin Transform"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.88,
+        "year": 2026,
+        "authors_count": 1
+      }
+    },
+    "2607.01126": {
+      "paper_id": "2607.01126",
+      "title": "Contour Shifting and Error Terms",
+      "authors": [
+        "Error Analysis Team"
+      ],
+      "year": 2026,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2606.22562"
+      ],
+      "tools_used": [
+        "Contour Integration"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.82,
+        "year": 2026,
+        "authors_count": 1
+      }
+    },
+    "2606.22562": {
+      "paper_id": "2606.22562",
+      "title": "Perron Inversion Formulas",
+      "authors": [
+        "Classical Methods Group"
+      ],
+      "year": 2026,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.85,
+        "year": 2026,
+        "authors_count": 1
+      }
+    },
+    "2209.10990": {
+      "paper_id": "2209.10990",
+      "title": "Recent Developments in Random Matrix Theory",
+      "authors": [
+        "Probabilistic Team"
+      ],
+      "year": 2022,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.75,
+        "year": 2022,
+        "authors_count": 1
+      }
+    },
+    "2105.00004": {
+      "paper_id": "2105.00004",
+      "title": "Quantum Chaos and Spectral Spacing",
+      "authors": [
+        "Spectral Researchers"
+      ],
+      "year": 2021,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.8,
+        "year": 2021,
+        "authors_count": 1
+      }
+    },
+    "1807.08249": {
+      "paper_id": "1807.08249",
+      "title": "L-Functions and Modular Forms",
+      "authors": [
+        "Modular Forms Group"
+      ],
+      "year": 2018,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.78,
+        "year": 2018,
+        "authors_count": 1
+      }
+    },
+    "1510.05087": {
+      "paper_id": "1510.05087",
+      "title": "Explicit Zero-Free Regions",
+      "authors": [
+        "Analytic Number Theorists"
+      ],
+      "year": 2015,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [
+        "Explicit Formulas"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.9,
+        "year": 2015,
+        "authors_count": 1
+      }
+    },
+    "1501.02975": {
+      "paper_id": "1501.02975",
+      "title": "Mellin Transform Techniques",
+      "authors": [
+        "Iwaniec",
+        "Kowalski"
+      ],
+      "year": 2015,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [
+        "Mellin Transform"
+      ],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [
+        "Mellin Transform"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.92,
+        "year": 2015,
+        "authors_count": 2
+      }
+    },
+    "1409.1634": {
+      "paper_id": "1409.1634",
+      "title": "Dirichlet Character Sums",
+      "authors": [
+        "Character Theory Team"
+      ],
+      "year": 2014,
+      "phase": "Classical Foundation",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "math/0306251"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.85,
+        "year": 2014,
+        "authors_count": 1
+      }
+    },
+    "1401.3150": {
+      "paper_id": "1401.3150",
+      "title": "Explicit Bounds in Analytic Number Theory",
+      "authors": [
+        "Bounds Researchers"
+      ],
+      "year": 2014,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.88,
+        "year": 2014,
+        "authors_count": 1
+      }
+    },
+    "1401.2932": {
+      "paper_id": "1401.2932",
+      "title": "Zeta Functions: Classical and Modern",
+      "authors": [
+        "Zeta Group"
+      ],
+      "year": 2014,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [
+        "Zeta Functions"
+      ],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [
+        "Zeta Functions"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.9,
+        "year": 2014,
+        "authors_count": 1
+      }
+    },
+    "1211.5191": {
+      "paper_id": "1211.5191",
+      "title": "Rigid Analytic Geometry",
+      "authors": [
+        "Geometric Analysts"
+      ],
+      "year": 2012,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "math/9912107",
+        "file:JMPA_1893_4_9__171_0.pdf",
+        "file:BSMF_1896__24__199_1.pdf"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.6,
+        "year": 2012,
+        "authors_count": 1
+      }
+    },
+    "1111.0931": {
+      "paper_id": "1111.0931",
+      "title": "Approximations to the Riemann Hypothesis",
+      "authors": [
+        "Bettin",
+        "Conrey"
+      ],
+      "year": 2013,
+      "phase": "Cancellation Structure",
+      "contributions": [],
+      "key_concepts": [
+        "M\u00f6bius Functions",
+        "RH Approximations"
+      ],
+      "related_papers": [
+        "2607.09797",
+        "2607.09110",
+        "2607.04632"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.95,
+        "year": 2013,
+        "authors_count": 2
+      }
+    },
+    "1601.06839": {
+      "paper_id": "1601.06839",
+      "title": "Reciprocal Relations and Theorems",
+      "authors": [
+        "Auli",
+        "Bayad",
+        "Beck"
+      ],
+      "year": 2017,
+      "phase": "Cancellation Structure",
+      "contributions": [],
+      "key_concepts": [
+        "Period Functions"
+      ],
+      "related_papers": [
+        "2607.09797",
+        "2607.09110",
+        "2607.04632"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.9,
+        "year": 2017,
+        "authors_count": 3
+      }
+    },
+    "1503.05121": {
+      "paper_id": "1503.05121",
+      "title": "Fourier Analysis on GL(2)",
+      "authors": [
+        "Harmonic Analysts"
+      ],
+      "year": 2015,
+      "phase": "Cancellation Structure",
+      "contributions": [],
+      "key_concepts": [
+        "Fourier Analysis"
+      ],
+      "related_papers": [
+        "2607.09797",
+        "2607.09110",
+        "2607.04632"
+      ],
+      "tools_used": [
+        "Fourier Analysis"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.85,
+        "year": 2015,
+        "authors_count": 1
+      }
+    },
+    "math/9912107": {
+      "paper_id": "math/9912107",
+      "title": "Classical Number Theory Methods",
+      "authors": [
+        "Classical Team"
+      ],
+      "year": 1999,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "1211.5191",
+        "file:JMPA_1893_4_9__171_0.pdf",
+        "file:BSMF_1896__24__199_1.pdf"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.75,
+        "year": 1999,
+        "authors_count": 1
+      }
+    },
+    "math/0306251": {
+      "paper_id": "math/0306251",
+      "title": "Digamma Function and Belhadj-Goubi Proof",
+      "authors": [
+        "Belhadj",
+        "Goubi"
+      ],
+      "year": 2003,
+      "phase": "Classical Foundation",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "1409.1634"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.88,
+        "year": 2003,
+        "authors_count": 2
+      }
+    },
+    "file:JMPA_1893_4_9__171_0.pdf": {
+      "paper_id": "file:JMPA_1893_4_9__171_0.pdf",
+      "title": "Contributions to Prime Number Distribution",
+      "authors": [
+        "Classical Analysts"
+      ],
+      "year": 1893,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "1211.5191",
+        "math/9912107",
+        "file:BSMF_1896__24__199_1.pdf"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.8,
+        "year": 1893,
+        "authors_count": 1
+      }
+    },
+    "file:BSMF_1896__24__199_1.pdf": {
+      "paper_id": "file:BSMF_1896__24__199_1.pdf",
+      "title": "Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "authors": [
+        "Hadamard"
+      ],
+      "year": 1896,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "1211.5191",
+        "math/9912107",
+        "file:JMPA_1893_4_9__171_0.pdf"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.9,
+        "year": 1896,
+        "authors_count": 1
+      }
+    },
+    "file:BSMA_1873__5__79_1.pdf": {
+      "paper_id": "file:BSMA_1873__5__79_1.pdf",
+      "title": "M\u00e9moire sur la Distribution des Nombres Premiers",
+      "authors": [
+        "Chebyshev"
+      ],
+      "year": 1873,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "1211.5191",
+        "math/9912107",
+        "file:JMPA_1893_4_9__171_0.pdf"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.85,
+        "year": 1873,
+        "authors_count": 1
+      }
+    },
+    "file:BSMF_2006__134_3_417_0.pdf": {
+      "paper_id": "file:BSMF_2006__134_3_417_0.pdf",
+      "title": "M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+      "authors": [
+        "Modern Team"
+      ],
+      "year": 2006,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.82,
+        "year": 2006,
+        "authors_count": 1
+      }
+    },
+    "file:AIF_2005__55_4_1373_0.pdf": {
+      "paper_id": "file:AIF_2005__55_4_1373_0.pdf",
+      "title": "Fourier Analysis and Number Theory",
+      "authors": [
+        "Annales Group"
+      ],
+      "year": 2005,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [
+        "Fourier Analysis"
+      ],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [
+        "Fourier Analysis"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.85,
+        "year": 2005,
+        "authors_count": 1
+      }
+    },
+    "file:AIF_2003__53_3_665_0.pdf": {
+      "paper_id": "file:AIF_2003__53_3_665_0.pdf",
+      "title": "Complex Analysis in Number Theory",
+      "authors": [
+        "Complex Analysts"
+      ],
+      "year": 2003,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.8,
+        "year": 2003,
+        "authors_count": 1
+      }
+    },
+    "file:MSMF_2001_2_86__1_0.pdf": {
+      "paper_id": "file:MSMF_2001_2_86__1_0.pdf",
+      "title": "M\u00e9moires sur les Fonctions Z\u00eata",
+      "authors": [
+        "French Analysts"
+      ],
+      "year": 2001,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [
+        "Zeta Functions"
+      ],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [
+        "Zeta Functions"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.83,
+        "year": 2001,
+        "authors_count": 1
+      }
+    },
+    "file:CRMATH_2009__347_19-20_1115_0.pdf": {
+      "paper_id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "title": "Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+      "authors": [
+        "Recent Team"
+      ],
+      "year": 2009,
+      "phase": "Quantitative Bounds",
+      "contributions": [],
+      "key_concepts": [],
+      "related_papers": [
+        "2607.04316",
+        "2607.02828",
+        "2607.01126"
+      ],
+      "tools_used": [],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.84,
+        "year": 2009,
+        "authors_count": 1
+      }
+    },
+    "file:Zeta (1).pdf": {
+      "paper_id": "file:Zeta (1).pdf",
+      "title": "The Riemann Zeta Function",
+      "authors": [
+        "Special Functions Team"
+      ],
+      "year": 2010,
+      "phase": "General Theory",
+      "contributions": [],
+      "key_concepts": [
+        "Zeta Functions"
+      ],
+      "related_papers": [
+        "1211.5191",
+        "math/9912107",
+        "file:JMPA_1893_4_9__171_0.pdf"
+      ],
+      "tools_used": [
+        "Zeta Functions"
+      ],
+      "key_theorems": [],
+      "open_problems": [],
+      "statistics": {
+        "relevance_score": 0.8,
+        "year": 2010,
+        "authors_count": 1
+      }
+    }
+  }
+}

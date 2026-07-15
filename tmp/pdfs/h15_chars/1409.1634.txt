@@ -1,0 +1,1925 @@
+                                              DECOUPLINGS FOR CURVES AND HYPERSURFACES WITH
+                                                       NONZERO GAUSSIAN CURVATURE
+
+                                                                    JEAN BOURGAIN AND CIPRIAN DEMETER
+
+
+
+
+arXiv:1409.1634v2 [math.CA] 3 Sep 2015
+                                                 Abstract. We prove two types of results. First we develop the decoupling theory for
+                                                 hypersurfaces with nonzero Gaussian curvature, which extends our earlier work from [3].
+                                                 As a consequence of this we obtain sharp (up to ǫ losses) Strichartz estimates for the
+                                                 hyperbolic Schrödinger equation on the torus.
+                                                    Our second main result is an l2 decoupling for non degenerate curves which has im-
+                                                 plications for Vinogradov’s mean value theorem.
+
+
+
+
+                                                                           1. Statements of results
+                                            Let S be a compact C 2 hypersurface in Rn with nonzero Gaussian curvature. The typ-
+                                         ical example to have in mind is the truncated paraboloid defined for υ = (υ1 , . . . , υn−1 ) ∈
+                                         (R \ {0})n−1 as
+                                                         Hυn−1 := {(ξ1 , . . . , ξn−1 , υ1ξ12 + . . . + υn−1 ξn−1
+                                                                                                              2
+                                                                                                                  ) : |ξi | ≤ 1/2}.
+                                         Hυn−1 is called elliptic when all υi have the same sign and hyperbolic otherwise.
+                                            Let Nδ = Nδ (S) be the δ neighborhood of S and let Pδ be a finitely overlapping cover
+                                         of Nδ with ∼ δ 1/2 × . . . δ 1/2 × δ rectangular boxes θ. We will denote by fθ the Fourier
+                                         restriction of f to θ.
+                                            We will write A ∼ B if A . B and B . A. The implicit constants hidden inside the
+                                         symbols . and ∼ will in general depend on fixed parameters such as p, n, α and sometimes
+                                         on variable parameters such as ǫ. We will in general not record the dependence on the
+                                         fixed parameters.
+                                            Our first result is the following lp decoupling theorem1.
+                                         Theorem 1.1. Let n ≥ 2. If supp(fˆ) ⊂ Nδ then for p ≥ 2(n+1)n−1
+                                                                                                         and ǫ > 0
+                                                                             n n−1      X
+                                                                  kf kp .ǫ δ p − 2 −ǫ (   kfθ kpp )1/p .                                   (1)
+                                                                                                 θ∈Pδ
+
+                                           This is a close cousin of the following l2 decoupling proved in [3] in the case when S
+                                         has definite second fundamental form
+                                                                        n−1  n+1     X                      2(n + 1)
+                                                            kf kp .ǫ δ − 4 + 2p −ǫ (     kfθ k2p )1/2 , p ≥          .         (2)
+                                                                                     θ∈P
+                                                                                                             n−1
+                                                                                             δ
+
+
+                                           Key words and phrases. decouplings, mean value theorems, Strichartz estimates.
+                                           The first author is partially supported by the NSF grant DMS-1301619. The second author is partially
+                                         supported by the NSF Grant DMS-1161752.
+                                           1Perhaps a more appropriate nomenclature for the l p and l 2 decouplings we consider in this paper
+                                         would be lp (Lp ) and l2 (Lp ) decouplings. For simplicity of notation, we prefer the former notation.
+                                                                                             1
+2                                      JEAN BOURGAIN AND CIPRIAN DEMETER
+
+We point out that (1) is slightly weaker than (2) as it follows from (2) via Hölder’s
+inequality. In particular, Theorem 1.1 for n = 2 is contained in [3]. We mention that
+sharp lp decouplings were first considered by Wolff in the case of the cone, see [10].
+   As briefly explained in [3], (2) is false for the hyperbolic paraboloid due to the fact that
+it contains lines. On the other hand, apart from the dependence on ǫ, inequality (1) is
+sharp, as is (2). This can be easily seen by considering the case of the sphere S = S n−1
+and f with fb = 1Nδ . The main new difficulty in proving (1) as compared to (2) is the fact
+that intersections of hyperbolic paraboloids with hyperplanes do not always have nonzero
+Gaussian curvature. It will however be crucial to our argument that at most one of the
+principal curvatures of these sections can be small. An application of Theorem 1.1 to
+curves is discussed in Section 6.
+
+   A modification of our proof of Theorem 1.1 leads to the following related l2 decoupling
+result for Hυn−1. Let us denote by d(υ) the minimum between the number of positive and
+negative entries of υ.
+Theorem 1.2. Let n ≥ 2. If supp(fˆ) ⊂ Nδ (Hυn−1 ) then for p ≥ 2 and ǫ > 0 we have
+                                                 X
+                       kf kp .ǫ δ −ǫ Kn,p,υ
+                                      (2)
+                                            (δ)(   kfθ k2p )1/2 ,                  (3)
+                                                                  θ∈Pδ
+
+           (2)                   n−1    n+1                                      (2)                   1   1
+where Kn,p,υ (δ) = δ − 4 + 2p when p ≥ 2(n+1−d(υ))
+                                        n−1−d(υ)
+                                                   and Kn,p,υ (δ) = δ d(υ)(− 4 + 2p ) when
+2 ≤ p ≤ 2(n+1−d(υ))
+         n−1−d(υ)
+                    .
+
+
+   Note that Theorems 1.1 and 1.2 are independent, neither of them implies the other one.
+Of course, (3) generalizes (2) (which corresponds to d(υ) = 0), and leads to Strichartz
+estimates for the hyperbolic Schrödinger equation. More precisely, fix υ1 , . . . , υn−1 ∈
+R \ {0}. For φ ∈ L2 (Tn−1 ) consider the ”generalized Laplacian” operator
+                                                T φ(x1 , . . . , xn−1 ) =
+                 X
+                                                 2
+                               (ξ12υ1 + . . . + ξn−1 υn−1 )φ̂(ξ1 , . . . , ξn−1)e(ξ1 x1 + . . . + ξn−1 xn−1 )
+       (ξ1 ,... ,ξn−1 )∈Zn−1
+                                  Qn−1
+on the irrational torus                i=1 R/(|υi |Z). Let also
+
+                                              eitT φ(x1 , . . . , xn−1 , t) =
+            X
+                            φ̂(ξ1 , . . . , ξn−1)e(x1 ξ1 + . . . + xn−1 ξn−1 + t(ξ12 υ1 + . . . + ξn−1
+                                                                                                   2
+                                                                                                       υn−1 )).
+    (ξ1 ,... ,ξn−1 )∈Zn−1
+
+Following the approach described in [3], Theorem 1.2 implies the next corollary.
+Corollary 1.3 (Strichartz estimates for irrational tori: the hyperbolic case). Let φ ∈
+L2 (Tn−1 ) with supp(φ̂) ⊂ [−N, N]n−1 . Then for each ǫ > 0, p ≥ 2 and each interval
+I ⊂ R with |I| & 1 we have
+                                keitT φkLp (Tn−1 ×I) .ǫ N ǫ Kn,p,υ
+                                                             (2)
+                                                                   (N −2 )|I|1/p kφk2 ,                           (4)
+          (2)
+where Kn,p,υ is as in Theorem 1.2 and the implicit constant does not depend on I and N.
+                     DECOUPLINGS FOR HYPERSURFACES AND CURVES                                3
+
+   Estimates of this type have been considered recently, see for example [7] and [9]. It
+is interesting to note that in the non elliptic case (d(υ) ≥ 1), the exponent of N in
+   (2)
+Kn,p,υ (N −2 ) is always nonzero, in contrast with the continuous case (when Tn is replaced
+with Rn ) and the elliptic case (on either Tn or Rn ). This exponent is sharp in the case
+when |υi | = 1 for all i. To see this, use φ Fourier supported on the lattice points of a
+vector subspace of dimension d(υ) of Hυn−1. This example does not exist in the case when
+υ has rationally independent entries. Our method here does not seem to shed any light
+                                                             (2)
+on the issue of whether one can improve the constant Kn,p,υ (N −2 ) in (4) in the irrational
+case.
+   It is possible that the term N ǫ is not necessary in (4) when p > 2(n+1−d(υ))
+                                                                      n−1−d(υ)
+                                                                                 . As observed
+in [3], this is indeed the case for the elliptic Schrödinger equation on the rational torus.
+See also [7] and [9] where similar sharp results are proved in the range 2 ≤ p ≤ 4, when
+n = 3.
+   The proof of Theorem 1.2 will be sketched in Section 3.
+
+  In the second part of the paper we consider curves Φ : [0, 1] → Rn ,
+                                 Φ(t) = (φ1 (t), . . . , φn (t))
+with φi ∈ C n ([0, 1]) and such that the Wronskian
+                                      W (φ′1 , . . . , φ′n )(t)
+is nonzero on [0, 1]. These are usually referred to in literature as nondegenerate curves.
+   Abusing earlier notation, let Nδ be the δ neighborhood of Φ([0, 1]) and let Pδ be the
+partition of Nδ with δ neighborhoods θ of Φ(I), with I dyadic interval of length δ 1/n . We
+will as before denote by fθ the Fourier restriction of f to θ. One important aspect to note
+at this point is the fact that θ is a curved tube, not a straight one. To make θ a straight
+tube, one needs to consider intervals I of length δ 1/2 .
+Theorem 1.4. For each such curve Φ and each f : Rn → C with Fourier support in Nδ
+we have                                        X                  1
+                        kf kLp (Rn ) .ǫ δ −ǫ (   kfθ k2Lp (Rn ) ) 2 ,
+                                                  θ∈Pδ
+for each ǫ > 0 and 2 ≤ p ≤ 4n − 2.
+  By using a limiting procedure (see for example the discussion in [3] and (37) below)
+one can replace f with a sum of Dirac deltas and derive the following corollary.
+Corollary 1.5. Fix Φ as above and let p ≤ 4n − 2. Then for each δ-separated set Λ of
+points on the curve Φ and each coefficients aξ ∈ C we have
+                           Z    X
+                        1
+                    (         |    aξ e(ξ · x)|p dx)1/p .ǫ δ −ǫ kaξ kl2 (Λ) ,    (5)
+                      |BR | BR ξ∈Λ
+
+for each ǫ and each ball BR ⊂ Rn of radius R & δ −n .
+
+  In particular, by applying this to (a rescaled version of) the curve
+                                    Φ(t) = (t, t2 , . . . , tn )
+4                          JEAN BOURGAIN AND CIPRIAN DEMETER
+
+we get
+                               Z        X
+                         1
+                     (              |         aξ e(ξ · x)|p dx)1/p .ǫ N −ǫ kaξ kl2 (Λ) ,     (6)
+                       |BR |   BR       ξ∈Λ
+
+for p ≤ 4n − 2, each 1-separated set Λ of points on the curve Φ (0 ≤ t ≤ ∞) with size N
+and each R & N n .
+   Let us now explore an immediate consequence. Given an integer k ≥ 2 we define the
+k-energy of Λ as
+           Ek (Λ) = |{(λ1 , . . . , λ2k ) ∈ Λ2k : λ1 + . . . + λk = λk+1 + . . . + λ2k }|.
+By letting R → ∞ in (6) with p = 4n − 2 and aξ = 1, we immediately get that
+                                          E2n−1 (Λ) .ǫ Λ2n−1+ǫ
+for each Λ as above. In particular, we have
+                   E2n−1 ({(l, l2 , . . . , ln ) : l = 1, 2, . . . , N}) .ǫ N 2n−1+ǫ .
+This is a special case of Vinogradov’s mean value theorem, due to (and significantly
+improved by the recent work of) Wooley, see for example [11] and the references therein.
+Our method however shows that the integer case is not special, but is rather a particular
+case of a larger phenomenon. Note also that our method allows for arbitrary coefficients
+aξ in (6).
+   Vinogradov’s mean value theorem conjectures that (6) should hold in the integer case,
+with aξ = 1, for p as large as n(n + 1). It is possible that (6) also holds for p ≤ n(n + 1),
+for arbitrary coefficients and frequency points Λ. However, our method does not currently
+seem to shed any light on this issue. Further applications of variants of inequality (6) to
+number theory are presented in [4].
+Acknowledgment. The second author is indebted to Andrea Nahmod for bringing the
+question about the hyperbolic Schrödinger equation to his attention and for stimulating
+discussions on the topic.
+
+                         2. lp decouplings for hypersurfaces
+
+   In this section we present the proof of Theorem 1.1. We start by observing that the
+induction on scales argument from the last section in [3] allows us to focus on the hyper-
+surfaces Hυn−1 .
+   The proof of Theorem 1.1 for Hυn−1 will be done in two separate stages. First, we
+develop the multilinear decoupling theory and show that it is essentially equivalent to
+its linear counterpart. Then we finish the proof by using a bootstrapping argument that
+relies on the equivalence between the linear and multilinear decoupling.
+
+2.1. Linear and multilinear decoupling. Let g : Hυn−1 → C. For a cap τ on Hυn−1 we
+let gτ = g1τ be the (spatial) restriction of g to τ . We denote by π : Hυn−1 → [−1/2, 1/2]n−1
+the projection map and by dσ the natural surface measure on Hυn−1.
+Definition 2.1. We say that the caps τ1 , . . . , τn on Hυn−1 are ν-transverse if the volume
+of the parallelepiped spanned by any unit normals ni at τi is greater than ν.
+                          DECOUPLINGS FOR HYPERSURFACES AND CURVES                                                 5
+
+  In the following, the norm kf kLp (wBR ) will refer to the weighted Lp integral
+                                  Z
+                                (     |f (x)|p wBR (x)dx)1/p
+                                         Rn
+for some positive weight wBR which is Fourier supported in B(0, R1 ) and satisfies
+                                                 |x − c(BR )| −10n
+                             1BR (x) . wBR (x) ≤ (1 +        )     .                                             (7)
+                                                      R
+  We denote by Cp,n,υ (δ, ν) the smallest constant such that
+                                                                                                     1/n
+           n                                             n
+           Y                                           Y        X                                      
+      k(          [       1/n                          
+                 |gτi dσ|) kLp (Bδ−1 ) ≤ Cp,n,υ (δ, ν)  (                   kg[    p
+                                                                               θ dσkLp (wB      ) ) 1/p 
+                                                                                                            ,
+                                                                                         δ −1
+           i=1                                        i=1    θ: δ 1/2 −cap
+                                                                  θ⊂τi
+
+
+for each ν-transverse caps τi ⊂ Hυn−1 , each δ −1 ball Bδ−1 and each g : Hυn−1 → C.
+   Let also Kp,n,υ (δ) be the smallest constant such that
+                                                X
+                     d Lp (B ) ≤ Kp,n,υ (δ)(
+                    kgdσk     δ −1
+                                                       kg[    p
+                                                         θ dσkLp (wB ))
+                                                                        1/p
+                                                                            ,
+                                                                                  δ −1
+                                                   θ:δ1/2 −cap
+
+for each g : Hυn−1 → C and each δ −1 ball Bδ−1 .
+                                                                                                n   n−1
+   In order to prove Theorem 1.1 it suffices to prove that Kp,n,υ (δ) .ǫ δ p − 2 −ǫ for p ≥
+2(n+1)                               (1)
+ n−1
+       . In fact, if we denote by Kp,n,υ (δ) the smallest constant such that
+                                                    X
+                                           (1)
+                                kf kp ≤ Kp,n,υ (δ)(    kfθ kpp )1/p
+                                                       θ∈Pδ
+              (1)
+then we have Kp,n,υ (δ) ∼ Kp,n,υ (δ).  We give a brief sketch on why this is the case and
+leave the details to the interested reader. The precise argument can be carried out using
+mollifications (see for example the proof of Lemma 2.2 in [1]).
+                                              (1)
+   We start with the inequality Kp,n,υ (δ) . Kp,n,υ (δ). It suffices to note that
+                                    d Lp (B ) . kgdσk
+                                   kgdσk         d Lp (w
+                                           δ −1          B −1 )
+                                                                       δ
+
+
+and that f := ( d
+               gdσ)wBδ−1 has the Fourier transform supported in Nδ .
+                         (1)
+  To see the inequality Kp,n,υ (δ) . Kp,n,υ (δ), first note that it suffices to prove that for f
+as in Theorem 1.1 and for B the ball centered at the origin with radius δ −1 we have
+                       Z                             X
+                      ( |f vB |p )1/p . Kp,n,υ (δ)(      kfθ kpLp (wB ) )1/p .
+                                                         θ∈Pδ
+
+Here vB is an appropriate weight with the same properties as wB . Indeed, once this is
+established, by translation invariance it will hold on each ball with radius δ −1 . Then raise
+to the power p and sum over an appropriate family of balls. Next, note that fd     vB = fb∗ vc
+                                                                                             B
+is essentially constant at scale δ. We can thus assume from the start that fb is essentially
+constant at scale δ. To eliminate irrelevant technicalities, we will assume that for some
+g : Hυn−1 → C we have
+                                        fb(ξ) = g(η)
+6                          JEAN BOURGAIN AND CIPRIAN DEMETER
+
+for each ξ = η + ten ∈ Nδ with η ∈ Hυn−1 and |t| ≤ δ. In other words, we only assume
+that fb is constant vertically. It follows that
+                                                   d
+                                        f (x) = 2δ gdσ(x)
+and
+                                     fθ (x) = 2δ g[
+                                                  θ dσ(x),
+where gθ is the restriction of g to the projection of θ onto Hυn−1. Finally,
+                                                       X
+                          d Lp (B) ≤ 2δKp,n,υ (δ)(
+          kf kLp (B) = 2δkgdσk                              kg[    p
+                                                              θ dσkLp (wB  ))
+                                                                              1/p
+                                                                                  =
+                                                                                         δ −1
+                                                             θ:δ1/2 −cap
+                                              X
+                              = Kp,n,υ (δ)(          kfθ kpLp (wB             ))
+                                                                                   1/p
+                                                                       δ −1
+                                              θ∈Pδ
+
+
+
+
+    Returning to the linear and multilinear constants, Hölder’s inequality gives
+                                   Cp,n,υ (δ, ν) ≤ Kp,n,υ (δ).
+We will show that the reverse inequality essentially holds true.
+Theorem 2.2. Fix n ≥ 3, υ ∈ {−1, 1}n−1 and let p ≥ 2. Assume one of the following
+holds
+  (i) n = 3
+  (ii) n ≥ 4 and
+                                                          − n−3 ( 21 − p1 )−ǫ
+                                Kp,n−2,υ′ (δ ′ ) .ǫ δ ′      2
+                                                                                                 (8)
+for each δ ′ > 0, υ ′ ∈ {−1, 1}n−3 and each ǫ > 0.
+  Then for each 0 < ν ≤ 1 there is ǫ(ν) with limν→0 ǫ(ν) = 0 and Cν such that
+                                                                  n−1 1            1
+                   Kp,n,υ (R−1 ) ≤ Cν Rǫ(ν)     sup (δR) 2 ( 2 − p ) Cp,n,υ (δ, ν)               (9)
+                                              R−1 ≤δ≤1
+
+for each R > 1.
+   The rest of this subsection will be devoted to proving this theorem. Before we embark
+in the proof we explain its role and numerology.
+Remark 2.3. First, note that an equivalent reformulation of Theorem 1.1 is
+                                                       n−1 1       1
+                                 Kp,n,υ (δ) .ǫ δ − 2 ( 2 − p )−ǫ ,                              (10)
+valid in the subcritical range 2 ≤ p ≤ 2(n+1)
+                                         n−1
+                                              . This can be seen by interpolating the trivial
+bound for p = 2 with the bound at the critical index p = 2(n+1)
+                                                            n−1
+                                                                .
+  The proof of Theorem 1.1 in the next subsection will rely on induction on n. The case
+n = 2 is already known. Theorem 2.2 from above will apply unconditionally in the case
+n = 3, and together with the bootstrapping argument will prove Theorem 1.1 when n = 3.
+Once Theorem 1.1 is established in dimension n − 2 for some n ≥ 4, equation (10) will
+show that requirement (ii) in Theorem 2.2 is satisfied for 2(n+1)
+                                                              n−1
+                                                                   < p < 2(n−1)
+                                                                            n−3
+                                                                                 . For such
+a p, Theorem 2.2 is again applicable in dimension n. Thus, when combined with the
+bootstrapping argument, it will lead to the proof of Theorem 1.1 in dimension n, by letting
+                     DECOUPLINGS FOR HYPERSURFACES AND CURVES                                 7
+
+p approach the critical index 2(n+1)
+                                n−1
+                                     . We note that the increment in the induction step is
+2, rather than 1.
+                                                                    n−1 1 1
+   Finally, we point out that the presence of the factor (δR) 2 ( 2 − p ) in (9) is rather
+harmless. To give some intuition on why this is the case, we oversimplify the picture
+just a little bit and assume that for fixed p > 2(n+1)
+                                                 n−1
+                                                       , υ, ν we have
+                                     Cp,n,υ (δ, ν) = Cδ −η
+for some C, η > 0 and each δ > 0. We distinguish two cases. First, if η ≤ n−1  2
+                                                                                 ( 21 − 1p ),
+then we automatically also have η < n−1
+                                     2
+                                        − np . Using these, (9) immediately gives
+                                                                     n−1   n
+                                Kp,n,υ (R−1 ) .ν Rǫ(ν) R 2 − p
+and Theorem 1.1 follows, by letting ν → 0. In the second case, if η > n−1
+                                                                       2
+                                                                          ( 12 − p1 ), then
+                                   n−1 1   1
+                       sup (δR) 2 ( 2 − p ) Cp,n,υ (δ, ν) ≤ Cp,n,υ (R−1 , ν)
+                     R−1 ≤δ≤1
+
+and the honest equivalence between multilinear and linear decouplings is established. We
+will carry out the formal argument in the following subsection.
+
+  We now start the proof of Theorem 2.2 with a lemma for paraboloids that are al-
+lowed to have one small (possibly zero) principal curvature. The motivation behind this
+consideration will be explained in the end of the proof of Proposition 2.7.
+Lemma 2.4. Let n ≥ 3. Fix υ1 , . . . , υn−2 ∈ {−1, 1} and let |a| . 1 be arbitrary, pos-
+sibly zero. Let Pδ be a partition of the neighborhood Nδ associated with the hypersurface
+  n−1
+H(υ 1 ,... ,υn−2 ,a)
+                     .
+   If supp(fˆ) ⊂ Nδ then for p ≥ 2 we have, uniformly over the parameter |a| . 1
+                                   1   1                              X
+                       kf kp . δ − 2 + p Kp,n−1,(υ1 ,... ,υn−2 ) (δ)(   kfθ kpp )1/p .
+                                                                        θ∈Pδ
+
+  Before we embark in the proof of the lemma, we give some heuristics on numerology. A
+simple Lp orthogonality principle asserts that given a “suitable” family of pairwise disjoint
+subsets S1 , . . . , SM in Rn we have
+                                                           M
+                                                           X
+                                               1− 2p
+                                kf kp .p M             (         kfSi kpp )1/p          (11)
+                                                           i=1
+for each 2 ≤ p ≤ ∞ and each f Fourier supported in the union of the Si . We may refer
+to this as being trivial lp decoupling. The word “suitable” will refer to the situation when
+(11) can be recovered by interpolating the trivial L2 and L∞ estimates. One example
+includes the case when Si are balls or cubes with pairwise disjoint doubles. We omit the
+details.
+   If the sets Si are not subjected to additional requirements, the universal exponent 1 − 2p
+of M is sharp. To see this, it suffices to consider the case when Si are equidistant unit
+balls with collinear centers. However, this exponent becomes smaller when geometry is
+                                                                                         n−1
+favorable. For example, the Lp decoupling inequality (10) corresponds to M ∼ δ − 2 ,
+and the exponent there is 12 − 1p , half of the universal one. The absence of curvature is an
+8                                         JEAN BOURGAIN AND CIPRIAN DEMETER
+                                                                1     1
+enemy, and one expects a penalty of δ 2p − 4 for each zero principal curvature. For example,
+                                                                                  1   1
+                                  n−1
+when a is small (possibly zero), H(υ1 ,... ,υn−2 ,a)
+                                                     has a decoupling constant δ 2p − 4 larger than
+in the case a ∼ 1.
+
+Proof The proof is rather standard, we sketch it briefly. The case n = 3 is entirely
+typical, we prefer it only to simplify the notation. We can of course also assume υ1 = 1.
+By first performing the trivial decoupling (11) in the direction of e2 (which corresponds
+to the entry a), it suffices to prove that for each α ∈ [− 12 , 12 ] we have
+                              X                       X
+                           k       fθ kp . Kp,2,1(δ)(    kfθ kpp )1/p ,              (12)
+                                               θ∈Pδ,α                          θ∈Pδ,α
+
+where Pδ,α consists of those θ ∈ Pδ that intersect the parabola
+                                                       {(ξ1 , α, ξ3) : ξ3 = ξ12 + aα2 }.
+  We next show how a standard parabolic change of coordinates will allow us to assume
+α = 0. It is easy to see (the reader is again referred to [3]) that (12) is equivalent with
+  Z        Z
+         |                    f (ξ1, ξ2 )e(x1 ξ1 + x2 ξ2 + x3 (ξ12 + aξ22 ))dξ1 dξ2|p dx1 dx2 dx3 .
+      Bδ−1         [−1/2,1/2]×[α,α+δ1/2 ]
+                      X             Z              Z
+Kp,2,1(δ)    p
+                                               |                     f (ξ1 , ξ2 )e(x1 ξ1 +x2 ξ2 +x3 (ξ12 +aξ22 ))dξ1 dξ2|p dx1 dx2 dx3
+                                        Bδ−1         I×[α,α+δ1/2 ]
+                 I:δ1/2 −interval
+for each Bδ−1 . It is now rather immediate that we can assume α = 0, since the image of
+Bδ−1 under the transformation
+                                                   (x1 , x2 , x3 ) 7→ (x1 , x2 + 2αax3 , x3 )
+is roughly Bδ−1 .
+   Note however that all θ ∈ Pδ,0 lie in the δ neighborhood of the cylinder
+                                                          {(ξ1 , ξ2 , ξ3 ) : ξ3 = ξ12 },
+and (12) follows immediately from Fubini.
+
+  A simple induction on scales similar to the one in Section 7 in [3] allows us to extend
+the previous lemma to arbitrary hypersurfaces with (at least) n − 2 principal curvatures
+bounded away from zero.
+Lemma 2.5. Let n ≥ 3 and p ≥ 2. Let S be a C 2 compact hypersurface in Rn which
+at any given point has at least n − 2 principal curvatures with magnitudes ∼ 1, while the
+remaining one is . 1. Let as usual Pδ be a partition of the neighborhood Nδ associated
+S. Assume that for each δ ′ > 0
+                                                                                     − n−2 ( 12 − p1 )−ǫ
+                                                maxn−2 Kp,n−1,υ (δ ′ ) .ǫ δ ′           2
+                                                                                                           .
+                                          υ∈{−1,1}
+
+    Then for each δ and each supp(fˆ) ⊂ Nδ we have
+                                         n 1     1       X
+                            kf kp .ǫ δ − 2 ( 2 − p )−ǫ (   kfθ kpp )1/p .
+                                                                              θ∈Pδ
+                       DECOUPLINGS FOR HYPERSURFACES AND CURVES                                   9
+
+Proof For δ < 1, let as before Kp,n,S (δ) be the smallest constant such that for each f
+with Fourier support in Nδ we have
+                                                X
+                            kf kp ≤ Kp,n,S (δ)(   kfθ kpp )1/p .
+                                                        θ∈Pδ
+
+First note that for each such f
+                                                    2
+                                                         X
+                              kf kp ≤ Kp,n,S (δ 3 )(              kfτ kpp )1/p .
+                                                        τ ∈P 2
+                                                             δ3
+
+Second, our assumption on the principal curvatures of S combined with Taylor’s formula
+shows that on each τ ∈ Pδ 32 , S is within δ from a paraboloid Hυn−1 with at least n − 2 of
+the entries of υ having magnitudes of order 1. By invoking Lemma 2.4 for this paraboloid
+(via a simple rescaling), combined with parabolic rescaling we get
+                                  1   1                           X
+                kfτ kp . (δ 1/3 ) p − 2 maxn−2 Kp,n−1,υ (δ 1/3 )(   kfθ kpp )1/p .
+                                     υ∈{−1,1}
+                                                                         θ∈Pδ :θ⊂τ
+
+For each ǫ > 0, we conclude the existence of Cǫ such that for each δ < 1
+                                                  n 1    1                         2
+                           Kp,n,S (δ) ≤ Cǫ [δ − 2 ( 2 − p )−ǫ ]1/3 Kp,n,S (δ 3 ).
+By iteration this immediately leads to the desired conclusion.
+  We next present a lemma that will play a key role in the proof of Proposition 2.7 below.
+Lemma 2.6. Let A be an invertible symmetric n×n matrix and let S be an m dimensional
+affine subspace of Rn . There exists δ = δ(A) such that if the m dimensional quadratic
+hypersurface
+                                  xm+1 = hAx, xi, x ∈ S
+has l principal curvatures in the interval [−δ, δ] then
+                                              l ≤ n − m.
+Proof We may assume S contains the origin. Choose δ small enough so that the hy-
+pothesis forces the existence of an l dimensional subspace S1 of S such that
+                                             1
+                                  kPS Axk ≤ kA−1 k−1 kxk                               (13)
+                                             2
+for each x ∈ S1 . Here PS is the orthogonal projection onto S. We claim that S1 ∩ A−1 S =
+{0}, which will easily imply the desired conclusion. Indeed, otherwise there is x ∈ S1 with
+kxk = 1 and Ax ∈ S, and (13) forces the contradiction.
+
+   Here is the basic step in the Bourgain-Guth-type induction on scales that relates the
+linear and the multilinear decoupling.
+Proposition 2.7. Fix n ≥ 3, υ ∈ {−1, 1}n−1 and let p ≥ 2. Assume one of the following
+holds
+  (i) n = 3
+                                          n−3 1    1
+  (ii) n ≥ 4 and Kp,n−2,υ′ (δ ′ ) .ǫ δ ′ − 2 ( 2 − p )−ǫ for each δ ′ > 0, υ ′ ∈ {−1, 1}n−3 and each
+ǫ > 0.
+10                           JEAN BOURGAIN AND CIPRIAN DEMETER
+
+  Then for each ǫ there exist constants Cǫ , Cn such that for each R > 1 and K ≥ 1
+                     X                                n−1 1
+                                                         ( 2 − p1 )+ǫ
+                                                                        X
+ d Lp (w ) ≤ Cǫ [(
+kgdσk                      k [
+                             g α dσk p
+                                       p     ) 1/p
+                                                   +K  2              (   kg[    p
+                                                                            β dσkLp (wB ) )
+                                                                                            1/p
+                                                                                                ]+
+         BR                          L (wB )          R                                                 R
+                      α⊂Hυ n−1                                                          β⊂Hυ n−1
+                      α: 1 − cap                                                      β: 1 − cap
+                        K                                                               K 1/2
+                                                                    X
+                    +K Cn Cp,n,υ (R−1 , K −n )(                            kg[    p
+                                                                             ∆ dσkLp (wB ) )
+                                                                                             1/p
+                                                                                               R
+                                                               ∆⊂Hυ n−1
+                                                              ∆: 1 − cap
+                                                                R1/2
+
+
+Remark 2.8. The exponent n of K −n in the expression Cp,n,υ (R−1 , K −n ) is not important,
+and not optimal.
+Proof
+  We first prove the case n = 3 and then indicate the modifications needed for n ≥ 4.
+  It is rather immediate that if Q1 , Q2 , Q3 ⊂ [−1/2, 1/2]2, the volume of the parallelepiped
+spanned by the unit normals to Hυ2 at π −1 (Qi ) is comparable to the area of the triangle
+∆Q1 Q2 Q3 .
+  As in [2], we may think of |g[α dσ| as being essentially constant on each ball BK . Denote
+by cα (BK ) this value and let α∗ be the cap that maximizes it.
+  The starting point in the argument is the observation in [3] that for each BK there
+exists a line L = L(BK ) in the (ξ1 , ξ2) plane such that if
+                                                                                     C
+                             SL = {(ξ1 , ξ2 ) : dist((ξ1 , ξ2), L) ≤                   1   }
+                                                                                    K2
+then for x ∈ BK
+                                                       d
+                                                      |gdσ(x)| ≤
+
+                                               C max |g[
+                                                       α dσ(x)| +                                           (14)
+                                                      α
+
+
+                                               C max |g[
+                                                       β dσ(x)| +                                           (15)
+                                                      β
+
+                                                              3
+                                                              Y
+                               K   4
+                                              max
+                                          α1 ,α2 ,α3
+                                                          (         |g[
+                                                                      αi dσ(x)|)
+                                                                                 1/3
+                                                                                     +                      (16)
+                                       K −2 −transverse       i=1
+                                                     X
+                                          |                         g[
+                                                                     β dσ(x)|.                              (17)
+                                              β⊂π −1 (S        2
+                                                          L )∩Hυ
+
+To see this, we distinguish three scenarios.
+   First, if cα (BK ) ≤ K −2 cα∗ (BK ) for each α with dist(π(α), π(α∗)) ≥ 101 , then the sum
+                                                                           K2
+of (14) and (15) suffices, as
+                               X                               X
+            d
+           |gdσ(x)|  ≤                      |g[
+                                              α dσ(x)| + |                g[
+                                                                           α dσ(x)|.
+                      α: dist(π(α),π(α∗ ))≥ 101                            α: dist(π(α),π(α∗ ))< 101
+                                                K2                                                 K2
+
+                                                                          10
+Otherwise, there is α with dist(π(α ), π(α )) ≥ 1 and cα∗∗ (BK ) ≥ K −2 cα∗ (BK ). The
+                       ∗∗                        ∗∗             ∗
+                                                  K2
+line L is determined by the centers of α∗ , α∗∗ .
+                      DECOUPLINGS FOR HYPERSURFACES AND CURVES                                                11
+
+   Second, if there is α∗∗∗ such that π(α∗∗∗ ) intersects the complement of SL and cα∗∗∗ (BK ) ≥
+K −2 cα∗ (BK ) then (16) suffices. Indeed, note that α∗ , α∗∗ , α∗∗∗ are K −1 transverse by the
+earlier remark.
+   The third case is when cα (BK ) < K −2 cα∗ (BK ) whenever π(α) intersects the complement
+of SL . It is immediate that the sum of (14) and (17) will suffice in this case.
+   The only case we need to address is the one corresponding to this latter scenario. An
+application of the trivial lp decoupling (11) shows that
+                        X                         1
+                                                    − p1
+                                                           X
+                   k           g[
+                                α dσk  p
+                                      L (BK ) . K 2      (   kg[    p
+                                                               β dσkLp (wB ) )
+                                                                               1/p
+                                                                                   .
+                                                                                           K
+                    β:π(β)⊂SL                                         β
+
+This is the best we can say in general. Indeed, in the case of the hyperbolic paraboloid
+υ = (1, −1), if the line L happens to be ξ2 = ±ξ1 then π −1 (L) is itself a line. The absence
+of curvature prevents any non-trivial estimate to hold.
+   We conclude that in either case
+                         X                           1   1   X
+      d Lp (B ) . [(
+     kgdσk     K
+                             kg[    p
+                               α dσk p      )1/p + K 2 − p (
+                                           L (wBK )                kg[      p
+                                                                      β dσk p      )1/p ]+         L (wBK )
+                        α⊂Hυ 2                                                β⊂Hυ  2
+                       α: 1 cap                                             β: 1     cap
+                         K                                                    K 1/2
+                                                            X
+                    +K 10 Cp,3,υ (R−1 , K −1 )(                       kg[    p
+                                                                        ∆ dσkLp (wB ) )
+                                                                                        1/p
+                                                                                            .
+                                                                                       K
+                                                         ∆⊂Hυ 2
+                                                       ∆: 1    cap
+                                                         R1/2
+
+
+Finally, raise to the pth power and sum over BK ⊂ BR . Also, the norm kgdσk   d Lp (B ) can
+                                                                                     R
+                                     d
+be replaced by the weighted norm kgdσkLp (wBR ) via the standard localization argument.
+  One may repeat this argument in the case n ≥ 4 as follows. For each BK there exists
+a hyperplane H = H(BK ) in the (ξ1 , . . . , ξn−2 ) space such that for x ∈ BK
+                                                   d
+                                                  |gdσ(x)| ≤
+
+                                            C max |g[
+                                                    α dσ(x)|+
+                                                  α
+
+                                            C max |g[
+                                                    β dσ(x)|+
+                                                  β
+
+                                                            n
+                                                            Y
+                              K Cn         max
+                                          α ,... ,αn
+                                                        (         |g[
+                                                                    αi dσ(x)|)
+                                                                               1/n
+                                                                                   +
+                                         1
+                                     K −n −transverse       i=1
+                                                 X
+                                     |                            g[
+                                                                   β dσ(x)|.
+                                         β⊂π −1 (SH )∩Hυn−1
+
+Here
+                                                                                               1
+                   SH = {(ξ1 , . . . , ξn−1 ) : dist((ξ1 , . . . , ξn−1 ), H) .1 }.
+                                                                              K2
+We only need to explain how to accommodate the previous argument to control the last
+term. Cover π −1 (SH ) ∩ Hυn−1 by pairwise disjoint caps β of diameter ∼ K11/2 . These caps
+                                                                        1
+are inside the K1 neighborhood of a cylinder of height ∼ K − 2 over the n − 2 dimensional
+manifold
+                    SH,υ = {(ξ1 , . . . , ξn ) ∈ Hυn−1 : (ξ1, . . . , ξn−1) ∈ H},
+12                            JEAN BOURGAIN AND CIPRIAN DEMETER
+
+and correspond to a tiling of this manifold by K 11/2 - caps. The important new observation
+is that SH,υ , regarded as an n − 2 dimensional hypersurface in the hyperplane
+                                   {(ξ1, . . . , ξn ) : (ξ1 , . . . , ξn−1) ∈ H}
+has at least n − 3 of its n − 2 principal curvatures bounded away from zero, at any given
+point. This is of course a consequence of Lemma 2.6. The case n = 3 discussed earlier
+shows that one (in this case the only) principal curvature may indeed happen to be zero.
+More generally, consider any hyperbolic paraboloid Hυn−1 . Fix any A1 , . . . , An−1 such
+that
+                                        n−1
+                                        X
+                                            υi A2i = 0.
+                                                 i=1
+Let H be the hyperplane
+                                               n−1
+                                               X
+                                                       υi Ai ξi = 0.
+                                                i=1
+  It is easy to check that for each point (ξ1∗ , . . . , ξn∗ ) in the corresponding manifold SH,υ ,
+the (appropriate part of the) line
+                                                        ∗
+                               ξ1 − ξ1∗         ξn−1 − ξn−1   ξn − ξn∗
+                                        = ... =             =
+                                 A1                An−1          0
+is inside SH,υ . In other words SH,υ is a cylinder, and one of its principal curvatures will
+be zero.
+   Using our hypothesis and Lemma 2.5 and Fubini we can write
+                    X                           n−1 1
+                                                   ( 2 − p1 )+ǫ
+                                                                  X
+           k                g[
+                             β dσkLp (BK ) .ǫ K
+                                                 2              (   kg[    p
+                                                                      β dσkLp (wB ) )
+                                                                                      1/p
+                                                                                          .
+                                                                                                  K
+              β⊂π −1 (SH )∩Hυn−1                                            β
+
+     The argument is now complete.
+
+  Simple parabolic rescaling leads to the following more general version. The interested
+reader should consult the proof of the analogous result in [3] for details.
+Proposition 2.9. Fix n ≥ 3, υ ∈ {−1, 1}n−1 and let p ≥ 2. Assume one of the following
+holds
+  (i) n = 3
+                                           n−3 1   1
+  (ii) n ≥ 4 and Kp,n−2,υ′ (δ ′ ) .ǫ δ ′ − 2 ( 2 − p )−ǫ for each δ ′ > 0, υ ′ ∈ {−1, 1}n−3 and each
+ǫ > 0.
+  Then for each ǫ there exist constants Cǫ , Cn such that for each R > 1 and K ≥ 1 and
+for each δ-cap τ on Hυn−1 we have
+                          X                                 n−1 1
+                                                               ( 2 − p1 )+ǫ
+                                                                              X
+kg[
+  τ dσk  p
+        L (wBR ) ≤ C ǫ [(       k [
+                                  g α dσk p
+                                          Lp (wB ) ) 1/p
+                                                         +K  2              (      kg[    p
+                                                                                     β dσkLp (wB ) )
+                                                                                                     1/p
+                                                                                                         ]+
+                                                      R                                               R
+                            α⊂τ                                                         β⊂τ
+                         α: δ − cap                                              β:     δ − cap
+                           K                                                            1/2
+                                                                                      K
+                                                              X
+                   +K Cn Cp,n,υ ((Rδ 2 )−1 , K −n )(                    kg[    p
+                                                                          ∆ dσkLp (wB ) )
+                                                                                          1/p
+                                                                                              .
+                                                                                          R
+                                                              ∆⊂τ
+                                                           ∆: 1 − cap
+                                                             R1/2
+                        DECOUPLINGS FOR HYPERSURFACES AND CURVES                                          13
+
+  We are now ready to prove Theorem 2.2. Let K = ν −1/n . Iterate Proposition 2.9
+starting with caps of scale 1 until all resulting caps have scale R−1/2 . Each iteration
+lowers the scale of the caps from δ to at least K δ1/2 . When iteration is over, we end up
+with a sum of terms of the form
+                                        X
+                        TΓ = ΓK Cn (           kg[
+                                                 ∆ dσk p
+                                                         p
+                                                              )1/p ,
+                                                                   L (wBR )
+                                                  1
+                                            ∆:        − cap
+                                                 R1/2
+
+with various coefficients Γ. Each such term arises via ≤ logK R iterations. Also, a crude
+estimate shows that we end up with at most 3logK R = RO(logν −1 3) such terms.
+  It remains to get a uniform upper bound on Γ. Tracing back the iteration history of
+TΓ , assume it went through m1 steps where scale was lowered by K and m2 steps where
+scale was lowered by K 1/2 . Then obviously, for each ǫ
+                                        n−1 1      1
+                   Γ ≤ (Cǫ )m1 +m2 K [ 2 ( 2 − p )+ǫ]m2 Cp,n,υ ((RK −m2 −2m1 )−1 , ν).
+Using the bound m1 + m2 ≤ logK R this is further bounded by
+                                                                              n−1 1   1   n−1 1   1
+      Rlogν −1 Cǫ K ǫ logK R Cp,n,υ ((RK −m2 −2m1 )−1 , ν)(RK −m2 −2m1 )− 2 ( 2 − p ) R 2 ( 2 − p ) ≤
+                                                                n−1 1   1
+                      ≤ Rlogν −1 Cǫ K ǫ logK R      sup (δR) 2 ( 2 − p ) Cp,n,υ (δ, ν).
+                                                 R−1 ≤δ≤1
+The proof is now complete, by carefully letting ǫ approach zero at slower rate than ν.
+
+2.2. The bootstrapping argument. We now enter the second and final stage of the
+argument for Theorem 1.1. We recommend the reader to check Remark 2.3 for a high
+level overview of the argument. For the remainder of the section we fix υ ∈ {−1, 1}n−1
+                                                     n−1 1    1
+and p > 2(n+1)
+          n−1
+               . To simplify notation we let K(δ) = δ 2 ( 2 − p ) Kp,n,υ (δ).
+   Let γ be the unique number such that
+                                 lim K(δ)δ γ+ǫ = 0, for each ǫ > 0
+                                 δ→0
+
+and
+                              lim sup K(δ)δ γ−ǫ = ∞, for each ǫ > 0.                                    (18)
+                                 δ→0
+
+Write γ = n−1
+           4
+              − n+1
+                 2p
+                    + α. Recall that we need to prove that α = 0.
+ Define
+                             2                n(np − 2n − p − 2)
+                    ξ=                , η=                        .                                     (19)
+                       (p − 2)(n − 1)          2p(n − 1)2 (p − 2)
+Since p > 2(n+1)
+            n−1
+                 we have that ξ < 12 . A simple computation reveals that the assumption
+α > 0 is equivalent with
+                           1−ξ      n−1       n2 + n      2η
+                             γ   >        −           +        .
+                          1 − 2ξ      4     2p(n − 1) 1 − 2ξ
+Under this assumption it follows that we can choose s0 ∈ N large enough and ν > 0 small
+enough such that, with ǫ(ν) as in Theorem 2.2, we have
+                                             1−ξ     ξ(2ξ)s0
+                                       γ(          −         )>
+                                            1 − 2ξ   1 − 2ξ
+14                            JEAN BOURGAIN AND CIPRIAN DEMETER
+
+             n−1      n2 + n                  2η                       n
+             >     −           + 2s0 ǫ(ν) +         (1 − (2ξ)s0 ) +          (2ξ)s0 . (20)
+               4     2p(n − 1)              1 − 2ξ                  (n − 1)p
+  Note that s0 and ν depend only on the fixed parameters p, n, α. As a result, we follow
+our convention and do not record the dependence on them when using the symbol ..
+  Throughout the rest of the section ν and s0 will always refer to these values. Introduce
+the following semi-norms
+                                           X
+                             kf kp,δ,B = (    kfθ k2Lp (wB ) )1/2 ,
+                                                         θ∈Pδ
+
+                                                 − n−1 ( 21 − p1 )
+                                                                         X
+                             |||f |||p,δ,B = δ      2                (          kfθ kpLp (wB ) )1/p
+                                                                         θ∈Pδ
+and note that
+                                          kf kp,δ,B ≤ |||f |||p,δ,B .                                             (21)
+     For a fixed 0 ≤ β ≤ 1 consider the inequality
+                      Yn
+                    k( |gdi dσ|)
+                                 1/n
+                                     kLp (BN ) .ǫ Aβ (N)N ǫ X(BN )1−β Y (BN )β ,                                  (22)
+                       i=1
+for arbitrary ǫ > 0, N, gi and BN as before. Here
+                                        Yn
+                                                              1
+                              X(BN ) = ( |||gdi dσ|||p,δ,BN ) n ,
+                                                       i=1
+                                                  n
+                                                  Y                                        1
+                                   Y (BN ) = (           |||gd
+                                                             i dσ||| p(n−1) ,δ,BN ) n .
+                                                                                n
+                                                   i=1
+     The following holds.
+                                                                                                          n−1   n2 +n
+Proposition 2.10. (a) Inequality (22) holds true for β = 1 with A1 (N) = N 4 − 2p(n−1) .
+                                                                                      2β
+  (b) Moreover, if we assume (22) for some β ∈ (0, 1], then we also have (22) for (p−2)(n−1)
+with
+                                             γ       2β        n(np−2n−p−2)
+                                                                             β
+                A 2β (N) = Aβ (N 1/2 )δ − 2 (1− (p−2)(n−1) ) N 2p(n−1)2 (p−2) .
+                      (p−2)(n−1)
+
+
+  The proof follows line by line the proof of the analogous Proposition 6.3 in [3]. More
+precisely, part (a) here follows right away from Proposition 6.3 (i) by simply invoking
+(21). Also, the only modification needed to prove part (b) is to notice that the following
+consequence of Hölder’s inequality used in [3]
+                                                                            2                         2
+
+                      kgd                     d 1− (p−2)(n−1) kgd
+                        i dσk p(n−1) ,δ,BN ≤ kgi dσkp,δ,BN
+                                                                     (p−2)(n−1)
+                                                                i dσk2,δ,BN
+                                   n
+
+continues to hold if k · k is replaced with ||| · |||.
+  Proposition 2.10 implies that for each s ≥ 0
+                                                                                s
+                                             Aξs (N) = N ψ(ξ )
+with
+                                         1         γ
+                               ψ(ξ s+1) = ψ(ξ s ) + (1 − ξ s+1 ) + ηξ s .                                         (23)
+                                         2         2
+                       DECOUPLINGS FOR HYPERSURFACES AND CURVES                                15
+
+Recall that ξ < 21 . Iterating (23) gives
+                                   1                 −s        η γ 2−s − ξ s
+                       ψ(ξ s ) =      ψ(1) + γ(1 − 2    ) + 2(   − ) −1                      (24)
+                                   2s                          ξ  2 ξ −2
+                                          n
+  Note that Y (BN ) . X(BN )N (n−1)p . As (22) holds for β = ξ s and arbitrary ν-transverse
+caps τi we get
+                  n−1 1   1                                         nξs
+                 δ 2 ( 2 − p ) Cp,n,υ (δ, ν) .ǫ,s δ −ǫ Aξs (N)N (n−1)p , for each ǫ > 0.     (25)
+
+
+
+   To finish the proof of Theorem 1.1 for Hυn−1 , we will argue using induction on n that
+α = 0. As observed earlier, the case n = 2 is covered by the main theorem in [3]. So the
+first case to consider is n = 3. Using Theorem 2.2 and (25) we get
+                                                              nξs                 s   nξs
+               K(δ) .ǫ,s δ −ǫ−ǫ(ν) sup Aξs (M)M (n−1)p = δ −ǫ−ǫ(ν) N ψ(ξ )+ (n−1)p .         (26)
+                                     1≤M ≤N
+
+Since (26) (with s = s0 ) holds for arbitrarily small δ and ǫ, we further get by invoking
+(18) that
+                                                        nξ s0
+                                    γ ≤ ψ(ξ s0 ) +             + ǫ(ν).                       (27)
+                                                      (n − 1)p
+Combining (24) and (27) we find
+           1−ξ      ξ(2ξ)s0                         2η                      n
+      γ(          −         ) ≤ ψ(1) + 2s0 ǫ(ν) +        (1 − (2ξ)s0 ) +          (2ξ)s0 ,
+           1 − 2ξ   1 − 2ξ                        1 − 2ξ                 (n − 1)p
+which contradicts (20). Thus α = 0 and Theorem 1.1 is proved for n = 3 and p > 4.
+   Assume now that n ≥ 4 and that Theorem 1.1 was proved in dimension n − 2. To prove
+Theorem 1.1 in Rn for p > 2(n+1)
+                              n−1
+                                  , it suffices to prove it for 2(n+1)
+                                                                 n−1
+                                                                       < p < 2(n−1)
+                                                                              n−3
+                                                                                    . Note that
+                           2(d+1)
+in this range we have p < d−1 for d = n − 2, in particular (8) holds. Thus Theorem 2.2
+is applicable due to our induction hypothesis and we reach a contradiction as in the case
+n = 3 discussed above.
+
+  It remains to see why Theorem 1.1 holds for the endpoint p = pn = 2(n+1)    n−1
+                                                                                   . Via a
+                                                                            ∗
+localization argument, Kp,n,υ (δ) is comparable to the best constant Kp,n,υ (δ) that makes
+the following inequality true for each N-ball BN and each f Fourier supported in Nδ
+                                                    X
+                                         ∗
+                         kf kLp (BN ) ≤ Kp,n,υ (δ)(   kfθ kpLp (Rn ) )1/p .           (28)
+                                                            θ∈Pδ
+
+It suffices now to invoke Theorem 1.1 for p > 2(n+1)
+                                               n−1
+                                                     together with
+                                                  n     n
+                  kf kLpn (BN ) . kf kLp (BN ) N pn − p       (by Hölder’s inequality),
+                                   n+1   n+1
+               kfθ kLp (Rn ) . N 2p − 2pn kfθ kLpn (Rn ) (by Bernstein’s inequality),
+and then to let p → pn .
+16                         JEAN BOURGAIN AND CIPRIAN DEMETER
+
+                              3. The proof of Theorem 1.2
+  We start this section by explaining the numerology in Theorem 1.2, in particular the
+origin of the critical index 2(n+1−d(υ))
+                              n−1−d(υ)
+                                         . There are two examples to consider.
+  Example 1 relates to the fact that the essentially sharp estimate
+                                     \                                   1−n
+                                   |dσHυn−1 (x)| . (1 + |x|)
+                                                             2
+
+
+
+is universal, it does not depend on the signature of Hυn−1 . Using f such that fb is (a smooth
+approximation of) the characteristic function of the δ neighborhood of Hυn−1 , leads to the
+lower bound
+                                              n−1 n+1             2(n + 1)
+                              (2)
+                           Kn,p,υ (δ) & δ − 4 + 2p , p ≥                   ,              (29)
+                                                                     n−1
+which was shown to be sharp in [3] in the elliptic case.
+   In the non elliptic case we have that d(υ) ≥ 1 and Hυn−1 will contain a compact subset
+V of an affine subspace of dimension d(υ).
+   Example 2 is concerned with the case when fb is the characteristic function of the δ
+neighborhood of V . A standard computation shows that for this f we have
+                                            1   1     X
+                           kf kp ∼ δ d(υ)( 2p − 4 ) (   kfθ k2p )1/2 , p ≥ 2
+                                                        θ
+which leads to
+                                                             1    1
+                                (2)
+                               Kn,p,υ (δ) & δ d(υ)(− 4 + 2p ) ,          p ≥ 2.             (30)
+Now (29) and (30) suggest that
+                                             n−1    n+1                  1   1
+                      (2)
+                     Kn,p,υ (δ) ∼ max{δ − 4 + 2p , δ d(υ)(− 4 + 2p ) },           p ≥ 2.
+We will prove that this is indeed correct. Note that there is a regime change precisely at
+p = 2(n+1−d(υ))
+      n−1−d(υ)
+                .
+  It is worth mentioning that Example 1 and 2 above also apply (with the correct change
+in numerology) to the case of lp decouplings in Theorem 1.1. However, one may check
+that when p ≥ 2 n+1
+                  n−1
+                      the lower bound coming from Example 1 always dominates the one
+produced by Example 2.
+
+   The proof of Theorem 1.2 follows via induction on the dimension n. The case n = 2 was
+proved in [3]. Assume we have proved the theorem for all Hυn−2 with υ ∈ (R \ {0})n−2, for
+some fixed n ≥ 3. Fix now υ ∈ (R\{0})n−1 . By invoking interpolation with L2 and L∞ , it
+suffices to prove the theorem for Hυn−1 when p is greater than but arbitrarily close to the
+critical index 2(n+1−d(υ))
+                n−1−d(υ)
+                           . In particular, it suffices to consider 2(n+1−d(υ))
+                                                                     n−1−d(υ)
+                                                                                < p < 2(n−d(υ))
+                                                                                      n−2−d(υ)
+                                                                                                .
+
+  The guiding principle is that whenever curvature is absent one uses the trivial l2 de-
+coupling for 2 ≤ p < ∞, which amounts to the following. Given any pairwise disjoint
+parallelepipeds S1 , . . . , SM in Rn we have
+
+                                                            M
+                                                            X
+                                               1
+                                                 − p1
+                                  kf kp ≤ M    2        (         kfSi k2p )1/2             (31)
+                                                            i=1
+                         DECOUPLINGS FOR HYPERSURFACES AND CURVES                                               17
+
+for each 2 ≤ p ≤ ∞ and each f Fourier supported in the union of the Si . We will refer
+to this as being trivial l2 decoupling. Note that this is an analogue of (11), which follows
+again by interpolation.
+
+  We now present the main steps in the argument. First, our induction hypothesis implies
+the following result for hypersurfaces with small (possibly zero) principal curvatures, in
+the style of Lemma 2.5. More precisely, for a given hypersurface S in Rn−1 (n ≥ 3)
+with p(S) principal curvatures ≥ 1, q(S) principal curvatures ≤ −1 and r(S) principal
+curvatures in (−1, 1), define
+                                      d(S) = r(S) + min(p(S), q(S)).
+Lemma 3.1. Assume Theorem 1.2 holds in n − 1 dimensions. If supp(fˆ) ⊂ Nδ (S) and
+        2(n−d(S))
+2 ≤ p ≤ n−2−d(S)  we have
+                                         (2)
+                                                  X
+                          kf kp .ǫ δ −ǫ KS,p (δ)(   kfθ k2p )1/2 ,           (32)
+                                                           θ∈Pδ
+          (2)                1   1
+where KS,p (δ) = δ d(S)(− 4 + 2p ) .
+Proof
+   Of course, there is nothing special about 1 and -1. This result is about “large” versus
+“small” principal curvatures. As before, we may assume S = Hυn−2           ′  where υ ′ has p(S)
+entries equal to 1, q(S) entries equal to −1 and r(S) entries in (−1, 1). The case r(S) = 0
+is an immediate consequence of our induction hypothesis. If r(S) ≥ 1, perform first a
+trivial l2 decoupling in the direction of each of the r(S) “small” principal curvatures.
+                                          1    1       (2)
+This will contribute a factor of δ r(S)(− 4 + 2p ) to KS,p (δ), according to (31). Then use the
+induction hypothesis for the cross sections S ′ corresponding to the remaining p(S) + q(S)
+curvatures. Note that d(S ′) = min(p(S), q(S)) and that S ′ is a hypersurface with nonzero
+                                                                               2(n−d(S))
+Gaussian curvature in Rn−1−r(S) . As a result, the critical index for S ′ is n−2−d(S)    , and the
+                                                                                                   ′        1   1
+induction hypothesis is indeed applicable. Thus the cross sections contribute δ d(S )(− 4 + 2p )
+     (2)                                        (2)
+to KS,p (δ). Finally, the two contributions to KS,p (δ) can be pieced together by invoking
+Fubini, as explained in the proof of Lemma 2.4.
+   Next, we record the following analogue of both Proposition 2.7 from here and Proposi-
+tion 5.5 from [3].
+Proposition 3.2. Assume Theorem 1.2 holds in dimensions less than or equal to n − 1.
+            2(n−d(υ))
+Let 2 ≤ p ≤ n−2−d(υ)  . For each ǫ there exist constants Cǫ , Cn such that for each R > 1
+and K ≥ 1
+                       X                                  1
+                                                            − 41 )+ǫ
+                                                                       X
+ d Lp (w ) ≤ Cǫ [(
+kgdσk       BR
+                            kg[
+                              α dσk 2
+                                      p
+                                    L (w  ) 1/2
+                                                +K
+                                               BR )
+                                                   d(υ)( 2p
+                                                                     (   kg[    2
+                                                                           β dσkLp (w ))
+                                                                                         1/2
+                                                                                             ]+        BR
+                         α⊂Hυ n−1                                               β⊂Hυ n−1
+                         α: 1 − cap                                           β: 1 − cap
+                           K                                                    K 1/2
+                                                         X
+                      +K Cn Cp,n,υ
+                             (2)
+                                   (R−1 , K −n )(                  kg[    2
+                                                                     ∆ dσkLp (wB ) )
+                                                                                     1/2
+                                                                                         .
+                                                                                  R
+                                                       ∆⊂Hυ n−1
+                                                      ∆: 1 − cap
+                                                        R1/2
+                                                  (2)                                        (2)
+Here, in analogy with earlier notation, Cp,n,υ is the multilinear version of Kp,n,υ .
+18                             JEAN BOURGAIN AND CIPRIAN DEMETER
+
+Proof This follows as before by using the Bourgain–Guth induction on scales, and our
+induction hypothesis for arbitrary cross sections S ′ of Hυn−1 with a ”vertical” hyperplane.
+It suffices to prove that d(S ′ ) ≤ d(υ). This follows via an argument similar to the one
+in Lemma 2.6, we sketch it briefly. Assume for simplicity that υi = 1 for 1 ≤ i ≤ p(υ)
+and υi = −1 for p(υ) + 1 ≤ i ≤ n − 1. Assume also that the hyperplane contains the
+origin, and let H ′ be its intersection with the hyperplane xn = 0. Call A : Rn−1 → Rn−1
+the linear transformation so that Hυn−1 is (part of) the graph of x 7→ hAx, xi, x ∈ Rn−1 .
+Obviously υi are its eigenvalues and hei i are the corresponding eigenspaces. Define
+                X+ = hei : 1 ≤ i ≤ p(υ)i,            X− = hei : p(υ) + 1 ≤ i ≤ n − 1i.
+Similarly, let A : H → H be the linear transformation so that S ′ is (part of) the graph
+                   ′     ′       ′
+
+of x 7→ hA′ x, xi over x ∈ H ′. Let e′1 , . . . , e′n−2 be an appropriate orthonormal basis of H ′
+consisting of eigenvectors of A′ with eigenvalues υi′ . Assume that υi′ ≥ 1 for 1 ≤ i ≤ p(S ′),
+υi′ ≤ −1 for p(S ′ ) + 1 ≤ i ≤ p(S ′ ) + q(S ′ ) and |υi′ | < 1 for p(S ′ ) + q(S ′ ) + 1 ≤ i ≤
+p(S ′ ) + q(S ′ ) + r(S ′ ) = n − 2. Define
+           X+′ = he′i : 1 ≤ i ≤ p(S ′ )i,       X−′ = he′i : p(S ′ ) + 1 ≤ i ≤ p(S ′ ) + q(S ′ )i,
+                          X0′ = he′i : p(S ′ ) + q(S ′) + 1 ≤ i ≤ n − 2i.
+It suffices now to prove that p(S ′ ) + r(S ′) ≤ p(υ) and q(S ′ ) + r(S ′ ) ≤ q(υ). Assume for
+contradiction that p(S ′ ) + r(S ′) > p(υ). Then (X+′ ⊕ X0′ ) ∩ X− must contain a unit vector
+x. Note first that since x ∈ H ′ , we have hAx, xi = hA′ x, xi. On the other hand, since
+x ∈ X− we must have hAx, xi = −1, while x ∈ X+′ ⊕ X0′ implies that hAx, xi > −1. The
+contradiction is now obvious.
+                                                                                 (2)           (2)
+   Iterations of Proposition 3.2 show the equivalence between Cp,n,υ and Kp,n,υ . Since we
+work with p > 2(n+1−d(υ))
+                   n−1−d(υ)
+                            , we also have that p > 2(n+1)
+                                                       n−1
+                                                             . In particular, the parameter ξ
+                 1
+from (19) is < 2 , as desired. The rest of the argument continues exactly as in the elliptic
+case from [3], see also the lp decouplings from the previous section. This is due to the
+fact that when p > 2(n+1−d(υ))
+                       n−1−d(υ)
+                                , (2) and (3) are identical.
+
+
+                4. Multilinear versus linear decoupling for curves
+   In this section we start the proof of Theorem 1.4. It is easy to see that for each
+t0 ∈ [0, 1], there is an affine transformation Lt0 of Rn , more precisely a rotation followed
+by a translation, such that
+                                  
+                                  
+                                   Lt0 (Φ(t0 )) = 0
+                                  
+                                         ′
+                                  
+                                  Lt0 (Φ (t0 )) ⊥ he2 , . . . , en i
+                                    Lt0 (Φ′′ (t0 )) ⊥ he3 , . . . , en i
+                                  
+                                  
+                                  
+                                   ..................
+                                  
+                                  
+                                    Lt0 (Φ(n−1) (t0 )) ⊥ hen i
+In this new local system of coordinates, the equation of the curve near t = 0 becomes
+Φ̃(t) = (C1,1 t+C1,2 t2 +. . .+C1,n tn , C2,2t2 +. . .+C2,n tn , . . . , Cn,ntn )+O(tn+1 , tn+1 , . . . , tn+1 ).
+The coefficients Ci,j depend on t0 but satisfy κ ≤ |Ci,i | ≤ κ−1 and |Ci,j | ≤ κ−1 for i < j,
+with κ > 0 independent of t0 , due to the Wronskian condition.
+                            DECOUPLINGS FOR HYPERSURFACES AND CURVES                                         19
+
+  By invoking a simple induction on scales argument, it suffices to prove Theorem 1.4 for
+the special curves ΦC , C = (Ci,j )1≤i≤j≤n
+          ΦC (t) = (C1,1 t + C1,2 t2 + . . . + C1,n tn , C2,2 t2 + . . . + C2,n tn , . . . , Cn,n tn ),   (33)
+with Ci,j as above. The estimates will of course depend only on κ. To see this, for δ < 1
+and p ≤ 4n − 2, let Kp∗ (δ) be the smallest constant such that for each f with Fourier
+support in the neighborhood Nδ of Φ we have
+                                               X            1
+                              kf kp ≤ Kp∗ (δ)(    kfθ k2p ) 2 .
+                                                                 θ∈Pδ
+
+  First, for each such f
+                                                           n        X                  1
+                                       kf kp ≤ Kp∗ (δ n+1 )(                 kfτ k2p ) 2 .                (34)
+                                                                 τ ∈P   n
+                                                                     δ n+1
+
+The previous discussion shows that the portion of Φ inside a given τ ∈ Pδ n+1
+                                                                           n  is within δ
+                                                                                                 1
+from a curve (33). Let a be the left endpoint of the interval of length δ n+1 corresponding
+to τ . We will perform rescaling as follows. Consider the linear transformation
+                                                     ξ1 − a ξ2 − 2aξ1 + a2 ξ3 − 3aξ2 + 3a2 ξ1 − a3
+  Lτ (ξ1 , . . . , ξn ) = (ξ1′ , . . . , ξn′ ) = (       1  ,       2     ,            3           , . . . ).
+                                                      δ n+1      δ n+1              δ n+1                  (35)
+  It maps τ ∩ Nδ into N n+1
+                         1  and each θ ∈ Nδ with θ ⊂ τ into some θ′ ∈ N n+1
+                                                                         1 . Using
+                                   δ                                                                 δ
+                                                                                             1
+this change of variables and Theorem 1.4 with δ replaced with δ n+1 we get
+                                               X            1
+                              kfτ kp .ǫ δ −ǫ (    kfθ k2p ) 2 .                                           (36)
+                                                               θ∈Pδ :θ⊂τ
+
+For each ǫ > 0, using (34) and (36) we conclude the existence of Cǫ such that for each
+δ<1
+                                                         n
+                               Kp∗ (δ) ≤ Cǫ δ −ǫ Kp∗ (δ n+1 ).
+By iteration this immediately leads to Kp∗ (δ) .ǫ δ −ǫ .
+   We further observe that it suffices to consider curves ΦC with C equal to the identity
+matrix. This is because the decoupling inequality is preserved under linear transforma-
+tions. For the remainder of the section we let
+                                                Φ(t) = (t, t2 , . . . , tn ).
+  For each dyadic interval I ⊂ [0, 1] define the extension operator
+                                Z
+                      EI g(x) = g(t)e(tx1 + t2 x2 + . . . + tn xn )dt.
+                                               I
+Unless specified otherwise, all intervals will be implicitly assumed to be dyadic intervals
+in [0, 1].
+   We will denote by Kp (R) the smallest constant such that
+                                                 X                        1
+                    kE[0,1] gkLp (BR ) ≤ Kp (R)(        kEU gk2Lp (wB ) ) 2
+                                                                                             R
+                                                                |U |=R−1/n
+
+holds true for each g : [0, 1] → C and BR .
+20                                   JEAN BOURGAIN AND CIPRIAN DEMETER
+
+  It is easy to see that Kp (R) ∼ Kp∗ (R−1 ). In particular, Theorem 1.4 for some p is in
+fact equivalent with the following inequality
+                                                 X                    1
+                     kE[0,1] gkLp (BN ) .ǫ N ǫ (    kEU gk2Lp (wB ) ) 2 .           (37)
+                                                                                              N
+                                                               |U |=N −1/n
+
+     For dyadic 0 < ν < 1, denote by Cp (R, ν) the smallest constant such that
+                    n
+                    Y                                                n
+                                                                     Y         X                               1
+               k(         |EIi g|)   1/n
+                                           kLp (BR ) ≤ Cp (R, ν)(                         kEU gk2Lp (wB ) ) 2n
+                                                                                                           R
+                    i=1                                              i=1         U ⊂Ii
+                                                                             |U |=R−1/n
+
+
+holds for each nonadjacent dyadic intervals I1 , . . . , In ⊂ [0, 1] of size ν, each g : [0, 1] → C
+and BR . We will refer to such intervals as being ν-transverse.
+   It is immediate that Cp (R, ν) ≤ Kp (R). We now show that the reverse inequality is
+also essentially true.
+Theorem 4.1. For each ν there exists ǫ(ν) with limν→0 ǫ(ν) = 0 and Cν such that for
+each R
+                           Kp (R) ≤ Cν Rǫ(ν) Cp (R, ν).
+   The proof of the theorem is a simple version of the Bourgain–Guth induction on scales
+[2]. We will prove a few preliminary results.
+Proposition 4.2. For each R-ball BR we have
+                                                                      X
+                    kE[0,1] gkLp (BR ) ≤ Cp (R, ν)Cν (                           kEU gk2Lp (wB ) )1/2 +
+                                                                                                   R
+                                                                   |U |=R−1/n
+                                                     X
+                                               +C(           kEI gk2Lp (BR ) )1/2 .
+                                                     |I|=ν
+The constant C is independent of ν, it only depends on n and p.
+Proof We start by writing                                         X
+                                                E[0,1] g =                    EI g.
+                                                              I:ν−interval
+It is rather immediate that for each x ∈ BR
+                                                                                X                 n
+                                                                                                  Y                 1
+          |E[0,1] g(x)| ≤ C          max        |EI g(x)| + Cν                                (         |EIj g(x)|) n ≤
+                                I:ν−interval
+                                                                     I1 ,... ,In : ν−transverse j=1
+
+                          X                                              X                    n
+                                                                                              Y                1
+                                                 2 1/2
+               C(                  |EI g(x)| )           + Cν                             (       |EIj g(x)|) n .
+                    I:ν−interval                                I1 ,... ,In : ν−transverse j=1
+The result now follows by integrating the p-th power.
+     We now rescale to get the following version.
+Proposition 4.3. Let H be a δ- interval in [0, 1]. For each R & δ −n and each R-ball BR
+we have                                         X
+             kEH gkLp (BR ) ≤ Cν Cp (Rδ n , ν)(       kEU gk2Lp (wB ) )1/2 +
+                                                                                                    R
+                                                                   |U |=R−1/n
+                       DECOUPLINGS FOR HYPERSURFACES AND CURVES                                                         21
+                                                    X
+                                    +C(                             kEJ gk2Lp (BR ) )1/2 .
+                                                J :δν−interval
+                                                     J ⊂H
+
+
+Proof Note that if H = [a, a + δ] then the change of variables s = t−a
+                                                                    δ
+                                                                       shows that
+                                       |EH g(x)| = δ|E[0,1] g a,δ (x′ )|
+where g a,δ (s) = g(sδ + a) and x′ = (x′1 , . . . , x′n ) with
+                            
+                            
+                             x′1 = δ(x1 + 2ax2 + 3a2 x3 + . . . )
+                            
+                            x′ = δ 2 (x + 3ax + . . . )
+                               2         2           3
+                                                                   .
+                            
+                             .........
+                            
+                             ′
+                              xn = δ n xn
+In particular
+                                                                    n(n+1)
+                          kEH gkLp (BR ) = δ 1− 2p kE[0,1] g a,δ kLp (CR )
+where CR is a ∼ δR × δ 2 R × . . . × δ n R - cylinder. Cover CR by a family F of O(1)-
+overlapping δ n R- balls Bδn R and write using Proposition 4.2 and Minkowski’s inequality
+                                      n(n+1)   X
+                 kEH gkLp (BR ) . δ 1− 2p (        kE[0,1] g a,δ kpLp (Bδn R ) )1/p ≤
+                                                                Bδn R ∈F
+                                  n(n+1)         X                   X
+           Cν Cp (δ n R, ν)δ 1−     2p     (                (                    kEU g a,δ k2Lp (wB n ) )p/2 )1/p +
+                                                                                                         δ R
+                                               Bδn R ∈F |U |=(δn R)−1/n
+                              n(n+1)            X            X
+                     +Cδ 1−     2p     (                (            kEI g a,δ k2Lp (Bδn R ) )p/2 )1/p .
+                                           Bδn R ∈F |I|=ν
+                                               n(n+1)               X
+                  Cν Cp (δ n R, ν)δ 1−           2p     (                       kEU g a,δ k2Lp (wC ) )1/2 +
+                                                                                                     R
+                                                            |U |=(δn R)−1/n
+                                               n(n+1)       X
+                              +Cδ 1−             2p     (           kEI g a,δ k2Lp (wC ) )1/2 .
+                                                                                       R
+                                                            |I|=ν
+  Changing back to the original variables gives us the desired estimate.
+
+   We are now ready to prove Theorem 4.1. Given ǫ > 0, choose ν so that logν −1 C ≪ nǫ,
+where C is the constant in Proposition 4.3. Iterate Proposition 4.3 starting with scale
+δ = 1 until we reach scale δ = R−1/n . Each iteration lowers the scale of the intervals from
+                                 log    R
+δ to δν. We thus have to iterate νn−1 times. In particular
+                                   log −1 R
+                                      ν
+                                    X   n                                            X
+           kE[0,1] gkLp (BR ) .                  Cν C s Cp (Rν ns , ν)(                          kEU gk2Lp (wB ) )1/2
+                                                                                                               R
+                                     s=0                                          |U |=R−1/n
+                                                                X
+                          ≤ Rǫ Cν Cp (R, ν)(                                 kEU gk2Lp (wB ) )1/2 ,
+                                                                                             R
+                                                            |U |=R−1/n
+
+since Cp (·, ν) is an essentially nondecreasing function.
+22                                 JEAN BOURGAIN AND CIPRIAN DEMETER
+
+                                   5. The l2 decoupling for curves
+  To prove (37) we develop a variant of the argument for hypersurfaces from [3]. That
+argument relied on the deep multilinear theorem of Bennett, Carbery and Tao [1]. Our
+proof for curves will use the following analogous, but much simpler result, see for example
+Lemma 2.5 in [8].
+Proposition 5.1. Let I1 , . . . , In ⊂ [0, 1] be ν-transverse and let g : [0, 1] → C. Then
+                                   n
+                                   Y                                        n
+                                                                            Y
+                              k(         |EIi g|)1/n kL2n (Rn ) .ν (              kgkL2(Ii ) )1/n                (38)
+                                   i=1                                      i=1
+
+     The whole argument consists of changing variables
+                  (t1 , . . . , tn ) ∈ I1 × . . . × In 7→ (Φ(t1 ) + . . . + Φ(tn )) ∈ Rn
+                                     b 2 . kGk2 . An immediate consequence is the fact
+followed by Plancherel’s inequality kGk
+that given any fi Fourier supported in a δ-neighborhood of Φ(Ii ), we have
+                             n
+                             Y                                                  n
+                                                                                Y
+                                            1/n                     − n−1
+                        k(         |fi |)         kL2n (Rn ) .ν N      2    (         kfi kL2 (Rn ) )1/n .       (39)
+                             i=1                                                i=1
+
+Indeed, foliate the δ neighborhood Nδ of Φ([0, 1]) into translates of the curve Φ([0, 1]),
+apply (38) to each of them and use Hölder’s inequality.
+   Another immediate corollary of (38) is the following multilinear version of the decou-
+pling inequality (37), that follows by simply invoking L2 orthogonality
+                      n
+                      Y                                         n
+                                                                Y X                              1
+                                       1/n
+                 k(         |EIi g|)         kL2n (BN ) .ν k(                         |EJ g|2) 2n kL2n (wBN )    (40)
+                      i=1                                       i=1 J ⊂Ii
+                                                                   |J |=N −1
+
+
+There are two ways in which (40) is stronger than (37). First, note that the multilinear
+decoupling holds at frequency scales as small as N −1 . Second, note that by Minkowski’s
+inequality
+                              X                     X
+                           k(    |hJ |2 )1/2 kp ≤ (   khJ k2p )1/2 ,
+                                             J                         J
+
+which makes the right hand side of (40) smaller than the right hand side of (37).
+   Using the fact that EJ g is essentially constant on each BN , then interpolating with the
+trivial L2 bound we get that for each 2 ≤ p ≤ 2n
+                       n
+                       Y                                     n
+                                                             Y  X                     1
+                  k(         |EIi g|)    1/n
+                                               kLp (BN ) .ν [ (   kEJ gk2Lp (wB ) )] 2n .
+                                                                                                     N
+                       i=1                                    i=1       J ⊂Ii
+                                                                     |J |=N −1
+
+
+Now, if we sum this over balls BN in a finitely overlapping cover of BN n and then rescale,
+we get
+                       n
+                       Y                                     n
+                                                             Y          X                                    1
+                                         1/n
+                  k(         |EIi g|)          kLp (BN ) .ν [ (                       kEJ gk2Lp (wB ) )] 2n      (41)
+                                                                                                         N
+                       i=1                                   i=1         J ⊂Ii
+                                                                     |J |=N −1/n
+                            DECOUPLINGS FOR HYPERSURFACES AND CURVES                                                      23
+
+An application of the Bourgain–Guth induction on scales described in the end of the
+previous section shows that (41) implies (37) for 2 ≤ p ≤ 2n. In the remaining part of
+this section we will show how to bridge the gap between p = 2n and p = 4n − 2.
+   The first step in our iteration scheme is the following lemma. We will consider a
+partition of Nδ into tubular regions τ , each of which is a δ-neighborhood of Φ(J), for
+some interval J of length δ 1/2 . The scale δ 1/2 we use here is much smaller than δ 1/n , and
+in particular ensures that τ is essentially a δ 1/2 × δ × . . . × δ cylinder. This will in turn
+allow for wave packet decompositions to come into play.
+   We will use the notation δ = N −1 .
+Lemma 5.2. Let I1 , . . . , In ⊂ [0, 1] be ν-transverse intervals, and assume fi are Fourier
+supported in δ-neighborhoods of Φ(Ii ). Then for each 2n ≤ p ≤ ∞
+            Yn X                                            n X
+                                                            Y
+                                                   n(n−1)                                1
+                           2 1/2 1/n             − p +ǫ
+          k( (      |fi,τ | ) ) kL (R ) .ν N
+                                      p  n                (        kfi,τ k2Lp/n (Rn ) ) 2n . (42)
+             i=1      τ                                                                i=1    τ
+
+Proof Note first that (39) implies via a standard randomization argument that
+                Yn X                                     n X
+                                                         Y
+                                 1
+                              2 2n               − n−1                           1
+             k(        |fi,τ | ) kL2n (Rn ) .ν N    2  (     kfi,τ k2L2 (Rn ) ) 2n .                                    (43)
+                     i=1      τ                                                  i=1    τ
+
+We also have the trivial inequality
+                     n X
+                     Y                            n X
+                                                  Y
+                                      1                                   1
+                  k(               2 2n
+                            |fi,τ | ) kL (R ) . (
+                                        ∞  n          kfi,τ k2L∞ (Rn ) ) 2n .                                           (44)
+                            i=1    τ                                       i=1   τ
+
+The result now follows using interpolation via wave packet decompositions, see for example
+the proof of Proposition 6.2 in [3].
+
+  Given g : [0, 1] → C, there is an immediate reformulation of the lemma: for each
+2n ≤ p ≤ ∞ and each ball BN of radius N = δ −1 we have
+          Yn  X                                            Yn  X
+                             1
+                          2 2n               − n(n−1) +ǫ                                 1
+       k(           |EJ g| ) kLp (wBN ) .ν N      p      (           kEJ gk2Lp/n(wB ) ) 2n .
+                                                                                   N
+          i=1 J ⊂Ii                                        i=1 J ⊂Ii                         (45)
+              |J |=δ 1/2                                                                |J |=δ 1/2
+
+Define κp via the relation
+                                                       n   1 − κp κp
+                                                         =       + .
+                                                       p     2    p
+Corollary 5.3. We have for each R ≥ N
+                            n
+                            Y   X               1
+                         k(         |EJ ′ g|2) 2n kLp (wBR ) ≤
+                                           i=1     J ′ ⊂Ii
+                                                 |J ′ |=δ 1/4
+
+
+                           n
+                           Y X                                             n
+                                                                           Y X
+                                                        1                                                        κp
+                                                   2         1−κ
+              ≤ Ck(                        |EJ g| )    2n   kLp (wpB ) (                     kEJ ′ gk2Lp (wB ) ) 2n ,   (46)
+                                                                    R                                        R
+                           i=1 J ⊂Ii                                       i=1 J ′ ⊂Ii
+                              |J |=δ 1/2                                      |J ′ |=δ 1/4
+
+where C depends only on n, ν and p.
+24                                              JEAN BOURGAIN AND CIPRIAN DEMETER
+
+Proof Let ∆ be an arbitrary ball of radius N 1/2 . Write using Hölder’s inequality
+      X                         1
+                                      X                   1−κp X                      κp
+    (      kEJ ′ gk2Lp/n(w∆ ) ) 2 ≤ (   kEJ ′ gk2L2(w∆ ) ) 2 (     kEJ ′ gk2Lp (w∆ ) ) 2 ,
+           |J ′ |=δ1/4                                          |J ′ |=δ1/4                                      |J ′ |=δ1/4                                       (47)
+  The next key element in our argument is the almost orthogonality specific to L2 , which
+will allow us to pass from scale δ 1/4 to scale δ 1/2 . Indeed, since (EJ g)w∆ are almost
+orthogonal for |J| = δ 1/2 , we have
+                      X                                  X
+                   (          kEJ ′ gk2L2 (w∆ ) )1/2 . (   kEJ gk2L2 (w∆ ) )1/2 .
+                                      |J ′ |=δ1/4                                      |J|=δ1/2
+
+We can now rely on the fact that |EJ g| is essentially constant on balls ∆′ of radius N 1/2
+to argue that       X                                      X
+                                            1                         1
+                  (       kEJ gk2L2 (∆′ ) ) 2 ∼ |∆′ |1/2 (   |EJ g|2) 2 |∆′
+                                         J ⊂Ii                                                   J ⊂Ii
+                                       |J |=δ 1/2                                              |J |=δ 1/2
+
+and thus
+                          n
+                          Y X                                                                 n
+                                                                                              Y X
+                                                               1       1   1                                                       1
+                      (                      kEJ gk2L2(w∆ ) ) 2n . |∆| 2 − p k(                                  |EJ g|2 ) 2n kLp (w∆ ) .                          (48)
+                          i=1     J ⊂Ii                                                       i=1     J ⊂Ii
+                                |J |=δ 1/2                                                          |J |=δ 1/2
+
+
+Combining (45), (47) and (48) we get
+     n
+     Y X                                                           n
+                                                                   Y X                                                n
+                                                                                                                      Y X
+                                        1                                                           1                                                                κp
+                                                                                                        1−κ
+k(                        |EJ ′ g|2) 2n kLp (w∆ ) .ν k(                               |EJ g|2 ) 2n kLp (wp∆ ) (                               kEJ ′ gk2Lp (w∆ ) ) 2n .
+     i=1     J ′ ⊂Ii                                               i=1     J ⊂Ii                                      i=1        J ′ ⊂Ii
+           |J ′ |=δ 1/4                                                  |J |=δ 1/2                                            |J ′ |=δ 1/4
+
+
+Summing this up over ∆ ⊂ BR we get the desired inequality.
+
+     By iterating inequality (46) we get for integers s ≥ 2
+                                                         n
+                                                         Y         X                      1
+                                                    k(                        |EJs g|2) 2n kLp (wBN ) ≤
+                                                         i=1     Js ⊂Ii
+                                                                        −s
+                                                               |Js |=δ 2
+
+
+                           n
+                           Y X                                                    s Y
+                                                                                  Y   n             X                                          κp (1−κp )s−j
+                                                               1   (1−κ )s−1
+       ≤ C s−1 k(                               |EJ1 g|2 ) 2n kLp (wpB )            (                            kEJj gk2Lp (wB ) )                  2n        .
+                                                                              N                                                        N
+                            i=1     J1 ⊂Ii                                        j=2 i=1         Jj ⊂Ii                                                           (49)
+                                  |J1 |=δ 1/2                                                   |Jj |=δ 2
+                                                                                                         −j
+
+
+
+
+  We next observe the following trivial consequence of the Cauchy–Schwartz inequality.
+               −s−1
+The bound N 2       is only optimal at p = ∞ and can be easily improved for 2n ≤ p < ∞
+by using (40). However this will not be necessary for our forthcoming argument.
+Lemma 5.4. For 1 ≤ p ≤ ∞ and s ≥ 2
+            n
+            Y                               n
+                                            Y                                                   X                              1
+                     1/n           2−s−1
+         k( |EIi g|) kLp (BN ) ≤ N       k(                                                                 |EJs g|2) 2n kLp (BN ) .
+                             i=1                                                       i=1      Js ⊂Ii
+                                                                                                       −s
+                                                                                              |Js |=δ 2
+                                DECOUPLINGS FOR HYPERSURFACES AND CURVES                                                                         25
+
+  Generalized parabolic rescaling (35) shows that for each N −ρ interval J with ρ ≤ n1 we
+have                                            X
+                 kEJ gkLp (BN ) ≤ Kp (N 1−ρn )(      kEI gk2Lp (wB ) )1/2 .
+                                                                                                           N
+                                                                           I⊂J
+                                                                       |I|=N −1/n
+
+We will apply this rescaling to the terms in (49) with 2−j ≤ n1 . There will be On (1) terms
+in (49) for which this procedure is not applicable. However, we will be content with the
+trivial estimates
+               n
+               Y   X                              Yn   X
+                                           1                                   1
+                                                A
+             (                  2
+                         kEJj gkLp (wB ) ) ≤ N (
+                                          2n                kEU gk2Lp (wB ) ) 2n ,
+                                                        N                                                          N
+                i=1        Jj ⊂Ii                                             i=1     U ⊂Ii
+                         |Jj |=δ 2
+                                  −j                                                |U |=δ 1/n
+
+
+for 2−j > n1 , and
+                   n
+                   Y X                                                        n
+                                                                              Y X
+                                                  1                                                                          1
+              k(                             2
+                                       |EJ1 g| ) kLp (wBN ) ≤ N (
+                                                 2n
+                                                                          A
+                                                                                                  kEU gk2Lp (wB ) ) 2n .
+                                                                                                                       N
+                   i=1     J1 ⊂Ii                                              i=1     U ⊂Ii
+                         |J1 |=δ 1/2                                                 |U |=δ 1/n
+
+
+The value of A will not be important for our computations.
+  Combining these estimates with (49) and Lemma 5.4 we have for ν-transverse Ii
+               Yn                            Yn  X                       1
+                          1/n
+             k( |EIi g|) kL (BN ) .ν C (
+                              p
+                                         s−1
+                                                      kEU gk2Lp (wB ) ) 2n ×
+                                                                                                               N
+                         i=1                                            i=1     U ⊂Ii
+                                                                              |U |=δ 1/n
+
+       −s−1                    −s                     −s+1 n                                     −j0 n             s−j0                  s
+ ×N 2      Kp (N 1−2 n )κp Kp (N 1−2                           )κp (1−κp ) . . . Kp (N 1−2               )κp (1−κp )       N On ((1−κp ) ) ,
+where 2−j0 ≤ n1 < 2−j0+1 .
+  This in turn implies that
+                                                            Cp (N, ν) .ν
+        2−s−1              1−2−s n               1−2−s+1 n                                         −j                  s−j                   s
+ C s−1 N    Kp (N      )κp Kp (N     )κp (1−κp ) . . . Kp (N 1−2 0 n )κp (1−κp ) 0 N On ((1−κp ) ) .
+Assume Kp (N) ∼ N γp . This can be made rigorous, see for example Section 6 in [3]. In
+light of Theorem 4.1 we have
+                                    1 − (1 − κp )s−j0+1        1 − (2(1 − κp ))s−j0 +1
+  γp ≤ 2−s−1 + κp γp (                                  − n2−s                         ) + On ((1 − κp )s ).
+                                            κp                        2κp − 1                             (50)
+If p > 4n − 2 then 2(1 − κp ) = 4(n−1)
+                                  p−2
+                                        < 1. Multiply both sides of (50) with 2s , simplify
+the algebra and let s → ∞ to get γp 2κnκp −1
+                                          p
+                                             ≤ 21 or
+                                                                  p − 4n + 2
+                                                        γp ≤                 .
+                                                                  2n(p − 2n)
+Let p approach 4n − 2. This is of course good enough to conclude the proof of Theorem
+1.4 for p = 4n − 2. To get the range 2 ≤ p < 4n − 2, we caution that there is no interpo-
+lation argument available in this context (see the counterexample in the last section). As
+explained earlier, this is due to the fact that the neighborhoods θ ∈ Pδ are not straight
+tubes. There is however at least one way around this. Namely, note that (46) holds with
+κp replaced with κ = 1 (Minkowski’s inequality). Thus, we can in fact replace κp with
+26                                 JEAN BOURGAIN AND CIPRIAN DEMETER
+
+any κp ≤ κ ≤ 1. Fix some 2n < p < p0 = 4n − 2. Using κ := κp0 +ǫ , we get as before that
+for each ǫ > 0
+                                         2κp0 +ǫ − 1
+                                   γp ≤              .
+                                          2nκp0 +ǫ
+Letting ǫ → 0, we get Theorem 1.4 in the range [2n, 4n − 2]. Finally, recall that the result
+for 2 ≤ p ≤ 2n follows from (41).
+
+          6. A more general perspective on decouplings for curves
+
+ Recall the definition of the extension operator
+                                 Z
+                      EI g(x) = g(t)e(tx1 + t2 x2 + . . . + tn xn )dt.
+                                  I
+                             1
+                               R
+We denote by kF kL♯ (B) = ( |B| Rn |F |p wB )1/p the normalized integral. Given 2 ≤ q ≤ p <
+                   p
+
+
+∞, 1 ≤ m ≤ n and n1 ≤ α ≤ 1, we will say that we have (p, q, α, m) decoupling if
+                  m
+                  Y                                                                  m
+                                                                                     Y X                                  1
+                                                                α( 12 − q1 )+ǫ
+             k(         |EIi g|)   1/m
+                                         k   Lp♯ (BN )   .ǫ N                    (                   kEU gkqLq (BN ) ) mq
+                                                                                                                 ♯
+                  i=1                                                                i=1 |U |=N −α
+                                                                                           U ⊂Ii
+
+                                                                                          n
+holds true for each g : [0, 1] → C , each N-ball BN ⊂ R and each ∼ 1-transverse intervals
+Ii ⊂ [0, 1].
+   A few comments are appropriate. First, (p, q, α, m) decoupling implies (p′ , q ′ , α, m′ )
+decoupling when p′ ≤ p, q ≤ q ′ , m′ ≥ m. Also, (p, p, α, m) decoupling implies (p, p, α′ , m)
+decoupling when α′ ≤ α. It thus follows that (p, q, α, m) decoupling is a bit stronger than
+(p, p, α, m) decoupling, which was referred to in the earlier part of this paper as m-linear
+lp decoupling at frequency scale N −α . In particular, (p, q, α, m) decoupling implies the
+following estimate for exponential sums: for each δ-separated set Λ of points on the curve
+Φ([0, 1]) and each coefficients aξ ∈ C we have
+                      Z     Ym   X
+                   1                                               1   1
+               (          |            aξ e(ξ · x)|p/m dx)1/p .ǫ δ 2 − p −ǫ kaξ klp (Λ) , (51)
+                 |BR | BR i=1
+                                         ξ∈Λ∩Φ(Ii )
+                                                                                      1
+for each ǫ and each ball BR ⊂ Rn of radius R & δ − α .
+
+  We have repeatedly used throughout the paper the fact that one can interpolate de-
+couplings when α = 21 . Let us now see why interpolation fails when α = n1 . Recall that
+we have both (4n − 2, 4n − 2, n1 , n) and (2n, 2, n1 , n) decoupling. If interpolation held true,
+this would give (3n, 6, n1 , n) decoupling, namely
+                    n
+                    Y                                                          n
+                                                                               Y          X
+                                                                    1                                                 1
+                                     1/n                              +ǫ
+               k(         |EIi g|)         kL3n
+                                             ♯ (BN )
+                                                     .ǫ N          3n      (                       kEU gk6L6 (BN ) ) 6n .
+                                                                                                             ♯
+                    i=1                                                        i=1           −1
+                                                                                      |U |=N n
+                                                                                         U ⊂Ii
+
+Note however that this is false for n large enough. Indeed, when g = 1[0,1] the left hand
+side is greater than
+                                  Yn
+                           −1/3
+                         N      k( |EIi g|)1/n kL3n (B1 ) & N −1/3 .
+                                                    i=1
+                              DECOUPLINGS FOR HYPERSURFACES AND CURVES                                                                 27
+
+On the other hand, a stationary phase computation (see for example [6]) shows that if
+n ≥ 3 then
+                                                                   4
+                      kEU gkL6♯ (BN ) . kE[0,1] gkL6♯ (BN ) .ǫ N − 9 +ǫ .
+
+
+   Given n1 ≤ α ≤ 1, let l = l(α) be such that l+1  1
+                                                       < α ≤ 1l . If α < n1 we set l(α) = n.
+The following simple example shows that there can be no (p, q, α, m) decoupling for p >
+2 n−l
+   α
+      + l(l + 1). Indeed, such a decoupling would imply that
+              Z       m X
+                      Y
+           1                      k               k                             1      α
+        ( n         |         e( α x1 + . . . + ( α )n xn )|p/m dx1 . . . dxn ) p .ǫ N 2 +ǫ .
+          N [0,N ]n i=1 k        N               N
+                                     Nα
+                                          ∈Ii
+
+To see why this leads to a contradiction, consider integers M1 , . . . , Ml ≥ 1 such that
+Mj N jα ≤ N < (Mj + 1)N jα for 1 ≤ j ≤ l.
+  By periodicity, the left hand side is greater than
+         Z                              Ym X
+      1                                          k                k                             1
+   ( n Q                              |       e( α x1 + . . . + ( α )n xn )|p/m dx1 . . . dxn ) p =
+    N      l
+           j=1 [0,Mj N
+                       jα ]×[0,N ]n−l
+                                        i=1 k
+                                                N                N
+                                                         Nα
+                                                                 ∈Ii
+      Ql          Z                                    m X
+       j=1 Mj
+                                                       Y                         k                 k                             1
+  (                   Ql
+                                                   |                       e(       x1 + . . . + ( α )n xn )|p/m dx1 . . . dxn ) p &
+        Nn             j=1 [0,N
+                                  jα ]×[0,N ]n−l
+                                                       i=1    k
+                                                                                N α               N
+                                                             Nα
+                                                                ∈Ii
+                                                                 m X
+                                                                 Y
+                   Nl                                                                   k                 k               1
+           (                              min                |                    e(       x1 + . . . + ( α )n xn )|p/m ) p &
+               N n+α+...+lα                       1 n
+                              (x1 ,... ,xn )∈[0, 100 ]
+                                                                 i=1    k
+                                                                                       N α               N
+                                                                       Nα
+                                                                          ∈Ii
+                                                                       1        αl(l+1)
+                                                                                        −n)
+                                                             N α+ p (l−            2          .
+
+
+   Let us now take a look at some examples. First, the case α = 1. Inequality (40) shows
+that we have (p, 2, 1, n) decoupling for 2 ≤ p ≤ 2n. The example above shows that there
+can be no (p, q, 1, m) decoupling for p > 2n.
+   The value α = n1 corresponds to the natural scaling of the curve, and it is thus naturally
+associated with linear decoupling (m = 1). Our Theorem 1.4 here implies that we have
+(4n − 2, 4n − 2, n1 , 1) decoupling. It seems possible that (p, p, n1 , 1) decoupling would hold
+for p as large as n(n + 1) and the example above shows that one can not hope for a larger
+p. If true, this would imply Vinogradov’s mean value theorem.
+   The case α = 21 is particularly interesting. It seems reasonable to expect (4n − 2, 4n −
+2, 21 , m) decoupling for some m > 1, at least for m = n. The exponent 4n − 2 is again
+suggested by the example above but also by interpolation heuristics. In [5], the first author
+proved the (3n, 6, 21 , n2 ) decoupling when n is even. This was the key step in improving
+the upper bound on the Riemann zeta function on the critical line.
+   As a last example for α = 21 , we will show below how our Theorem 1.1 here implies
+(2(n + 1), 2(n+1)
+              n−1
+                  , 21 , n − 1) decoupling. It is interesting to observe that the reciprocals of
+(2n, 2), (3n, 6), (2(n + 1), 2(n+1)
+                                n−1
+                                    ), (4n − 2, 4n − 2) are collinear. This is consistent with the
+fact that interpolation is available in the case α = 21 .
+28                                      JEAN BOURGAIN AND CIPRIAN DEMETER
+
+Proposition 6.1. Let I1 , . . . , In−1 be ∼ 1-transverse intervals. Then we have
+          n−1
+          Y                                                                 n−1
+                                                                            Y           X                       2(n+1)
+                            1                              1                                                                         1
+                                                               +ǫ
+     k(         |EIj g|)   n−1   kL2(n+1) (BN ) .ǫ N    2(n+1)         (                              kE∆ gk n−1
+                                                                                                             2(n+1)             ) 2(n+1) .
+                                    ♯
+          j=1                                                               i=1 ∆:     1 −interval              L♯ n−1 (BN )
+                                                                                     N 1/2
+                                                                                         ∆⊂Ii
+
+
+Proof The first step is to construct a hypersurface S from the curve Φ, and invoke
+Theorem 1.1 for it. That leads to the following inequality proved in [4]
+          n−1
+          Y                                                                   X                 n−1
+                                                                                                Y            2(n+1)
+                          1                             1                                                                           1
+                                                            +ǫ
+     k(         |fi |)   n−1   kL2(n+1) (BN ) .ǫ N   2(n+1)      (                          k         fi,∆i k n−1
+                                                                                                              2(n+1)            ) 2(n+1) ,
+                                                                                                            L   n−1    (wBN )
+          j=1                                                        ∆i :     1 −interval       i=1                                          (52)
+                                                                            N 1/2
+                                                                               ∆i ⊂Ii
+
+
+whenever fi is Fourier supported in the N1 -neighborhood of Φ(Ii ) and fi,∆i denotes the
+Fourier restriction of fi to the N1 -neighborhood of Φ(∆i ). It is worth noting that when
+n = 3, the hypersurface S is
+                                             ξ13 3
+                                      ξ3 = − + ξ1 ξ2 .
+                                            p2     2
+The principal curvatures are ∼ (− 23 (ξ1 ± ξ12 + 1)) and the second fundamental form of
+S is not definite. This example explains the need for our main Theorem 1.1 in this paper.
+   The second step of the argument consists of exploiting multilinearity on the right hand
+side of (52). To avoid technicalities we will be provide an informal argument. Using wave
+packet decompositions, we note that for each q
+                                        X           1
+                            |f∆ |q ∼         cT N − 2 −n 1T on BN ,
+                                                     T ∩BN 6=∅
+
+where T are parallel N × N . . . × N × N 1/2 -plates dual to the N1 -neighborhood of Φ(∆)
+and                                          Z
+                                   X
+                                      cT ∼        |f∆ |q .
+                                                                            BN
+Using the key estimate                        Z
+                                                                                            n+1
+                                                      1T1 · . . . · 1Tn−1 . N 2
+                                                BN
+                                                                     n+1
+for transverse plates T1 , . . . , Tn−1 , we obtain (with q = 2 n−1      )
+               Z n−1
+                   Y                                             n−1
+                                                                 Y
+                                 2(n+1)
+                                             −(n− 21 )(n−1)+ n+1             2 n+1
+                       |fi,∆i |    n−1  .N                    2      kfi,∆i k n−1
+                                                                               2 n+1
+                                                                                                                         .
+                          BN i=1                                                                         L n−1 (wBN )
+                                                                                         i=1
+This finishes the proof.
+
+
+                                                         References
+ [1] Bennett, J., Carbery, A. and Tao, T. On the multilinear restriction and Kakeya conjectures, Acta
+     Math. 196 (2006), no. 2, 261-302
+ [2] Bourgain, J. and Guth, L. Bounds on oscillatory integral operators based on multilinear estimates,
+     Geom. Funct. Anal. 21 (2011), no. 6, 1239-1295
+ [3] Bourgain, J. and Demeter, C. The proof of the l2 Decoupling Conjecture, Annals of Math. 182 (2015),
+     no. 1, 351-389.
+                        DECOUPLINGS FOR HYPERSURFACES AND CURVES                                      29
+
+ [4] Bourgain, J. Decoupling inequalities and some mean-value theorems, preprint available on arXiv.
+ [5] Bourgain, J. Decoupling,exponential sums and the Riemann-zeta function, preprint available on
+     arXiv.
+ [6] Brandolini, L.; Gigante, G.; Greenleaf, A.; Iosevich, A.; Seeger, A.; Travaglini, G. Average decay
+     estimates for Fourier transforms of measures supported on curves. J. Geom. Anal. 17 (2007), no. 1,
+     15-40.
+ [7] Godet, N. and Tzvetkov, N. Strichartz estimates for the periodic non-elliptic Schrödinger equation,
+     C. R. Math. Acad. Sci. Paris 350 (2012), no. 21-22, 955-958.
+ [8] Ham, S and Lee, S. Restriction estimates for space curves with respect to general measure, available
+     at http://arxiv.org/pdf/1303.6562.pdf
+ [9] Wang, Y. Periodic cubic hyperbolic Schrödinger equation on T2 , J. Funct. Anal. 265 (2013), no. 3,
+     424-434.
+[10] Wolff, T. Local smoothing type estimates on Lp for large p, Geom. Funct. Anal. 10 (2000), no. 5,
+     1237-1288
+[11] Wooley, T. Approximating the main conjecture in Vinogradov’s mean value theorem, available at
+     http://arxiv.org/abs/1401.2932
+
+  School of Mathematics, Institute for Advanced Study, Princeton, NJ 08540
+  E-mail address: bourgain@math.ias.edu
+
+  Department of Mathematics, Indiana University, 831 East 3rd St., Bloomington IN
+47405
+  E-mail address: demeterc@indiana.edu
+

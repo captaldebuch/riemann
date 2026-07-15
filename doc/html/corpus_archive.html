@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Archive - Riemann Hypothesis Corpus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #3b82f6;
+        }
+        h1 {
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+            font-size: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f3e8ff 100%);
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+        .stat-card h3 {
+            color: #0369a1;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .stat-card .value {
+            color: #1f2937;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            margin: 2rem 0;
+            display: flex;
+            gap: 1rem;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .search-bar button {
+            padding: 0.75rem 1.5rem;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .search-bar button:hover {
+            background: #2563eb;
+        }
+
+        .papers-list {
+            display: grid;
+            gap: 1rem;
+        }
+        .paper-card {
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .paper-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        .paper-card h3 {
+            color: #1f2937;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .paper-card a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .paper-card a:hover {
+            text-decoration: underline;
+        }
+        .paper-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .paper-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #dbeafe;
+            color: #0369a1;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.75rem;
+        }
+
+        .back-link {
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            display: inline-block;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+
+        <header>
+            <h1>📚 Paper Archive</h1>
+            <p>The complete corpus of papers in the Riemann Hypothesis formalization project</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Analytic</h3>
+                <div class="value">1</div>
+            </div>
+            <div class="stat-card">
+                <h3>General</h3>
+                <div class="value">50</div>
+            </div>
+            <div class="stat-card">
+                <h3>H13</h3>
+                <div class="value">2</div>
+            </div>
+            <div class="stat-card">
+                <h3>H14</h3>
+                <div class="value">17</div>
+            </div>
+            <div class="stat-card">
+                <h3>H15</h3>
+                <div class="value">6</div>
+            </div>
+            <div class="stat-card">
+                <h3>Probabilistic</h3>
+                <div class="value">1</div>
+            </div>
+            <div class="stat-card">
+                <h3>Spectral</h3>
+                <div class="value">1</div>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search papers by title, author, or ID..." />
+            <button onclick="filterPapers()">Search</button>
+        </div>
+
+        <div class="papers-list" id="papers-list">
+            <div class="paper-card">
+                <h3><a href="kg_None.html">9811068v1</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2607.01126.html">Contour Shifting and Error Terms</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2607.01126</span>
+                    <span>👥 <strong>Authors:</strong> Error Analysis Team</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">DECOUPLINGS FOR CURVES AND HYPERSURFACES WITH</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">J. HADAMARD</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">MEAN VALUES OF L–FUNCTIONS AND SYMMETRY</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2607.02828.html">Mellin Transforms and Analytic Continuation</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2607.02828</span>
+                    <span>👥 <strong>Authors:</strong> Classical Analysts</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2607.04632.html">Möbius Correlations and Cancellation</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2607.04632</span>
+                    <span>👥 <strong>Authors:</strong> Analytic Researchers</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H15</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2606.22562.html">Perron Inversion Formulas</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2606.22562</span>
+                    <span>👥 <strong>Authors:</strong> Classical Methods Group</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2607.09110.html">Phase 1 Diagnostics for H15 Kernel</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2607.09110</span>
+                    <span>👥 <strong>Authors:</strong> Research Team</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H15</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2607.09797.html">Recent Advances in RH Approximations</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2607.09797</span>
+                    <span>👥 <strong>Authors:</strong> Various Researchers</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H15</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">SMALL GAPS BETWEEN PRIMES</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">ULLETIN DE LA</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">ULLETIN DES SCIENCES</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00043.html">X-RAY OF RIEMANN’S ZETA-FUNCTION 23</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00043</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2607.04316.html">Zeta Functions and RH Equivalences</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2607.04316</span>
+                    <span>👥 <strong>Authors:</strong> Number Theorists</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">math_0306251</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00018.html">paper_18</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00018</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00025.html">paper_25</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00025</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00003.html">paper_3</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00003</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00031.html">paper_31</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00031</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00032.html">paper_32</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00032</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00037.html">paper_37</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00037</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00049.html">paper_49</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00049</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00055.html">paper_55</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00055</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 2026</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2209.10990.html">Recent Developments in Random Matrix Theory</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2209.10990</span>
+                    <span>👥 <strong>Authors:</strong> Probabilistic Team</span>
+                    <span>📅 <strong>Year:</strong> 2022</span>
+                </div>
+                <div><span class="role-badge">Probabilistic</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2105.00004.html">Quantum Chaos and Spectral Spacing</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2105.00004</span>
+                    <span>👥 <strong>Authors:</strong> Spectral Researchers</span>
+                    <span>📅 <strong>Year:</strong> 2021</span>
+                </div>
+                <div><span class="role-badge">Spectral</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1807.08249.html">L-Functions and Modular Forms</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1807.08249</span>
+                    <span>👥 <strong>Authors:</strong> Modular Forms Group</span>
+                    <span>📅 <strong>Year:</strong> 2018</span>
+                </div>
+                <div><span class="role-badge">Analytic</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1601.06839.html">Reciprocal Relations and Theorems</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1601.06839</span>
+                    <span>👥 <strong>Authors:</strong> Auli, Bayad + 1 more</span>
+                    <span>📅 <strong>Year:</strong> 2017</span>
+                </div>
+                <div><span class="role-badge">H15</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1510.05087.html">Explicit Zero-Free Regions</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1510.05087</span>
+                    <span>👥 <strong>Authors:</strong> Analytic Number Theorists</span>
+                    <span>📅 <strong>Year:</strong> 2015</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1503.05121.html">Fourier Analysis on GL(2)</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1503.05121</span>
+                    <span>👥 <strong>Authors:</strong> Harmonic Analysts</span>
+                    <span>📅 <strong>Year:</strong> 2015</span>
+                </div>
+                <div><span class="role-badge">H15</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1501.02975.html">Mellin Transform Techniques</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1501.02975</span>
+                    <span>👥 <strong>Authors:</strong> Iwaniec, Kowalski</span>
+                    <span>📅 <strong>Year:</strong> 2015</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1409.1634.html">Dirichlet Character Sums</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1409.1634</span>
+                    <span>👥 <strong>Authors:</strong> Character Theory Team</span>
+                    <span>📅 <strong>Year:</strong> 2014</span>
+                </div>
+                <div><span class="role-badge">H13</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1401.3150.html">Explicit Bounds in Analytic Number Theory</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1401.3150</span>
+                    <span>👥 <strong>Authors:</strong> Bounds Researchers</span>
+                    <span>📅 <strong>Year:</strong> 2014</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1401.2932.html">Zeta Functions: Classical and Modern</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1401.2932</span>
+                    <span>👥 <strong>Authors:</strong> Zeta Group</span>
+                    <span>📅 <strong>Year:</strong> 2014</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1111.0931.html">Approximations to the Riemann Hypothesis</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1111.0931</span>
+                    <span>👥 <strong>Authors:</strong> Bettin, Conrey</span>
+                    <span>📅 <strong>Year:</strong> 2013</span>
+                </div>
+                <div><span class="role-badge">H15</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_1211.5191.html">Rigid Analytic Geometry</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 1211.5191</span>
+                    <span>👥 <strong>Authors:</strong> Geometric Analysts</span>
+                    <span>📅 <strong>Year:</strong> 2012</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:Zeta (1).pdf.html">The Riemann Zeta Function</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:Zeta (1).pdf</span>
+                    <span>👥 <strong>Authors:</strong> Special Functions Team</span>
+                    <span>📅 <strong>Year:</strong> 2010</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:CRMATH_2009__347_19-20_1115_0.pdf.html">Progrès Récents sur l'Hypothèse de Riemann</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:CRMATH_2009__347_19-20_1115_0.pdf</span>
+                    <span>👥 <strong>Authors:</strong> Recent Team</span>
+                    <span>📅 <strong>Year:</strong> 2009</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:BSMF_2006__134_3_417_0.pdf.html">Méthodes Modernes en Théorie des Nombres</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:BSMF_2006__134_3_417_0.pdf</span>
+                    <span>👥 <strong>Authors:</strong> Modern Team</span>
+                    <span>📅 <strong>Year:</strong> 2006</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:AIF_2005__55_4_1373_0.pdf.html">Fourier Analysis and Number Theory</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:AIF_2005__55_4_1373_0.pdf</span>
+                    <span>👥 <strong>Authors:</strong> Annales Group</span>
+                    <span>📅 <strong>Year:</strong> 2005</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:AIF_2003__53_3_665_0.pdf.html">Complex Analysis in Number Theory</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:AIF_2003__53_3_665_0.pdf</span>
+                    <span>👥 <strong>Authors:</strong> Complex Analysts</span>
+                    <span>📅 <strong>Year:</strong> 2003</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_math/0306251.html">Digamma Function and Belhadj-Goubi Proof</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> math/0306251</span>
+                    <span>👥 <strong>Authors:</strong> Belhadj, Goubi</span>
+                    <span>📅 <strong>Year:</strong> 2003</span>
+                </div>
+                <div><span class="role-badge">H13</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:MSMF_2001_2_86__1_0.pdf.html">Mémoires sur les Fonctions Zêta</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:MSMF_2001_2_86__1_0.pdf</span>
+                    <span>👥 <strong>Authors:</strong> French Analysts</span>
+                    <span>📅 <strong>Year:</strong> 2001</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_math/9912107.html">Classical Number Theory Methods</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> math/9912107</span>
+                    <span>👥 <strong>Authors:</strong> Classical Team</span>
+                    <span>📅 <strong>Year:</strong> 1999</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:BSMF_1896__24__199_1.pdf.html">Sur les Zéros de la Fonction ζ(s)</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:BSMF_1896__24__199_1.pdf</span>
+                    <span>👥 <strong>Authors:</strong> Hadamard</span>
+                    <span>📅 <strong>Year:</strong> 1896</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:JMPA_1893_4_9__171_0.pdf.html">Contributions to Prime Number Distribution</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:JMPA_1893_4_9__171_0.pdf</span>
+                    <span>👥 <strong>Authors:</strong> Classical Analysts</span>
+                    <span>📅 <strong>Year:</strong> 1893</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_file:BSMA_1873__5__79_1.pdf.html">Mémoire sur la Distribution des Nombres Premiers</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> file:BSMA_1873__5__79_1.pdf</span>
+                    <span>👥 <strong>Authors:</strong> Chebyshev</span>
+                    <span>📅 <strong>Year:</strong> 1873</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">1111.0931</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00005.html">4 CMI ANNUAL REPORT THE YEAR 2004 5</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00005</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">AIF_2005__55_4_1373_0</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">AN OPTIMAL CHOICE OF DIRICHLET POLYNOMIALS FOR THE</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">APPROXIMATING THE MAIN CONJECTURE IN</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">CRMATH_2009__347_19-20_1115_0</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00036.html">I L LJ1 N O J S</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00036</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">ME´MOIRES DE LA SMF 86</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00041.html">ON THE GENERALIZED RIEMANNHYPOTHESIS II</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00041</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00028.html">ORIGINAL RESEARCH</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00028</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00000.html">RIEMANN AND HIS ZETA FUNCTION</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00000</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00013.html">RIEMANN’S HYPOTHESIS</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00013</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">THE CUBIC CASE OF THE MAIN CONJECTURE IN</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00048.html">THREE LECTURES ON THE RIEMANN ZETA-FUNCTION</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00048</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">U D ANNALES</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">UNE APPROCHE HILBERTIENNE DE L’HYPOTHE`SE</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00001.html">paper_1</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00001</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00035.html">paper_35</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00035</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00042.html">paper_42</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00042</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00044.html">paper_44</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00044</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00060.html">paper_60</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00060</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00008.html">paper_8</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00008</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 20</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_2309.09171.html">2309.09171v1</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 2309.09171</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00051.html">HARDY'S LEGACY TO NUMBER THEORY</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00051</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">LONG GAPS BETWEEN PRIMES</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">PPN266833020_0019</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00061.html">THE THEORY OF THE</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00061</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_None.html">Zeta (1)</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> None</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">H14</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00014.html">paper_14</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00014</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00021.html">paper_21</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00021</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+            <div class="paper-card">
+                <h3><a href="kg_9901.00033.html">paper_33</a></h3>
+                <div class="paper-meta">
+                    <span>📋 <strong>ID:</strong> 9901.00033</span>
+                    <span>👥 <strong>Authors:</strong> Unknown Author</span>
+                    <span>📅 <strong>Year:</strong> 19</span>
+                </div>
+                <div><span class="role-badge">General</span></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated: 2026-07-15 19:18:23 |
+            <a href="about.html">About this project</a> |
+            <a href="knowledge-explorer.html">Knowledge Graph Explorer</a> |
+            <a href="index.html">Dashboard</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function filterPapers() {
+            const searchText = document.getElementById('search').value.toLowerCase();
+            const papers = document.querySelectorAll('.paper-card');
+
+            papers.forEach(paper => {
+                const text = paper.textContent.toLowerCase();
+                paper.style.display = text.includes(searchText) ? 'block' : 'none';
+            });
+        }
+
+        document.getElementById('search').addEventListener('keyup', filterPapers);
+    </script>
+</body>
+</html>

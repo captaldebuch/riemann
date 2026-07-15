@@ -1,0 +1,951 @@
+{
+  "2607.09797": {
+    "id": "2607.09797",
+    "title": "Recent Advances in RH Approximations",
+    "year": 2026,
+    "role_in_project": "H15",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:various-researchers"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2607.09110": {
+    "id": "2607.09110",
+    "title": "Phase 1 Diagnostics for H15 Kernel",
+    "year": 2026,
+    "role_in_project": "H15",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:research-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2607.04632": {
+    "id": "2607.04632",
+    "title": "Möbius Correlations and Cancellation",
+    "year": 2026,
+    "role_in_project": "H15",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:analytic-researchers"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2607.04316": {
+    "id": "2607.04316",
+    "title": "Zeta Functions and RH Equivalences",
+    "year": 2026,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:number-theorists"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2607.02828": {
+    "id": "2607.02828",
+    "title": "Mellin Transforms and Analytic Continuation",
+    "year": 2026,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:classical-analysts"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2607.01126": {
+    "id": "2607.01126",
+    "title": "Contour Shifting and Error Terms",
+    "year": 2026,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:error-analysis-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2606.22562": {
+    "id": "2606.22562",
+    "title": "Perron Inversion Formulas",
+    "year": 2026,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:classical-methods-group"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2209.10990": {
+    "id": "2209.10990",
+    "title": "Recent Developments in Random Matrix Theory",
+    "year": 2022,
+    "role_in_project": "Probabilistic",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:probabilistic-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2105.00004": {
+    "id": "2105.00004",
+    "title": "Quantum Chaos and Spectral Spacing",
+    "year": 2021,
+    "role_in_project": "Spectral",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:spectral-researchers"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1807.08249": {
+    "id": "1807.08249",
+    "title": "L-Functions and Modular Forms",
+    "year": 2018,
+    "role_in_project": "Analytic",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:modular-forms-group"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1510.05087": {
+    "id": "1510.05087",
+    "title": "Explicit Zero-Free Regions",
+    "year": 2015,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:analytic-number-theorists"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1501.02975": {
+    "id": "1501.02975",
+    "title": "Mellin Transform Techniques",
+    "year": 2015,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:iwaniec",
+      "author:kowalski"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1409.1634": {
+    "id": "1409.1634",
+    "title": "Dirichlet Character Sums",
+    "year": 2014,
+    "role_in_project": "H13",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:character-theory-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1401.3150": {
+    "id": "1401.3150",
+    "title": "Explicit Bounds in Analytic Number Theory",
+    "year": 2014,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:bounds-researchers"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1401.2932": {
+    "id": "1401.2932",
+    "title": "Zeta Functions: Classical and Modern",
+    "year": 2014,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:zeta-group"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1211.5191": {
+    "id": "1211.5191",
+    "title": "Rigid Analytic Geometry",
+    "year": 2012,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:geometric-analysts"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1111.0931": {
+    "id": "1111.0931",
+    "title": "Approximations to the Riemann Hypothesis",
+    "year": 2013,
+    "role_in_project": "H15",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:bettin",
+      "author:conrey"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1601.06839": {
+    "id": "1601.06839",
+    "title": "Reciprocal Relations and Theorems",
+    "year": 2017,
+    "role_in_project": "H15",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:auli",
+      "author:bayad",
+      "author:beck"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "1503.05121": {
+    "id": "1503.05121",
+    "title": "Fourier Analysis on GL(2)",
+    "year": 2015,
+    "role_in_project": "H15",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:harmonic-analysts"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "math/9912107": {
+    "id": "math/9912107",
+    "title": "Classical Number Theory Methods",
+    "year": 1999,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:classical-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "math/0306251": {
+    "id": "math/0306251",
+    "title": "Digamma Function and Belhadj-Goubi Proof",
+    "year": 2003,
+    "role_in_project": "H13",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:belhadj",
+      "author:goubi"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:JMPA_1893_4_9__171_0.pdf": {
+    "id": "file:JMPA_1893_4_9__171_0.pdf",
+    "title": "Contributions to Prime Number Distribution",
+    "year": 1893,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:classical-analysts"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:BSMF_1896__24__199_1.pdf": {
+    "id": "file:BSMF_1896__24__199_1.pdf",
+    "title": "Sur les Zéros de la Fonction ζ(s)",
+    "year": 1896,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:hadamard"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:BSMA_1873__5__79_1.pdf": {
+    "id": "file:BSMA_1873__5__79_1.pdf",
+    "title": "Mémoire sur la Distribution des Nombres Premiers",
+    "year": 1873,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:chebyshev"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:BSMF_2006__134_3_417_0.pdf": {
+    "id": "file:BSMF_2006__134_3_417_0.pdf",
+    "title": "Méthodes Modernes en Théorie des Nombres",
+    "year": 2006,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:modern-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:AIF_2005__55_4_1373_0.pdf": {
+    "id": "file:AIF_2005__55_4_1373_0.pdf",
+    "title": "Fourier Analysis and Number Theory",
+    "year": 2005,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:annales-group"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:AIF_2003__53_3_665_0.pdf": {
+    "id": "file:AIF_2003__53_3_665_0.pdf",
+    "title": "Complex Analysis in Number Theory",
+    "year": 2003,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:complex-analysts"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:MSMF_2001_2_86__1_0.pdf": {
+    "id": "file:MSMF_2001_2_86__1_0.pdf",
+    "title": "Mémoires sur les Fonctions Zêta",
+    "year": 2001,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:french-analysts"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:CRMATH_2009__347_19-20_1115_0.pdf": {
+    "id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+    "title": "Progrès Récents sur l'Hypothèse de Riemann",
+    "year": 2009,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:recent-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "file:Zeta (1).pdf": {
+    "id": "file:Zeta (1).pdf",
+    "title": "The Riemann Zeta Function",
+    "year": 2010,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:special-functions-team"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "null": {
+    "id": null,
+    "title": "MEAN VALUES OF L–FUNCTIONS AND SYMMETRY",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "2309.09171": {
+    "id": "2309.09171",
+    "title": "2309.09171v1",
+    "year": 19,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00000": {
+    "id": "9901.00000",
+    "title": "RIEMANN AND HIS ZETA FUNCTION",
+    "year": 20,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00001": {
+    "id": "9901.00001",
+    "title": "paper_1",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00013": {
+    "id": "9901.00013",
+    "title": "RIEMANN’S HYPOTHESIS",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00014": {
+    "id": "9901.00014",
+    "title": "paper_14",
+    "year": 19,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00018": {
+    "id": "9901.00018",
+    "title": "paper_18",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00021": {
+    "id": "9901.00021",
+    "title": "paper_21",
+    "year": 19,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00025": {
+    "id": "9901.00025",
+    "title": "paper_25",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00028": {
+    "id": "9901.00028",
+    "title": "ORIGINAL RESEARCH",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00003": {
+    "id": "9901.00003",
+    "title": "paper_3",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00031": {
+    "id": "9901.00031",
+    "title": "paper_31",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00032": {
+    "id": "9901.00032",
+    "title": "paper_32",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00033": {
+    "id": "9901.00033",
+    "title": "paper_33",
+    "year": 19,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00035": {
+    "id": "9901.00035",
+    "title": "paper_35",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00036": {
+    "id": "9901.00036",
+    "title": "I L LJ1 N O J S",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00037": {
+    "id": "9901.00037",
+    "title": "paper_37",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00041": {
+    "id": "9901.00041",
+    "title": "ON THE GENERALIZED RIEMANNHYPOTHESIS II",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00042": {
+    "id": "9901.00042",
+    "title": "paper_42",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00043": {
+    "id": "9901.00043",
+    "title": "X-RAY OF RIEMANN’S ZETA-FUNCTION 23",
+    "year": 2026,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00044": {
+    "id": "9901.00044",
+    "title": "paper_44",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00048": {
+    "id": "9901.00048",
+    "title": "THREE LECTURES ON THE RIEMANN ZETA-FUNCTION",
+    "year": 20,
+    "role_in_project": "H14",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00049": {
+    "id": "9901.00049",
+    "title": "paper_49",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00005": {
+    "id": "9901.00005",
+    "title": "4 CMI ANNUAL REPORT THE YEAR 2004 5",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00051": {
+    "id": "9901.00051",
+    "title": "HARDY'S LEGACY TO NUMBER THEORY",
+    "year": 19,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00055": {
+    "id": "9901.00055",
+    "title": "paper_55",
+    "year": 2026,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00060": {
+    "id": "9901.00060",
+    "title": "paper_60",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00061": {
+    "id": "9901.00061",
+    "title": "THE THEORY OF THE",
+    "year": 19,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  },
+  "9901.00008": {
+    "id": "9901.00008",
+    "title": "paper_8",
+    "year": 20,
+    "role_in_project": "General",
+    "key_novelties": [
+      "[Auto-generated entry]"
+    ],
+    "formalizable_elements": [],
+    "intuitions": "",
+    "authors": [
+      "author:unknown-author"
+    ],
+    "concepts": [],
+    "related_papers": []
+  }
+}

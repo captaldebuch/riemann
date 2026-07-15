@@ -1,0 +1,139 @@
+Author(s) | Year | Publication Title / Venue | Analytical Contribution
+P. L. Chebyshev | 1848 | Journal de Mathématiques Pures et Appliquées | Introduces the logarithmic integral
+P. L. Chebyshev | 1850 | Mémoires de l'Académie des Sciences de Saint-Pétersbourg | Establishes Chebyshev's functions
+Bernhard Riemann | 1859 | Monatsberichte der Königlich Preußischen Akademie | The foundational paper
+F. Mertens | 1874 | Journal für die reine und angewandte Mathematik | Proves Mertens' theorems
+Richard Dedekind | 1877 | Vorlesungen über Zahlentheorie (Brunswick) | Generalizes the Riemann zeta function to algebraic number fields
+Thomas Stieltjes | 1885 | Letter to Hermite / Correspondence | Claims a proof of the Riemann Hypothesis via the Mertens function
+Jacques Hadamard | 1893 | Journal de Mathématiques Pures et Appliquées | Develops the theory of entire functions of finite order
+Hans von Mangoldt | 1895 | Journal für die reine und angewandte Mathematik | Provides a rigorous proof of Riemann's explicit formula
+Jacques Hadamard | 1896 | Annales Scientifiques de l'École Normale Supérieure | Independently proves the Prime Number Theorem
+C. J. de la Vallée Poussin | 1896 | Annales de la Société Scientifique de Bruxelles | Independently proves the Prime Number Theorem
+F. Mertens | 1897 | Sitzungsberichte der Kaiserlichen Akademie | Proves that the growth of the Mertens function implies the Riemann Hypothesis
+C. J. de la Vallée Poussin | 1899 | Annales de la Société Scientifique de Bruxelles | Establishes the first explicit zero-free region
+David Hilbert | 1900 | International Congress of Mathematicians, Paris | Introduces Problem 8
+J. P. Gram | 1903 | Acta Mathematica | Conducts the first systematic computation of the zeros
+Paul Epstein | 1903 | Mathematische Annalen | Introduces and analyzes the Epstein zeta function
+Edmund Landau | 1906 | Mathematische Annalen | Proves the first general theorems on the distribution of the zeros
+Ernst Lindelöf | 1908 | Bulletin des Sciences Mathématiques | Formulates the Lindelöf Hypothesis
+Edmund Landau | 1909 | Handbuch der Verteilung der Primzahlen | The definitive foundational textbook
+John E. Littlewood | 1912 | Comptes Rendus de l'Académie des Sciences | Shows that the Riemann Hypothesis implies the optimal bound
+Harald Bohr | 1913 | Göttinger Nachrichten | Explores the connection between the value distribution of zeta and almost periodic functions
+G. H. Hardy | 1914 | Comptes Rendus de l'Académie des Sciences | Proves that infinitely many zeros of the Riemann zeta function lie on the critical line
+Harald Bohr and Edmund Landau | 1914 | Rendiconti del Circolo Matematico di Palermo | Proves the Bohr-Landau density theorem
+R. J. Backlund | 1914 | Comptes Rendus de l'Académie des Sciences | Develops a precise zero-counting methodology
+Harald Bohr and Richard Courant | 1914 | Journal für die reine und angewandte Mathematik | Applies Diophantine approximation
+John E. Littlewood | 1914 | Journal of the London Mathematical Society | Proves that the difference changes sign infinitely many times
+Hermann Weyl | 1916 | Mathematische Annalen | Introduces Weyl's criterion
+Marcel Riesz | 1916 | Acta Mathematica | Formulates the Riesz criterion
+Erich Hecke | 1917 | Göttinger Nachrichten | Proves the analytic continuation and functional equation of L-functions
+R. J. Backlund | 1918 | Acta Mathematica | Establishes the exact formula for the zero-counting function
+George Pólya | 1918 | Göttinger Nachrichten | Discovers the Pólya-Vinogradov inequality
+G. H. Hardy and J. E. Littlewood | 1918 | Acta Mathematica | Establishes foundational estimates for the moments of zeta
+Erich Hecke | 1920 | Mathematische Annalen | Introduces Hecke L-functions
+G. H. Hardy and J. E. Littlewood | 1921 | Mathematische Zeitschrift | Establishes that a positive lower bound of the zeros
+Harald Cramér | 1922 | Arkiv för Matematik, Astronomi och Fysik | Introduces probabilistic models to predict the micro-distribution of prime numbers
+G. H. Hardy and J. E. Littlewood | 1923 | Acta Mathematica | Formulates the famous Hardy-Littlewood prime tuple conjectures
+Emil Artin | 1924 | Mathematische Zeitschrift | Introduces the Riemann Hypothesis for zeta functions of curves over finite fields
+John E. Littlewood | 1924 | Proceedings of the London Mathematical Society | Establishes sharp bounds for the growth of zeta
+Guido Hoheisel | 1930 | Sitzungsberichte der Preußischen Akademie | Proves the first prime interval result
+A. E. Ingham | 1932 | The Distribution of Prime Numbers (CUP) | Writes the classic monograph
+Carl Ludwig Siegel | 1932 | Quellen und Studien zur Geschichte der Mathematik | Deciphers Riemann's Nachlass
+Andreas Speiser | 1934 | Mathematische Annalen | Proves Speiser's theorem
+E. C. Titchmarsh | 1935 | The Zeta-Function of Riemann (Cambridge Tract) | The first comprehensive monograph
+Harald Cramér | 1936 | Acta Arithmetica | Proves that the Riemann Hypothesis implies the prime gap estimate
+A. E. Ingham | 1937 | Quarterly Journal of Mathematics | Establishes a connection between the Lindelöf Hypothesis and the Density Hypothesis
+A. E. Ingham | 1940 | Quarterly Journal of Mathematics | Formulates the Ingham density estimate
+André Weil | 1940 | Proceedings of the National Academy of Sciences | Formulates and proves the Riemann Hypothesis for elliptic curves over finite fields
+Atle Selberg | 1942 | Skrifter utgitt av Det Norske Videnskaps-Akademi | Proves that a positive proportion of the non-trivial zeros lie on the critical line
+Atle Selberg | 1946 | Archiv for Mathematik og Naturvidenskab | Introduces Selberg's mollifier method
+Paul Turán | 1948 | Dansk Videnskabernes Selskab | Develops the power sum method
+André Weil | 1948 | Sur les Courbes Algébriques (Hermann) | Proves the Riemann Hypothesis for curves of arbitrary genus
+Atle Selberg | 1949 | Annals of Mathematics | Introduces the elementary proof of the Prime Number Theorem
+Bertil Nyman | 1950 | Ph.D. Thesis, University of Uppsala | Formulates the Nyman criterion
+N. G. de Bruijn | 1950 | Duke Mathematical Journal | Introduces diffusion deformations of trigonometric integrals
+E. C. Titchmarsh | 1951 | The Theory of the Riemann Zeta-Function (OUP) | The definitive reference work
+Alan M. Turing | 1953 | Proceedings of the London Mathematical Society | Introduces Turing's Method
+Paul Turán | 1953 | Eine neue Methode in der Analysis und deren Anwendungen | Expands the applicability of the power sum method
+Arne Beurling | 1955 | Proceedings of the National Academy of Sciences | Proves the Beurling-Nyman theorem
+Atle Selberg | 1956 | Journal of the Indian Mathematical Society | Introduces the Selberg Trace Formula
+I. M. Vinogradov | 1958 | Izvestiya Akademii Nauk SSSR | Proves the Vinogradov-Korobov zero-free region
+N. M. Korobov | 1958 | Doklady Akademii Nauk SSSR | Independently develops the exponential sum estimations
+Enrico Bombieri | 1965 | Mathematika | Proves the Bombieri-Vinogradov Theorem
+H. M. Stark | 1967 | Michigan Mathematical Journal | Solves the Gauss class number one problem
+Alan Baker | 1967 | Philosophical Transactions of the Royal Society | Develops the theory of linear forms in logarithms
+G. Halász and P. Turán | 1969 | Journal of Number Theory | Establishes the Halász-Turán zero density bounds
+Enrico Bombieri | 1971 | Incontri del Seminario Matematico di Milano | Refines the large sieve inequalities
+Hugh L. Montgomery | 1971 | Topics in Multiplicative Number Theory (Springer) | Introduces modern zero density methodologies
+Hugh L. Montgomery | 1973 | Proceedings of Symposia in Pure Mathematics | Formulates the pair correlation conjecture
+H. L. Montgomery and R. C. Vaughan | 1973 | Mathematika | Standardizes the analytical application of the large sieve
+Norman Levinson | 1974 | Advances in Mathematics | Proves that at least one-third of the non-trivial zeros lie exactly on the critical line
+Pierre Deligne | 1974 | Publications Mathématiques de l'IHÉS | Completes the proof of the Weil Conjectures
+Enrico Bombieri | 1976 | Le Grand Crible dans la Théorie Analytique des Nombres | Publishes the definitive structural survey on the large sieve
+H. L. Montgomery and R. C. Vaughan | 1977 | Journal of the London Mathematical Society | Proves Hilbert's inequality for Dirichlet series
+Matti Jutila | 1977 | Acta Arithmetica | Develops Jutila's zero-density estimates
+D. R. Heath-Brown | 1979 | Journal of the London Mathematical Society | Establishes the Heath-Brown density theorem
+Roger Apéry | 1979 | Astérisque | Proves the irrationality of zeta(3)
+Jean-Louis Nicolas | 1983 | Journal of Number Theory | Proves Nicolas' criterion
+Guy Robin | 1984 | Journal de Mathématiques Pures et Appliquées | Proves Robin's criterion
+J. B. Conrey and A. Ghosh | 1984 | Mathematische Annalen | Proves the first mean-value theorems for the derivative
+Aleksandar Ivić | 1985 | The Riemann Zeta-Function (John Wiley & Sons) | Publishes the definitive reference textbook
+A. M. Odlyzko and H. J. J. te Riele | 1985 | Journal für die reine und angewandte Mathematik | Disproves the Mertens Conjecture
+Louis de Branges | 1986 | Journal of Functional Analysis | Proves the Bieberbach conjecture
+M. V. Berry | 1986 | Proceedings of the Royal Society of London | Proposes quantum chaology
+E. C. Titchmarsh and D. R. Heath-Brown | 1986 | The Theory of the Riemann Zeta-Function (2nd Ed.) | Revises Titchmarsh's classic text
+A. M. Odlyzko | 1987 | Mathematics of Computation | Performs large-scale computations of the zeros
+D. A. Goldston and H. L. Montgomery | 1987 | Srinivasa Ramanujan Centenary Volume | Establishes the equivalence between the pair correlation of zeros
+J. B. Conrey | 1989 | Journal für die reine und angewandte Mathematik | Proves that at least two-fifths of zeros lie on the critical line
+S. M. Voronin and A. A. Karatsuba | 1992 | The Riemann Zeta-Function (Walter de Gruyter) | Monograph synthesizing Russian analytical achievements
+Enrico Bombieri and Dennis A. Hejhal | 1995 | Duke Mathematical Journal | Analyzes the zeros of linear combinations of L-functions
+Xian-Jin Li | 1997 | Journal of Number Theory | Proves Li's criterion
+J. B. Conrey, A. Ghosh, and S. M. Gonek | 1998 | Proceedings of the London Mathematical Society | Establishes that the Riemann Hypothesis and the Generalized Lindelöf Hypothesis imply that a high proportion of zeros are simple
+Alain Connes | 1999 | Selecta Mathematica | Formulates the trace formula in noncommutative geometry
+Nicholas M. Katz and Peter Sarnak | 1999 | Random Symmetries and Fluctuations (AMS) | Formulates the symmetry groups
+M. V. Berry and J. P. Keating | 1999 | SIAM Review | Analyzes the classical and quantum mechanics
+Nicholas M. Katz and Peter Sarnak | 1999 | Bulletin of the American Mathematical Society | Synthesizes the connection between random matrix theory
+J. P. Keating and N. C. Snaith | 2000 | Communications in Mathematical Physics | Uses random matrix theory to solve the long-standing problem
+Henryk Iwaniec and Emmanuel Kowalski | 2004 | Analytic Number Theory (AMS) | The modern definitive graduate-level reference textbook
+K. Maslanka | 2004 | Journal of Computational and Applied Mathematics | Performs high-precision numerical computations of the Keiper-Li constants
+Luis Báez-Duarte | 2003 | Atti della Accademia Nazionale dei Lincei | Proves the Báez-Duarte strengthening
+J. B. Conrey | 2003 | Notices of the AMS | Writes the seminal expository survey
+Peter Sarnak | 2004 | Clay Mathematics Institute Annual Report | Provides the formal Millennium Prize description
+J. B. Conrey et al. | 2005 | Proceedings of the London Mathematical Society | Formulates the "recipe" for predicting the exact asymptotic shifts
+H. L. Montgomery and R. C. Vaughan | 2007 | Multiplicative Number Theory I (CUP) | Monograph detailing the classical theory
+Peter Borwein et al. (Eds.) | 2008 | The Riemann Hypothesis: A Resource for the... | Compiles the most important historical papers
+K. Soundararajan | 2009 | Annals of Mathematics | Proves sharp upper bounds for the moments of the Riemann zeta function
+D. A. Goldston, J. Pintz, and C. Y. Yıldırım | 2009 | Annals of Mathematics | Develops the GPY method for prime gaps
+K. Soundararajan | 2010 | Annals of Mathematics | Proves weak subconvexity for general L-functions
+Yitang Zhang | 2014 | Annals of Mathematics | Proves bounded gaps between primes
+James Maynard | 2015 | Annals of Mathematics | Develops the multidimensional sieve
+Terence Tao | 2016 | Publications Mathématiques de l'IHÉS | Solves the Erdős discrepancy problem
+Kevin A. Broughan | 2017 | Equivalents of the Riemann Hypothesis I (CUP) | Monograph presenting the comprehensive mathematical taxonomy
+Kevin A. Broughan | 2017 | Equivalents of the Riemann Hypothesis II (CUP) | Monograph presenting the comprehensive mathematical taxonomy
+H. Montgomery et al. (Eds.) | 2017 | Exploring the Riemann Zeta Function (Springer) | A survey compiled for the 190th anniversary
+Dave Platt and Timothy Trudgian | 2021 | Bulletin of the London Mathematical Society | Computes and verifies the Riemann Hypothesis rigorously
+H. M. Bui and D. R. Heath-Brown | 2013 | Bulletin of the London Mathematical Society | Proves that at least simple zeros assuming only RH
+S. Suman and R. K. Das | 2023 | Indian Journal of Pure and Applied Mathematics | Proves a new series sum equivalent
+M. Mossinghoff, T. Trudgian, and A. Yang | 2024 | Journal of Number Theory | Establishes the largest explicit classical and Vinogradov-Korobov zero-free regions
+Sandeep S. Jaiswal | 2026 | Indian Journal of Advanced Mathematics | Proposes a comprehensive disproof of the Riemann Hypothesis
+B. Candelpergher | 2026 | arXiv:2512.11405 [math.NT] | Presents new polynomial expansions for the Dirichlet eta
+Predrag B. Petrović | 2026 | Walter de Gruyter GmbH & Co KG | Monograph developing a special method
+Larry Guth and James Maynard | 2026 | Annals of Mathematics | Proves new large-value estimates for Dirichlet polynomials
+Harald Bohr and Børge Jessen | 1930 | Acta Mathematica | Proves a functional limit theorem
+Atle Selberg | 1956 | Journal of the Indian Mathematical Society | Establishes the Selberg Trace Formula
+G. Pólya | 1926 | Acta Mathematica | Analyzes the zeros of trigonometric integrals
+J. P. Kahane | 1968 | Annales de l'Institut Fourier | Explores approximation properties
+G. Montgomery and D. Goldston | 1987 | Srinivasa Ramanujan Centenary Volume | Explores the connection between the pair correlation
+Alain Connes | 1999 | Selecta Mathematica | Formulates the adèlic spectral trace formula
+J. P. Keating and N. C. Snaith | 2000 | Communications in Mathematical Physics | Connects GUE random matrix theory
+Henryk Iwaniec and Emmanuel Kowalski | 2004 | Analytic Number Theory (AMS) | Formulates the definitive reference
+K. Soundararajan | 2009 | Annals of Mathematics | Proves sharp upper bounds
+Terence Tao et al. (Polymath15) | 2019 | Research in the Mathematical Sciences | Collaborative project proving the sharpest explicit upper bounds
+Brad Rodgers and Terence Tao | 2020 | Forum of Mathematics, Pi | Proves Newman's conjecture
+Sébastien Darses and Erwan Hillion | 2024 | Acta Arithmetica | Proves polynomial moments
+Sébastien Darses and Joseph Najnudel | 2024 | The Ramanujan Journal | Derives multiple integral formulas
+Vlasie | 2024 | Preprint / GADU-IOMM Framework | Proposes the Theory of Tired Infinity
+LecMussDefect Authors | 2024 | Preprint / Statistical Mechanics | Explores the Bethe Ansatz equation
+Alain Connes | 2026 | arXiv:2602.04022 [math.NT] | Formulates the "Letter to Riemann" Survey
+Akiva Groskin | 2026 | Preprint (May 2026) | Performs the first independent high-precision replication
+Preprints.org Authors | 2026 | Preprints.org: 202604.1513 | Proves strict log-concavity of the Riemann-Jacobi kernel
