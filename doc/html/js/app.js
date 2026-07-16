@@ -741,7 +741,7 @@ function renderTechnicalReports() {
     {
       id: 'h13-h14',
       title: 'Classical Routes to the Riemann Hypothesis: H13 + H14 Formalization',
-      authors: 'SCAI (Sorbonne Centre for AI)',
+      authors: 'Xavier Fresquet',
       date: 'July 16, 2026',
       abstract: 'We present a complete formal verification in Lean 4 of two classical analytical approaches to the Riemann Hypothesis: (1) the Vasyunin–Báez-Duarte–Landreau–Saias (BBLS) chain proving RH-equivalent bounds via cotangent identities (H13); and (2) de la Vallée Poussin\'s quantitative method combining Fourier–Eisenstein interpolation, Borel–Jensen factorization, and Perron contour inversion (H14). Combined, these approaches formalize 50% of the RH through purely analytic methods.',
       sections: ['Introduction', 'H13: Classical Identities & Period Functions', 'H14: Quantitative Bounds', 'Lean 4 Implementation', 'Results & Verification', 'References'],
@@ -750,7 +750,7 @@ function renderTechnicalReports() {
     {
       id: 'phase-nb',
       title: 'The Nyman–Beurling Bridge: RH-Equivalence via Functional Analysis',
-      authors: 'SCAI (Sorbonne Centre for AI)',
+      authors: 'Xavier Fresquet',
       date: 'July 15, 2026',
       abstract: 'We formalize the Nyman–Beurling criterion in Lean 4, proving that the closure of unit fractions in L²(0,∞) is equivalent to the Riemann Hypothesis. This functional-analytic approach bridges classical harmonic analysis with RH, complementing the analytic methods of H13/H14. Our formalization includes Mellin transform techniques, Hardy space continuity, and zero-detection via logarithmic pullback.',
       sections: ['Introduction', 'Functional Analytic Framework', 'Mellin Transform & Zero Detection', 'Hardy Continuity & Closure Theorem', 'RH Equivalence', 'Lean 4 Formalization', 'References'],
@@ -759,7 +759,7 @@ function renderTechnicalReports() {
     {
       id: 'h15-conditional',
       title: 'Conditional BCF Asymptotic in Lean 4: Quadratic Cancellation via Zeta-Zero Residues',
-      authors: 'SCAI (Sorbonne Centre for AI)',
+      authors: 'Xavier Fresquet',
       date: 'July 16, 2026',
       status: '94% complete (Phase 7b: Analytic propositions planned)',
       abstract: 'We formalize a conditional approach to H15 (quadratic cancellation) using the Bettin–Conrey–Farmer asymptotic, bringing RH formalization to 94%. The BCF main term emerges from residues at nontrivial zeros of ζ(s), proven via: (1) grid subdivision and multi-hole rectangle theorem; (2) Perron kernel inversion and contour deformation; (3) normalized limit analysis. Hypotheses: RH, zero simplicity, zeta-derivative moment bound. Phase 7b (in progress): Formalizing energy-residue reduction and zero-weight formula to reach 100% H15 completion by August 2026.',
@@ -850,7 +850,7 @@ function renderArchivePaper(reportId) {
   const papers = {
     'h13-h14': {
       title: 'Classical Routes to the Riemann Hypothesis: H13 + H14 Formalization',
-      authors: ['SCAI (Sorbonne Centre for AI)'],
+      authors: ['Xavier Fresquet'],
       date: 'July 16, 2026',
       abstract: 'We present a complete formal verification in Lean 4 of two classical analytical approaches to the Riemann Hypothesis: (1) the Vasyunin–Báez-Duarte–Landreau–Saias (BBLS) chain (H13) proving RH-equivalence via cotangent identities; and (2) de la Vallée Poussin\'s quantitative method (H14) combining Fourier–Eisenstein interpolation, Borel–Jensen factorization, and Perron contour inversion. Combined, these formalize 50% of RH.',
       leanPath: '.worktrees/codex/h13-h14',
@@ -902,7 +902,7 @@ function renderArchivePaper(reportId) {
     },
     'phase-nb': {
       title: 'The Nyman–Beurling Bridge: RH-Equivalence via Functional Analysis',
-      authors: ['SCAI (Sorbonne Centre for AI)'],
+      authors: ['Xavier Fresquet'],
       date: 'July 15, 2026',
       abstract: 'We formalize the Nyman–Beurling criterion in Lean 4, establishing that the closure of unit fractions in $L^2(0,\\infty)$ is equivalent to the Riemann Hypothesis. This functional-analytic route complements classical analytic approaches, incorporating Mellin transforms, Hardy space continuity, and zero-detection via logarithmic pullback.',
       leanPath: '.worktrees/codex/phase-nb',
@@ -955,7 +955,7 @@ function renderArchivePaper(reportId) {
     },
     'h15-conditional': {
       title: 'Conditional BCF Asymptotic in Lean 4: Quadratic Cancellation via Zeta-Zero Residues',
-      authors: ['SCAI (Sorbonne Centre for AI)'],
+      authors: ['Xavier Fresquet'],
       date: 'July 16, 2026',
       abstract: 'We formalize the Bettin–Conrey–Farmer (BCF) asymptotic for quadratic cancellation (H15), proving the main term emerges from nontrivial zero residues. Under explicit hypotheses—RH, zero simplicity, and a zeta-derivative moment bound—we establish $E_N^{BCF} \\sim \\frac{2 + \\gamma - \\log 4\\pi}{\\log N}$. This brings total RH formalization to ~94%.',
       leanPath: '.worktrees/codex/h15-bcf-conditional',
@@ -1096,7 +1096,7 @@ function renderArchivePaper(reportId) {
       </div>
 
       <div style="margin-top:2rem; padding:1rem; background:#f1f5f9; border-radius:6px; border-left:3px solid #64748b; font-size:0.9rem; color:#475569;">
-        <strong>Citation:</strong> ${paper.authors.join(', ')} (2026). "${paper.title}."
+        <strong>Citation:</strong> Fresquet, Xavier. 2026. "${paper.title}." Sorbonne Université Paris and Sorbonne Abu Dhabi (SCAI).
       </div>
     </section>
   `;
