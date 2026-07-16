@@ -804,8 +804,8 @@ function renderAchievements() {
 
       <!-- PHASE NB: NYMAN-BEURLING BRIDGE -->
       <div style="background: #f0f9ff; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #0ea5e9;">
-        <h3 style="color: #0c4a6e; margin-top: 0;">✅ Phase NB: Nyman–Beurling Bridge (COMPLETE)</h3>
-        <p style="color: #666; margin-bottom: 1rem;"><strong>Status:</strong> 100% COMPLETE (verified 2026-07-15) — zero sorries, zero new axioms</p>
+        <h3 style="color: #0c4a6e; margin-top: 0;">✅ Phase NB: Nyman–Beurling Bridge (Experimental Formalization)</h3>
+        <p style="color: #666; margin-bottom: 1rem;"><strong>Status:</strong> Initial Formalization Complete (2026-07-15) — ⚠️ Pending rigorous mathematical validation and expert discussion</p>
         <div style="background: white; padding: 1.5rem; border-radius: 6px; margin-top: 1rem;">
           <ul style="color: #475569; margin: 1rem 0; padding-left: 2rem; line-height: 1.8;">
             <li>✅ <strong>NB0:</strong> Criterion foundation <a href="./lean/PhaseNB/NBMellinTools.lean" target="_blank" style="font-size: 0.85rem; color: #0ea5e9; text-decoration: none; margin-left: 0.5rem;">[source]</a></li>
@@ -828,7 +828,7 @@ function renderAchievements() {
         <p style="color: #666; margin-bottom: 1rem;"><strong>Status:</strong> 100% COMPLETE (verified 2026-07-10)</p>
         <div style="background: white; padding: 1.5rem; border-radius: 6px; margin-top: 1rem;">
           <ul style="color: #475569; margin: 1rem 0; padding-left: 2rem; line-height: 1.8;">
-            <li>Propositions 12, 15, 16, 21r, 22, 48, 87, 88, 89 (BBLS chain) proved</li>
+            <li>Propositions 12, 15, 16, 21r, 22, 48, 87, 88, 89 (BBLS chain) computationally modeled</li>
             <li>Cotangent sum identities + period-function reduction</li>
             <li>Bernoulli representation bridge to explicit formulas</li>
           </ul>
@@ -878,11 +878,11 @@ function renderAchievements() {
       <!-- MILESTONE: 94% RH FORMALIZATION -->
       <div style="background: #ecfdf5; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border:2px solid #10b981;">
         <h3 style="color: #065f46; margin-top: 0;">🎯 Riemann Hypothesis Formalization in Lean 4</h3>
-        <p style="color: #065f46; margin-bottom: 1rem; font-weight: 600;">Classical Routes (H13 + H14) + Functional Analysis (Phase NB) Fully Proven; Phase 7b In Progress</p>
+        <p style="color: #065f46; margin-bottom: 1rem; font-weight: 600;">Classical Routes (H13 + H14) + Functional Analysis (Phase NB) Formally Modeled (Pending Validation); Phase 7b In Progress</p>
         <div style="background: white; padding: 1.5rem; border-radius: 6px; margin-top: 1rem;">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
             <div>
-              <p style="color: #475569; font-weight: 600; margin-bottom: 0.5rem;">Proved Routes</p>
+              <p style="color: #475569; font-weight: 600; margin-bottom: 0.5rem;">Exploratory Formalization Routes</p>
               <ul style="margin: 0; padding-left: 1.5rem; color: #475569; font-size: 0.9rem; line-height: 1.8;">
                 <li>Classical identities (BBLS)</li>
                 <li>Quantitative bounds (DVP)</li>
@@ -1053,7 +1053,7 @@ function renderArchivePaper(reportId) {
         <h3>4. Lean 4 Formalization</h3>
         <p>Our implementation spans two complementary tracks:</p>
         <ul>
-          <li><strong>H13 (BBLS):</strong> 40 KB, 9 propositions proven, period reduction + cotangent extraction modules</li>
+          <li><strong>H13 (BBLS):</strong> 40 KB, 9 propositions formalized (requires verification), period reduction + cotangent extraction modules</li>
           <li><strong>H14 (de la Vallée Poussin):</strong> 320 KB, 3 core theorems + interpolation + factorization + inversion</li>
         </ul>
         <p>Build verification: 8,521 jobs pass. Axiom audit: Only propext, choice, Quot.sound (no new axioms introduced). Sorries: 0. Repository: <a href="https://github.com/scai-lab/riemann-hypothesis-formalization" target="_blank" style="color:#3b82f6; text-decoration:none;">github.com/scai-lab/riemann-hypothesis-formalization</a></p>
@@ -1094,12 +1094,12 @@ function renderArchivePaper(reportId) {
         <div style="background:#f8f9fa; padding:1rem; margin:1rem 0; border-left:3px solid #0ea5e9; font-family:'Courier New', monospace;">
           $$\\mathcal{M}(\\rho_{\\text{base}})(s) = -\\frac{\\zeta(s)}{s} \\quad \\text{on } 0 &lt; \\Re(s) &lt; 1$$
         </div>
-        <p>We prove this identity in 26 KB of Lean 4 (module NB2Mellin, axiom-free). The proof proceeds via contour integration and residue extraction, enabling zero-detection: if all nontrivial zeros lie on $\\Re(s) = 1/2$, then zeta evaluations on the critical line uniquely determine zero locations.</p>
+        <p>We formalize an exploratory proof of this identity in 26 KB of Lean 4 (module NB2Mellin). ⚠️ Please note: as a DH exploration, this requires extensive expert validation. The experimental formalization proceeds via contour integration and residue extraction, enabling zero-detection: if all nontrivial zeros lie on $\\Re(s) = 1/2$, then zeta evaluations on the critical line uniquely determine zero locations.</p>
 
         <h3>4. Hardy Continuity &amp; Closure (NB3–NB4)</h3>
         <p>Modules NB3 (Mellin continuity, 549 lines) and NB4 (zero detection, 330 lines) extend the functional analysis:</p>
         <ul>
-          <li><strong>NB3:</strong> Proves continuity of the Mellin transform as a map into Hardy spaces $H^2(\\Re(s) &gt; 1/2)$.</li>
+          <li><strong>NB3:</strong> Models the continuity of the Mellin transform as a map into Hardy spaces $H^2(\\Re(s) &gt; 1/2)$.</li>
           <li><strong>NB4:</strong> Establishes that zero locations on the critical line are detectable via $L^2$ closure properties of unit fractions.</li>
         </ul>
 
@@ -1152,7 +1152,7 @@ function renderArchivePaper(reportId) {
         <div style="background:#f8f9fa; padding:1rem; margin:1rem 0; border-left:3px solid #0ea5e9; font-family:'Courier New', monospace;">
           $$\\mathcal{M} e_N (s) = \\frac{1 - \\zeta(s) V_N(s)}{s} \\quad \\text{on } 0 &lt; \\Re(s) &lt; 1$$
         </div>
-        <p>Here, $e_N$ is the BCF error term and $V_N(s)$ is the Dirichlet polynomial. The identity is proven exactly (not asymptotically), providing a bridge between discrete sums and analytic functions.</p>
+        <p>Here, $e_N$ is the BCF error term and $V_N(s)$ is the Dirichlet polynomial. The identity is modeled exactly (not asymptotically), attempting to provide a bridge between discrete sums and analytic functions.</p>
 
         <h3>4. Deleted-Disk Construction &amp; Residues (Phase 6)</h3>
         <p>Phase 6 formalizes the multi-hole rectangle theorem, essential for extracting residues at all nontrivial zeros:</p>
@@ -1162,7 +1162,7 @@ function renderArchivePaper(reportId) {
         <p>Implementation involves three sub-phases:</p>
         <ul>
           <li><strong>Phase 6a:</strong> Grid subdivision—partition rectangle $R$ via axis-aligned lines (committed ffce7a8)</li>
-          <li><strong>Phase 6b:</strong> Finite-grid induction—prove subdivision identity algebraically (committed 63922b8)</li>
+          <li><strong>Phase 6b:</strong> Finite-grid induction—formalize subdivision identity algebraically (committed 63922b8)</li>
           <li><strong>Phase 6c:</strong> Rectangle-to-disk comparison—deform boundary from rectangle to circle via homotopy</li>
         </ul>
 
