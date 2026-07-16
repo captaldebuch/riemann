@@ -989,9 +989,6 @@ function renderTechnicalReports() {
           <button onclick="viewArchivePaper('${report.id}')" style="padding:0.6rem 1.2rem; background:#3b82f6; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:500; font-size:0.95rem;">
             📖 View Report Details
           </button>
-          <button onclick="downloadPDF('${report.id}')" style="padding:0.6rem 1.2rem; background:#10b981; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:500; font-size:0.95rem;">
-            ⬇️ Download PDF
-          </button>
         </div>
       </div>
     `;
@@ -1261,9 +1258,6 @@ function renderArchivePaper(reportId) {
 
         <!-- Download Section -->
         <div style="margin-top:2rem; padding-top:2rem; border-top:2px solid #e5e7eb; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-          <button onclick="downloadPDF('${reportId}')" style="padding:0.8rem 1.6rem; background:#10b981; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:1rem;">
-            ⬇️ Download as PDF
-          </button>
           <button onclick="printArchivePaper('${reportId}')" style="padding:0.8rem 1.6rem; background:#3b82f6; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:1rem;">
             🖨️ Print / Save as PDF
           </button>
