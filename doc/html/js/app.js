@@ -688,7 +688,7 @@ function renderAchievements() {
             <li>✅ <strong>Phases 1–5:</strong> Dirichlet polynomial, zeta interpolation, boundary estimates, residue extraction</li>
             <li>✅ <strong>Phase 6:</strong> Axis-separated disk partition, multi-hole rectangle theorem, kernel bounds, smooth-strip comparisons</li>
             <li>✅ <strong>Phase 7:</strong> Asymptotic normalization, limit assembly, published BCF bound</li>
-            <li>🔄 <strong>Phase 7b:</strong> Energy-residue reduction (2-3 weeks) + zero-weight formula (3-4 weeks) → 100% completion by Aug 23</li>
+            <li>🔄 <strong>Phase 7b:</strong> Formalizing BCF Lemmas 2–3 (energy expansion) and canonical ξ product (exact constant identity)</li>
           </ul>
           <p style="color: #92400e; margin-top: 1.5rem; font-size: 0.95rem;">
             <strong>Contribution:</strong> <code>finite_deleted_rectangle_cauchy_goursat</code> — New Mathlib theorem for multi-hole contour integrals in rectangular domains (no longer a gap in Lean).
@@ -726,7 +726,7 @@ function renderAchievements() {
           </div>
           <p style="color: #0c4a6e; background: #f0f9ff; padding: 1rem; border-radius: 4px; margin-top: 1.5rem; font-size: 0.9rem;">
             ✅ All Lean 4 code: zero new axioms, zero sorries, full build verification
-            ✅ Publication-ready (H13+H14+Phase NB) or completing to 100% H15 (Phase 7b, 4-7 weeks)
+            ✅ Publication-ready (H13+H14+Phase NB); Phase 7b in progress toward 100% H15 formalization
           </p>
         </div>
       </div>
