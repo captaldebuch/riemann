@@ -918,7 +918,7 @@ function renderTechnicalReports() {
       title: 'Classical Routes to the Riemann Hypothesis: H13 + H14 Formalization',
       authors: 'Xavier Fresquet',
       date: 'July 16, 2026',
-      abstract: 'We present a complete formal verification in Lean 4 of two classical analytical approaches to the Riemann Hypothesis: (1) the Vasyunin–Báez-Duarte–Landreau–Saias (BBLS) chain proving RH-equivalent bounds via cotangent identities (H13); and (2) de la Vallée Poussin\'s quantitative method combining Fourier–Eisenstein interpolation, Borel–Jensen factorization, and Perron contour inversion (H14). Both are formalized with zero new axioms and zero sorries, establishing pure analytic routes to RH.',
+      abstract: 'We outline an exploratory formalization model in Lean 4 of two classical analytical approaches to the Riemann Hypothesis: (1) the Vasyunin–Báez-Duarte–Landreau–Saias (BBLS) chain proving RH-equivalent bounds via cotangent identities (H13); and (2) de la Vallée Poussin\'s quantitative method combining Fourier–Eisenstein interpolation, Borel–Jensen factorization, and Perron contour inversion (H14). Both are experimentally modeled, pending domain-expert validation.',
       sections: ['Introduction', 'H13: Classical Identities & Period Functions', 'H14: Quantitative Bounds', 'Lean 4 Implementation', 'Results & Verification', 'References'],
       keywords: ['Riemann Hypothesis', 'Formal Verification', 'Lean 4', 'Analytic Number Theory', 'Möbius Functions']
     },
@@ -1024,7 +1024,7 @@ function renderArchivePaper(reportId) {
       title: 'Classical Routes to the Riemann Hypothesis: H13 + H14 Formalization',
       authors: ['Xavier Fresquet'],
       date: 'July 16, 2026',
-      abstract: 'We present a complete formal verification in Lean 4 of two classical analytical approaches to the Riemann Hypothesis: (1) the Vasyunin–Báez-Duarte–Landreau–Saias (BBLS) chain (H13) proving RH-equivalence via cotangent identities; and (2) de la Vallée Poussin\'s quantitative method (H14) combining Fourier–Eisenstein interpolation, Borel–Jensen factorization, and Perron contour inversion. Combined, these formalize 50% of RH.',
+      abstract: 'We outline an exploratory formalization model in Lean 4 of two classical analytical approaches to the Riemann Hypothesis: (1) the Vasyunin–Báez-Duarte–Landreau–Saias (BBLS) chain (H13) proving RH-equivalence via cotangent identities; and (2) de la Vallée Poussin\'s quantitative method (H14) combining Fourier–Eisenstein interpolation, Borel–Jensen factorization, and Perron contour inversion. Combined, these explore foundational routes to RH.',
       leanPath: '.worktrees/codex/h13-h14',
       content: `
         <h3>1. Introduction</h3>
