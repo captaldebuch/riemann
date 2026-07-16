@@ -927,7 +927,7 @@ function renderTechnicalReports() {
       title: 'The Nyman–Beurling Bridge: RH-Equivalence via Functional Analysis',
       authors: 'Xavier Fresquet',
       date: 'July 15, 2026',
-      abstract: 'We formalize the Nyman–Beurling criterion in Lean 4, proving that the closure of unit fractions in L²(0,∞) is equivalent to the Riemann Hypothesis. This functional-analytic approach bridges classical harmonic analysis with RH, complementing the analytic methods of H13/H14. Our formalization includes Mellin transform techniques, Hardy space continuity, and zero-detection via logarithmic pullback.',
+      abstract: 'We outline an exploratory formalization model of the Nyman–Beurling criterion in Lean 4, exploring how the closure of unit fractions in L²(0,∞) is equivalent to the Riemann Hypothesis. This functional-analytic approach bridges classical harmonic analysis with RH, complementing the analytic methods of H13/H14. Our formalization includes Mellin transform techniques, Hardy space continuity, and zero-detection via logarithmic pullback.',
       sections: ['Introduction', 'Functional Analytic Framework', 'Mellin Transform & Zero Detection', 'Hardy Continuity & Closure Theorem', 'RH Equivalence', 'Lean 4 Formalization', 'References'],
       keywords: ['Nyman-Beurling Criterion', 'Functional Analysis', 'Mellin Transforms', 'RH Equivalence', 'Lean 4']
     },
@@ -937,7 +937,7 @@ function renderTechnicalReports() {
       authors: 'Xavier Fresquet',
       date: 'July 16, 2026',
       status: 'Phase 7b: Finalizing BCF lemmas and canonical ξ factorization',
-      abstract: 'We formalize a conditional approach to H15 (quadratic cancellation) using the Bettin–Conrey–Farmer asymptotic. The BCF main term emerges from residues at nontrivial zeros of ζ(s), proven via: (1) grid subdivision and multi-hole rectangle theorem; (2) Perron kernel inversion and contour deformation; (3) normalized limit analysis. Hypotheses: RH, zero simplicity, zeta-derivative moment bound. Phase 7b extends this with energy-residue reduction and canonical ξ factorization via logarithmic-derivative methods.',
+      abstract: 'We outline a conditional, exploratory approach to H15 (quadratic cancellation) using the Bettin–Conrey–Farmer asymptotic. The BCF main term emerges from residues at nontrivial zeros of ζ(s), experimentally modeled via: (1) grid subdivision and multi-hole rectangle theorem; (2) Perron kernel inversion and contour deformation; (3) normalized limit analysis. Hypotheses: RH, zero simplicity, zeta-derivative moment bound. Phase 7b extends this with energy-residue reduction and canonical ξ factorization via logarithmic-derivative methods.',
       sections: ['Introduction', 'BCF Definitions & Phase Structure', 'Mellin Identity & Contour Shift', 'Deleted-Disk Construction & Residues', 'Explicit Hypotheses (RH, Simplicity)', 'Asymptotic Expansion', 'Phase 7: Main Theorem Assembly', 'Phase 7b: Analytic Propositions (In Progress)', 'References'],
       keywords: ['Quadratic Cancellation', 'BCF Asymptotic', 'Deleted-Disk Contours', 'Conditional RH', 'Lean 4', 'Phase 7b']
     }
@@ -1035,7 +1035,7 @@ function renderArchivePaper(reportId) {
         <div style="background:#f8f9fa; padding:1rem; margin:1rem 0; border-left:3px solid #0ea5e9; font-family:'Courier New', monospace;">
           $$\\sum_{n \\le N} \\left| \\sum_{d \\mid n} \\mu(d) \\log \\frac{N}{d} \\right|^2 = (2N + o(N)) \\log^2 N$$
         </div>
-        <p>We formalize all nine propositions (12, 15, 16, 21r, 22, 48, 87, 88, 89) from Báez-Duarte et al. (2003), including the period-reduction lemma and cotangent-residue extraction. The formalization covers ~40 KB of Lean 4 code across modular proofs, each verified for zero new axioms.</p>
+        <p>We experimentally map and model all nine propositions (12, 15, 16, 21r, 22, 48, 87, 88, 89) from Báez-Duarte et al. (2003), including the period-reduction lemma and cotangent-residue extraction. The formalization covers ~40 KB of Lean 4 code across modular proofs, each verified for zero new axioms.</p>
 
         <h3>3. H14: De la Vallée Poussin's Quantitative Method</h3>
         <p>H14 formalizes the classical approach combining three key components:</p>
@@ -1076,7 +1076,7 @@ function renderArchivePaper(reportId) {
       title: 'The Nyman–Beurling Bridge: RH-Equivalence via Functional Analysis',
       authors: ['Xavier Fresquet'],
       date: 'July 15, 2026',
-      abstract: 'We formalize the Nyman–Beurling criterion in Lean 4, establishing that the closure of unit fractions in $L^2(0,\\infty)$ is equivalent to the Riemann Hypothesis. This functional-analytic route complements classical analytic approaches, incorporating Mellin transforms, Hardy space continuity, and zero-detection via logarithmic pullback.',
+      abstract: 'We outline an exploratory formalization model of the Nyman–Beurling criterion in Lean 4, experimentally modeling how the closure of unit fractions in $L^2(0,\\infty)$ is equivalent to the Riemann Hypothesis. This functional-analytic route complements classical analytic approaches, incorporating Mellin transforms, Hardy space continuity, and zero-detection via logarithmic pullback.',
       leanPath: '.worktrees/codex/phase-nb',
       content: `
         <h3>1. Introduction</h3>
@@ -1087,14 +1087,14 @@ function renderArchivePaper(reportId) {
         <div style="background:#f8f9fa; padding:1rem; margin:1rem 0; border-left:3px solid #0ea5e9; font-family:'Courier New', monospace;">
           $$\\text{RH} \\iff \\overline{\\text{span}} \\left\\{ \\frac{1}{k} : k \\in \\mathbb{N} \\right\\} = L^2(0, \\infty)$$
         </div>
-        <p>We formalize the Hilbert space structure, defining the weighted inner product and establishing completeness conditions. Module NB0 covers 120 lines of foundational setup (completed commit d944715).</p>
+        <p>We experimentally model the Hilbert space structure, defining the weighted inner product and establishing completeness conditions. Module NB0 covers 120 lines of foundational setup (completed commit d944715).</p>
 
         <h3>3. Mellin Transform &amp; Zero Detection (NB2)</h3>
         <p>The critical bridge is the Mellin transform. For the base divisor function $$d_1(n) = 1$$, the Mellin transform relates to the zeta function:</p>
         <div style="background:#f8f9fa; padding:1rem; margin:1rem 0; border-left:3px solid #0ea5e9; font-family:'Courier New', monospace;">
           $$\\mathcal{M}(\\rho_{\\text{base}})(s) = -\\frac{\\zeta(s)}{s} \\quad \\text{on } 0 &lt; \\Re(s) &lt; 1$$
         </div>
-        <p>We formalize an exploratory proof of this identity in 26 KB of Lean 4 (module NB2Mellin). ⚠️ Please note: as a DH exploration, this requires extensive expert validation. The experimental formalization proceeds via contour integration and residue extraction, enabling zero-detection: if all nontrivial zeros lie on $\\Re(s) = 1/2$, then zeta evaluations on the critical line uniquely determine zero locations.</p>
+        <p>We model an exploratory proof of this identity in 26 KB of Lean 4 (module NB2Mellin). ⚠️ Please note: as a DH exploration, this requires extensive expert validation. The experimental formalization proceeds via contour integration and residue extraction, enabling zero-detection: if all nontrivial zeros lie on $\\Re(s) = 1/2$, then zeta evaluations on the critical line uniquely determine zero locations.</p>
 
         <h3>4. Hardy Continuity &amp; Closure (NB3–NB4)</h3>
         <p>Modules NB3 (Mellin continuity, 549 lines) and NB4 (zero detection, 330 lines) extend the functional analysis:</p>
@@ -1129,11 +1129,11 @@ function renderArchivePaper(reportId) {
       title: 'Conditional BCF Asymptotic in Lean 4: Quadratic Cancellation via Zeta-Zero Residues',
       authors: ['Xavier Fresquet'],
       date: 'July 16, 2026',
-      abstract: 'We formalize the Bettin–Conrey–Farmer (BCF) asymptotic for quadratic cancellation (H15), proving the main term emerges from nontrivial zero residues. Under explicit hypotheses—RH, zero simplicity, and a zeta-derivative moment bound—we establish $E_N^{BCF} \\sim \\frac{2 + \\gamma - \\log 4\\pi}{\\log N}$. This brings total RH formalization to ~94%.',
+      abstract: 'We outline an exploratory formalization model of the Bettin–Conrey–Farmer (BCF) asymptotic for quadratic cancellation (H15), experimentally modeling how the main term emerges from nontrivial zero residues. Under explicit hypotheses—RH, zero simplicity, and a zeta-derivative moment bound—we model $E_N^{BCF} \\sim \\frac{2 + \\gamma - \\log 4\\pi}{\\log N}$. This brings total RH formalization to ~94%.',
       leanPath: '.worktrees/codex/h15-bcf-conditional',
       content: `
         <h3>1. Introduction</h3>
-        <p>The H15 problem addresses quadratic cancellation in Möbius correlations—a key step in understanding bilinear sums related to RH. The Bettin–Conrey–Farmer (BCF) asymptotic reveals that the main term originates from residues at nontrivial zeros of $$\\zeta(s)$$. We formalize this phenomenon in Lean 4, explicitly stating the hypotheses required (RH, zero simplicity, moment bound) and proving the resulting asymptotic expansion:</p>
+        <p>The H15 problem addresses quadratic cancellation in Möbius correlations—a key step in understanding bilinear sums related to RH. The Bettin–Conrey–Farmer (BCF) asymptotic reveals that the main term originates from residues at nontrivial zeros of $$\\zeta(s)$$. We experimentally model this phenomenon in Lean 4, explicitly stating the hypotheses required (RH, zero simplicity, moment bound) and exploring the resulting asymptotic expansion:</p>
         <div style="background:#f8f9fa; padding:1rem; margin:1rem 0; border-left:3px solid #0ea5e9; font-family:'Courier New', monospace;">
           $$E_N^{\\text{BCF}} \\sim \\frac{2 + \\gamma - \\log(4\\pi)}{\\log N} \\quad \\text{as } N \\to \\infty$$
         </div>
