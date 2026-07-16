@@ -225,8 +225,8 @@ function renderHome() {
       <!-- DH Approach Section -->
       <div style="margin-bottom:3rem;">
         <h3 style="color:#1f2937; font-size:1.2rem; margin-bottom:1rem;">A Digital Humanities Approach</h3>
-        <p class="math-text"><strong>We treat 160+ years of published mathematics as interconnected knowledge objects</strong>—not just facts to digest, but a living network of intuitions, proof strategies, and intellectual lineage. This project introduces a Digital Humanities (DH) approach on the Riemann Hypothesis corpus.</p>
-        <p class="math-text mt-lg">By applying "distant reading" methodologies using LLMs and auto-formalization, we analyze the insights, novelties, and intuitions of mathematicians over time. This repository asks: <em>What structures underlie a proof? How do mathematical ideas flow from person to person across generations? Can formal verification reveal gaps that human insight misses?</em></p>
+        <p class="math-text"><strong>We treat 160+ years of published mathematics as interconnected knowledge objects</strong>—not just facts to digest, but a living network of intuitions, proof strategies, and intellectual lineage. <strong>Based entirely on corpus data, dataset extraction, and LLM-guided analysis</strong>, this project introduces a Digital Humanities (DH) approach to the Riemann Hypothesis.</p>
+        <p class="math-text mt-lg">By applying "distant reading" methodologies, we use LLMs to process the corpus and extract datasets that map the insights, novelties, and intuitions of mathematicians over time. All exploratory formalization presented here is derived from this LLM-guided analysis of the corpus. This repository asks: <em>What structures underlie a proof? How do mathematical ideas flow from person to person across generations? Can formal verification reveal gaps that human insight misses?</em></p>
       </div>
 
       <div class="bento-grid mt-lg">
@@ -799,7 +799,7 @@ function renderAchievements() {
     <section class="view-section active">
       <h2>Current Efforts</h2>
       <p style="font-size: 1.05rem; color: #475569; margin-bottom: 2rem;">
-        By leveraging the historical intuitions mapped in our DH corpus, we selected the Nyman-Beurling/Báez-Duarte strategy to formally verify aspects of the Riemann Hypothesis in Lean 4.
+        Based on corpus data, dataset extraction, and LLM-guided analysis of historical intuitions, we selected the Nyman-Beurling/Báez-Duarte strategy to experimentally model and formalize aspects of the Riemann Hypothesis in Lean 4.
       </p>
 
       <!-- PHASE NB: NYMAN-BEURLING BRIDGE -->
