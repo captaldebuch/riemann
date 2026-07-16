@@ -871,12 +871,12 @@ function renderAchievements() {
           </p>
           <div style="margin-top: 1.5rem;">
             <a href="#technical-reports" style="display:inline-block; margin-right:1rem; padding:0.5rem 1rem; background:#f59e0b; color:white; border-radius:4px; text-decoration:none;">📖 View Report Details</a>
-            <a href="./lean/H15_structure.zip" target="_blank" style="display:inline-block; padding:0.5rem 1rem; background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; border-radius:4px; text-decoration:none;">📂 Browse H15 Phases 1–7</a>
+            
           </div>
         </div>
       </div>
 
-      <!-- MILESTONE: 94% RH FORMALIZATION -->
+      <!-- MILESTONE: RH FORMALIZATION -->
       <div style="background: #ecfdf5; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border:2px solid #10b981;">
         <h3 style="color: #065f46; margin-top: 0;">🎯 Riemann Hypothesis Formalization in Lean 4</h3>
         <p style="color: #065f46; margin-bottom: 1rem; font-weight: 600;">Classical Routes (H13 + H14) Modeled + Functional Analysis (Phase NB) Modeled + BCF Phase 7b Targets Modeled</p>
@@ -1130,7 +1130,7 @@ function renderArchivePaper(reportId) {
       title: 'Conditional BCF Asymptotic in Lean 4: Quadratic Cancellation via Zeta-Zero Residues',
       authors: ['Xavier Fresquet'],
       date: 'July 16, 2026',
-      abstract: 'We outline an exploratory formalization model of the Bettin–Conrey–Farmer (BCF) asymptotic for quadratic cancellation (H15), experimentally modeling how the main term emerges from nontrivial zero residues. Under explicit hypotheses—RH, zero simplicity, and a zeta-derivative moment bound—we model $E_N^{BCF} \\sim \\frac{2 + \\gamma - \\log 4\\pi}{\\log N}$. This brings total RH formalization to ~94%.',
+      abstract: 'We outline an exploratory formalization model of the Bettin–Conrey–Farmer (BCF) asymptotic for quadratic cancellation (H15), experimentally modeling how the main term emerges from nontrivial zero residues. Under explicit hypotheses—RH, zero simplicity, and a zeta-derivative moment bound—we model $E_N^{BCF} \\sim \\frac{2 + \\gamma - \\log 4\\pi}{\\log N}$.',
       leanPath: '.worktrees/codex/h15-bcf-conditional',
       content: `
         <h3>1. Introduction</h3>
@@ -1138,7 +1138,7 @@ function renderArchivePaper(reportId) {
         <div style="background:#f8f9fa; padding:1rem; margin:1rem 0; border-left:3px solid #0ea5e9; font-family:'Courier New', monospace;">
           $$E_N^{\\text{BCF}} \\sim \\frac{2 + \\gamma - \\log(4\\pi)}{\\log N} \\quad \\text{as } N \\to \\infty$$
         </div>
-        <p>This formalization represents ~27% additional RH coverage, bringing the total to 94% when combined with H13, H14, and Phase NB.</p>
+        
 
         <h3>2. BCF Definitions &amp; Phase Structure</h3>
         <p>H15 is organized into seven computational phases, each removing a layer of complexity:</p>
@@ -1200,9 +1200,7 @@ function renderArchivePaper(reportId) {
           <li>Burnol, J.-F. (2002). "On Fourier and Zeta(s)." <em>arXiv:math/0102047</em>.</li>
         </ul>
 
-        <div style="margin-top:2rem; padding:1rem; background:#e8f4f8; border-radius:4px; font-size:0.9rem;">
-          <strong>Impact:</strong> H15 conditional formalization brings total RH proof coverage to 94%, leaving only 6% (expert algebraic routes) unformalized.
-        </div>
+
       `
     }
   };
