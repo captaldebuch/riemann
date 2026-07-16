@@ -1,12 +1,20 @@
 {
   "mathematicians": {
+    "bernhard-riemann": {
+      "id": "author:bernhard-riemann",
+      "name": "Bernhard Riemann",
+      "birth_year": 1826,
+      "death_year": 1866,
+      "bio": "German mathematician who formulated the Riemann Hypothesis (1859), the foundational conjecture in analytic number theory.",
+      "key_contribution": "The Riemann Hypothesis: all nontrivial zeros of \u03b6(s) lie on the critical line Re(s) = 1/2"
+    },
     "riemann": {
       "id": "author:bernhard-riemann",
       "name": "Bernhard Riemann",
       "birth_year": 1826,
       "death_year": 1866,
       "bio": "German mathematician who formulated the Riemann Hypothesis (1859), foundational to analytic number theory.",
-      "key_contribution": "The Riemann Hypothesis: ζ zeros on critical line Re(s)=1/2"
+      "key_contribution": "The Riemann Hypothesis: \u03b6 zeros on critical line Re(s)=1/2"
     },
     "hadamard": {
       "id": "author:jacques-hadamard",
@@ -14,15 +22,15 @@
       "birth_year": 1865,
       "death_year": 1963,
       "bio": "French mathematician who proved the Prime Number Theorem using zeta function methods.",
-      "key_contribution": "Zero-free region for ζ(s); Hadamard factorization product"
+      "key_contribution": "Zero-free region for \u03b6(s); Hadamard factorization product"
     },
     "de_la_vallee_poussin": {
       "id": "author:charles-jean-de-la-vallee-poussin",
-      "name": "Charles-Jean de la Vallée Poussin",
+      "name": "Charles-Jean de la Vall\u00e9e Poussin",
       "birth_year": 1866,
       "death_year": 1962,
       "bio": "Belgian mathematician; joint proof of Prime Number Theorem and classical zero-free regions.",
-      "key_contribution": "DVP zero-free region; classical bounds on Möbius sums"
+      "key_contribution": "DVP zero-free region; classical bounds on M\u00f6bius sums"
     },
     "nyman": {
       "id": "author:bertil-nyman",
@@ -30,7 +38,7 @@
       "birth_year": 1924,
       "death_year": 2002,
       "bio": "Swedish mathematician who reformulated RH in terms of Hilbert space closure (1950).",
-      "key_contribution": "Nyman-Beurling criterion: RH ⟺ unit fractions dense in L²(0,∞)"
+      "key_contribution": "Nyman-Beurling criterion: RH \u27fa unit fractions dense in L\u00b2(0,\u221e)"
     },
     "beurling": {
       "id": "author:arne-beurling",
@@ -50,11 +58,11 @@
     },
     "baez_duarte": {
       "id": "author:luis-baez-duarte",
-      "name": "Luis Báez-Duarte",
+      "name": "Luis B\u00e1ez-Duarte",
       "birth_year": 1948,
       "death_year": null,
       "bio": "Venezuelan mathematician who developed BBLS formulation, making RH equivalent to computational bounds.",
-      "key_contribution": "BBLS chain: period-function reduction to explicit Möbius bounds"
+      "key_contribution": "BBLS chain: period-function reduction to explicit M\u00f6bius bounds"
     },
     "balazard": {
       "id": "author:michel-balazard",
@@ -66,7 +74,7 @@
     },
     "saias": {
       "id": "author:eric-saias",
-      "name": "Éric Saias",
+      "name": "\u00c9ric Saias",
       "birth_year": 1964,
       "death_year": null,
       "bio": "French mathematician; co-author of BBLS formulation and modern cotangent bounds.",
@@ -86,7 +94,7 @@
       "birth_year": 1950,
       "death_year": null,
       "bio": "French mathematician who proved RH equivalent to bound on divisor sum ratios.",
-      "key_contribution": "Robin's inequality: σ(n)/n log log n bounds"
+      "key_contribution": "Robin's inequality: \u03c3(n)/n log log n bounds"
     },
     "lagarias": {
       "id": "author:jeffrey-c-lagarias",
@@ -126,7 +134,7 @@
       "birth_year": 1944,
       "death_year": null,
       "bio": "American mathematician; pioneer of pair correlation conjecture and spectral approaches to RH.",
-      "key_contribution": "Montgomery-Odlyzko law; eigenvalue spacing of ζ zeros"
+      "key_contribution": "Montgomery-Odlyzko law; eigenvalue spacing of \u03b6 zeros"
     },
     "odlyzko": {
       "id": "author:andrew-odlyzko",
@@ -138,10 +146,10 @@
     },
     "polya": {
       "id": "author:george-polya",
-      "name": "George Pólya",
+      "name": "George P\u00f3lya",
       "birth_year": 1887,
       "death_year": 1985,
-      "bio": "Hungarian-American mathematician; conjectured hidden operator with eigenvalues = ζ zeros.",
+      "bio": "Hungarian-American mathematician; conjectured hidden operator with eigenvalues = \u03b6 zeros.",
       "key_contribution": "Spectral approach: operator eigenvalues and RH"
     },
     "hilbert": {
@@ -158,14 +166,14 @@
       "birth_year": 1920,
       "death_year": 1981,
       "bio": "Finnish mathematician; original author of Nyman-Beurling Hilbert space criterion.",
-      "key_contribution": "Functional reformulation of RH via closure in L²"
+      "key_contribution": "Functional reformulation of RH via closure in L\u00b2"
     },
     "berry": {
       "id": "author:michael-berry",
       "name": "Michael Berry",
       "birth_year": 1941,
       "death_year": null,
-      "bio": "British physicist; proposed connection between ζ zeros and quantum chaos.",
+      "bio": "British physicist; proposed connection between \u03b6 zeros and quantum chaos.",
       "key_contribution": "Berry-Keating conjecture; spectral physics intuition"
     },
     "snaith": {
@@ -174,7 +182,7 @@
       "birth_year": 1974,
       "death_year": null,
       "bio": "British mathematician; expert on random matrix theory and GUE zero statistics.",
-      "key_contribution": "Probabilistic models of ζ zero distribution"
+      "key_contribution": "Probabilistic models of \u03b6 zero distribution"
     },
     "beck": {
       "id": "author:matthias-beck",
@@ -215,6 +223,62 @@
       "death_year": null,
       "bio": "Algerian mathematician; cotangent and period function identities.",
       "key_contribution": "Period-function reduction techniques"
+    },
+    "iwaniec": {
+      "id": "author:henryk-iwaniec",
+      "name": "Henryk Iwaniec",
+      "birth_year": 1947,
+      "death_year": null,
+      "bio": "Polish-American mathematician; pioneer in sieve methods and analytic number theory with explicit bounds.",
+      "key_contribution": "Zero-free regions and explicit bounds via sieve methods"
+    },
+    "kowalski": {
+      "id": "author:emmanuel-kowalski",
+      "name": "Emmanuel Kowalski",
+      "birth_year": 1970,
+      "death_year": null,
+      "bio": "Swiss mathematician; expert on Mellin transforms, exponential sums, and analytic number theory.",
+      "key_contribution": "Mellin transform techniques in analytic number theory"
+    },
+    "chebyshev": {
+      "id": "author:pafnuty-chebyshev",
+      "name": "Pafnuty Chebyshev",
+      "birth_year": 1821,
+      "death_year": 1894,
+      "bio": "Russian mathematician; foundational work on distribution of primes and polynomial approximation.",
+      "key_contribution": "Chebyshev bounds on prime counting function"
+    },
+    "hardy": {
+      "id": "author:godfrey-hardy",
+      "name": "Godfrey Hardy",
+      "birth_year": 1877,
+      "death_year": 1947,
+      "bio": "English mathematician; proved infinitely many RH zeros on critical line, pioneered analytic number theory.",
+      "key_contribution": "Hardy-Littlewood circle method and zero-detection on critical line"
+    },
+    "littlewood": {
+      "id": "author:john-littlewood",
+      "name": "John Littlewood",
+      "birth_year": 1885,
+      "death_year": 1977,
+      "bio": "English mathematician; collaborated with Hardy on prime number theory and RH-related bounds.",
+      "key_contribution": "Hardy-Littlewood methods for analytic number theory"
+    },
+    "titchmarsh": {
+      "id": "author:edward-titchmarsh",
+      "name": "Edward Titchmarsh",
+      "birth_year": 1899,
+      "death_year": 1963,
+      "bio": "English mathematician; expert on zeta function theory and critical-line zeros.",
+      "key_contribution": "Zeta function theory and lower bounds on zero counts"
+    },
+    "ramanujan": {
+      "id": "author:srinivasa-ramanujan",
+      "name": "Srinivasa Ramanujan",
+      "birth_year": 1887,
+      "death_year": 1920,
+      "bio": "Indian mathematician; discovered remarkable identities related to divisor sums and RH heuristics.",
+      "key_contribution": "Arithmetic functions and congruence identities"
     }
   }
 }
