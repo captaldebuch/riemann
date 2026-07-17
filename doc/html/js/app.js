@@ -804,9 +804,12 @@ function renderAchievements() {
 
       <!-- ORIGINAL CONTRIBUTIONS HIGHLIGHT -->
       <div style="background: #fef3c7; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #f59e0b;">
-        <p style="color: #92400e; font-weight: 600; margin: 0 0 1rem 0;">✨ Novel Contributions & Original Results</p>
+        <p style="color: #92400e; font-weight: 600; margin: 0 0 1rem 0;">💡 Formalization Insights & Architectural Choices</p>
         <p style="color: #92400e; font-size: 0.9rem; margin: 0 0 1rem 0;">
-          Beyond formalizing classical theorems, this work includes original discoveries:
+          Beyond formalizing classical theorems, this exploratory work discovered interesting approaches and simplifications during formalization:
+        </p>
+        <p style="color: #92400e; font-size: 0.85rem; margin: 0 0 1rem 0; font-style: italic;">
+          These represent formalization insights informed by corpus analysis and guided by mathematics—not claims of new mathematical results. Expert verification and discussion welcome.
         </p>
         <ul style="color: #92400e; margin: 0; padding-left: 1.5rem; font-size: 0.9rem; line-height: 1.8;">
           <li><strong>Zero-count without simplicity hypothesis:</strong> Proved multiplicity-weighted zero count O(T log T) ⟹ distinct-zero count (no simplicity needed) — <a href="./lean/H15BCF/MultiplicityZeroCounting.lean" target="_blank" style="color: #d97706; text-decoration: underline;">f0a2d8e</a></li>
