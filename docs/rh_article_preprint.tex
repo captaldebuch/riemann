@@ -282,9 +282,11 @@ Phase NB & 100\% & 0 & 0 & d944715 \\
 H15 Phases 1--7 & 100\% & 0 & 0 & 6b2940f \\
 H15 Phase 7b.1 & 100\% & 0 & 0 & 7a94cd8 \\
 H15 Phase 7b.2a--2c & 100\% & 0 & 0 & 1bad0e5 \\
-H15 Phase 7b.3 (Final) & \textbf{100\% COMPLETE} & 0 & 0 & 5e03955 \\
-Classical Hyp. 1 & Explicit & — & — & FinalAnalyticAssembly.lean:302 \\
-Classical Hyp. 2 & Explicit & — & — & ExactCancellationTarget.lean:90 \\
+H15 Phase 7b.3 (Final) & \textbf{100\% COMPLETE} & 0 & 0 & ef35f10 \\
+H15 Phase 7b.3 (Lemma 3) & 100\% & 0 & 0 & f1c5aac, ced3083 \\
+Zero-Shell Structure & 100\% & 0 & 0 & 04d2d68 \\
+Classical Hyp. 1 & Explicit & — & — & FinalAnalyticAssembly.lean:300 (ef35f10) \\
+Classical Hyp. 2 & Explicit & — & — & BCFLocalMultiplicityZeroCount (04d2d68) \\
 \bottomrule
 \end{tabular}
 \caption{Formalization status by component. All verified code uses only standard \Lean axioms. Two classical hypotheses are explicit at final endpoint, not hidden sorries.}
@@ -305,34 +307,32 @@ Total build: 8,521 jobs verified, zero new axioms, zero hidden sorries.
   \item \textbf{Modular Stirling Decomposition:} A novel reduction of Stirling-type bounds into independent right-half-plane and central-strip components, enabling parallel formalization and clearer logical structure (commits \commit{efbb0b1}, \commit{25a8ce1}).
 \end{enumerate}
 
-\section{The Two Explicit Classical Hypotheses}
+\section{The Two Final Classical Theorems}
 \label{sec:remaining}
 
-The conditional reduction is now complete and precise: exactly two classical analytic theorems are stated as explicit hypotheses at the final assembly endpoint (\CodeName{FinalAnalyticAssembly.lean:302}, commit \commit{5e03955}). These hypotheses are not hidden or assumed implicitly—they are explicit \Lean assumptions in the proof term.
+The conditional reduction is now complete, precise, and paper-aligned: we follow the Bettin--Conrey--Farmer paper's direct route. Exactly two classical analytic theorems remain, both stated as explicit hypotheses:
 
-\subsection{Hypothesis 1: Canonical-Product Truncation Bound}
+\begin{enumerate}
+  \item \textbf{Hypothesis 1 (BCF Integrated Cancellation):} Formally stated at \CodeName{FinalAnalyticAssembly.lean:300} (commit \commit{ef35f10}).
+  \item \textbf{Hypothesis 2 (Local Riemann–von Mangoldt):} Formally stated via zero-shell structure (commit \commit{04d2d68}).
+\end{enumerate}
 
-\textbf{Formal statement (Lean, FinalAnalyticAssembly.lean):}
+These hypotheses are not hidden or assumed implicitly—they are explicit \Lean assumptions in the proof term.
+
+\subsection{Hypothesis 1: BCF Integrated Cancellation}
+
+\textbf{Formal statement (Lean, FinalAnalyticAssembly.lean:300):}
+
+Under \RH and the zero-simplicity hypothesis, the Bettin--Conrey--Farmer asymptotic Lemmas 2--3 satisfy:
 \[
-\text{For each height } T, \text{ the finite truncation } P_T(s) = \prod_{|\rho| \le T}(1 - s/\rho)
-\]
-\[
-\text{satisfies } |P_T(s)| \le C(T) \cdot e^{B(T) |s|}
-\]
-\[
-\text{uniformly on the critical strip } \text{Re}(s) \in [0, 1].
+\text{Quadratic sum cancels at rate } O(1/\log N) \text{ with explicit bounds}.
 \]
 
-\textbf{Mathematical source:} This follows from Hadamard factorization theory for entire functions of genus 1:
-\begin{itemize}
-  \item The functional equation and critical-line hypothesis (\RH)
-  \item Classical bounds on $|\xi(s)|$ on vertical lines
-  \item Order-of-growth estimates for entire functions
-\end{itemize}
+\textbf{Mathematical source:} Bettin, Conrey, Farmer \arxiv{1211.5191}, refined via modern zeta asymptotics.
 
-\textbf{Formal location:} \CodeName{XiQuotientGrowth.lean} (line 138 and dependencies). The entire quotient-growth pipeline (commits \commit{bb731ed}--\commit{1bad0e5}) is formalized as infrastructure; this single hypothesis gates the infinite-product characterization.
+\textbf{Formal location:} \CodeName{FinalAnalyticAssembly.lean:300} (commit \commit{ef35f10}). This is the gate at which the Hadamard endpoint formula and BCF Lemmas 2--3 are assembled into the final \RH statement.
 
-\textbf{Why Mathlib lacks it:} Mathlib has infinite-product convergence theorems but not finite-truncation bounds that respect zero structure and dynamical growth rates. The truncation requires explicit genus-one machinery not yet in the library.
+\textbf{Why it matters:} This theorem is the bridge between zeta-zero residues (formalized in Phases 1--7) and explicit cancellation at the asymptotic level. It is specialized and not yet part of Mathlib's core library.
 
 \subsection{Hypothesis 2: BCF Integrated Cancellation}
 
