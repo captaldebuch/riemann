@@ -987,7 +987,7 @@ function renderTechnicalReports() {
         </div>
 
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-          <button onclick="viewArchivePaper('${report.id}')" style="padding:0.6rem 1.2rem; background:#3b82f6; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:500; font-size:0.95rem;">
+          <button class="btn" onclick="viewArchivePaper('${report.id}')">
             📖 View Report Details
           </button>
         </div>
@@ -1210,7 +1210,7 @@ function renderArchivePaper(reportId) {
   return `
     <section class="view-section active" style="max-width:900px; margin:0 auto; font-family:'Times New Roman', 'Georgia', serif;">
       <div style="margin-bottom:2rem;">
-        <button onclick="STATE.currentRoute='technical-reports'; renderView();" style="background:#f1f5f9; border:1px solid #cbd5e1; padding:0.5rem 1rem; border-radius:4px; cursor:pointer; color:#334155; text-decoration:none; font-weight:500;">
+        <button class="btn" onclick="STATE.currentRoute='technical-reports'; renderView();">
           ← Back to Reports
         </button>
       </div>
@@ -1257,7 +1257,7 @@ function renderArchivePaper(reportId) {
 
         <!-- Download Section -->
         <div style="margin-top:2rem; padding-top:2rem; border-top:2px solid #e5e7eb; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-          <button onclick="printArchivePaper('${reportId}')" style="padding:0.8rem 1.6rem; background:#3b82f6; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:1rem;">
+          <button class="btn" onclick="printArchivePaper('${reportId}')">
             🖨️ Print / Save as PDF
           </button>
         </div>
