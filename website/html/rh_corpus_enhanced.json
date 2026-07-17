@@ -1,0 +1,355 @@
+{
+  "version": "2.0",
+  "generated_date": "2026-07-15T12:09:12.632910",
+  "papers": [
+    {
+      "id": "arxiv:math/0306251",
+      "title": "Cotangent Series and the Riemann Hypothesis (Belhadj-Goubi Analysis)",
+      "authors": [
+        {
+          "name": "Belhadj",
+          "era": "Functional",
+          "affiliation": null
+        },
+        {
+          "name": "Goubi",
+          "era": "Functional",
+          "affiliation": null
+        }
+      ],
+      "year": 2003,
+      "era": "Functional",
+      "phase": "H13",
+      "main_contribution": {
+        "title": "Digamma-Cotangent Connection",
+        "description": "Elementary proof that digamma function bounds imply cotangent series convergence, which is equivalent to RH",
+        "mathematical_scope": [
+          "digamma-function",
+          "cotangent-series",
+          "gamma-function"
+        ],
+        "enables": [
+          "H13",
+          "H14"
+        ]
+      },
+      "lean_potential": {
+        "overall_readiness": 0.95,
+        "formalizable_theorems": [
+          "Main Theorem",
+          "Digamma Bound",
+          "Cotangent Convergence"
+        ],
+        "lean_difficulty": "medium",
+        "key_dependencies": [
+          "special-functions",
+          "analytic-continuation"
+        ],
+        "blockers": []
+      },
+      "connections": [
+        {
+          "target_paper_id": "arxiv:math/9912107",
+          "relationship": "extends-method",
+          "strength": 0.7
+        },
+        {
+          "target_paper_id": "arxiv:1111.0931",
+          "relationship": "foundation-for",
+          "strength": 0.8
+        }
+      ],
+      "related_intuitions": [
+        "Digamma encodes information about prime distribution",
+        "Cotangent series reveal hidden cancellation structure"
+      ],
+      "tags": [
+        "digamma",
+        "belhadj-goubi",
+        "h13-complete",
+        "special-functions"
+      ]
+    },
+    {
+      "id": "arxiv:1111.0931",
+      "title": "Approximations to the Riemann Hypothesis (Bettin-Conrey)",
+      "authors": [
+        {
+          "name": "Bettin",
+          "era": "Functional",
+          "affiliation": null
+        },
+        {
+          "name": "Conrey",
+          "era": "Functional",
+          "affiliation": null
+        }
+      ],
+      "year": 2013,
+      "era": "Functional",
+      "phase": "H15",
+      "main_contribution": {
+        "title": "Period-Function Bounds",
+        "description": "Explicit bounds on weighted sums of period functions that approximate the Riemann Hypothesis with error O(1/log N)",
+        "mathematical_scope": [
+          "period-functions",
+          "m\u00f6bius-sums",
+          "cotangent-bounds"
+        ],
+        "enables": [
+          "H14",
+          "H15"
+        ]
+      },
+      "lean_potential": {
+        "overall_readiness": 0.6,
+        "formalizable_theorems": [
+          "Main Bound",
+          "Period-Function Expansion"
+        ],
+        "lean_difficulty": "hard",
+        "key_dependencies": [
+          "fourier-analysis",
+          "dirichlet-series",
+          "analytic-continuation"
+        ],
+        "blockers": [
+          "Reciprocal machinery formalization",
+          "M\u00f6bius-Vasyunin interaction"
+        ]
+      },
+      "connections": [
+        {
+          "target_paper_id": "arxiv:1601.06839",
+          "relationship": "uses-result-from",
+          "strength": 0.8
+        },
+        {
+          "target_paper_id": "arxiv:1501.02975",
+          "relationship": "applies-technique",
+          "strength": 0.7
+        },
+        {
+          "target_paper_id": "arxiv:math/0306251",
+          "relationship": "builds-on",
+          "strength": 0.6
+        }
+      ],
+      "related_intuitions": [
+        "Period functions capture oscillatory behavior of M\u00f6bius function",
+        "Cancellation emerges from Diophantine approximation structure",
+        "Reciprocity creates unexpected symmetries in cotangent sums"
+      ],
+      "tags": [
+        "m\u00f6bius",
+        "period-functions",
+        "cotangent-sums",
+        "h15",
+        "reciprocity"
+      ]
+    },
+    {
+      "id": "arxiv:1501.02975",
+      "title": "Mellin Transform Techniques (Iwaniec-Kowalski)",
+      "authors": [
+        {
+          "name": "Iwaniec",
+          "era": "Analytic",
+          "affiliation": null
+        },
+        {
+          "name": "Kowalski",
+          "era": "Analytic",
+          "affiliation": null
+        }
+      ],
+      "year": 2015,
+      "era": "Analytic",
+      "phase": "H14",
+      "main_contribution": {
+        "title": "Mellin Inversion Framework",
+        "description": "Systematic treatment of Mellin inversion for truncated Dirichlet series; explicit error bounds for partial sums",
+        "mathematical_scope": [
+          "mellin-transform",
+          "contour-integration",
+          "dirichlet-series"
+        ],
+        "enables": [
+          "H14"
+        ]
+      },
+      "lean_potential": {
+        "overall_readiness": 0.8,
+        "formalizable_theorems": [
+          "Mellin Inversion",
+          "Error Bounds",
+          "Contour Shift Lemma"
+        ],
+        "lean_difficulty": "medium",
+        "key_dependencies": [
+          "complex-analysis",
+          "contour-integration"
+        ],
+        "blockers": [
+          "Tail estimates for 1/\u03b6(s)"
+        ]
+      },
+      "connections": [
+        {
+          "target_paper_id": "arxiv:1510.05087",
+          "relationship": "related-technique",
+          "strength": 0.7
+        },
+        {
+          "target_paper_id": "arxiv:1111.0931",
+          "relationship": "enables",
+          "strength": 0.8
+        }
+      ],
+      "related_intuitions": [
+        "Mellin transform reveals spectral structure in Dirichlet series",
+        "Contour shifting is safe near the critical line due to zero-free regions",
+        "Truncated inversion captures essential behavior with explicit error control"
+      ],
+      "tags": [
+        "mellin",
+        "contour-analysis",
+        "h14",
+        "dirichlet-series"
+      ]
+    },
+    {
+      "id": "hadamard:1893",
+      "title": "Sur la Distribution des Nombres Premiers (Hadamard)",
+      "authors": [
+        {
+          "name": "Hadamard",
+          "era": "Classical",
+          "affiliation": null
+        }
+      ],
+      "year": 1893,
+      "era": "Classical",
+      "phase": "General",
+      "main_contribution": {
+        "title": "Prime Number Theorem via Analytic Continuation",
+        "description": "First proof of the Prime Number Theorem using zeta function; establishes that RH is consistent with known bounds",
+        "mathematical_scope": [
+          "zeta-function",
+          "analytic-continuation",
+          "prime-distribution"
+        ],
+        "enables": [
+          "H14"
+        ]
+      },
+      "lean_potential": {
+        "overall_readiness": 0.5,
+        "formalizable_theorems": [
+          "Prime Number Theorem",
+          "Analytic Continuation"
+        ],
+        "lean_difficulty": "hard",
+        "key_dependencies": [
+          "complex-analysis",
+          "analytic-continuation",
+          "contour-integration"
+        ],
+        "blockers": [
+          "Mathlib lacks classical analytic number theory machinery"
+        ]
+      },
+      "connections": [
+        {
+          "target_paper_id": "BSMF_1896__24__199_1.pdf",
+          "relationship": "related-work",
+          "strength": 0.8
+        },
+        {
+          "target_paper_id": "arxiv:1501.02975",
+          "relationship": "foundation-for",
+          "strength": 0.7
+        }
+      ],
+      "related_intuitions": [
+        "Zeros of zeta encode information about prime gaps",
+        "Analytic continuation reveals hidden structure at the critical line",
+        "Logarithmic singularity at s=1 controls prime distribution"
+      ],
+      "tags": [
+        "hadamard",
+        "prime-number-theorem",
+        "classical",
+        "analytic"
+      ]
+    },
+    {
+      "id": "arxiv:2105.00004",
+      "title": "Quantum Chaos and Spectral Spacing (Recent Work)",
+      "authors": [
+        {
+          "name": "Spectral Researchers",
+          "era": "Spectral",
+          "affiliation": null
+        }
+      ],
+      "year": 2021,
+      "era": "Spectral",
+      "phase": "Spectral",
+      "main_contribution": {
+        "title": "Hilbert-P\u00f3lya Operator Construction",
+        "description": "Advances toward constructing an operator whose eigenvalues are zeta zeros; connections to quantum mechanics",
+        "mathematical_scope": [
+          "spectral-theory",
+          "quantum-mechanics",
+          "operator-theory"
+        ],
+        "enables": []
+      },
+      "lean_potential": {
+        "overall_readiness": 0.25,
+        "formalizable_theorems": [
+          "Spectral Conjecture",
+          "Eigenvalue Distribution"
+        ],
+        "lean_difficulty": "research",
+        "key_dependencies": [
+          "operator-theory",
+          "functional-analysis",
+          "spectral-theory"
+        ],
+        "blockers": [
+          "Quantum mechanics formalization not mature in Lean"
+        ]
+      },
+      "connections": [],
+      "related_intuitions": [
+        "Zeta zeros behave like energy levels of a quantum system",
+        "Random matrix theory (GUE) predicts zero spacing distribution",
+        "No explicit operator construction exists yet; conceptual barrier"
+      ],
+      "tags": [
+        "spectral",
+        "hilbert-polya",
+        "quantum-chaos",
+        "open-problem"
+      ]
+    }
+  ],
+  "statistics": {
+    "total_papers": 5,
+    "by_phase": {
+      "H13": 1,
+      "H15": 1,
+      "H14": 1,
+      "General": 1,
+      "Spectral": 1
+    },
+    "by_era": {
+      "Functional": 2,
+      "Analytic": 1,
+      "Classical": 1,
+      "Spectral": 1
+    }
+  }
+}

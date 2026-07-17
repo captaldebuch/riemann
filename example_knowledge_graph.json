@@ -1,0 +1,154 @@
+{
+  "@context": {
+    "@vocab": "https://example.org/mathematics#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  },
+  "id": "paper:arxiv:1111.0931",
+  "title": "Approximations to the Riemann Hypothesis",
+  "authors": [
+    {
+      "name": "Bettin",
+      "orcid_uri": "https://orcid.org/0000-0002-3006-2586",
+      "viaf_uri": null,
+      "wikidata_uri": "http://www.wikidata.org/entity/Q110594348"
+    },
+    {
+      "name": "Conrey",
+      "orcid_uri": null,
+      "viaf_uri": "http://viaf.org/viaf/22421453",
+      "wikidata_uri": "http://www.wikidata.org/entity/Q1000627"
+    }
+  ],
+  "year": 2013,
+  "doi_uri": null,
+  "arxiv_uri": "https://arxiv.org/abs/1111.0931",
+  "objects": [
+    {
+      "id": "theorem_main",
+      "type": "theorem",
+      "name": "Period Function Approximation",
+      "statement": "The Riemann hypothesis is equivalent to certain period function bounds",
+      "section": "Section 3",
+      "assumptions": [
+        "assumption_vasyunin"
+      ],
+      "conclusion": "M(x) = O(1/log N) weighted sum",
+      "context": "Explicit formulation of RH via Vasyunin cotangent series",
+      "confidence": 0.8,
+      "wikidata_uri": null,
+      "dbpedia_uri": null
+    },
+    {
+      "id": "lemma_contour",
+      "type": "lemma",
+      "name": "Contour Shift Lemma",
+      "statement": "Safe to shift contours under DVP zero-free region",
+      "section": "Section 2",
+      "assumptions": [],
+      "conclusion": "Perron inversion valid",
+      "context": null,
+      "confidence": 0.8,
+      "wikidata_uri": null,
+      "dbpedia_uri": null
+    },
+    {
+      "id": "def_period",
+      "type": "definition",
+      "name": "Period Functions",
+      "statement": "Periodic extension with specified growth",
+      "section": null,
+      "assumptions": [],
+      "conclusion": "Defined for frequency k, period 1",
+      "context": null,
+      "confidence": 0.8,
+      "wikidata_uri": null,
+      "dbpedia_uri": null
+    }
+  ],
+  "proofs": [
+    {
+      "id": "proof_main",
+      "theorem_id": "theorem_main",
+      "steps": [
+        {
+          "index": 1,
+          "description": "Fourier expand the cotangent sum",
+          "justification": [
+            "tool_fourier",
+            "tool_reciprocity"
+          ],
+          "equation_refs": [
+            "eq_vasyunin_series"
+          ]
+        },
+        {
+          "index": 2,
+          "description": "Shift contours to capture zeros",
+          "justification": [
+            "lemma_contour"
+          ],
+          "equation_refs": [
+            "eq_perron_integral"
+          ]
+        },
+        {
+          "index": 3,
+          "description": "Bound the weighted sum",
+          "justification": [
+            "tool_mellin",
+            "theorem_explicit_formula"
+          ],
+          "equation_refs": [
+            "eq_bound"
+          ]
+        }
+      ],
+      "uses_lemmas": [
+        "lemma_contour"
+      ],
+      "uses_tools": [
+        "tool_fourier",
+        "tool_mellin",
+        "tool_reciprocity"
+      ],
+      "key_insight": "Period functions encode cancellation structure",
+      "length_estimate": "8 pages"
+    }
+  ],
+  "dependencies": [
+    {
+      "source_id": "theorem_main",
+      "target_id": "lemma_contour",
+      "type": "requires",
+      "strength": 0.95,
+      "explanation": "Contour shift is essential step"
+    },
+    {
+      "source_id": "theorem_main",
+      "target_id": "def_period",
+      "type": "requires",
+      "strength": 0.9,
+      "explanation": "Period functions are central object"
+    }
+  ],
+  "open_problems": [
+    {
+      "id": "problem_pointwise",
+      "statement": "Can bounds be made pointwise instead of aggregate?",
+      "introduced_by": null,
+      "related_to_theorem": "theorem_main",
+      "importance": "important",
+      "potential_impact": "Would strengthen approximation significantly",
+      "status": "open"
+    },
+    {
+      "id": "problem_quadratic",
+      "statement": "Characterize quadratic M\u00f6bius-Vasyunin interactions",
+      "introduced_by": null,
+      "related_to_theorem": null,
+      "importance": "foundational",
+      "potential_impact": "Would complete understanding of cancellation",
+      "status": "open"
+    }
+  ]
+}

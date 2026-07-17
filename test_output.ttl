@@ -1,0 +1,35 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix mathlit: <https://captaldebuch.github.io/riemann/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+
+<https://arxiv.org/abs/1111.0931> a bibo:Article ;
+    dcterms:creator wd:Q1000627,
+        wd:Q110594348 ;
+    dcterms:hasPart mathlit:def_period,
+        mathlit:lemma_contour,
+        mathlit:theorem_main ;
+    dcterms:issued "2013" ;
+    dcterms:title "Approximations to the Riemann Hypothesis" .
+
+wd:Q1000627 a foaf:Person ;
+    foaf:name "Conrey" .
+
+wd:Q110594348 a foaf:Person ;
+    dcterms:identifier <https://orcid.org/0000-0002-3006-2586> ;
+    foaf:name "Bettin" .
+
+mathlit:def_period a skos:Concept ;
+    skos:definition "Periodic extension with specified growth" ;
+    skos:prefLabel "Period Functions" .
+
+mathlit:lemma_contour a skos:Concept ;
+    skos:definition "Safe to shift contours under DVP zero-free region" ;
+    skos:prefLabel "Contour Shift Lemma" .
+
+mathlit:theorem_main a skos:Concept ;
+    skos:definition "The Riemann hypothesis is equivalent to certain period function bounds" ;
+    skos:prefLabel "Period Function Approximation" .
+

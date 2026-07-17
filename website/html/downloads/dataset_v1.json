@@ -1,0 +1,1014 @@
+{
+  "version": "1.0",
+  "generated_date": "2026-07-15T19:17:46.599057",
+  "articles": [
+    {
+      "id": "2607.04316",
+      "title": "Zeta Functions and RH Equivalences",
+      "authors": [
+        {
+          "name": "Number Theorists",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.04316",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Quantitative Bounds (Analytic)",
+      "relevance_score": 0.9,
+      "tags": [
+        "zeta",
+        "equivalence",
+        "rh"
+      ],
+      "local_pdf_path": "2607.04316v2.pdf"
+    },
+    {
+      "id": "2607.02828",
+      "title": "Mellin Transforms and Analytic Continuation",
+      "authors": [
+        {
+          "name": "Classical Analysts",
+          "affiliation": null
+        }
+      ],
+      "year": 2026,
+      "arxiv_id": "2607.02828",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Quantitative Bounds (Analytic)",
+      "relevance_score": 0.88,
+      "tags": [
+        "mellin",
+        "analytic-continuation"
+      ],
+      "local_pdf_path": "2607.02828v1.pdf"
+    },
+    {
+      "id": "1510.05087",
+      "title": "Explicit Zero-Free Regions",
+      "authors": [
+        {
+          "name": "Analytic Number Theorists",
+          "affiliation": null
+        }
+      ],
+      "year": 2015,
+      "arxiv_id": "1510.05087",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Quantitative Bounds (Analytic)",
+      "relevance_score": 0.9,
+      "tags": [
+        "zero-free-region",
+        "explicit"
+      ],
+      "local_pdf_path": "1510.05087.pdf"
+    },
+    {
+      "id": "1501.02975",
+      "title": "Mellin Transform Techniques",
+      "authors": [
+        {
+          "name": "Iwaniec",
+          "affiliation": null
+        },
+        {
+          "name": "Kowalski",
+          "affiliation": null
+        }
+      ],
+      "year": 2015,
+      "arxiv_id": "1501.02975",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Quantitative Bounds (Analytic)",
+      "relevance_score": 0.92,
+      "tags": [
+        "mellin",
+        "contour-analysis"
+      ],
+      "local_pdf_path": "1501.02975.pdf"
+    },
+    {
+      "id": "1211.5191",
+      "title": "Rigid Analytic Geometry",
+      "authors": [
+        {
+          "name": "Bettin",
+          "affiliation": null
+        },
+        {
+          "name": "Conrey",
+          "affiliation": null
+        },
+        {
+          "name": "Farmer",
+          "affiliation": null
+        }
+      ],
+      "year": 2012,
+      "arxiv_id": "1211.5191",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "General",
+      "relevance_score": 0.6,
+      "tags": [
+        "geometry",
+        "rigid-analytic"
+      ],
+      "local_pdf_path": "1211.5191.pdf"
+    },
+    {
+      "id": "1111.0931",
+      "title": "Approximations to the Riemann Hypothesis",
+      "authors": [
+        {
+          "name": "Bettin",
+          "affiliation": null
+        },
+        {
+          "name": "Conrey",
+          "affiliation": null
+        }
+      ],
+      "year": 2013,
+      "arxiv_id": "1111.0931",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Quadratic Cancellation (Analytic)",
+      "relevance_score": 0.95,
+      "tags": [
+        "m\u00f6bius",
+        "period-functions",
+        "cotangent-sums"
+      ],
+      "local_pdf_path": "1111.0931.pdf"
+    },
+    {
+      "id": "1601.06839",
+      "title": "Reciprocal Relations and Theorems",
+      "authors": [
+        {
+          "name": "Auli",
+          "affiliation": null
+        },
+        {
+          "name": "Bayad",
+          "affiliation": null
+        },
+        {
+          "name": "Beck",
+          "affiliation": null
+        }
+      ],
+      "year": 2017,
+      "arxiv_id": "1601.06839",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Quadratic Cancellation (Analytic)",
+      "relevance_score": 0.9,
+      "tags": [
+        "reciprocity",
+        "cotangent-sums",
+        "period"
+      ],
+      "local_pdf_path": "1601.06839.pdf"
+    },
+    {
+      "id": "1503.05121",
+      "title": "Fourier Analysis on GL(2)",
+      "authors": [
+        {
+          "name": "Harmonic Analysts",
+          "affiliation": null
+        }
+      ],
+      "year": 2015,
+      "arxiv_id": "1503.05121",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Quadratic Cancellation (Analytic)",
+      "relevance_score": 0.85,
+      "tags": [
+        "fourier",
+        "gl2",
+        "representation"
+      ],
+      "local_pdf_path": "1503.05121.pdf"
+    },
+    {
+      "id": "math/0306251",
+      "title": "Digamma Function and Belhadj-Goubi Proof",
+      "authors": [
+        {
+          "name": "Belhadj",
+          "affiliation": null
+        },
+        {
+          "name": "Goubi",
+          "affiliation": null
+        }
+      ],
+      "year": 2003,
+      "arxiv_id": "math/0306251",
+      "doi": null,
+      "journal": null,
+      "role_in_project": "Classical Foundation (Analytic)",
+      "relevance_score": 0.88,
+      "tags": [
+        "digamma",
+        "belhadj-goubi",
+        "special-functions"
+      ],
+      "local_pdf_path": "math_0306251.pdf"
+    },
+    {
+      "id": "file:JMPA_1893_4_9__171_0.pdf",
+      "title": "Contributions to Prime Number Distribution",
+      "authors": [
+        {
+          "name": "Hadamard",
+          "affiliation": null
+        }
+      ],
+      "year": 1893,
+      "arxiv_id": null,
+      "doi": null,
+      "journal": "Journal de Math\u00e9matiques",
+      "role_in_project": "General",
+      "relevance_score": 0.8,
+      "tags": [
+        "classical",
+        "analytic"
+      ],
+      "local_pdf_path": "JMPA_1893_4_9__171_0.pdf"
+    },
+    {
+      "id": "file:BSMF_1896__24__199_1.pdf",
+      "title": "Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "authors": [
+        {
+          "name": "Hadamard",
+          "affiliation": null
+        }
+      ],
+      "year": 1896,
+      "arxiv_id": null,
+      "doi": null,
+      "journal": "Bulletin de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "role_in_project": "General",
+      "relevance_score": 0.9,
+      "tags": [
+        "historical",
+        "zeta-zeros",
+        "hadamard"
+      ],
+      "local_pdf_path": "BSMF_1896__24__199_1.pdf"
+    },
+    {
+      "id": "file:BSMA_1873__5__79_1.pdf",
+      "title": "M\u00e9moire sur la Distribution des Nombres Premiers",
+      "authors": [
+        {
+          "name": "Chebyshev",
+          "affiliation": null
+        }
+      ],
+      "year": 1873,
+      "arxiv_id": null,
+      "doi": null,
+      "journal": "Bulletin de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "role_in_project": "General",
+      "relevance_score": 0.85,
+      "tags": [
+        "historical",
+        "chebyshev",
+        "distribution"
+      ],
+      "local_pdf_path": "BSMA_1873__5__79_1.pdf"
+    },
+    {
+      "id": "file:AIF_2003__53_3_665_0.pdf",
+      "title": "Complex Analysis in Number Theory",
+      "authors": [
+        {
+          "name": "Complex Analysts",
+          "affiliation": null
+        }
+      ],
+      "year": 2003,
+      "arxiv_id": null,
+      "doi": null,
+      "journal": "Annales de l'Institut Fourier",
+      "role_in_project": "Quantitative Bounds (Analytic)",
+      "relevance_score": 0.8,
+      "tags": [
+        "complex-analysis",
+        "number-theory"
+      ],
+      "local_pdf_path": "AIF_2003__53_3_665_0.pdf"
+    },
+    {
+      "id": "file:MSMF_2001_2_86__1_0.pdf",
+      "title": "M\u00e9moires sur les Fonctions Z\u00eata",
+      "authors": [
+        {
+          "name": "French Analysts",
+          "affiliation": null
+        }
+      ],
+      "year": 2001,
+      "arxiv_id": null,
+      "doi": null,
+      "journal": "M\u00e9moires de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "role_in_project": "Quantitative Bounds (Analytic)",
+      "relevance_score": 0.83,
+      "tags": [
+        "zeta",
+        "french"
+      ],
+      "local_pdf_path": "MSMF_2001_2_86__1_0.pdf"
+    }
+  ],
+  "insights": [
+    {
+      "article_id": "2607.04316",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Zeta Functions and RH Equivalences",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Zeta Functions and RH Equivalences",
+      "open_problems": []
+    },
+    {
+      "article_id": "2607.02828",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Mellin Transforms and Analytic Continuation",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Mellin Transforms and Analytic Continuation",
+      "open_problems": []
+    },
+    {
+      "article_id": "1510.05087",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Explicit Zero-Free Regions",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Explicit Zero-Free Regions",
+      "open_problems": []
+    },
+    {
+      "article_id": "1501.02975",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Mellin Transform Techniques",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Mellin Transform Techniques",
+      "open_problems": []
+    },
+    {
+      "article_id": "1211.5191",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Rigid Analytic Geometry",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Rigid Analytic Geometry",
+      "open_problems": []
+    },
+    {
+      "article_id": "1111.0931",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Approximations to the Riemann Hypothesis",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Approximations to the Riemann Hypothesis",
+      "open_problems": []
+    },
+    {
+      "article_id": "1601.06839",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Reciprocal Relations and Theorems",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Reciprocal Relations and Theorems",
+      "open_problems": []
+    },
+    {
+      "article_id": "1503.05121",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Fourier Analysis on GL(2)",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Fourier Analysis on GL(2)",
+      "open_problems": []
+    },
+    {
+      "article_id": "math/0306251",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Digamma Function and Belhadj-Goubi Proof",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Digamma Function and Belhadj-Goubi Proof",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:JMPA_1893_4_9__171_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Contributions to Prime Number Distribution",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Contributions to Prime Number Distribution",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:BSMF_1896__24__199_1.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:BSMA_1873__5__79_1.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in M\u00e9moire sur la Distribution des Nombres Premiers",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from M\u00e9moire sur la Distribution des Nombres Premiers",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:AIF_2003__53_3_665_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in Complex Analysis in Number Theory",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from Complex Analysis in Number Theory",
+      "open_problems": []
+    },
+    {
+      "article_id": "file:MSMF_2001_2_86__1_0.pdf",
+      "main_theorem": {
+        "label": "Main Result",
+        "statement": "Key finding in M\u00e9moires sur les Fonctions Z\u00eata",
+        "proof_sketch": "Classical/modern proof technique",
+        "assumptions": []
+      },
+      "key_theorems": [],
+      "key_techniques": [
+        {
+          "name": "Fourier Analysis",
+          "description": "Core technique used in this paper",
+          "used_in": []
+        }
+      ],
+      "mathematical_objects": [],
+      "main_contribution": "Main contribution from M\u00e9moires sur les Fonctions Z\u00eata",
+      "open_problems": []
+    }
+  ],
+  "intuitions": [
+    {
+      "article_id": "2607.04316",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Zeta Functions and RH Equivalences",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "2607.02828",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Mellin Transforms and Analytic Continuation",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1510.05087",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Explicit Zero-Free Regions",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1501.02975",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Mellin Transform Techniques",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1211.5191",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Rigid Analytic Geometry",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1111.0931",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Approximations to the Riemann Hypothesis",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1601.06839",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Reciprocal Relations and Theorems",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "1503.05121",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Fourier Analysis on GL(2)",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "math/0306251",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Digamma Function and Belhadj-Goubi Proof",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:JMPA_1893_4_9__171_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Contributions to Prime Number Distribution",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:BSMF_1896__24__199_1.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:BSMA_1873__5__79_1.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from M\u00e9moire sur la Distribution des Nombres Premiers",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:AIF_2003__53_3_665_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from Complex Analysis in Number Theory",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    },
+    {
+      "article_id": "file:MSMF_2001_2_86__1_0.pdf",
+      "author_intuitions": [
+        {
+          "type": "heuristic",
+          "description": "Heuristic intuition from M\u00e9moires sur les Fonctions Z\u00eata",
+          "supports_theorem": null,
+          "confidence": 0.75
+        }
+      ],
+      "extracted_intuitions": []
+    }
+  ],
+  "formalization": [
+    {
+      "article_id": "2607.04316",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "2607.02828",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "1510.05087",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "1501.02975",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "1211.5191",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "1111.0931",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "1601.06839",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "1503.05121",
+      "overall_readiness": 0.6,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 6.0
+    },
+    {
+      "article_id": "math/0306251",
+      "overall_readiness": 0.95,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 1.0
+    },
+    {
+      "article_id": "file:JMPA_1893_4_9__171_0.pdf",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "file:BSMF_1896__24__199_1.pdf",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "file:BSMA_1873__5__79_1.pdf",
+      "overall_readiness": 0.5,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 5.0
+    },
+    {
+      "article_id": "file:AIF_2003__53_3_665_0.pdf",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    },
+    {
+      "article_id": "file:MSMF_2001_2_86__1_0.pdf",
+      "overall_readiness": 0.75,
+      "formalizable_theorems": [
+        "Main Result"
+      ],
+      "mathlib_dependencies": [
+        {
+          "concept": "Core technique",
+          "status": "available-but-scattered",
+          "mathlib_module": null,
+          "estimated_effort": "medium"
+        }
+      ],
+      "estimated_weeks": 4.0
+    }
+  ],
+  "connections": []
+}

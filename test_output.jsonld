@@ -1,0 +1,112 @@
+[
+  {
+    "@id": "http://www.wikidata.org/entity/Q1000627",
+    "@type": [
+      "http://xmlns.com/foaf/0.1/Person"
+    ],
+    "http://xmlns.com/foaf/0.1/name": [
+      {
+        "@value": "Conrey"
+      }
+    ]
+  },
+  {
+    "@id": "https://arxiv.org/abs/1111.0931",
+    "@type": [
+      "http://purl.org/ontology/bibo/Article"
+    ],
+    "http://purl.org/dc/terms/creator": [
+      {
+        "@id": "http://www.wikidata.org/entity/Q110594348"
+      },
+      {
+        "@id": "http://www.wikidata.org/entity/Q1000627"
+      }
+    ],
+    "http://purl.org/dc/terms/hasPart": [
+      {
+        "@id": "https://captaldebuch.github.io/riemann/ontology#theorem_main"
+      },
+      {
+        "@id": "https://captaldebuch.github.io/riemann/ontology#lemma_contour"
+      },
+      {
+        "@id": "https://captaldebuch.github.io/riemann/ontology#def_period"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2013"
+      }
+    ],
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "Approximations to the Riemann Hypothesis"
+      }
+    ]
+  },
+  {
+    "@id": "https://captaldebuch.github.io/riemann/ontology#def_period",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "Periodic extension with specified growth"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Period Functions"
+      }
+    ]
+  },
+  {
+    "@id": "https://captaldebuch.github.io/riemann/ontology#theorem_main",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "The Riemann hypothesis is equivalent to certain period function bounds"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Period Function Approximation"
+      }
+    ]
+  },
+  {
+    "@id": "https://captaldebuch.github.io/riemann/ontology#lemma_contour",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "Safe to shift contours under DVP zero-free region"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Contour Shift Lemma"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.wikidata.org/entity/Q110594348",
+    "@type": [
+      "http://xmlns.com/foaf/0.1/Person"
+    ],
+    "http://purl.org/dc/terms/identifier": [
+      {
+        "@id": "https://orcid.org/0000-0002-3006-2586"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/name": [
+      {
+        "@value": "Bettin"
+      }
+    ]
+  }
+]
