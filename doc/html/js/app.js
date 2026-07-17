@@ -816,7 +816,7 @@ function renderAchievements() {
         <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 1rem 0;">Classical Dependencies: Updated (Direct BCF Route)</p>
         <ol style="color: #475569; margin: 0; padding-left: 2rem; line-height: 1.8;">
           <li><strong>✅ Riemann–von Mangoldt N(T) global zero-counting:</strong> PROVED UNCONDITIONAL O(T log T) (7a94cd8) via Jensen's inequality</li>
-          <li><strong>⏳ Local Riemann–von Mangoldt interval bound:</strong> Sharp zero-count in interval [T, T+1], i.e., N(T+1) − N(T) ≤ C(1 + log T) — NEEDED FOR: BCF Lemma 3 kernel summation (ced3083)</li>
+          <li><strong>⏳ BCFLocalMultiplicityZeroCount (Riemann–von Mangoldt local O(log T) remainder):</strong> For interval [T, T+1]: N(T+1) − N(T) ≤ C(1 + log T) with multiplicity — FORMALIZED TARGET: unit-height zero shells (04d2d68), awaits local asymptotic bound</li>
           <li><strong>⏳ BCF integrated cancellation:</strong> Asymptotic formula satisfies O(1/log N) cancellation rate under RH + zero-simplicity + reciprocal-derivative moment — EXPLICIT AT: FinalAnalyticAssembly.lean:300 (ef35f10)</li>
         </ol>
         <p style="color: #0c4a6e; font-size: 0.9rem; margin: 1rem 0 0 0; font-style: italic;">
@@ -920,7 +920,8 @@ function renderAchievements() {
                 <li>✅ FinalAnalyticAssembly.lean:300 derives H15 from Hadamard endpoint + BCF Lemmas 2–3 — ef35f10</li>
                 <li>✅ BCF Lemma 3 residue bounds (N^(ρ-s), geometry, height/disk truncation) — f1c5aac</li>
                 <li>✅ RH vertical-kernel exact decomposition: ‖ρ-s‖² = ε² + (Im ρ - Im s)² — ced3083</li>
-                <li>⏳ Local Riemann–von Mangoldt interval bound [T, T+1] (next classical input)</li>
+                <li>✅ Finite zero-shell structure + sharp local O(log T) target — 04d2d68</li>
+                <li>⏳ Local Riemann–von Mangoldt O(log T) remainder: N(T+1) − N(T) ≤ C(1 + log T) (final classical input)</li>
               </ul>
             </li>
           </ul>
