@@ -813,14 +813,14 @@ function renderAchievements() {
         The verified components include: <strong>H13</strong> (Vasyunin–BBLS local kernel identities), <strong>H14</strong> (quantitative analytic framework for linear Möbius bounds), <strong>Phase NB</strong> (Nyman–Beurling functional-analytic bridge), and <strong>H15</strong> (quadratic interaction reduction and conditional asymptotic assembly). All Lean code builds successfully with zero new axioms and zero hidden sorry dependencies. The remaining work is now isolated into three named analytic theorem packages:
       </p>
       <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #0ea5e9;">
-        <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 1rem 0;">Two Classical Analytic Hypotheses (Explicit at Final Endpoint)</p>
+        <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 1rem 0;">Classical Dependencies: Updated (Direct BCF Route)</p>
         <ol style="color: #475569; margin: 0; padding-left: 2rem; line-height: 1.8;">
-          <li><strong>✅ Riemann–von Mangoldt N(T) zero-counting:</strong> PROVED UNCONDITIONAL (7a94cd8) via Jensen's inequality</li>
-          <li><strong>Hypothesis 1 (Canonical-Product Truncation Bound):</strong> For each height T, finite truncation $P_T(s) = \prod_{|\rho| \le T}(1-s/\rho)$ has uniform exponential norm growth on critical strip — EXPLICIT AT: FinalAnalyticAssembly.lean:302 (5e03955)</li>
-          <li><strong>Hypothesis 2 (BCF Integrated Cancellation):</strong> Asymptotic formula satisfies O(1/log N) cancellation rate under RH + zero-simplicity — EXPLICIT AT: ExactCancellationTarget.lean:90 (5e03955)</li>
+          <li><strong>✅ Riemann–von Mangoldt N(T) global zero-counting:</strong> PROVED UNCONDITIONAL O(T log T) (7a94cd8) via Jensen's inequality</li>
+          <li><strong>⏳ Local Riemann–von Mangoldt interval bound:</strong> Sharp zero-count in interval [T, T+1], i.e., N(T+1) − N(T) ≤ C(1 + log T) — NEEDED FOR: BCF Lemma 3 kernel summation (ced3083)</li>
+          <li><strong>⏳ BCF integrated cancellation:</strong> Asymptotic formula satisfies O(1/log N) cancellation rate under RH + zero-simplicity + reciprocal-derivative moment — EXPLICIT AT: FinalAnalyticAssembly.lean:300 (ef35f10)</li>
         </ol>
         <p style="color: #0c4a6e; font-size: 0.9rem; margin: 1rem 0 0 0; font-style: italic;">
-          The project is a fully verified conditional reduction: H13 + H14 + Phase NB + H15 ⇒ RH. All algebraic steps are proved. Both classical hypotheses are explicit at the final assembly—no hidden sorries, no false claims. Once either hypothesis is formalized or accepted, RH follows automatically in Lean.
+          The project is a fully verified conditional reduction: H13 + H14 + Phase NB + H15 ⇒ RH. All algebraic steps are proved. The direct BCF route (paper-aligned) requires two explicit classical hypotheses, both precisely characterized. Once both are supplied, RH follows automatically in Lean.
         </p>
       </div>
 
@@ -904,7 +904,7 @@ function renderAchievements() {
             <li>✅ <strong>Phase 6:</strong> Axis-separated disk partition, multi-hole rectangle theorem, kernel bounds, smooth-strip comparisons</li>
             <li>✅ <strong>Phase 7:</strong> Asymptotic normalization, limit assembly, published BCF bound</li>
             <li>✅ <strong>Phase 7b.1:</strong> Energy-residue reduction via contour shift and Abel summation by parts (7a94cd8)</li>
-            <li>✅ <strong>Phase 7b.2a–2c: ξ-Factorization Pipeline Complete:</strong>
+            <li>✅ <strong>Phase 7b.2a–2c: ξ-Factorization Pipeline (alternative route):</strong>
               <ul style="margin-top: 0.5rem; padding-left: 1rem;">
                 <li>✅ Quotient construction (zero-free, satisfies ξ = q·P) — bb731ed</li>
                 <li>✅ Local divisor match (P has indexed zeros exactly) — 22020f9</li>
@@ -915,10 +915,12 @@ function renderAchievements() {
                 <li>✅ Canonical truncation growth gate (formalized as hypothesis) — 1bad0e5</li>
               </ul>
             </li>
-            <li>✅ <strong>Phase 7b.3: Final Analytic Assembly — All Wired</strong>
+            <li>✅ <strong>Phase 7b.3: Direct BCF Final Assembly (paper-aligned route)</strong>
               <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-                <li>✅ FinalAnalyticAssembly.lean:302 derives H15 from exactly two explicit classical analytic hypotheses — 5e03955</li>
-                <li>✅ ExactCancellationTarget.lean:90 specifies BCF cancellation implication — 5e03955</li>
+                <li>✅ FinalAnalyticAssembly.lean:300 derives H15 from Hadamard endpoint + BCF Lemmas 2–3 — ef35f10</li>
+                <li>✅ BCF Lemma 3 residue bounds (N^(ρ-s), geometry, height/disk truncation) — f1c5aac</li>
+                <li>✅ RH vertical-kernel exact decomposition: ‖ρ-s‖² = ε² + (Im ρ - Im s)² — ced3083</li>
+                <li>⏳ Local Riemann–von Mangoldt interval bound [T, T+1] (next classical input)</li>
               </ul>
             </li>
           </ul>
@@ -959,11 +961,11 @@ function renderAchievements() {
               </ul>
             </div>
             <div>
-              <p style="color: #f59e0b; font-weight: 600; margin-bottom: 0.5rem;">Two Classical Hypotheses (Explicit)</p>
+              <p style="color: #f59e0b; font-weight: 600; margin-bottom: 0.5rem;">Classical Dependencies (Direct BCF Route)</p>
               <ul style="margin: 0; padding-left: 1.5rem; color: #475569; font-size: 0.9rem; line-height: 1.8;">
-                <li>✅ <strong>RvM:</strong> Proved unconditional O(T log T) (7a94cd8)</li>
-                <li>📋 <strong>Truncation bound:</strong> Hypothesis at FinalAnalyticAssembly.lean:302 (5e03955)</li>
-                <li>📋 <strong>BCF cancellation:</strong> Hypothesis at ExactCancellationTarget.lean:90 (5e03955)</li>
+                <li>✅ <strong>Global RvM:</strong> O(T log T) proved (7a94cd8)</li>
+                <li>📋 <strong>Local RvM:</strong> Interval bound [T, T+1] needed (ced3083)</li>
+                <li>📋 <strong>BCF cancellation:</strong> Lemmas 2–3 at FinalAnalyticAssembly.lean:300 (ef35f10)</li>
               </ul>
             </div>
           </div>
