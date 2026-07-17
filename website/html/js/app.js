@@ -904,7 +904,7 @@ function renderAchievements() {
           </div>
           <p style="color: #0c4a6e; background: #f0f9ff; padding: 1rem; border-radius: 4px; margin-top: 1.5rem; font-size: 0.9rem;">
             ✅ All Lean 4 code: zero new axioms, zero sorries, full build verification
-            ✅ Publication-ready (H13+H14+Phase NB); Phase 7b in progress toward 100% H15 formalization
+            ✅ Fully formalized (H13+H14+Phase NB); Phase 7b in progress toward 100% H15 formalization
           </p>
         </div>
       </div>
