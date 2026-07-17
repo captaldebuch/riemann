@@ -146,6 +146,9 @@ function renderView() {
         });
       }
       break;
+    case 'visualizations':
+      content.innerHTML = renderVisualizations();
+      break;
     // Deep LOD Routes
     case 'paper':
       content.innerHTML = renderPaperDetail(STATE.routeParams[0]);
@@ -1276,6 +1279,37 @@ function downloadPDF(reportId) {
 
 function printArchivePaper(reportId) {
   window.print();
+}
+
+// --- Visualizations Page ---
+function renderVisualizations() {
+  return `
+    <div class="page-container">
+      <h2>Mathematical Knowledge Visualizations</h2>
+      <p>Based on our structured 10-dimension schema and LLM-guided analysis, explore these interactive visualizations to better understand the dataset.</p>
+
+      <div class="viz-card" style="margin-top: 2rem;">
+        <h3>1. Schema Coverage Heatmap</h3>
+        <p><em>Overview of dataset extraction completeness across key knowledge dimensions.</em></p>
+        <img src="visualizations/schema_coverage.png" alt="Schema Coverage Heatmap" style="max-width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 8px;">
+        <p class="caption">This heatmap shows which papers have successfully extracted data for dimensions like Insights, Intuitions, Formalization Potential, and Connections.</p>
+      </div>
+
+      <div class="viz-card" style="margin-top: 3rem;">
+        <h3>2. Theorem Network Graph</h3>
+        <p><em>Interactive exploration of how mathematical objects connect.</em></p>
+        <iframe src="visualizations/theorem_network.html" width="100%" height="650px" style="border: 1px solid #e5e7eb; border-radius: 8px;"></iframe>
+        <p class="caption">Zoom and drag to explore the relationships between main theorems, techniques, and underlying mathematical objects.</p>
+      </div>
+
+      <div class="viz-card" style="margin-top: 3rem;">
+        <h3>3. Formalization Potential Scatter Plot</h3>
+        <p><em>Prioritization dashboard for Lean 4 formalization efforts.</em></p>
+        <iframe src="visualizations/formalization_scatter.html" width="100%" height="600px" style="border: 1px solid #e5e7eb; border-radius: 8px;"></iframe>
+        <p class="caption">Hover over points to see paper details. The X-axis represents Lean Readiness, the Y-axis counts missing Mathlib dependencies, and bubble size estimates person-weeks of effort.</p>
+      </div>
+    </div>
+  `;
 }
 
 // Start
