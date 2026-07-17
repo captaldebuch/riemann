@@ -886,6 +886,32 @@ function renderAchievements() {
             </p>
           </div>
 
+          <!-- LEAN SOURCE FILES -->
+          <div style="background: #f5f3ff; padding: 1.5rem; border-radius: 6px; margin-top: 1.5rem; border-left: 4px solid #a78bfa;">
+            <p style="color: #5b21b6; font-weight: 600; margin: 0 0 1rem 0;">🔗 Lean 4 Source Files</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.9rem;">
+              <div>
+                <p style="color: #5b21b6; font-weight: 600; margin: 0 0 0.5rem 0; font-size: 0.9rem;">Phase 7b Core Proofs</p>
+                <ul style="margin: 0; padding-left: 1.5rem; color: #5b21b6; line-height: 1.8;">
+                  <li><a href="./lean/H15BCF/SimplicityGenusOneMajorant.lean" target="_blank" style="color: #7c3aed; text-decoration: none;">SimplicityGenusOneMajorant.lean</a> — Majorant from zero-simplicity</li>
+                  <li><a href="./lean/H15BCF/FinalAnalyticAssembly.lean" target="_blank" style="color: #7c3aed; text-decoration: none;">FinalAnalyticAssembly.lean</a> — Complete H15 assembly</li>
+                  <li><a href="./lean/H15BCF/ShellMassAbel.lean" target="_blank" style="color: #7c3aed; text-decoration: none;">ShellMassAbel.lean</a> — Abel summation for shells</li>
+                </ul>
+              </div>
+              <div>
+                <p style="color: #5b21b6; font-weight: 600; margin: 0 0 0.5rem 0; font-size: 0.9rem;">Supporting Structures</p>
+                <ul style="margin: 0; padding-left: 1.5rem; color: #5b21b6; line-height: 1.8;">
+                  <li><a href="./lean/H15BCF/InverseSquareShells.lean" target="_blank" style="color: #7c3aed; text-decoration: none;">InverseSquareShells.lean</a> — Zero partitioning</li>
+                  <li><a href="./lean/H15BCF/GenusOneMajorantReduction.lean" target="_blank" style="color: #7c3aed; text-decoration: none;">GenusOneMajorantReduction.lean</a> — Majorant bounds</li>
+                  <li><a href="./lean/H15BCF/HadamardEndpoint.lean" target="_blank" style="color: #7c3aed; text-decoration: none;">HadamardEndpoint.lean</a> — ξ special values</li>
+                </ul>
+              </div>
+            </div>
+            <p style="color: #6b21a8; font-size: 0.85rem; margin-top: 1rem; margin-bottom: 0;">
+              💡 <strong>Browse all Phase 7b files:</strong> <a href="./lean/H15BCF/" target="_blank" style="color: #7c3aed; text-decoration: none;">H15BCF/ directory</a>
+            </p>
+          </div>
+
           <div style="margin-top: 1.5rem;">
             <a href="#technical-reports" style="display:inline-block; margin-right:1rem; padding:0.5rem 1rem; background:#f59e0b; color:white; border-radius:4px; text-decoration:none;">📖 View Report Details</a>
           </div>
@@ -989,6 +1015,61 @@ function renderTechnicalReports() {
       <p style="font-size:1.05rem; color:#475569; margin-bottom:2rem;">
         Formal technical reports on each phase of the Riemann Hypothesis formalization in Lean 4. All reports include complete proofs, Lean code, and links to our source repository.
       </p>
+
+      <!-- H15 CODE ARCHITECTURE MAP -->
+      <div style="background: #f0f4f8; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #cbd5e1;">
+        <h3 style="color: #1e293b; margin-top: 0; margin-bottom: 1rem;">🗺️ H15 Lean Code Architecture</h3>
+        <p style="color: #475569; margin-bottom: 1.5rem; font-size: 0.95rem;">
+          How the formalization is organized. Click any file to view the Lean source code directly.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #3b82f6;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">📐 Phases 1–7: Geometry</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/Definitions.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Definitions.lean</a></li>
+              <li><a href="./lean/H15BCF/ContourShift.lean" target="_blank" style="color: #2563eb; text-decoration: none;">ContourShift.lean</a></li>
+              <li><a href="./lean/H15BCF/DeletedDiskAssembly.lean" target="_blank" style="color: #2563eb; text-decoration: none;">DeletedDiskAssembly.lean</a></li>
+              <li><a href="./lean/H15BCF/FiniteDeletedRectangle.lean" target="_blank" style="color: #2563eb; text-decoration: none;">FiniteDeletedRectangle.lean</a></li>
+              <li><a href="./lean/H15BCF/Asymptotic.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Asymptotic.lean</a></li>
+            </ul>
+          </div>
+
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #f59e0b;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">⚡ Phase 7b.1: Energy</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/EnergyResidueReduction.lean" target="_blank" style="color: #2563eb; text-decoration: none;">EnergyResidueReduction.lean</a></li>
+              <li><a href="./lean/H15BCF/Lemma3Finite.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Lemma3Finite.lean</a></li>
+              <li><a href="./lean/H15BCF/ShellMassAbel.lean" target="_blank" style="color: #2563eb; text-decoration: none;">ShellMassAbel.lean</a></li>
+              <li><a href="./lean/H15BCF/Lemma3LimitAssembly.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Lemma3LimitAssembly.lean</a></li>
+            </ul>
+          </div>
+
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #8b5cf6;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">🎯 Phase 7b.2: Hadamard</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/MultiplicityZeroCounting.lean" target="_blank" style="color: #2563eb; text-decoration: none;">MultiplicityZeroCounting.lean</a></li>
+              <li><a href="./lean/H15BCF/InverseSquareShells.lean" target="_blank" style="color: #2563eb; text-decoration: none;">InverseSquareShells.lean</a></li>
+              <li><a href="./lean/H15BCF/GenusOneProduct.lean" target="_blank" style="color: #2563eb; text-decoration: none;">GenusOneProduct.lean</a></li>
+              <li><a href="./lean/H15BCF/SimplicityGenusOneMajorant.lean" target="_blank" style="color: #2563eb; text-decoration: none;">SimplicityGenusOneMajorant.lean</a></li>
+            </ul>
+          </div>
+
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #10b981;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">✅ Phase 7b.3: Assembly</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/HadamardPreparation.lean" target="_blank" style="color: #2563eb; text-decoration: none;">HadamardPreparation.lean</a></li>
+              <li><a href="./lean/H15BCF/HadamardTarget.lean" target="_blank" style="color: #2563eb; text-decoration: none;">HadamardTarget.lean</a></li>
+              <li><a href="./lean/H15BCF/ExactCancellationTarget.lean" target="_blank" style="color: #2563eb; text-decoration: none;">ExactCancellationTarget.lean</a></li>
+              <li><a href="./lean/H15BCF/FinalAnalyticAssembly.lean" target="_blank" style="color: #2563eb; text-decoration: none;">FinalAnalyticAssembly.lean</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="color: #64748b; font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0;">
+          📚 <a href="./lean/H15BCF/README.md" target="_blank" style="color: #2563eb; text-decoration: none;">Phase 7b README</a> — Detailed module documentation. 📂 <a href="./lean/H15BCF/" target="_blank" style="color: #2563eb; text-decoration: none;">Browse all H15BCF files</a>
+        </p>
+      </div>
 
       <div style="display:grid; gap:2rem;">
   `;
