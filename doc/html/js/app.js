@@ -871,9 +871,20 @@ function renderAchievements() {
           <p style="color: #92400e; margin-top: 1.5rem; font-size: 0.95rem;">
             <strong>Contribution:</strong> <code>finite_deleted_rectangle_cauchy_goursat</code> — New Mathlib theorem for multi-hole contour integrals in rectangular domains (no longer a gap in Lean).
           </p>
+
+          <!-- CONDITIONAL vs UNCONDITIONAL -->
+          <div style="background: #fef3c7; padding: 1.5rem; border-radius: 6px; margin-top: 1.5rem; border-left: 4px solid #f59e0b;">
+            <p style="color: #92400e; margin-top: 0; margin-bottom: 0.5rem; font-weight: 600;">📌 What Does "Conditional" Mean?</p>
+            <p style="color: #92400e; font-size: 0.9rem; line-height: 1.6; margin: 0.5rem 0;">
+              H15 proves: <code style="background: white; padding: 0.2rem 0.4rem; border-radius: 2px;">RH + zero simplicity + moment bound ⟹ BCF asymptotic</code>
+            </p>
+            <p style="color: #92400e; font-size: 0.9rem; line-height: 1.6; margin: 0;">
+              <strong>This is NOT a proof of RH itself.</strong> It proves that <em>IF</em> RH is true, <em>THEN</em> this sharp quadratic cancellation formula holds. The BCF mechanism requires zeros on the critical line—without RH, the formula doesn't work.
+            </p>
+          </div>
+
           <div style="margin-top: 1.5rem;">
             <a href="#technical-reports" style="display:inline-block; margin-right:1rem; padding:0.5rem 1rem; background:#f59e0b; color:white; border-radius:4px; text-decoration:none;">📖 View Report Details</a>
-            
           </div>
         </div>
       </div>
@@ -904,8 +915,31 @@ function renderAchievements() {
           </div>
           <p style="color: #0c4a6e; background: #f0f9ff; padding: 1rem; border-radius: 4px; margin-top: 1.5rem; font-size: 0.9rem;">
             ✅ All Lean 4 code: zero new axioms, zero sorries, full build verification
-            ✅ Publication-ready (H13+H14+Phase NB); Phase 7b in progress toward 100% H15 formalization
+            ✅ Publication-ready (H13+H14+Phase NB complete); H15 100% conditional formalization
           </p>
+
+          <!-- CONDITIONAL vs EQUIVALENCE -->
+          <div style="background: #e0f2fe; padding: 1.5rem; border-radius: 6px; margin-top: 1.5rem;">
+            <p style="color: #0c4a6e; margin: 0 0 1rem 0; font-weight: 600;">🔑 Key Distinction: Conditional vs Equivalence</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 0.5rem 0; font-size: 0.95rem;">📋 Conditional Routes</p>
+                <ul style="color: #0c4a6e; font-size: 0.9rem; margin: 0; padding-left: 1.5rem; line-height: 1.7;">
+                  <li><strong>H13:</strong> Bounds equivalent to RH</li>
+                  <li><strong>H14:</strong> Under RH → quantitative bounds</li>
+                  <li><strong>H15:</strong> Under RH → BCF asymptotic</li>
+                </ul>
+                <p style="color: #0c4a6e; font-size: 0.85rem; margin-top: 0.5rem; font-style: italic;">Prove consequences of RH, not RH itself</p>
+              </div>
+              <div>
+                <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 0.5rem 0; font-size: 0.95rem;">⇄ Equivalence Routes</p>
+                <ul style="color: #0c4a6e; font-size: 0.9rem; margin: 0; padding-left: 1.5rem; line-height: 1.7;">
+                  <li><strong>Phase NB:</strong> RH ⟺ Nyman-Beurling criterion</li>
+                </ul>
+                <p style="color: #0c4a6e; font-size: 0.85rem; margin-top: 0.5rem; font-style: italic;">Prove RH is equivalent to a different statement (unconditional)</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
