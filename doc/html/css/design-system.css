@@ -13,32 +13,32 @@
 
 :root {
   /* Color Palette */
-  --bg-primary: #F8FAFC;          /* Clean off-white, reduce glare */
-  --bg-surface: #FFFFFF;          /* Pure white for cards */
-  --bg-dark: #1E293B;             /* Deep slate for code blocks */
-  --text-primary: #0F172A;        /* High legibility text */
-  --text-muted: #475569;          /* Meta-text and secondary info */
-  --border: #E2E8F0;              /* Fine, subtle lines */
-  --border-dark: #334155;         /* Dark mode borders */
+  --bg-primary: #F8F8F8;          /* Clean off-white */
+  --bg-surface: #F8F8F8;          /* Same as primary for paper feel */
+  --bg-dark: #333333;             /* Dark gray */
+  --text-primary: #000000;        /* Pure black */
+  --text-muted: #333333;          /* Secondary text */
+  --border: #E0E0E0;              /* Fine, subtle lines */
+  --border-dark: #333333;         /* Dark mode borders */
 
-  /* Status Indicators */
-  --status-complete: #10B981;     /* Emerald green */
-  --status-complete-bg: #D1FAE5;  /* Light emerald background */
-  --status-progress: #EF4444;     /* Soft red */
-  --status-progress-bg: #FEE2E2;  /* Light red background */
-  --status-open: #F59E0B;         /* Amber/Orange */
-  --status-open-bg: #FEF3C7;      /* Light amber background */
+  /* Status Indicators - slightly muted for academic feel */
+  --status-complete: #006600;     
+  --status-complete-bg: #E8F5E9;  
+  --status-progress: #8B0000;     
+  --status-progress-bg: #FEE2E2;  
+  --status-open: #B8860B;         
+  --status-open-bg: #FFF8DC;      
 
   /* Accent Colors */
-  --accent-blue: #3B82F6;
-  --accent-blue-bg: #EFF6FF;
-  --accent-purple: #8B5CF6;
-  --accent-slate: #64748B;
+  --accent-blue: #8B0000;         /* Deep red */
+  --accent-blue-bg: transparent;
+  --accent-purple: #333333;
+  --accent-slate: #333333;
 
   /* Typography Scale */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Times New Roman', Times, serif;
-  --font-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Times New Roman", Times, serif;
+  --font-mono: "Courier New", Courier, monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -59,9 +59,9 @@
   --space-3xl: 3rem;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 
   /* Transitions */
   --transition-fast: 0.15s ease-out;
@@ -90,10 +90,11 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -103,6 +104,7 @@ body {
    ============================================================================ */
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -129,7 +131,15 @@ h3 {
 }
 
 p {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 2px solid var(--light-gray, #E0E0E0);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--text-muted);
 }
 
 strong {
@@ -149,17 +159,31 @@ strong {
 a {
   color: var(--accent-blue);
   text-decoration: none;
-  transition: color var(--transition-fast);
-  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
 a:hover {
-  color: #1d4ed8;
-  border-bottom-color: var(--accent-blue);
+  text-decoration: underline;
 }
 
 a:active {
   color: #1e40af;
+}
+
+.btn, button {
+  background: transparent;
+  border: 1px solid var(--text-primary);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+  border-radius: 0;
+}
+
+.btn:hover, button:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 /* ============================================================================
@@ -314,13 +338,13 @@ pre code {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .status-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 .status-card h3 {
@@ -370,7 +394,7 @@ pre code {
   border-top: 3px solid var(--accent-slate);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .finding-block h3 {
@@ -594,7 +618,7 @@ body {
   top: 0;
   z-index: 1000;
   padding: 1.5rem 2rem 0 2rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  box-shadow: none;
 }
 
 .header-content {
@@ -699,7 +723,7 @@ body {
   background: var(--glass-bg);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,0.4);
-  box-shadow: var(--glass-shadow);
+  box-shadow: none;
   border-radius: 12px;
   padding: 1.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -707,7 +731,7 @@ body {
 
 .glass-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.08);
+  box-shadow: none;
 }
 
 /* Grids */
@@ -730,7 +754,7 @@ body {
   gap: 0;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--glass-shadow);
+  box-shadow: none;
   border: 1px solid var(--glass-border);
 }
 
@@ -775,7 +799,7 @@ body {
   background: white;
   border-radius: 12px;
   border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+  box-shadow: none;
   position: relative;
 }
 
@@ -790,7 +814,7 @@ body {
   opacity: 0;
   transition: opacity 0.2s;
   z-index: 100;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  box-shadow: none;
 }
 
 /* Badges */
