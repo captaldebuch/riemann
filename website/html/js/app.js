@@ -802,6 +802,24 @@ function renderAchievements() {
         Based on corpus data, dataset extraction, and LLM-guided analysis of historical intuitions, we selected the Nyman-Beurling/Báez-Duarte strategy. We have now completed formal verification of H13 (classical identities), H14 (quantitative bounds), Phase NB (functional analysis criterion), and H15 Phase 7b (BCF conditional asymptotic). The complete proof chain is formalized in Lean 4—pending three classical analytic theorems (Riemann–von Mangoldt, ξ factorization, integrated BCF cancellation).
       </p>
 
+      <!-- ORIGINAL CONTRIBUTIONS HIGHLIGHT -->
+      <div style="background: #fef3c7; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #f59e0b;">
+        <p style="color: #92400e; font-weight: 600; margin: 0 0 1rem 0;">💡 Formalization Insights & Architectural Choices</p>
+        <p style="color: #92400e; font-size: 0.9rem; margin: 0 0 1rem 0;">
+          Beyond formalizing classical theorems, this exploratory work discovered interesting approaches and simplifications during formalization:
+        </p>
+        <p style="color: #92400e; font-size: 0.85rem; margin: 0 0 1rem 0; font-style: italic;">
+          These represent formalization insights informed by corpus analysis and guided by mathematics—not claims of new mathematical results. Expert verification and discussion welcome.
+        </p>
+        <ul style="color: #92400e; margin: 0; padding-left: 1.5rem; font-size: 0.9rem; line-height: 1.8;">
+          <li><strong>Zero-count without simplicity hypothesis:</strong> Proved multiplicity-weighted zero count O(T log T) ⟹ distinct-zero count (no simplicity needed) — <a href="./lean/H15BCF/MultiplicityZeroCounting.lean" target="_blank" style="color: #d97706; text-decoration: underline;">f0a2d8e</a></li>
+          <li><strong>Genus-one majorant from simplicity alone:</strong> Compact majorant derived directly from zero-simplicity, eliminating separate analytic assumption — <a href="./lean/H15BCF/SimplicityGenusOneMajorant.lean" target="_blank" style="color: #d97706; text-decoration: underline;">7fb6234</a></li>
+          <li><strong>Central-strip ξ growth: ‖ξ(s)‖ ≤ 280R³:</strong> Explicit quantitative bound on critical strip at large heights (0 ≤ Re s ≤ 1, |s|=R) — <a href="./lean/H15BCF/CentralStripGrowth.lean" target="_blank" style="color: #d97706; text-decoration: underline;">53cd6b0</a></li>
+          <li><strong>Modular Stirling decomposition:</strong> Novel reduction into independent right-half-plane + central-strip components for parallel formalization — <a href="./lean/H15BCF/XiGrowthReduction.lean" target="_blank" style="color: #d97706; text-decoration: underline;">efbb0b1, 25a8ce1</a></li>
+          <li><strong>Finite-deleted-rectangle Cauchy–Goursat:</strong> Multi-hole contour integral theorem (new Mathlib contribution) — <a href="./lean/H15BCF/FiniteDeletedRectangle.lean" target="_blank" style="color: #d97706; text-decoration: underline;">3b06367</a></li>
+        </ul>
+      </div>
+
       <!-- PHASE NB: NYMAN-BEURLING BRIDGE -->
       <div style="background: #f0f9ff; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #0ea5e9;">
         <h3 style="color: #0c4a6e; margin-top: 0;">✅ Phase NB: Nyman–Beurling Bridge (Complete)</h3>
