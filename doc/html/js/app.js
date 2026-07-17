@@ -798,8 +798,13 @@ function renderAchievements() {
   return `
     <section class="view-section active">
       <h2>Current Efforts</h2>
+      <div style="background: #eff6ff; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border: 1px solid #bfdbfe;">
+        <p style="color: #1e40af; margin: 0; font-size: 0.95rem;">
+          💡 <strong>About this work:</strong> These formalizations represent an exploratory digital humanities investigation into RH proof routes, guided by corpus data, LLM analysis, and classical papers. This is <strong>not</strong> a proof of the Riemann Hypothesis—it's a exploration of how classical approaches can be formalized. Feedback, corrections, and expert discussion are invited.
+        </p>
+      </div>
       <p style="font-size: 1.05rem; color: #475569; margin-bottom: 2rem;">
-        Based on corpus data, dataset extraction, and LLM-guided analysis of historical intuitions, we selected the Nyman-Beurling/Báez-Duarte strategy. We have now completed formal verification of H13 (classical identities), H14 (quantitative bounds), Phase NB (functional analysis criterion), and H15 Phase 7b (BCF conditional asymptotic). The complete proof chain is formalized in Lean 4—pending three classical analytic theorems (Riemann–von Mangoldt, ξ factorization, integrated BCF cancellation).
+        <strong>Exploratory formalization based on corpus analysis and LLM guidance.</strong> Using dataset extraction and large language model-assisted analysis of 78 research papers and historical intuitions, we selected multiple formalization routes (Nyman-Beurling, Báez-Duarte, BCF). The Lean 4 formalizations below represent explorations of these classical strategies, informed by the corpus and guided by mathematics. <strong>Expert consultation and discussion are welcome</strong>—this is a digital humanities investigation, not original mathematical proof.
       </p>
 
       <!-- PHASE NB: NYMAN-BEURLING BRIDGE -->
