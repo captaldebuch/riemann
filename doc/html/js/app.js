@@ -815,9 +815,16 @@ function renderAchievements() {
       <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #0ea5e9;">
         <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 1rem 0;">Classical Dependencies: Updated (Direct BCF Route)</p>
         <ol style="color: #475569; margin: 0; padding-left: 2rem; line-height: 1.8;">
-          <li><strong>✅ Riemann–von Mangoldt N(T) global zero-counting:</strong> PROVED UNCONDITIONAL O(T log T) (7a94cd8) via Jensen's inequality</li>
-          <li><strong>⏳ BCFLocalMultiplicityZeroCount (Riemann–von Mangoldt local O(log T) remainder):</strong> For interval [T, T+1]: N(T+1) − N(T) ≤ C(1 + log T) with multiplicity — FORMALIZED TARGET: unit-height zero shells (04d2d68), awaits local asymptotic bound</li>
-          <li><strong>⏳ BCF integrated cancellation:</strong> Asymptotic formula satisfies O(1/log N) cancellation rate under RH + zero-simplicity + reciprocal-derivative moment — EXPLICIT AT: FinalAnalyticAssembly.lean:300 (ef35f10)</li>
+          <li><strong>✅ Riemann–von Mangoldt N(T) global O(T log T):</strong> PROVED UNCONDITIONAL (7a94cd8) via Jensen's inequality</li>
+          <li><strong>Three-Part RvM O(log T) Certificate:</strong>
+            <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+              <li>✅ <strong>Local argument principle:</strong> f'/f residues from multiplicities (6952273)</li>
+              <li>✅ <strong>von Mangoldt boundary:</strong> ζ'/ζ = -L(Λ,s), analyticity (ec6584e)</li>
+              <li>⏳ <strong>Global argument principle:</strong> Mathlib gap, 2–3 weeks</li>
+              <li>⏳ <strong>Stirling phase:</strong> Complex O(log T) bound, 1–2 weeks</li>
+              <li>⏳ <strong>Zeta S(T) argument:</strong> Regularized O(log T), 2–3 weeks</li>
+            </ul>
+          </li>
         </ol>
         <p style="color: #0c4a6e; font-size: 0.9rem; margin: 1rem 0 0 0; font-style: italic;">
           The project is a fully verified conditional reduction: H13 + H14 + Phase NB + H15 ⇒ RH. All algebraic steps are proved. The direct BCF route (paper-aligned) requires two explicit classical hypotheses, both precisely characterized. Once both are supplied, RH follows automatically in Lean.
@@ -921,7 +928,10 @@ function renderAchievements() {
                 <li>✅ BCF Lemma 3 residue bounds (N^(ρ-s), geometry, height/disk truncation) — f1c5aac</li>
                 <li>✅ RH vertical-kernel exact decomposition: ‖ρ-s‖² = ε² + (Im ρ - Im s)² — ced3083</li>
                 <li>✅ Finite zero-shell structure + sharp local O(log T) target — 04d2d68</li>
-                <li>⏳ Local Riemann–von Mangoldt O(log T) remainder: N(T+1) − N(T) ≤ C(1 + log T) (final classical input)</li>
+                <li>✅ RvM certificate interface (three-part structure) — c498802</li>
+                <li>✅ Local argument principle (zero multiplicities, f'/f residues) — 6952273</li>
+                <li>✅ von Mangoldt boundary (ζ'/ζ = -L(Λ,s), analyticity) — ec6584e</li>
+                <li>⏳ Three global classical theorems: argument principle, Stirling phase, S(T) = O(log T)</li>
               </ul>
             </li>
           </ul>
