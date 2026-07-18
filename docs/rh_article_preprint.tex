@@ -285,8 +285,14 @@ H15 Phase 7b.2a--2c & 100\% & 0 & 0 & 1bad0e5 \\
 H15 Phase 7b.3 (Final) & \textbf{100\% COMPLETE} & 0 & 0 & ef35f10 \\
 H15 Phase 7b.3 (Lemma 3) & 100\% & 0 & 0 & f1c5aac, ced3083 \\
 Zero-Shell Structure & 100\% & 0 & 0 & 04d2d68 \\
-Classical Hyp. 1 & Explicit & — & — & FinalAnalyticAssembly.lean:300 (ef35f10) \\
-Classical Hyp. 2 & Explicit & — & — & BCFLocalMultiplicityZeroCount (04d2d68) \\
+RvM Certificate Interface & 100\% & 0 & 0 & c498802 \\
+RvM Local Argument Principle & 100\% & 0 & 0 & 6952273 \\
+RvM von Mangoldt Boundary & 100\% & 0 & 0 & ec6584e \\
+Finite Argument Principle Tool & 100\% & 0 & 0 & afbf82d \\
+Isolating Analytic Factor Tool & 100\% & 0 & 0 & 8786b42 \\
+Finite Analytic AP (ξ) & 100\% & 0 & 0 & d857085 \\
+\midrule
+RvM Global Gates & Foundation & — & — & 3 classical theorems \\
 \bottomrule
 \end{tabular}
 \caption{Formalization status by component. All verified code uses only standard \Lean axioms. Two classical hypotheses are explicit at final endpoint, not hidden sorries.}
@@ -305,6 +311,12 @@ Total build: 8,521 jobs verified, zero new axioms, zero hidden sorries.
   \item \textbf{Multiplicity-Weighted Zero-Counting (\CodeName{MultiplicityZeroCounting}):} Proved that the multiplicity-weighted zero count implies the distinct-zero count without requiring the zero-simplicity hypothesis (commit \commit{7a94cd8}). This simplified the zero-counting architecture significantly.
 
   \item \textbf{Modular Stirling Decomposition:} A novel reduction of Stirling-type bounds into independent right-half-plane and central-strip components, enabling parallel formalization and clearer logical structure (commits \commit{efbb0b1}, \commit{25a8ce1}).
+
+  \item \textbf{Finite Argument Principle with Multiplicities (\CodeName{FiniteArgumentPrinciple}):} A new Lean formalization of the argument principle for deleted-rectangle contours with explicit multiplicity-aware zero counting (commit \commit{afbf82d}). This is a foundational tool for local zero analysis.
+
+  \item \textbf{Isolating Analytic Factor Extraction (\CodeName{IsolatingAnalyticFactor}):} A novel Lean technique for extracting concrete isolating balls from analytic order specifications, bridging abstract analytic properties to computable bounds (commit \commit{8786b42}).
+
+  \item \textbf{ξ-Specific Finite Analytic Argument Principle (\CodeName{FiniteAnalyticArgumentPrinciple}):} Applies the finite argument principle directly to the ξ function, producing the residue decomposition required for RH reduction (commit \commit{d857085}). This is a reusable tool for Mathlib.
 \end{enumerate}
 
 \section{The Two Final Classical Theorems}
