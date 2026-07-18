@@ -816,13 +816,18 @@ function renderAchievements() {
         <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 1rem 0;">Classical Dependencies: Updated (Direct BCF Route)</p>
         <ol style="color: #475569; margin: 0; padding-left: 2rem; line-height: 1.8;">
           <li><strong>✅ Riemann–von Mangoldt N(T) global O(T log T):</strong> PROVED UNCONDITIONAL (7a94cd8) via Jensen's inequality</li>
-          <li><strong>Three-Part RvM O(log T) Certificate:</strong>
+          <li><strong>✅ RvM Machinery Complete (Infrastructure):</strong>
             <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-              <li>✅ <strong>Local argument principle:</strong> f'/f residues from multiplicities (6952273)</li>
-              <li>✅ <strong>von Mangoldt boundary:</strong> ζ'/ζ = -L(Λ,s), analyticity (ec6584e)</li>
-              <li>⏳ <strong>Global argument principle:</strong> Mathlib gap, 2–3 weeks</li>
-              <li>⏳ <strong>Stirling phase:</strong> Complex O(log T) bound, 1–2 weeks</li>
-              <li>⏳ <strong>Zeta S(T) argument:</strong> Regularized O(log T), 2–3 weeks</li>
+              <li>✅ Argument principle: local form, zero multiplicities, ξ-specific application</li>
+              <li>✅ von Mangoldt identity: ζ'/ζ = -L(Λ,s) on Re s > 1</li>
+              <li>✅ Rectangle geometry: zero-avoiding levels, finite zero sets, disk containment</li>
+              <li>✅ Cauchy–Goursat witness: instantiation complete (cell assembly, contour structure)</li>
+            </ul>
+          </li>
+          <li><strong>⏳ Two Final Analytic Gates (Classical Bounds):</strong>
+            <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+              <li>⏳ <strong>Smooth-strip deformations:</strong> Rectangle ↔ disk path deformation, homology (2–3 days)</li>
+              <li>⏳ <strong>Edge bounds on log(ξ):</strong> Explicit ∂/∂s log(ξ) bounds on rectangle edges (1–2 weeks)</li>
             </ul>
           </li>
         </ol>
@@ -931,7 +936,28 @@ function renderAchievements() {
                 <li>✅ RvM certificate interface (three-part structure) — c498802</li>
                 <li>✅ Local argument principle (zero multiplicities, f'/f residues) — 6952273</li>
                 <li>✅ von Mangoldt boundary (ζ'/ζ = -L(Λ,s), analyticity) — ec6584e</li>
-                <li>⏳ Three global classical theorems: argument principle, Stirling phase, S(T) = O(log T)</li>
+                <li>✅ Three reusable Lean tools:
+                  <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                    <li>✅ Finite argument principle with multiplicities (afbf82d)</li>
+                    <li>✅ Isolating analytic factor extraction (8786b42)</li>
+                    <li>✅ ξ-specific finite analytic AP (d857085)</li>
+                  </ul>
+                </li>
+                <li>✅ Rectangle geometry foundations:
+                  <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                    <li>✅ Zero-avoiding horizontal levels (1998bd3)</li>
+                    <li>✅ Finite ξ zero sets per rectangle (f4832ab)</li>
+                    <li>✅ Deleted-disk geometry & log-derivative analyticity (5b5bd6d)</li>
+                  </ul>
+                </li>
+                <li>✅ Finite deleted-rectangle Cauchy–Goursat witness instantiation (0254ce1)
+                  <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                    <li>✅ Disk containment & argument-principle witness</li>
+                    <li>✅ Cell-instantiation layer (pole-free + one-hole cells)</li>
+                    <li>✅ Edgewise outer-contour bounds (reusable)</li>
+                  </ul>
+                </li>
+                <li>⏳ Two final analytic gates: smooth-strip deformations (~2–3 days) + edge bounds on log(ξ) (~1–2 weeks)</li>
               </ul>
             </li>
           </ul>
@@ -972,11 +998,11 @@ function renderAchievements() {
               </ul>
             </div>
             <div>
-              <p style="color: #f59e0b; font-weight: 600; margin-bottom: 0.5rem;">Classical Dependencies (Direct BCF Route)</p>
+              <p style="color: #f59e0b; font-weight: 600; margin-bottom: 0.5rem;">Final Status: Two Analytic Gates Remain</p>
               <ul style="margin: 0; padding-left: 1.5rem; color: #475569; font-size: 0.9rem; line-height: 1.8;">
-                <li>✅ <strong>Global RvM:</strong> O(T log T) proved (7a94cd8)</li>
-                <li>📋 <strong>Local RvM:</strong> Interval bound [T, T+1] needed (ced3083)</li>
-                <li>📋 <strong>BCF cancellation:</strong> Lemmas 2–3 at FinalAnalyticAssembly.lean:300 (ef35f10)</li>
+                <li>✅ <strong>RvM machinery:</strong> Complete (all infrastructure proved)</li>
+                <li>⏳ <strong>Smooth-strip deformations:</strong> Path deformation proofs (~2–3 days)</li>
+                <li>⏳ <strong>Edge bounds on log(ξ):</strong> Boundary integral estimates (~1–2 weeks)</li>
               </ul>
             </div>
           </div>
