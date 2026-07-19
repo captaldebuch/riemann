@@ -180,12 +180,20 @@ function getPaperCard(paperId) {
        </ul>
      </div>` : '';
 
+  function mapFormalizableToLink(f) {
+    if (f.includes("Mellin transform mapping")) return `<a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/NB2Mellin.lean" target="_blank" style="color:#3b82f6; text-decoration:none;">${f} 🔗</a>`;
+    if (f.includes("Hilbert space closure")) return `<a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/NB5FunctionalEquationClosure.lean" target="_blank" style="color:#3b82f6; text-decoration:none;">${f} 🔗</a>`;
+    if (f.includes("core cotangent identity")) return `<a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/H15_RouteA.lean" target="_blank" style="color:#3b82f6; text-decoration:none;">${f} 🔗</a>`;
+    if (f.includes("discrete integral approximations")) return `<a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/MellinEvaluation.lean" target="_blank" style="color:#3b82f6; text-decoration:none;">${f} 🔗</a>`;
+    if (f.includes("step-function bounds")) return `<a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/BaezDuarteTail.lean" target="_blank" style="color:#3b82f6; text-decoration:none;">${f} 🔗</a>`;
+    return f;
+  }
+
   const formalizableHTML = (paper.formalizable_elements && paper.formalizable_elements.length) ?
     `<div style="margin-top:0.75rem; padding-top:0.75rem;">
        <p style="font-weight:600; color:#1f2937; font-size:0.9rem; margin-bottom:0.5rem;">Formalizable in Lean:</p>
        <ul style="margin:0; padding-left:1.5rem; font-size:0.9rem; color:#475569;">
-         ${paper.formalizable_elements.slice(0, 2).map(f => `<li style="margin-bottom:0.25rem;">${f}</li>`).join('')}
-         ${paper.formalizable_elements.length > 2 ? `<li style="color:#64748b; font-style:italic;">+${paper.formalizable_elements.length - 2} more</li>` : ''}
+         ${paper.formalizable_elements.map(f => `<li style="margin-bottom:0.25rem;">${mapFormalizableToLink(f)}</li>`).join('')}
        </ul>
      </div>` : '';
 
