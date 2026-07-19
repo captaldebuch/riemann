@@ -801,8 +801,13 @@ function renderFormalizationEssay() {
         </p>
       </div>
 
+      <div style="background: #eff6ff; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border: 1px solid #bfdbfe;">
+        <p style="color: #1e40af; margin: 0; font-size: 0.95rem;">
+          💡 <strong>About this work:</strong> These formalizations represent an exploratory digital humanities investigation into RH proof routes, guided by corpus data, LLM analysis, and classical papers. This is <strong>not</strong> a proof of the Riemann Hypothesis—it's a exploration of how classical approaches can be formalized. Feedback, corrections, and expert discussion are invited.
+        </p>
+      </div>
       <p style="font-size: 1.05rem; color: #475569; margin-bottom: 2rem; font-weight: 500;">
-        Based on corpus extraction and LLM-guided analysis of historical RH strategies, we selected the Nyman–Beurling/Báez–Duarte route as the most formalization-ready pathway. The project has now completed a Lean 4 conditional proof pipeline from three explicit analytic inputs to the Riemann Hypothesis.
+        <strong>Exploratory formalization based on corpus analysis and LLM guidance.</strong> Using dataset extraction and large language model-assisted analysis of 78 research papers and historical intuitions, we selected multiple formalization routes (Nyman-Beurling, Báez-Duarte, BCF). The Lean 4 formalizations below represent explorations of these classical strategies, informed by the corpus and guided by mathematics. <strong>Expert consultation and discussion are welcome</strong>—this is a digital humanities investigation, not original mathematical proof.
       </p>
       <p style="font-size: 1rem; color: #475569; margin-bottom: 2rem; line-height: 1.7;">
         The verified components include: <strong>H13</strong> (Vasyunin–BBLS local kernel identities), <strong>H14</strong> (quantitative analytic framework for linear Möbius bounds), <strong>Phase NB</strong> (Nyman–Beurling functional-analytic bridge), and <strong>H15</strong> (quadratic interaction reduction and conditional asymptotic assembly). All Lean code builds successfully with zero new axioms and zero hidden sorry dependencies. The remaining work is now isolated into three named analytic theorem packages:
@@ -1051,6 +1056,61 @@ function renderFormalizationEssay() {
       <p style="font-size:1.05rem; color:#475569; margin-bottom:2rem;">
         Formal technical reports on each phase of the Riemann Hypothesis formalization in Lean 4. All reports include complete proofs, Lean code, and links to our source repository.
       </p>
+
+      <!-- H15 CODE ARCHITECTURE MAP -->
+      <div style="background: #f0f4f8; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #cbd5e1;">
+        <h3 style="color: #1e293b; margin-top: 0; margin-bottom: 1rem;">🗺️  H15 Lean Code Architecture</h3>
+        <p style="color: #475569; margin-bottom: 1.5rem; font-size: 0.95rem;">
+          How the formalization is organized. Click any file to view the Lean source code directly.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #3b82f6;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">📐 Phases 1–7: Geometry</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/Definitions.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Definitions.lean</a></li>
+              <li><a href="./lean/H15BCF/ContourShift.lean" target="_blank" style="color: #2563eb; text-decoration: none;">ContourShift.lean</a></li>
+              <li><a href="./lean/H15BCF/DeletedDiskAssembly.lean" target="_blank" style="color: #2563eb; text-decoration: none;">DeletedDiskAssembly.lean</a></li>
+              <li><a href="./lean/H15BCF/FiniteDeletedRectangle.lean" target="_blank" style="color: #2563eb; text-decoration: none;">FiniteDeletedRectangle.lean</a></li>
+              <li><a href="./lean/H15BCF/Asymptotic.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Asymptotic.lean</a></li>
+            </ul>
+          </div>
+
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #f59e0b;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">⚡ Phase 7b.1: Energy</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/EnergyResidueReduction.lean" target="_blank" style="color: #2563eb; text-decoration: none;">EnergyResidueReduction.lean</a></li>
+              <li><a href="./lean/H15BCF/Lemma3Finite.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Lemma3Finite.lean</a></li>
+              <li><a href="./lean/H15BCF/ShellMassAbel.lean" target="_blank" style="color: #2563eb; text-decoration: none;">ShellMassAbel.lean</a></li>
+              <li><a href="./lean/H15BCF/Lemma3LimitAssembly.lean" target="_blank" style="color: #2563eb; text-decoration: none;">Lemma3LimitAssembly.lean</a></li>
+            </ul>
+          </div>
+
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #8b5cf6;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">🎯 Phase 7b.2: Hadamard</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/MultiplicityZeroCounting.lean" target="_blank" style="color: #2563eb; text-decoration: none;">MultiplicityZeroCounting.lean</a></li>
+              <li><a href="./lean/H15BCF/InverseSquareShells.lean" target="_blank" style="color: #2563eb; text-decoration: none;">InverseSquareShells.lean</a></li>
+              <li><a href="./lean/H15BCF/GenusOneProduct.lean" target="_blank" style="color: #2563eb; text-decoration: none;">GenusOneProduct.lean</a></li>
+              <li><a href="./lean/H15BCF/SimplicityGenusOneMajorant.lean" target="_blank" style="color: #2563eb; text-decoration: none;">SimplicityGenusOneMajorant.lean</a></li>
+            </ul>
+          </div>
+
+          <div style="background: white; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #10b981;">
+            <p style="color: #1e293b; font-weight: 600; margin: 0 0 1rem 0; font-size: 0.95rem;">✅ Phase 7b.3: Assembly</p>
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.7;">
+              <li><a href="./lean/H15BCF/HadamardPreparation.lean" target="_blank" style="color: #2563eb; text-decoration: none;">HadamardPreparation.lean</a></li>
+              <li><a href="./lean/H15BCF/HadamardTarget.lean" target="_blank" style="color: #2563eb; text-decoration: none;">HadamardTarget.lean</a></li>
+              <li><a href="./lean/H15BCF/ExactCancellationTarget.lean" target="_blank" style="color: #2563eb; text-decoration: none;">ExactCancellationTarget.lean</a></li>
+              <li><a href="./lean/H15BCF/FinalAnalyticAssembly.lean" target="_blank" style="color: #2563eb; text-decoration: none;">FinalAnalyticAssembly.lean</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="color: #64748b; font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0;">
+          📚 <a href="./lean/H15BCF/README.md" target="_blank" style="color: #2563eb; text-decoration: none;">Phase 7b README</a> — Detailed module documentation. 📂 <a href="./lean/H15BCF/" target="_blank" style="color: #2563eb; text-decoration: none;">Browse all H15BCF files</a>
+        </p>
+      </div>
 
       <div style="display:grid; gap:2rem;">
   `;
