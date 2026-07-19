@@ -818,7 +818,7 @@ function renderAchievements() {
           <strong>Circular dependency identified:</strong> The published BCF Lemma 3 <strong>assumes RH, zero simplicity, and an inverse-ζ'(ρ) moment bound</strong>. Using it as an input to prove RH is logically circular. The formalization's architecture is complete and verified, but not yet unconditional. Two independent research problems gate an unconditional proof:
         </p>
         <ol style="margin: 0; padding-left: 1.5rem; color: #7f1d1d; font-size: 0.9rem; line-height: 1.8;">
-          <li><strong>Work Package A: Centered ξ Hadamard Factorization</strong> (Classical formalization, ~2–3 weeks)
+          <li><strong>Work Package A: Centered ξ Hadamard Factorization</strong> (Classical formalization)
             <ul style="margin-top: 0.5rem; padding-left: 1rem;">
               <li>Define X(z) = ξ(1/2 + z), use X(z) = X(-z) to get X(z) = F(z²)</li>
               <li>F has order < 1 ⟹ genus-zero Hadamard product (no exponential)</li>
@@ -961,7 +961,7 @@ function renderAchievements() {
                     <li>✅ Edgewise outer-contour bounds (reusable)</li>
                   </ul>
                 </li>
-                <li>⏳ Two final analytic gates: smooth-strip deformations (~2–3 days) + edge bounds on log(ξ) (~1–2 weeks)</li>
+                <li>⏳ Two final analytic gates: smooth-strip deformations + edge bounds on log(ξ)</li>
               </ul>
             </li>
           </ul>
@@ -1005,8 +1005,8 @@ function renderAchievements() {
               <p style="color: #f59e0b; font-weight: 600; margin-bottom: 0.5rem;">Final Status: Two Analytic Gates Remain</p>
               <ul style="margin: 0; padding-left: 1.5rem; color: #475569; font-size: 0.9rem; line-height: 1.8;">
                 <li>✅ <strong>RvM machinery:</strong> Complete (all infrastructure proved)</li>
-                <li>⏳ <strong>Smooth-strip deformations:</strong> Path deformation proofs (~2–3 days)</li>
-                <li>⏳ <strong>Edge bounds on log(ξ):</strong> Boundary integral estimates (~1–2 weeks)</li>
+                <li>⏳ <strong>Smooth-strip deformations:</strong> Path deformation proofs</li>
+                <li>⏳ <strong>Edge bounds on log(ξ):</strong> Boundary integral estimates</li>
               </ul>
             </div>
           </div>

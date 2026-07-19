@@ -812,27 +812,31 @@ function renderAchievements() {
       <p style="font-size: 1rem; color: #475569; margin-bottom: 2rem; line-height: 1.7;">
         The verified components include: <strong>H13</strong> (Vasyunin–BBLS local kernel identities), <strong>H14</strong> (quantitative analytic framework for linear Möbius bounds), <strong>Phase NB</strong> (Nyman–Beurling functional-analytic bridge), and <strong>H15</strong> (quadratic interaction reduction and conditional asymptotic assembly). All Lean code builds successfully with zero new axioms and zero hidden sorry dependencies. The remaining work is now isolated into three named analytic theorem packages:
       </p>
-      <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #0ea5e9;">
-        <p style="color: #0c4a6e; font-weight: 600; margin: 0 0 1rem 0;">Classical Dependencies: Updated (Direct BCF Route)</p>
-        <ol style="color: #475569; margin: 0; padding-left: 2rem; line-height: 1.8;">
-          <li><strong>✅ Riemann–von Mangoldt N(T) global O(T log T):</strong> PROVED UNCONDITIONAL (7a94cd8) via Jensen's inequality</li>
-          <li><strong>✅ RvM Machinery Complete (Infrastructure):</strong>
+      <div style="background: #fee2e2; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #dc2626;">
+        <p style="color: #7f1d1d; font-weight: 600; margin: 0 0 1rem 0;">⚠ Critical Audit: Two Distinct Research Problems Remain</p>
+        <p style="color: #7f1d1d; font-size: 0.9rem; margin: 0 0 1rem 0; line-height: 1.6;">
+          <strong>Circular dependency identified:</strong> The published BCF Lemma 3 <strong>assumes RH, zero simplicity, and an inverse-ζ'(ρ) moment bound</strong>. Using it as an input to prove RH is logically circular. The formalization's architecture is complete and verified, but not yet unconditional. Two independent research problems gate an unconditional proof:
+        </p>
+        <ol style="margin: 0; padding-left: 1.5rem; color: #7f1d1d; font-size: 0.9rem; line-height: 1.8;">
+          <li><strong>Work Package A: Centered ξ Hadamard Factorization</strong> (Classical formalization)
             <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-              <li>✅ Argument principle: local form, zero multiplicities, ξ-specific application</li>
-              <li>✅ von Mangoldt identity: ζ'/ζ = -L(Λ,s) on Re s > 1</li>
-              <li>✅ Rectangle geometry: zero-avoiding levels, finite zero sets, disk containment</li>
-              <li>✅ Cauchy–Goursat witness: instantiation complete (cell assembly, contour structure)</li>
+              <li>Define X(z) = ξ(1/2 + z), use X(z) = X(-z) to get X(z) = F(z²)</li>
+              <li>F has order < 1 ⟹ genus-zero Hadamard product (no exponential)</li>
+              <li>Eliminates quotient-growth machinery entirely</li>
+              <li><strong>Mathlib gap:</strong> Hadamard factorization theorem for order < 1</li>
             </ul>
           </li>
-          <li><strong>⏳ Two Final Analytic Gates (Classical Bounds):</strong>
+          <li><strong>Work Package B: Unconditional Quadratic Cancellation</strong> (RH-level mathematics)
             <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-              <li>⏳ <strong>Smooth-strip deformations:</strong> Rectangle ↔ disk path deformation, homology (2–3 days)</li>
-              <li>⏳ <strong>Edge bounds on log(ξ):</strong> Explicit ∂/∂s log(ξ) bounds on rectangle edges (1–2 weeks)</li>
+              <li>Prove quadratic-interaction residual ≤ C/log(N) <strong>without any RH assumption</strong></li>
+              <li>Cannot assume zero simplicity, RH, or ζ'(ρ) bounds</li>
+              <li>Must use integrated-contour architecture (not individual residues)</li>
+              <li><strong>Critical:</strong> This is where an unconditional RH proof would actually be discovered</li>
             </ul>
           </li>
         </ol>
-        <p style="color: #0c4a6e; font-size: 0.9rem; margin: 1rem 0 0 0; font-style: italic;">
-          The project is a fully verified conditional reduction: H13 + H14 + Phase NB + H15 ⇒ RH. All algebraic steps are proved. The direct BCF route (paper-aligned) requires two explicit classical hypotheses, both precisely characterized. Once both are supplied, RH follows automatically in Lean.
+        <p style="color: #7f1d1d; font-size: 0.85rem; margin: 1rem 0 0 0; font-style: italic;">
+          The Nyman–Beurling equivalence confirms: any theorem strong enough to solve Problem B is already sufficient to prove RH directly. This is the actual research gate, not a "missing classical lemma."
         </p>
       </div>
 
@@ -957,7 +961,7 @@ function renderAchievements() {
                     <li>✅ Edgewise outer-contour bounds (reusable)</li>
                   </ul>
                 </li>
-                <li>⏳ Two final analytic gates: smooth-strip deformations (~2–3 days) + edge bounds on log(ξ) (~1–2 weeks)</li>
+                <li>⏳ Two final analytic gates: smooth-strip deformations + edge bounds on log(ξ)</li>
               </ul>
             </li>
           </ul>
@@ -1001,8 +1005,8 @@ function renderAchievements() {
               <p style="color: #f59e0b; font-weight: 600; margin-bottom: 0.5rem;">Final Status: Two Analytic Gates Remain</p>
               <ul style="margin: 0; padding-left: 1.5rem; color: #475569; font-size: 0.9rem; line-height: 1.8;">
                 <li>✅ <strong>RvM machinery:</strong> Complete (all infrastructure proved)</li>
-                <li>⏳ <strong>Smooth-strip deformations:</strong> Path deformation proofs (~2–3 days)</li>
-                <li>⏳ <strong>Edge bounds on log(ξ):</strong> Boundary integral estimates (~1–2 weeks)</li>
+                <li>⏳ <strong>Smooth-strip deformations:</strong> Path deformation proofs</li>
+                <li>⏳ <strong>Edge bounds on log(ξ):</strong> Boundary integral estimates</li>
               </ul>
             </div>
           </div>
