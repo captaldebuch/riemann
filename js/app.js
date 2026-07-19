@@ -120,21 +120,8 @@ function renderView() {
         });
       }
       break;
-    case 'achievements':
-      content.innerHTML = renderAchievements();
-      if (window.renderMathInElement) {
-        renderMathInElement(content, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false},
-            {left: '\\(', right: '\\)', display: false},
-            {left: '\\[', right: '\\]', display: true}
-          ]
-        });
-      }
-      break;
-    case 'technical-reports':
-      content.innerHTML = renderTechnicalReports();
+    case 'essay':
+      content.innerHTML = renderFormalizationEssay();
       if (window.renderMathInElement) {
         renderMathInElement(content, {
           delimiters: [
@@ -241,9 +228,9 @@ function renderHome() {
           <a href="#intuitions" class="nav-link">Explore Strategies →</a>
         </div>
         <div class="glass-card">
-          <h3>🏆 Current Efforts</h3>
-          <p>View the selected strategy, what we have achieved, and links to Lean 4 formalization.</p>
-          <a href="#achievements" class="nav-link">View Current Efforts →</a>
+          <h3>🏆 Formalization Exploration Essay</h3>
+          <p>Read our exploration essay, technical reports, and insights derived from the dataset.</p>
+          <a href="#essay" class="nav-link">Read the Essay & Reports →</a>
         </div>
       </div>
 
@@ -794,10 +781,10 @@ function renderIntuitions() {
   `;
 }
 
-function renderAchievements() {
-  return `
+function renderFormalizationEssay() {
+  let essayHtml = `
     <section class="view-section active">
-      <h2>Current Efforts</h2>
+      <h2>Formalization Exploration Essay & Technical Reports</h2>
       <!-- IMPORTANT NOTE: NOT AN UNCONDITIONAL PROOF -->
       <div style="background: #fef2f2; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #dc2626;">
         <p style="color: #7f1d1d; font-weight: 600; margin: 0 0 0.5rem 0;">⚠ Important Note</p>
@@ -1016,12 +1003,8 @@ function renderAchievements() {
         </div>
       </div>
 
-    </section>
-  `;
-}
 
-// Technical Reports (arXiv-style archive papers)
-function renderTechnicalReports() {
+
   const reports = [
     {
       id: 'h13-h14',
@@ -1053,9 +1036,10 @@ function renderTechnicalReports() {
     }
   ];
 
-  let html = `
-    <section class="view-section active">
-      <h2>Technical Reports</h2>
+    </section>
+  `;
+  let reportsHtml = `
+      <h2 style="margin-top: 4rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;">Technical Reports</h2>
       <p style="font-size:1.05rem; color:#475569; margin-bottom:2rem;">
         Formal technical reports on each phase of the Riemann Hypothesis formalization in Lean 4. All reports include complete proofs, Lean code, and links to our source repository.
       </p>
@@ -1064,7 +1048,7 @@ function renderTechnicalReports() {
   `;
 
   reports.forEach(report => {
-    html += `
+    reportsHtml += `
       <div style="border:1px solid #e5e7eb; border-radius:8px; padding:2rem; background:#fafafa;">
         <div style="margin-bottom:1.5rem;">
           <h3 style="color:#1f2937; margin:0 0 0.5rem 0; font-size:1.3rem;">${report.title}</h3>
@@ -1109,7 +1093,7 @@ function renderTechnicalReports() {
     </section>
   `;
 
-  return html;
+  return essayHtml + reportsHtml;
 }
 
 function viewArchivePaper(reportId) {
