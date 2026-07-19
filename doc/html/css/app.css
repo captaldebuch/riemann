@@ -12,7 +12,7 @@ body {
   background-image: radial-gradient(circle at 100% 0%, #eff6ff 0%, transparent 25%),
                     radial-gradient(circle at 0% 100%, #faf5ff 0%, transparent 25%);
   background-attachment: fixed;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   color: #1e293b;
   margin: 0;
   padding: 0;
@@ -62,7 +62,7 @@ body {
 }
 
 .app-nav {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -171,7 +171,7 @@ body {
   background: #1e293b;
   color: #e2e8f0;
   padding: 2rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "Times New Roman", Times, serif;
   font-size: 0.9rem;
   overflow-x: auto;
 }
@@ -184,7 +184,7 @@ body {
 }
 
 .math-text {
-  font-family: 'Lora', serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 1.1rem;
   line-height: 1.7;
 }
