@@ -989,11 +989,11 @@ function renderFormalizationEssay() {
             <div>
               <p style="color: #065f46; font-weight: 600; margin-bottom: 0.5rem;">✅ All Formalized & Verified</p>
               <ul style="margin: 0; padding-left: 1.5rem; color: #475569; font-size: 0.9rem; line-height: 1.8;">
-                <li><strong>H13:</strong> BBLS identities (24f44cc)</li>
-                <li><strong>H14:</strong> DVP bounds (b499bf2)</li>
-                <li><strong>Phase NB:</strong> Nyman–Beurling (d944715)</li>
-                <li><strong>H15 Phases 1–7:</strong> BCF structure (6b2940f)</li>
-                <li><strong>H15 7b:</strong> Assembly complete (5e03955)</li>
+                <li><strong>H13:</strong> <a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/BaezDuarteTail.lean" target="_blank" style="color:#00008B; text-decoration:none;">BBLS identities (24f44cc) 🔗</a></li>
+                <li><strong>H14:</strong> <a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/MellinEvaluation.lean" target="_blank" style="color:#00008B; text-decoration:none;">DVP bounds (b499bf2) 🔗</a></li>
+                <li><strong>Phase NB:</strong> <a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/NB5FunctionalEquationClosure.lean" target="_blank" style="color:#00008B; text-decoration:none;">Nyman–Beurling (d944715) 🔗</a></li>
+                <li><strong>H15 Phases 1–7:</strong> <a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/H15_RouteA.lean" target="_blank" style="color:#00008B; text-decoration:none;">BCF structure (6b2940f) 🔗</a></li>
+                <li><strong>H15 7b:</strong> <a href="https://github.com/captaldebuch/riemann/blob/main/proofs/NBMellinTools/Audit.lean" target="_blank" style="color:#00008B; text-decoration:none;">Assembly complete (5e03955) 🔗</a></li>
               </ul>
             </div>
             <div>
