@@ -12,33 +12,33 @@
    ============================================================================ */
 
 :root {
-  /* Color Palette */
-  --bg-primary: #F8F8F8;          /* Clean off-white */
-  --bg-surface: #F8F8F8;          /* Same as primary for paper feel */
-  --bg-dark: #333333;             /* Dark gray */
+    /* Color Palette */
+  --bg-primary: #FAFAFA;          /* Elegant off-white */
+  --bg-surface: #FFFFFF;          /* Pure white for paper feel */
+  --bg-dark: #1A1A1A;             /* Almost black */
   --text-primary: #000000;        /* Pure black */
-  --text-muted: #333333;          /* Secondary text */
-  --border: #E0E0E0;              /* Fine, subtle lines */
+  --text-muted: #555555;          /* Grey */
+  --border: #DDDDDD;              /* Fine grey lines */
   --border-dark: #333333;         /* Dark mode borders */
 
-  /* Status Indicators - slightly muted for academic feel */
-  --status-complete: #006600;     
-  --status-complete-bg: #E8F5E9;  
+  /* Status Indicators - elegant */
+  --status-complete: #00008B;     
+  --status-complete-bg: #F0F2F9;  
   --status-progress: #8B0000;     
-  --status-progress-bg: #FEE2E2;  
-  --status-open: #B8860B;         
-  --status-open-bg: #FFF8DC;      
+  --status-progress-bg: #F9F0F0;  
+  --status-open: #555555;         
+  --status-open-bg: #F5F5F5;      
 
   /* Accent Colors */
-  --accent-blue: #8B0000;         /* Deep red */
+  --accent-blue: #00008B;         /* Dark blue */
   --accent-blue-bg: transparent;
-  --accent-purple: #333333;
-  --accent-slate: #333333;
+  --accent-purple: #8B0000;       /* Dark red */
+  --accent-slate: #555555;        /* Grey */
 
   /* Typography Scale */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Times New Roman", Times, serif;
   --font-serif: "Times New Roman", Times, serif;
-  --font-mono: "Courier New", Courier, monospace;
+  --font-mono: "Times New Roman", Times, serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -603,7 +603,7 @@ body {
   background-image: radial-gradient(circle at 100% 0%, #eff6ff 0%, transparent 25%),
                     radial-gradient(circle at 0% 100%, #faf5ff 0%, transparent 25%);
   background-attachment: fixed;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: var(--font-serif);
   color: #1e293b;
   margin: 0;
   padding: 0;
@@ -774,7 +774,7 @@ body {
   background: #1e293b;
   color: #e2e8f0;
   padding: 2rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-serif);
   font-size: 0.9rem;
   overflow-x: auto;
 }
@@ -787,7 +787,7 @@ body {
 }
 
 .math-text {
-  font-family: 'Lora', serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   line-height: 1.7;
 }
