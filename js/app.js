@@ -862,6 +862,9 @@ function renderFormalizationEssay() {
       <div style="background: #f0f9ff; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #0ea5e9;">
         <h3 style="color: #0c4a6e; margin-top: 0;">✅ Phase NB: Nyman–Beurling Bridge (Complete)</h3>
         <p style="color: #666; margin-bottom: 1rem;"><strong>Status:</strong> 100% Complete (verified 2026-07-15) — Zero axioms, zero sorries, full Mathlib integration</p>
+        <div style="background: #e0f2fe; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.9rem; border: 1px solid #bae6fd;">
+          <strong>📚 Corpus Lineage & LLM Guidance:</strong> Extracted from the functional-analytic framework of <em>Nyman (1950)</em> and <em>Beurling (1955)</em>. The LLM guided the formalization by synthesizing <em>Báez-Duarte's</em> L² formulation and <em>Burnol's</em> "Une approche hilbertienne de l'hypothèse de Riemann" (from the dataset).
+        </div>
         <div style="background: white; padding: 1.5rem; border-radius: 6px; margin-top: 1rem;">
           <ul style="color: #475569; margin: 1rem 0; padding-left: 2rem; line-height: 1.8;">
             <li>✅ <strong>NB0:</strong> Criterion foundation <a href="./lean/PhaseNB/NBMellinTools.lean" target="_blank" style="font-size: 0.85rem; color: #0ea5e9; text-decoration: none; margin-left: 0.5rem;">[source]</a></li>
@@ -882,6 +885,9 @@ function renderFormalizationEssay() {
       <div style="background: #f0fdf4; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #10b981;">
         <h3 style="color: #065f46; margin-top: 0;">✅ H13: Classical Foundation (Vasyunin–BBLS Chain)</h3>
         <p style="color: #666; margin-bottom: 1rem;"><strong>Status:</strong> 100% COMPLETE (verified 2026-07-10)</p>
+        <div style="background: #dcfce7; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.9rem; border: 1px solid #bbf7d0;">
+          <strong>📚 Corpus Lineage & LLM Guidance:</strong> Modeled on the cotangent sum identities of <em>Vasyunin (1995)</em> and the BBLS chain (<em>Báez-Duarte, Balazard, Landreau, Saias, 2005</em>). The LLM analysis of <code>AIF_2005__55_4_1373_0.pdf</code> provided the structural extraction to map these period-function reductions into Lean 4.
+        </div>
         <div style="background: white; padding: 1.5rem; border-radius: 6px; margin-top: 1rem;">
           <ul style="color: #475569; margin: 1rem 0; padding-left: 2rem; line-height: 1.8;">
             <li>Propositions 12, 15, 16, 21r, 22, 48, 87, 88, 89 (BBLS chain) computationally modeled</li>
@@ -898,6 +904,9 @@ function renderFormalizationEssay() {
       <div style="background: #f0fdf4; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #10b981;">
         <h3 style="color: #065f46; margin-top: 0;">✅ H14: Quantitative Bounds</h3>
         <p style="color: #666; margin-bottom: 1rem;"><strong>Status:</strong> 100% COMPLETE (verified 2026-07-15) — 8,521 build jobs</p>
+        <div style="background: #dcfce7; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.9rem; border: 1px solid #bbf7d0;">
+          <strong>📚 Corpus Lineage & LLM Guidance:</strong> Rooted in <em>de la Vallée Poussin (1896)</em> "Sur les Zéros de la Fonction ζ(s)" and <em>Hadamard (1896)</em> "Sur la distribution des nombres premiers" (<code>BSMF_1896__24__199_1.pdf</code>). The dataset processing successfully mapped 19th-century classical contour inversions to modern formal proof steps.
+        </div>
         <div style="background: white; padding: 1.5rem; border-radius: 6px; margin-top: 1rem;">
           <ul style="color: #475569; margin: 1rem 0; padding-left: 2rem; line-height: 1.8;">
             <li><strong>H14.1 FEFactor:</strong> Vertical Fourier–Eisenstein interpolation bounds</li>
@@ -914,6 +923,9 @@ function renderFormalizationEssay() {
       <div style="background: #fef3c7; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #f59e0b;">
         <h3 style="color: #92400e; margin-top: 0;">✅ H15: Quadratic Cancellation — Formalization Complete</h3>
         <p style="color: #666; margin-bottom: 1rem;"><strong>Status:</strong> All reductions formalized and wired to final endpoint (5e03955); two classical analytic hypotheses explicit at assembly</p>
+        <div style="background: #ffedd5; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.9rem; border: 1px solid #fed7aa;">
+          <strong>📚 Corpus Lineage & LLM Guidance:</strong> Built upon <em>Bettin, Conrey, and Farmer (2013)</em> "Approximations to the Riemann Hypothesis" (<code>1111.0931.pdf</code>). The LLM assisted in decomposing the paper's complex contour shifts and Dirichlet series residues into manageable Lean 4 architectural phases.
+        </div>
         <div style="background: white; padding: 1.5rem; border-radius: 6px; margin-top: 1rem;">
           <ul style="color: #475569; margin: 1rem 0; padding-left: 2rem; line-height: 1.8;">
             <li>✅ <strong>Phases 1–5:</strong> Dirichlet polynomial, zeta interpolation, boundary estimates, residue extraction</li>
