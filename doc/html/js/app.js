@@ -792,7 +792,7 @@ function renderIntuitions() {
 function renderFormalizationEssay() {
   let essayHtml = `
     <section class="view-section active">
-      <h2>Formalization Exploration Essay & Technical Reports</h2>
+      <h2>Lean 4 Formalization & Technical Reports</h2>
       <!-- IMPORTANT NOTE: NOT AN UNCONDITIONAL PROOF -->
       <div style="background: #fef2f2; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #dc2626;">
         <p style="color: #7f1d1d; font-weight: 600; margin: 0 0 0.5rem 0;">⚠ Important Note</p>
@@ -1027,8 +1027,7 @@ function renderFormalizationEssay() {
           </p>
         </div>
       </div>
-
-
+  `;
 
   const reports = [
     {
@@ -1061,8 +1060,6 @@ function renderFormalizationEssay() {
     }
   ];
 
-    </section>
-  `;
   let reportsHtml = `
       <h2 style="margin-top: 4rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;">Technical Reports</h2>
       <p style="font-size:1.05rem; color:#475569; margin-bottom:2rem;">
@@ -1168,7 +1165,7 @@ function renderFormalizationEssay() {
     `;
   });
 
-  html += `
+  reportsHtml += `
       </div>
     </section>
   `;
