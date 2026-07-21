@@ -792,7 +792,7 @@ function renderIntuitions() {
 function renderFormalizationEssay() {
   let essayHtml = `
     <section class="view-section active">
-      <h2>Lean 4 Formalization & Technical Reports</h2>
+      <h2>Exploration</h2>
       <!-- IMPORTANT NOTE: NOT AN UNCONDITIONAL PROOF -->
       <div style="background: #fef2f2; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; border-left: 4px solid #dc2626;">
         <p style="color: #7f1d1d; font-weight: 600; margin: 0 0 0.5rem 0;">⚠ Important Note</p>
