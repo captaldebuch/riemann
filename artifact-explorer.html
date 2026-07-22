@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Searchable registry linking Riemann Hypothesis sources, formal Lean declarations, proof status, and research gates.">
+  <title>Artifact Database — Riemann Hypothesis Corpus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/artifact-explorer.css">
+</head>
+<body>
+  <header class="app-header artifact-header">
+    <div class="header-content">
+      <div class="logo-area">
+        <p class="artifact-kicker">Riemann Hypothesis Corpus</p>
+        <h1>Artifact Database</h1>
+        <p>Versioned evidence connecting sources, Lean declarations, proof status, and active research gates.</p>
+      </div>
+    </div>
+    <nav class="app-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="formalization.html">Formalization</a></li>
+        <li><a href="knowledge-explorer.html">Knowledge Graph</a></li>
+        <li><a href="artifact-explorer.html" class="active" aria-current="page">Artifact Database</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="artifact-main">
+    <section class="artifact-intro" aria-labelledby="artifact-title">
+      <div>
+        <p class="artifact-kicker">Transparent research record</p>
+        <h2 id="artifact-title">Follow an idea from source to formal proof</h2>
+        <p>
+          This explorer presents the repository’s machine-readable JSON-LD registry. It distinguishes proved declarations from assumptions and declarations containing a <code>sorry</code>; it does not infer mathematical validity beyond the recorded evidence.
+        </p>
+      </div>
+      <a class="artifact-source-link" href="data/artifacts/registry.jsonld" download>Download JSON-LD registry</a>
+    </section>
+
+    <section class="artifact-metrics" aria-label="Registry summary">
+      <article class="artifact-metric">
+        <span id="artifact-count" class="artifact-metric-value">—</span>
+        <span class="artifact-metric-label">artifacts</span>
+      </article>
+      <article class="artifact-metric">
+        <span id="relationship-count" class="artifact-metric-value">—</span>
+        <span class="artifact-metric-label">evidence links</span>
+      </article>
+      <article class="artifact-metric">
+        <span id="formal-count" class="artifact-metric-value">—</span>
+        <span class="artifact-metric-label">formal declarations</span>
+      </article>
+      <article class="artifact-metric artifact-metric-warning">
+        <span id="open-count" class="artifact-metric-value">—</span>
+        <span class="artifact-metric-label">open formal gates</span>
+      </article>
+    </section>
+
+    <section class="artifact-explorer" aria-labelledby="explorer-title">
+      <div class="artifact-explorer-heading">
+        <div>
+          <p class="artifact-kicker">Explore the registry</p>
+          <h2 id="explorer-title">Search and inspect</h2>
+        </div>
+        <p id="result-summary" class="artifact-result-summary" aria-live="polite">Loading registry…</p>
+      </div>
+
+      <form id="artifact-filters" class="artifact-filters" role="search">
+        <label class="artifact-search-label" for="artifact-search">
+          Search names, statements, summaries, and tags
+          <input id="artifact-search" type="search" placeholder="e.g. Riemann–von Mangoldt, H15, zeta" autocomplete="off">
+        </label>
+        <label for="artifact-type">
+          Kind
+          <select id="artifact-type">
+            <option value="">All kinds</option>
+          </select>
+        </label>
+        <label for="artifact-status">
+          Formal status
+          <select id="artifact-status">
+            <option value="">Any status</option>
+            <option value="proved">Proved</option>
+            <option value="assumed">Assumed / research gate</option>
+            <option value="contains_sorry">Contains sorry</option>
+            <option value="declaration">Declaration</option>
+          </select>
+        </label>
+        <label class="artifact-open-toggle" for="artifact-open-only">
+          <input id="artifact-open-only" type="checkbox">
+          Open gates only
+        </label>
+        <button id="artifact-clear" type="button">Clear filters</button>
+      </form>
+
+      <div class="artifact-workspace">
+        <div class="artifact-results-panel">
+          <ol id="artifact-results" class="artifact-results" aria-label="Matching artifacts"></ol>
+          <button id="artifact-more" class="artifact-more" type="button" hidden>Show more</button>
+        </div>
+        <aside id="artifact-detail" class="artifact-detail" aria-live="polite">
+          <p class="artifact-detail-placeholder">Choose an artifact to inspect its evidence, source, and recorded relationships.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p><strong>Riemann Hypothesis Formalization Project</strong></p>
+    <p>Registry generated from checked-in corpus metadata, Lean declarations, and explicit source references.</p>
+  </footer>
+
+  <script src="js/artifact-explorer.js"></script>
+</body>
+</html>

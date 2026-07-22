@@ -1,0 +1,387 @@
+/* Artifact database page: preserves the site's academic palette and adds a
+   focused, responsive research-explorer layout. */
+
+.artifact-header .header-content {
+  align-items: flex-end;
+}
+
+.artifact-header .logo-area h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.artifact-main {
+  max-width: 1400px;
+  margin: 2.5rem auto 4rem;
+  padding: 0 2rem;
+}
+
+.artifact-kicker {
+  color: #7c3aed;
+  font-family: "Inter", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 0.55rem;
+  text-transform: uppercase;
+}
+
+.artifact-intro,
+.artifact-explorer {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.artifact-intro {
+  align-items: start;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.artifact-intro h2,
+.artifact-explorer h2 {
+  border: 0;
+  color: #0f172a;
+  font-family: "Lora", Georgia, serif;
+  margin: 0 0 0.9rem;
+  padding: 0;
+}
+
+.artifact-intro p:not(.artifact-kicker) {
+  color: #475569;
+  line-height: 1.75;
+  margin: 0;
+  max-width: 52rem;
+}
+
+.artifact-source-link {
+  background: #0f172a;
+  border-radius: 6px;
+  color: #fff;
+  flex: 0 0 auto;
+  font-family: "Inter", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.7rem 0.9rem;
+  text-decoration: none;
+}
+
+.artifact-source-link:hover,
+.artifact-source-link:focus-visible {
+  background: #4c1d95;
+  color: #fff;
+  text-decoration: none;
+}
+
+.artifact-metrics {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 1rem 0 2.5rem;
+}
+
+.artifact-metric {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-top: 3px solid #4f46e5;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.artifact-metric-warning {
+  border-top-color: #b45309;
+}
+
+.artifact-metric-value {
+  color: #0f172a;
+  font-family: "Lora", Georgia, serif;
+  font-size: 2.15rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.artifact-metric-label {
+  color: #64748b;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  margin-top: 0.55rem;
+}
+
+.artifact-explorer {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.artifact-explorer-heading {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.35rem;
+}
+
+.artifact-result-summary {
+  color: #64748b;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  margin: 0;
+  text-align: right;
+}
+
+.artifact-filters {
+  align-items: end;
+  border-bottom: 1px solid #e2e8f0;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(15rem, 2fr) minmax(8rem, 1fr) minmax(9rem, 1fr) auto auto;
+  padding-bottom: 1.3rem;
+}
+
+.artifact-filters label {
+  color: #334155;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  gap: 0.35rem;
+}
+
+.artifact-filters input[type="search"],
+.artifact-filters select {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  color: #0f172a;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.65rem;
+}
+
+.artifact-open-toggle {
+  align-items: center;
+  flex-direction: row !important;
+  font-size: 0.82rem !important;
+  min-height: 2.45rem;
+  white-space: nowrap;
+}
+
+.artifact-open-toggle input {
+  accent-color: #4f46e5;
+}
+
+.artifact-filters button,
+.artifact-more {
+  background: #fff;
+  border: 1px solid #94a3b8;
+  border-radius: 5px;
+  color: #1e293b;
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  min-height: 2.45rem;
+  padding: 0.5rem 0.8rem;
+}
+
+.artifact-filters button:hover,
+.artifact-filters button:focus-visible,
+.artifact-more:hover,
+.artifact-more:focus-visible {
+  background: #0f172a;
+  color: #fff;
+}
+
+.artifact-workspace {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(18rem, 0.9fr) minmax(20rem, 1.1fr);
+  margin-top: 1.5rem;
+}
+
+.artifact-results {
+  display: grid;
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.artifact-result-button {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #cbd5e1;
+  border-radius: 7px;
+  color: #0f172a;
+  cursor: pointer;
+  display: block;
+  padding: 0.85rem 0.95rem;
+  text-align: left;
+  width: 100%;
+}
+
+.artifact-result-button:hover,
+.artifact-result-button:focus-visible,
+.artifact-result-button[aria-pressed="true"] {
+  background: #f8fafc;
+  border-color: #a5b4fc;
+  border-left-color: #4f46e5;
+}
+
+.artifact-result-name {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.artifact-result-meta {
+  color: #64748b;
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.69rem;
+  margin-top: 0.42rem;
+}
+
+.artifact-more {
+  margin-top: 1rem;
+}
+
+.artifact-detail {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  min-height: 20rem;
+  padding: 1.25rem;
+}
+
+.artifact-detail-placeholder {
+  color: #64748b;
+  font-style: italic;
+  margin: 0;
+}
+
+.artifact-detail h3 {
+  color: #0f172a;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  margin: 0 0 0.45rem;
+}
+
+.artifact-id {
+  color: #475569;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
+
+.artifact-status,
+.artifact-type,
+.artifact-tag,
+.artifact-relationship-predicate {
+  border-radius: 999px;
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin: 0.75rem 0.3rem 0 0;
+  padding: 0.22rem 0.5rem;
+}
+
+.artifact-status-proved { background: #dcfce7; color: #166534; }
+.artifact-status-assumed { background: #ffedd5; color: #9a3412; }
+.artifact-status-contains-sorry { background: #fee2e2; color: #991b1b; }
+.artifact-status-declaration { background: #e0e7ff; color: #3730a3; }
+.artifact-type { background: #e2e8f0; color: #334155; }
+.artifact-tag { background: #f1f5f9; color: #475569; margin-top: 0.3rem; }
+.artifact-relationship-predicate { background: #ede9fe; color: #5b21b6; margin: 0 0.45rem 0 0; }
+
+.artifact-detail section {
+  border-top: 1px solid #e2e8f0;
+  margin: 1.15rem 0 0;
+  padding-top: 1.05rem;
+}
+
+.artifact-detail h4 {
+  color: #334155;
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.45rem;
+  text-transform: uppercase;
+}
+
+.artifact-detail p,
+.artifact-detail li {
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.artifact-detail p { margin: 0; }
+
+.artifact-detail ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.artifact-detail li + li { margin-top: 0.5rem; }
+
+.artifact-relation-button {
+  background: transparent;
+  border: 0;
+  color: #3730a3;
+  display: inline;
+  font-family: "Inter", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 600;
+  min-height: auto;
+  padding: 0;
+  text-align: left;
+  text-decoration: underline;
+}
+
+.artifact-relation-button:hover,
+.artifact-relation-button:focus-visible {
+  background: transparent;
+  color: #7c3aed;
+}
+
+.artifact-detail code {
+  background: #e2e8f0;
+  border-radius: 3px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+  padding: 0.12rem 0.25rem;
+}
+
+.artifact-empty {
+  color: #64748b;
+  font-style: italic;
+  padding: 1.25rem 0;
+}
+
+@media (max-width: 980px) {
+  .artifact-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .artifact-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .artifact-workspace { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .app-header { padding: 1.25rem 1rem 0; }
+  .app-nav ul { flex-wrap: wrap; gap: 0.75rem 1rem; }
+  .artifact-main { margin-top: 1.25rem; padding: 0 1rem; }
+  .artifact-intro { flex-direction: column; gap: 1.25rem; }
+  .artifact-source-link { width: 100%; text-align: center; }
+  .artifact-metrics,
+  .artifact-filters { grid-template-columns: 1fr; }
+  .artifact-explorer-heading { align-items: start; flex-direction: column; }
+  .artifact-result-summary { text-align: left; }
+}

@@ -1,0 +1,6115 @@
+{
+  "@context": {
+    "@vocab": "https://riemann-hypothesis.github.io/artifacts#",
+    "dependsOn": {
+      "@type": "@id"
+    },
+    "motivatedBy": {
+      "@type": "@id"
+    },
+    "formalizes": {
+      "@type": "@id"
+    },
+    "blockedBy": {
+      "@type": "@id"
+    }
+  },
+  "registryVersion": 1,
+  "@graph": [
+    {
+      "@id": "axiom:NBMellinTools.auli_bayad_beck_reciprocity",
+      "@type": "FormalAxiom",
+      "name": "NBMellinTools.auli_bayad_beck_reciprocity",
+      "statement": "axiom auli_bayad_beck_reciprocity (a : ℂ) (h k : ℕ) (_coprime : Nat.Coprime h k) (_hpos : 0 < h) (_kpos : 0 < k) : True",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 131,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "assumed",
+        "newAxioms": 1,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools",
+        "unresolved-formalization"
+      ],
+      "openProblem": true,
+      "difficulty": "research-level",
+      "summary": "- Auli-Bayad-Beck Reciprocity Theorem GOAL: Prove reciprocity connecting Möbius-weighted cotangent sums to Estermann zeta and period function structures Source: Auli, Bayad, Beck (1601.06839v3), Theorem 1.1, p. 2 Proof required: ~150-200 lines (contour integration + residue theorem) Current status: UNPROVEN"
+    },
+    {
+      "@id": "axiom:NBMellinTools.cotangent_integral_form",
+      "@type": "FormalAxiom",
+      "name": "NBMellinTools.cotangent_integral_form",
+      "statement": "axiom cotangent_integral_form (a : ℂ) (_h k : ℕ) (h_re : a.re > -1) (_coprime : Nat.Coprime _h k) (_hk_pos : 0 < _h ∧ 0 < k) : True",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 144,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "assumed",
+        "newAxioms": 1,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools",
+        "unresolved-formalization"
+      ],
+      "openProblem": true,
+      "difficulty": "research-level",
+      "summary": "- Cotangent Integral Representation GOAL: Express reciprocity-related cotangent sums as contour integrals Source: Auli, Bayad, Beck (1601.06839v3), Theorem 1.2, p. 3 Note: The paper assumes Re(a) > 1, not Re(a) > -1 Proof required: ~150-200 lines (residue extraction + functional equations) Current status: UNPROVEN"
+    },
+    {
+      "@id": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "@type": "FormalAxiom",
+      "name": "NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "statement": "axiom h15_reciprocal_phase_möbius_bound : ∃ (C : ℝ), C > 0 ∧ ∀ (N A : ℕ), N ≥ 2 → 1 ≤ A → A ≤ N → ‖h15_sum N A‖ ≤ C / (Real.log (N + 2)) ^ 2",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 183,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "assumed",
+        "newAxioms": 1,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools",
+        "unresolved-formalization"
+      ],
+      "openProblem": true,
+      "difficulty": "research-level",
+      "summary": "- H15 Reciprocal-Phase Möbius-Sawtooth Bound (CONJECTURE) Mathematical statement: For all N ≥ 2 and 1 ≤ A ≤ N: |∑_{k=1}^N μ(k) · (1 - k/(N+1)) · B₁(A/k)| ≤ C / log²(N+2) KNOWN ISSUES WITH CURRENT FORMALIZATION: - Definitions (moebius, dedekind_sawtooth, riemann_zeta) are stubs - The indexing in h15_sum does not match the mathematical statement exactly - Numerical validation: C=5 fails on 56% of test cases (N,A ∈ [20,300]) - Maximum observed bound violation: ~132.5× at N=221, A=221 STATUS: NOT VERIFIED. Requires: 1. Correct mathematical definitions 2. Actual proof or rigorous numerical validation 3. Identification of correct constant C (if bound holds at all) This axiom is a PLACEHOLDER for a research goal, not an established fact."
+    },
+    {
+      "@id": "axiom:NBMellinTools.mellin_contour_shift",
+      "@type": "FormalAxiom",
+      "name": "NBMellinTools.mellin_contour_shift",
+      "statement": "axiom mellin_contour_shift : ∃ (C : ℝ), C > 0 ∧ ∀ N : ℕ, N ≥ 2 → ‖h15_sum N 1‖ ≤ C / Real.log (N + 2)",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 156,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "assumed",
+        "newAxioms": 1,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools",
+        "unresolved-formalization"
+      ],
+      "openProblem": true,
+      "difficulty": "research-level",
+      "summary": "- Mellin Contour Shift Analysis GOAL: Show contour deformation past Estermann zeta poles yields O(1/log N) bounds Source: Montgomery & Vaughan (2007), Chapter 13 Proof required: ~200+ lines (rectangle contour + residue estimation + error bounds) Current status: UNPROVEN"
+    },
+    {
+      "@id": "axiom:NBMellinTools.period_function_recursion",
+      "@type": "FormalAxiom",
+      "name": "NBMellinTools.period_function_recursion",
+      "statement": "axiom period_function_recursion (a z : ℂ) (hz : z ≠ 0) (hz_pos : z.re > 0) : True",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 119,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "assumed",
+        "newAxioms": 1,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools",
+        "unresolved-formalization"
+      ],
+      "openProblem": true,
+      "difficulty": "research-level",
+      "summary": "- Bettin-Conrey Period Function Recursion GOAL: Prove three-term functional equation for period functions Source: Bettin & Conrey (1111.0931v2), Theorem 1, p. 6 Proof required: ~100-150 lines (zeta functional equation + Bernoulli periodicity) Current status: UNPROVEN"
+    },
+    {
+      "@id": "concept:analytic",
+      "@type": "Concept",
+      "name": "analytic"
+    },
+    {
+      "@id": "concept:analytic-continuation",
+      "@type": "Concept",
+      "name": "analytic-continuation"
+    },
+    {
+      "@id": "concept:approximations",
+      "@type": "Concept",
+      "name": "approximations"
+    },
+    {
+      "@id": "concept:belhadj-goubi",
+      "@type": "Concept",
+      "name": "belhadj-goubi"
+    },
+    {
+      "@id": "concept:cancellation",
+      "@type": "Concept",
+      "name": "cancellation"
+    },
+    {
+      "@id": "concept:characters",
+      "@type": "Concept",
+      "name": "characters"
+    },
+    {
+      "@id": "concept:chebyshev",
+      "@type": "Concept",
+      "name": "chebyshev"
+    },
+    {
+      "@id": "concept:classical",
+      "@type": "Concept",
+      "name": "classical"
+    },
+    {
+      "@id": "concept:complex-analysis",
+      "@type": "Concept",
+      "name": "complex-analysis"
+    },
+    {
+      "@id": "concept:contour",
+      "@type": "Concept",
+      "name": "contour"
+    },
+    {
+      "@id": "concept:contour-analysis",
+      "@type": "Concept",
+      "name": "contour-analysis"
+    },
+    {
+      "@id": "concept:correlation",
+      "@type": "Concept",
+      "name": "correlation"
+    },
+    {
+      "@id": "concept:cotangent-sums",
+      "@type": "Concept",
+      "name": "cotangent-sums"
+    },
+    {
+      "@id": "concept:diagnostics",
+      "@type": "Concept",
+      "name": "diagnostics"
+    },
+    {
+      "@id": "concept:digamma",
+      "@type": "Concept",
+      "name": "digamma"
+    },
+    {
+      "@id": "concept:dirichlet",
+      "@type": "Concept",
+      "name": "dirichlet"
+    },
+    {
+      "@id": "concept:distribution",
+      "@type": "Concept",
+      "name": "distribution"
+    },
+    {
+      "@id": "concept:equivalence",
+      "@type": "Concept",
+      "name": "equivalence"
+    },
+    {
+      "@id": "concept:error-analysis",
+      "@type": "Concept",
+      "name": "error-analysis"
+    },
+    {
+      "@id": "concept:explicit",
+      "@type": "Concept",
+      "name": "explicit"
+    },
+    {
+      "@id": "concept:explicit-bounds",
+      "@type": "Concept",
+      "name": "explicit-bounds"
+    },
+    {
+      "@id": "concept:fourier",
+      "@type": "Concept",
+      "name": "fourier"
+    },
+    {
+      "@id": "concept:french",
+      "@type": "Concept",
+      "name": "french"
+    },
+    {
+      "@id": "concept:geometry",
+      "@type": "Concept",
+      "name": "geometry"
+    },
+    {
+      "@id": "concept:gl2",
+      "@type": "Concept",
+      "name": "gl2"
+    },
+    {
+      "@id": "concept:gue",
+      "@type": "Concept",
+      "name": "gue"
+    },
+    {
+      "@id": "concept:h15",
+      "@type": "Concept",
+      "name": "h15"
+    },
+    {
+      "@id": "concept:hadamard",
+      "@type": "Concept",
+      "name": "hadamard"
+    },
+    {
+      "@id": "concept:hilbert-polya",
+      "@type": "Concept",
+      "name": "hilbert-polya"
+    },
+    {
+      "@id": "concept:historical",
+      "@type": "Concept",
+      "name": "historical"
+    },
+    {
+      "@id": "concept:inversion",
+      "@type": "Concept",
+      "name": "inversion"
+    },
+    {
+      "@id": "concept:kernel",
+      "@type": "Concept",
+      "name": "kernel"
+    },
+    {
+      "@id": "concept:l-functions",
+      "@type": "Concept",
+      "name": "l-functions"
+    },
+    {
+      "@id": "concept:mellin",
+      "@type": "Concept",
+      "name": "mellin"
+    },
+    {
+      "@id": "concept:methods",
+      "@type": "Concept",
+      "name": "methods"
+    },
+    {
+      "@id": "concept:modern",
+      "@type": "Concept",
+      "name": "modern"
+    },
+    {
+      "@id": "concept:modular-forms",
+      "@type": "Concept",
+      "name": "modular-forms"
+    },
+    {
+      "@id": "concept:moebius",
+      "@type": "Concept",
+      "name": "möbius"
+    },
+    {
+      "@id": "concept:number-theory",
+      "@type": "Concept",
+      "name": "number-theory"
+    },
+    {
+      "@id": "concept:period",
+      "@type": "Concept",
+      "name": "period"
+    },
+    {
+      "@id": "concept:period-functions",
+      "@type": "Concept",
+      "name": "period-functions"
+    },
+    {
+      "@id": "concept:perron",
+      "@type": "Concept",
+      "name": "perron"
+    },
+    {
+      "@id": "concept:progress",
+      "@type": "Concept",
+      "name": "progress"
+    },
+    {
+      "@id": "concept:quantum-chaos",
+      "@type": "Concept",
+      "name": "quantum-chaos"
+    },
+    {
+      "@id": "concept:random-matrices",
+      "@type": "Concept",
+      "name": "random-matrices"
+    },
+    {
+      "@id": "concept:recent",
+      "@type": "Concept",
+      "name": "recent"
+    },
+    {
+      "@id": "concept:recent-research",
+      "@type": "Concept",
+      "name": "recent-research"
+    },
+    {
+      "@id": "concept:reciprocity",
+      "@type": "Concept",
+      "name": "reciprocity"
+    },
+    {
+      "@id": "concept:representation",
+      "@type": "Concept",
+      "name": "representation"
+    },
+    {
+      "@id": "concept:rh",
+      "@type": "Concept",
+      "name": "rh"
+    },
+    {
+      "@id": "concept:rigid-analytic",
+      "@type": "Concept",
+      "name": "rigid-analytic"
+    },
+    {
+      "@id": "concept:special-functions",
+      "@type": "Concept",
+      "name": "special-functions"
+    },
+    {
+      "@id": "concept:zero-free-region",
+      "@type": "Concept",
+      "name": "zero-free-region"
+    },
+    {
+      "@id": "concept:zeta",
+      "@type": "Concept",
+      "name": "zeta"
+    },
+    {
+      "@id": "concept:zeta-zeros",
+      "@type": "Concept",
+      "name": "zeta-zeros"
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.BaezDuarteL2Error",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.BaezDuarteL2Error",
+      "statement": "noncomputable def BaezDuarteL2Error (N : ℕ) (coeffs : Fin N → ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 29,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The squared `L²(0,∞)` approximation error."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.NymanBeurlingCriterion",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.NymanBeurlingCriterion",
+      "statement": "def NymanBeurlingCriterion : Prop",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 43,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The finite-approximation formulation of the Nyman--Beurling criterion. It is kept as a proposition and is not asserted unconditionally."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.bdApprox",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.bdApprox",
+      "statement": "noncomputable def bdApprox (N : ℕ) (coeffs : Fin N → ℝ) (x : ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 24,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- A finite real linear combination of the zero-based Báez--Duarte generators."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.chi01",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.chi01",
+      "statement": "noncomputable def chi01 (x : ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 28,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The characteristic function of `(0, 1]` used in the Nyman--Beurling model."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.fractTail",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.fractTail",
+      "statement": "noncomputable def fractTail (s : ℂ) (X : ℝ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 37,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The tail integral `∫_X^∞ {u} u^(-s-1) du`."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.fractTailDerivIntegrand",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.fractTailDerivIntegrand",
+      "statement": "noncomputable def fractTailDerivIntegrand (s : ℂ) (u : ℝ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 113,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.fractTailIntegrand",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.fractTailIntegrand",
+      "statement": "noncomputable def fractTailIntegrand (s : ℂ) (u : ℝ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 33,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The Euler--Maclaurin fractional-part tail integrand."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.rhoBD",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.rhoBD",
+      "statement": "noncomputable def rhoBD (k : ℕ) (x : ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 41,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The zero-based Báez--Duarte generator. Index `k` represents dilation `k + 1`, hence the classical function `x ↦ {1 / ((k + 1)x)}`."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.rhoBase",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.rhoBase",
+      "statement": "noncomputable def rhoBase (x : ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 32,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The undilated fractional-part generator `x ↦ {1/x}`."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.rhoTheta",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.rhoTheta",
+      "statement": "noncomputable def rhoTheta (θ x : ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 36,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The classical Nyman generator `ρ_θ(x) = {θ/x}`."
+    },
+    {
+      "@id": "def:NBMellinTools.NB2.zetaTailRHS",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB2.zetaTailRHS",
+      "statement": "noncomputable def zetaTailRHS (s : ℂ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 368,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The pole-separated right-hand side of the one-cutoff Euler--Maclaurin identity."
+    },
+    {
+      "@id": "def:NBMellinTools.NB3.MellinContinuityConstant",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB3.MellinContinuityConstant",
+      "statement": "noncomputable def MellinContinuityConstant (s : ℂ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 502,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB3.mellinError",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB3.mellinError",
+      "statement": "private def mellinError (N : ℕ) (coeffs : Fin N → ℝ) (x : ℝ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 28,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB3.mellinKernel",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB3.mellinKernel",
+      "statement": "private def mellinKernel (s : ℂ) (x : ℝ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 95,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB3.realError",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB3.realError",
+      "statement": "private def realError (N : ℕ) (coeffs : Fin N → ℝ) (x : ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 31,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB3.tailCoeff",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB3.tailCoeff",
+      "statement": "private def tailCoeff (N : ℕ) (coeffs : Fin N → ℝ) : ℝ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 34,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB4.mellinKernel",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB4.mellinKernel",
+      "statement": "private def mellinKernel (s : ℂ) (x : ℝ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 29,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB4.rhoMellinIntegrand",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB4.rhoMellinIntegrand",
+      "statement": "private def rhoMellinIntegrand (k : ℕ) (s : ℂ) (x : ℝ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 32,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "def:NBMellinTools.NB5.CriticalStripRiemannHypothesis",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.NB5.CriticalStripRiemannHypothesis",
+      "statement": "def CriticalStripRiemannHypothesis : Prop",
+      "source": {
+        "file": "proofs/NBMellinTools/NB5FunctionalEquationClosure.lean",
+        "line": 30,
+        "module": "NBMellinTools.NB5FunctionalEquationClosure",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The critical-strip formulation closed by NB5."
+    },
+    {
+      "@id": "def:NBMellinTools.dedekind_sawtooth",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.dedekind_sawtooth",
+      "statement": "noncomputable def dedekind_sawtooth (x : ℂ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 72,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Dedekind sawtooth function B₁(x) = {x} - 1/2 KNOWN ISSUE: This implementation has correctness issues. TODO: Verify convergence of Fourier series and correct sign."
+    },
+    {
+      "@id": "def:NBMellinTools.h15_sum",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.h15_sum",
+      "statement": "noncomputable def h15_sum (N A : ℕ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 90,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- H15 sum: Main object under study NOTE: This definition differs from the mathematical statement due to indexing and stub definitions. Once definitions are complete, this requires verification."
+    },
+    {
+      "@id": "def:NBMellinTools.moebius",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.moebius",
+      "statement": "noncomputable def moebius (n : ℕ) : ℤ",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 63,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Möbius function μ(n) TODO: Implement real Möbius function via prime factorization"
+    },
+    {
+      "@id": "def:NBMellinTools.riemann_zeta",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.riemann_zeta",
+      "statement": "noncomputable def riemann_zeta (_ : ℂ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 80,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Riemann zeta function ζ(s) TODO: Implement via analytic continuation. Currently a stub."
+    },
+    {
+      "@id": "def:NBMellinTools.weight_function",
+      "@type": "FormalDefinition",
+      "name": "NBMellinTools.weight_function",
+      "statement": "noncomputable def weight_function (N k : ℕ) : ℂ",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 83,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "declaration",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Weight function for Nyman-Beurling criterion"
+    },
+    {
+      "@id": "lemma:NBMellinTools.NB2.natFloor_eq_sub_fract_of_nonneg",
+      "@type": "FormalLemma",
+      "name": "NBMellinTools.NB2.natFloor_eq_sub_fract_of_nonneg",
+      "statement": "lemma natFloor_eq_sub_fract_of_nonneg {t : ℝ} (ht : 0 ≤ t) : (⌊t⌋₊ : ℝ) = t - Int.fract t",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 235,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "! ## The tail identity for `Re s > 1`"
+    },
+    {
+      "@id": "mathematician:analytic-number-theorists",
+      "@type": "Mathematician",
+      "name": "Analytic Number Theorists"
+    },
+    {
+      "@id": "mathematician:analytic-researchers",
+      "@type": "Mathematician",
+      "name": "Analytic Researchers"
+    },
+    {
+      "@id": "mathematician:annales-group",
+      "@type": "Mathematician",
+      "name": "Annales Group"
+    },
+    {
+      "@id": "mathematician:auli",
+      "@type": "Mathematician",
+      "name": "Auli"
+    },
+    {
+      "@id": "mathematician:bayad",
+      "@type": "Mathematician",
+      "name": "Bayad"
+    },
+    {
+      "@id": "mathematician:beck",
+      "@type": "Mathematician",
+      "name": "Beck"
+    },
+    {
+      "@id": "mathematician:belhadj",
+      "@type": "Mathematician",
+      "name": "Belhadj"
+    },
+    {
+      "@id": "mathematician:bettin",
+      "@type": "Mathematician",
+      "name": "Bettin"
+    },
+    {
+      "@id": "mathematician:bounds-researchers",
+      "@type": "Mathematician",
+      "name": "Bounds Researchers"
+    },
+    {
+      "@id": "mathematician:character-theory-team",
+      "@type": "Mathematician",
+      "name": "Character Theory Team"
+    },
+    {
+      "@id": "mathematician:chebyshev",
+      "@type": "Mathematician",
+      "name": "Chebyshev"
+    },
+    {
+      "@id": "mathematician:classical-analysts",
+      "@type": "Mathematician",
+      "name": "Classical Analysts"
+    },
+    {
+      "@id": "mathematician:classical-methods-group",
+      "@type": "Mathematician",
+      "name": "Classical Methods Group"
+    },
+    {
+      "@id": "mathematician:classical-team",
+      "@type": "Mathematician",
+      "name": "Classical Team"
+    },
+    {
+      "@id": "mathematician:complex-analysts",
+      "@type": "Mathematician",
+      "name": "Complex Analysts"
+    },
+    {
+      "@id": "mathematician:conrey",
+      "@type": "Mathematician",
+      "name": "Conrey"
+    },
+    {
+      "@id": "mathematician:error-analysis-team",
+      "@type": "Mathematician",
+      "name": "Error Analysis Team"
+    },
+    {
+      "@id": "mathematician:french-analysts",
+      "@type": "Mathematician",
+      "name": "French Analysts"
+    },
+    {
+      "@id": "mathematician:geometric-analysts",
+      "@type": "Mathematician",
+      "name": "Geometric Analysts"
+    },
+    {
+      "@id": "mathematician:goubi",
+      "@type": "Mathematician",
+      "name": "Goubi"
+    },
+    {
+      "@id": "mathematician:hadamard",
+      "@type": "Mathematician",
+      "name": "Hadamard"
+    },
+    {
+      "@id": "mathematician:harmonic-analysts",
+      "@type": "Mathematician",
+      "name": "Harmonic Analysts"
+    },
+    {
+      "@id": "mathematician:iwaniec",
+      "@type": "Mathematician",
+      "name": "Iwaniec"
+    },
+    {
+      "@id": "mathematician:kowalski",
+      "@type": "Mathematician",
+      "name": "Kowalski"
+    },
+    {
+      "@id": "mathematician:modern-team",
+      "@type": "Mathematician",
+      "name": "Modern Team"
+    },
+    {
+      "@id": "mathematician:modular-forms-group",
+      "@type": "Mathematician",
+      "name": "Modular Forms Group"
+    },
+    {
+      "@id": "mathematician:number-theorists",
+      "@type": "Mathematician",
+      "name": "Number Theorists"
+    },
+    {
+      "@id": "mathematician:probabilistic-team",
+      "@type": "Mathematician",
+      "name": "Probabilistic Team"
+    },
+    {
+      "@id": "mathematician:recent-team",
+      "@type": "Mathematician",
+      "name": "Recent Team"
+    },
+    {
+      "@id": "mathematician:research-team",
+      "@type": "Mathematician",
+      "name": "Research Team"
+    },
+    {
+      "@id": "mathematician:special-functions-team",
+      "@type": "Mathematician",
+      "name": "Special Functions Team"
+    },
+    {
+      "@id": "mathematician:spectral-researchers",
+      "@type": "Mathematician",
+      "name": "Spectral Researchers"
+    },
+    {
+      "@id": "mathematician:unknown-author",
+      "@type": "Mathematician",
+      "name": "Unknown Author"
+    },
+    {
+      "@id": "mathematician:various-researchers",
+      "@type": "Mathematician",
+      "name": "Various Researchers"
+    },
+    {
+      "@id": "mathematician:zeta-group",
+      "@type": "Mathematician",
+      "name": "Zeta Group"
+    },
+    {
+      "@id": "module:NBMellinTools.Audit",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.Audit",
+      "source": {
+        "file": "proofs/NBMellinTools/Audit.lean",
+        "line": 1,
+        "module": "NBMellinTools.Audit",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.BaezDuarteTail",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.BaezDuarteTail",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 1,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.H15_RouteA",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.H15_RouteA",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 1,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.LogPullback",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.LogPullback",
+      "source": {
+        "file": "proofs/NBMellinTools/LogPullback.lean",
+        "line": 1,
+        "module": "NBMellinTools.LogPullback",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.MellinEvaluation",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.MellinEvaluation",
+      "source": {
+        "file": "proofs/NBMellinTools/MellinEvaluation.lean",
+        "line": 1,
+        "module": "NBMellinTools.MellinEvaluation",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.NB2BaseMellin",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.NB2BaseMellin",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 1,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.NB2Mellin",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.NB2Mellin",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 1,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.NB3MellinContinuity",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.NB3MellinContinuity",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 1,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.NB4ZeroDetection",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.NB4ZeroDetection",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 1,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "module:NBMellinTools.NB5FunctionalEquationClosure",
+      "@type": "FormalModule",
+      "name": "NBMellinTools.NB5FunctionalEquationClosure",
+      "source": {
+        "file": "proofs/NBMellinTools/NB5FunctionalEquationClosure.lean",
+        "line": 1,
+        "module": "NBMellinTools.NB5FunctionalEquationClosure",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "tags": [
+        "lean",
+        "module"
+      ]
+    },
+    {
+      "@id": "paper:1111.0931",
+      "@type": "SourcePaper",
+      "name": "Approximations to the Riemann Hypothesis",
+      "year": 2013,
+      "arxivId": "1111.0931",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H15",
+      "relevanceScore": 0.95,
+      "localPdf": "1111.0931.pdf",
+      "tags": [
+        "cotangent-sums",
+        "möbius",
+        "period-functions"
+      ],
+      "summary": "Main contribution from Approximations to the Riemann Hypothesis",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.6,
+        "estimatedWeeks": 6.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1211.5191",
+      "@type": "SourcePaper",
+      "name": "Rigid Analytic Geometry",
+      "year": 2012,
+      "arxivId": "1211.5191",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.6,
+      "localPdf": "1211.5191.pdf",
+      "tags": [
+        "geometry",
+        "rigid-analytic"
+      ],
+      "summary": "Main contribution from Rigid Analytic Geometry",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1401.2932",
+      "@type": "SourcePaper",
+      "name": "Zeta Functions: Classical and Modern",
+      "year": 2014,
+      "arxivId": "1401.2932",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.9,
+      "localPdf": "1401.2932.pdf",
+      "tags": [
+        "special-functions",
+        "zeta"
+      ],
+      "summary": "Main contribution from Zeta Functions: Classical and Modern",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1401.3150",
+      "@type": "SourcePaper",
+      "name": "Explicit Bounds in Analytic Number Theory",
+      "year": 2014,
+      "arxivId": "1401.3150",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.88,
+      "localPdf": "1401.3150.pdf",
+      "tags": [
+        "analytic",
+        "explicit-bounds"
+      ],
+      "summary": "Main contribution from Explicit Bounds in Analytic Number Theory",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1409.1634",
+      "@type": "SourcePaper",
+      "name": "Dirichlet Character Sums",
+      "year": 2014,
+      "arxivId": "1409.1634",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H13",
+      "relevanceScore": 0.85,
+      "localPdf": "1409.1634.pdf",
+      "tags": [
+        "characters",
+        "dirichlet"
+      ],
+      "summary": "Main contribution from Dirichlet Character Sums",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.95,
+        "estimatedWeeks": 1.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1501.02975",
+      "@type": "SourcePaper",
+      "name": "Mellin Transform Techniques",
+      "year": 2015,
+      "arxivId": "1501.02975",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.92,
+      "localPdf": "1501.02975.pdf",
+      "tags": [
+        "contour-analysis",
+        "mellin"
+      ],
+      "summary": "Main contribution from Mellin Transform Techniques",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1503.05121",
+      "@type": "SourcePaper",
+      "name": "Fourier Analysis on GL(2)",
+      "year": 2015,
+      "arxivId": "1503.05121",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H15",
+      "relevanceScore": 0.85,
+      "localPdf": "1503.05121.pdf",
+      "tags": [
+        "fourier",
+        "gl2",
+        "representation"
+      ],
+      "summary": "Main contribution from Fourier Analysis on GL(2)",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.6,
+        "estimatedWeeks": 6.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1510.05087",
+      "@type": "SourcePaper",
+      "name": "Explicit Zero-Free Regions",
+      "year": 2015,
+      "arxivId": "1510.05087",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.9,
+      "localPdf": "1510.05087.pdf",
+      "tags": [
+        "explicit",
+        "zero-free-region"
+      ],
+      "summary": "Main contribution from Explicit Zero-Free Regions",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1601.06839",
+      "@type": "SourcePaper",
+      "name": "Reciprocal Relations and Theorems",
+      "year": 2017,
+      "arxivId": "1601.06839",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H15",
+      "relevanceScore": 0.9,
+      "localPdf": "1601.06839.pdf",
+      "tags": [
+        "cotangent-sums",
+        "period",
+        "reciprocity"
+      ],
+      "summary": "Main contribution from Reciprocal Relations and Theorems",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.6,
+        "estimatedWeeks": 6.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:1807.08249",
+      "@type": "SourcePaper",
+      "name": "L-Functions and Modular Forms",
+      "year": 2018,
+      "arxivId": "1807.08249",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "Analytic",
+      "relevanceScore": 0.78,
+      "localPdf": "1807.08249.pdf",
+      "tags": [
+        "l-functions",
+        "modular-forms"
+      ],
+      "summary": "Main contribution from L-Functions and Modular Forms",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2105.00004",
+      "@type": "SourcePaper",
+      "name": "Quantum Chaos and Spectral Spacing",
+      "year": 2021,
+      "arxivId": "2105.00004",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "Spectral",
+      "relevanceScore": 0.8,
+      "localPdf": "2105.00004.pdf",
+      "tags": [
+        "hilbert-polya",
+        "quantum-chaos"
+      ],
+      "summary": "Main contribution from Quantum Chaos and Spectral Spacing",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2209.10990",
+      "@type": "SourcePaper",
+      "name": "Recent Developments in Random Matrix Theory",
+      "year": 2022,
+      "arxivId": "2209.10990",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "Probabilistic",
+      "relevanceScore": 0.75,
+      "localPdf": "2209.10990.pdf",
+      "tags": [
+        "gue",
+        "random-matrices"
+      ],
+      "summary": "Main contribution from Recent Developments in Random Matrix Theory",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2309.09171",
+      "@type": "SourcePaper",
+      "name": "2309.09171v1",
+      "year": 19,
+      "arxivId": "2309.09171",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "2309.09171v1.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:2606.22562",
+      "@type": "SourcePaper",
+      "name": "Perron Inversion Formulas",
+      "year": 2026,
+      "arxivId": "2606.22562",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.85,
+      "localPdf": "2606.22562v2.pdf",
+      "tags": [
+        "inversion",
+        "perron"
+      ],
+      "summary": "Main contribution from Perron Inversion Formulas",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2607.01126",
+      "@type": "SourcePaper",
+      "name": "Contour Shifting and Error Terms",
+      "year": 2026,
+      "arxivId": "2607.01126",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.82,
+      "localPdf": "2607.01126v1.pdf",
+      "tags": [
+        "contour",
+        "error-analysis"
+      ],
+      "summary": "Main contribution from Contour Shifting and Error Terms",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2607.02828",
+      "@type": "SourcePaper",
+      "name": "Mellin Transforms and Analytic Continuation",
+      "year": 2026,
+      "arxivId": "2607.02828",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.88,
+      "localPdf": "2607.02828v1.pdf",
+      "tags": [
+        "analytic-continuation",
+        "mellin"
+      ],
+      "summary": "Main contribution from Mellin Transforms and Analytic Continuation",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2607.04316",
+      "@type": "SourcePaper",
+      "name": "Zeta Functions and RH Equivalences",
+      "year": 2026,
+      "arxivId": "2607.04316",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.9,
+      "localPdf": "2607.04316v2.pdf",
+      "tags": [
+        "equivalence",
+        "rh",
+        "zeta"
+      ],
+      "summary": "Main contribution from Zeta Functions and RH Equivalences",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2607.04632",
+      "@type": "SourcePaper",
+      "name": "Möbius Correlations and Cancellation",
+      "year": 2026,
+      "arxivId": "2607.04632",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H15",
+      "relevanceScore": 0.85,
+      "localPdf": "2607.04632v1.pdf",
+      "tags": [
+        "cancellation",
+        "correlation",
+        "möbius"
+      ],
+      "summary": "Main contribution from Möbius Correlations and Cancellation",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.6,
+        "estimatedWeeks": 6.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2607.09110",
+      "@type": "SourcePaper",
+      "name": "Phase 1 Diagnostics for H15 Kernel",
+      "year": 2026,
+      "arxivId": "2607.09110",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H15",
+      "relevanceScore": 0.9,
+      "localPdf": "2607.09110v1.pdf",
+      "tags": [
+        "diagnostics",
+        "h15",
+        "kernel"
+      ],
+      "summary": "Main contribution from Phase 1 Diagnostics for H15 Kernel",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.6,
+        "estimatedWeeks": 6.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:2607.09797",
+      "@type": "SourcePaper",
+      "name": "Recent Advances in RH Approximations",
+      "year": 2026,
+      "arxivId": "2607.09797",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H15",
+      "relevanceScore": 0.95,
+      "localPdf": "2607.09797v1.pdf",
+      "tags": [
+        "approximations",
+        "möbius",
+        "recent-research"
+      ],
+      "summary": "Main contribution from Recent Advances in RH Approximations",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.6,
+        "estimatedWeeks": 6.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:9901.00000",
+      "@type": "SourcePaper",
+      "name": "RIEMANN AND HIS ZETA FUNCTION",
+      "year": 20,
+      "arxivId": "9901.00000",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_0.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00001",
+      "@type": "SourcePaper",
+      "name": "paper_1",
+      "year": 20,
+      "arxivId": "9901.00001",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_1.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00003",
+      "@type": "SourcePaper",
+      "name": "paper_3",
+      "year": 2026,
+      "arxivId": "9901.00003",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_3.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00005",
+      "@type": "SourcePaper",
+      "name": "4 CMI ANNUAL REPORT THE YEAR 2004 5",
+      "year": 20,
+      "arxivId": "9901.00005",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_5.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00008",
+      "@type": "SourcePaper",
+      "name": "paper_8",
+      "year": 20,
+      "arxivId": "9901.00008",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_8.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00013",
+      "@type": "SourcePaper",
+      "name": "RIEMANN’S HYPOTHESIS",
+      "year": 20,
+      "arxivId": "9901.00013",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_13.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00014",
+      "@type": "SourcePaper",
+      "name": "paper_14",
+      "year": 19,
+      "arxivId": "9901.00014",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_14.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00018",
+      "@type": "SourcePaper",
+      "name": "paper_18",
+      "year": 2026,
+      "arxivId": "9901.00018",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_18.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00021",
+      "@type": "SourcePaper",
+      "name": "paper_21",
+      "year": 19,
+      "arxivId": "9901.00021",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_21.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00025",
+      "@type": "SourcePaper",
+      "name": "paper_25",
+      "year": 2026,
+      "arxivId": "9901.00025",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_25.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00028",
+      "@type": "SourcePaper",
+      "name": "ORIGINAL RESEARCH",
+      "year": 20,
+      "arxivId": "9901.00028",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_28.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00031",
+      "@type": "SourcePaper",
+      "name": "paper_31",
+      "year": 2026,
+      "arxivId": "9901.00031",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_31.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00032",
+      "@type": "SourcePaper",
+      "name": "paper_32",
+      "year": 2026,
+      "arxivId": "9901.00032",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_32.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00033",
+      "@type": "SourcePaper",
+      "name": "paper_33",
+      "year": 19,
+      "arxivId": "9901.00033",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_33.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00035",
+      "@type": "SourcePaper",
+      "name": "paper_35",
+      "year": 20,
+      "arxivId": "9901.00035",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_35.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00036",
+      "@type": "SourcePaper",
+      "name": "I L LJ1 N O J S",
+      "year": 20,
+      "arxivId": "9901.00036",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_36.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00037",
+      "@type": "SourcePaper",
+      "name": "paper_37",
+      "year": 2026,
+      "arxivId": "9901.00037",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_37.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00041",
+      "@type": "SourcePaper",
+      "name": "ON THE GENERALIZED RIEMANNHYPOTHESIS II",
+      "year": 20,
+      "arxivId": "9901.00041",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_41.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00042",
+      "@type": "SourcePaper",
+      "name": "paper_42",
+      "year": 20,
+      "arxivId": "9901.00042",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_42.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00043",
+      "@type": "SourcePaper",
+      "name": "X-RAY OF RIEMANN’S ZETA-FUNCTION 23",
+      "year": 2026,
+      "arxivId": "9901.00043",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_43.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00044",
+      "@type": "SourcePaper",
+      "name": "paper_44",
+      "year": 20,
+      "arxivId": "9901.00044",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_44.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00048",
+      "@type": "SourcePaper",
+      "name": "THREE LECTURES ON THE RIEMANN ZETA-FUNCTION",
+      "year": 20,
+      "arxivId": "9901.00048",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H14",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_48.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00049",
+      "@type": "SourcePaper",
+      "name": "paper_49",
+      "year": 2026,
+      "arxivId": "9901.00049",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_49.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00051",
+      "@type": "SourcePaper",
+      "name": "HARDY'S LEGACY TO NUMBER THEORY",
+      "year": 19,
+      "arxivId": "9901.00051",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_51.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00055",
+      "@type": "SourcePaper",
+      "name": "paper_55",
+      "year": 2026,
+      "arxivId": "9901.00055",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_55.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00060",
+      "@type": "SourcePaper",
+      "name": "paper_60",
+      "year": 20,
+      "arxivId": "9901.00060",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_60.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:9901.00061",
+      "@type": "SourcePaper",
+      "name": "THE THEORY OF THE",
+      "year": 19,
+      "arxivId": "9901.00061",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "paper_61.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:None",
+      "@type": "SourcePaper",
+      "name": "1111.0931",
+      "year": 20,
+      "arxivId": null,
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.5,
+      "localPdf": "1111.0931.pdf",
+      "tags": []
+    },
+    {
+      "@id": "paper:file:AIF_2003__53_3_665_0.pdf",
+      "@type": "SourcePaper",
+      "name": "Complex Analysis in Number Theory",
+      "year": 2003,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Annales de l'Institut Fourier",
+      "roleInProject": "H14",
+      "relevanceScore": 0.8,
+      "localPdf": "AIF_2003__53_3_665_0.pdf",
+      "tags": [
+        "complex-analysis",
+        "number-theory"
+      ],
+      "summary": "Main contribution from Complex Analysis in Number Theory",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:AIF_2005__55_4_1373_0.pdf",
+      "@type": "SourcePaper",
+      "name": "Fourier Analysis and Number Theory",
+      "year": 2005,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Annales de l'Institut Fourier",
+      "roleInProject": "H14",
+      "relevanceScore": 0.85,
+      "localPdf": "AIF_2005__55_4_1373_0.pdf",
+      "tags": [
+        "analytic",
+        "fourier"
+      ],
+      "summary": "Main contribution from Fourier Analysis and Number Theory",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:BSMA_1873__5__79_1.pdf",
+      "@type": "SourcePaper",
+      "name": "Mémoire sur la Distribution des Nombres Premiers",
+      "year": 1873,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Bulletin de la Société Mathématique de France",
+      "roleInProject": "General",
+      "relevanceScore": 0.85,
+      "localPdf": "BSMA_1873__5__79_1.pdf",
+      "tags": [
+        "chebyshev",
+        "distribution",
+        "historical"
+      ],
+      "summary": "Main contribution from Mémoire sur la Distribution des Nombres Premiers",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:BSMF_1896__24__199_1.pdf",
+      "@type": "SourcePaper",
+      "name": "Sur les Zéros de la Fonction ζ(s)",
+      "year": 1896,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Bulletin de la Société Mathématique de France",
+      "roleInProject": "General",
+      "relevanceScore": 0.9,
+      "localPdf": "BSMF_1896__24__199_1.pdf",
+      "tags": [
+        "hadamard",
+        "historical",
+        "zeta-zeros"
+      ],
+      "summary": "Main contribution from Sur les Zéros de la Fonction ζ(s)",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:BSMF_2006__134_3_417_0.pdf",
+      "@type": "SourcePaper",
+      "name": "Méthodes Modernes en Théorie des Nombres",
+      "year": 2006,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Bulletin de la Société Mathématique de France",
+      "roleInProject": "H14",
+      "relevanceScore": 0.82,
+      "localPdf": "BSMF_2006__134_3_417_0.pdf",
+      "tags": [
+        "methods",
+        "modern"
+      ],
+      "summary": "Main contribution from Méthodes Modernes en Théorie des Nombres",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "@type": "SourcePaper",
+      "name": "Progrès Récents sur l'Hypothèse de Riemann",
+      "year": 2009,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Comptes Rendus Mathématique",
+      "roleInProject": "H14",
+      "relevanceScore": 0.84,
+      "localPdf": "CRMATH_2009__347_19-20_1115_0.pdf",
+      "tags": [
+        "progress",
+        "recent",
+        "rh"
+      ],
+      "summary": "Main contribution from Progrès Récents sur l'Hypothèse de Riemann",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:JMPA_1893_4_9__171_0.pdf",
+      "@type": "SourcePaper",
+      "name": "Contributions to Prime Number Distribution",
+      "year": 1893,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Journal de Mathématiques",
+      "roleInProject": "General",
+      "relevanceScore": 0.8,
+      "localPdf": "JMPA_1893_4_9__171_0.pdf",
+      "tags": [
+        "analytic",
+        "classical"
+      ],
+      "summary": "Main contribution from Contributions to Prime Number Distribution",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:MSMF_2001_2_86__1_0.pdf",
+      "@type": "SourcePaper",
+      "name": "Mémoires sur les Fonctions Zêta",
+      "year": 2001,
+      "arxivId": null,
+      "doi": null,
+      "journal": "Mémoires de la Société Mathématique de France",
+      "roleInProject": "H14",
+      "relevanceScore": 0.83,
+      "localPdf": "MSMF_2001_2_86__1_0.pdf",
+      "tags": [
+        "french",
+        "zeta"
+      ],
+      "summary": "Main contribution from Mémoires sur les Fonctions Zêta",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.75,
+        "estimatedWeeks": 4.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:file:Zeta (1).pdf",
+      "@type": "SourcePaper",
+      "name": "The Riemann Zeta Function",
+      "year": 2010,
+      "arxivId": null,
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.8,
+      "localPdf": "Zeta (1).pdf",
+      "tags": [
+        "special-functions",
+        "zeta"
+      ],
+      "summary": "Main contribution from The Riemann Zeta Function",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:math/0306251",
+      "@type": "SourcePaper",
+      "name": "Digamma Function and Belhadj-Goubi Proof",
+      "year": 2003,
+      "arxivId": "math/0306251",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "H13",
+      "relevanceScore": 0.88,
+      "localPdf": "math_0306251.pdf",
+      "tags": [
+        "belhadj-goubi",
+        "digamma",
+        "special-functions"
+      ],
+      "summary": "Main contribution from Digamma Function and Belhadj-Goubi Proof",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.95,
+        "estimatedWeeks": 1.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "paper:math/9912107",
+      "@type": "SourcePaper",
+      "name": "Classical Number Theory Methods",
+      "year": 1999,
+      "arxivId": "math/9912107",
+      "doi": null,
+      "journal": null,
+      "roleInProject": "General",
+      "relevanceScore": 0.75,
+      "localPdf": "math_9912107.pdf",
+      "tags": [
+        "classical",
+        "number-theory"
+      ],
+      "summary": "Main contribution from Classical Number Theory Methods",
+      "openProblems": [],
+      "formalizationPotential": {
+        "overallReadiness": 0.5,
+        "estimatedWeeks": 5.0,
+        "mathlibDependencies": [
+          {
+            "concept": "Core technique",
+            "status": "available-but-scattered",
+            "mathlib_module": null,
+            "estimated_effort": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "roadmap:artifact-database-roadmap",
+      "@type": "Roadmap",
+      "name": "Artifact Database Roadmap",
+      "source": {
+        "file": "ARTIFACT_DATABASE_ROADMAP.md",
+        "line": 1
+      },
+      "summary": "Versioned project roadmap; its phases and decisions are primary research artifacts.",
+      "tags": [
+        "roadmap",
+        "research"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.baezDuarteL2Error_nonneg",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.baezDuarteL2Error_nonneg",
+      "statement": "theorem baezDuarteL2Error_nonneg (N : ℕ) (coeffs : Fin N → ℝ) : 0 ≤ BaezDuarteL2Error N coeffs",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 33,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.bdApprox_eq_tail_of_one_lt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.bdApprox_eq_tail_of_one_lt",
+      "statement": "theorem bdApprox_eq_tail_of_one_lt (N : ℕ) (coeffs : Fin N → ℝ) {x : ℝ} (hx : 1 < x) : bdApprox N coeffs x = (∑ k, coeffs k / (k.val + 1 : ℝ)) / x",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 63,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- A finite approximant has a single scalar reciprocal tail."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.chi01_eq_indicator",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.chi01_eq_indicator",
+      "statement": "theorem chi01_eq_indicator (x : ℝ) : ((chi01 x : ℝ) : ℂ) = (Ioc (0 : ℝ) 1).indicator (fun _ ↦ (1 : ℂ)) x",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 45,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- `chi01`, coerced to `ℂ`, is the indicator of `(0, 1]`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.chi_sub_bdApprox_eq_tail_of_one_lt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.chi_sub_bdApprox_eq_tail_of_one_lt",
+      "statement": "theorem chi_sub_bdApprox_eq_tail_of_one_lt (N : ℕ) (coeffs : Fin N → ℝ) {x : ℝ} (hx : 1 < x) : chi01 x - bdApprox N coeffs x = -(∑ k, coeffs k / (k.val + 1 : ℝ)) / x",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 75,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The complete approximation error therefore has an exact reciprocal tail on `(1,∞)`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTailDerivIntegrand_aestronglyMeasurable",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTailDerivIntegrand_aestronglyMeasurable",
+      "statement": "theorem fractTailDerivIntegrand_aestronglyMeasurable (s : ℂ) {X : ℝ} : AEStronglyMeasurable (fractTailDerivIntegrand s) (volume.restrict (Ioi X))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 139,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTailDerivIntegrand_norm_le",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTailDerivIntegrand_norm_le",
+      "statement": "theorem fractTailDerivIntegrand_norm_le {s : ℂ} {u : ℝ} (hu : 1 ≤ u) : ‖fractTailDerivIntegrand s u‖ ≤ Real.log u * u ^ (-s.re - 1)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 117,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTailIntegrand_aestronglyMeasurable",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTailIntegrand_aestronglyMeasurable",
+      "statement": "theorem fractTailIntegrand_aestronglyMeasurable (s : ℂ) {X : ℝ} : AEStronglyMeasurable (fractTailIntegrand s) (volume.restrict (Ioi X))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 57,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTailIntegrand_hasDerivAt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTailIntegrand_hasDerivAt",
+      "statement": "theorem fractTailIntegrand_hasDerivAt {u : ℝ} (hu : 1 ≤ u) (s : ℂ) : HasDerivAt (fun z : ℂ ↦ fractTailIntegrand z u) (fractTailDerivIntegrand s u) s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 151,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTailIntegrand_integrableOn",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTailIntegrand_integrableOn",
+      "statement": "theorem fractTailIntegrand_integrableOn {s : ℂ} (hs : 0 < s.re) {X : ℝ} (hX : 1 ≤ X) : IntegrableOn (fractTailIntegrand s) (Ioi X)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 65,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTailIntegrand_norm_le",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTailIntegrand_norm_le",
+      "statement": "theorem fractTailIntegrand_norm_le {s : ℂ} {u : ℝ} (hu : 1 ≤ u) : ‖fractTailIntegrand s u‖ ≤ u ^ (-s.re - 1)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 40,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTail_differentiableAt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTail_differentiableAt",
+      "statement": "theorem fractTail_differentiableAt {s : ℂ} (hs : 0 < s.re) {X : ℝ} (hX : 1 ≤ X) : DifferentiableAt ℂ (fun z : ℂ ↦ fractTail z X) s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 228,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTail_hasDerivAt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTail_hasDerivAt",
+      "statement": "theorem fractTail_hasDerivAt {s₀ : ℂ} (hs₀ : 0 < s₀.re) {X : ℝ} (hX : 1 ≤ X) : HasDerivAt (fun s : ℂ ↦ fractTail s X) (∫ u in Ioi X, fractTailDerivIntegrand s₀ u) s₀",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 169,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTail_one_eq_of_one_lt_re",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTail_one_eq_of_one_lt_re",
+      "statement": "theorem fractTail_one_eq_of_one_lt_re {s : ℂ} (hs : 1 < s.re) : fractTail s 1 = 1 / (s - 1) - riemannZeta s / s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 261,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The exact fractional-part tail identity on its initial half-plane."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.fractTail_one_eq_on_strip",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.fractTail_one_eq_on_strip",
+      "statement": "theorem fractTail_one_eq_on_strip {s : ℂ} (h0 : 0 < s.re) (h1 : s.re < 1) : fractTail s 1 = (1 + 1 / (s - 1) - riemannZeta s) / s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 495,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Closed form of the fractional-part tail throughout `0 < Re s < 1`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.integrableOn_log_mul_rpow",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.integrableOn_log_mul_rpow",
+      "statement": "theorem integrableOn_log_mul_rpow {X : ℝ} (hX : 1 ≤ X) {a : ℝ} (ha : a < -1) : IntegrableOn (fun u : ℝ ↦ Real.log u * u ^ a) (Ioi X)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 89,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.integral_Ioc_fract_cpow",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.integral_Ioc_fract_cpow",
+      "statement": "theorem integral_Ioc_fract_cpow {s : ℂ} (h1 : s.re < 1) : (∫ t : ℝ in Ioc (0 : ℝ) 1, (t : ℂ) ^ (-s - 1) * ((Int.fract t : ℝ) : ℂ)) = 1 / (1 - s)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 507,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Head piece: `∫_(0,1] t^(-s-1) {t} dt = 1/(1-s)`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.log_le_rpow_div_self",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.log_le_rpow_div_self",
+      "statement": "theorem log_le_rpow_div_self {u δ : ℝ} (hu : 1 ≤ u) (hδ : 0 < δ) : Real.log u ≤ u ^ δ / δ",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 78,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Elementary domination used to differentiate the tail under the integral."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_chi01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_chi01",
+      "statement": "theorem mellin_chi01 {s : ℂ} (hs : 0 < s.re) : mellin (fun x : ℝ ↦ ((chi01 x : ℝ) : ℂ)) s = 1 / s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 53,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The exact Mellin transform of `χ_(0,1]` on its half-plane of convergence."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_fract_eq_head_add_fractTail",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_fract_eq_head_add_fractTail",
+      "statement": "theorem mellin_fract_eq_head_add_fractTail {s : ℂ} (h0 : 0 < s.re) (h1 : s.re < 1) : mellin (fun x : ℝ ↦ ((Int.fract x : ℝ) : ℂ)) (-s) = 1 / (1 - s) + fractTail s 1",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 544,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Splitting the fractional-part Mellin integral at `1`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_fract_inv_eq_neg_zeta_div",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_fract_inv_eq_neg_zeta_div",
+      "statement": "theorem mellin_fract_inv_eq_neg_zeta_div {s : ℂ} (h0 : 0 < s.re) (h1 : s.re < 1) : mellin (fun x : ℝ ↦ ((Int.fract x : ℝ) : ℂ)) (-s) = -riemannZeta s / s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 596,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The ordinary fractional-part Mellin transform evaluated at the inverted critical-strip parameter."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoBD",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoBD",
+      "statement": "theorem mellin_rhoBD (k : ℕ) {s : ℂ} (h0 : 0 < s.re) (h1 : s.re < 1) : mellin (fun x : ℝ ↦ (rhoBD k x : ℂ)) s = -(riemannZeta s) / (s * ((((k + 1 : ℕ) : ℝ) : ℂ) ^ s))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 628,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The unconditional Mellin formula for the zero-based Báez--Duarte generators."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoBD_eq_scaled_base",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoBD_eq_scaled_base",
+      "statement": "theorem mellin_rhoBD_eq_scaled_base (k : ℕ) (s : ℂ) : mellin (fun x : ℝ ↦ (rhoBD k x : ℂ)) s = (((((k + 1 : ℕ) : ℝ) : ℂ) ^ (-s))) • mellin (fun x : ℝ ↦ (rhoBase x : ℂ)) s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 130,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Mellin scaling reduces every integer generator to the base generator."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoBD_of_base",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoBD_of_base",
+      "statement": "theorem mellin_rhoBD_of_base (k : ℕ) (s : ℂ) (hbase : mellin (fun x : ℝ ↦ (rhoBase x : ℂ)) s = -(riemannZeta s) / s) : mellin (fun x : ℝ ↦ (rhoBD k x : ℂ)) s = -(riemannZeta s) / (s * ((((k + 1 : ℕ) : ℝ) : ℂ) ^ s))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 150,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Exact assembly of the Báez--Duarte generator formula from the one base fractional-part Mellin evaluation. The hypothesis is precisely the output needed from the zeta/Euler--Maclaurin side of the project."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoBase",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoBase",
+      "statement": "theorem mellin_rhoBase {s : ℂ} (h0 : 0 < s.re) (h1 : s.re < 1) : mellin (fun x : ℝ ↦ (rhoBase x : ℂ)) s = -(riemannZeta s) / s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 613,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The unconditional base fractional-part Mellin evaluation."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoBase_eq_mellin_fract_inv",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoBase_eq_mellin_fract_inv",
+      "statement": "theorem mellin_rhoBase_eq_mellin_fract_inv (s : ℂ) : mellin (fun x : ℝ ↦ (rhoBase x : ℂ)) s = mellin (fun x : ℝ ↦ ((Int.fract x : ℝ) : ℂ)) (-s : ℂ)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 141,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Inversion converts the base generator to the Mellin transform of the ordinary fractional-part function."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoTheta",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoTheta",
+      "statement": "theorem mellin_rhoTheta {θ : ℝ} (hθ : 0 < θ) {s : ℂ} (h0 : 0 < s.re) (h1 : s.re < 1) : mellin (fun x : ℝ ↦ (rhoTheta θ x : ℂ)) s = (θ : ℂ) ^ s * (-(riemannZeta s) / s)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 620,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The unconditional Mellin formula for every positive Nyman dilation."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoTheta_eq_scaled_base",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoTheta_eq_scaled_base",
+      "statement": "theorem mellin_rhoTheta_eq_scaled_base {θ : ℝ} (hθ : 0 < θ) (s : ℂ) : mellin (fun x : ℝ ↦ (rhoTheta θ x : ℂ)) s = (((θ⁻¹ : ℝ) : ℂ) ^ (-s)) • mellin (fun x : ℝ ↦ (rhoBase x : ℂ)) s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 102,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Mellin scaling for the classical generator `ρ_θ`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.mellin_rhoTheta_of_base",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.mellin_rhoTheta_of_base",
+      "statement": "theorem mellin_rhoTheta_of_base {θ : ℝ} (hθ : 0 < θ) (s : ℂ) (hbase : mellin (fun x : ℝ ↦ (rhoBase x : ℂ)) s = -(riemannZeta s) / s) : mellin (fun x : ℝ ↦ (rhoTheta θ x : ℂ)) s = (θ : ℂ) ^ s * (-(riemannZeta s) / s)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 111,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Exact `ρ_θ` formula once the base fractional-part transform is available."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.rhoBD_eq_one_div_of_one_lt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.rhoBD_eq_one_div_of_one_lt",
+      "statement": "theorem rhoBD_eq_one_div_of_one_lt (k : ℕ) {x : ℝ} (hx : 1 < x) : rhoBD k x = 1 / ((k + 1 : ℝ) * x)",
+      "source": {
+        "file": "proofs/NBMellinTools/BaezDuarteTail.lean",
+        "line": 49,
+        "module": "NBMellinTools.BaezDuarteTail",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Above one, every zero-based generator is exactly reciprocal."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.rhoBD_eq_rhoBase_comp",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.rhoBD_eq_rhoBase_comp",
+      "statement": "theorem rhoBD_eq_rhoBase_comp (k : ℕ) (x : ℝ) : rhoBD k x = rhoBase (((k + 1 : ℕ) : ℝ) * x)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 125,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Each integer generator is the base generator after a positive dilation."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.rhoTheta_eq_rhoBase_comp",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.rhoTheta_eq_rhoBase_comp",
+      "statement": "theorem rhoTheta_eq_rhoBase_comp {θ : ℝ} (hθ : 0 < θ) (x : ℝ) : rhoTheta θ x = rhoBase (θ⁻¹ * x)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2Mellin.lean",
+        "line": 93,
+        "module": "NBMellinTools.NB2Mellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- A positive-parameter Nyman generator is a dilation of `rhoBase`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.riemannZeta_eq_floor_cpow_integral",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.riemannZeta_eq_floor_cpow_integral",
+      "statement": "theorem riemannZeta_eq_floor_cpow_integral {s : ℂ} (hs : 1 < s.re) : riemannZeta s = s * ∫ t : ℝ in Ioi (1 : ℝ), (((Nat.floor t : ℕ) : ℂ) * (t : ℂ) ^ (-s - 1))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 242,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Abel summation for the constant Dirichlet coefficients on `Re s > 1`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.zetaTailRHS_differentiableAt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.zetaTailRHS_differentiableAt",
+      "statement": "theorem zetaTailRHS_differentiableAt {s : ℂ} (hs : 0 < s.re) (hs1 : s ≠ 1) : DifferentiableAt ℂ zetaTailRHS s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 383,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_of_one_lt_re",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.zeta_eq_zetaTailRHS_of_one_lt_re",
+      "statement": "theorem zeta_eq_zetaTailRHS_of_one_lt_re {s : ℂ} (hs : 1 < s.re) : riemannZeta s = zetaTailRHS s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 371,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_of_pos_re_of_im_ne_zero",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.zeta_eq_zetaTailRHS_of_pos_re_of_im_ne_zero",
+      "statement": "theorem zeta_eq_zetaTailRHS_of_pos_re_of_im_ne_zero {s : ℂ} (h0 : 0 < s.re) (him : s.im ≠ 0) : riemannZeta s = zetaTailRHS s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 420,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The continued identity away from the real axis in the right half-plane."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_on_convex",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.zeta_eq_zetaTailRHS_on_convex",
+      "statement": "theorem zeta_eq_zetaTailRHS_on_convex {U : Set ℂ} (hUopen : IsOpen U) (hUconv : Convex ℝ U) (hUre : ∀ z ∈ U, 0 < z.re) (hUone : (1 : ℂ) ∉ U) {z₀ : ℂ} (hz₀U : z₀ ∈ U) (hz₀re : 1 < z₀.re) : Set.EqOn riemannZeta zetaTailRHS U",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 397,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The identity theorem step on a convex subset of the punctured right half-plane."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_on_strip",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB2.zeta_eq_zetaTailRHS_on_strip",
+      "statement": "theorem zeta_eq_zetaTailRHS_on_strip {s : ℂ} (h0 : 0 < s.re) (h1 : s.re < 1) : riemannZeta s = zetaTailRHS s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB2BaseMellin.lean",
+        "line": 450,
+        "module": "NBMellinTools.NB2BaseMellin",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The continued Euler--Maclaurin identity on the whole critical strip."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.measurable_bdApprox",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.measurable_bdApprox",
+      "statement": "private theorem measurable_bdApprox (N : ℕ) (coeffs : Fin N → ℝ) : Measurable (bdApprox N coeffs)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 45,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.measurable_chi01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.measurable_chi01",
+      "statement": "private theorem measurable_chi01 : Measurable chi01",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 37,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.measurable_mellinError",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.measurable_mellinError",
+      "statement": "private theorem measurable_mellinError (N : ℕ) (coeffs : Fin N → ℝ) : Measurable (mellinError N coeffs)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 51,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.measurable_rhoBD",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.measurable_rhoBD",
+      "statement": "private theorem measurable_rhoBD (k : ℕ) : Measurable (rhoBD k)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 41,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellinContinuityConstant_nonneg",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellinContinuityConstant_nonneg",
+      "statement": "theorem mellinContinuityConstant_nonneg {s : ℂ} (hs0 : 1 / 2 < s.re) (hs1 : s.re < 1) : 0 ≤ MellinContinuityConstant s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 505,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellinError_local_sq_eq_realError",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellinError_local_sq_eq_realError",
+      "statement": "private theorem mellinError_local_sq_eq_realError (N : ℕ) (coeffs : Fin N → ℝ) : (∫ x in Ioc (0 : ℝ) 1, ‖mellinError N coeffs x‖ ^ 2) = ∫ x in Ioc (0 : ℝ) 1, realError N coeffs x ^ 2",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 323,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellinError_memLp_Ioc01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellinError_memLp_Ioc01",
+      "statement": "private theorem mellinError_memLp_Ioc01 (N : ℕ) (coeffs : Fin N → ℝ) : MemLp (mellinError N coeffs) 2 (volume.restrict (Ioc (0 : ℝ) 1))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 166,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellinError_tail_model_eq",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellinError_tail_model_eq",
+      "statement": "private theorem mellinError_tail_model_eq {s : ℂ} (N : ℕ) (coeffs : Fin N → ℝ) {x : ℝ} (hx : 1 < x) : mellinKernel s x * mellinError N coeffs x = (-(tailCoeff N coeffs) : ℂ) * (x : ℂ) ^ (s - 2)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 381,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellinKernel_integrableOn_Ioc01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellinKernel_integrableOn_Ioc01",
+      "statement": "private theorem mellinKernel_integrableOn_Ioc01 {s : ℂ} (hs : 0 < s.re) : IntegrableOn (mellinKernel s) (Ioc (0 : ℝ) 1)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 98,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellinKernel_memLp_Ioc01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellinKernel_memLp_Ioc01",
+      "statement": "private theorem mellinKernel_memLp_Ioc01 {s : ℂ} (hs : 1 / 2 < s.re) : MemLp (mellinKernel s) 2 (volume.restrict (Ioc (0 : ℝ) 1))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 140,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellinKernel_norm_sq_integral",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellinKernel_norm_sq_integral",
+      "statement": "private theorem mellinKernel_norm_sq_integral {s : ℂ} (hs : 1 / 2 < s.re) : (∫ x in Ioc (0 : ℝ) 1, ‖mellinKernel s x‖ ^ 2) = 1 / (2 * s.re - 1)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 108,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellin_error_part_A_bound",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellin_error_part_A_bound",
+      "statement": "theorem mellin_error_part_A_bound {s : ℂ} (hs : 1 / 2 < s.re) (N : ℕ) (coeffs : Fin N → ℝ) : ‖∫ x in Ioc (0 : ℝ) 1, mellinKernel s x * mellinError N coeffs x‖ ≤ (1 / Real.sqrt (2 * s.re - 1)) * Real.sqrt (BaezDuarteL2Error N coeffs)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 333,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellin_error_tail_part_B_bound",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellin_error_tail_part_B_bound",
+      "statement": "theorem mellin_error_tail_part_B_bound {s : ℂ} (hs : s.re < 1) (N : ℕ) (coeffs : Fin N → ℝ) : ‖∫ x in Ioi (1 : ℝ), mellinKernel s x * mellinError N coeffs x‖ ≤ (1 / (1 - s.re)) * Real.sqrt (BaezDuarteL2Error N coeffs)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 423,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellin_evaluation_continuous_on_critical_strip",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellin_evaluation_continuous_on_critical_strip",
+      "statement": "theorem mellin_evaluation_continuous_on_critical_strip (s₀ : ℂ) (hs0 : 1 / 2 < s₀.re) (hs1 : s₀.re < 1) : ∃ C : ℝ, 0 ≤ C ∧ ∀ (N : ℕ) (coeffs : Fin N → ℝ), ‖mellin (fun x : ℝ ↦ ((chi01 x - bdApprox N coeffs x : ℝ) : ℂ)) s₀‖ ≤ C * Real.sqrt (BaezDuarteL2Error N coeffs)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 516,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Point evaluation of the Mellin transform is continuous with respect to the exact full-half-line Báez--Duarte `L²` error throughout `1/2 < Re(s) < 1`."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellin_integrand_integrableOn_Ioc01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellin_integrand_integrableOn_Ioc01",
+      "statement": "private theorem mellin_integrand_integrableOn_Ioc01 {s : ℂ} (hs : 0 < s.re) (N : ℕ) (coeffs : Fin N → ℝ) : IntegrableOn (fun x ↦ mellinKernel s x * mellinError N coeffs x) (Ioc (0 : ℝ) 1)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 309,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellin_integrand_integrableOn_Ioi",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellin_integrand_integrableOn_Ioi",
+      "statement": "private theorem mellin_integrand_integrableOn_Ioi {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) (N : ℕ) (coeffs : Fin N → ℝ) : IntegrableOn (fun x ↦ mellinKernel s x * mellinError N coeffs x) (Ioi (0 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 475,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellin_split_at_one",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellin_split_at_one",
+      "statement": "private theorem mellin_split_at_one {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) (N : ℕ) (coeffs : Fin N → ℝ) : mellin (fun x : ℝ ↦ ((chi01 x - bdApprox N coeffs x : ℝ) : ℂ)) s = (∫ x in Ioc (0 : ℝ) 1, mellinKernel s x * mellinError N coeffs x) + (∫ x in Ioi (1 : ℝ), mellinKernel s x * mellinError N coeffs x)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 484,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.mellin_tail_integrableOn_Ioi",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.mellin_tail_integrableOn_Ioi",
+      "statement": "private theorem mellin_tail_integrableOn_Ioi {s : ℂ} (hs : s.re < 1) (N : ℕ) (coeffs : Fin N → ℝ) : IntegrableOn (fun x ↦ mellinKernel s x * mellinError N coeffs x) (Ioi (1 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 399,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.norm_bdApprox_le",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.norm_bdApprox_le",
+      "statement": "private theorem norm_bdApprox_le (N : ℕ) (coeffs : Fin N → ℝ) (x : ℝ) : ‖bdApprox N coeffs x‖ ≤ ∑ k : Fin N, ‖coeffs k‖",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 66,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.norm_chi01_le_one",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.norm_chi01_le_one",
+      "statement": "private theorem norm_chi01_le_one (x : ℝ) : ‖chi01 x‖ ≤ 1",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 57,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.norm_mellinError_le",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.norm_mellinError_le",
+      "statement": "private theorem norm_mellinError_le (N : ℕ) (coeffs : Fin N → ℝ) (x : ℝ) : ‖mellinError N coeffs x‖ ≤ 1 + ∑ k : Fin N, ‖coeffs k‖",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 80,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.norm_rhoBD_le_one",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.norm_rhoBD_le_one",
+      "statement": "private theorem norm_rhoBD_le_one (k : ℕ) (x : ℝ) : ‖rhoBD k x‖ ≤ 1",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 61,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.realError_eq_tail_on_Ioi",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.realError_eq_tail_on_Ioi",
+      "statement": "private theorem realError_eq_tail_on_Ioi (N : ℕ) (coeffs : Fin N → ℝ) : EqOn (realError N coeffs) (fun x ↦ -tailCoeff N coeffs / x) (Ioi (1 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 214,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.realError_measurable",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.realError_measurable",
+      "statement": "private theorem realError_measurable (N : ℕ) (coeffs : Fin N → ℝ) : Measurable (realError N coeffs)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 191,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.realError_sq_integrableOn_Ioc01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.realError_sq_integrableOn_Ioc01",
+      "statement": "private theorem realError_sq_integrableOn_Ioc01 (N : ℕ) (coeffs : Fin N → ℝ) : IntegrableOn (fun x ↦ realError N coeffs x ^ 2) (Ioc (0 : ℝ) 1)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 195,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.realError_sq_integrableOn_Ioi",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.realError_sq_integrableOn_Ioi",
+      "statement": "private theorem realError_sq_integrableOn_Ioi (N : ℕ) (coeffs : Fin N → ℝ) : IntegrableOn (fun x ↦ realError N coeffs x ^ 2) (Ioi (1 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 221,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.realError_sq_integrableOn_Ioi_zero",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.realError_sq_integrableOn_Ioi_zero",
+      "statement": "private theorem realError_sq_integrableOn_Ioi_zero (N : ℕ) (coeffs : Fin N → ℝ) : IntegrableOn (fun x ↦ realError N coeffs x ^ 2) (Ioi (0 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 251,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.realError_sq_integral_Ioc_le_error",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.realError_sq_integral_Ioc_le_error",
+      "statement": "private theorem realError_sq_integral_Ioc_le_error (N : ℕ) (coeffs : Fin N → ℝ) : (∫ x in Ioc (0 : ℝ) 1, realError N coeffs x ^ 2) ≤ BaezDuarteL2Error N coeffs",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 259,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB3.tailCoeff_sq_le_error",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB3.tailCoeff_sq_le_error",
+      "statement": "private theorem tailCoeff_sq_le_error (N : ℕ) (coeffs : Fin N → ℝ) : tailCoeff N coeffs ^ 2 ≤ BaezDuarteL2Error N coeffs",
+      "source": {
+        "file": "proofs/NBMellinTools/NB3MellinContinuity.lean",
+        "line": 270,
+        "module": "NBMellinTools.NB3MellinContinuity",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.bdApprox_mellin_integrableOn",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.bdApprox_mellin_integrableOn",
+      "statement": "private theorem bdApprox_mellin_integrableOn {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) (N : ℕ) (coeffs : Fin N → ℝ) : IntegrableOn (fun x : ℝ => mellinKernel s x * ((bdApprox N coeffs x : ℝ) : ℂ)) (Ioi (0 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 190,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.chi_mellin_integrableOn",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.chi_mellin_integrableOn",
+      "statement": "private theorem chi_mellin_integrableOn {s : ℂ} (hs : 0 < s.re) : IntegrableOn (fun x : ℝ => mellinKernel s x * ((chi01 x : ℝ) : ℂ)) (Ioi (0 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 160,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.measurable_rhoBD",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.measurable_rhoBD",
+      "statement": "private theorem measurable_rhoBD (k : ℕ) : Measurable (rhoBD k)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 35,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.mellin_bdApprox_zero_of_generators_zero",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.mellin_bdApprox_zero_of_generators_zero",
+      "statement": "private theorem mellin_bdApprox_zero_of_generators_zero {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) (hgens : ∀ k : ℕ, mellin (fun x : ℝ => (rhoBD k x : ℂ)) s = 0) (N : ℕ) (coeffs : Fin N → ℝ) : mellin (fun x : ℝ => (bdApprox N coeffs x : ℂ)) s = 0",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 120,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.mellin_sub_chi_bdApprox",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.mellin_sub_chi_bdApprox",
+      "statement": "private theorem mellin_sub_chi_bdApprox {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) (N : ℕ) (coeffs : Fin N → ℝ) : mellin (fun x : ℝ => ((chi01 x - bdApprox N coeffs x : ℝ) : ℂ)) s = mellin (fun x : ℝ => (chi01 x : ℂ)) s - mellin (fun x : ℝ => (bdApprox N coeffs x : ℂ)) s",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 214,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.rhoBD_eq_inv_on_Ioi",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.rhoBD_eq_inv_on_Ioi",
+      "statement": "private theorem rhoBD_eq_inv_on_Ioi (k : ℕ) {x : ℝ} (hx : 1 < x) : rhoBD k x = 1 / (((k : ℝ) + 1) * x)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 39,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.rho_mellin_integrableOn_Ioc01",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.rho_mellin_integrableOn_Ioc01",
+      "statement": "private theorem rho_mellin_integrableOn_Ioc01 {s : ℂ} (hs : 0 < s.re) (k : ℕ) : IntegrableOn (rhoMellinIntegrand k s) (Ioc (0 : ℝ) 1)",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 59,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.rho_mellin_integrableOn_Ioi",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.rho_mellin_integrableOn_Ioi",
+      "statement": "private theorem rho_mellin_integrableOn_Ioi {s : ℂ} (hs : s.re < 1) (k : ℕ) : IntegrableOn (rhoMellinIntegrand k s) (Ioi (1 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 83,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.rho_mellin_integrableOn_Ioi_zero",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.rho_mellin_integrableOn_Ioi_zero",
+      "statement": "private theorem rho_mellin_integrableOn_Ioi_zero {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) (k : ℕ) : IntegrableOn (rhoMellinIntegrand k s) (Ioi (0 : ℝ))",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 113,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ]
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.riemannZeta_ne_zero_of_nymanBeurlingCriterion",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.riemannZeta_ne_zero_of_nymanBeurlingCriterion",
+      "statement": "theorem riemannZeta_ne_zero_of_nymanBeurlingCriterion (hcriterion : NymanBeurlingCriterion) {s : ℂ} (hs0 : 1 / 2 < s.re) (hs1 : s.re < 1) : riemannZeta s ≠ 0",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 313,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- The finite-approximation Nyman--Beurling criterion rules out zeta zeros in the right half of the critical strip. The left half is intentionally not claimed here: completing it requires a separately audited symmetry bridge."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.vanishing_transport",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.vanishing_transport",
+      "statement": "theorem vanishing_transport (s₀ : ℂ) (hs0 : 1 / 2 < s₀.re) (hs1 : s₀.re < 1) (hcriterion : NymanBeurlingCriterion) (hgens : ∀ k : ℕ, mellin (fun x : ℝ => (rhoBD k x : ℂ)) s₀ = 0) : mellin (fun x : ℝ => (chi01 x : ℂ)) s₀ = 0",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 300,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Field 2 instantiated with the proved Field 1 continuity estimate."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB4.vanishing_transport_of_field_1",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB4.vanishing_transport_of_field_1",
+      "statement": "theorem vanishing_transport_of_field_1 (hfield1 : ∀ s₀ : ℂ, 1 / 2 < s₀.re → s₀.re < 1 → ∃ C : ℝ, 0 ≤ C ∧ ∀ (N : ℕ) (coeffs : Fin N → ℝ), ‖mellin (fun x : ℝ => ((chi01 x - bdApprox N coeffs x : ℝ) : ℂ)) s₀‖ ≤ C * Real.sqrt (BaezDuarteL2Error N coeffs)) (s₀ : ℂ) (hs0 : 1 / 2 < s₀.re) (hs1 : s₀.re < 1) (hcriterion : NymanBeurlingCriterion) (hgens : ∀ k : ℕ, mellin (fun x : ℝ => (rhoBD k x : ℂ)) s₀ = 0) : mellin (fun x : ℝ => (chi01 x : ℂ)) s₀ = 0",
+      "source": {
+        "file": "proofs/NBMellinTools/NB4ZeroDetection.lean",
+        "line": 243,
+        "module": "NBMellinTools.NB4ZeroDetection",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- An abstract Field 1 estimate transports generator vanishing to the vanishing of the target transform."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB5.criticalStripRiemannHypothesis_of_no_zeros_right_half",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB5.criticalStripRiemannHypothesis_of_no_zeros_right_half",
+      "statement": "theorem criticalStripRiemannHypothesis_of_no_zeros_right_half (hright : ∀ s : ℂ, 1 / 2 < s.re → s.re < 1 → riemannZeta s ≠ 0) : CriticalStripRiemannHypothesis",
+      "source": {
+        "file": "proofs/NBMellinTools/NB5FunctionalEquationClosure.lean",
+        "line": 92,
+        "module": "NBMellinTools.NB5FunctionalEquationClosure",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- A generic right-half zero-free statement, together with the proved functional-equation reflection, forces all critical-strip zeros onto the critical line."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB5.criticalStripRiemannHypothesis_of_nymanBeurlingCriterion",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB5.criticalStripRiemannHypothesis_of_nymanBeurlingCriterion",
+      "statement": "theorem criticalStripRiemannHypothesis_of_nymanBeurlingCriterion (hcriterion : NymanBeurlingCriterion) : CriticalStripRiemannHypothesis",
+      "source": {
+        "file": "proofs/NBMellinTools/NB5FunctionalEquationClosure.lean",
+        "line": 110,
+        "module": "NBMellinTools.NB5FunctionalEquationClosure",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- NB5 closure: the finite-approximation Nyman--Beurling criterion implies the critical-strip formulation of the Riemann hypothesis."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB5.riemannZeta_ne_zero_left_half_of_nymanBeurlingCriterion",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB5.riemannZeta_ne_zero_left_half_of_nymanBeurlingCriterion",
+      "statement": "theorem riemannZeta_ne_zero_left_half_of_nymanBeurlingCriterion (hcriterion : NymanBeurlingCriterion) {s : ℂ} (hs0 : 0 < s.re) (hsHalf : s.re < 1 / 2) : riemannZeta s ≠ 0",
+      "source": {
+        "file": "proofs/NBMellinTools/NB5FunctionalEquationClosure.lean",
+        "line": 72,
+        "module": "NBMellinTools.NB5FunctionalEquationClosure",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- NB4's right-half theorem and zeta-zero reflection rule out zeros in the left half of the open critical strip."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB5.riemannZeta_one_sub_eq_zero_iff",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB5.riemannZeta_one_sub_eq_zero_iff",
+      "statement": "theorem riemannZeta_one_sub_eq_zero_iff {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) : riemannZeta (1 - s) = 0 ↔ riemannZeta s = 0",
+      "source": {
+        "file": "proofs/NBMellinTools/NB5FunctionalEquationClosure.lean",
+        "line": 54,
+        "module": "NBMellinTools.NB5FunctionalEquationClosure",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- On the open critical strip, zero reflection is an equivalence."
+    },
+    {
+      "@id": "theorem:NBMellinTools.NB5.riemannZeta_one_sub_eq_zero_of_eq_zero",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.NB5.riemannZeta_one_sub_eq_zero_of_eq_zero",
+      "statement": "theorem riemannZeta_one_sub_eq_zero_of_eq_zero {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) (hzeta : riemannZeta s = 0) : riemannZeta (1 - s) = 0",
+      "source": {
+        "file": "proofs/NBMellinTools/NB5FunctionalEquationClosure.lean",
+        "line": 35,
+        "module": "NBMellinTools.NB5FunctionalEquationClosure",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Zeta-zero reflection on the open critical strip, derived from Mathlib's functional equation rather than from a project assumption."
+    },
+    {
+      "@id": "theorem:NBMellinTools.norm_setIntegral_mul_le_sqrt_mul_sqrt",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.norm_setIntegral_mul_le_sqrt_mul_sqrt",
+      "statement": "theorem norm_setIntegral_mul_le_sqrt_mul_sqrt (f g : α → ℂ) [MeasurableSpace α] (s : Set α) (μ : Measure α) (hf : MemLp f 2 (μ.restrict s)) (hg : MemLp g 2 (μ.restrict s)) : ‖∫ x in s, f x * g x ∂μ‖ ≤ Real.sqrt (∫ x in s, ‖f x‖ ^ 2 ∂μ) * Real.sqrt (∫ x in s, ‖g x‖ ^ 2 ∂μ)",
+      "source": {
+        "file": "proofs/NBMellinTools/MellinEvaluation.lean",
+        "line": 23,
+        "module": "NBMellinTools.MellinEvaluation",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "proved",
+        "newAxioms": 0,
+        "sorries": 0
+      },
+      "tags": [
+        "lean",
+        "nbmellintools"
+      ],
+      "summary": "- Cauchy--Schwarz for a scalar kernel acting on a complex-valued function, stated with the explicit square integrals needed by Mellin applications."
+    },
+    {
+      "@id": "theorem:NBMellinTools.weight_bounded",
+      "@type": "FormalTheorem",
+      "name": "NBMellinTools.weight_bounded",
+      "statement": "theorem weight_bounded (N k : ℕ) : ‖weight_function N k‖ ≤ 1",
+      "source": {
+        "file": "proofs/NBMellinTools/H15_RouteA.lean",
+        "line": 100,
+        "module": "NBMellinTools.H15_RouteA",
+        "commit": "16f0b2f465c5410a788279615f668d6a88e0ae80"
+      },
+      "verification": {
+        "status": "contains_sorry",
+        "newAxioms": 0,
+        "sorries": 1
+      },
+      "tags": [
+        "lean",
+        "nbmellintools",
+        "unresolved-formalization"
+      ],
+      "openProblem": true,
+      "difficulty": "research-level",
+      "summary": "- Weight function is bounded"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "axiom:NBMellinTools.auli_bayad_beck_reciprocity",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "axiom:NBMellinTools.auli_bayad_beck_reciprocity",
+      "predicate": "motivatedBy",
+      "target": "paper:1601.06839",
+      "confidence": 1.0,
+      "note": "Explicit arXiv identifier in the declaration's preceding documentation."
+    },
+    {
+      "source": "axiom:NBMellinTools.cotangent_integral_form",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "axiom:NBMellinTools.cotangent_integral_form",
+      "predicate": "motivatedBy",
+      "target": "paper:1601.06839",
+      "confidence": 1.0,
+      "note": "Explicit arXiv identifier in the declaration's preceding documentation."
+    },
+    {
+      "source": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "axiom:NBMellinTools.mellin_contour_shift",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "axiom:NBMellinTools.period_function_recursion",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "axiom:NBMellinTools.period_function_recursion",
+      "predicate": "motivatedBy",
+      "target": "paper:1111.0931",
+      "confidence": 1.0,
+      "note": "Explicit arXiv identifier in the declaration's preceding documentation."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.BaezDuarteL2Error",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.BaezDuarteTail",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.NymanBeurlingCriterion",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.BaezDuarteTail",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.bdApprox",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.BaezDuarteTail",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.chi01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.fractTail",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.fractTailDerivIntegrand",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.fractTailIntegrand",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.rhoBD",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.rhoBase",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.rhoTheta",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB2.zetaTailRHS",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB3.MellinContinuityConstant",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB3.mellinError",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB3.mellinKernel",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB3.realError",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB3.tailCoeff",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB4.mellinKernel",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB4.rhoMellinIntegrand",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.NB5.CriticalStripRiemannHypothesis",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB5FunctionalEquationClosure",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.dedekind_sawtooth",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.h15_sum",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.moebius",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.riemann_zeta",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "def:NBMellinTools.weight_function",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "lemma:NBMellinTools.NB2.natFloor_eq_sub_fract_of_nonneg",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "paper:1111.0931",
+      "predicate": "authoredBy",
+      "target": "mathematician:bettin",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1111.0931",
+      "predicate": "authoredBy",
+      "target": "mathematician:conrey",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1111.0931",
+      "predicate": "mentions",
+      "target": "concept:cotangent-sums",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1111.0931",
+      "predicate": "mentions",
+      "target": "concept:moebius",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1111.0931",
+      "predicate": "mentions",
+      "target": "concept:period-functions",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1211.5191",
+      "predicate": "authoredBy",
+      "target": "mathematician:geometric-analysts",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1211.5191",
+      "predicate": "mentions",
+      "target": "concept:geometry",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1211.5191",
+      "predicate": "mentions",
+      "target": "concept:rigid-analytic",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1401.2932",
+      "predicate": "authoredBy",
+      "target": "mathematician:zeta-group",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1401.2932",
+      "predicate": "mentions",
+      "target": "concept:special-functions",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1401.2932",
+      "predicate": "mentions",
+      "target": "concept:zeta",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1401.3150",
+      "predicate": "authoredBy",
+      "target": "mathematician:bounds-researchers",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1401.3150",
+      "predicate": "mentions",
+      "target": "concept:analytic",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1401.3150",
+      "predicate": "mentions",
+      "target": "concept:explicit-bounds",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1409.1634",
+      "predicate": "authoredBy",
+      "target": "mathematician:character-theory-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1409.1634",
+      "predicate": "mentions",
+      "target": "concept:characters",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1409.1634",
+      "predicate": "mentions",
+      "target": "concept:dirichlet",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1501.02975",
+      "predicate": "authoredBy",
+      "target": "mathematician:iwaniec",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1501.02975",
+      "predicate": "authoredBy",
+      "target": "mathematician:kowalski",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1501.02975",
+      "predicate": "mentions",
+      "target": "concept:contour-analysis",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1501.02975",
+      "predicate": "mentions",
+      "target": "concept:mellin",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1503.05121",
+      "predicate": "authoredBy",
+      "target": "mathematician:harmonic-analysts",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1503.05121",
+      "predicate": "mentions",
+      "target": "concept:fourier",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1503.05121",
+      "predicate": "mentions",
+      "target": "concept:gl2",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1503.05121",
+      "predicate": "mentions",
+      "target": "concept:representation",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "authoredBy",
+      "target": "mathematician:analytic-number-theorists",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "mentions",
+      "target": "concept:explicit",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "mentions",
+      "target": "concept:zero-free-region",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1601.06839",
+      "predicate": "authoredBy",
+      "target": "mathematician:auli",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1601.06839",
+      "predicate": "authoredBy",
+      "target": "mathematician:bayad",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1601.06839",
+      "predicate": "authoredBy",
+      "target": "mathematician:beck",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1601.06839",
+      "predicate": "mentions",
+      "target": "concept:cotangent-sums",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1601.06839",
+      "predicate": "mentions",
+      "target": "concept:period",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1601.06839",
+      "predicate": "mentions",
+      "target": "concept:reciprocity",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1807.08249",
+      "predicate": "authoredBy",
+      "target": "mathematician:modular-forms-group",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1807.08249",
+      "predicate": "mentions",
+      "target": "concept:l-functions",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1807.08249",
+      "predicate": "mentions",
+      "target": "concept:modular-forms",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2105.00004",
+      "predicate": "authoredBy",
+      "target": "mathematician:spectral-researchers",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2105.00004",
+      "predicate": "mentions",
+      "target": "concept:hilbert-polya",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2105.00004",
+      "predicate": "mentions",
+      "target": "concept:quantum-chaos",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2209.10990",
+      "predicate": "authoredBy",
+      "target": "mathematician:probabilistic-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2209.10990",
+      "predicate": "mentions",
+      "target": "concept:gue",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2209.10990",
+      "predicate": "mentions",
+      "target": "concept:random-matrices",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2309.09171",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2606.22562",
+      "predicate": "authoredBy",
+      "target": "mathematician:classical-methods-group",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2606.22562",
+      "predicate": "mentions",
+      "target": "concept:inversion",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2606.22562",
+      "predicate": "mentions",
+      "target": "concept:perron",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.01126",
+      "predicate": "authoredBy",
+      "target": "mathematician:error-analysis-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.01126",
+      "predicate": "derivedFrom",
+      "target": "paper:file:Zeta (1).pdf",
+      "confidence": 0.8,
+      "note": "Extends classical Mellin techniques"
+    },
+    {
+      "source": "paper:2607.01126",
+      "predicate": "mentions",
+      "target": "concept:contour",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.01126",
+      "predicate": "mentions",
+      "target": "concept:error-analysis",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.02828",
+      "predicate": "authoredBy",
+      "target": "mathematician:classical-analysts",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.02828",
+      "predicate": "derivedFrom",
+      "target": "paper:file:Zeta (1).pdf",
+      "confidence": 0.8,
+      "note": "Extends classical Mellin techniques"
+    },
+    {
+      "source": "paper:2607.02828",
+      "predicate": "mentions",
+      "target": "concept:analytic-continuation",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.02828",
+      "predicate": "mentions",
+      "target": "concept:mellin",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04316",
+      "predicate": "authoredBy",
+      "target": "mathematician:number-theorists",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04316",
+      "predicate": "derivedFrom",
+      "target": "paper:file:Zeta (1).pdf",
+      "confidence": 0.8,
+      "note": "Extends classical Mellin techniques"
+    },
+    {
+      "source": "paper:2607.04316",
+      "predicate": "mentions",
+      "target": "concept:equivalence",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04316",
+      "predicate": "mentions",
+      "target": "concept:rh",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04316",
+      "predicate": "mentions",
+      "target": "concept:zeta",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04632",
+      "predicate": "authoredBy",
+      "target": "mathematician:analytic-researchers",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04632",
+      "predicate": "derivedFrom",
+      "target": "paper:1211.5191",
+      "confidence": 0.7,
+      "note": "Uses results from classical approach"
+    },
+    {
+      "source": "paper:2607.04632",
+      "predicate": "mentions",
+      "target": "concept:cancellation",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04632",
+      "predicate": "mentions",
+      "target": "concept:correlation",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.04632",
+      "predicate": "mentions",
+      "target": "concept:moebius",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09110",
+      "predicate": "authoredBy",
+      "target": "mathematician:research-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09110",
+      "predicate": "derivedFrom",
+      "target": "paper:1211.5191",
+      "confidence": 0.7,
+      "note": "Uses results from classical approach"
+    },
+    {
+      "source": "paper:2607.09110",
+      "predicate": "mentions",
+      "target": "concept:diagnostics",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09110",
+      "predicate": "mentions",
+      "target": "concept:h15",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09110",
+      "predicate": "mentions",
+      "target": "concept:kernel",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09797",
+      "predicate": "authoredBy",
+      "target": "mathematician:various-researchers",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09797",
+      "predicate": "derivedFrom",
+      "target": "paper:1211.5191",
+      "confidence": 0.7,
+      "note": "Uses results from classical approach"
+    },
+    {
+      "source": "paper:2607.09797",
+      "predicate": "derivedFrom",
+      "target": "paper:2607.04316",
+      "confidence": 0.85,
+      "note": "Applies quantitative bounds from H14"
+    },
+    {
+      "source": "paper:2607.09797",
+      "predicate": "mentions",
+      "target": "concept:approximations",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09797",
+      "predicate": "mentions",
+      "target": "concept:moebius",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.09797",
+      "predicate": "mentions",
+      "target": "concept:recent-research",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00000",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00001",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00003",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00005",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00008",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00013",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00014",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00018",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00021",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00025",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00028",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00031",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00032",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00033",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00035",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00036",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00037",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00041",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00042",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00043",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00044",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00048",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00049",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00051",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00055",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00060",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00061",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:unknown-author",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:AIF_2003__53_3_665_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:complex-analysts",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:AIF_2003__53_3_665_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:complex-analysis",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:AIF_2003__53_3_665_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:number-theory",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:AIF_2005__55_4_1373_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:annales-group",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:AIF_2005__55_4_1373_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:analytic",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:AIF_2005__55_4_1373_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:fourier",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMA_1873__5__79_1.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:chebyshev",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMA_1873__5__79_1.pdf",
+      "predicate": "mentions",
+      "target": "concept:chebyshev",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMA_1873__5__79_1.pdf",
+      "predicate": "mentions",
+      "target": "concept:distribution",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMA_1873__5__79_1.pdf",
+      "predicate": "mentions",
+      "target": "concept:historical",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMF_1896__24__199_1.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:hadamard",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMF_1896__24__199_1.pdf",
+      "predicate": "mentions",
+      "target": "concept:hadamard",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMF_1896__24__199_1.pdf",
+      "predicate": "mentions",
+      "target": "concept:historical",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMF_1896__24__199_1.pdf",
+      "predicate": "mentions",
+      "target": "concept:zeta-zeros",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMF_2006__134_3_417_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:modern-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMF_2006__134_3_417_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:methods",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:BSMF_2006__134_3_417_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:modern",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:recent-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:progress",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:recent",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:rh",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:JMPA_1893_4_9__171_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:classical-analysts",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:JMPA_1893_4_9__171_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:analytic",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:JMPA_1893_4_9__171_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:classical",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:MSMF_2001_2_86__1_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:french-analysts",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:MSMF_2001_2_86__1_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:french",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:MSMF_2001_2_86__1_0.pdf",
+      "predicate": "mentions",
+      "target": "concept:zeta",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:Zeta (1).pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:special-functions-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:Zeta (1).pdf",
+      "predicate": "mentions",
+      "target": "concept:special-functions",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:Zeta (1).pdf",
+      "predicate": "mentions",
+      "target": "concept:zeta",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/0306251",
+      "predicate": "authoredBy",
+      "target": "mathematician:belhadj",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/0306251",
+      "predicate": "authoredBy",
+      "target": "mathematician:goubi",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/0306251",
+      "predicate": "mentions",
+      "target": "concept:belhadj-goubi",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/0306251",
+      "predicate": "mentions",
+      "target": "concept:digamma",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/0306251",
+      "predicate": "mentions",
+      "target": "concept:special-functions",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/9912107",
+      "predicate": "authoredBy",
+      "target": "mathematician:classical-team",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/9912107",
+      "predicate": "mentions",
+      "target": "concept:classical",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/9912107",
+      "predicate": "mentions",
+      "target": "concept:number-theory",
+      "confidence": 1.0
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.baezDuarteL2Error_nonneg",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.BaezDuarteTail",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.bdApprox_eq_tail_of_one_lt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.BaezDuarteTail",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.chi01_eq_indicator",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.chi_sub_bdApprox_eq_tail_of_one_lt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.BaezDuarteTail",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTailDerivIntegrand_aestronglyMeasurable",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTailDerivIntegrand_norm_le",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTailIntegrand_aestronglyMeasurable",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTailIntegrand_hasDerivAt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTailIntegrand_integrableOn",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTailIntegrand_norm_le",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTail_differentiableAt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTail_hasDerivAt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTail_one_eq_of_one_lt_re",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.fractTail_one_eq_on_strip",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.integrableOn_log_mul_rpow",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.integral_Ioc_fract_cpow",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.log_le_rpow_div_self",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_chi01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_fract_eq_head_add_fractTail",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_fract_inv_eq_neg_zeta_div",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoBD",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoBD_eq_scaled_base",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoBD_of_base",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoBase",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoBase_eq_mellin_fract_inv",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoTheta",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoTheta_eq_scaled_base",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.mellin_rhoTheta_of_base",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.rhoBD_eq_one_div_of_one_lt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.BaezDuarteTail",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.rhoBD_eq_rhoBase_comp",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.rhoTheta_eq_rhoBase_comp",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2Mellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.riemannZeta_eq_floor_cpow_integral",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.zetaTailRHS_differentiableAt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_of_one_lt_re",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_of_pos_re_of_im_ne_zero",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_on_convex",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB2.zeta_eq_zetaTailRHS_on_strip",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB2BaseMellin",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.measurable_bdApprox",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.measurable_chi01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.measurable_mellinError",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.measurable_rhoBD",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellinContinuityConstant_nonneg",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellinError_local_sq_eq_realError",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellinError_memLp_Ioc01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellinError_tail_model_eq",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellinKernel_integrableOn_Ioc01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellinKernel_memLp_Ioc01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellinKernel_norm_sq_integral",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellin_error_part_A_bound",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellin_error_tail_part_B_bound",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellin_evaluation_continuous_on_critical_strip",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellin_integrand_integrableOn_Ioc01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellin_integrand_integrableOn_Ioi",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellin_split_at_one",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.mellin_tail_integrableOn_Ioi",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.norm_bdApprox_le",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.norm_chi01_le_one",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.norm_mellinError_le",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.norm_rhoBD_le_one",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.realError_eq_tail_on_Ioi",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.realError_measurable",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.realError_sq_integrableOn_Ioc01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.realError_sq_integrableOn_Ioi",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.realError_sq_integrableOn_Ioi_zero",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.realError_sq_integral_Ioc_le_error",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB3.tailCoeff_sq_le_error",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB3MellinContinuity",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.bdApprox_mellin_integrableOn",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.chi_mellin_integrableOn",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.measurable_rhoBD",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.mellin_bdApprox_zero_of_generators_zero",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.mellin_sub_chi_bdApprox",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.rhoBD_eq_inv_on_Ioi",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.rho_mellin_integrableOn_Ioc01",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.rho_mellin_integrableOn_Ioi",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.rho_mellin_integrableOn_Ioi_zero",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.riemannZeta_ne_zero_of_nymanBeurlingCriterion",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.vanishing_transport",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB4.vanishing_transport_of_field_1",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB4ZeroDetection",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB5.criticalStripRiemannHypothesis_of_no_zeros_right_half",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB5FunctionalEquationClosure",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB5.criticalStripRiemannHypothesis_of_nymanBeurlingCriterion",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB5FunctionalEquationClosure",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB5.riemannZeta_ne_zero_left_half_of_nymanBeurlingCriterion",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB5FunctionalEquationClosure",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB5.riemannZeta_one_sub_eq_zero_iff",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB5FunctionalEquationClosure",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.NB5.riemannZeta_one_sub_eq_zero_of_eq_zero",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.NB5FunctionalEquationClosure",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.norm_setIntegral_mul_le_sqrt_mul_sqrt",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.MellinEvaluation",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "theorem:NBMellinTools.weight_bounded",
+      "predicate": "derivedFrom",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 1.0,
+      "note": "Declaration is defined in this Lean module."
+    }
+  ],
+  "statistics": {
+    "artifacts": 275,
+    "relationships": 260,
+    "byType": {
+      "Concept": 55,
+      "FormalAxiom": 5,
+      "FormalDefinition": 24,
+      "FormalLemma": 1,
+      "FormalModule": 10,
+      "FormalTheorem": 85,
+      "Mathematician": 35,
+      "Roadmap": 1,
+      "SourcePaper": 59
+    }
+  }
+}
