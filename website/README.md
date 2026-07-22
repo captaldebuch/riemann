@@ -47,6 +47,11 @@ git subtree push --prefix website/html origin gh-pages
 - Progress indicators
 - Links to Lean source code
 
+### 🗃️ Artifact Database
+- Searchable, versioned registry of source papers, Lean declarations, research gates, and provenance links
+- Clear separation between proved declarations, assumptions, and declarations containing `sorry`
+- Downloadable JSON-LD payload for reuse in external knowledge-graph tools
+
 ### 📖 Technical Reports
 - H13: Classical Routes formalization
 - H14: Quantitative Bounds formalization
@@ -65,6 +70,7 @@ git subtree push --prefix website/html origin gh-pages
 website/
 ├── html/                      # Static website files
 │   ├── index.html            # Main HTML (SPA)
+│   ├── artifact-explorer.html # Searchable artifact registry
 │   ├── css/
 │   │   ├── design-system.css # Design tokens & resets
 │   │   └── app.css           # Main styling
@@ -72,6 +78,7 @@ website/
 │   │   ├── app.js            # SPA router & pages
 │   │   ├── data.js           # Embedded corpus data
 │   │   └── sparql-client.js  # LOD query client (optional)
+│   ├── data/artifacts/        # Published JSON-LD registry copy
 │   ├── downloads/            # Archive downloads
 │   │   ├── PhaseNB_mathlib.zip
 │   │   ├── H14_proofs.zip
