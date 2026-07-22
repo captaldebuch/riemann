@@ -976,11 +976,24 @@ function renderFormalizationEssay() {
                 <li>⏳ Two final analytic gates: smooth-strip deformations + edge bounds on log(ξ)</li>
               </ul>
             </li>
+            <li style="margin-top: 1.5rem;">🔬 <strong>Recent Research Direction (July 2026):</strong> Precision Analysis of BCF Cancellation
+              <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                <li><strong>BCF Log-Taper Diagonal Obstruction (94cd950):</strong> Proved exact square-Möbius formula for diagonal mass; D_N ≥ 1 for all N ≥ 2, ruling out isolated small-term strategies.</li>
+                <li><strong>Ehm Compensator Decomposition (bdc3edc–805e208):</strong> Given Ehm's pointwise S₁ kernel formula, proved E_N = 𝒮_N + ℛ_N where 𝒮_N splits exactly as 𝒮_N^off + (G(1,1) − K)D_N, isolating the signed off-diagonal sum.</li>
+                <li><strong>Precise Remaining Estimate:</strong> |𝒮_N^off + (G(1,1) − K)D_N + ℛ_N| ≪ (log N)^(−α), with everything inside one absolute value preserving required cancellation structure.</li>
+                <li><strong>Two Sharply Separated Gaps:</strong>
+                  <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                    <li><em>Gap 1 (Formalization):</em> Construct EhmS1PointwiseKernelPackage — formalize S₁(x) = Σ R₁(kx) and prove pointwise convergence using Ehm's exact kernel representation.</li>
+                    <li><em>Gap 2 (Open Problem):</em> Prove coupled off-diagonal estimate — the signed sum must achieve O(1/(log N)^α) decay; genuine RH-strength research, not a formalization consequence.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
           </ul>
           <div style="background: #fff7ed; padding: 1rem; border-radius: 4px; margin-top: 1.5rem; border-left: 3px solid #f59e0b;">
-            <p style="color: #92400e; font-weight: 600; margin: 0 0 0.5rem 0;">Complete Conditional Proof Pipeline</p>
+            <p style="color: #92400e; font-weight: 600; margin: 0 0 0.5rem 0;">Complete Conditional Proof Pipeline & Current Research Focus</p>
             <p style="color: #92400e; font-size: 0.9rem; margin: 0; line-height: 1.6;">
-              All project-specific algebraic reductions and functional-analytic bridges are now formalized and wired. The final assembly derives the Bettin–Conrey–Farmer asymptotic from exactly two explicit classical analytic hypotheses (Canonical-product truncation bound + BCF integrated cancellation). No hidden assumptions. Both hypotheses are explicit at the endpoint.
+              All project-specific algebraic reductions and functional-analytic bridges are now formalized and wired. The final assembly derives the Bettin–Conrey–Farmer asymptotic from exactly two explicit classical analytic hypotheses (Canonical-product truncation bound + BCF integrated cancellation). No hidden assumptions. Both hypotheses are explicit at the endpoint. Current research focuses on the cancellation structure: formalizing Ehm's S₁ kernel representation and analyzing the coupled off-diagonal estimates required for the RH-strength decay bound.
             </p>
           </div>
           <p style="color: #92400e; margin-top: 1.5rem; font-size: 0.95rem;">
@@ -1196,7 +1209,7 @@ function renderArchivePaper(reportId) {
       authors: ['Xavier Fresquet'],
       date: 'July 16, 2026',
       abstract: 'We outline an exploratory formalization model in Lean 4 of two classical analytical approaches to the Riemann Hypothesis: (1) the Vasyunin–Báez-Duarte–Landreau–Saias (BBLS) chain (H13) proving RH-equivalence via cotangent identities; and (2) de la Vallée Poussin\'s quantitative method (H14) combining Fourier–Eisenstein interpolation, Borel–Jensen factorization, and Perron contour inversion. Combined, these explore foundational routes to RH.',
-      leanPath: '.worktrees/codex/h13-h14',
+      leanPath: '.worktrees/h14-corrected-aristotle-specs',
       content: `
         <h3>1. Introduction</h3>
         <p>The Riemann Hypothesis (RH) stands as one of mathematics' most profound unsolved problems. While analytic attacks have produced numerous RH-equivalent formulations, few have been rigorously formalized in proof assistants. We contribute a complete formal verification in Lean 4 of two classical analytical routes: the BBLS cotangent-identity chain (H13) and de la Vallée Poussin's quantitative bounds (H14), collectively achieving 50% formalization of RH.</p>
@@ -1248,7 +1261,7 @@ function renderArchivePaper(reportId) {
       authors: ['Xavier Fresquet'],
       date: 'July 15, 2026',
       abstract: 'We outline an exploratory formalization model of the Nyman–Beurling criterion in Lean 4, experimentally modeling how the closure of unit fractions in $L^2(0,\\infty)$ is equivalent to the Riemann Hypothesis. This functional-analytic route complements classical analytic approaches, incorporating Mellin transforms, Hardy space continuity, and zero-detection via logarithmic pullback.',
-      leanPath: '.worktrees/codex/phase-nb',
+      leanPath: '.worktrees/nb-field-1-active-port',
       content: `
         <h3>1. Introduction</h3>
         <p>The Nyman–Beurling criterion provides a profound functional-analytic reformulation of RH: the Riemann Hypothesis is equivalent to the statement that unit fractions $$\\left\\{ \\frac{1}{k} : k \\in \\mathbb{N} \\right\\}$$ are dense in the Hilbert space $L^2(0, \\infty)$ under a specific weighted norm. This offers a bridge from classical analytic number theory to functional analysis, enabling proof-assistant formalization via modern Hilbert space techniques in Lean 4.</p>
@@ -1301,7 +1314,7 @@ function renderArchivePaper(reportId) {
       authors: ['Xavier Fresquet'],
       date: 'July 16, 2026',
       abstract: 'We outline an exploratory formalization model of the Bettin–Conrey–Farmer (BCF) asymptotic for quadratic cancellation (H15), experimentally modeling how the main term emerges from nontrivial zero residues. Under explicit hypotheses—RH, zero simplicity, and a zeta-derivative moment bound—we model $E_N^{BCF} \\sim \\frac{2 + \\gamma - \\log 4\\pi}{\\log N}$.',
-      leanPath: '.worktrees/codex/h15-bcf-conditional',
+      leanPath: '.worktrees/h15-bcf-conditional',
       content: `
         <h3>1. Introduction</h3>
         <p>The H15 problem addresses quadratic cancellation in Möbius correlations—a key step in understanding bilinear sums related to RH. The Bettin–Conrey–Farmer (BCF) asymptotic reveals that the main term originates from residues at nontrivial zeros of $$\\zeta(s)$$. We experimentally model this phenomenon in Lean 4, explicitly stating the hypotheses required (RH, zero simplicity, moment bound) and exploring the resulting asymptotic expansion:</p>
