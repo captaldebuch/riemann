@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://riemann-hypothesis.github.io/artifacts/schema/artifact.schema.json",
+  "title": "RH Formalization Artifact",
+  "description": "A source, formalization, or research artifact in the RH formalization knowledge graph.",
+  "type": "object",
+  "required": ["@id", "@type", "name"],
+  "properties": {
+    "@id": {
+      "type": "string",
+      "pattern": "^\\S+$",
+      "description": "Stable, namespaced identifier such as paper:1211.5191 or theorem:NB5.foo."
+    },
+    "@type": {
+      "type": "string",
+      "enum": [
+        "SourcePaper",
+        "Mathematician",
+        "Concept",
+        "FormalTheorem",
+        "FormalLemma",
+        "FormalDefinition",
+        "FormalAxiom",
+        "FormalStructure",
+        "FormalModule",
+        "ResearchGate",
+        "Roadmap",
+        "Decision",
+        "Diagnostic",
+        "Experiment"
+      ]
+    },
+    "name": {"type": "string", "minLength": 1},
+    "statement": {"type": "string"},
+    "summary": {"type": "string"},
+    "source": {
+      "type": "object",
+      "properties": {
+        "file": {"type": "string"},
+        "line": {"type": "integer", "minimum": 1},
+        "commit": {"type": "string"},
+        "module": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["proved", "contains_sorry", "assumed", "declaration", "unknown"]
+        },
+        "newAxioms": {"type": "integer", "minimum": 0},
+        "sorries": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "difficulty": {"type": "string"},
+    "openProblem": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}

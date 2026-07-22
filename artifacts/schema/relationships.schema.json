@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://riemann-hypothesis.github.io/artifacts/schema/relationships.schema.json",
+  "title": "RH Formalization Artifact Relationship",
+  "type": "object",
+  "required": ["source", "predicate", "target"],
+  "properties": {
+    "source": {"type": "string", "minLength": 1},
+    "predicate": {
+      "type": "string",
+      "enum": [
+        "authoredBy",
+        "mentions",
+        "motivatedBy",
+        "formalizes",
+        "dependsOn",
+        "blockedBy",
+        "instantiatesGate",
+        "documents",
+        "supports",
+        "derivedFrom"
+      ]
+    },
+    "target": {"type": "string", "minLength": 1},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "note": {"type": "string"}
+  },
+  "additionalProperties": false
+}

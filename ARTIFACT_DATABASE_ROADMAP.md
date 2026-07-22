@@ -318,6 +318,27 @@ Unify papers, intuitions, lemmas, theorems, proofs, and research decisions into 
 
 ## Implementation Strategy
 
+### Implemented Foundation (2026-07-22)
+
+The first vertical slice is now implemented in the repository. It is deliberately
+dependency-free and uses versioned JSON-LD as the source of truth:
+
+- ✅ `artifacts/schema/` defines artifact and relationship JSON Schemas.
+- ✅ `scripts/ingest-artifacts.py` ingests the paper corpus and Lean declaration
+  headers, preserving file, line, module, commit, explicit paper references,
+  `axiom`, and `sorry` status without inferring mathematical claims.
+- ✅ `scripts/build-artifact-index.py` validates the registry and builds a
+  reproducible SQLite index (ignored from Git).
+- ✅ `scripts/query-artifacts.py` supports the initial paper-to-theorem,
+  proof-DAG, open-problem, and search queries.
+- ✅ `artifacts/registry.jsonld` is a checked-in seed registry regenerated from
+  `proofs/` and `dataset/extracted/rh_corpus_database_complete.json`.
+
+Current scope is intentionally conservative: automatic `dependsOn` edges,
+research-gate curation, historical build artifacts, and website rendering remain
+future phases. The extractor only creates paper-to-theorem links when an arXiv
+identifier appears explicitly in nearby Lean documentation.
+
 ### Quick Start (2–3 days)
 1. Manual curation: pick 20 key theorems (H13, H14, Phase NB, H15 gates)
 2. Write schemas (artifact.schema.json, relationships.schema.json)
@@ -395,4 +416,3 @@ website/html/
 3. **Following**: Query CLI; website integration
 4. **Month 2**: Audit trail + decision journal
 5. **Month 3+**: Community contribution system; published supplementary materials
-
