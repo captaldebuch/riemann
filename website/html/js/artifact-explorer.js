@@ -70,6 +70,10 @@
     return `https://github.com/captaldebuch/riemann/blob/${encodeURIComponent(revision)}/${source.file}${line}`;
   }
 
+  function externalReferenceUrl(artifact) {
+    return artifact.referenceUrl || (artifact.arxivId ? `https://arxiv.org/abs/${artifact.arxivId}` : null);
+  }
+
   function addLink(parent, label, href, className) {
     const link = document.createElement("a");
     link.href = href;
@@ -225,6 +229,18 @@
       section.append(location);
       elements.detail.append(section);
     }
+    if (artifact.citation || externalReferenceUrl(artifact)) {
+      const section = document.createElement("section");
+      appendText(section, "h4", "Bibliographic reference");
+      if (artifact.citation) appendText(section, "p", artifact.citation);
+      const referenceUrl = externalReferenceUrl(artifact);
+      if (referenceUrl) {
+        const paragraph = document.createElement("p");
+        addLink(paragraph, "Open cited source", referenceUrl);
+        section.append(paragraph);
+      }
+      elements.detail.append(section);
+    }
     if (artifact.tags?.length) {
       const section = document.createElement("section");
       appendText(section, "h4", "Tags");
@@ -267,6 +283,19 @@
     });
   }
 
+  function applyQueryFilters() {
+    const query = new URLSearchParams(window.location.search);
+    const requestedType = query.get("type");
+    const requestedStatus = query.get("status");
+    if (requestedType && [...elements.type.options].some((option) => option.value === requestedType)) {
+      elements.type.value = requestedType;
+    }
+    if (requestedStatus && [...elements.status.options].some((option) => option.value === requestedStatus)) {
+      elements.status.value = requestedStatus;
+    }
+    if (query.get("open") === "true") elements.openOnly.checked = true;
+  }
+
   async function start() {
     try {
       const response = await fetch(REGISTRY_URL, { cache: "no-cache" });
@@ -277,6 +306,7 @@
       }
       indexRegistry(registry);
       bindControls();
+      applyQueryFilters();
       renderResults();
       const firstOpenGate = state.artifacts.find((artifact) => artifact.openProblem);
       if (firstOpenGate) selectArtifact(firstOpenGate["@id"]);

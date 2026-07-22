@@ -974,19 +974,28 @@
       "name": "Annales Group"
     },
     {
+      "@id": "mathematician:arne-beurling",
+      "@type": "Mathematician",
+      "name": "Arne Beurling",
+      "identityStatus": "source-verified"
+    },
+    {
       "@id": "mathematician:auli",
       "@type": "Mathematician",
-      "name": "Auli"
+      "name": "Juan S. Auli",
+      "identityStatus": "source-verified"
     },
     {
       "@id": "mathematician:bayad",
       "@type": "Mathematician",
-      "name": "Bayad"
+      "name": "Abdelmejid Bayad",
+      "identityStatus": "source-verified"
     },
     {
       "@id": "mathematician:beck",
       "@type": "Mathematician",
-      "name": "Beck"
+      "name": "Matthias Beck",
+      "identityStatus": "source-verified"
     },
     {
       "@id": "mathematician:belhadj",
@@ -994,9 +1003,22 @@
       "name": "Belhadj"
     },
     {
+      "@id": "mathematician:bernhard-riemann",
+      "@type": "Mathematician",
+      "name": "Bernhard Riemann",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "mathematician:bertil-nyman",
+      "@type": "Mathematician",
+      "name": "Bertil Nyman",
+      "identityStatus": "source-verified"
+    },
+    {
       "@id": "mathematician:bettin",
       "@type": "Mathematician",
-      "name": "Bettin"
+      "name": "Sandro Bettin",
+      "identityStatus": "source-verified"
     },
     {
       "@id": "mathematician:bounds-researchers",
@@ -1036,7 +1058,8 @@
     {
       "@id": "mathematician:conrey",
       "@type": "Mathematician",
-      "name": "Conrey"
+      "name": "Brian Conrey",
+      "identityStatus": "source-verified"
     },
     {
       "@id": "mathematician:error-analysis-team",
@@ -1077,6 +1100,12 @@
       "@id": "mathematician:kowalski",
       "@type": "Mathematician",
       "name": "Kowalski"
+    },
+    {
+      "@id": "mathematician:luis-baez-duarte",
+      "@type": "Mathematician",
+      "name": "Luis Báez-Duarte",
+      "identityStatus": "source-verified"
     },
     {
       "@id": "mathematician:modern-team",
@@ -1286,11 +1315,11 @@
     {
       "@id": "paper:1111.0931",
       "@type": "SourcePaper",
-      "name": "Approximations to the Riemann Hypothesis",
+      "name": "Period functions and cotangent sums",
       "year": 2013,
       "arxivId": "1111.0931",
-      "doi": null,
-      "journal": null,
+      "doi": "10.2140/ant.2013.7.215",
+      "journal": "Algebra & Number Theory 7 (2013), no. 1, 215–242",
       "roleInProject": "H15",
       "relevanceScore": 0.95,
       "localPdf": "1111.0931.pdf",
@@ -1312,7 +1341,9 @@
             "estimated_effort": "medium"
           }
         ]
-      }
+      },
+      "referenceUrl": "https://arxiv.org/abs/1111.0931",
+      "citation": "Sandro Bettin and Brian Conrey, “Period functions and cotangent sums,” Algebra & Number Theory 7 (2013), no. 1, 215–242."
     },
     {
       "@id": "paper:1211.5191",
@@ -1528,11 +1559,11 @@
     {
       "@id": "paper:1601.06839",
       "@type": "SourcePaper",
-      "name": "Reciprocal Relations and Theorems",
+      "name": "Reciprocity Theorems for Bettin--Conrey Sums",
       "year": 2017,
       "arxivId": "1601.06839",
       "doi": null,
-      "journal": null,
+      "journal": "Acta Arithmetica 181 (2017), 297–319",
       "roleInProject": "H15",
       "relevanceScore": 0.9,
       "localPdf": "1601.06839.pdf",
@@ -1554,7 +1585,9 @@
             "estimated_effort": "medium"
           }
         ]
-      }
+      },
+      "referenceUrl": "https://arxiv.org/abs/1601.06839",
+      "citation": "Juan S. Auli, Abdelmejid Bayad, and Matthias Beck, “Reciprocity Theorems for Bettin--Conrey Sums,” Acta Arithmetica 181 (2017), 297–319."
     },
     {
       "@id": "paper:1807.08249",
@@ -2238,6 +2271,21 @@
       "tags": []
     },
     {
+      "@id": "paper:beurling-1955",
+      "@type": "SourcePaper",
+      "name": "A closure problem related to the Riemann zeta-function",
+      "year": 1955,
+      "doi": "10.1073/pnas.41.5.312",
+      "journal": "Proceedings of the National Academy of Sciences 41 (1955), no. 5, 312–314",
+      "referenceUrl": "https://doi.org/10.1073/pnas.41.5.312",
+      "citation": "Arne Beurling, “A closure problem related to the Riemann zeta-function,” Proceedings of the National Academy of Sciences 41 (1955), no. 5, 312–314.",
+      "tags": [
+        "nyman-beurling",
+        "closure",
+        "functional-analysis"
+      ]
+    },
+    {
       "@id": "paper:file:AIF_2003__53_3_665_0.pdf",
       "@type": "SourcePaper",
       "name": "Complex Analysis in Number Theory",
@@ -2511,6 +2559,20 @@
       }
     },
     {
+      "@id": "paper:math/0202141",
+      "@type": "SourcePaper",
+      "name": "A strengthening of the Nyman--Beurling criterion for the Riemann Hypothesis",
+      "year": 2002,
+      "arxivId": "math/0202141",
+      "referenceUrl": "https://arxiv.org/abs/math/0202141",
+      "citation": "Luis Báez-Duarte, “A strengthening of the Nyman--Beurling criterion for the Riemann Hypothesis,” arXiv:math/0202141 (2002).",
+      "tags": [
+        "nyman-beurling",
+        "baez-duarte",
+        "rh-equivalence"
+      ]
+    },
+    {
       "@id": "paper:math/0306251",
       "@type": "SourcePaper",
       "name": "Digamma Function and Belhadj-Goubi Proof",
@@ -2570,6 +2632,32 @@
           }
         ]
       }
+    },
+    {
+      "@id": "paper:nyman-1950",
+      "@type": "SourcePaper",
+      "name": "On the One-dimensional Translation Group and Semi-group in Certain Function Spaces",
+      "year": 1950,
+      "referenceUrl": "https://books.google.com/books?id=mo_QAAAAMAAJ",
+      "citation": "Bertil Nyman, On the One-dimensional Translation Group and Semi-group in Certain Function Spaces, Uppsala, 1950.",
+      "tags": [
+        "nyman-beurling",
+        "functional-analysis",
+        "history"
+      ]
+    },
+    {
+      "@id": "paper:riemann-1859",
+      "@type": "SourcePaper",
+      "name": "Über die Anzahl der Primzahlen unter einer gegebenen Grösse",
+      "year": 1859,
+      "referenceUrl": "https://www.claymath.org/collections/riemanns-1859-manuscript/",
+      "citation": "Bernhard Riemann, “Über die Anzahl der Primzahlen unter einer gegebenen Grösse,” Monatsberichte der Berliner Akademie, November 1859.",
+      "tags": [
+        "history",
+        "prime-distribution",
+        "zeta-function"
+      ]
     },
     {
       "@id": "roadmap:artifact-database-roadmap",
@@ -5274,6 +5362,13 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:beurling-1955",
+      "predicate": "authoredBy",
+      "target": "mathematician:arne-beurling",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
+    },
+    {
       "source": "paper:file:AIF_2003__53_3_665_0.pdf",
       "predicate": "authoredBy",
       "target": "mathematician:complex-analysts",
@@ -5454,6 +5549,13 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:math/0202141",
+      "predicate": "authoredBy",
+      "target": "mathematician:luis-baez-duarte",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
+    },
+    {
       "source": "paper:math/0306251",
       "predicate": "authoredBy",
       "target": "mathematician:belhadj",
@@ -5500,6 +5602,20 @@
       "predicate": "mentions",
       "target": "concept:number-theory",
       "confidence": 1.0
+    },
+    {
+      "source": "paper:nyman-1950",
+      "predicate": "authoredBy",
+      "target": "mathematician:bertil-nyman",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
+    },
+    {
+      "source": "paper:riemann-1859",
+      "predicate": "authoredBy",
+      "target": "mathematician:bernhard-riemann",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
     },
     {
       "source": "theorem:NBMellinTools.NB2.baezDuarteL2Error_nonneg",
@@ -6098,8 +6214,8 @@
     }
   ],
   "statistics": {
-    "artifacts": 275,
-    "relationships": 260,
+    "artifacts": 283,
+    "relationships": 264,
     "byType": {
       "Concept": 55,
       "FormalAxiom": 5,
@@ -6107,9 +6223,9 @@
       "FormalLemma": 1,
       "FormalModule": 10,
       "FormalTheorem": 85,
-      "Mathematician": 35,
+      "Mathematician": 39,
       "Roadmap": 1,
-      "SourcePaper": 59
+      "SourcePaper": 63
     }
   }
 }

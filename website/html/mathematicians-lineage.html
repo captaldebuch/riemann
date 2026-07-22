@@ -3,577 +3,92 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mathematical Genealogy: The Riemann Hypothesis through 26 mathematicians across 165 years of research.">
-  <title>Mathematical Genealogy & Influence Networks</title>
+  <meta name="description" content="A source-linked map of mathematicians and primary references shaping the Riemann Hypothesis formalization project.">
+  <title>Mathematicians & Sources — Riemann Hypothesis Corpus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/design-system.css">
-  <style>
-    .timeline-container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .era-section {
-      margin: 3rem 0;
-      padding: 2rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .era-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 3px solid #3b82f6;
-    }
-
-    .era-badge {
-      background: #3b82f6;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .era-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #1f2937;
-    }
-
-    .mathematician-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .mathematician-card {
-      background: linear-gradient(135deg, #f0f9ff 0%, #f3f4f6 100%);
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #3b82f6;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .mathematician-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-    }
-
-    .mathematician-name {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #1f2937;
-      margin-bottom: 0.5rem;
-    }
-
-    .mathematician-dates {
-      color: #666;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .mathematician-focus {
-      color: #0369a1;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 0.75rem;
-    }
-
-    .mathematician-bio {
-      color: #475569;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .influence-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .influence-tag {
-      background: #dbeafe;
-      color: #0369a1;
-      padding: 0.25rem 0.75rem;
-      border-radius: 12px;
-      font-size: 0.85rem;
-    }
-
-    .key-papers {
-      background: rgba(59, 130, 246, 0.05);
-      padding: 0.75rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      color: #1f2937;
-    }
-
-    .key-papers strong {
-      color: #0369a1;
-    }
-
-    .relationship-network {
-      background: #f9fafb;
-      padding: 2rem;
-      border-radius: 8px;
-      margin: 2rem 0;
-    }
-
-    .relationship-network h3 {
-      color: #1f2937;
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
-    }
-
-    .flow-diagram {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .flow-node {
-      background: white;
-      padding: 1rem;
-      border-radius: 6px;
-      border: 2px solid #e5e7eb;
-      text-align: center;
-    }
-
-    .flow-node strong {
-      color: #0369a1;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .flow-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: #9ca3af;
-    }
-
-    .route-box {
-      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-      padding: 1.5rem;
-      border-radius: 8px;
-      border-left: 4px solid #10b981;
-      margin: 1rem 0;
-    }
-
-    .route-box.spectral {
-      border-left-color: #8b5cf6;
-      background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%);
-    }
-
-    .route-box.analytic {
-      border-left-color: #f59e0b;
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-    }
-
-    .route-box.probabilistic {
-      border-left-color: #ec4899;
-      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
-    }
-
-    .route-box.functional {
-      border-left-color: #0ea5e9;
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    }
-
-    .route-box h4 {
-      font-weight: bold;
-      margin-bottom: 0.75rem;
-    }
-
-    .route-box p {
-      font-size: 0.95rem;
-      color: #475569;
-      margin: 0.5rem 0;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-
-    .stat-box {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #3b82f6;
-      display: block;
-    }
-
-    .stat-label {
-      color: #666;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-  </style>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/site-shell.css">
 </head>
-<body>
-  <header>
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
-      <div>
-        <h1>The Riemann Hypothesis Corpus</h1>
-        <p>A Digital Humanities resource (v0.1 Beta) mapping 160+ years of mathematical thinking — combined with Lean 4 formalization</p>
-      </div>
-      <div style="text-align: right;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Logo_SCAI_ArtificialIntelligence_CMJN.jpg"
-             alt="SCAI Logo" style="height: 80px; margin-bottom: 0.5rem;">
+<body class="site-page">
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-area">
+        <p class="site-kicker">Riemann Hypothesis Corpus</p>
+        <h1>Mathematicians & Sources</h1>
+        <p>A concise, source-linked map of the names and references used in the project’s formalization routes.</p>
       </div>
     </div>
+    <nav class="app-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#corpus-dataset">Corpus</a></li>
+        <li><a href="mathematicians-lineage.html" class="active" aria-current="page">Mathematicians</a></li>
+        <li><a href="formalization.html">Formalization</a></li>
+        <li><a href="artifact-explorer.html">Artifact Database</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="intro.html">Vision & Method</a></li>
-      <li><a href="corpus.html">📚 Complete Corpus</a></li>
-      <li><a href="mathematicians-lineage.html" class="active">👥 Mathematical Genealogy</a></li>
-      <li><a href="visualizations.html">📊 Visualizations</a></li>
-      <li><a href="formalization.html">🔬 Formalization</a></li>
-      <li><a href="knowledge-explorer.html">🔗 Knowledge Graph</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-
-  <main style="max-width: 1400px; margin: 0 auto; padding: 2rem;">
-    <article>
-      <h2>Mathematical Genealogy & Influence Networks</h2>
-      <p style="font-size: 1.1rem; line-height: 1.8; color: #334155; margin-bottom: 2rem;">
-        The Riemann Hypothesis is not solved by individuals, but through centuries of mathematical conversations. Below are the 26 key mathematicians whose work shaped our understanding of RH, organized by era and influence network. Each shaped the next generation, creating four independent proof routes that remain viable today.
+  <main class="site-main">
+    <section class="site-hero">
+      <p class="site-kicker">Named, cited, and inspectable</p>
+      <h2>From Riemann’s question to formal research routes</h2>
+      <p>
+        This page uses a short, checked source trail instead of an uncited gallery. The public bibliography is drawn from the Artifact Database; the wider corpus retains its original metadata and is clearly separated when authorship is incomplete.
       </p>
-    </article>
-
-    <!-- STATISTICS -->
-    <div class="stats-grid">
-      <div class="stat-box">
-        <span class="stat-number">26</span>
-        <span class="stat-label">Mathematicians</span>
+      <div class="site-actions">
+        <a class="site-action" href="artifact-explorer.html?type=Mathematician">Browse named people</a>
+        <a class="site-action site-action-secondary" href="artifact-explorer.html?type=SourcePaper">Browse source papers</a>
       </div>
-      <div class="stat-box">
-        <span class="stat-number">165</span>
-        <span class="stat-label">Years (1859–2026)</span>
+    </section>
+
+    <section class="site-card-grid" aria-label="Source-linked mathematical routes">
+      <article class="site-card">
+        <span class="site-status site-status-classical">Original analytic question</span>
+        <h3>Bernhard Riemann</h3>
+        <p>Riemann’s 1859 paper on the prime-counting function introduced the zeta-function setting from which the hypothesis arose.</p>
+      </article>
+      <article class="site-card">
+        <span class="site-status site-status-classical">Classical analysis</span>
+        <h3>Jacques Hadamard and Charles-Jean de la Vallée Poussin</h3>
+        <p>The 1896 prime-number-theorem work and zero-free-region methods are the historic background for the project’s quantitative H14 route.</p>
+      </article>
+      <article class="site-card">
+        <span class="site-status">Functional equivalence</span>
+        <h3>Bertil Nyman, Arne Beurling, and Luis Báez-Duarte</h3>
+        <p>Nyman’s Hilbert-space formulation, Beurling’s closure problem, and Báez-Duarte’s strengthened criterion form the Nyman–Beurling route.</p>
+      </article>
+      <article class="site-card">
+        <span class="site-status site-status-research">Cotangent and reciprocity work</span>
+        <h3>Sandro Bettin, Brian Conrey, Juan S. Auli, Abdelmejid Bayad, and Matthias Beck</h3>
+        <p>Their papers provide named, citable context for period functions, cotangent sums, and the active H15 research direction.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="sources-heading">
+      <div class="site-section-heading">
+        <p class="site-kicker">Curated source trail</p>
+        <h2 id="sources-heading">References used by the public research map</h2>
+        <p>Each reference below is a named database artifact with a primary or bibliographic link.</p>
       </div>
-      <div class="stat-box">
-        <span class="stat-number">4</span>
-        <span class="stat-label">Independent Routes</span>
+      <div class="reference-ledger" data-reference-ids="paper:riemann-1859, paper:nyman-1950, paper:beurling-1955, paper:math/0202141, paper:1111.0931, paper:1601.06839">
+        <p>Loading the curated reference ledger…</p>
       </div>
-      <div class="stat-box">
-        <span class="stat-number">30</span>
-        <span class="stat-label">Key Papers</span>
-      </div>
-    </div>
+    </section>
 
-    <!-- THE FOUR ROUTES NETWORK -->
-    <div class="relationship-network">
-      <h3>🌳 The Four RH Routes: Parallel Genealogies</h3>
-      <p style="color: #666; margin-bottom: 1.5rem;">
-        Instead of one proof path, mathematicians have identified four conceptually independent routes to RH. Each has its own lineage, key figures, and current state.
-      </p>
-
-      <div class="route-box functional">
-        <h4>🟢 Functional Route (Nyman–Beurling)</h4>
-        <p><strong>Key Figures:</strong> Nyman (1950), Beurling (1955), Báez-Duarte (2003), Vasyunin (1999–2015)</p>
-        <p><strong>Current Status:</strong> Most formalization-friendly. H13+H14 proven in Lean 4; H15 (quadratic cancellation) is open research.</p>
-        <p><strong>Why This Route:</strong> Reformulates RH as a Hilbert-space closure property. Direct connection to analytic number theory via cotangent sums.</p>
-      </div>
-
-      <div class="route-box spectral">
-        <h4>🟣 Spectral Route (Hilbert–Pólya)</h4>
-        <p><strong>Key Figures:</strong> Hilbert (1900), Pólya (1927), de Branges (1990s), Connes (2000s)</p>
-        <p><strong>Current Status:</strong> Open. Seeks a self-adjoint operator whose eigenvalues are the RH zeros.</p>
-        <p><strong>Why This Route:</strong> If true, explains zero-spacing statistics via spectral theory. Deep connection to quantum mechanics.</p>
-      </div>
-
-      <div class="route-box analytic">
-        <h4>🟠 Analytic Route (Robin–Lagarias)</h4>
-        <p><strong>Key Figures:</strong> Riemann (1859), Robin (1885), Lagarias (2002), Chowla–Briggs (modern)</p>
-        <p><strong>Current Status:</strong> Open. RH equivalent to arithmetic inequalities on divisor sums.</p>
-        <p><strong>Why This Route:</strong> Elementary formulation. RH ⟺ σ(n) < e^γ · n · log log n for all n > 5040.</p>
-      </div>
-
-      <div class="route-box probabilistic">
-        <h4>🔴 Probabilistic Route (Montgomery–GUE)</h4>
-        <p><strong>Key Figures:</strong> Riemann (1859), Montgomery (1973), Katz–Sarnak (1990s), Keating–Snaith (2000s)</p>
-        <p><strong>Current Status:</strong> Not provably equivalent but best empirical fit. Zeros behave like random matrix eigenvalues.</p>
-        <p><strong>Why This Route:</strong> Deepest numerical support. GUE (Gaussian Unitary Ensemble) predictions match zero spacing perfectly.</p>
-      </div>
-    </div>
-
-    <!-- CHRONOLOGICAL TIMELINE -->
-    <div class="timeline-container">
-      <!-- 19th Century -->
-      <div class="era-section">
-        <div class="era-header">
-          <span class="era-badge">1800s</span>
-          <span class="era-title">19th Century: Birth of the Hypothesis</span>
-        </div>
-        <div class="mathematician-grid">
-          <div class="mathematician-card">
-            <div class="mathematician-name">Bernhard Riemann</div>
-            <div class="mathematician-dates">1826–1866</div>
-            <div class="mathematician-focus">Founding Question (1859)</div>
-            <div class="mathematician-bio">
-              Posed the Riemann Hypothesis in 1859 as a remark in his paper on prime distribution. Introduced the zeta function as a complex variable and conjectured all non-trivial zeros lie on Re(s) = 1/2. The hypothesis emerged from his explicit formula connecting primes to zeros.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Explicit Formulas</span>
-              <span class="influence-tag">Prime Distribution</span>
-              <span class="influence-tag">Zeta Zeros</span>
-            </div>
-            <div class="key-papers"><strong>1859:</strong> On the Number of Primes Less Than a Given Quantity</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Jacques Hadamard</div>
-            <div class="mathematician-dates">1865–1963</div>
-            <div class="mathematician-focus">Prime Number Theorem (1896)</div>
-            <div class="mathematician-bio">
-              Proved the Prime Number Theorem (1896) using RH-adjacent techniques. Showed that all non-trivial zeros of ζ(s) must lie on or near the critical line. Established foundational zero-free region methods that would shape quantitative RH research for a century.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Zero-Free Regions</span>
-              <span class="influence-tag">PNT Proof</span>
-              <span class="influence-tag">Analytic Method</span>
-            </div>
-            <div class="key-papers"><strong>1896:</strong> Prime Number Theorem proof</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Charles de la Vallée Poussin</div>
-            <div class="mathematician-dates">1866–1962</div>
-            <div class="mathematician-focus">Zero-Free Region (1896)</div>
-            <div class="mathematician-bio">
-              Independently proved PNT (1896) and developed the De la Vallée Poussin zero-free region—a quantitative boundary that remains standard today. This region is central to unconditional bounds on Möbius functions and modern RH equivalences. His work enabled H14's DVP-based approach.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">DVP Region</span>
-              <span class="influence-tag">Quantitative Bounds</span>
-              <span class="influence-tag">Classical Foundation</span>
-            </div>
-            <div class="key-papers"><strong>1896:</strong> PNT proof & DVP region (used in H14)</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Early-Mid 20th Century (1900–1950) -->
-      <div class="era-section">
-        <div class="era-header">
-          <span class="era-badge">1900–1950</span>
-          <span class="era-title">Early–Mid 20th Century: Spectral & Functional Foundations</span>
-        </div>
-        <div class="mathematician-grid">
-          <div class="mathematician-card">
-            <div class="mathematician-name">George Pólya</div>
-            <div class="mathematician-dates">1887–1985</div>
-            <div class="mathematician-focus">Spectral Interpretation (1927)</div>
-            <div class="mathematician-bio">
-              Suggested that RH might follow from the existence of a self-adjoint operator whose spectrum consists precisely of the RH zeros. This speculation, made early in the century, inspired the Hilbert–Pólya program and all modern spectral approaches to RH. One of four independent routes.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Spectral Route</span>
-              <span class="influence-tag">Self-Adjoint Operator</span>
-              <span class="influence-tag">Quantum Bridge</span>
-            </div>
-            <div class="key-papers"><strong>1927:</strong> Hilbert–Pólya conjecture (speculative)</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Alf Beurling</div>
-            <div class="mathematician-dates">1912–1982</div>
-            <div class="mathematician-focus">Functional Criterion (1955)</div>
-            <div class="mathematician-bio">
-              Developed the Nyman–Beurling criterion rigorously in 1955, proving RH is equivalent to density of certain sequences in L²(0,∞). Showed how to formalize RH without invoking zeta zeros explicitly, creating an alternative proof pathway purely through functional analysis. Foundation of Phase NB.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Functional Route</span>
-              <span class="influence-tag">Hilbert Space</span>
-              <span class="influence-tag">Closure Properties</span>
-            </div>
-            <div class="key-papers"><strong>1955:</strong> Nyman–Beurling criterion (formalization-friendly)</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Harald Nyman</div>
-            <div class="mathematician-dates">1929–2000</div>
-            <div class="mathematician-focus">Hilbert Space Reformulation (1950)</div>
-            <div class="mathematician-bio">
-              Reformulated RH using Hilbert-space closure properties of fractional parts (1950). Showed RH is equivalent to the density of shifted unit fractions in L²(0,∞). This functional-analytic approach opened new proof strategies independent of analytic continuation—enabling computational verification.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Functional Analysis</span>
-              <span class="influence-tag">Closure in L²</span>
-              <span class="influence-tag">Fractional Parts</span>
-            </div>
-            <div class="key-papers"><strong>1950:</strong> RH ⟺ closure in L²—basis of Phase NB</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Late 20th Century (1950–2000) -->
-      <div class="era-section">
-        <div class="era-header">
-          <span class="era-badge">1950–2000</span>
-          <span class="era-title">Late 20th Century: Explicit Bounds & Statistical Routes</span>
-        </div>
-        <div class="mathematician-grid">
-          <div class="mathematician-card">
-            <div class="mathematician-name">Hugh Montgomery</div>
-            <div class="mathematician-dates">1944–present</div>
-            <div class="mathematician-focus">GUE Hypothesis (1973)</div>
-            <div class="mathematician-bio">
-              Discovered that zero-spacing statistics match the GUE (Gaussian Unitary Ensemble) from random matrix theory (1973). Showed empirical evidence that RH zeros behave like eigenvalues of random Hermitian matrices—a profound connection between number theory and quantum physics. One of four independent routes.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Probabilistic Route</span>
-              <span class="influence-tag">Random Matrices</span>
-              <span class="influence-tag">GUE Distribution</span>
-            </div>
-            <div class="key-papers"><strong>1973:</strong> Montgomery pair correlation hypothesis</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Bernard Vasyunin</div>
-            <div class="mathematician-dates">1951–present</div>
-            <div class="mathematician-focus">Explicit Cotangent Sums (1999–2015)</div>
-            <div class="mathematician-bio">
-              Made the Nyman–Beurling criterion computational by explicitly formulating it as cotangent sums (1999–2015). Derived exact identities connecting period functions, Möbius coefficients, and zeta zeros. Central figure in bridging classical and functional routes. Foundation of H13 in our project.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Vasyunin Identity</span>
-              <span class="influence-tag">Cotangent Sums</span>
-              <span class="influence-tag">Computational Form</span>
-            </div>
-            <div class="key-papers"><strong>1999–2015:</strong> Cotangent sums framework (H13 basis)</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Luis Báez-Duarte</div>
-            <div class="mathematician-dates">1939–present</div>
-            <div class="mathematician-focus">BBLS Formulation (2003)</div>
-            <div class="mathematician-bio">
-              Simplified Vasyunin's approach into the modern BBLS (Balazard–Saias–Landreau–Saias) formulation (2003). Proved the strong criterion: RH holds iff the norm of the weighted Möbius sum is O(1/log N). This enabled the first Lean 4 formalizations and is the foundation of H13 completion.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">BBLS Chain</span>
-              <span class="influence-tag">O(1/log N) Bound</span>
-              <span class="influence-tag">Formalizable</span>
-            </div>
-            <div class="key-papers"><strong>2003:</strong> BBLS criterion (H13 formalization basis)</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contemporary (2000–2026) -->
-      <div class="era-section">
-        <div class="era-header">
-          <span class="era-badge">2000–2026</span>
-          <span class="era-title">Contemporary: Bilinear Cancellation & Formalization</span>
-        </div>
-        <div class="mathematician-grid">
-          <div class="mathematician-card">
-            <div class="mathematician-name">Stefano Bettin & Brian Conrey</div>
-            <div class="mathematician-dates">1980s–present</div>
-            <div class="mathematician-focus">Period Functions & Cancellation (2013)</div>
-            <div class="mathematician-bio">
-              Analyzed the bilinear structure of Möbius–Vasyunin interactions (2013). Showed cancellation in period-function sums is essential to achieving O(1/log N) bounds. Their work opened H15 (quadratic cancellation) as an independent open problem, revealing why linear bounds alone are insufficient for final proof.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Möbius Cancellation</span>
-              <span class="influence-tag">Period Functions</span>
-              <span class="influence-tag">H15 Problem</span>
-            </div>
-            <div class="key-papers"><strong>2013:</strong> Approximations to RH (H15 research basis)</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Alain Connes</div>
-            <div class="mathematician-dates">1947–present</div>
-            <div class="mathematician-focus">Spectral Geometry (1998–2007)</div>
-            <div class="mathematician-bio">
-              Developed noncommutative geometry perspectives on RH (1998–2007). Connected zeta zeros to the structure of adele rings and spectral triples. Proposed geometric interpretations of why RH might be true from deep symmetry principles—bridging analytic number theory and quantum physics. Modern spectral route.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Spectral Route</span>
-              <span class="influence-tag">Noncommutative Geometry</span>
-              <span class="influence-tag">Modern Physics Bridge</span>
-            </div>
-            <div class="key-papers"><strong>1998–2007:</strong> Noncommutative geometry & RH (spectral route)</div>
-          </div>
-
-          <div class="mathematician-card">
-            <div class="mathematician-name">Xavier Fresquet (SCAI)</div>
-            <div class="mathematician-dates">2026–present</div>
-            <div class="mathematician-focus">Lean 4 Formalization</div>
-            <div class="mathematician-bio">
-              Leading the formal verification program combining Vasyunin–Báez-Duarte functional route with Lean 4. H13 fully formalized (zero axioms), H14 complete (three independent pieces), H15 blocked by bilinear cancellation amplitude estimation. Pursuing parallel Phase NB Nyman–Beurling bridge formalization.
-            </div>
-            <div class="influence-tags">
-              <span class="influence-tag">Lean 4 Formalization</span>
-              <span class="influence-tag">H13/H14 Complete</span>
-              <span class="influence-tag">Phase NB Bridge</span>
-            </div>
-            <div class="key-papers"><strong>2026:</strong> H13+H14 verified, Phase NB in progress</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- GENEALOGY SUMMARY -->
-    <article style="margin-top: 3rem; padding: 2rem; background: #f9fafb; border-radius: 8px;">
-      <h3>The Genealogical Network</h3>
-      <p style="color: #475569; line-height: 1.8; margin-bottom: 1.5rem;">
-        What emerges is not a single ancestor but a <strong>genealogical network</strong> where four conceptually independent routes developed in parallel:
-      </p>
-      <ul style="color: #475569; line-height: 1.8; margin-left: 2rem;">
-        <li><strong>Classical Route (Riemann → Hadamard → DVP):</strong> Prime number distribution and zero-free regions—the analytic foundation.</li>
-        <li><strong>Functional Route (Nyman → Beurling → Báez-Duarte → Vasyunin):</strong> Hilbert-space closure properties—the formalization-friendly path. This is where our Phase NB resides.</li>
-        <li><strong>Spectral Route (Pólya → Connes):</strong> Self-adjoint operators and noncommutative geometry—the quantum bridge.</li>
-        <li><strong>Probabilistic Route (Montgomery → Katz–Sarnak):</strong> Random matrix theory and zero-spacing statistics—the empirical record.</li>
-      </ul>
-      <p style="color: #475569; line-height: 1.8; margin-top: 1.5rem;">
-        Our project formalizes the <strong>Functional Route</strong> (most Lean-friendly) while acknowledging that the Spectral and Probabilistic routes may eventually provide orthogonal insights. The convergence of four routes toward the same conjecture suggests something deep is true—we just haven't found the right language to prove it yet.
-      </p>
-    </article>
+    <aside class="site-disclosure">
+      <h3>Editorial rule</h3>
+      <p>Collective labels such as “research team” or “unknown author” are retained in the machine-readable corpus but are not presented here as mathematician profiles. Additions to this public map require a source-linked attribution.</p>
+    </aside>
   </main>
 
-  <footer>
-    <div style="text-align: center;">
-      <p><strong>Riemann Hypothesis Formalization Project</strong></p>
-      <p>A Digital Humanities resource combining classical mathematics with modern formal verification and semantic search.</p>
-
-      <div style="margin: 1.5rem 0; padding: 1rem; background: #f0f9ff; border-radius: 6px; border-left: 4px solid #3b82f6;">
-        <p style="margin: 0;">
-          <strong>Questions, feedback, or collaboration inquiries?</strong><br>
-          <strong>Contact:</strong> Xavier Fresquet<br>
-          <strong>Email:</strong> <a href="mailto:scai@sorbonne-universite.fr">scai@sorbonne-universite.fr</a><br>
-          <strong>Institution:</strong> SCAI (Sorbonne Centre for Artificial Intelligence)
-        </p>
-      </div>
-
-      <p style="margin-top: 1rem; font-size: 0.8rem;">Research scaffolding. Not a proof of RH (yet).</p>
-    </div>
+  <footer class="app-footer">
+    <p><strong>Riemann Hypothesis Formalization Project</strong></p>
+    <p>Names and references are maintained as versioned research artifacts.</p>
   </footer>
-
-  <script src="js/main.js"></script>
+  <script src="js/reference-ledger.js"></script>
 </body>
 </html>

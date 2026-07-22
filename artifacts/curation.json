@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "description": "Small, source-verified bibliographic corrections used by the public artifact explorer. Placeholder and collective corpus authors are deliberately not promoted as named mathematicians.",
+  "overrides": {
+    "mathematician:bettin": {
+      "name": "Sandro Bettin",
+      "identityStatus": "source-verified"
+    },
+    "mathematician:conrey": {
+      "name": "Brian Conrey",
+      "identityStatus": "source-verified"
+    },
+    "mathematician:auli": {
+      "name": "Juan S. Auli",
+      "identityStatus": "source-verified"
+    },
+    "mathematician:bayad": {
+      "name": "Abdelmejid Bayad",
+      "identityStatus": "source-verified"
+    },
+    "mathematician:beck": {
+      "name": "Matthias Beck",
+      "identityStatus": "source-verified"
+    },
+    "paper:1111.0931": {
+      "name": "Period functions and cotangent sums",
+      "year": 2013,
+      "journal": "Algebra & Number Theory 7 (2013), no. 1, 215–242",
+      "doi": "10.2140/ant.2013.7.215",
+      "referenceUrl": "https://arxiv.org/abs/1111.0931",
+      "citation": "Sandro Bettin and Brian Conrey, “Period functions and cotangent sums,” Algebra & Number Theory 7 (2013), no. 1, 215–242."
+    },
+    "paper:1601.06839": {
+      "name": "Reciprocity Theorems for Bettin--Conrey Sums",
+      "year": 2017,
+      "journal": "Acta Arithmetica 181 (2017), 297–319",
+      "referenceUrl": "https://arxiv.org/abs/1601.06839",
+      "citation": "Juan S. Auli, Abdelmejid Bayad, and Matthias Beck, “Reciprocity Theorems for Bettin--Conrey Sums,” Acta Arithmetica 181 (2017), 297–319."
+    }
+  },
+  "artifacts": [
+    {
+      "@id": "mathematician:bernhard-riemann",
+      "@type": "Mathematician",
+      "name": "Bernhard Riemann",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "mathematician:bertil-nyman",
+      "@type": "Mathematician",
+      "name": "Bertil Nyman",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "mathematician:arne-beurling",
+      "@type": "Mathematician",
+      "name": "Arne Beurling",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "mathematician:luis-baez-duarte",
+      "@type": "Mathematician",
+      "name": "Luis Báez-Duarte",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "paper:riemann-1859",
+      "@type": "SourcePaper",
+      "name": "Über die Anzahl der Primzahlen unter einer gegebenen Grösse",
+      "year": 1859,
+      "referenceUrl": "https://www.claymath.org/collections/riemanns-1859-manuscript/",
+      "citation": "Bernhard Riemann, “Über die Anzahl der Primzahlen unter einer gegebenen Grösse,” Monatsberichte der Berliner Akademie, November 1859.",
+      "tags": ["history", "prime-distribution", "zeta-function"]
+    },
+    {
+      "@id": "paper:nyman-1950",
+      "@type": "SourcePaper",
+      "name": "On the One-dimensional Translation Group and Semi-group in Certain Function Spaces",
+      "year": 1950,
+      "referenceUrl": "https://books.google.com/books?id=mo_QAAAAMAAJ",
+      "citation": "Bertil Nyman, On the One-dimensional Translation Group and Semi-group in Certain Function Spaces, Uppsala, 1950.",
+      "tags": ["nyman-beurling", "functional-analysis", "history"]
+    },
+    {
+      "@id": "paper:beurling-1955",
+      "@type": "SourcePaper",
+      "name": "A closure problem related to the Riemann zeta-function",
+      "year": 1955,
+      "doi": "10.1073/pnas.41.5.312",
+      "journal": "Proceedings of the National Academy of Sciences 41 (1955), no. 5, 312–314",
+      "referenceUrl": "https://doi.org/10.1073/pnas.41.5.312",
+      "citation": "Arne Beurling, “A closure problem related to the Riemann zeta-function,” Proceedings of the National Academy of Sciences 41 (1955), no. 5, 312–314.",
+      "tags": ["nyman-beurling", "closure", "functional-analysis"]
+    },
+    {
+      "@id": "paper:math/0202141",
+      "@type": "SourcePaper",
+      "name": "A strengthening of the Nyman--Beurling criterion for the Riemann Hypothesis",
+      "year": 2002,
+      "arxivId": "math/0202141",
+      "referenceUrl": "https://arxiv.org/abs/math/0202141",
+      "citation": "Luis Báez-Duarte, “A strengthening of the Nyman--Beurling criterion for the Riemann Hypothesis,” arXiv:math/0202141 (2002).",
+      "tags": ["nyman-beurling", "baez-duarte", "rh-equivalence"]
+    }
+  ],
+  "relationships": [
+    {
+      "source": "paper:riemann-1859",
+      "predicate": "authoredBy",
+      "target": "mathematician:bernhard-riemann",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
+    },
+    {
+      "source": "paper:nyman-1950",
+      "predicate": "authoredBy",
+      "target": "mathematician:bertil-nyman",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
+    },
+    {
+      "source": "paper:beurling-1955",
+      "predicate": "authoredBy",
+      "target": "mathematician:arne-beurling",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
+    },
+    {
+      "source": "paper:math/0202141",
+      "predicate": "authoredBy",
+      "target": "mathematician:luis-baez-duarte",
+      "confidence": 1.0,
+      "note": "Source-verified bibliographic attribution."
+    }
+  ]
+}

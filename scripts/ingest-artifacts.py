@@ -24,6 +24,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CORPUS = Path("dataset/extracted/rh_corpus_database_complete.json")
 DEFAULT_LEAN_ROOT = Path("proofs")
 DEFAULT_ROADMAP = Path("ARTIFACT_DATABASE_ROADMAP.md")
+DEFAULT_CURATION = Path("artifacts/curation.json")
 DEFAULT_OUTPUT = Path("artifacts/registry.jsonld")
 
 CONTEXT = {
@@ -281,6 +282,26 @@ def load_corpus(corpus_path: Path) -> dict[str, Any]:
         return json.load(handle)
 
 
+def load_curation(path: Path) -> dict[str, Any]:
+    """Load optional, source-verified corrections and bibliography records.
+
+    The corpus contains valuable working metadata but also legacy shorthand
+    author names and collective labels.  Curation is intentionally small and
+    explicit: it corrects only records with a reference we are willing to show
+    on the public site, while retaining all original corpus records.
+    """
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as handle:
+        data = json.load(handle)
+    if not isinstance(data, dict):
+        raise ValueError("artifact curation must be a JSON object")
+    for key in ("overrides", "artifacts", "relationships"):
+        if key in data and not isinstance(data[key], (dict, list)):
+            raise ValueError(f"artifact curation {key} has an invalid shape")
+    return data
+
+
 def extract_corpus_artifacts(corpus: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     artifacts: list[dict[str, Any]] = []
     relationships: list[dict[str, Any]] = []
@@ -393,6 +414,28 @@ def unique_relationships(relationships: Iterable[dict[str, Any]]) -> list[dict[s
     return sorted(output, key=lambda item: (item["source"], item["predicate"], item["target"]))
 
 
+def apply_curation(
+    artifacts: list[dict[str, Any]], relationships: list[dict[str, Any]], curation: dict[str, Any]
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Merge explicit bibliographic corrections after corpus de-duplication."""
+    by_id = {artifact["@id"]: dict(artifact) for artifact in artifacts}
+    for artifact in curation.get("artifacts", []):
+        if not isinstance(artifact, dict) or not artifact.get("@id"):
+            raise ValueError("each curated artifact needs an @id")
+        existing = by_id.get(artifact["@id"], {})
+        by_id[artifact["@id"]] = {**existing, **artifact}
+    for artifact_id, override in curation.get("overrides", {}).items():
+        if artifact_id not in by_id:
+            raise ValueError(f"curation override references unknown artifact {artifact_id}")
+        if not isinstance(override, dict):
+            raise ValueError(f"curation override for {artifact_id} is not an object")
+        by_id[artifact_id].update(override)
+    return (
+        [by_id[artifact_id] for artifact_id in sorted(by_id)],
+        unique_relationships([*relationships, *curation.get("relationships", [])]),
+    )
+
+
 def build_registry(args: argparse.Namespace) -> dict[str, Any]:
     root = args.repo_root.resolve()
     corpus = load_corpus((root / args.corpus).resolve())
@@ -404,6 +447,8 @@ def build_registry(args: argparse.Namespace) -> dict[str, Any]:
     roadmap_artifacts = extract_roadmap_artifact((root / args.roadmap).resolve(), root)
     artifacts = unique_by_id([*corpus_artifacts, *lean_artifacts, *roadmap_artifacts])
     relationships = unique_relationships([*corpus_relationships, *lean_relationships])
+    curation = load_curation((root / args.curation).resolve())
+    artifacts, relationships = apply_curation(artifacts, relationships, curation)
     return {
         "@context": CONTEXT,
         "registryVersion": 1,
@@ -423,6 +468,7 @@ def main() -> int:
     parser.add_argument("--lean-root", type=Path, default=DEFAULT_LEAN_ROOT)
     parser.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
     parser.add_argument("--roadmap", type=Path, default=DEFAULT_ROADMAP)
+    parser.add_argument("--curation", type=Path, default=DEFAULT_CURATION)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--check", action="store_true", help="fail if the output would change")
     args = parser.parse_args()

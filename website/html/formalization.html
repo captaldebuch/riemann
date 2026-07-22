@@ -3,501 +3,106 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Formalization & Mathematical Insights: H13–H15 and Phase NB work with Lean proofs and research artifacts.">
-  <title>Formalization & Mathematical Insights</title>
+  <meta name="description" content="A source-linked overview of the Riemann Hypothesis formalization research programme.">
+  <title>Formalization — Riemann Hypothesis Corpus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/design-system.css">
-  <style>
-    .phase-card {
-      background: white;
-      border-left: 6px solid #3b82f6;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .phase-card.complete {
-      border-left-color: #10b981;
-      background: #f0fdf4;
-    }
-    .phase-card.research {
-      border-left-color: #f59e0b;
-      background: #fffbeb;
-    }
-    .phase-card.blocked {
-      border-left-color: #ef4444;
-      background: #fef2f2;
-    }
-    .phase-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-    .phase-title {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #1f2937;
-    }
-    .status-badge {
-      padding: 0.35rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .status-complete {
-      background: #10b981;
-      color: white;
-    }
-    .status-research {
-      background: #f59e0b;
-      color: white;
-    }
-    .status-blocked {
-      background: #ef4444;
-      color: white;
-    }
-    .proposer-info {
-      background: rgba(59, 130, 246, 0.05);
-      padding: 0.75rem 1rem;
-      border-radius: 6px;
-      margin: 1rem 0;
-      font-size: 0.95rem;
-    }
-    .artifact-link {
-      display: inline-block;
-      background: #dbeafe;
-      color: #0369a1;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin: 0.25rem 0.25rem 0.25rem 0;
-      transition: background 0.2s;
-    }
-    .artifact-link:hover {
-      background: #bfdbfe;
-    }
-    .lean-proof {
-      font-family: 'Monaco', 'Courier New', monospace;
-      background: #f5f5f5;
-      padding: 0.5rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      color: #1f2937;
-      overflow-x: auto;
-      margin: 0.5rem 0;
-    }
-    .sub-phase {
-      background: rgba(255,255,255,0.5);
-      padding: 1rem;
-      margin: 0.75rem 0;
-      border-left: 3px solid #e5e7eb;
-      border-radius: 4px;
-    }
-    .sub-phase.complete {
-      border-left-color: #10b981;
-      background: rgba(16, 185, 129, 0.05);
-    }
-    .sub-phase.todo {
-      border-left-color: #f59e0b;
-      background: rgba(245, 158, 11, 0.05);
-    }
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-    .metric-box {
-      background: #f9fafb;
-      padding: 1rem;
-      border-radius: 6px;
-      text-align: center;
-    }
-    .metric-label {
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-    .metric-value {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #1f2937;
-    }
-  </style>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/site-shell.css">
 </head>
-<body>
-  <header>
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
-      <div>
-        <h1>The Riemann Hypothesis Corpus</h1>
-        <p>A Digital Humanities resource (v0.1 Beta) mapping 160+ years of mathematical thinking — combined with Lean 4 formalization</p>
-      </div>
-      <div style="text-align: right;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Logo_SCAI_ArtificialIntelligence_CMJN.jpg"
-             alt="SCAI Logo" style="height: 80px; margin-bottom: 0.5rem;">
+<body class="site-page">
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-area">
+        <p class="site-kicker">Riemann Hypothesis Corpus</p>
+        <h1>Formalization</h1>
+        <p>Lean declarations, source papers, and clearly marked research gates in one evidence record.</p>
       </div>
     </div>
+    <nav class="app-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#corpus-dataset">Corpus</a></li>
+        <li><a href="mathematicians-lineage.html">Mathematicians</a></li>
+        <li><a href="formalization.html" class="active" aria-current="page">Formalization</a></li>
+        <li><a href="artifact-explorer.html">Artifact Database</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="intro.html">Vision & Method</a></li>
-      <li><a href="corpus.html">📚 Complete Corpus</a></li>
-      <li><a href="mathematicians-lineage.html">👥 Mathematical Genealogy</a></li>
-      <li><a href="visualizations.html">📊 Visualizations</a></li>
-      <li><a href="formalization.html" class="active">🔬 Formalization</a></li>
-      <li><a href="knowledge-explorer.html">🔗 Knowledge Graph</a></li>
-      <li><a href="artifact-explorer.html">🗃️ Artifact Database</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <article>
-      <h2>Formalization & Mathematical Insights</h2>
-      <p style="font-size: 1.1rem; line-height: 1.8; color: #334155; margin-bottom: 2rem;">
-        This page documents the formal verification work in Lean 4 and the mathematical research spanning H13–H15 and the Nyman–Beurling bridge to the Riemann Hypothesis. Each phase shows proposer names, key artifacts, and the formalization status.
+  <main class="site-main">
+    <section class="site-hero">
+      <p class="site-kicker">Evidence-led overview</p>
+      <h2>A research programme, not a claimed proof of RH</h2>
+      <p>
+        This page is a compact map of the project’s formal work. The Artifact Database is the source of truth for declarations, source locations, explicit paper links, and whether a declaration is recorded as proved, assumed, or containing a <code>sorry</code>.
       </p>
-    </article>
-
-    <!-- H13: COMPLETE -->
-    <div class="phase-card complete">
-      <div class="phase-header">
-        <div>
-          <div class="phase-title">H13: Classical Foundation (Vasyunin–BBLS)</div>
-          <p style="color: #666; margin: 0.25rem 0; font-size: 0.95rem;">Cotangent sums, period functions, and explicit formula bridge</p>
-        </div>
-        <span class="status-badge status-complete">🧪 EXPERIMENTAL</span>
+      <div class="site-actions">
+        <a class="site-action" href="artifact-explorer.html">Open the Artifact Database</a>
+        <a class="site-action site-action-secondary" href="data/artifacts/registry.jsonld" download>Download the JSON-LD record</a>
       </div>
+    </section>
 
-      <div class="proposer-info">
-        <strong>Proposers & Sources:</strong> Bernard Vasyunin (1999–2015), Balazard–Saias–Landreau–Saias (2003), Luis Báez-Duarte (2003–2020)
+    <section class="site-metrics" aria-label="Formalization registry summary">
+      <article class="site-metric"><span class="site-metric-value" data-registry-metric="formal">—</span><span class="site-metric-label">formal declarations</span></article>
+      <article class="site-metric"><span class="site-metric-value" data-registry-metric="artifacts">—</span><span class="site-metric-label">linked research artifacts</span></article>
+      <article class="site-metric warning"><span class="site-metric-value" data-registry-metric="open">—</span><span class="site-metric-label">open formal gates</span></article>
+      <article class="site-metric"><span class="site-metric-value" data-registry-metric="sources">—</span><span class="site-metric-label">curated source references</span></article>
+    </section>
+
+    <section aria-labelledby="workstreams-heading">
+      <div class="site-section-heading">
+        <p class="site-kicker">Workstreams</p>
+        <h2 id="workstreams-heading">What the repository is organising</h2>
+        <p>Each workstream links to inspectable records rather than using progress percentages as a substitute for verification.</p>
       </div>
-
-      <p><strong>Status:</strong> An experimental formalization in Lean 4 (commit <code>experimental-h13</code>, 2026-07-10). ⚠️ Requires mathematical validation and discussion with experts.</p>
-
-      <h4>Key Theorems Proved:</h4>
-      <ul>
-        <li><strong>Propositions 12, 15, 16, 21r, 22, 48, 87, 88, 89 (BBLS chain):</strong> Cotangent sums, Bernoulli representations, period function identities</li>
-        <li><strong>Period reduction:</strong> Linear taper (1 - n/N) equivalence with logarithmic cutoff</li>
-        <li><strong>Vasyunin identity correctness:</strong> False-at-h=0 statement caught and fixed</li>
-        <li><strong>Explicit formula bridge:</strong> Connection between period functions and zeta zeros</li>
-      </ul>
-
-      <h4>Formalized Artifacts:</h4>
-      <div style="margin: 1rem 0;">
-        <a href="https://github.com/Lean-zh/mathlib4" class="artifact-link">📘 Mathlib NBMellinTools</a>
-        <a href="#" class="artifact-link">🔍 H13RhoBDBaseDischarge.lean</a>
-        <a href="#" class="artifact-link">🔍 VasyuninExplicitFormula.lean</a>
-        <a href="#" class="artifact-link">📊 Verification Report (verified-h13-complete)</a>
+      <div class="site-card-grid">
+        <article class="site-card">
+          <span class="site-status site-status-classical">Classical identities</span>
+          <h3>H13 — cotangent and period-function work</h3>
+          <p>Definitions and Lean declarations around cotangent sums, period functions, and the Nyman–Beurling setting. Inspect the associated modules and any explicitly recorded assumptions in the registry.</p>
+        </article>
+        <article class="site-card">
+          <span class="site-status site-status-classical">Quantitative analysis</span>
+          <h3>H14 — zeta and Möbius bounds</h3>
+          <p>Formal scaffolding for zero-free regions, Mellin/Perron techniques, and quantitative Möbius estimates. Classical analytic inputs remain distinguishable from checked Lean declarations.</p>
+        </article>
+        <article class="site-card">
+          <span class="site-status site-status-research">Active research</span>
+          <h3>H15 — BCF cancellation</h3>
+          <p>The logarithmic-taper BCF direction is recorded as research. Its unresolved cancellation statements are labelled as open gates, not presented as established results.</p>
+        </article>
+        <article class="site-card">
+          <span class="site-status">Functional route</span>
+          <h3>Nyman–Beurling bridge</h3>
+          <p>The functional-analytic equivalence route connects historic work by Nyman, Beurling, and Báez-Duarte to the project’s formal interface.</p>
+        </article>
       </div>
+    </section>
 
-      <h4>Code Statistics:</h4>
-      <div class="metrics">
-        <div class="metric-box">
-          <div class="metric-label">Theorems Proved</div>
-          <div class="metric-value">9</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">Sorries</div>
-          <div class="metric-value">1*</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">New Axioms</div>
-          <div class="metric-value">0</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">Lines of Lean</div>
-          <div class="metric-value">~40 KB</div>
-        </div>
+    <aside class="site-disclosure">
+      <h3>How to read the status labels</h3>
+      <p>“Proved” means the indexed Lean declaration contains no recorded <code>sorry</code> in its source block; “assumed” and “contains sorry” are explicit flags. These are repository facts, not independent mathematical certification.</p>
+    </aside>
+
+    <section aria-labelledby="formalization-references">
+      <div class="site-section-heading">
+        <p class="site-kicker">Verified citations</p>
+        <h2 id="formalization-references">Core references in this route</h2>
+        <p>The list below is generated from the curated, source-verified part of the Artifact Database.</p>
       </div>
-      <p style="font-size: 0.9rem; color: #666;">* One sorry: baezDuarte_prop21 (paper fidelity boundary condition, mathematically sound)</p>
-    </div>
-
-    <!-- H14: COMPLETE -->
-    <div class="phase-card complete">
-      <div class="phase-header">
-        <div>
-          <div class="phase-title">H14: Quantitative Bounds (Möbius Decay)</div>
-          <p style="color: #666; margin: 0.25rem 0; font-size: 0.95rem;">DVP zero-free region, Perron inversion, effective Mertens bound</p>
-        </div>
-        <span class="status-badge status-complete">🧪 EXPERIMENTAL</span>
+      <div class="reference-ledger" data-reference-ids="paper:riemann-1859, paper:nyman-1950, paper:beurling-1955, paper:math/0202141">
+        <p>Loading the curated reference ledger…</p>
       </div>
-
-      <div class="proposer-info">
-        <strong>Proposers & Sources:</strong> De la Vallée Poussin (1896), Borel–Jensen (1900s), Perron (1909), H14 Aristotle specs (2026)
-      </div>
-
-      <p><strong>Status:</strong> 100% mathematically proven and formally verified in Lean 4 (commit <code>b499bf2</code>, codex/h14-corrected-aristotle-specs, 2026-07-15). Zero sorries, zero new axioms. All three gaps closed.</p>
-
-      <h4>Three Independent Pieces (Experimental Models):</h4>
-
-      <div class="sub-phase complete">
-        <strong>H14.1: FEFactor (Vertical Interpolation)</strong><br>
-        <em>Proposer: Aristotle spec team (arXiv-derived). Source: Classical analytic number theory.</em><br>
-        Vertical bounds on Fourier–Eisenstein factors, interpolation between DVP boundaries.
-        <div class="artifact-link">🔍 H14FEFactor.lean (474 lines, experimental)</div>
-      </div>
-
-      <div class="sub-phase complete">
-        <strong>H14.2: Borel–Jensen Completion (Zeta Factorization)</strong><br>
-        <em>Proposer: Aristotle spec team. Source: Borel–Jensen factorization (1900s).</em><br>
-        Factorization of zeta on the critical strip, unconditional bounds from DVP region.
-        <div class="artifact-link">🔍 H14BorelJensenCompletion.lean (64 KB, experimental)</div>
-      </div>
-
-      <div class="sub-phase complete">
-        <strong>H14.3: Perron + Effective Mertens (Truncated Kernel)</strong><br>
-        <em>Proposer: Aristotle spec team. Source: Perron inversion formula (1909).</em><br>
-        Exact truncated contour, Mertens summatory bound |M(N)| ≤ A·N·exp(-a√log N).
-        <div class="artifact-link">🔍 H14PerronKernel.lean (29 KB)</div>
-        <div class="artifact-link">🔍 H14EffectiveMertens.lean (90 KB)</div>
-      </div>
-
-      <h4>Key Result:</h4>
-      <div class="lean-proof">
-        |M(N)| ≤ (3·(H.C+1)·N·exp(-√(log N)/16))
-        <br>where H = DVPZetaInput, unconditional, zero new axioms
-      </div>
-
-      <h4>Code Statistics:</h4>
-      <div class="metrics">
-        <div class="metric-box">
-          <div class="metric-label">Total H14 Code</div>
-          <div class="metric-value">~320 KB</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">Build Jobs</div>
-          <div class="metric-value">8,521</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">Sorries</div>
-          <div class="metric-value">0</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">New Axioms</div>
-          <div class="metric-value">0</div>
-        </div>
-      </div>
-
-      <h4>Verification:</h4>
-      <ul>
-        <li>✅ <code>lake build</code>: 8,521 jobs, 100% pass</li>
-        <li>✅ Axiom audit: propext, Classical.choice, Quot.sound (foundational only)</li>
-        <li>✅ No sorry/sorryAx/native_decide in H14 graph</li>
-        <li>✅ All proofs constructive or explicitly classical</li>
-      </ul>
-
-      <h4>Formalized Artifacts:</h4>
-      <div style="margin: 1rem 0;">
-        <a href="#" class="artifact-link">📘 H14 Module (mathlib/NBMellinTools)</a>
-        <a href="#" class="artifact-link">🔍 H14DVPFoundation.lean</a>
-        <a href="#" class="artifact-link">🔍 H14BorelJensenCompletion.lean</a>
-        <a href="#" class="artifact-link">🔍 H14PerronMertens.lean</a>
-        <a href="#" class="artifact-link">📊 Full Build Report (bee4f21)</a>
-      </div>
-    </div>
-
-    <!-- H15: RESEARCH -->
-    <div class="phase-card research">
-      <div class="phase-header">
-        <div>
-          <div class="phase-title">H15: Quadratic Cancellation (Möbius–Vasyunin Interaction)</div>
-          <p style="color: #666; margin: 0.25rem 0; font-size: 0.95rem;">RH-equivalent bound on bilinear residual energy</p>
-        </div>
-        <span class="status-badge status-research">🔬 RESEARCH ACTIVE</span>
-      </div>
-
-      <div class="proposer-info">
-        <strong>Proposers & Sources:</strong> Bettin–Conrey (2013, arXiv:1111.0931), Bettin–Conrey–Farmer (2012, arXiv:1211.5191), BCF logarithmic taper (active 2026)
-      </div>
-
-      <p><strong>Status:</strong> Open research problem. Linear taper route mathematically blocked (undamped zero residues). Active research switched to BCF logarithmic taper with promising empirical decay.</p>
-
-      <h4>Target Bound (RH-Equivalent):</h4>
-      <div class="lean-proof">
-        E_N = ‖χ - ∑_{n≤N} c_N(n)ρ_n‖²₂ ≤ C / log(N+2)
-        <br>(Unconditional bound would prove RH)
-      </div>
-
-      <h4>Empirical Progress (BCF Logarithmic Taper):</h4>
-      <div style="margin: 1rem 0; font-family: monospace; background: #f5f5f5; padding: 0.75rem; border-radius: 4px;">
-        <strong>N</strong> | <strong>E_N^BCF</strong> | <strong>Target 1/log N</strong><br>
-        100  | 0.1785  | 0.231<br>
-        300  | 0.1169  | 0.168<br>
-        1000 | 0.0813  | 0.109<br>
-        2000 | 0.0674  | 0.086<br>
-      </div>
-      <p style="font-size: 0.9rem; color: #666;">Decay trend: consistent convergence toward O(1/log N) behavior</p>
-
-      <h4>Key Open Problem:</h4>
-      <p><strong>Centered DFI matching:</strong> Can the exact modular-inverse Kloosterman phases e(-nr p̄/q) be estimated to O(1/log N) in a way that preserves the bilinear cancellation structure and exact centering?</p>
-
-      <h4>Formalized Artifacts (Foundation):</h4>
-      <div style="margin: 1rem 0;">
-        <a href="#" class="artifact-link">📘 QuadraticInteraction.lean</a>
-        <a href="#" class="artifact-link">🔍 H15RhoBDBaseDischarge.lean (Mellin formula)</a>
-        <a href="#" class="artifact-link">🔍 H15MellinEnergy.lean (Plancherel identity)</a>
-        <a href="#" class="artifact-link">📄 H15_BCF_LOG_TAPER_RESEARCH_PROTOCOL.md</a>
-      </div>
-
-      <h4>Research Artifacts (Active):</h4>
-      <div style="margin: 1rem 0;">
-        <a href="#" class="artifact-link">📊 Phase 1 Kernel Frozen (exact bilinear form)</a>
-        <a href="#" class="artifact-link">📊 Empirical Diagnostics (N=1000–5000)</a>
-        <a href="#" class="artifact-link">📄 H15 Investigation (Blocker Analysis)</a>
-        <a href="#" class="artifact-link">📧 Expert Escalation Packet (precise open question)</a>
-      </div>
-
-      <h4>Status:</h4>
-      <ul>
-        <li>✅ Mellin identity (exact, proved)</li>
-        <li>✅ Phase conversion (exact, derived)</li>
-        <li>❌ DFI matching (8× bound gap in naive approach)</li>
-        <li>🔴 Linear taper blocked (undamped zero residues); switched to BCF logarithmic taper</li>
-        <li>🟡 BCF taper active: empirical decay promising, DFI matching remains open</li>
-      </ul>
-
-      <p style="color: #f59e0b; font-weight: bold;">⚠️ DO NOT FORMALIZE IN LEAN yet. Mathematical foundations incomplete; expert guidance pending on DFI matching.</p>
-    </div>
-
-    <!-- PHASE NB: ROADMAP -->
-    <div class="phase-card todo">
-      <div class="phase-header">
-        <div>
-          <div class="phase-title">Phase NB: Nyman–Beurling Bridge to RH</div>
-          <p style="color: #666; margin: 0.25rem 0; font-size: 0.95rem;">Formalized link from H13 + H14 to Riemann Hypothesis equivalence</p>
-        </div>
-        <span class="status-badge status-research">📋 READY TO FORMALIZE</span>
-      </div>
-
-      <div class="proposer-info">
-        <strong>Classical Foundation:</strong> Harald Nyman (1950), Alf Beurling (1955), Luis Báez-Duarte (2003)
-      </div>
-
-      <p><strong>Status:</strong> Fully decomposed, mathematically sound, all classical sources identified. Exploratory formalization modeling pending validation of H13 + H14.</p>
-
-      <h4>Seven Sub-Phases:</h4>
-
-      <div class="sub-phase todo">
-        <strong>NB0: Charter & Structure</strong> ✅ MERGED<br>
-        <em>Source: Nyman–Beurling foundational definitions (1950–1955).</em><br>
-        High-level structure: Hilbert space framing, fractional-part criterion.
-      </div>
-
-      <div class="sub-phase todo">
-        <strong>NB1: Mellin Formula Bridge</strong> ⏳ NEXT<br>
-        <em>Source: H14 quantitative bounds + Mellin inversion.</em><br>
-        Connect effective Mertens bound (H14) to Nyman–Beurling L² criterion.
-      </div>
-
-      <div class="sub-phase todo">
-        <strong>NB2: Log-Pullback Transformation</strong> ⏳ NEXT<br>
-        <em>Source: Báez-Duarte logarithmic transform, period-function framework.</em><br>
-        Convert period-function sums into RH-equivalent form.
-      </div>
-
-      <div class="sub-phase todo">
-        <strong>NB3: Hardy Space Continuity</strong> ⏳ NEXT<br>
-        <em>Source: Functional analysis, Hilbert-space completeness.</em><br>
-        Prove density and continuity properties in L²([0,∞)).
-      </div>
-
-      <div class="sub-phase todo">
-        <strong>NB4: Zero Detection</strong> ⏳ NEXT<br>
-        <em>Source: Nyman–Beurling criterion, zeta zero structure.</em><br>
-        Link criterion closure to location of zeta zeros on critical line.
-      </div>
-
-      <div class="sub-phase todo">
-        <strong>NB5–7: Integration & RH Equivalence</strong> ⏳ FINAL<br>
-        <em>Source: Báez-Duarte strong criterion, final synthesis.</em><br>
-        Combine all pieces to prove: criterion ⟺ RH.
-      </div>
-
-      <h4>Key Theorem (Target):</h4>
-      <div class="lean-proof">
-        Nyman–Beurling Criterion ⟺ Riemann Hypothesis
-        <br>(Proved via classical H13 + H14 + algebraic bridge)
-      </div>
-
-      <h4>Formalized Artifacts (To Be Created):</h4>
-      <div style="margin: 1rem 0;">
-        <a href="#" class="artifact-link">📘 NBBridge.lean (main module)</a>
-        <a href="#" class="artifact-link">🔍 NBMellinFormula.lean (sub-phase NB1)</a>
-        <a href="#" class="artifact-link">🔍 NBLogPullback.lean (sub-phase NB2)</a>
-        <a href="#" class="artifact-link">🔍 NBHardyContinuity.lean (sub-phase NB3)</a>
-        <a href="#" class="artifact-link">🔍 NBZeroDetection.lean (sub-phase NB4)</a>
-      </div>
-
-      <h4>Dependencies:</h4>
-      <ul>
-        <li>✅ H13 (Vasyunin foundation) — needed for cotangent identities</li>
-        <li>✅ H14 (Quantitative bounds) — needed for Mellin bridge</li>
-        <li>📚 Classical references — Nyman, Beurling, Báez-Duarte</li>
-      </ul>
-
-      <h4>Roadmap:</h4>
-      <ul>
-        <li>Step 1: NB1 (Mellin bridge from H14 bounds)</li>
-        <li>Step 2: NB2 (log-pullback transform)</li>
-        <li>Step 3: NB3–4 (Hardy space + zero detection)</li>
-        <li>Step 4: NB5–7 (synthesis + RH equivalence proof)</li>
-      </ul>
-
-      <p style="color: #10b981; font-weight: bold;">🧪 EXPERIMENTAL MODELING PHASE. Subject to expert review. Classical path fully mapped.</p>
-    </div>
-
-    <!-- SUMMARY -->
-    <article style="margin-top: 3rem; padding: 1.5rem; background: #f9fafb; border-radius: 8px;">
-      <h3>Overall Progress</h3>
-      <div class="metrics">
-        <div class="metric-box">
-          <div class="metric-label">H13: Classical Foundation</div>
-          <div class="metric-value" style="color: #10b981;">✅ 100%</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">H14: Quantitative Bounds</div>
-          <div class="metric-value" style="color: #10b981;">✅ 100%</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">H15: Quadratic Cancellation</div>
-          <div class="metric-value" style="color: #f59e0b;">🔬 Active Research</div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-label">Phase NB: Bridge to RH</div>
-          <div class="metric-value" style="color: #3b82f6;">📋 Ready</div>
-        </div>
-      </div>
-
-      <p><strong>Formalization Roadmap:</strong> 50% mathematically complete (H13 + H14). Phase NB ready to formalize immediately. H15 is open research pending expert guidance on centered DFI matching or breakthrough on logarithmic taper BCF approach.</p>
-
-      <p><strong>Next Steps:</strong> Start Phase NB (independent of H15), continue H15 research in parallel with improved empirical decay from BCF logarithmic taper.</p>
-    </article>
+    </section>
   </main>
 
-  <footer>
-    <div style="text-align: center;">
-      <p><strong>Riemann Hypothesis Formalization Project</strong></p>
-      <p>A Digital Humanities resource combining classical mathematics with modern formal verification and semantic search.</p>
-
-      <div style="margin: 1.5rem 0; padding: 1rem; background: #f0f9ff; border-radius: 6px; border-left: 4px solid #3b82f6;">
-        <p style="margin: 0;">
-          <strong>Questions, feedback, or collaboration inquiries?</strong><br>
-          <strong>Contact:</strong> Xavier Fresquet<br>
-          <strong>Email:</strong> <a href="mailto:scai@sorbonne-universite.fr">scai@sorbonne-universite.fr</a><br>
-          <strong>Institution:</strong> SCAI (Sorbonne Centre for Artificial Intelligence)
-        </p>
-      </div>
-
-      <p style="margin-top: 1rem; font-size: 0.8rem;">Research scaffolding. Not a proof of RH (yet).</p>
-    </div>
+  <footer class="app-footer">
+    <p><strong>Riemann Hypothesis Formalization Project</strong></p>
+    <p>Research documentation with explicit provenance and uncertainty.</p>
   </footer>
-
-  <script src="js/main.js"></script>
+  <script src="js/reference-ledger.js"></script>
 </body>
 </html>
