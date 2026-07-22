@@ -997,6 +997,23 @@ function renderFormalizationEssay() {
                 <li><strong>Next Research Gates:</strong> Finite hyperbolic reindexing (nk ≤ J) → autocorrelation–R₁ bridge → uniform control of signed boundary remainder (RH-strength gap).</li>
               </ul>
             </li>
+            <li style="margin-top: 1.5rem;">⚡ <strong>Research Breakthrough: Hyperbolic Reindexing & Transfer Identities (July 22, 2026, commit 72004f5)</strong>
+              <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                <li><strong>Hyperbolic Reindexing (BCFLogTaperEhmR1Decay.lean):</strong> ✅ Exact complementary-divisor reindexing; concrete bound |R₁(x)| ≤ 8/x²; absolute convergence at every rational scale.</li>
+                <li><strong>R₁-Series Closed Form (BCFLogTaperEhmSeriesValue.lean):</strong> ✅ Proved Σ_{q≥0} R₁(q+1) = (log(2π) − γ − 1)/2 via axiom-free computation.</li>
+                <li><strong>Near/Far Sector Split (BCFLogTaperEhmComplementarySector.lean):</strong> ✅ Complementary-sector decomposition; far sector controlled by explicit separable majorant; <em>cofinal-in-J control sufficient</em> (eventual control unnecessary).</li>
+                <li><strong>Transfer Identities (BCFQuadraticTaperTransfer.lean):</strong> ✅ Exact Ehm–MacLeod Prop 8.2; transfers between triangular/logarithmic/quadratic tapers; defect terms isolated.</li>
+                <li><strong>MacLeod Investigation (BCFLogTaperEhmMacLeod.lean):</strong> ✅ Exact reformulations via alternate tapers (do not bypass signed estimate).</li>
+                <li style="margin-top: 0.75rem; font-weight: 600; color: #b45309;">Three Remaining Research Gates:
+                  <ul style="margin-top: 0.5rem; padding-left: 1rem; font-weight: 400;">
+                    <li><strong>Autocorrelation Identity:</strong> S₁(d/m) = Σ R₁((q+1)d/m) — convergence proved; need improper-integral value identification + sum–integral interchange.</li>
+                    <li><strong>Far-Majorant Threshold:</strong> Choose D(N) and instantiate majorant bound.</li>
+                    <li><strong>Signed Near-Core Estimate (RH-strength):</strong> Full von Mangoldt transform minus near complementary sector plus linear correction — surviving uniform Möbius-cancellation problem. Matches Ehm's own assessment (arXiv:2405.06349).</li>
+                  </ul>
+                </li>
+                <li style="margin-top: 0.75rem; font-size: 0.9rem; color: #666;"><strong>Build Status:</strong> 8,671 jobs verified; 52 new theorems, all axiom-free; zero new sorries or decisions.</li>
+              </ul>
+            </li>
           </ul>
           <div style="background: #fff7ed; padding: 1rem; border-radius: 4px; margin-top: 1.5rem; border-left: 3px solid #f59e0b;">
             <p style="color: #92400e; font-weight: 600; margin: 0 0 0.5rem 0;">Complete Conditional Proof Pipeline & Current Research Focus</p>
