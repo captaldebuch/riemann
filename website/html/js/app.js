@@ -1014,6 +1014,23 @@ function renderFormalizationEssay() {
                 <li style="margin-top: 0.75rem; font-size: 0.9rem; color: #666;"><strong>Build Status:</strong> 8,671 jobs verified; 52 new theorems, all axiom-free; zero new sorries or decisions.</li>
               </ul>
             </li>
+            <li style="margin-top: 1.5rem; background: #fef3c7; padding: 1rem; border-radius: 6px; border-left: 3px solid #f59e0b;">🎯 <strong>BREAKTHROUGH: Double-Cofinal Ehm Criterion (7 commits ending 7d94cc7, July 22, 2026)</strong>
+              <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                <li><strong>Strategic Shift:</strong> From uniform estimates for all N → <em>cofinal existence of small-energy N</em>. No rate. No estimate for every N.</li>
+                <li><strong>Double-Cofinal Criterion (BCFLogTaperEhmDoubleCofinal.lean):</strong> Strongest new route:
+                  <div style="background:white; padding:0.75rem; margin:0.5rem 0; border-left:2px solid #f59e0b; font-family:monospace; font-size:0.85rem;">
+                    ∀ε,N₀ ∃N≥N₀ ∃^{cofinal}J: |B_{N,J}| &lt; ε ⟹ Báez–Duarte criterion
+                  </div>
+                </li>
+                <li><strong>Cofinal Energy Sufficiency (BCFLogTaperCofinalEnergy.lean):</strong> ✅ Arbitrarily large N with small certified energy suffice; vanishing dyadic means produce cofinal N.</li>
+                <li><strong>Signed Type-I/II Decomposition (BCFLogTaperEhmDispersionBlocks.lean):</strong> ✅ Exact signed blocks with coefficient Λ(j)/(log N) − Σ a_N(d); all four blocks + linear correction retained under coupled cancellation.</li>
+                <li><strong>Averaged Reciprocal Phase (H15AveragedReciprocalPhase.lean):</strong> ✅ Vaaler/reciprocal route; uniform control required after weighted-harmonic summation (not individual phases).</li>
+                <li><strong>Cross-Taper Energy Transfer (H15CofinalEnergyTransfer.lean):</strong> ✅ Explicitly identifies triangular/log-taper mismatch; genuine Gram/defect estimate still required.</li>
+                <li><strong>Axiom-Free Cotangent Reduction (BCFLogTaperCotangentReduction.lean):</strong> ✅ Gram-to-Vasyunin formula proved via Mathlib x↦1/x + BBLS unfolding; remaining problem: decay of fully coupled cotangent.</li>
+                <li style="margin-top: 0.75rem; font-size: 0.9rem; color: #b45309;"><strong>Strategic Alignment:</strong> Matches Ehm's own assessment of quadratic-form asymptotics as tentative and <em>heavily coupled</em> (not termwise). Consistent with classical cotangent/autocorrelation in Vasyunin literature.</li>
+                <li style="margin-top: 0.75rem; font-size: 0.9rem; color: #666;"><strong>Build Status:</strong> Seven stepwise commits; full lake build passed; zero new sorries/axioms.</li>
+              </ul>
+            </li>
           </ul>
           <div style="background: #fff7ed; padding: 1rem; border-radius: 4px; margin-top: 1.5rem; border-left: 3px solid #f59e0b;">
             <p style="color: #92400e; font-weight: 600; margin: 0 0 0.5rem 0;">Complete Conditional Proof Pipeline & Current Research Focus</p>
