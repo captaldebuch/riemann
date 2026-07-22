@@ -980,13 +980,13 @@ function renderFormalizationEssay() {
               <ul style="margin-top: 0.5rem; padding-left: 1rem;">
                 <li><strong>BCF Log-Taper Diagonal Obstruction (94cd950):</strong> Proved exact square-Möbius formula for diagonal mass; D_N ≥ 1 for all N ≥ 2, ruling out isolated small-term strategies.</li>
                 <li><strong>Ehm Compensator Decomposition (bdc3edc–805e208):</strong> Given Ehm's pointwise S₁ kernel formula, proved E_N = 𝒮_N + ℛ_N where 𝒮_N splits exactly as 𝒮_N^off + (G(1,1) − K)D_N, isolating the signed off-diagonal sum.</li>
-                <li><strong>Precise Remaining Estimate:</strong> |𝒮_N^off + (G(1,1) − K)D_N + ℛ_N| ≪ (log N)^(−α), with everything inside one absolute value preserving required cancellation structure.</li>
-                <li><strong>Two Sharply Separated Gaps:</strong>
-                  <ul style="margin-top: 0.5rem; padding-left: 1rem;">
-                    <li><em>Gap 1 (Formalization):</em> Construct EhmS1PointwiseKernelPackage — formalize S₁(x) = Σ R₁(kx) and prove pointwise convergence using Ehm's exact kernel representation.</li>
-                    <li><em>Gap 2 (Open Problem):</em> Prove coupled off-diagonal estimate — the signed sum must achieve O(1/(log N)^α) decay; genuine RH-strength research, not a formalization consequence.</li>
-                  </ul>
+                <li><strong>Pointwise Ehm Kernel Package (2cc04c4):</strong> ✅ Constructed directly from Gram integral with no new axioms or sorries.</li>
+                <li><strong>Off-Diagonal Symmetrization & Reciprocity (c76f757):</strong> ✅ Reduced to one-sided upper-triangle sum U_N with explicit kernel structure:
+                  <div style="background:#f0f9ff; padding:0.75rem; margin:0.5rem 0; border-left:2px solid #0284c7; font-family:monospace; font-size:0.85rem;">
+                    U_N = Σ_{1≤m&lt;n≤N} λ_m λ_n [ 2S₁(n/m)/m + K(1/n − 1/m) + (1/2)(1/n + 1/m) log(n/m) ]
+                  </div>
                 </li>
+                <li><strong>Final Open Estimate (EhmS1OneSidedCoupledCancellationEstimate):</strong> |U_N + (G(1,1) − K)D_N + ℛ_N| ≤ C/(log N)^α. Genuine RH-strength problem: balanced region m ≈ n remains the obstruction.</li>
               </ul>
             </li>
           </ul>
