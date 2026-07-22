@@ -987,6 +987,14 @@ function renderFormalizationEssay() {
                   </div>
                 </li>
                 <li><strong>Final Open Estimate (EhmS1OneSidedCoupledCancellationEstimate):</strong> |U_N + (G(1,1) − K)D_N + ℛ_N| ≤ C/(log N)^α. Genuine RH-strength problem: balanced region m ≈ n remains the obstruction.</li>
+                <li><strong>Balanced/Far Sector Decomposition (24dfd91):</strong> ✅ Separated U_N exactly into balanced region and far sector. Diagnostic analysis confirms far sector is <em>not negligible</em>—cross-sector and dyadic cancellation are <em>essential</em> for decay.</li>
+                <li><strong>Exact Ehm Boundary-Tail Reduction (4a1bfd0):</strong> ✅ Proved:
+                  <div style="background:#f0f9ff; padding:0.75rem; margin:0.5rem 0; border-left:2px solid #0284c7; font-family:monospace; font-size:0.85rem;">
+                    Δ_{N,m} = (Σ_e Λ(e)R₁(e/m))/(log N) + Σ_{n&gt;N} μ(n)((log n)/(log N) − 1)S₁(n/m)
+                  </div>
+                  Also proved A_N(1)=1 and A_N(j)=Λ(j)/(log N) for 2≤j≤N.
+                </li>
+                <li><strong>Next Research Gates:</strong> Finite hyperbolic reindexing (nk ≤ J) → autocorrelation–R₁ bridge → uniform control of signed boundary remainder (RH-strength gap).</li>
               </ul>
             </li>
           </ul>
