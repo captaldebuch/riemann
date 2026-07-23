@@ -94,6 +94,31 @@
   padding: 1.25rem 1.4rem;
 }
 
+.exploration-dialogue {
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  border-left: 4px solid #7c3aed;
+  border-radius: 14px;
+  margin-top: 1.25rem;
+  padding: 1.25rem 1.4rem;
+}
+
+.exploration-dialogue h3 {
+  color: #4c1d95;
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.2rem;
+  margin: 0 0 0.55rem;
+}
+
+.exploration-dialogue p:not(.exploration-eyebrow) {
+  color: #5b21b6;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin: 0.75rem 0 0;
+}
+
+.exploration-dialogue .exploration-eyebrow { color: #6d28d9; }
+
 .exploration-boundary h3,
 .exploration-discovery h3 {
   color: #78350f;
