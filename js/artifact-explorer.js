@@ -64,6 +64,21 @@
     }[status] || titleCase(status);
   }
 
+  function paperClaimValidityLabel(status) {
+    return {
+      sound: "Paper claim sound in scope",
+      conditional: "Paper claim conditional",
+      scope_mismatch: "Paper claim scope mismatch",
+      unsupported: "Paper claim unsupported",
+      contradicted: "Paper claim contradicted",
+      unreviewed: "Paper claim unreviewed",
+    }[status] || titleCase(status);
+  }
+
+  function paperClaimStatus(artifact) {
+    return artifact.paperClaims?.[0]?.validity?.status || "";
+  }
+
   function appendText(parent, tagName, text, className) {
     const element = document.createElement(tagName);
     if (className) element.className = className;
@@ -140,6 +155,13 @@
         artifact.abstract,
         artifact.auditStatus,
         artifact.findings,
+        ...(artifact.paperClaims || []).flatMap((paperClaim) => [
+          paperClaim.claim,
+          paperClaim.sourcePaper,
+          paperClaim.validity?.status,
+          paperClaim.validity?.note,
+          ...(paperClaim.validity?.conditions || []),
+        ]),
         ...(artifact.authors || []),
         ...(artifact.rolesInH15 || []),
         artifact["@id"],
@@ -167,7 +189,10 @@
       button.setAttribute("aria-pressed", String(state.selectedId === artifact["@id"]));
       button.addEventListener("click", () => selectArtifact(artifact["@id"]));
       appendText(button, "span", artifact.name, "artifact-result-name");
-      const metadata = artifact.auditStatus
+      const claimStatus = paperClaimStatus(artifact);
+      const metadata = claimStatus
+        ? `${titleCase(artifact["@type"])} · ${paperClaimValidityLabel(claimStatus)}`
+        : artifact.auditStatus
         ? `${titleCase(artifact["@type"])} · ${auditStatusLabel(artifact.auditStatus)}`
         : `${titleCase(artifact["@type"])} · ${statusLabel(statusOf(artifact))}`;
       appendText(button, "span", metadata, "artifact-result-meta");
@@ -220,6 +245,8 @@
     appendText(metadata, "span", titleCase(artifact["@type"]), "artifact-type");
     appendText(metadata, "span", statusLabel(statusOf(artifact)), `artifact-status artifact-status-${statusOf(artifact)}`);
     if (artifact.openProblem) appendText(metadata, "span", "Open research gate", "artifact-status artifact-status-assumed");
+    const claimStatus = paperClaimStatus(artifact);
+    if (claimStatus) appendText(metadata, "span", paperClaimValidityLabel(claimStatus), `artifact-status artifact-claim-status-${claimStatus}`);
     elements.detail.append(metadata);
 
     if (artifact.summary) {
@@ -265,6 +292,33 @@
       appendText(section, "p", artifact.authors.join(", "));
       elements.detail.append(section);
     }
+    if (artifact.paperClaims?.length) {
+      const section = document.createElement("section");
+      appendText(section, "h4", "Paper-claim validity review");
+      for (const paperClaim of artifact.paperClaims) {
+        const review = document.createElement("article");
+        review.className = "artifact-claim-review";
+        const source = state.byId.get(paperClaim.sourcePaper);
+        appendText(review, "p", source?.name || paperClaim.sourcePaper, "artifact-claim-source");
+        const reviewStatus = paperClaim.validity?.status || "unreviewed";
+        appendText(review, "span", paperClaimValidityLabel(reviewStatus), `artifact-status artifact-claim-status-${reviewStatus}`);
+        if (paperClaim.sourceLocation) {
+          const bits = [paperClaim.sourceLocation.theorem, paperClaim.sourceLocation.section, paperClaim.sourceLocation.equation]
+            .filter(Boolean);
+          if (paperClaim.sourceLocation.page) bits.push(`p. ${paperClaim.sourceLocation.page}`);
+          if (bits.length) appendText(review, "p", `Source location: ${bits.join(", ")}`);
+        }
+        appendText(review, "p", `Claim: ${paperClaim.claim}`);
+        if (paperClaim.validity?.conditions?.length) {
+          appendText(review, "p", `Conditions: ${paperClaim.validity.conditions.join("; ")}`);
+        }
+        const methods = paperClaim.validity?.method?.join(", ");
+        if (methods) appendText(review, "p", `Review: ${methods} · ${paperClaim.validity.reviewedAt || "date unrecorded"}`);
+        if (paperClaim.validity?.note) appendText(review, "p", paperClaim.validity.note, "artifact-claim-note");
+        section.append(review);
+      }
+      elements.detail.append(section);
+    }
     if (artifact.auditStatus || artifact.rolesInH15?.length || artifact.findings) {
       const section = document.createElement("section");
       appendText(section, "h4", "H15 paper audit");
@@ -280,6 +334,11 @@
     if (artifact.localPdf) {
       const section = document.createElement("section");
       appendText(section, "h4", "Local archive record");
+      if (artifact.publishedPdf) {
+        const paragraph = document.createElement("p");
+        addLink(paragraph, "Download archived PDF", artifact.publishedPdf);
+        section.append(paragraph);
+      }
       appendText(section, "code", artifact.localPdf);
       elements.detail.append(section);
     }
