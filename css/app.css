@@ -259,3 +259,125 @@ body {
   border-top: 1px solid #e2e8f0;
   margin-top: 4rem;
 }
+
+/* Intuitions: historical ideas connected to audited Lean declarations */
+.intuition-lean-bridge {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  margin: 0 0 2rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.intuition-lean-heading h3 {
+  color: #1e3a8a;
+  font-size: 1.35rem;
+  margin: 0.1rem 0 0.55rem;
+}
+
+.intuition-lean-heading > p:last-child {
+  color: #475569;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 76ch;
+}
+
+.intuition-lean-kicker {
+  color: #1d4ed8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.intuition-lean-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1.25rem;
+}
+
+.intuition-lean-card {
+  background: #f8fafc;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  padding: 1.1rem;
+}
+
+.intuition-lean-card-topline {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.intuition-lean-card h4 {
+  color: #1e293b;
+  font-size: 1rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.intuition-lean-card p {
+  color: #475569;
+  font-size: 0.92rem;
+  line-height: 1.52;
+  margin: 0.7rem 0;
+}
+
+.intuition-lean-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.intuition-lean-card li + li {
+  margin-top: 0.35rem;
+}
+
+.intuition-lean-link {
+  color: #1d4ed8;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.intuition-lean-link:hover {
+  color: #1e3a8a;
+}
+
+.intuition-lean-status {
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  color: #166534;
+  flex: 0 0 auto;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0.28rem 0.45rem;
+  text-align: center;
+}
+
+.intuition-lean-status.is-conditional {
+  background: #dbeafe;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.intuition-lean-status.is-open {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #9a3412;
+}
+
+@media (max-width: 640px) {
+  .intuition-lean-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intuition-lean-card-topline {
+    flex-direction: column;
+  }
+}
