@@ -34,6 +34,8 @@ CONTEXT = {
     "motivatedBy": {"@type": "@id"},
     "formalizes": {"@type": "@id"},
     "blockedBy": {"@type": "@id"},
+    "derivedFrom": {"@type": "@id"},
+    "informs": {"@type": "@id"},
 }
 
 DECL_RE = re.compile(
@@ -341,6 +343,8 @@ def load_paper_artifacts(paper_root: Path, root: Path) -> tuple[list[dict[str, A
         artifact["name"] = title.strip()
         artifact["source"] = {"file": repo_relative(path, root), "line": 1}
         artifact["localPdf"] = paper.get("pdfLocal")
+        if isinstance(paper.get("pdfLocal"), str):
+            artifact["publishedPdf"] = f"papers/h15-audit/{Path(paper['pdfLocal']).name}"
         artifact["tags"] = sorted({*paper.get("tags", []), *keywords})
         if paper.get("abstract") and not paper.get("summary"):
             artifact["summary"] = paper["abstract"]
@@ -431,10 +435,10 @@ def extract_corpus_artifacts(corpus: dict[str, Any]) -> tuple[list[dict[str, Any
             relationships.append(
                 {
                     "source": f"paper:{source}",
-                    "predicate": "derivedFrom",
+                    "predicate": "informs",
                     "target": f"paper:{target}",
                     "confidence": connection.get("strength", 0.5),
-                    "note": connection.get("description", ""),
+                    "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. " + connection.get("description", ""),
                 }
             )
     return artifacts, relationships

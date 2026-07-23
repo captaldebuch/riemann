@@ -109,6 +109,19 @@ python3 scripts/export-corpus-inventory.py --check
 
 to verify that those exports remain consistent.
 
+The public corpus catalogue mirrors the 62 linked source PDFs under
+`website/html/papers/corpus/`. Regenerate and verify that static mirror with:
+
+```bash
+python3 scripts/publish-corpus-papers.py
+python3 scripts/publish-corpus-papers.py --check
+```
+
+`scripts/export-corpus-inventory.py` emits the corresponding `publishedPdf`
+path for each of the 78 metadata entries, including entries that share a
+source file. The site renders a direct download only when that checked-in copy
+exists.
+
 #### `rh_corpus_knowledge_graphs.json`
 **RDF-style knowledge graph format:**
 ```json

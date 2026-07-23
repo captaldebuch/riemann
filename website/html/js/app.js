@@ -444,6 +444,7 @@ function getCorpusPaperCard(paper) {
         <span class="corpus-record-status ${paper.bibliographyStatus === 'needs-review' ? 'is-bibliography-review' : 'is-bibliography-checked'}">${escapeHtml(paper.bibliographySource || 'Catalogue metadata')}</span>
         <span class="corpus-record-status ${paper.processed ? 'is-processed' : 'is-metadata'}">${paper.processed ? 'Processed' : 'Metadata only'}</span>
         <span class="corpus-record-status ${paper.localPdf ? 'is-source-present' : 'is-source-unresolved'}">${sourceStatus}</span>
+        ${paper.publishedPdf ? `<a class="corpus-record-link" href="${escapeHtml(paper.publishedPdf)}" download>Download source PDF</a>` : ''}
       </div>
     </article>
   `;
@@ -531,12 +532,12 @@ function renderCorpusDataset() {
       <div class="corpus-section-heading">
         <p class="corpus-eyebrow">Data access</p>
         <h3>Download or inspect the underlying records</h3>
-        <p>The complete metadata index is the right starting point for corpus-wide work. The older Dataset v1 remains available as a 14-record legacy export; it is not the complete corpus.</p>
+        <p>The complete metadata index is the right starting point for corpus-wide work. The 62 linked source PDFs are also mirrored here: use the direct download on every catalogue card. The older Dataset v1 remains available as a 14-record legacy export; it is not the complete corpus.</p>
       </div>
       <div class="corpus-access-grid">
         <article class="corpus-access-card">
           <h3>Complete metadata index</h3>
-          <p>All 78 source metadata entries, with title/author transcription status and a transparent source-PDF relationship field.</p>
+          <p>All 78 source metadata entries, with title/author transcription status, public PDF paths, and a transparent source-PDF relationship field.</p>
           <a class="corpus-button" href="data/corpus-inventory.json" download>Download 78-entry index</a>
         </article>
         <article class="corpus-access-card">
@@ -551,7 +552,7 @@ function renderCorpusDataset() {
         </article>
         <article class="corpus-access-card">
           <h3>H15 paper audit</h3>
-          <p>Inspect the acquired H15 literature set: its roles, audit findings, and explicit links to the current research gate.</p>
+          <p>Inspect and download the 11 acquired H15 audit papers, with their roles, findings, and explicit links to the current research gate.</p>
           <a class="corpus-button" href="artifact-explorer.html?audit=h15">Open H15 audit</a>
         </article>
       </div>
@@ -559,7 +560,7 @@ function renderCorpusDataset() {
       <div class="corpus-section-heading">
         <p class="corpus-eyebrow">Browse</p>
         <h3>Complete metadata inventory</h3>
-        <p>Filter the 78 catalogue entries by project track or year. Every card displays its title and authors; status pills show whether its citation came from a PDF title page or still needs archival review.</p>
+        <p>Filter the 78 catalogue entries by project track or year. Every card displays its title, authors, source status, and—where the archive contains the linked file—a direct PDF download.</p>
       </div>
       <div class="corpus-catalogue">
         <div class="corpus-filters" role="search">

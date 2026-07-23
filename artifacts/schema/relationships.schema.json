@@ -18,7 +18,8 @@
         "instantiatesGate",
         "documents",
         "supports",
-        "derivedFrom"
+        "derivedFrom",
+        "informs"
       ]
     },
     "target": {"type": "string", "minLength": 1},

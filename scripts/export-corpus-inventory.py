@@ -163,6 +163,7 @@ def build_inventory(
                 "processed": source_id_text in processed_ids,
                 "localPdf": local_pdf,
                 "localPdfName": pdf_name_text,
+                "publishedPdf": f"papers/corpus/{pdf_name_text}" if local_pdf and pdf_name_text else None,
                 "sharedSource": shared_source,
                 "firstSourceReference": first_reference,
                 "bibliographySource": bibliography_source,

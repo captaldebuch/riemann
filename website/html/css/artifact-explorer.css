@@ -297,6 +297,12 @@
 .artifact-status-assumed { background: #ffedd5; color: #9a3412; }
 .artifact-status-contains-sorry { background: #fee2e2; color: #991b1b; }
 .artifact-status-declaration { background: #e0e7ff; color: #3730a3; }
+.artifact-claim-status-sound { background: #dcfce7; color: #166534; }
+.artifact-claim-status-conditional { background: #fef3c7; color: #92400e; }
+.artifact-claim-status-scope_mismatch,
+.artifact-claim-status-unsupported,
+.artifact-claim-status-contradicted { background: #fee2e2; color: #991b1b; }
+.artifact-claim-status-unreviewed { background: #e2e8f0; color: #475569; }
 .artifact-type { background: #e2e8f0; color: #334155; }
 .artifact-tag { background: #f1f5f9; color: #475569; margin-top: 0.3rem; }
 .artifact-relationship-predicate { background: #ede9fe; color: #5b21b6; margin: 0 0.45rem 0 0; }
@@ -332,6 +338,18 @@
 }
 
 .artifact-detail li + li { margin-top: 0.5rem; }
+
+.artifact-claim-review {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  margin-top: 0.7rem;
+  padding: 0.8rem;
+}
+
+.artifact-claim-review .artifact-status { margin-top: 0.4rem; }
+.artifact-claim-source { color: #1e293b !important; font-family: "Inter", sans-serif; font-weight: 700; }
+.artifact-claim-note { color: #7f1d1d !important; font-weight: 600; }
 
 .artifact-relation-button {
   background: transparent;

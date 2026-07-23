@@ -12,6 +12,12 @@
     },
     "blockedBy": {
       "@type": "@id"
+    },
+    "derivedFrom": {
+      "@type": "@id"
+    },
+    "informs": {
+      "@type": "@id"
     }
   },
   "registryVersion": 1,
@@ -39,7 +45,27 @@
       ],
       "openProblem": true,
       "difficulty": "research-level",
-      "summary": "- Auli-Bayad-Beck Reciprocity Theorem GOAL: Prove reciprocity connecting Möbius-weighted cotangent sums to Estermann zeta and period function structures Source: Auli, Bayad, Beck (1601.06839v3), Theorem 1.1, p. 2 Proof required: ~150-200 lines (contour integration + residue theorem) Current status: UNPROVEN"
+      "summary": "- Auli-Bayad-Beck Reciprocity Theorem GOAL: Prove reciprocity connecting Möbius-weighted cotangent sums to Estermann zeta and period function structures Source: Auli, Bayad, Beck (1601.06839v3), Theorem 1.1, p. 2 Proof required: ~150-200 lines (contour integration + residue theorem) Current status: UNPROVEN",
+      "paperClaims": [
+        {
+          "sourcePaper": "paper:1601.06839",
+          "claim": "The Auli–Bayad–Beck reciprocity theorem is represented by this Lean declaration.",
+          "sourceLocation": {
+            "theorem": "Theorem 1.1",
+            "page": 2
+          },
+          "validity": {
+            "status": "unsupported",
+            "method": [
+              "source-reading",
+              "definition-check"
+            ],
+            "reviewedAt": "2026-07-23",
+            "reviewedBy": "project validity audit",
+            "note": "The Lean declaration concludes only True, so it does not encode the source theorem’s mathematical conclusion. It is a research placeholder, not a sound formal translation."
+          }
+        }
+      ]
     },
     {
       "@id": "axiom:NBMellinTools.cotangent_integral_form",
@@ -64,7 +90,28 @@
       ],
       "openProblem": true,
       "difficulty": "research-level",
-      "summary": "- Cotangent Integral Representation GOAL: Express reciprocity-related cotangent sums as contour integrals Source: Auli, Bayad, Beck (1601.06839v3), Theorem 1.2, p. 3 Note: The paper assumes Re(a) > 1, not Re(a) > -1 Proof required: ~150-200 lines (residue extraction + functional equations) Current status: UNPROVEN"
+      "summary": "- Cotangent Integral Representation GOAL: Express reciprocity-related cotangent sums as contour integrals Source: Auli, Bayad, Beck (1601.06839v3), Theorem 1.2, p. 3 Note: The paper assumes Re(a) > 1, not Re(a) > -1 Proof required: ~150-200 lines (residue extraction + functional equations) Current status: UNPROVEN",
+      "paperClaims": [
+        {
+          "sourcePaper": "paper:1601.06839",
+          "claim": "The cotangent integral representation from the cited theorem applies under the domain encoded in this Lean declaration.",
+          "sourceLocation": {
+            "theorem": "Theorem 1.2",
+            "page": 3
+          },
+          "validity": {
+            "status": "scope_mismatch",
+            "method": [
+              "source-reading",
+              "hypothesis-check",
+              "definition-check"
+            ],
+            "reviewedAt": "2026-07-23",
+            "reviewedBy": "project validity audit",
+            "note": "The cited source assumes Re(a) > 1, while the current Lean placeholder assumes only Re(a) > -1. The source does not license this statement; it must not be used as proof evidence."
+          }
+        }
+      ]
     },
     {
       "@id": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
@@ -139,7 +186,27 @@
       ],
       "openProblem": true,
       "difficulty": "research-level",
-      "summary": "- Bettin-Conrey Period Function Recursion GOAL: Prove three-term functional equation for period functions Source: Bettin & Conrey (1111.0931v2), Theorem 1, p. 6 Proof required: ~100-150 lines (zeta functional equation + Bernoulli periodicity) Current status: UNPROVEN"
+      "summary": "- Bettin-Conrey Period Function Recursion GOAL: Prove three-term functional equation for period functions Source: Bettin & Conrey (1111.0931v2), Theorem 1, p. 6 Proof required: ~100-150 lines (zeta functional equation + Bernoulli periodicity) Current status: UNPROVEN",
+      "paperClaims": [
+        {
+          "sourcePaper": "paper:1111.0931",
+          "claim": "The Bettin–Conrey period-function recurrence is represented by this Lean declaration.",
+          "sourceLocation": {
+            "theorem": "Theorem 1",
+            "page": 6
+          },
+          "validity": {
+            "status": "unsupported",
+            "method": [
+              "source-reading",
+              "definition-check"
+            ],
+            "reviewedAt": "2026-07-23",
+            "reviewedBy": "project validity audit",
+            "note": "The declaration concludes only True and has not yet captured the source recurrence, its normalisation, or its hypotheses. It records a formalization goal, not a validated theorem translation."
+          }
+        }
+      ]
     },
     {
       "@id": "concept:analytic",
@@ -1666,6 +1733,7 @@
         "file": "artifacts/papers/1111.0931.json",
         "line": 1
       },
+      "publishedPdf": "papers/h15-audit/1111.0931.pdf",
       "citation": "Sandro Bettin and Brian Conrey, “Period functions and cotangent sums,” Algebra & Number Theory 7 (2013), no. 1, 215–242."
     },
     {
@@ -1702,6 +1770,7 @@
         "line": 1
       },
       "localPdf": "papers/1111.6190.pdf",
+      "publishedPdf": "papers/h15-audit/1111.6190.pdf",
       "tags": [
         "arithmetic-progressions",
         "barban-davenport-halberstam",
@@ -1895,6 +1964,7 @@
         "line": 1
       },
       "localPdf": "papers/1502.00769.pdf",
+      "publishedPdf": "papers/h15-audit/1502.00769.pdf",
       "tags": [
         "dfi",
         "kloosterman-fractions",
@@ -1968,6 +2038,7 @@
         "line": 1
       },
       "localPdf": "papers/1509.05363.pdf",
+      "publishedPdf": "papers/h15-audit/1509.05363.pdf",
       "tags": [
         "discrepancy",
         "elliott-conjecture",
@@ -2073,6 +2144,7 @@
         "line": 1
       },
       "localPdf": "papers/1711.10582.pdf",
+      "publishedPdf": "papers/h15-audit/1711.10582.pdf",
       "tags": [
         "burgess-bound",
         "character-sums",
@@ -2144,6 +2216,7 @@
         "line": 1
       },
       "localPdf": "papers/2001.05114.pdf",
+      "publishedPdf": "papers/h15-audit/2001.05114.pdf",
       "tags": [
         "character-sums",
         "dispersion",
@@ -2185,6 +2258,7 @@
         "line": 1
       },
       "localPdf": "papers/2002.03435.pdf",
+      "publishedPdf": "papers/h15-audit/2002.03435.pdf",
       "tags": [
         "additive-characters",
         "burgess-bound",
@@ -2227,6 +2301,7 @@
         "line": 1
       },
       "localPdf": "papers/2004.10086.pdf",
+      "publishedPdf": "papers/h15-audit/2004.10086.pdf",
       "tags": [
         "cotangent-sums",
         "nyman-beurling",
@@ -2304,6 +2379,7 @@
         "line": 1
       },
       "localPdf": "papers/2204.03754.pdf",
+      "publishedPdf": "papers/h15-audit/2204.03754.pdf",
       "tags": [
         "mobius-function",
         "nilsequences",
@@ -2389,6 +2465,7 @@
         "line": 1
       },
       "localPdf": "papers/2405.06349.pdf",
+      "publishedPdf": "papers/h15-audit/2405.06349.pdf",
       "tags": [
         "gram-matrices",
         "nyman-beurling",
@@ -3344,6 +3421,7 @@
         "line": 1
       },
       "localPdf": "papers/0509480.pdf",
+      "publishedPdf": "papers/h15-audit/0509480.pdf",
       "tags": [
         "l-functions",
         "mollified-moments",
@@ -5257,6 +5335,13 @@
     },
     {
       "source": "axiom:NBMellinTools.auli_bayad_beck_reciprocity",
+      "predicate": "derivedFrom",
+      "target": "paper:1601.06839",
+      "confidence": 1.0,
+      "note": "Paper-derived research goal; see the attached unsupported translation review."
+    },
+    {
+      "source": "axiom:NBMellinTools.auli_bayad_beck_reciprocity",
       "predicate": "motivatedBy",
       "target": "paper:1601.06839",
       "confidence": 1.0,
@@ -5268,6 +5353,13 @@
       "target": "module:NBMellinTools.H15_RouteA",
       "confidence": 1.0,
       "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "axiom:NBMellinTools.cotangent_integral_form",
+      "predicate": "derivedFrom",
+      "target": "paper:1601.06839",
+      "confidence": 1.0,
+      "note": "Paper-derived research goal with a recorded domain mismatch."
     },
     {
       "source": "axiom:NBMellinTools.cotangent_integral_form",
@@ -5296,6 +5388,13 @@
       "target": "module:NBMellinTools.H15_RouteA",
       "confidence": 1.0,
       "note": "Declaration is defined in this Lean module."
+    },
+    {
+      "source": "axiom:NBMellinTools.period_function_recursion",
+      "predicate": "derivedFrom",
+      "target": "paper:1111.0931",
+      "confidence": 1.0,
+      "note": "Paper-derived research goal; the formal translation remains unsupported."
     },
     {
       "source": "axiom:NBMellinTools.period_function_recursion",
@@ -6048,10 +6147,10 @@
     },
     {
       "source": "paper:2607.01126",
-      "predicate": "derivedFrom",
+      "predicate": "informs",
       "target": "paper:file:Zeta (1).pdf",
       "confidence": 0.8,
-      "note": "Extends classical Mellin techniques"
+      "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. Extends classical Mellin techniques"
     },
     {
       "source": "paper:2607.01126",
@@ -6073,10 +6172,10 @@
     },
     {
       "source": "paper:2607.02828",
-      "predicate": "derivedFrom",
+      "predicate": "informs",
       "target": "paper:file:Zeta (1).pdf",
       "confidence": 0.8,
-      "note": "Extends classical Mellin techniques"
+      "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. Extends classical Mellin techniques"
     },
     {
       "source": "paper:2607.02828",
@@ -6098,10 +6197,10 @@
     },
     {
       "source": "paper:2607.04316",
-      "predicate": "derivedFrom",
+      "predicate": "informs",
       "target": "paper:file:Zeta (1).pdf",
       "confidence": 0.8,
-      "note": "Extends classical Mellin techniques"
+      "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. Extends classical Mellin techniques"
     },
     {
       "source": "paper:2607.04316",
@@ -6129,10 +6228,10 @@
     },
     {
       "source": "paper:2607.04632",
-      "predicate": "derivedFrom",
+      "predicate": "informs",
       "target": "paper:1211.5191",
       "confidence": 0.7,
-      "note": "Uses results from classical approach"
+      "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. Uses results from classical approach"
     },
     {
       "source": "paper:2607.04632",
@@ -6160,10 +6259,10 @@
     },
     {
       "source": "paper:2607.09110",
-      "predicate": "derivedFrom",
+      "predicate": "informs",
       "target": "paper:1211.5191",
       "confidence": 0.7,
-      "note": "Uses results from classical approach"
+      "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. Uses results from classical approach"
     },
     {
       "source": "paper:2607.09110",
@@ -6191,17 +6290,17 @@
     },
     {
       "source": "paper:2607.09797",
-      "predicate": "derivedFrom",
+      "predicate": "informs",
       "target": "paper:1211.5191",
       "confidence": 0.7,
-      "note": "Uses results from classical approach"
+      "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. Uses results from classical approach"
     },
     {
       "source": "paper:2607.09797",
-      "predicate": "derivedFrom",
+      "predicate": "informs",
       "target": "paper:2607.04316",
       "confidence": 0.85,
-      "note": "Applies quantitative bounds from H14"
+      "note": "Corpus-level thematic connection only; not a claim that one paper derives a theorem from the other. Applies quantitative bounds from H14"
     },
     {
       "source": "paper:2607.09797",
@@ -7498,7 +7597,7 @@
   ],
   "statistics": {
     "artifacts": 352,
-    "relationships": 348,
+    "relationships": 351,
     "byType": {
       "Concept": 55,
       "FormalAxiom": 5,

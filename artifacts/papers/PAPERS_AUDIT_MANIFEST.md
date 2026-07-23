@@ -50,3 +50,7 @@ The Artifact Explorer treats `auditStatus` as research metadata and displays
 the role, recorded finding, bibliographic reference, and explicit `informs`
 links to the H15 research gate. It does not treat an audit status as formal
 verification.
+
+The same 11 PDFs are published under `website/html/papers/h15-audit/` by
+`scripts/publish-h15-audit-papers.py`, making the website’s audit cards directly
+downloadable rather than metadata-only.

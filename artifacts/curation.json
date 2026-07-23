@@ -36,6 +36,54 @@
       "journal": "Acta Arithmetica 181 (2017), 297–319",
       "referenceUrl": "https://arxiv.org/abs/1601.06839",
       "citation": "Juan S. Auli, Abdelmejid Bayad, and Matthias Beck, “Reciprocity Theorems for Bettin--Conrey Sums,” Acta Arithmetica 181 (2017), 297–319."
+    },
+    "axiom:NBMellinTools.auli_bayad_beck_reciprocity": {
+      "paperClaims": [
+        {
+          "sourcePaper": "paper:1601.06839",
+          "claim": "The Auli–Bayad–Beck reciprocity theorem is represented by this Lean declaration.",
+          "sourceLocation": {"theorem": "Theorem 1.1", "page": 2},
+          "validity": {
+            "status": "unsupported",
+            "method": ["source-reading", "definition-check"],
+            "reviewedAt": "2026-07-23",
+            "reviewedBy": "project validity audit",
+            "note": "The Lean declaration concludes only True, so it does not encode the source theorem’s mathematical conclusion. It is a research placeholder, not a sound formal translation."
+          }
+        }
+      ]
+    },
+    "axiom:NBMellinTools.cotangent_integral_form": {
+      "paperClaims": [
+        {
+          "sourcePaper": "paper:1601.06839",
+          "claim": "The cotangent integral representation from the cited theorem applies under the domain encoded in this Lean declaration.",
+          "sourceLocation": {"theorem": "Theorem 1.2", "page": 3},
+          "validity": {
+            "status": "scope_mismatch",
+            "method": ["source-reading", "hypothesis-check", "definition-check"],
+            "reviewedAt": "2026-07-23",
+            "reviewedBy": "project validity audit",
+            "note": "The cited source assumes Re(a) > 1, while the current Lean placeholder assumes only Re(a) > -1. The source does not license this statement; it must not be used as proof evidence."
+          }
+        }
+      ]
+    },
+    "axiom:NBMellinTools.period_function_recursion": {
+      "paperClaims": [
+        {
+          "sourcePaper": "paper:1111.0931",
+          "claim": "The Bettin–Conrey period-function recurrence is represented by this Lean declaration.",
+          "sourceLocation": {"theorem": "Theorem 1", "page": 6},
+          "validity": {
+            "status": "unsupported",
+            "method": ["source-reading", "definition-check"],
+            "reviewedAt": "2026-07-23",
+            "reviewedBy": "project validity audit",
+            "note": "The declaration concludes only True and has not yet captured the source recurrence, its normalisation, or its hypotheses. It records a formalization goal, not a validated theorem translation."
+          }
+        }
+      ]
     }
   },
   "artifacts": [
@@ -131,6 +179,27 @@
       "target": "mathematician:luis-baez-duarte",
       "confidence": 1.0,
       "note": "Source-verified bibliographic attribution."
+    },
+    {
+      "source": "axiom:NBMellinTools.auli_bayad_beck_reciprocity",
+      "predicate": "derivedFrom",
+      "target": "paper:1601.06839",
+      "confidence": 1.0,
+      "note": "Paper-derived research goal; see the attached unsupported translation review."
+    },
+    {
+      "source": "axiom:NBMellinTools.cotangent_integral_form",
+      "predicate": "derivedFrom",
+      "target": "paper:1601.06839",
+      "confidence": 1.0,
+      "note": "Paper-derived research goal with a recorded domain mismatch."
+    },
+    {
+      "source": "axiom:NBMellinTools.period_function_recursion",
+      "predicate": "derivedFrom",
+      "target": "paper:1111.0931",
+      "confidence": 1.0,
+      "note": "Paper-derived research goal; the formal translation remains unsupported."
     }
   ]
 }

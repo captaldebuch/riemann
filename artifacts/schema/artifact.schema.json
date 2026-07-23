@@ -55,6 +55,78 @@
       },
       "additionalProperties": false
     },
+    "paperClaims": {
+      "type": "array",
+      "description": "Reviewed claims imported, translated, or applied from a source paper. This records applicability, not merely bibliographic relevance.",
+      "items": {
+        "type": "object",
+        "required": ["sourcePaper", "claim", "validity"],
+        "properties": {
+          "sourcePaper": {
+            "type": "string",
+            "pattern": "^paper:",
+            "description": "The SourcePaper artifact from which this claim is taken."
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The precise informal claim or proposed translation being relied upon."
+          },
+          "sourceLocation": {
+            "type": "object",
+            "properties": {
+              "theorem": {"type": "string"},
+              "section": {"type": "string"},
+              "page": {"type": "integer", "minimum": 1},
+              "equation": {"type": "string"}
+            },
+            "additionalProperties": false
+          },
+          "validity": {
+            "type": "object",
+            "required": ["status", "method", "reviewedAt", "note"],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": ["sound", "conditional", "scope_mismatch", "unsupported", "contradicted", "unreviewed"]
+              },
+              "method": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": ["source-reading", "hypothesis-check", "definition-check", "formalization-check", "numerical-check", "counterexample", "external-erratum"]
+                },
+                "uniqueItems": true
+              },
+              "reviewedAt": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "reviewedBy": {"type": "string", "minLength": 1},
+              "conditions": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1},
+                "uniqueItems": true
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1,
+                "description": "A concise explanation of the review outcome; mandatory so a non-sound result cannot be silently used."
+              }
+            },
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {"properties": {"status": {"const": "conditional"}}},
+                "then": {"required": ["conditions"]}
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
     "tags": {
       "type": "array",
       "items": {"type": "string"},

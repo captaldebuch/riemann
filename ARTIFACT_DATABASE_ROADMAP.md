@@ -6,6 +6,8 @@ Unify papers, intuitions, lemmas, theorems, proofs, and research decisions into 
 - Every paper is an artifact with parsed concepts and proofs that formalize it
 - Every Lean theorem links backward to the papers/intuitions that motivated it
 - Every proof step has an audit trail: paper → informal claim → formal statement → Lean proof
+- Every claim imported from a paper has a recorded applicability review; a
+  citation alone never upgrades an artifact to a sound result
 - Strategic decisions are captured as first-class artifacts (roadmaps, research gates, diagnostics)
 - The entire discovery process is navigable, reproducible, and verifiable
 
@@ -43,6 +45,8 @@ Unify papers, intuitions, lemmas, theorems, proofs, and research decisions into 
 
 #### 1. **Source Artifacts** (Primary references)
 - **Papers**: arXiv ID, title, authors, year, concepts, PDF link
+- **Paper claims**: source location, translated claim, conditions, and a
+  validity review distinct from both bibliographic metadata and Lean checking
 - **Mathematicians**: name, period, bio, contributions, key papers
 - **Concepts**: name, definition, related papers, first-appearance-year
 
@@ -333,6 +337,13 @@ dependency-free and uses versioned JSON-LD as the source of truth:
   proof-DAG, open-problem, and search queries.
 - ✅ `artifacts/registry.jsonld` is a checked-in seed registry regenerated from
   `proofs/` and `dataset/extracted/rh_corpus_database_complete.json`.
+- ✅ `artifacts/PAPER_CLAIM_VALIDITY_PROTOCOL.md` specifies the mandatory
+  source-location, definition, and hypothesis review for every paper-derived
+  artifact. `paperClaims` metadata exposes whether the resulting use is sound,
+  conditional, unsupported, contradicted, or outside the paper’s scope.
+- ✅ Registry validation rejects a `derivedFrom` link to a source paper unless
+  the artifact carries a matching paper-claim review; the public explorer shows
+  the recorded result and its explanatory note.
 
 Current scope is intentionally conservative: automatic `dependsOn` edges,
 research-gate curation, historical build artifacts, and website rendering remain

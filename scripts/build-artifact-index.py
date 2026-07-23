@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import sqlite3
 import sys
@@ -14,6 +15,12 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTRY = Path("artifacts/registry.jsonld")
 DEFAULT_DATABASE = Path("artifacts/artifacts.sqlite")
+
+PAPER_CLAIM_STATUSES = {"sound", "conditional", "scope_mismatch", "unsupported", "contradicted", "unreviewed"}
+PAPER_CLAIM_METHODS = {
+    "source-reading", "hypothesis-check", "definition-check", "formalization-check",
+    "numerical-check", "counterexample", "external-erratum",
+}
 
 
 def load_registry(path: Path) -> dict[str, Any]:
@@ -27,6 +34,7 @@ def load_registry(path: Path) -> dict[str, Any]:
 def validate_registry(registry: dict[str, Any], root: Path) -> list[str]:
     errors: list[str] = []
     artifact_ids: set[str] = set()
+    artifact_types: dict[str, str] = {}
     for artifact in registry["@graph"]:
         artifact_id = artifact.get("@id")
         if not isinstance(artifact_id, str) or not artifact_id:
@@ -35,6 +43,7 @@ def validate_registry(registry: dict[str, Any], root: Path) -> list[str]:
         if artifact_id in artifact_ids:
             errors.append(f"duplicate artifact id: {artifact_id}")
         artifact_ids.add(artifact_id)
+        artifact_types[artifact_id] = str(artifact.get("@type", ""))
         if not isinstance(artifact.get("@type"), str):
             errors.append(f"artifact {artifact_id} has no @type")
         if not isinstance(artifact.get("name"), str) or not artifact["name"].strip():
@@ -46,6 +55,47 @@ def validate_registry(registry: dict[str, Any], root: Path) -> list[str]:
                 errors.append(f"artifact {artifact_id} references missing source file {source['file']}")
             if source.get("line") is not None and source["line"] < 1:
                 errors.append(f"artifact {artifact_id} has an invalid source line")
+
+        paper_claims = artifact.get("paperClaims", [])
+        if not isinstance(paper_claims, list):
+            errors.append(f"artifact {artifact_id} has non-list paperClaims")
+            continue
+        for index, paper_claim in enumerate(paper_claims, start=1):
+            prefix = f"artifact {artifact_id} paper claim {index}"
+            if not isinstance(paper_claim, dict):
+                errors.append(f"{prefix} is not an object")
+                continue
+            if not isinstance(paper_claim.get("sourcePaper"), str) or not paper_claim["sourcePaper"].startswith("paper:"):
+                errors.append(f"{prefix} has no paper: sourcePaper")
+            if not isinstance(paper_claim.get("claim"), str) or not paper_claim["claim"].strip():
+                errors.append(f"{prefix} has no claim text")
+            validity = paper_claim.get("validity")
+            if not isinstance(validity, dict):
+                errors.append(f"{prefix} has no validity review")
+                continue
+            status = validity.get("status")
+            if status not in PAPER_CLAIM_STATUSES:
+                errors.append(f"{prefix} has invalid validity status {status!r}")
+            methods = validity.get("method")
+            if not isinstance(methods, list) or not methods or any(method not in PAPER_CLAIM_METHODS for method in methods):
+                errors.append(f"{prefix} has invalid review method")
+            reviewed_at = validity.get("reviewedAt")
+            try:
+                dt.date.fromisoformat(str(reviewed_at))
+            except ValueError:
+                errors.append(f"{prefix} has invalid review date")
+            if not isinstance(validity.get("note"), str) or not validity["note"].strip():
+                errors.append(f"{prefix} has no review note")
+            if status == "conditional" and not validity.get("conditions"):
+                errors.append(f"{prefix} is conditional but has no explicit conditions")
+
+    for artifact in registry["@graph"]:
+        for paper_claim in artifact.get("paperClaims", []):
+            if not isinstance(paper_claim, dict):
+                continue
+            source_paper = paper_claim.get("sourcePaper")
+            if source_paper not in artifact_ids or artifact_types.get(source_paper) != "SourcePaper":
+                errors.append(f"artifact {artifact.get('@id')} references unknown source paper {source_paper!r}")
 
     for relationship in registry["relationships"]:
         source, predicate, target = (
@@ -59,6 +109,11 @@ def validate_registry(registry: dict[str, Any], root: Path) -> list[str]:
             errors.append(f"relationship target is missing: {target}")
         if not isinstance(predicate, str) or not predicate:
             errors.append(f"relationship {source!r} -> {target!r} has no predicate")
+        if predicate == "derivedFrom" and artifact_types.get(target) == "SourcePaper":
+            artifact = next((item for item in registry["@graph"] if item.get("@id") == source), None)
+            claims = artifact.get("paperClaims", []) if artifact else []
+            if not any(claim.get("sourcePaper") == target for claim in claims if isinstance(claim, dict)):
+                errors.append(f"paper-derived artifact {source} has no matching paperClaims review for {target}")
     return errors
 
 
