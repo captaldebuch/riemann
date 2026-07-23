@@ -423,9 +423,6 @@ function getCorpusPaperCard(paper) {
       ? 'Author attribution awaiting archival review'
       : 'Author metadata unrecorded'
   );
-  const note = paper.processed
-    ? 'Processed corpus record. The public card preserves the source inventory; detailed extraction remains a separate research layer.'
-    : 'Bibliographic metadata record. Detailed extraction has not yet been published for this entry.';
   const role = corpusTrack(paper);
   const sourceStatus = paper.localPdf
     ? (paper.sharedSource ? 'Shared source PDF' : 'Distinct source PDF')
@@ -437,7 +434,9 @@ function getCorpusPaperCard(paper) {
         <span class="corpus-paper-year">${year || 'Year unrecorded'}</span>
       </div>
       <p class="corpus-paper-authors"><span>Authors</span>${escapeHtml(authorLine)}</p>
-      <p class="corpus-paper-note">${escapeHtml(note)}</p>
+      ${paper.resultSummary ? `<p class="corpus-paper-note"><span>Result</span>${escapeHtml(paper.resultSummary)}</p>` : ''}
+      ${paper.sourceReview ? `<p class="corpus-paper-caution"><span>Research-use note · ${escapeHtml(paper.sourceReview.status.replace(/_/g, ' '))}</span>${escapeHtml(paper.sourceReview.note)} <em>(${escapeHtml(paper.sourceReview.sourceLocation)}; reviewed ${escapeHtml(paper.sourceReview.reviewedAt)})</em></p>` : ''}
+      ${(paper.validityNotes || []).map(note => `<p class="corpus-paper-caution"><span>Formalization note · ${escapeHtml(note.status.replace(/_/g, ' '))}</span>${escapeHtml(note.note)}</p>`).join('')}
       <div class="corpus-paper-meta">
         <span class="corpus-pill">${escapeHtml(role)}</span>
         ${concepts.map(concept => `<span class="corpus-pill corpus-pill-concept">${escapeHtml(concept)}</span>`).join('')}
@@ -560,7 +559,7 @@ function renderCorpusDataset() {
       <div class="corpus-section-heading">
         <p class="corpus-eyebrow">Browse</p>
         <h3>Complete metadata inventory</h3>
-        <p>Filter the 78 catalogue entries by project track or year. Every card displays its title, authors, source status, and—where the archive contains the linked file—a direct PDF download.</p>
+        <p>Filter the 78 catalogue entries by project track or year. Every card displays its title, authors, source status, and—where the archive contains the linked file—a direct PDF download. Result summaries appear only after source review; formalization notes qualify the project’s use of a source, not the validity of its published proof.</p>
       </div>
       <div class="corpus-catalogue">
         <div class="corpus-filters" role="search">

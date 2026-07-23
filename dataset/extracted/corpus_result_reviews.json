@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "description": "Concise, source-checked summaries and relevance notes for public corpus cards. A note qualifies this project's classification or use of a source; it does not assert that a published proof is false.",
+  "reviews": {
+    "2607.01126": {
+      "resultSummary": "Assuming the Extended Riemann Hypothesis, studies Selmer-rank distributions in cyclic p-extensions and derives probabilistic rank bounds for elliptic, superelliptic, and hyperelliptic curves.",
+      "status": "scope_mismatch",
+      "note": "This is a conditional study of Selmer ranks, not a contour-shifting or error-term result for H14. Its former H14 classification was unsupported and has been changed to Context only.",
+      "sourceLocation": "Abstract, p. 1",
+      "reviewedAt": "2026-07-23",
+      "role": "Context only",
+      "tags": ["Selmer ranks", "elliptic curves", "Extended RH"]
+    },
+    "2607.09797": {
+      "resultSummary": "Assuming simple zeta zeros, gives an explicit formula for the Möbius discrete Laplace transform; an O(x⁻¹ᐟ²) bound implies RH, while the converse needs additional hypotheses on the zeros.",
+      "status": "conditional",
+      "note": "The explicit formula assumes simple zeros. The stated RH criterion is one-way unconditionally; this paper is not a standalone unconditional proof of RH.",
+      "sourceLocation": "Abstract, p. 1",
+      "reviewedAt": "2026-07-23"
+    }
+  }
+}

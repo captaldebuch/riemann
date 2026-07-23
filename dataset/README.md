@@ -122,6 +122,13 @@ path for each of the 78 metadata entries, including entries that share a
 source file. The site renders a direct download only when that checked-in copy
 exists.
 
+The public cards intentionally suppress generated “main contribution”
+placeholders. A `resultSummary` is shown only when it is source-reviewed.
+`validityNotes` record limitations in this project’s formal translation or use
+of a paper; they do not label the original published proof as incorrect.
+`extracted/corpus_result_reviews.json` is the small, auditable overlay for
+PDF-checked result summaries and corrections to project relevance labels.
+
 #### `rh_corpus_knowledge_graphs.json`
 **RDF-style knowledge graph format:**
 ```json
