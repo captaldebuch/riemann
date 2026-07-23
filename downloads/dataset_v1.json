@@ -4,10 +4,10 @@
   "articles": [
     {
       "id": "2607.04316",
-      "title": "Zeta Functions and RH Equivalences",
+      "title": "A Gaussian–Perron Prime-Side Defect and Local Profiles Near Critical-Line Zeros of the Riemann Zeta Function",
       "authors": [
         {
-          "name": "Number Theorists",
+          "name": "Netzer Moriya",
           "affiliation": null
         }
       ],
@@ -22,14 +22,16 @@
         "equivalence",
         "rh"
       ],
-      "local_pdf_path": "2607.04316v2.pdf"
+      "local_pdf_path": "2607.04316v2.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2607.02828",
-      "title": "Mellin Transforms and Analytic Continuation",
+      "title": "A finite Guinand–Weil dictionary and archimedean tail order for the truncated Weil quadratic form",
       "authors": [
         {
-          "name": "Classical Analysts",
+          "name": "Akiva Groskin",
           "affiliation": null
         }
       ],
@@ -43,14 +45,40 @@
         "mellin",
         "analytic-continuation"
       ],
-      "local_pdf_path": "2607.02828v1.pdf"
+      "local_pdf_path": "2607.02828v1.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1510.05087",
-      "title": "Explicit Zero-Free Regions",
+      "title": "Ferrimagnetic nanostructures for magnetic memory bits",
       "authors": [
         {
-          "name": "Analytic Number Theorists",
+          "name": "A. A. Ünal",
+          "affiliation": null
+        },
+        {
+          "name": "S. Valencia",
+          "affiliation": null
+        },
+        {
+          "name": "D. Marchenko",
+          "affiliation": null
+        },
+        {
+          "name": "K. J. Merazzo",
+          "affiliation": null
+        },
+        {
+          "name": "F. Radu",
+          "affiliation": null
+        },
+        {
+          "name": "M. Vázquez",
+          "affiliation": null
+        },
+        {
+          "name": "J. Sánchez-Barriga",
           "affiliation": null
         }
       ],
@@ -64,18 +92,16 @@
         "zero-free-region",
         "explicit"
       ],
-      "local_pdf_path": "1510.05087.pdf"
+      "local_pdf_path": "1510.05087.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1501.02975",
-      "title": "Mellin Transform Techniques",
+      "title": "A note on the Hilali conjecture",
       "authors": [
         {
-          "name": "Iwaniec",
-          "affiliation": null
-        },
-        {
-          "name": "Kowalski",
+          "name": "Manuel Amann",
           "affiliation": null
         }
       ],
@@ -89,22 +115,24 @@
         "mellin",
         "contour-analysis"
       ],
-      "local_pdf_path": "1501.02975.pdf"
+      "local_pdf_path": "1501.02975.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1211.5191",
-      "title": "Rigid Analytic Geometry",
+      "title": "An optimal choice of Dirichlet polynomials for the Nyman–Beurling criterion",
       "authors": [
         {
-          "name": "Bettin",
+          "name": "Sandro Bettin",
           "affiliation": null
         },
         {
-          "name": "Conrey",
+          "name": "Brian Conrey",
           "affiliation": null
         },
         {
-          "name": "Farmer",
+          "name": "David W. Farmer",
           "affiliation": null
         }
       ],
@@ -118,18 +146,20 @@
         "geometry",
         "rigid-analytic"
       ],
-      "local_pdf_path": "1211.5191.pdf"
+      "local_pdf_path": "1211.5191.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1111.0931",
-      "title": "Approximations to the Riemann Hypothesis",
+      "title": "Period functions and cotangent sums",
       "authors": [
         {
-          "name": "Bettin",
+          "name": "Sandro Bettin",
           "affiliation": null
         },
         {
-          "name": "Conrey",
+          "name": "Brian Conrey",
           "affiliation": null
         }
       ],
@@ -140,26 +170,28 @@
       "role_in_project": "Quadratic Cancellation (Analytic)",
       "relevance_score": 0.95,
       "tags": [
-        "m\u00f6bius",
+        "möbius",
         "period-functions",
         "cotangent-sums"
       ],
-      "local_pdf_path": "1111.0931.pdf"
+      "local_pdf_path": "1111.0931.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1601.06839",
-      "title": "Reciprocal Relations and Theorems",
+      "title": "Reciprocity theorems for Bettin–Conrey sums",
       "authors": [
         {
-          "name": "Auli",
+          "name": "Juan S. Auli",
           "affiliation": null
         },
         {
-          "name": "Bayad",
+          "name": "Abdelmejid Bayad",
           "affiliation": null
         },
         {
-          "name": "Beck",
+          "name": "Matthias Beck",
           "affiliation": null
         }
       ],
@@ -174,14 +206,24 @@
         "cotangent-sums",
         "period"
       ],
-      "local_pdf_path": "1601.06839.pdf"
+      "local_pdf_path": "1601.06839.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1503.05121",
-      "title": "Fourier Analysis on GL(2)",
+      "title": "An averaged form of Chowla’s conjecture",
       "authors": [
         {
-          "name": "Harmonic Analysts",
+          "name": "Kaisa Matomäki",
+          "affiliation": null
+        },
+        {
+          "name": "Maksym Radziwiłł",
+          "affiliation": null
+        },
+        {
+          "name": "Terence Tao",
           "affiliation": null
         }
       ],
@@ -196,18 +238,28 @@
         "gl2",
         "representation"
       ],
-      "local_pdf_path": "1503.05121.pdf"
+      "local_pdf_path": "1503.05121.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "math/0306251",
-      "title": "Digamma Function and Belhadj-Goubi Proof",
+      "title": "Sur l’autocorrélation multiplicative de la fonction « partie fractionnaire »",
       "authors": [
         {
-          "name": "Belhadj",
+          "name": "Luis Báez-Duarte",
           "affiliation": null
         },
         {
-          "name": "Goubi",
+          "name": "Michel Balazard",
+          "affiliation": null
+        },
+        {
+          "name": "Bernard Landreau",
+          "affiliation": null
+        },
+        {
+          "name": "Eric Saias",
           "affiliation": null
         }
       ],
@@ -222,42 +274,46 @@
         "belhadj-goubi",
         "special-functions"
       ],
-      "local_pdf_path": "math_0306251.pdf"
+      "local_pdf_path": "math_0306251.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:JMPA_1893_4_9__171_0.pdf",
-      "title": "Contributions to Prime Number Distribution",
+      "title": "Étude sur les propriétés des fonctions entières et en particulier d’une fonction considérée par Riemann",
       "authors": [
         {
-          "name": "Hadamard",
+          "name": "Jacques Hadamard",
           "affiliation": null
         }
       ],
       "year": 1893,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Journal de Math\u00e9matiques",
+      "journal": "Journal de Mathématiques",
       "role_in_project": "General",
       "relevance_score": 0.8,
       "tags": [
         "classical",
         "analytic"
       ],
-      "local_pdf_path": "JMPA_1893_4_9__171_0.pdf"
+      "local_pdf_path": "JMPA_1893_4_9__171_0.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:BSMF_1896__24__199_1.pdf",
-      "title": "Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "title": "Sur la distribution des zéros de la fonction ζ(s) et ses conséquences arithmétiques",
       "authors": [
         {
-          "name": "Hadamard",
+          "name": "Jacques Hadamard",
           "affiliation": null
         }
       ],
       "year": 1896,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Bulletin de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "journal": "Bulletin de la Société Mathématique de France",
       "role_in_project": "General",
       "relevance_score": 0.9,
       "tags": [
@@ -265,21 +321,23 @@
         "zeta-zeros",
         "hadamard"
       ],
-      "local_pdf_path": "BSMF_1896__24__199_1.pdf"
+      "local_pdf_path": "BSMF_1896__24__199_1.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:BSMA_1873__5__79_1.pdf",
-      "title": "M\u00e9moire sur la Distribution des Nombres Premiers",
+      "title": "Sur la possibilité de représenter une fonction par une série trigonométrique",
       "authors": [
         {
-          "name": "Chebyshev",
+          "name": "Bernhard Riemann",
           "affiliation": null
         }
       ],
       "year": 1873,
       "arxiv_id": null,
       "doi": null,
-      "journal": "Bulletin de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "journal": "Bulletin de la Société Mathématique de France",
       "role_in_project": "General",
       "relevance_score": 0.85,
       "tags": [
@@ -287,14 +345,16 @@
         "chebyshev",
         "distribution"
       ],
-      "local_pdf_path": "BSMA_1873__5__79_1.pdf"
+      "local_pdf_path": "BSMA_1873__5__79_1.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:AIF_2003__53_3_665_0.pdf",
-      "title": "Complex Analysis in Number Theory",
+      "title": "Zeta functions for the Riemann zeros",
       "authors": [
         {
-          "name": "Complex Analysts",
+          "name": "André Voros",
           "affiliation": null
         }
       ],
@@ -308,28 +368,44 @@
         "complex-analysis",
         "number-theory"
       ],
-      "local_pdf_path": "AIF_2003__53_3_665_0.pdf"
+      "local_pdf_path": "AIF_2003__53_3_665_0.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:MSMF_2001_2_86__1_0.pdf",
-      "title": "M\u00e9moires sur les Fonctions Z\u00eata",
+      "title": "Symmetry types of hyperelliptic Riemann surfaces",
       "authors": [
         {
-          "name": "French Analysts",
+          "name": "Emilio Bujalance",
+          "affiliation": null
+        },
+        {
+          "name": "Francisco-Javier Cirre",
+          "affiliation": null
+        },
+        {
+          "name": "J.-M. Gamboa",
+          "affiliation": null
+        },
+        {
+          "name": "Grzegorz Gromadzki",
           "affiliation": null
         }
       ],
       "year": 2001,
       "arxiv_id": null,
       "doi": null,
-      "journal": "M\u00e9moires de la Soci\u00e9t\u00e9 Math\u00e9matique de France",
+      "journal": "Mémoires de la Société Mathématique de France",
       "role_in_project": "Quantitative Bounds (Analytic)",
       "relevance_score": 0.83,
       "tags": [
         "zeta",
         "french"
       ],
-      "local_pdf_path": "MSMF_2001_2_86__1_0.pdf"
+      "local_pdf_path": "MSMF_2001_2_86__1_0.pdf",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     }
   ],
   "insights": [
@@ -537,7 +613,7 @@
       "article_id": "file:BSMF_1896__24__199_1.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+        "statement": "Key finding in Sur les Zéros de la Fonction ζ(s)",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -550,14 +626,14 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "main_contribution": "Main contribution from Sur les Zéros de la Fonction ζ(s)",
       "open_problems": []
     },
     {
       "article_id": "file:BSMA_1873__5__79_1.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in M\u00e9moire sur la Distribution des Nombres Premiers",
+        "statement": "Key finding in Mémoire sur la Distribution des Nombres Premiers",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -570,7 +646,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from M\u00e9moire sur la Distribution des Nombres Premiers",
+      "main_contribution": "Main contribution from Mémoire sur la Distribution des Nombres Premiers",
       "open_problems": []
     },
     {
@@ -597,7 +673,7 @@
       "article_id": "file:MSMF_2001_2_86__1_0.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in M\u00e9moires sur les Fonctions Z\u00eata",
+        "statement": "Key finding in Mémoires sur les Fonctions Zêta",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -610,7 +686,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from M\u00e9moires sur les Fonctions Z\u00eata",
+      "main_contribution": "Main contribution from Mémoires sur les Fonctions Zêta",
       "open_problems": []
     }
   ],
@@ -740,7 +816,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+          "description": "Heuristic intuition from Sur les Zéros de la Fonction ζ(s)",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -752,7 +828,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from M\u00e9moire sur la Distribution des Nombres Premiers",
+          "description": "Heuristic intuition from Mémoire sur la Distribution des Nombres Premiers",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -776,7 +852,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from M\u00e9moires sur les Fonctions Z\u00eata",
+          "description": "Heuristic intuition from Mémoires sur les Fonctions Zêta",
           "supports_theorem": null,
           "confidence": 0.75
         }
