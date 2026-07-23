@@ -1,13 +1,14 @@
 {
-  "version": 1,
+  "version": 2,
   "source": "dataset/extracted/rh_corpus_database_complete.json",
+  "bibliography": "dataset/extracted/corpus_pdf_bibliography.json",
   "records": [
     {
       "id": "2607.09797",
       "sourceId": "2607.09797",
-      "title": "Recent Advances in RH Approximations",
+      "title": "Explicit formula for the discrete Laplace transform of the Möbius function, related special functions, and a criterion for the Riemann hypothesis",
       "authors": [
-        "Various Researchers"
+        "Sergey Liflandsky"
       ],
       "year": 2026,
       "role": "H15",
@@ -23,14 +24,16 @@
       "localPdf": true,
       "localPdfName": "2607.09797v1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2607.09110",
       "sourceId": "2607.09110",
-      "title": "Phase 1 Diagnostics for H15 Kernel",
+      "title": "Averages of diagonal Elliott-Halberstam problem twisted by Möbius function with Sobolev and Hölder-Zygmund weights",
       "authors": [
-        "Research Team"
+        "Marco Cantarini"
       ],
       "year": 2026,
       "role": "H15",
@@ -46,14 +49,16 @@
       "localPdf": true,
       "localPdfName": "2607.09110v1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2607.04632",
       "sourceId": "2607.04632",
-      "title": "Möbius Correlations and Cancellation",
+      "title": "A decades-long breakthrough in zero-density estimates and primes in short intervals",
       "authors": [
-        "Analytic Researchers"
+        "Caroline L. Turnage-Butterbaugh"
       ],
       "year": 2026,
       "role": "H15",
@@ -69,14 +74,16 @@
       "localPdf": true,
       "localPdfName": "2607.04632v1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2607.04316",
       "sourceId": "2607.04316",
-      "title": "Zeta Functions and RH Equivalences",
+      "title": "A Gaussian–Perron Prime-Side Defect and Local Profiles Near Critical-Line Zeros of the Riemann Zeta Function",
       "authors": [
-        "Number Theorists"
+        "Netzer Moriya"
       ],
       "year": 2026,
       "role": "H14",
@@ -92,14 +99,16 @@
       "localPdf": true,
       "localPdfName": "2607.04316v2.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2607.02828",
       "sourceId": "2607.02828",
-      "title": "Mellin Transforms and Analytic Continuation",
+      "title": "A finite Guinand–Weil dictionary and archimedean tail order for the truncated Weil quadratic form",
       "authors": [
-        "Classical Analysts"
+        "Akiva Groskin"
       ],
       "year": 2026,
       "role": "H14",
@@ -114,14 +123,17 @@
       "localPdf": true,
       "localPdfName": "2607.02828v1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2607.01126",
       "sourceId": "2607.01126",
-      "title": "Contour Shifting and Error Terms",
+      "title": "Distribution of Selmer ranks in prime cyclic extensions",
       "authors": [
-        "Error Analysis Team"
+        "Daniel Keliher",
+        "Sun Woo Park"
       ],
       "year": 2026,
       "role": "H14",
@@ -136,14 +148,17 @@
       "localPdf": true,
       "localPdfName": "2607.01126v1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2606.22562",
       "sourceId": "2606.22562",
-      "title": "Perron Inversion Formulas",
+      "title": "A Colombeau–Beurling criterion for the Riemann hypothesis",
       "authors": [
-        "Classical Methods Group"
+        "Amaury Álvarez Cruz",
+        "Esteban A. Álvarez Gutiérrez"
       ],
       "year": 2026,
       "role": "H14",
@@ -158,14 +173,17 @@
       "localPdf": true,
       "localPdfName": "2606.22562v2.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2209.10990",
       "sourceId": "2209.10990",
-      "title": "Recent Developments in Random Matrix Theory",
+      "title": "Polynomial moments with a weighted zeta square measure on the critical line",
       "authors": [
-        "Probabilistic Team"
+        "Sébastien Darses",
+        "Erwan Hillion"
       ],
       "year": 2022,
       "role": "Probabilistic",
@@ -180,14 +198,18 @@
       "localPdf": true,
       "localPdfName": "2209.10990.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2105.00004",
       "sourceId": "2105.00004",
-      "title": "Quantum Chaos and Spectral Spacing",
+      "title": "Realistic simulations of spin squeezing and cooperative coupling effects in large ensembles of interacting two-level systems",
       "authors": [
-        "Spectral Researchers"
+        "Julian Huber",
+        "Ana Maria Rey",
+        "Peter Rabl"
       ],
       "year": 2021,
       "role": "Spectral",
@@ -202,14 +224,16 @@
       "localPdf": true,
       "localPdfName": "2105.00004.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1807.08249",
       "sourceId": "1807.08249",
-      "title": "L-Functions and Modular Forms",
+      "title": "Cosmological parameters from weak cosmological lensing",
       "authors": [
-        "Modular Forms Group"
+        "Martin Kilbinger"
       ],
       "year": 2018,
       "role": "Analytic",
@@ -224,14 +248,22 @@
       "localPdf": true,
       "localPdfName": "1807.08249.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1510.05087",
       "sourceId": "1510.05087",
-      "title": "Explicit Zero-Free Regions",
+      "title": "Ferrimagnetic nanostructures for magnetic memory bits",
       "authors": [
-        "Analytic Number Theorists"
+        "A. A. Ünal",
+        "S. Valencia",
+        "D. Marchenko",
+        "K. J. Merazzo",
+        "F. Radu",
+        "M. Vázquez",
+        "J. Sánchez-Barriga"
       ],
       "year": 2015,
       "role": "H14",
@@ -246,15 +278,16 @@
       "localPdf": true,
       "localPdfName": "1510.05087.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1501.02975",
       "sourceId": "1501.02975",
-      "title": "Mellin Transform Techniques",
+      "title": "A note on the Hilali conjecture",
       "authors": [
-        "Iwaniec",
-        "Kowalski"
+        "Manuel Amann"
       ],
       "year": 2015,
       "role": "H14",
@@ -269,14 +302,17 @@
       "localPdf": true,
       "localPdfName": "1501.02975.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1409.1634",
       "sourceId": "1409.1634",
-      "title": "Dirichlet Character Sums",
+      "title": "Decouplings for curves and hypersurfaces with nonzero Gaussian curvature",
       "authors": [
-        "Character Theory Team"
+        "Jean Bourgain",
+        "Ciprian Demeter"
       ],
       "year": 2014,
       "role": "H13",
@@ -291,14 +327,16 @@
       "localPdf": true,
       "localPdfName": "1409.1634.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1401.3150",
       "sourceId": "1401.3150",
-      "title": "Explicit Bounds in Analytic Number Theory",
+      "title": "The cubic case of the main conjecture in Vinogradov’s mean value theorem",
       "authors": [
-        "Bounds Researchers"
+        "Trevor D. Wooley"
       ],
       "year": 2014,
       "role": "H14",
@@ -313,14 +351,16 @@
       "localPdf": true,
       "localPdfName": "1401.3150.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1401.2932",
       "sourceId": "1401.2932",
-      "title": "Zeta Functions: Classical and Modern",
+      "title": "Approximating the main conjecture in Vinogradov’s mean value theorem",
       "authors": [
-        "Zeta Group"
+        "Trevor D. Wooley"
       ],
       "year": 2014,
       "role": "H14",
@@ -335,14 +375,18 @@
       "localPdf": true,
       "localPdfName": "1401.2932.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1211.5191",
       "sourceId": "1211.5191",
-      "title": "Rigid Analytic Geometry",
+      "title": "An optimal choice of Dirichlet polynomials for the Nyman–Beurling criterion",
       "authors": [
-        "Geometric Analysts"
+        "Sandro Bettin",
+        "Brian Conrey",
+        "David W. Farmer"
       ],
       "year": 2012,
       "role": "General",
@@ -357,15 +401,17 @@
       "localPdf": true,
       "localPdfName": "1211.5191.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1111.0931",
       "sourceId": "1111.0931",
-      "title": "Approximations to the Riemann Hypothesis",
+      "title": "Period functions and cotangent sums",
       "authors": [
-        "Bettin",
-        "Conrey"
+        "Sandro Bettin",
+        "Brian Conrey"
       ],
       "year": 2013,
       "role": "H15",
@@ -381,16 +427,18 @@
       "localPdf": true,
       "localPdfName": "1111.0931.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1601.06839",
       "sourceId": "1601.06839",
-      "title": "Reciprocal Relations and Theorems",
+      "title": "Reciprocity theorems for Bettin–Conrey sums",
       "authors": [
-        "Auli",
-        "Bayad",
-        "Beck"
+        "Juan S. Auli",
+        "Abdelmejid Bayad",
+        "Matthias Beck"
       ],
       "year": 2017,
       "role": "H15",
@@ -406,14 +454,18 @@
       "localPdf": true,
       "localPdfName": "1601.06839.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "1503.05121",
       "sourceId": "1503.05121",
-      "title": "Fourier Analysis on GL(2)",
+      "title": "An averaged form of Chowla’s conjecture",
       "authors": [
-        "Harmonic Analysts"
+        "Kaisa Matomäki",
+        "Maksym Radziwiłł",
+        "Terence Tao"
       ],
       "year": 2015,
       "role": "H15",
@@ -429,14 +481,17 @@
       "localPdf": true,
       "localPdfName": "1503.05121.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "math/9912107",
       "sourceId": "math/9912107",
-      "title": "Classical Number Theory Methods",
+      "title": "Mean values of L-functions and symmetry",
       "authors": [
-        "Classical Team"
+        "J. B. Conrey",
+        "D. W. Farmer"
       ],
       "year": 1999,
       "role": "General",
@@ -451,15 +506,19 @@
       "localPdf": true,
       "localPdfName": "math_9912107.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "math/0306251",
       "sourceId": "math/0306251",
-      "title": "Digamma Function and Belhadj-Goubi Proof",
+      "title": "Sur l’autocorrélation multiplicative de la fonction « partie fractionnaire »",
       "authors": [
-        "Belhadj",
-        "Goubi"
+        "Luis Báez-Duarte",
+        "Michel Balazard",
+        "Bernard Landreau",
+        "Eric Saias"
       ],
       "year": 2003,
       "role": "H13",
@@ -475,14 +534,16 @@
       "localPdf": true,
       "localPdfName": "math_0306251.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:JMPA_1893_4_9__171_0.pdf",
       "sourceId": "file:JMPA_1893_4_9__171_0.pdf",
-      "title": "Contributions to Prime Number Distribution",
+      "title": "Étude sur les propriétés des fonctions entières et en particulier d’une fonction considérée par Riemann",
       "authors": [
-        "Classical Analysts"
+        "Jacques Hadamard"
       ],
       "year": 1893,
       "role": "General",
@@ -497,14 +558,16 @@
       "localPdf": true,
       "localPdfName": "JMPA_1893_4_9__171_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:BSMF_1896__24__199_1.pdf",
       "sourceId": "file:BSMF_1896__24__199_1.pdf",
-      "title": "Sur les Zéros de la Fonction ζ(s)",
+      "title": "Sur la distribution des zéros de la fonction ζ(s) et ses conséquences arithmétiques",
       "authors": [
-        "Hadamard"
+        "Jacques Hadamard"
       ],
       "year": 1896,
       "role": "General",
@@ -520,14 +583,16 @@
       "localPdf": true,
       "localPdfName": "BSMF_1896__24__199_1.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:BSMA_1873__5__79_1.pdf",
       "sourceId": "file:BSMA_1873__5__79_1.pdf",
-      "title": "Mémoire sur la Distribution des Nombres Premiers",
+      "title": "Sur la possibilité de représenter une fonction par une série trigonométrique",
       "authors": [
-        "Chebyshev"
+        "Bernhard Riemann"
       ],
       "year": 1873,
       "role": "General",
@@ -543,14 +608,16 @@
       "localPdf": true,
       "localPdfName": "BSMA_1873__5__79_1.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:BSMF_2006__134_3_417_0.pdf",
       "sourceId": "file:BSMF_2006__134_3_417_0.pdf",
-      "title": "Méthodes Modernes en Théorie des Nombres",
+      "title": "Une approche hilbertienne de l’hypothèse de Riemann généralisée",
       "authors": [
-        "Modern Team"
+        "Anne de Roton"
       ],
       "year": 2006,
       "role": "H14",
@@ -565,14 +632,16 @@
       "localPdf": true,
       "localPdfName": "BSMF_2006__134_3_417_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:AIF_2005__55_4_1373_0.pdf",
       "sourceId": "file:AIF_2005__55_4_1373_0.pdf",
-      "title": "Fourier Analysis and Number Theory",
+      "title": "Étude d’un problème de continuité lié à l’hypothèse de Riemann",
       "authors": [
-        "Annales Group"
+        "Nicolas Jousse"
       ],
       "year": 2005,
       "role": "H14",
@@ -587,14 +656,16 @@
       "localPdf": true,
       "localPdfName": "AIF_2005__55_4_1373_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:AIF_2003__53_3_665_0.pdf",
       "sourceId": "file:AIF_2003__53_3_665_0.pdf",
-      "title": "Complex Analysis in Number Theory",
+      "title": "Zeta functions for the Riemann zeros",
       "authors": [
-        "Complex Analysts"
+        "André Voros"
       ],
       "year": 2003,
       "role": "H14",
@@ -609,14 +680,19 @@
       "localPdf": true,
       "localPdfName": "AIF_2003__53_3_665_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:MSMF_2001_2_86__1_0.pdf",
       "sourceId": "file:MSMF_2001_2_86__1_0.pdf",
-      "title": "Mémoires sur les Fonctions Zêta",
+      "title": "Symmetry types of hyperelliptic Riemann surfaces",
       "authors": [
-        "French Analysts"
+        "Emilio Bujalance",
+        "Francisco-Javier Cirre",
+        "J.-M. Gamboa",
+        "Grzegorz Gromadzki"
       ],
       "year": 2001,
       "role": "H14",
@@ -631,14 +707,16 @@
       "localPdf": true,
       "localPdfName": "MSMF_2001_2_86__1_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
       "sourceId": "file:CRMATH_2009__347_19-20_1115_0.pdf",
-      "title": "Progrès Récents sur l'Hypothèse de Riemann",
+      "title": "Un isomorphisme de type Deligne–Riemann–Roch",
       "authors": [
-        "Recent Team"
+        "Dennis Eriksson"
       ],
       "year": 2009,
       "role": "H14",
@@ -654,14 +732,16 @@
       "localPdf": true,
       "localPdfName": "CRMATH_2009__347_19-20_1115_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "file:Zeta (1).pdf",
       "sourceId": "file:Zeta (1).pdf",
-      "title": "The Riemann Zeta Function",
+      "title": "Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse",
       "authors": [
-        "Special Functions Team"
+        "Bernhard Riemann"
       ],
       "year": 2010,
       "role": "General",
@@ -676,14 +756,17 @@
       "localPdf": true,
       "localPdfName": "Zeta (1).pdf",
       "sharedSource": true,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-031",
       "sourceId": null,
-      "title": "1111.0931",
+      "title": "Period functions and cotangent sums",
       "authors": [
-        "Unknown Author"
+        "Sandro Bettin",
+        "Brian Conrey"
       ],
       "year": 20,
       "role": "General",
@@ -695,14 +778,18 @@
       "localPdf": true,
       "localPdfName": "1111.0931.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-032",
       "sourceId": null,
-      "title": "AN OPTIMAL CHOICE OF DIRICHLET POLYNOMIALS FOR THE",
+      "title": "An optimal choice of Dirichlet polynomials for the Nyman–Beurling criterion",
       "authors": [
-        "Unknown Author"
+        "Sandro Bettin",
+        "Brian Conrey",
+        "David W. Farmer"
       ],
       "year": 20,
       "role": "General",
@@ -714,14 +801,16 @@
       "localPdf": true,
       "localPdfName": "1211.5191.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-033",
       "sourceId": null,
-      "title": "SMALL GAPS BETWEEN PRIMES",
+      "title": "Small gaps between primes",
       "authors": [
-        "Unknown Author"
+        "James Maynard"
       ],
       "year": 2026,
       "role": "General",
@@ -733,14 +822,16 @@
       "localPdf": true,
       "localPdfName": "1311.4600v3.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-034",
       "sourceId": null,
-      "title": "APPROXIMATING THE MAIN CONJECTURE IN",
+      "title": "Approximating the main conjecture in Vinogradov’s mean value theorem",
       "authors": [
-        "Unknown Author"
+        "Trevor D. Wooley"
       ],
       "year": 20,
       "role": "General",
@@ -752,14 +843,16 @@
       "localPdf": true,
       "localPdfName": "1401.2932.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-035",
       "sourceId": null,
-      "title": "THE CUBIC CASE OF THE MAIN CONJECTURE IN",
+      "title": "The cubic case of the main conjecture in Vinogradov’s mean value theorem",
       "authors": [
-        "Unknown Author"
+        "Trevor D. Wooley"
       ],
       "year": 20,
       "role": "General",
@@ -771,14 +864,17 @@
       "localPdf": true,
       "localPdfName": "1401.3150.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-036",
       "sourceId": null,
-      "title": "DECOUPLINGS FOR CURVES AND HYPERSURFACES WITH",
+      "title": "Decouplings for curves and hypersurfaces with nonzero Gaussian curvature",
       "authors": [
-        "Unknown Author"
+        "Jean Bourgain",
+        "Ciprian Demeter"
       ],
       "year": 2026,
       "role": "General",
@@ -790,14 +886,20 @@
       "localPdf": true,
       "localPdfName": "1409.1634.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-037",
       "sourceId": null,
-      "title": "LONG GAPS BETWEEN PRIMES",
+      "title": "Long gaps between primes",
       "authors": [
-        "Unknown Author"
+        "Kevin Ford",
+        "Ben Green",
+        "Sergei Konyagin",
+        "James Maynard",
+        "Terence Tao"
       ],
       "year": 19,
       "role": "General",
@@ -809,14 +911,16 @@
       "localPdf": true,
       "localPdfName": "1412.5029v3.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "2309.09171",
       "sourceId": "2309.09171",
-      "title": "2309.09171v1",
+      "title": "On the Connection Between Riemann Hypothesis and a Special Class of Neural Networks",
       "authors": [
-        "Unknown Author"
+        "Soufiane Hayou"
       ],
       "year": 19,
       "role": "General",
@@ -828,14 +932,16 @@
       "localPdf": true,
       "localPdfName": "2309.09171v1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-039",
       "sourceId": null,
-      "title": "9811068v1",
+      "title": "Trace formula in noncommutative geometry and the zeros of the Riemann zeta function",
       "authors": [
-        "Unknown Author"
+        "Alain Connes"
       ],
       "year": 2026,
       "role": "General",
@@ -847,14 +953,16 @@
       "localPdf": true,
       "localPdfName": "9811068v1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-040",
       "sourceId": null,
-      "title": "U D ANNALES",
+      "title": "Zeta functions for the Riemann zeros",
       "authors": [
-        "Unknown Author"
+        "André Voros"
       ],
       "year": 20,
       "role": "General",
@@ -866,14 +974,16 @@
       "localPdf": true,
       "localPdfName": "AIF_2003__53_3_665_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-041",
       "sourceId": null,
-      "title": "AIF_2005__55_4_1373_0",
+      "title": "Étude d’un problème de continuité lié à l’hypothèse de Riemann",
       "authors": [
-        "Unknown Author"
+        "Nicolas Jousse"
       ],
       "year": 20,
       "role": "General",
@@ -885,14 +995,16 @@
       "localPdf": true,
       "localPdfName": "AIF_2005__55_4_1373_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-042",
       "sourceId": null,
-      "title": "ULLETIN DES SCIENCES",
+      "title": "Sur la possibilité de représenter une fonction par une série trigonométrique",
       "authors": [
-        "Unknown Author"
+        "Bernhard Riemann"
       ],
       "year": 2026,
       "role": "General",
@@ -904,14 +1016,16 @@
       "localPdf": true,
       "localPdfName": "BSMA_1873__5__79_1.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-043",
       "sourceId": null,
-      "title": "ULLETIN DE LA",
+      "title": "Sur la distribution des zéros de la fonction ζ(s) et ses conséquences arithmétiques",
       "authors": [
-        "Unknown Author"
+        "Jacques Hadamard"
       ],
       "year": 2026,
       "role": "General",
@@ -923,14 +1037,16 @@
       "localPdf": true,
       "localPdfName": "BSMF_1896__24__199_1.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-044",
       "sourceId": null,
-      "title": "UNE APPROCHE HILBERTIENNE DE L’HYPOTHE`SE",
+      "title": "Une approche hilbertienne de l’hypothèse de Riemann généralisée",
       "authors": [
-        "Unknown Author"
+        "Anne de Roton"
       ],
       "year": 20,
       "role": "General",
@@ -942,14 +1058,16 @@
       "localPdf": true,
       "localPdfName": "BSMF_2006__134_3_417_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-045",
       "sourceId": null,
-      "title": "CRMATH_2009__347_19-20_1115_0",
+      "title": "Un isomorphisme de type Deligne–Riemann–Roch",
       "authors": [
-        "Unknown Author"
+        "Dennis Eriksson"
       ],
       "year": 20,
       "role": "General",
@@ -961,14 +1079,16 @@
       "localPdf": true,
       "localPdfName": "CRMATH_2009__347_19-20_1115_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-046",
       "sourceId": null,
-      "title": "J. HADAMARD",
+      "title": "Étude sur les propriétés des fonctions entières et en particulier d’une fonction considérée par Riemann",
       "authors": [
-        "Unknown Author"
+        "Jacques Hadamard"
       ],
       "year": 2026,
       "role": "General",
@@ -980,14 +1100,19 @@
       "localPdf": true,
       "localPdfName": "JMPA_1893_4_9__171_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-047",
       "sourceId": null,
-      "title": "ME´MOIRES DE LA SMF 86",
+      "title": "Symmetry types of hyperelliptic Riemann surfaces",
       "authors": [
-        "Unknown Author"
+        "Emilio Bujalance",
+        "Francisco-Javier Cirre",
+        "J.-M. Gamboa",
+        "Grzegorz Gromadzki"
       ],
       "year": 20,
       "role": "General",
@@ -999,15 +1124,15 @@
       "localPdf": true,
       "localPdfName": "MSMF_2001_2_86__1_0.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-048",
       "sourceId": null,
-      "title": "PPN266833020_0019",
-      "authors": [
-        "Unknown Author"
-      ],
+      "title": "Mathematische Zeitschrift (1924 digitized volume)",
+      "authors": [],
       "year": 19,
       "role": "General",
       "tags": [],
@@ -1018,14 +1143,16 @@
       "localPdf": true,
       "localPdfName": "PPN266833020_0019.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "Archive scan — author attribution needs review",
+      "bibliographyStatus": "needs-review"
     },
     {
       "id": "catalogue-049",
       "sourceId": null,
-      "title": "Zeta (1)",
+      "title": "Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse",
       "authors": [
-        "Unknown Author"
+        "Bernhard Riemann"
       ],
       "year": 19,
       "role": "H14",
@@ -1037,14 +1164,19 @@
       "localPdf": true,
       "localPdfName": "Zeta (1).pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-050",
       "sourceId": null,
-      "title": "math_0306251",
+      "title": "Sur l’autocorrélation multiplicative de la fonction « partie fractionnaire »",
       "authors": [
-        "Unknown Author"
+        "Luis Báez-Duarte",
+        "Michel Balazard",
+        "Bernard Landreau",
+        "Eric Saias"
       ],
       "year": 2026,
       "role": "General",
@@ -1056,14 +1188,17 @@
       "localPdf": true,
       "localPdfName": "math_0306251.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "catalogue-051",
       "sourceId": null,
-      "title": "MEAN VALUES OF L–FUNCTIONS AND SYMMETRY",
+      "title": "Mean values of L-functions and symmetry",
       "authors": [
-        "Unknown Author"
+        "J. B. Conrey",
+        "D. W. Farmer"
       ],
       "year": 2026,
       "role": "General",
@@ -1075,14 +1210,16 @@
       "localPdf": true,
       "localPdfName": "math_9912107.pdf",
       "sharedSource": true,
-      "firstSourceReference": false
+      "firstSourceReference": false,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00000",
       "sourceId": "9901.00000",
-      "title": "RIEMANN AND HIS ZETA FUNCTION",
+      "title": "Riemann and His Zeta Function",
       "authors": [
-        "Unknown Author"
+        "Chenthuran Abeyakaran"
       ],
       "year": 20,
       "role": "H14",
@@ -1094,14 +1231,17 @@
       "localPdf": true,
       "localPdfName": "paper_0.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00001",
       "sourceId": "9901.00001",
-      "title": "paper_1",
+      "title": "Riemann’s famous paper on the Zeta function: ‘Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse’",
       "authors": [
-        "Unknown Author"
+        "Tom Waknine",
+        "Uri Ronen"
       ],
       "year": 20,
       "role": "General",
@@ -1113,14 +1253,16 @@
       "localPdf": true,
       "localPdfName": "paper_1.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00013",
       "sourceId": "9901.00013",
-      "title": "RIEMANN’S HYPOTHESIS",
+      "title": "Riemann’s Hypothesis",
       "authors": [
-        "Unknown Author"
+        "Brian Conrey"
       ],
       "year": 20,
       "role": "General",
@@ -1132,14 +1274,16 @@
       "localPdf": true,
       "localPdfName": "paper_13.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00014",
       "sourceId": "9901.00014",
-      "title": "paper_14",
+      "title": "Riemann Zeta Function",
       "authors": [
-        "Unknown Author"
+        "Bent E. Petersen"
       ],
       "year": 19,
       "role": "General",
@@ -1151,14 +1295,16 @@
       "localPdf": true,
       "localPdfName": "paper_14.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00018",
       "sourceId": "9901.00018",
-      "title": "paper_18",
+      "title": "A Simple Counterexample to Havil’s ‘Reformulation’ of the Riemann Hypothesis",
       "authors": [
-        "Unknown Author"
+        "Jonathan Sondow"
       ],
       "year": 2026,
       "role": "General",
@@ -1170,14 +1316,16 @@
       "localPdf": true,
       "localPdfName": "paper_18.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00021",
       "sourceId": "9901.00021",
-      "title": "paper_21",
+      "title": "σ, φ, ψ and RH",
       "authors": [
-        "Unknown Author"
+        "Patrick Solé"
       ],
       "year": 19,
       "role": "General",
@@ -1189,14 +1337,16 @@
       "localPdf": true,
       "localPdfName": "paper_21.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00025",
       "sourceId": "9901.00025",
-      "title": "paper_25",
+      "title": "Failed attempt to disproof the Riemann Hypothesis",
       "authors": [
-        "Unknown Author"
+        "Marek Wolf"
       ],
       "year": 2026,
       "role": "General",
@@ -1208,14 +1358,17 @@
       "localPdf": true,
       "localPdfName": "paper_25.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00028",
       "sourceId": "9901.00028",
-      "title": "ORIGINAL RESEARCH",
+      "title": "A note on series equivalent of the Riemann hypothesis",
       "authors": [
-        "Unknown Author"
+        "Shekhar Suman",
+        "Raman Kumar Das"
       ],
       "year": 20,
       "role": "General",
@@ -1227,14 +1380,16 @@
       "localPdf": true,
       "localPdfName": "paper_28.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00003",
       "sourceId": "9901.00003",
-      "title": "paper_3",
+      "title": "Problems of the Millennium: the Riemann Hypothesis",
       "authors": [
-        "Unknown Author"
+        "Enrico Bombieri"
       ],
       "year": 2026,
       "role": "General",
@@ -1246,14 +1401,18 @@
       "localPdf": true,
       "localPdfName": "paper_3.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00031",
       "sourceId": "9901.00031",
-      "title": "paper_31",
+      "title": "Simple zeros of the Riemann zeta-function",
       "authors": [
-        "Unknown Author"
+        "J. B. Conrey",
+        "A. Ghosh",
+        "S. M. Gonek"
       ],
       "year": 2026,
       "role": "General",
@@ -1265,14 +1424,17 @@
       "localPdf": true,
       "localPdfName": "paper_31.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00032",
       "sourceId": "9901.00032",
-      "title": "paper_32",
+      "title": "The Theory of the Riemann Zeta-Function",
       "authors": [
-        "Unknown Author"
+        "E. C. Titchmarsh",
+        "D. R. Heath-Brown (reviser)"
       ],
       "year": 2026,
       "role": "General",
@@ -1284,15 +1446,15 @@
       "localPdf": true,
       "localPdfName": "paper_32.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00033",
       "sourceId": "9901.00033",
-      "title": "paper_33",
-      "authors": [
-        "Unknown Author"
-      ],
+      "title": "Riemann hypothesis",
+      "authors": [],
       "year": 19,
       "role": "General",
       "tags": [],
@@ -1303,14 +1465,16 @@
       "localPdf": true,
       "localPdfName": "paper_33.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "Archive scan — author attribution needs review",
+      "bibliographyStatus": "needs-review"
     },
     {
       "id": "9901.00035",
       "sourceId": "9901.00035",
-      "title": "paper_35",
+      "title": "A historical introduction to the Riemann Hypothesis",
       "authors": [
-        "Unknown Author"
+        "Z. M. Tanver Mahmud Anindya"
       ],
       "year": 20,
       "role": "General",
@@ -1322,14 +1486,16 @@
       "localPdf": true,
       "localPdfName": "paper_35.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00036",
       "sourceId": "9901.00036",
-      "title": "I L LJ1 N O J S",
+      "title": "The zeta-function of Riemann",
       "authors": [
-        "Unknown Author"
+        "E. C. Titchmarsh"
       ],
       "year": 20,
       "role": "General",
@@ -1341,14 +1507,16 @@
       "localPdf": true,
       "localPdfName": "paper_36.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00037",
       "sourceId": "9901.00037",
-      "title": "paper_37",
+      "title": "Riemann’s Zeta Function",
       "authors": [
-        "Unknown Author"
+        "Harold M. Edwards"
       ],
       "year": 2026,
       "role": "General",
@@ -1360,14 +1528,16 @@
       "localPdf": true,
       "localPdfName": "paper_37.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00041",
       "sourceId": "9901.00041",
-      "title": "ON THE GENERALIZED RIEMANNHYPOTHESIS II",
+      "title": "On the Generalized Riemann Hypothesis II",
       "authors": [
-        "Unknown Author"
+        "Dorin Ghisa"
       ],
       "year": 20,
       "role": "General",
@@ -1379,14 +1549,17 @@
       "localPdf": true,
       "localPdfName": "paper_41.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00042",
       "sourceId": "9901.00042",
-      "title": "paper_42",
+      "title": "Zeros of the Lerch zeta-function and of its derivative for equal parameters",
       "authors": [
-        "Unknown Author"
+        "Ramūnas Garunkštis",
+        "Rokas Tamošiūnas"
       ],
       "year": 20,
       "role": "General",
@@ -1398,14 +1571,16 @@
       "localPdf": true,
       "localPdfName": "paper_42.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00043",
       "sourceId": "9901.00043",
-      "title": "X-RAY OF RIEMANN’S ZETA-FUNCTION 23",
+      "title": "X-Ray of Riemann’s Zeta-Function",
       "authors": [
-        "Unknown Author"
+        "J. Arias-de-Reyna"
       ],
       "year": 2026,
       "role": "H14",
@@ -1417,14 +1592,16 @@
       "localPdf": true,
       "localPdfName": "paper_43.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00044",
       "sourceId": "9901.00044",
-      "title": "paper_44",
+      "title": "On the number of zeros of L-functions attached to cusp forms of half-integral weight",
       "authors": [
-        "Unknown Author"
+        "Pedro Ribeiro"
       ],
       "year": 20,
       "role": "General",
@@ -1436,14 +1613,16 @@
       "localPdf": true,
       "localPdfName": "paper_44.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00048",
       "sourceId": "9901.00048",
-      "title": "THREE LECTURES ON THE RIEMANN ZETA-FUNCTION",
+      "title": "Three lectures on the Riemann zeta-function",
       "authors": [
-        "Unknown Author"
+        "S. M. Gonek"
       ],
       "year": 20,
       "role": "H14",
@@ -1455,15 +1634,15 @@
       "localPdf": true,
       "localPdfName": "paper_48.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00049",
       "sourceId": "9901.00049",
-      "title": "paper_49",
-      "authors": [
-        "Unknown Author"
-      ],
+      "title": "Zeros of the Zeta Function",
+      "authors": [],
       "year": 2026,
       "role": "General",
       "tags": [],
@@ -1474,14 +1653,16 @@
       "localPdf": true,
       "localPdfName": "paper_49.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "Archive scan — author attribution needs review",
+      "bibliographyStatus": "needs-review"
     },
     {
       "id": "9901.00005",
       "sourceId": "9901.00005",
-      "title": "4 CMI ANNUAL REPORT THE YEAR 2004 5",
+      "title": "The prize problems: Problems of the Millennium — The Riemann Hypothesis",
       "authors": [
-        "Unknown Author"
+        "Peter Sarnak"
       ],
       "year": 20,
       "role": "General",
@@ -1493,14 +1674,16 @@
       "localPdf": true,
       "localPdfName": "paper_5.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00051",
       "sourceId": "9901.00051",
-      "title": "HARDY'S LEGACY TO NUMBER THEORY",
+      "title": "Hardy’s legacy to number theory",
       "authors": [
-        "Unknown Author"
+        "R. C. Vaughan"
       ],
       "year": 19,
       "role": "General",
@@ -1512,14 +1695,16 @@
       "localPdf": true,
       "localPdfName": "paper_51.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00055",
       "sourceId": "9901.00055",
-      "title": "paper_55",
+      "title": "Zero-density estimates for L-functions",
       "authors": [
-        "Unknown Author"
+        "M. Jutila"
       ],
       "year": 2026,
       "role": "General",
@@ -1531,14 +1716,17 @@
       "localPdf": true,
       "localPdfName": "paper_55.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00060",
       "sourceId": "9901.00060",
-      "title": "paper_60",
+      "title": "Numerical evaluation of the Riemann Zeta-function",
       "authors": [
-        "Unknown Author"
+        "Xavier Gourdon",
+        "Pascal Sebah"
       ],
       "year": 20,
       "role": "General",
@@ -1550,14 +1738,17 @@
       "localPdf": true,
       "localPdfName": "paper_60.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00061",
       "sourceId": "9901.00061",
-      "title": "THE THEORY OF THE",
+      "title": "The Theory of the Riemann Zeta-Function",
       "authors": [
-        "Unknown Author"
+        "E. C. Titchmarsh",
+        "D. R. Heath-Brown (reviser)"
       ],
       "year": 19,
       "role": "General",
@@ -1569,14 +1760,16 @@
       "localPdf": true,
       "localPdfName": "paper_61.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     },
     {
       "id": "9901.00008",
       "sourceId": "9901.00008",
-      "title": "paper_8",
+      "title": "The Riemann Hypothesis: Past, Present and a Letter Through Time",
       "authors": [
-        "Unknown Author"
+        "Alain Connes"
       ],
       "year": 20,
       "role": "General",
@@ -1588,7 +1781,9 @@
       "localPdf": true,
       "localPdfName": "paper_8.pdf",
       "sharedSource": false,
-      "firstSourceReference": true
+      "firstSourceReference": true,
+      "bibliographySource": "PDF title page",
+      "bibliographyStatus": "transcribed"
     }
   ],
   "summary": {

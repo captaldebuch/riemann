@@ -418,6 +418,11 @@ function getCorpusPaperCard(paper) {
   const authors = corpusAuthorNames(paper);
   const concepts = corpusConceptNames(paper).slice(0, 3);
   const year = corpusYear(paper);
+  const authorLine = authors.join(', ') || (
+    paper.bibliographyStatus === 'needs-review'
+      ? 'Author attribution awaiting archival review'
+      : 'Author metadata unrecorded'
+  );
   const note = paper.processed
     ? 'Processed corpus record. The public card preserves the source inventory; detailed extraction remains a separate research layer.'
     : 'Bibliographic metadata record. Detailed extraction has not yet been published for this entry.';
@@ -431,11 +436,12 @@ function getCorpusPaperCard(paper) {
         <h5>${escapeHtml(paper.title || paper.id)}</h5>
         <span class="corpus-paper-year">${year || 'Year unrecorded'}</span>
       </div>
-      <p class="corpus-paper-authors">${escapeHtml(authors.join(', ') || 'Author metadata unrecorded')}</p>
+      <p class="corpus-paper-authors"><span>Authors</span>${escapeHtml(authorLine)}</p>
       <p class="corpus-paper-note">${escapeHtml(note)}</p>
       <div class="corpus-paper-meta">
         <span class="corpus-pill">${escapeHtml(role)}</span>
         ${concepts.map(concept => `<span class="corpus-pill corpus-pill-concept">${escapeHtml(concept)}</span>`).join('')}
+        <span class="corpus-record-status ${paper.bibliographyStatus === 'needs-review' ? 'is-bibliography-review' : 'is-bibliography-checked'}">${escapeHtml(paper.bibliographySource || 'Catalogue metadata')}</span>
         <span class="corpus-record-status ${paper.processed ? 'is-processed' : 'is-metadata'}">${paper.processed ? 'Processed' : 'Metadata only'}</span>
         <span class="corpus-record-status ${paper.localPdf ? 'is-source-present' : 'is-source-unresolved'}">${sourceStatus}</span>
       </div>
@@ -511,7 +517,7 @@ function renderCorpusDataset() {
       <div class="corpus-hero">
         <p class="corpus-eyebrow">Structured research catalogue</p>
         <h2>Corpus &amp; Dataset</h2>
-        <p>This public index contains the complete 78-entry corpus metadata inventory. Thirty entries have a separate processed research layer; the rest remain source-level catalogue records. It supports both distant reading across the collection and LLM-guided close reading of particular arguments, while keeping source status and uncertainty visible rather than implied.</p>
+        <p>This public index contains the complete 78-entry corpus metadata inventory. Thirty entries have a separate processed research layer; the rest remain source-level catalogue records. Titles and personal-name attributions are transcribed from the linked PDF title pages where possible, and explicitly marked for review where a scan does not support an attribution. It supports both distant reading across the collection and LLM-guided close reading of particular arguments, while keeping source status and uncertainty visible rather than implied.</p>
       </div>
 
       <div class="corpus-metrics" aria-label="Corpus summary">
@@ -530,7 +536,7 @@ function renderCorpusDataset() {
       <div class="corpus-access-grid">
         <article class="corpus-access-card">
           <h3>Complete metadata index</h3>
-          <p>All 78 source metadata entries, with processing status and a transparent source-PDF relationship field.</p>
+          <p>All 78 source metadata entries, with title/author transcription status and a transparent source-PDF relationship field.</p>
           <a class="corpus-button" href="data/corpus-inventory.json" download>Download 78-entry index</a>
         </article>
         <article class="corpus-access-card">
@@ -548,7 +554,7 @@ function renderCorpusDataset() {
       <div class="corpus-section-heading">
         <p class="corpus-eyebrow">Browse</p>
         <h3>Complete metadata inventory</h3>
-        <p>Filter the 78 catalogue entries by project track or year. Status pills identify processed entries and records that share a source file.</p>
+        <p>Filter the 78 catalogue entries by project track or year. Every card displays its title and authors; status pills show whether its citation came from a PDF title page or still needs archival review.</p>
       </div>
       <div class="corpus-catalogue">
         <div class="corpus-filters" role="search">
