@@ -19,6 +19,7 @@
     incoming: new Map(),
     selectedId: null,
     visible: PAGE_SIZE,
+    auditFilter: "",
   };
 
   const elements = {
@@ -52,6 +53,14 @@
       "contains_sorry": "Contains sorry",
       declaration: "Declaration",
       unknown: "Unclassified",
+    }[status] || titleCase(status);
+  }
+
+  function auditStatusLabel(status) {
+    return {
+      reviewed: "Audit reviewed",
+      pending: "Audit pending",
+      rejected: "Route rejected",
     }[status] || titleCase(status);
   }
 
@@ -122,11 +131,17 @@
       if (type && artifact["@type"] !== type) return false;
       if (status && statusOf(artifact) !== status) return false;
       if (openOnly && !artifact.openProblem) return false;
+      if (state.auditFilter === "h15" && !artifact.rolesInH15?.length) return false;
       if (!query) return true;
       const haystack = [
         artifact.name,
         artifact.statement,
         artifact.summary,
+        artifact.abstract,
+        artifact.auditStatus,
+        artifact.findings,
+        ...(artifact.authors || []),
+        ...(artifact.rolesInH15 || []),
         artifact["@id"],
         ...(artifact.tags || []),
       ].join(" ").toLowerCase();
@@ -152,7 +167,10 @@
       button.setAttribute("aria-pressed", String(state.selectedId === artifact["@id"]));
       button.addEventListener("click", () => selectArtifact(artifact["@id"]));
       appendText(button, "span", artifact.name, "artifact-result-name");
-      appendText(button, "span", `${titleCase(artifact["@type"])} · ${statusLabel(statusOf(artifact))}`, "artifact-result-meta");
+      const metadata = artifact.auditStatus
+        ? `${titleCase(artifact["@type"])} · ${auditStatusLabel(artifact.auditStatus)}`
+        : `${titleCase(artifact["@type"])} · ${statusLabel(statusOf(artifact))}`;
+      appendText(button, "span", metadata, "artifact-result-meta");
       item.append(button);
       elements.results.append(item);
     }
@@ -241,6 +259,30 @@
       }
       elements.detail.append(section);
     }
+    if (artifact.authors?.length) {
+      const section = document.createElement("section");
+      appendText(section, "h4", "Authors");
+      appendText(section, "p", artifact.authors.join(", "));
+      elements.detail.append(section);
+    }
+    if (artifact.auditStatus || artifact.rolesInH15?.length || artifact.findings) {
+      const section = document.createElement("section");
+      appendText(section, "h4", "H15 paper audit");
+      if (artifact.auditStatus) appendText(section, "p", `Status: ${auditStatusLabel(artifact.auditStatus)}`);
+      if (artifact.rolesInH15?.length) {
+        const list = document.createElement("ul");
+        for (const role of artifact.rolesInH15) appendText(list, "li", role);
+        section.append(list);
+      }
+      if (artifact.findings) appendText(section, "p", artifact.findings);
+      elements.detail.append(section);
+    }
+    if (artifact.localPdf) {
+      const section = document.createElement("section");
+      appendText(section, "h4", "Local archive record");
+      appendText(section, "code", artifact.localPdf);
+      elements.detail.append(section);
+    }
     if (artifact.tags?.length) {
       const section = document.createElement("section");
       appendText(section, "h4", "Tags");
@@ -262,6 +304,7 @@
     elements.status.value = "";
     elements.openOnly.checked = false;
     state.visible = PAGE_SIZE;
+    state.auditFilter = "";
     renderResults();
   }
 
@@ -287,12 +330,15 @@
     const query = new URLSearchParams(window.location.search);
     const requestedType = query.get("type");
     const requestedStatus = query.get("status");
+    const requestedSearch = query.get("query");
     if (requestedType && [...elements.type.options].some((option) => option.value === requestedType)) {
       elements.type.value = requestedType;
     }
     if (requestedStatus && [...elements.status.options].some((option) => option.value === requestedStatus)) {
       elements.status.value = requestedStatus;
     }
+    if (requestedSearch) elements.search.value = requestedSearch;
+    if (query.get("audit") === "h15") state.auditFilter = "h15";
     if (query.get("open") === "true") elements.openOnly.checked = true;
   }
 
@@ -308,8 +354,8 @@
       bindControls();
       applyQueryFilters();
       renderResults();
-      const firstOpenGate = state.artifacts.find((artifact) => artifact.openProblem);
-      if (firstOpenGate) selectArtifact(firstOpenGate["@id"]);
+      const firstResult = matchingArtifacts()[0] || state.artifacts.find((artifact) => artifact.openProblem);
+      if (firstResult) selectArtifact(firstResult["@id"]);
     } catch (error) {
       elements.summary.textContent = "Registry unavailable";
       elements.detail.replaceChildren();

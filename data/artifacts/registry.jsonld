@@ -959,19 +959,55 @@
       "summary": "! ## The tail identity for `Re s > 1`"
     },
     {
-      "@id": "mathematician:analytic-number-theorists",
+      "@id": "mathematician:a-a-nal",
       "@type": "Mathematician",
-      "name": "Analytic Number Theorists"
+      "name": "A. A. Ünal"
     },
     {
-      "@id": "mathematician:analytic-researchers",
+      "@id": "mathematician:a-ghosh",
       "@type": "Mathematician",
-      "name": "Analytic Researchers"
+      "name": "A. Ghosh"
     },
     {
-      "@id": "mathematician:annales-group",
+      "@id": "mathematician:abdelmejid-bayad",
       "@type": "Mathematician",
-      "name": "Annales Group"
+      "name": "Abdelmejid Bayad",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "mathematician:akiva-groskin",
+      "@type": "Mathematician",
+      "name": "Akiva Groskin"
+    },
+    {
+      "@id": "mathematician:alain-connes",
+      "@type": "Mathematician",
+      "name": "Alain Connes"
+    },
+    {
+      "@id": "mathematician:allison-lewko",
+      "@type": "Mathematician",
+      "name": "Allison Lewko"
+    },
+    {
+      "@id": "mathematician:amaury-lvarez-cruz",
+      "@type": "Mathematician",
+      "name": "Amaury Álvarez Cruz"
+    },
+    {
+      "@id": "mathematician:ana-maria-rey",
+      "@type": "Mathematician",
+      "name": "Ana Maria Rey"
+    },
+    {
+      "@id": "mathematician:andr-voros",
+      "@type": "Mathematician",
+      "name": "André Voros"
+    },
+    {
+      "@id": "mathematician:anne-de-roton",
+      "@type": "Mathematician",
+      "name": "Anne de Roton"
     },
     {
       "@id": "mathematician:arne-beurling",
@@ -980,27 +1016,19 @@
       "identityStatus": "source-verified"
     },
     {
-      "@id": "mathematician:auli",
+      "@id": "mathematician:ben-green",
       "@type": "Mathematician",
-      "name": "Juan S. Auli",
-      "identityStatus": "source-verified"
+      "name": "Ben Green"
     },
     {
-      "@id": "mathematician:bayad",
+      "@id": "mathematician:bent-e-petersen",
       "@type": "Mathematician",
-      "name": "Abdelmejid Bayad",
-      "identityStatus": "source-verified"
+      "name": "Bent E. Petersen"
     },
     {
-      "@id": "mathematician:beck",
+      "@id": "mathematician:bernard-landreau",
       "@type": "Mathematician",
-      "name": "Matthias Beck",
-      "identityStatus": "source-verified"
-    },
-    {
-      "@id": "mathematician:belhadj",
-      "@type": "Mathematician",
-      "name": "Belhadj"
+      "name": "Bernard Landreau"
     },
     {
       "@id": "mathematician:bernhard-riemann",
@@ -1015,91 +1043,206 @@
       "identityStatus": "source-verified"
     },
     {
-      "@id": "mathematician:bettin",
-      "@type": "Mathematician",
-      "name": "Sandro Bettin",
-      "identityStatus": "source-verified"
-    },
-    {
-      "@id": "mathematician:bounds-researchers",
-      "@type": "Mathematician",
-      "name": "Bounds Researchers"
-    },
-    {
-      "@id": "mathematician:character-theory-team",
-      "@type": "Mathematician",
-      "name": "Character Theory Team"
-    },
-    {
-      "@id": "mathematician:chebyshev",
-      "@type": "Mathematician",
-      "name": "Chebyshev"
-    },
-    {
-      "@id": "mathematician:classical-analysts",
-      "@type": "Mathematician",
-      "name": "Classical Analysts"
-    },
-    {
-      "@id": "mathematician:classical-methods-group",
-      "@type": "Mathematician",
-      "name": "Classical Methods Group"
-    },
-    {
-      "@id": "mathematician:classical-team",
-      "@type": "Mathematician",
-      "name": "Classical Team"
-    },
-    {
-      "@id": "mathematician:complex-analysts",
-      "@type": "Mathematician",
-      "name": "Complex Analysts"
-    },
-    {
-      "@id": "mathematician:conrey",
+      "@id": "mathematician:brian-conrey",
       "@type": "Mathematician",
       "name": "Brian Conrey",
       "identityStatus": "source-verified"
     },
     {
-      "@id": "mathematician:error-analysis-team",
+      "@id": "mathematician:bryce-kerr",
       "@type": "Mathematician",
-      "name": "Error Analysis Team"
+      "name": "Bryce Kerr"
     },
     {
-      "@id": "mathematician:french-analysts",
+      "@id": "mathematician:caroline-l-turnage-butterbaugh",
       "@type": "Mathematician",
-      "name": "French Analysts"
+      "name": "Caroline L. Turnage-Butterbaugh"
     },
     {
-      "@id": "mathematician:geometric-analysts",
+      "@id": "mathematician:chenthuran-abeyakaran",
       "@type": "Mathematician",
-      "name": "Geometric Analysts"
+      "name": "Chenthuran Abeyakaran"
     },
     {
-      "@id": "mathematician:goubi",
+      "@id": "mathematician:ciprian-demeter",
       "@type": "Mathematician",
-      "name": "Goubi"
+      "name": "Ciprian Demeter"
     },
     {
-      "@id": "mathematician:hadamard",
+      "@id": "mathematician:d-marchenko",
       "@type": "Mathematician",
-      "name": "Hadamard"
+      "name": "D. Marchenko"
     },
     {
-      "@id": "mathematician:harmonic-analysts",
+      "@id": "mathematician:d-r-heath-brown-reviser",
       "@type": "Mathematician",
-      "name": "Harmonic Analysts"
+      "name": "D. R. Heath-Brown (reviser)"
     },
     {
-      "@id": "mathematician:iwaniec",
+      "@id": "mathematician:d-w-farmer",
       "@type": "Mathematician",
-      "name": "Iwaniec"
+      "name": "D. W. Farmer"
     },
     {
-      "@id": "mathematician:kowalski",
+      "@id": "mathematician:daniel-keliher",
       "@type": "Mathematician",
-      "name": "Kowalski"
+      "name": "Daniel Keliher"
+    },
+    {
+      "@id": "mathematician:david-w-farmer",
+      "@type": "Mathematician",
+      "name": "David W. Farmer"
+    },
+    {
+      "@id": "mathematician:dennis-eriksson",
+      "@type": "Mathematician",
+      "name": "Dennis Eriksson"
+    },
+    {
+      "@id": "mathematician:dorin-ghisa",
+      "@type": "Mathematician",
+      "name": "Dorin Ghisa"
+    },
+    {
+      "@id": "mathematician:e-c-titchmarsh",
+      "@type": "Mathematician",
+      "name": "E. C. Titchmarsh"
+    },
+    {
+      "@id": "mathematician:emilio-bujalance",
+      "@type": "Mathematician",
+      "name": "Emilio Bujalance"
+    },
+    {
+      "@id": "mathematician:enrico-bombieri",
+      "@type": "Mathematician",
+      "name": "Enrico Bombieri"
+    },
+    {
+      "@id": "mathematician:eric-saias",
+      "@type": "Mathematician",
+      "name": "Eric Saias"
+    },
+    {
+      "@id": "mathematician:erwan-hillion",
+      "@type": "Mathematician",
+      "name": "Erwan Hillion"
+    },
+    {
+      "@id": "mathematician:esteban-a-lvarez-guti-rrez",
+      "@type": "Mathematician",
+      "name": "Esteban A. Álvarez Gutiérrez"
+    },
+    {
+      "@id": "mathematician:f-radu",
+      "@type": "Mathematician",
+      "name": "F. Radu"
+    },
+    {
+      "@id": "mathematician:francisco-javier-cirre",
+      "@type": "Mathematician",
+      "name": "Francisco-Javier Cirre"
+    },
+    {
+      "@id": "mathematician:grzegorz-gromadzki",
+      "@type": "Mathematician",
+      "name": "Grzegorz Gromadzki"
+    },
+    {
+      "@id": "mathematician:harold-m-edwards",
+      "@type": "Mathematician",
+      "name": "Harold M. Edwards"
+    },
+    {
+      "@id": "mathematician:igor-e-shparlinski",
+      "@type": "Mathematician",
+      "name": "Igor E. Shparlinski"
+    },
+    {
+      "@id": "mathematician:j-arias-de-reyna",
+      "@type": "Mathematician",
+      "name": "J. Arias-de-Reyna"
+    },
+    {
+      "@id": "mathematician:j-b-conrey",
+      "@type": "Mathematician",
+      "name": "J. B. Conrey"
+    },
+    {
+      "@id": "mathematician:j-m-gamboa",
+      "@type": "Mathematician",
+      "name": "J.-M. Gamboa"
+    },
+    {
+      "@id": "mathematician:j-s-nchez-barriga",
+      "@type": "Mathematician",
+      "name": "J. Sánchez-Barriga"
+    },
+    {
+      "@id": "mathematician:jacques-hadamard",
+      "@type": "Mathematician",
+      "name": "Jacques Hadamard"
+    },
+    {
+      "@id": "mathematician:james-maynard",
+      "@type": "Mathematician",
+      "name": "James Maynard"
+    },
+    {
+      "@id": "mathematician:jean-bourgain",
+      "@type": "Mathematician",
+      "name": "Jean Bourgain"
+    },
+    {
+      "@id": "mathematician:jonathan-sondow",
+      "@type": "Mathematician",
+      "name": "Jonathan Sondow"
+    },
+    {
+      "@id": "mathematician:joni-ter-v-inen",
+      "@type": "Mathematician",
+      "name": "Joni Teräväinen"
+    },
+    {
+      "@id": "mathematician:juan-s-auli",
+      "@type": "Mathematician",
+      "name": "Juan S. Auli",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "mathematician:julian-huber",
+      "@type": "Mathematician",
+      "name": "Julian Huber"
+    },
+    {
+      "@id": "mathematician:k-j-merazzo",
+      "@type": "Mathematician",
+      "name": "K. J. Merazzo"
+    },
+    {
+      "@id": "mathematician:kaisa-matom-ki",
+      "@type": "Mathematician",
+      "name": "Kaisa Matomäki"
+    },
+    {
+      "@id": "mathematician:kam-hung-yau",
+      "@type": "Mathematician",
+      "name": "Kam Hung Yau"
+    },
+    {
+      "@id": "mathematician:kevin-ford",
+      "@type": "Mathematician",
+      "name": "Kevin Ford"
+    },
+    {
+      "@id": "mathematician:lillian-b-pierce",
+      "@type": "Mathematician",
+      "name": "Lillian B. Pierce"
+    },
+    {
+      "@id": "mathematician:luis-b-ez-duarte",
+      "@type": "Mathematician",
+      "name": "Luis Báez-Duarte"
     },
     {
       "@id": "mathematician:luis-baez-duarte",
@@ -1108,59 +1251,211 @@
       "identityStatus": "source-verified"
     },
     {
-      "@id": "mathematician:modern-team",
+      "@id": "mathematician:m-jutila",
       "@type": "Mathematician",
-      "name": "Modern Team"
+      "name": "M. Jutila"
     },
     {
-      "@id": "mathematician:modular-forms-group",
+      "@id": "mathematician:m-v-zquez",
       "@type": "Mathematician",
-      "name": "Modular Forms Group"
+      "name": "M. Vázquez"
     },
     {
-      "@id": "mathematician:number-theorists",
+      "@id": "mathematician:maksym-radziwi",
       "@type": "Mathematician",
-      "name": "Number Theorists"
+      "name": "Maksym Radziwiłł"
     },
     {
-      "@id": "mathematician:probabilistic-team",
+      "@id": "mathematician:manuel-amann",
       "@type": "Mathematician",
-      "name": "Probabilistic Team"
+      "name": "Manuel Amann"
     },
     {
-      "@id": "mathematician:recent-team",
+      "@id": "mathematician:marco-cantarini",
       "@type": "Mathematician",
-      "name": "Recent Team"
+      "name": "Marco Cantarini"
     },
     {
-      "@id": "mathematician:research-team",
+      "@id": "mathematician:marek-wolf",
       "@type": "Mathematician",
-      "name": "Research Team"
+      "name": "Marek Wolf"
     },
     {
-      "@id": "mathematician:special-functions-team",
+      "@id": "mathematician:mark-lewko",
       "@type": "Mathematician",
-      "name": "Special Functions Team"
+      "name": "Mark Lewko"
     },
     {
-      "@id": "mathematician:spectral-researchers",
+      "@id": "mathematician:martin-kilbinger",
       "@type": "Mathematician",
-      "name": "Spectral Researchers"
+      "name": "Martin Kilbinger"
     },
     {
-      "@id": "mathematician:unknown-author",
+      "@id": "mathematician:matteo-bordignon",
       "@type": "Mathematician",
-      "name": "Unknown Author"
+      "name": "Matteo Bordignon"
     },
     {
-      "@id": "mathematician:various-researchers",
+      "@id": "mathematician:matthias-beck",
       "@type": "Mathematician",
-      "name": "Various Researchers"
+      "name": "Matthias Beck",
+      "identityStatus": "source-verified"
     },
     {
-      "@id": "mathematician:zeta-group",
+      "@id": "mathematician:michel-balazard",
       "@type": "Mathematician",
-      "name": "Zeta Group"
+      "name": "Michel Balazard"
+    },
+    {
+      "@id": "mathematician:netzer-moriya",
+      "@type": "Mathematician",
+      "name": "Netzer Moriya"
+    },
+    {
+      "@id": "mathematician:nicolas-jousse",
+      "@type": "Mathematician",
+      "name": "Nicolas Jousse"
+    },
+    {
+      "@id": "mathematician:nina-c-snaith",
+      "@type": "Mathematician",
+      "name": "Nina C. Snaith"
+    },
+    {
+      "@id": "mathematician:pascal-sebah",
+      "@type": "Mathematician",
+      "name": "Pascal Sebah"
+    },
+    {
+      "@id": "mathematician:patrick-sol",
+      "@type": "Mathematician",
+      "name": "Patrick Solé"
+    },
+    {
+      "@id": "mathematician:pedro-ribeiro",
+      "@type": "Mathematician",
+      "name": "Pedro Ribeiro"
+    },
+    {
+      "@id": "mathematician:peter-rabl",
+      "@type": "Mathematician",
+      "name": "Peter Rabl"
+    },
+    {
+      "@id": "mathematician:peter-sarnak",
+      "@type": "Mathematician",
+      "name": "Peter Sarnak"
+    },
+    {
+      "@id": "mathematician:r-c-vaughan",
+      "@type": "Mathematician",
+      "name": "R. C. Vaughan"
+    },
+    {
+      "@id": "mathematician:ram-nas-garunk-tis",
+      "@type": "Mathematician",
+      "name": "Ramūnas Garunkštis"
+    },
+    {
+      "@id": "mathematician:raman-kumar-das",
+      "@type": "Mathematician",
+      "name": "Raman Kumar Das"
+    },
+    {
+      "@id": "mathematician:rokas-tamo-i-nas",
+      "@type": "Mathematician",
+      "name": "Rokas Tamošiūnas"
+    },
+    {
+      "@id": "mathematician:s-bastien-darses",
+      "@type": "Mathematician",
+      "name": "Sébastien Darses"
+    },
+    {
+      "@id": "mathematician:s-m-gonek",
+      "@type": "Mathematician",
+      "name": "S. M. Gonek"
+    },
+    {
+      "@id": "mathematician:s-valencia",
+      "@type": "Mathematician",
+      "name": "S. Valencia"
+    },
+    {
+      "@id": "mathematician:sandro-bettin",
+      "@type": "Mathematician",
+      "name": "Sandro Bettin",
+      "identityStatus": "source-verified"
+    },
+    {
+      "@id": "mathematician:sergei-konyagin",
+      "@type": "Mathematician",
+      "name": "Sergei Konyagin"
+    },
+    {
+      "@id": "mathematician:sergey-liflandsky",
+      "@type": "Mathematician",
+      "name": "Sergey Liflandsky"
+    },
+    {
+      "@id": "mathematician:shekhar-suman",
+      "@type": "Mathematician",
+      "name": "Shekhar Suman"
+    },
+    {
+      "@id": "mathematician:soufiane-hayou",
+      "@type": "Mathematician",
+      "name": "Soufiane Hayou"
+    },
+    {
+      "@id": "mathematician:sun-woo-park",
+      "@type": "Mathematician",
+      "name": "Sun Woo Park"
+    },
+    {
+      "@id": "mathematician:terence-tao",
+      "@type": "Mathematician",
+      "name": "Terence Tao"
+    },
+    {
+      "@id": "mathematician:tom-waknine",
+      "@type": "Mathematician",
+      "name": "Tom Waknine"
+    },
+    {
+      "@id": "mathematician:trevor-d-wooley",
+      "@type": "Mathematician",
+      "name": "Trevor D. Wooley"
+    },
+    {
+      "@id": "mathematician:uri-ronen",
+      "@type": "Mathematician",
+      "name": "Uri Ronen"
+    },
+    {
+      "@id": "mathematician:vorrapan-chandee",
+      "@type": "Mathematician",
+      "name": "Vorrapan Chandee"
+    },
+    {
+      "@id": "mathematician:werner-ehm",
+      "@type": "Mathematician",
+      "name": "Werner Ehm"
+    },
+    {
+      "@id": "mathematician:xavier-gourdon",
+      "@type": "Mathematician",
+      "name": "Xavier Gourdon"
+    },
+    {
+      "@id": "mathematician:xuancheng-shao",
+      "@type": "Mathematician",
+      "name": "Xuancheng Shao"
+    },
+    {
+      "@id": "mathematician:z-m-tanver-mahmud-anindya",
+      "@type": "Mathematician",
+      "name": "Z. M. Tanver Mahmud Anindya"
     },
     {
       "@id": "module:NBMellinTools.Audit",
@@ -1322,13 +1617,14 @@
       "journal": "Algebra & Number Theory 7 (2013), no. 1, 215–242",
       "roleInProject": "H15",
       "relevanceScore": 0.95,
-      "localPdf": "1111.0931.pdf",
+      "localPdf": "papers/1111.0931.pdf",
       "tags": [
         "cotangent-sums",
-        "möbius",
-        "period-functions"
+        "period-functions",
+        "reciprocity",
+        "vasyunin-sum"
       ],
-      "summary": "Main contribution from Approximations to the Riemann Hypothesis",
+      "summary": "Introduces cotangent sums with reciprocity formulae and studies a period function related to divisor sums and zeta second moments.",
       "openProblems": [],
       "formalizationPotential": {
         "overallReadiness": 0.6,
@@ -1342,13 +1638,81 @@
           }
         ]
       },
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "title": "Period functions and cotangent sums",
+      "authors": [
+        "Sandro Bettin",
+        "Brian Conrey"
+      ],
       "referenceUrl": "https://arxiv.org/abs/1111.0931",
+      "pdfLocal": "papers/1111.0931.pdf",
+      "abstract": "Introduces cotangent sums with reciprocity formulae and studies a period function related to divisor sums and zeta second moments.",
+      "keywords": [
+        "cotangent-sums",
+        "period-functions",
+        "reciprocity",
+        "vasyunin-sum"
+      ],
+      "rolesInH15": [
+        "background for cotangent-sum and period-function structures",
+        "source for a reciprocity route"
+      ],
+      "auditStatus": "reviewed",
+      "findings": "Already present locally. Verified as a Bettin–Conrey paper on period functions and cotangent sums; it is not the Bettin–Conrey–Farmer BCF-asymptotic source described in the earlier manifest.",
+      "relatedArtifacts": [
+        "module:NBMellinTools.H15_RouteA"
+      ],
+      "source": {
+        "file": "artifacts/papers/1111.0931.json",
+        "line": 1
+      },
       "citation": "Sandro Bettin and Brian Conrey, “Period functions and cotangent sums,” Algebra & Number Theory 7 (2013), no. 1, 215–242."
+    },
+    {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:1111.6190",
+      "@type": "SourcePaper",
+      "name": "A Variational Barban-Davenport-Halberstam Theorem",
+      "title": "A Variational Barban-Davenport-Halberstam Theorem",
+      "arxivId": "1111.6190",
+      "year": 2011,
+      "authors": [
+        "Allison Lewko",
+        "Mark Lewko"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/1111.6190",
+      "pdfLocal": "papers/1111.6190.pdf",
+      "abstract": "Develops variational forms of the Barban–Davenport–Halberstam theorem and the large sieve inequality.",
+      "keywords": [
+        "large-sieve",
+        "barban-davenport-halberstam",
+        "arithmetic-progressions"
+      ],
+      "rolesInH15": [
+        "additive-sieve comparison",
+        "negative applicability result"
+      ],
+      "auditStatus": "rejected",
+      "findings": "The manifest records the additive-sieve route as rejected for H15; the required reciprocal-phase structure is not controlled by this large-sieve input.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/1111.6190.json",
+        "line": 1
+      },
+      "localPdf": "papers/1111.6190.pdf",
+      "tags": [
+        "arithmetic-progressions",
+        "barban-davenport-halberstam",
+        "large-sieve"
+      ],
+      "summary": "Develops variational forms of the Barban–Davenport–Halberstam theorem and the large sieve inequality."
     },
     {
       "@id": "paper:1211.5191",
       "@type": "SourcePaper",
-      "name": "Rigid Analytic Geometry",
+      "name": "An optimal choice of Dirichlet polynomials for the Nyman–Beurling criterion",
       "year": 2012,
       "arxivId": "1211.5191",
       "doi": null,
@@ -1378,7 +1742,7 @@
     {
       "@id": "paper:1401.2932",
       "@type": "SourcePaper",
-      "name": "Zeta Functions: Classical and Modern",
+      "name": "Approximating the main conjecture in Vinogradov’s mean value theorem",
       "year": 2014,
       "arxivId": "1401.2932",
       "doi": null,
@@ -1408,7 +1772,7 @@
     {
       "@id": "paper:1401.3150",
       "@type": "SourcePaper",
-      "name": "Explicit Bounds in Analytic Number Theory",
+      "name": "The cubic case of the main conjecture in Vinogradov’s mean value theorem",
       "year": 2014,
       "arxivId": "1401.3150",
       "doi": null,
@@ -1438,7 +1802,7 @@
     {
       "@id": "paper:1409.1634",
       "@type": "SourcePaper",
-      "name": "Dirichlet Character Sums",
+      "name": "Decouplings for curves and hypersurfaces with nonzero Gaussian curvature",
       "year": 2014,
       "arxivId": "1409.1634",
       "doi": null,
@@ -1468,7 +1832,7 @@
     {
       "@id": "paper:1501.02975",
       "@type": "SourcePaper",
-      "name": "Mellin Transform Techniques",
+      "name": "A note on the Hilali conjecture",
       "year": 2015,
       "arxivId": "1501.02975",
       "doi": null,
@@ -1496,9 +1860,53 @@
       }
     },
     {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:1502.00769",
+      "@type": "SourcePaper",
+      "name": "Trilinear forms with Kloosterman fractions",
+      "title": "Trilinear forms with Kloosterman fractions",
+      "arxivId": "1502.00769",
+      "year": 2015,
+      "authors": [
+        "Sandro Bettin",
+        "Vorrapan Chandee"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/1502.00769",
+      "journal": "Advances in Mathematics 328 (2018), 1234–1262",
+      "pdfLocal": "papers/1502.00769.pdf",
+      "abstract": "Provides bounds for trilinear forms with Kloosterman fractions, improving a Duke–Friedlander–Iwaniec result.",
+      "keywords": [
+        "kloosterman-fractions",
+        "trilinear-forms",
+        "dfi",
+        "reciprocal-phases"
+      ],
+      "rolesInH15": [
+        "alternative after phase conversion",
+        "candidate DFI-type bound"
+      ],
+      "auditStatus": "pending",
+      "findings": "Downloaded as the principal DFI-style comparison source. The remaining question is whether the H15 centered phase can be converted to this Kloosterman-fraction form without losing cancellation.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/1502.00769.json",
+        "line": 1
+      },
+      "localPdf": "papers/1502.00769.pdf",
+      "tags": [
+        "dfi",
+        "kloosterman-fractions",
+        "reciprocal-phases",
+        "trilinear-forms"
+      ],
+      "summary": "Provides bounds for trilinear forms with Kloosterman fractions, improving a Duke–Friedlander–Iwaniec result."
+    },
+    {
       "@id": "paper:1503.05121",
       "@type": "SourcePaper",
-      "name": "Fourier Analysis on GL(2)",
+      "name": "An averaged form of Chowla’s conjecture",
       "year": 2015,
       "arxivId": "1503.05121",
       "doi": null,
@@ -1527,9 +1935,50 @@
       }
     },
     {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:1509.05363",
+      "@type": "SourcePaper",
+      "name": "The Erdos discrepancy problem",
+      "title": "The Erdos discrepancy problem",
+      "arxivId": "1509.05363",
+      "year": 2015,
+      "authors": [
+        "Terence Tao"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/1509.05363",
+      "journal": "Discrete Analysis 2016:1",
+      "pdfLocal": "papers/1509.05363.pdf",
+      "abstract": "Proves that every ±1 sequence has unbounded homogeneous discrepancy, using reductions involving completely multiplicative functions and logarithmically averaged Elliott-type input.",
+      "keywords": [
+        "discrepancy",
+        "multiplicative-functions",
+        "elliott-conjecture"
+      ],
+      "rolesInH15": [
+        "bounded-phase analogue",
+        "supporting literature"
+      ],
+      "auditStatus": "pending",
+      "findings": "Downloaded as a conceptual comparison for bounded-phase cancellation; it is not a direct proof route for the H15 energy estimate.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/1509.05363.json",
+        "line": 1
+      },
+      "localPdf": "papers/1509.05363.pdf",
+      "tags": [
+        "discrepancy",
+        "elliott-conjecture",
+        "multiplicative-functions"
+      ],
+      "summary": "Proves that every ±1 sequence has unbounded homogeneous discrepancy, using reductions involving completely multiplicative functions and logarithmically averaged Elliott-type input."
+    },
+    {
       "@id": "paper:1510.05087",
       "@type": "SourcePaper",
-      "name": "Explicit Zero-Free Regions",
+      "name": "Ferrimagnetic nanostructures for magnetic memory bits",
       "year": 2015,
       "arxivId": "1510.05087",
       "doi": null,
@@ -1590,9 +2039,51 @@
       "citation": "Juan S. Auli, Abdelmejid Bayad, and Matthias Beck, “Reciprocity Theorems for Bettin--Conrey Sums,” Acta Arithmetica 181 (2017), 297–319."
     },
     {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:1711.10582",
+      "@type": "SourcePaper",
+      "name": "A refinement of the Burgess bound for character sums",
+      "title": "A refinement of the Burgess bound for character sums",
+      "arxivId": "1711.10582",
+      "year": 2017,
+      "authors": [
+        "Bryce Kerr",
+        "Igor E. Shparlinski",
+        "Kam Hung Yau"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/1711.10582",
+      "pdfLocal": "papers/1711.10582.pdf",
+      "abstract": "Refines the Burgess estimate for short multiplicative character sums modulo a prime by a logarithmic factor.",
+      "keywords": [
+        "burgess-bound",
+        "character-sums",
+        "multiplicative-characters"
+      ],
+      "rolesInH15": [
+        "Burgess-comparison audit",
+        "negative applicability result"
+      ],
+      "auditStatus": "rejected",
+      "findings": "The manifest records this route as inapplicable: its one-dimensional multiplicative-character estimate does not supply the required reciprocal-phase cancellation.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/1711.10582.json",
+        "line": 1
+      },
+      "localPdf": "papers/1711.10582.pdf",
+      "tags": [
+        "burgess-bound",
+        "character-sums",
+        "multiplicative-characters"
+      ],
+      "summary": "Refines the Burgess estimate for short multiplicative character sums modulo a prime by a logarithmic factor."
+    },
+    {
       "@id": "paper:1807.08249",
       "@type": "SourcePaper",
-      "name": "L-Functions and Modular Forms",
+      "name": "Cosmological parameters from weak cosmological lensing",
       "year": 2018,
       "arxivId": "1807.08249",
       "doi": null,
@@ -1620,9 +2111,134 @@
       }
     },
     {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:2001.05114",
+      "@type": "SourcePaper",
+      "name": "Partial Gaussian sums and the Pólya--Vinogradov inequality for primitive characters",
+      "title": "Partial Gaussian sums and the Pólya--Vinogradov inequality for primitive characters",
+      "arxivId": "2001.05114",
+      "year": 2020,
+      "authors": [
+        "Matteo Bordignon"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/2001.05114",
+      "pdfLocal": "papers/2001.05114.pdf",
+      "abstract": "Gives explicit Pólya–Vinogradov constants for primitive characters via partial Gaussian sums and a Burgess-like convolution estimate.",
+      "keywords": [
+        "polya-vinogradov",
+        "gaussian-sums",
+        "character-sums",
+        "dispersion"
+      ],
+      "rolesInH15": [
+        "dispersion and character-sum comparison",
+        "supporting literature"
+      ],
+      "auditStatus": "pending",
+      "findings": "Downloaded for the character-sum comparison. Its applicability to the centered reciprocal phase has not yet been determined.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/2001.05114.json",
+        "line": 1
+      },
+      "localPdf": "papers/2001.05114.pdf",
+      "tags": [
+        "character-sums",
+        "dispersion",
+        "gaussian-sums",
+        "polya-vinogradov"
+      ],
+      "summary": "Gives explicit Pólya–Vinogradov constants for primitive characters via partial Gaussian sums and a Burgess-like convolution estimate."
+    },
+    {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:2002.03435",
+      "@type": "SourcePaper",
+      "name": "Burgess bounds for short character sums evaluated at forms II: the mixed case",
+      "title": "Burgess bounds for short character sums evaluated at forms II: the mixed case",
+      "arxivId": "2002.03435",
+      "year": 2020,
+      "authors": [
+        "Lillian B. Pierce"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/2002.03435",
+      "pdfLocal": "papers/2002.03435.pdf",
+      "abstract": "Proves a Burgess bound for multidimensional mixed character sums with multiplicative characters evaluated at admissible forms and additive characters at polynomials.",
+      "keywords": [
+        "burgess-bound",
+        "mixed-character-sums",
+        "additive-characters"
+      ],
+      "rolesInH15": [
+        "Burgess-comparison audit",
+        "candidate for mixed-phase matching"
+      ],
+      "auditStatus": "pending",
+      "findings": "Downloaded for comparison. A direct match between its admissible-form setting and the H15 reciprocal phase has not been established.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/2002.03435.json",
+        "line": 1
+      },
+      "localPdf": "papers/2002.03435.pdf",
+      "tags": [
+        "additive-characters",
+        "burgess-bound",
+        "mixed-character-sums"
+      ],
+      "summary": "Proves a Burgess bound for multidimensional mixed character sums with multiplicative characters evaluated at admissible forms and additive characters at polynomials."
+    },
+    {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:2004.10086",
+      "@type": "SourcePaper",
+      "name": "An exponentially averaged Vasyunin formula",
+      "title": "An exponentially averaged Vasyunin formula",
+      "arxivId": "2004.10086",
+      "year": 2020,
+      "authors": [
+        "Sébastien Darses",
+        "Erwan Hillion"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/2004.10086",
+      "pdfLocal": "papers/2004.10086.pdf",
+      "abstract": "Proves a Vasyunin-type formula for an autocorrelation function in a probabilistic Nyman–Beurling setting, also interpretable as a cotangent-sum reciprocity formula.",
+      "keywords": [
+        "vasyunin",
+        "nyman-beurling",
+        "cotangent-sums",
+        "reciprocity"
+      ],
+      "rolesInH15": [
+        "alternative classical route",
+        "period-function comparison"
+      ],
+      "auditStatus": "pending",
+      "findings": "Downloaded as an alternative classical route. Its exponentially averaged formula should be compared with the BCF taper before any Lean formalization is planned.",
+      "relatedArtifacts": [
+        "module:NBMellinTools.H15_RouteA"
+      ],
+      "source": {
+        "file": "artifacts/papers/2004.10086.json",
+        "line": 1
+      },
+      "localPdf": "papers/2004.10086.pdf",
+      "tags": [
+        "cotangent-sums",
+        "nyman-beurling",
+        "reciprocity",
+        "vasyunin"
+      ],
+      "summary": "Proves a Vasyunin-type formula for an autocorrelation function in a probabilistic Nyman–Beurling setting, also interpretable as a cotangent-sum reciprocity formula."
+    },
+    {
       "@id": "paper:2105.00004",
       "@type": "SourcePaper",
-      "name": "Quantum Chaos and Spectral Spacing",
+      "name": "Realistic simulations of spin squeezing and cooperative coupling effects in large ensembles of interacting two-level systems",
       "year": 2021,
       "arxivId": "2105.00004",
       "doi": null,
@@ -1650,9 +2266,56 @@
       }
     },
     {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:2204.03754",
+      "@type": "SourcePaper",
+      "name": "Higher uniformity of arithmetic functions in short intervals I. All intervals",
+      "title": "Higher uniformity of arithmetic functions in short intervals I. All intervals",
+      "arxivId": "2204.03754",
+      "year": 2022,
+      "authors": [
+        "Kaisa Matomäki",
+        "Xuancheng Shao",
+        "Terence Tao",
+        "Joni Teräväinen"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/2204.03754",
+      "doi": "10.1017/fmp.2023.28",
+      "journal": "Forum of Mathematics, Pi 11 (2023), e29",
+      "pdfLocal": "papers/2204.03754.pdf",
+      "abstract": "Establishes higher-uniformity estimates for the Möbius, von Mangoldt, and divisor functions on short intervals, including nilsequence correlations.",
+      "keywords": [
+        "mobius-function",
+        "short-intervals",
+        "uniformity",
+        "nilsequences"
+      ],
+      "rolesInH15": [
+        "candidate tool for low-product rows",
+        "supporting cancellation literature"
+      ],
+      "auditStatus": "pending",
+      "findings": "Downloaded and bibliographically verified. The manifest’s former title was inaccurate; whether its short-interval uniformity estimates match the H15 phase is open.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/2204.03754.json",
+        "line": 1
+      },
+      "localPdf": "papers/2204.03754.pdf",
+      "tags": [
+        "mobius-function",
+        "nilsequences",
+        "short-intervals",
+        "uniformity"
+      ],
+      "summary": "Establishes higher-uniformity estimates for the Möbius, von Mangoldt, and divisor functions on short intervals, including nilsequence correlations."
+    },
+    {
       "@id": "paper:2209.10990",
       "@type": "SourcePaper",
-      "name": "Recent Developments in Random Matrix Theory",
+      "name": "Polynomial moments with a weighted zeta square measure on the critical line",
       "year": 2022,
       "arxivId": "2209.10990",
       "doi": null,
@@ -1682,7 +2345,7 @@
     {
       "@id": "paper:2309.09171",
       "@type": "SourcePaper",
-      "name": "2309.09171v1",
+      "name": "On the Connection Between Riemann Hypothesis and a Special Class of Neural Networks",
       "year": 19,
       "arxivId": "2309.09171",
       "doi": null,
@@ -1693,9 +2356,51 @@
       "tags": []
     },
     {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:2405.06349",
+      "@type": "SourcePaper",
+      "name": "On certain Gram matrices and their associated series",
+      "title": "On certain Gram matrices and their associated series",
+      "arxivId": "2405.06349",
+      "year": 2024,
+      "authors": [
+        "Werner Ehm"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/2405.06349",
+      "pdfLocal": "papers/2405.06349.pdf",
+      "abstract": "Studies Gram matrices in the Nyman–Beurling reformulation, associated series and reciprocity relations, and decompositions of their quadratic forms.",
+      "keywords": [
+        "nyman-beurling",
+        "gram-matrices",
+        "reciprocity",
+        "quadratic-forms"
+      ],
+      "rolesInH15": [
+        "context for the Nyman–Beurling Gram-matrix formulation",
+        "candidate source for quadratic-form and reciprocity analysis"
+      ],
+      "auditStatus": "pending",
+      "findings": "Downloaded and bibliographically verified. The manifest’s earlier title was inaccurate; applicability to the H15 BCF kernel remains to be assessed.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/2405.06349.json",
+        "line": 1
+      },
+      "localPdf": "papers/2405.06349.pdf",
+      "tags": [
+        "gram-matrices",
+        "nyman-beurling",
+        "quadratic-forms",
+        "reciprocity"
+      ],
+      "summary": "Studies Gram matrices in the Nyman–Beurling reformulation, associated series and reciprocity relations, and decompositions of their quadratic forms."
+    },
+    {
       "@id": "paper:2606.22562",
       "@type": "SourcePaper",
-      "name": "Perron Inversion Formulas",
+      "name": "A Colombeau–Beurling criterion for the Riemann hypothesis",
       "year": 2026,
       "arxivId": "2606.22562",
       "doi": null,
@@ -1725,7 +2430,7 @@
     {
       "@id": "paper:2607.01126",
       "@type": "SourcePaper",
-      "name": "Contour Shifting and Error Terms",
+      "name": "Distribution of Selmer ranks in prime cyclic extensions",
       "year": 2026,
       "arxivId": "2607.01126",
       "doi": null,
@@ -1755,7 +2460,7 @@
     {
       "@id": "paper:2607.02828",
       "@type": "SourcePaper",
-      "name": "Mellin Transforms and Analytic Continuation",
+      "name": "A finite Guinand–Weil dictionary and archimedean tail order for the truncated Weil quadratic form",
       "year": 2026,
       "arxivId": "2607.02828",
       "doi": null,
@@ -1785,7 +2490,7 @@
     {
       "@id": "paper:2607.04316",
       "@type": "SourcePaper",
-      "name": "Zeta Functions and RH Equivalences",
+      "name": "A Gaussian–Perron Prime-Side Defect and Local Profiles Near Critical-Line Zeros of the Riemann Zeta Function",
       "year": 2026,
       "arxivId": "2607.04316",
       "doi": null,
@@ -1816,7 +2521,7 @@
     {
       "@id": "paper:2607.04632",
       "@type": "SourcePaper",
-      "name": "Möbius Correlations and Cancellation",
+      "name": "A decades-long breakthrough in zero-density estimates and primes in short intervals",
       "year": 2026,
       "arxivId": "2607.04632",
       "doi": null,
@@ -1847,7 +2552,7 @@
     {
       "@id": "paper:2607.09110",
       "@type": "SourcePaper",
-      "name": "Phase 1 Diagnostics for H15 Kernel",
+      "name": "Averages of diagonal Elliott-Halberstam problem twisted by Möbius function with Sobolev and Hölder-Zygmund weights",
       "year": 2026,
       "arxivId": "2607.09110",
       "doi": null,
@@ -1878,7 +2583,7 @@
     {
       "@id": "paper:2607.09797",
       "@type": "SourcePaper",
-      "name": "Recent Advances in RH Approximations",
+      "name": "Explicit formula for the discrete Laplace transform of the Möbius function, related special functions, and a criterion for the Riemann hypothesis",
       "year": 2026,
       "arxivId": "2607.09797",
       "doi": null,
@@ -1909,7 +2614,7 @@
     {
       "@id": "paper:9901.00000",
       "@type": "SourcePaper",
-      "name": "RIEMANN AND HIS ZETA FUNCTION",
+      "name": "Riemann and His Zeta Function",
       "year": 20,
       "arxivId": "9901.00000",
       "doi": null,
@@ -1922,7 +2627,7 @@
     {
       "@id": "paper:9901.00001",
       "@type": "SourcePaper",
-      "name": "paper_1",
+      "name": "Riemann’s famous paper on the Zeta function: ‘Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse’",
       "year": 20,
       "arxivId": "9901.00001",
       "doi": null,
@@ -1935,7 +2640,7 @@
     {
       "@id": "paper:9901.00003",
       "@type": "SourcePaper",
-      "name": "paper_3",
+      "name": "Problems of the Millennium: the Riemann Hypothesis",
       "year": 2026,
       "arxivId": "9901.00003",
       "doi": null,
@@ -1948,7 +2653,7 @@
     {
       "@id": "paper:9901.00005",
       "@type": "SourcePaper",
-      "name": "4 CMI ANNUAL REPORT THE YEAR 2004 5",
+      "name": "The prize problems: Problems of the Millennium — The Riemann Hypothesis",
       "year": 20,
       "arxivId": "9901.00005",
       "doi": null,
@@ -1961,7 +2666,7 @@
     {
       "@id": "paper:9901.00008",
       "@type": "SourcePaper",
-      "name": "paper_8",
+      "name": "The Riemann Hypothesis: Past, Present and a Letter Through Time",
       "year": 20,
       "arxivId": "9901.00008",
       "doi": null,
@@ -1974,7 +2679,7 @@
     {
       "@id": "paper:9901.00013",
       "@type": "SourcePaper",
-      "name": "RIEMANN’S HYPOTHESIS",
+      "name": "Riemann’s Hypothesis",
       "year": 20,
       "arxivId": "9901.00013",
       "doi": null,
@@ -1987,7 +2692,7 @@
     {
       "@id": "paper:9901.00014",
       "@type": "SourcePaper",
-      "name": "paper_14",
+      "name": "Riemann Zeta Function",
       "year": 19,
       "arxivId": "9901.00014",
       "doi": null,
@@ -2000,7 +2705,7 @@
     {
       "@id": "paper:9901.00018",
       "@type": "SourcePaper",
-      "name": "paper_18",
+      "name": "A Simple Counterexample to Havil’s ‘Reformulation’ of the Riemann Hypothesis",
       "year": 2026,
       "arxivId": "9901.00018",
       "doi": null,
@@ -2013,7 +2718,7 @@
     {
       "@id": "paper:9901.00021",
       "@type": "SourcePaper",
-      "name": "paper_21",
+      "name": "σ, φ, ψ and RH",
       "year": 19,
       "arxivId": "9901.00021",
       "doi": null,
@@ -2026,7 +2731,7 @@
     {
       "@id": "paper:9901.00025",
       "@type": "SourcePaper",
-      "name": "paper_25",
+      "name": "Failed attempt to disproof the Riemann Hypothesis",
       "year": 2026,
       "arxivId": "9901.00025",
       "doi": null,
@@ -2039,7 +2744,7 @@
     {
       "@id": "paper:9901.00028",
       "@type": "SourcePaper",
-      "name": "ORIGINAL RESEARCH",
+      "name": "A note on series equivalent of the Riemann hypothesis",
       "year": 20,
       "arxivId": "9901.00028",
       "doi": null,
@@ -2052,7 +2757,7 @@
     {
       "@id": "paper:9901.00031",
       "@type": "SourcePaper",
-      "name": "paper_31",
+      "name": "Simple zeros of the Riemann zeta-function",
       "year": 2026,
       "arxivId": "9901.00031",
       "doi": null,
@@ -2065,7 +2770,7 @@
     {
       "@id": "paper:9901.00032",
       "@type": "SourcePaper",
-      "name": "paper_32",
+      "name": "The Theory of the Riemann Zeta-Function",
       "year": 2026,
       "arxivId": "9901.00032",
       "doi": null,
@@ -2078,7 +2783,7 @@
     {
       "@id": "paper:9901.00033",
       "@type": "SourcePaper",
-      "name": "paper_33",
+      "name": "Riemann hypothesis",
       "year": 19,
       "arxivId": "9901.00033",
       "doi": null,
@@ -2091,7 +2796,7 @@
     {
       "@id": "paper:9901.00035",
       "@type": "SourcePaper",
-      "name": "paper_35",
+      "name": "A historical introduction to the Riemann Hypothesis",
       "year": 20,
       "arxivId": "9901.00035",
       "doi": null,
@@ -2104,7 +2809,7 @@
     {
       "@id": "paper:9901.00036",
       "@type": "SourcePaper",
-      "name": "I L LJ1 N O J S",
+      "name": "The zeta-function of Riemann",
       "year": 20,
       "arxivId": "9901.00036",
       "doi": null,
@@ -2117,7 +2822,7 @@
     {
       "@id": "paper:9901.00037",
       "@type": "SourcePaper",
-      "name": "paper_37",
+      "name": "Riemann’s Zeta Function",
       "year": 2026,
       "arxivId": "9901.00037",
       "doi": null,
@@ -2130,7 +2835,7 @@
     {
       "@id": "paper:9901.00041",
       "@type": "SourcePaper",
-      "name": "ON THE GENERALIZED RIEMANNHYPOTHESIS II",
+      "name": "On the Generalized Riemann Hypothesis II",
       "year": 20,
       "arxivId": "9901.00041",
       "doi": null,
@@ -2143,7 +2848,7 @@
     {
       "@id": "paper:9901.00042",
       "@type": "SourcePaper",
-      "name": "paper_42",
+      "name": "Zeros of the Lerch zeta-function and of its derivative for equal parameters",
       "year": 20,
       "arxivId": "9901.00042",
       "doi": null,
@@ -2156,7 +2861,7 @@
     {
       "@id": "paper:9901.00043",
       "@type": "SourcePaper",
-      "name": "X-RAY OF RIEMANN’S ZETA-FUNCTION 23",
+      "name": "X-Ray of Riemann’s Zeta-Function",
       "year": 2026,
       "arxivId": "9901.00043",
       "doi": null,
@@ -2169,7 +2874,7 @@
     {
       "@id": "paper:9901.00044",
       "@type": "SourcePaper",
-      "name": "paper_44",
+      "name": "On the number of zeros of L-functions attached to cusp forms of half-integral weight",
       "year": 20,
       "arxivId": "9901.00044",
       "doi": null,
@@ -2182,7 +2887,7 @@
     {
       "@id": "paper:9901.00048",
       "@type": "SourcePaper",
-      "name": "THREE LECTURES ON THE RIEMANN ZETA-FUNCTION",
+      "name": "Three lectures on the Riemann zeta-function",
       "year": 20,
       "arxivId": "9901.00048",
       "doi": null,
@@ -2195,7 +2900,7 @@
     {
       "@id": "paper:9901.00049",
       "@type": "SourcePaper",
-      "name": "paper_49",
+      "name": "Zeros of the Zeta Function",
       "year": 2026,
       "arxivId": "9901.00049",
       "doi": null,
@@ -2208,7 +2913,7 @@
     {
       "@id": "paper:9901.00051",
       "@type": "SourcePaper",
-      "name": "HARDY'S LEGACY TO NUMBER THEORY",
+      "name": "Hardy’s legacy to number theory",
       "year": 19,
       "arxivId": "9901.00051",
       "doi": null,
@@ -2221,7 +2926,7 @@
     {
       "@id": "paper:9901.00055",
       "@type": "SourcePaper",
-      "name": "paper_55",
+      "name": "Zero-density estimates for L-functions",
       "year": 2026,
       "arxivId": "9901.00055",
       "doi": null,
@@ -2234,7 +2939,7 @@
     {
       "@id": "paper:9901.00060",
       "@type": "SourcePaper",
-      "name": "paper_60",
+      "name": "Numerical evaluation of the Riemann Zeta-function",
       "year": 20,
       "arxivId": "9901.00060",
       "doi": null,
@@ -2247,7 +2952,7 @@
     {
       "@id": "paper:9901.00061",
       "@type": "SourcePaper",
-      "name": "THE THEORY OF THE",
+      "name": "The Theory of the Riemann Zeta-Function",
       "year": 19,
       "arxivId": "9901.00061",
       "doi": null,
@@ -2260,7 +2965,7 @@
     {
       "@id": "paper:None",
       "@type": "SourcePaper",
-      "name": "1111.0931",
+      "name": "Period functions and cotangent sums",
       "year": 20,
       "arxivId": null,
       "doi": null,
@@ -2288,7 +2993,7 @@
     {
       "@id": "paper:file:AIF_2003__53_3_665_0.pdf",
       "@type": "SourcePaper",
-      "name": "Complex Analysis in Number Theory",
+      "name": "Zeta functions for the Riemann zeros",
       "year": 2003,
       "arxivId": null,
       "doi": null,
@@ -2318,7 +3023,7 @@
     {
       "@id": "paper:file:AIF_2005__55_4_1373_0.pdf",
       "@type": "SourcePaper",
-      "name": "Fourier Analysis and Number Theory",
+      "name": "Étude d’un problème de continuité lié à l’hypothèse de Riemann",
       "year": 2005,
       "arxivId": null,
       "doi": null,
@@ -2348,7 +3053,7 @@
     {
       "@id": "paper:file:BSMA_1873__5__79_1.pdf",
       "@type": "SourcePaper",
-      "name": "Mémoire sur la Distribution des Nombres Premiers",
+      "name": "Sur la possibilité de représenter une fonction par une série trigonométrique",
       "year": 1873,
       "arxivId": null,
       "doi": null,
@@ -2379,7 +3084,7 @@
     {
       "@id": "paper:file:BSMF_1896__24__199_1.pdf",
       "@type": "SourcePaper",
-      "name": "Sur les Zéros de la Fonction ζ(s)",
+      "name": "Sur la distribution des zéros de la fonction ζ(s) et ses conséquences arithmétiques",
       "year": 1896,
       "arxivId": null,
       "doi": null,
@@ -2410,7 +3115,7 @@
     {
       "@id": "paper:file:BSMF_2006__134_3_417_0.pdf",
       "@type": "SourcePaper",
-      "name": "Méthodes Modernes en Théorie des Nombres",
+      "name": "Une approche hilbertienne de l’hypothèse de Riemann généralisée",
       "year": 2006,
       "arxivId": null,
       "doi": null,
@@ -2440,7 +3145,7 @@
     {
       "@id": "paper:file:CRMATH_2009__347_19-20_1115_0.pdf",
       "@type": "SourcePaper",
-      "name": "Progrès Récents sur l'Hypothèse de Riemann",
+      "name": "Un isomorphisme de type Deligne–Riemann–Roch",
       "year": 2009,
       "arxivId": null,
       "doi": null,
@@ -2471,7 +3176,7 @@
     {
       "@id": "paper:file:JMPA_1893_4_9__171_0.pdf",
       "@type": "SourcePaper",
-      "name": "Contributions to Prime Number Distribution",
+      "name": "Étude sur les propriétés des fonctions entières et en particulier d’une fonction considérée par Riemann",
       "year": 1893,
       "arxivId": null,
       "doi": null,
@@ -2501,7 +3206,7 @@
     {
       "@id": "paper:file:MSMF_2001_2_86__1_0.pdf",
       "@type": "SourcePaper",
-      "name": "Mémoires sur les Fonctions Zêta",
+      "name": "Symmetry types of hyperelliptic Riemann surfaces",
       "year": 2001,
       "arxivId": null,
       "doi": null,
@@ -2531,7 +3236,7 @@
     {
       "@id": "paper:file:Zeta (1).pdf",
       "@type": "SourcePaper",
-      "name": "The Riemann Zeta Function",
+      "name": "Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse",
       "year": 2010,
       "arxivId": null,
       "doi": null,
@@ -2575,7 +3280,7 @@
     {
       "@id": "paper:math/0306251",
       "@type": "SourcePaper",
-      "name": "Digamma Function and Belhadj-Goubi Proof",
+      "name": "Sur l’autocorrélation multiplicative de la fonction « partie fractionnaire »",
       "year": 2003,
       "arxivId": "math/0306251",
       "doi": null,
@@ -2604,9 +3309,53 @@
       }
     },
     {
+      "@context": "https://riemann-hypothesis.github.io/artifacts#",
+      "@id": "paper:math/0509480",
+      "@type": "SourcePaper",
+      "name": "Applications of the L-functions ratios conjectures",
+      "title": "Applications of the L-functions ratios conjectures",
+      "arxivId": "math/0509480",
+      "year": 2005,
+      "authors": [
+        "J. B. Conrey",
+        "Nina C. Snaith"
+      ],
+      "referenceUrl": "https://arxiv.org/abs/math/0509480",
+      "journal": "Proceedings of the London Mathematical Society 93 (2007), no. 3, 594–646",
+      "pdfLocal": "papers/0509480.pdf",
+      "abstract": "Develops applications of conjectural L-function ratio formulae, including zero statistics and mollified moments.",
+      "keywords": [
+        "l-functions",
+        "ratios-conjecture",
+        "mollified-moments",
+        "zero-statistics"
+      ],
+      "rolesInH15": [
+        "mollified-moments comparison",
+        "negative applicability result"
+      ],
+      "auditStatus": "rejected",
+      "findings": "The manifest marks the ratios-conjecture/mollified-moment route as unsuitable for an unconditional H15 proof; retained as a documented comparison source.",
+      "relatedArtifacts": [
+        "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"
+      ],
+      "source": {
+        "file": "artifacts/papers/0509480.json",
+        "line": 1
+      },
+      "localPdf": "papers/0509480.pdf",
+      "tags": [
+        "l-functions",
+        "mollified-moments",
+        "ratios-conjecture",
+        "zero-statistics"
+      ],
+      "summary": "Develops applications of conjectural L-function ratio formulae, including zero statistics and mollified moments."
+    },
+    {
       "@id": "paper:math/9912107",
       "@type": "SourcePaper",
-      "name": "Classical Number Theory Methods",
+      "name": "Mean values of L-functions and symmetry",
       "year": 1999,
       "arxivId": "math/9912107",
       "doi": null,
@@ -4733,14 +5482,21 @@
     {
       "source": "paper:1111.0931",
       "predicate": "authoredBy",
-      "target": "mathematician:bettin",
+      "target": "mathematician:brian-conrey",
       "confidence": 1.0
     },
     {
       "source": "paper:1111.0931",
       "predicate": "authoredBy",
-      "target": "mathematician:conrey",
+      "target": "mathematician:sandro-bettin",
       "confidence": 1.0
+    },
+    {
+      "source": "paper:1111.0931",
+      "predicate": "informs",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
     },
     {
       "source": "paper:1111.0931",
@@ -4761,9 +5517,42 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:1111.6190",
+      "predicate": "authoredBy",
+      "target": "mathematician:allison-lewko",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1111.6190",
+      "predicate": "authoredBy",
+      "target": "mathematician:mark-lewko",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1111.6190",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
       "source": "paper:1211.5191",
       "predicate": "authoredBy",
-      "target": "mathematician:geometric-analysts",
+      "target": "mathematician:brian-conrey",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1211.5191",
+      "predicate": "authoredBy",
+      "target": "mathematician:david-w-farmer",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1211.5191",
+      "predicate": "authoredBy",
+      "target": "mathematician:sandro-bettin",
       "confidence": 1.0
     },
     {
@@ -4781,7 +5570,7 @@
     {
       "source": "paper:1401.2932",
       "predicate": "authoredBy",
-      "target": "mathematician:zeta-group",
+      "target": "mathematician:trevor-d-wooley",
       "confidence": 1.0
     },
     {
@@ -4799,7 +5588,7 @@
     {
       "source": "paper:1401.3150",
       "predicate": "authoredBy",
-      "target": "mathematician:bounds-researchers",
+      "target": "mathematician:trevor-d-wooley",
       "confidence": 1.0
     },
     {
@@ -4817,7 +5606,13 @@
     {
       "source": "paper:1409.1634",
       "predicate": "authoredBy",
-      "target": "mathematician:character-theory-team",
+      "target": "mathematician:ciprian-demeter",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1409.1634",
+      "predicate": "authoredBy",
+      "target": "mathematician:jean-bourgain",
       "confidence": 1.0
     },
     {
@@ -4835,13 +5630,7 @@
     {
       "source": "paper:1501.02975",
       "predicate": "authoredBy",
-      "target": "mathematician:iwaniec",
-      "confidence": 1.0
-    },
-    {
-      "source": "paper:1501.02975",
-      "predicate": "authoredBy",
-      "target": "mathematician:kowalski",
+      "target": "mathematician:manuel-amann",
       "confidence": 1.0
     },
     {
@@ -4857,9 +5646,42 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:1502.00769",
+      "predicate": "authoredBy",
+      "target": "mathematician:sandro-bettin",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1502.00769",
+      "predicate": "authoredBy",
+      "target": "mathematician:vorrapan-chandee",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1502.00769",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
       "source": "paper:1503.05121",
       "predicate": "authoredBy",
-      "target": "mathematician:harmonic-analysts",
+      "target": "mathematician:kaisa-matom-ki",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1503.05121",
+      "predicate": "authoredBy",
+      "target": "mathematician:maksym-radziwi",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1503.05121",
+      "predicate": "authoredBy",
+      "target": "mathematician:terence-tao",
       "confidence": 1.0
     },
     {
@@ -4881,9 +5703,59 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:1509.05363",
+      "predicate": "authoredBy",
+      "target": "mathematician:terence-tao",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1509.05363",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
       "source": "paper:1510.05087",
       "predicate": "authoredBy",
-      "target": "mathematician:analytic-number-theorists",
+      "target": "mathematician:a-a-nal",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "authoredBy",
+      "target": "mathematician:d-marchenko",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "authoredBy",
+      "target": "mathematician:f-radu",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "authoredBy",
+      "target": "mathematician:j-s-nchez-barriga",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "authoredBy",
+      "target": "mathematician:k-j-merazzo",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "authoredBy",
+      "target": "mathematician:m-v-zquez",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:1510.05087",
+      "predicate": "authoredBy",
+      "target": "mathematician:s-valencia",
       "confidence": 1.0
     },
     {
@@ -4901,19 +5773,19 @@
     {
       "source": "paper:1601.06839",
       "predicate": "authoredBy",
-      "target": "mathematician:auli",
+      "target": "mathematician:abdelmejid-bayad",
       "confidence": 1.0
     },
     {
       "source": "paper:1601.06839",
       "predicate": "authoredBy",
-      "target": "mathematician:bayad",
+      "target": "mathematician:juan-s-auli",
       "confidence": 1.0
     },
     {
       "source": "paper:1601.06839",
       "predicate": "authoredBy",
-      "target": "mathematician:beck",
+      "target": "mathematician:matthias-beck",
       "confidence": 1.0
     },
     {
@@ -4935,9 +5807,37 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:1711.10582",
+      "predicate": "authoredBy",
+      "target": "mathematician:bryce-kerr",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1711.10582",
+      "predicate": "authoredBy",
+      "target": "mathematician:igor-e-shparlinski",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1711.10582",
+      "predicate": "authoredBy",
+      "target": "mathematician:kam-hung-yau",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:1711.10582",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
       "source": "paper:1807.08249",
       "predicate": "authoredBy",
-      "target": "mathematician:modular-forms-group",
+      "target": "mathematician:martin-kilbinger",
       "confidence": 1.0
     },
     {
@@ -4953,9 +5853,70 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:2001.05114",
+      "predicate": "authoredBy",
+      "target": "mathematician:matteo-bordignon",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2001.05114",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
+      "source": "paper:2002.03435",
+      "predicate": "authoredBy",
+      "target": "mathematician:lillian-b-pierce",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2002.03435",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
+      "source": "paper:2004.10086",
+      "predicate": "authoredBy",
+      "target": "mathematician:erwan-hillion",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2004.10086",
+      "predicate": "authoredBy",
+      "target": "mathematician:s-bastien-darses",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2004.10086",
+      "predicate": "informs",
+      "target": "module:NBMellinTools.H15_RouteA",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
       "source": "paper:2105.00004",
       "predicate": "authoredBy",
-      "target": "mathematician:spectral-researchers",
+      "target": "mathematician:ana-maria-rey",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2105.00004",
+      "predicate": "authoredBy",
+      "target": "mathematician:julian-huber",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2105.00004",
+      "predicate": "authoredBy",
+      "target": "mathematician:peter-rabl",
       "confidence": 1.0
     },
     {
@@ -4971,9 +5932,50 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:2204.03754",
+      "predicate": "authoredBy",
+      "target": "mathematician:joni-ter-v-inen",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2204.03754",
+      "predicate": "authoredBy",
+      "target": "mathematician:kaisa-matom-ki",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2204.03754",
+      "predicate": "authoredBy",
+      "target": "mathematician:terence-tao",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2204.03754",
+      "predicate": "authoredBy",
+      "target": "mathematician:xuancheng-shao",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2204.03754",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
       "source": "paper:2209.10990",
       "predicate": "authoredBy",
-      "target": "mathematician:probabilistic-team",
+      "target": "mathematician:erwan-hillion",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2209.10990",
+      "predicate": "authoredBy",
+      "target": "mathematician:s-bastien-darses",
       "confidence": 1.0
     },
     {
@@ -4991,13 +5993,33 @@
     {
       "source": "paper:2309.09171",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:soufiane-hayou",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2405.06349",
+      "predicate": "authoredBy",
+      "target": "mathematician:werner-ehm",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:2405.06349",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
+      "source": "paper:2606.22562",
+      "predicate": "authoredBy",
+      "target": "mathematician:amaury-lvarez-cruz",
       "confidence": 1.0
     },
     {
       "source": "paper:2606.22562",
       "predicate": "authoredBy",
-      "target": "mathematician:classical-methods-group",
+      "target": "mathematician:esteban-a-lvarez-guti-rrez",
       "confidence": 1.0
     },
     {
@@ -5015,7 +6037,13 @@
     {
       "source": "paper:2607.01126",
       "predicate": "authoredBy",
-      "target": "mathematician:error-analysis-team",
+      "target": "mathematician:daniel-keliher",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:2607.01126",
+      "predicate": "authoredBy",
+      "target": "mathematician:sun-woo-park",
       "confidence": 1.0
     },
     {
@@ -5040,7 +6068,7 @@
     {
       "source": "paper:2607.02828",
       "predicate": "authoredBy",
-      "target": "mathematician:classical-analysts",
+      "target": "mathematician:akiva-groskin",
       "confidence": 1.0
     },
     {
@@ -5065,7 +6093,7 @@
     {
       "source": "paper:2607.04316",
       "predicate": "authoredBy",
-      "target": "mathematician:number-theorists",
+      "target": "mathematician:netzer-moriya",
       "confidence": 1.0
     },
     {
@@ -5096,7 +6124,7 @@
     {
       "source": "paper:2607.04632",
       "predicate": "authoredBy",
-      "target": "mathematician:analytic-researchers",
+      "target": "mathematician:caroline-l-turnage-butterbaugh",
       "confidence": 1.0
     },
     {
@@ -5127,7 +6155,7 @@
     {
       "source": "paper:2607.09110",
       "predicate": "authoredBy",
-      "target": "mathematician:research-team",
+      "target": "mathematician:marco-cantarini",
       "confidence": 1.0
     },
     {
@@ -5158,7 +6186,7 @@
     {
       "source": "paper:2607.09797",
       "predicate": "authoredBy",
-      "target": "mathematician:various-researchers",
+      "target": "mathematician:sergey-liflandsky",
       "confidence": 1.0
     },
     {
@@ -5196,169 +6224,367 @@
     {
       "source": "paper:9901.00000",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:chenthuran-abeyakaran",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00001",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:tom-waknine",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00001",
+      "predicate": "authoredBy",
+      "target": "mathematician:uri-ronen",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00003",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:enrico-bombieri",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00005",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:peter-sarnak",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00008",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:alain-connes",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00013",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:brian-conrey",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00014",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:bent-e-petersen",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00018",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:jonathan-sondow",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00021",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:patrick-sol",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00025",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:marek-wolf",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00028",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:raman-kumar-das",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00028",
+      "predicate": "authoredBy",
+      "target": "mathematician:shekhar-suman",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00031",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:a-ghosh",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00031",
+      "predicate": "authoredBy",
+      "target": "mathematician:j-b-conrey",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00031",
+      "predicate": "authoredBy",
+      "target": "mathematician:s-m-gonek",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00032",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:d-r-heath-brown-reviser",
       "confidence": 1.0
     },
     {
-      "source": "paper:9901.00033",
+      "source": "paper:9901.00032",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:e-c-titchmarsh",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00035",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:z-m-tanver-mahmud-anindya",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00036",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:e-c-titchmarsh",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00037",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:harold-m-edwards",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00041",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:dorin-ghisa",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00042",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:ram-nas-garunk-tis",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00042",
+      "predicate": "authoredBy",
+      "target": "mathematician:rokas-tamo-i-nas",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00043",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:j-arias-de-reyna",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00044",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:pedro-ribeiro",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00048",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
-      "confidence": 1.0
-    },
-    {
-      "source": "paper:9901.00049",
-      "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:s-m-gonek",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00051",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:r-c-vaughan",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00055",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:m-jutila",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00060",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:pascal-sebah",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00060",
+      "predicate": "authoredBy",
+      "target": "mathematician:xavier-gourdon",
       "confidence": 1.0
     },
     {
       "source": "paper:9901.00061",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:d-r-heath-brown-reviser",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:9901.00061",
+      "predicate": "authoredBy",
+      "target": "mathematician:e-c-titchmarsh",
       "confidence": 1.0
     },
     {
       "source": "paper:None",
       "predicate": "authoredBy",
-      "target": "mathematician:unknown-author",
+      "target": "mathematician:alain-connes",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:andr-voros",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:anne-de-roton",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:ben-green",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:bernard-landreau",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:bernhard-riemann",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:brian-conrey",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:ciprian-demeter",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:d-w-farmer",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:david-w-farmer",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:dennis-eriksson",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:emilio-bujalance",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:eric-saias",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:francisco-javier-cirre",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:grzegorz-gromadzki",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:j-b-conrey",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:j-m-gamboa",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:jacques-hadamard",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:james-maynard",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:jean-bourgain",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:kevin-ford",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:luis-b-ez-duarte",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:michel-balazard",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:nicolas-jousse",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:sandro-bettin",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:sergei-konyagin",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:terence-tao",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:None",
+      "predicate": "authoredBy",
+      "target": "mathematician:trevor-d-wooley",
       "confidence": 1.0
     },
     {
@@ -5371,7 +6597,7 @@
     {
       "source": "paper:file:AIF_2003__53_3_665_0.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:complex-analysts",
+      "target": "mathematician:andr-voros",
       "confidence": 1.0
     },
     {
@@ -5389,7 +6615,7 @@
     {
       "source": "paper:file:AIF_2005__55_4_1373_0.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:annales-group",
+      "target": "mathematician:nicolas-jousse",
       "confidence": 1.0
     },
     {
@@ -5407,7 +6633,7 @@
     {
       "source": "paper:file:BSMA_1873__5__79_1.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:chebyshev",
+      "target": "mathematician:bernhard-riemann",
       "confidence": 1.0
     },
     {
@@ -5431,7 +6657,7 @@
     {
       "source": "paper:file:BSMF_1896__24__199_1.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:hadamard",
+      "target": "mathematician:jacques-hadamard",
       "confidence": 1.0
     },
     {
@@ -5455,7 +6681,7 @@
     {
       "source": "paper:file:BSMF_2006__134_3_417_0.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:modern-team",
+      "target": "mathematician:anne-de-roton",
       "confidence": 1.0
     },
     {
@@ -5473,7 +6699,7 @@
     {
       "source": "paper:file:CRMATH_2009__347_19-20_1115_0.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:recent-team",
+      "target": "mathematician:dennis-eriksson",
       "confidence": 1.0
     },
     {
@@ -5497,7 +6723,7 @@
     {
       "source": "paper:file:JMPA_1893_4_9__171_0.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:classical-analysts",
+      "target": "mathematician:jacques-hadamard",
       "confidence": 1.0
     },
     {
@@ -5515,7 +6741,25 @@
     {
       "source": "paper:file:MSMF_2001_2_86__1_0.pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:french-analysts",
+      "target": "mathematician:emilio-bujalance",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:MSMF_2001_2_86__1_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:francisco-javier-cirre",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:MSMF_2001_2_86__1_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:grzegorz-gromadzki",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:file:MSMF_2001_2_86__1_0.pdf",
+      "predicate": "authoredBy",
+      "target": "mathematician:j-m-gamboa",
       "confidence": 1.0
     },
     {
@@ -5533,7 +6777,7 @@
     {
       "source": "paper:file:Zeta (1).pdf",
       "predicate": "authoredBy",
-      "target": "mathematician:special-functions-team",
+      "target": "mathematician:bernhard-riemann",
       "confidence": 1.0
     },
     {
@@ -5558,13 +6802,25 @@
     {
       "source": "paper:math/0306251",
       "predicate": "authoredBy",
-      "target": "mathematician:belhadj",
+      "target": "mathematician:bernard-landreau",
       "confidence": 1.0
     },
     {
       "source": "paper:math/0306251",
       "predicate": "authoredBy",
-      "target": "mathematician:goubi",
+      "target": "mathematician:eric-saias",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/0306251",
+      "predicate": "authoredBy",
+      "target": "mathematician:luis-b-ez-duarte",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/0306251",
+      "predicate": "authoredBy",
+      "target": "mathematician:michel-balazard",
       "confidence": 1.0
     },
     {
@@ -5586,9 +6842,36 @@
       "confidence": 1.0
     },
     {
+      "source": "paper:math/0509480",
+      "predicate": "authoredBy",
+      "target": "mathematician:j-b-conrey",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:math/0509480",
+      "predicate": "authoredBy",
+      "target": "mathematician:nina-c-snaith",
+      "confidence": 1.0,
+      "note": "Author attribution recorded in the audited paper metadata."
+    },
+    {
+      "source": "paper:math/0509480",
+      "predicate": "informs",
+      "target": "axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound",
+      "confidence": 0.8,
+      "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact."
+    },
+    {
       "source": "paper:math/9912107",
       "predicate": "authoredBy",
-      "target": "mathematician:classical-team",
+      "target": "mathematician:d-w-farmer",
+      "confidence": 1.0
+    },
+    {
+      "source": "paper:math/9912107",
+      "predicate": "authoredBy",
+      "target": "mathematician:j-b-conrey",
       "confidence": 1.0
     },
     {
@@ -6214,8 +7497,8 @@
     }
   ],
   "statistics": {
-    "artifacts": 283,
-    "relationships": 264,
+    "artifacts": 352,
+    "relationships": 348,
     "byType": {
       "Concept": 55,
       "FormalAxiom": 5,
@@ -6223,9 +7506,9 @@
       "FormalLemma": 1,
       "FormalModule": 10,
       "FormalTheorem": 85,
-      "Mathematician": 39,
+      "Mathematician": 98,
       "Roadmap": 1,
-      "SourcePaper": 63
+      "SourcePaper": 73
     }
   }
 }
