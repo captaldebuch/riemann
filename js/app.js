@@ -8,8 +8,19 @@ const STATE = {
   routeParams: null,
   isLoading: true,
   sparqlAvailable: false,
-  sparqlClient: null
+  sparqlClient: null,
+  corpusInventory: null
 };
+
+async function loadCorpusInventory() {
+  const response = await fetch('data/corpus-inventory.json', { cache: 'no-cache' });
+  if (!response.ok) throw new Error(`Corpus inventory request failed: ${response.status}`);
+  const payload = await response.json();
+  if (!Array.isArray(payload.records) || !payload.summary) {
+    throw new Error('Corpus inventory has an invalid public shape');
+  }
+  return payload;
+}
 
 // Initialize Application
 async function initApp() {
@@ -19,6 +30,12 @@ async function initApp() {
     } else {
       console.warn("Could not load DH_DATA.");
       STATE.db = { papers: {}, authors: {}, concepts: {} };
+    }
+
+    try {
+      STATE.corpusInventory = await loadCorpusInventory();
+    } catch (error) {
+      console.warn('Complete corpus inventory unavailable; using the processed subset.', error);
     }
 
     // Initialize SPARQL client (Phase 4: LOD Integration)
@@ -376,23 +393,39 @@ function corpusYear(paper) {
 
 function corpusAuthorNames(paper) {
   const authors = paper.authors || [];
-  return authors.map(authorId => STATE.db.authors[authorId]?.name || String(authorId).replace(/^author:/, '').replace(/-/g, ' '));
+  return authors.map(author => {
+    if (typeof author === 'object' && author) return author.name || 'Author metadata unrecorded';
+    return STATE.db?.authors?.[author]?.name || String(author).replace(/^author:/, '').replace(/-/g, ' ');
+  }).filter(Boolean);
 }
 
 function corpusConceptNames(paper) {
-  return (paper.concepts || []).map(conceptId => STATE.db.concepts[conceptId]?.name || String(conceptId).replace(/^concept:/, '').replace(/-/g, ' '));
+  const concepts = paper.tags || paper.concepts || [];
+  return concepts.map(concept => {
+    if (typeof concept === 'object' && concept) return concept.name || '';
+    return STATE.db?.concepts?.[concept]?.name || String(concept).replace(/^concept:/, '').replace(/-/g, ' ');
+  }).filter(Boolean);
+}
+
+function corpusTrack(paper) {
+  return paper.role || paper.role_in_project || 'Unclassified';
 }
 
 function getCorpusPaperCard(paper) {
   const authors = corpusAuthorNames(paper);
   const concepts = corpusConceptNames(paper).slice(0, 3);
   const year = corpusYear(paper);
-  const note = (paper.key_novelties || [])[0] || paper.intuitions || 'No extracted note is recorded for this item.';
-  const role = paper.role_in_project || 'Unclassified';
+  const note = paper.processed
+    ? 'Processed corpus record. The public card preserves the source inventory; detailed extraction remains a separate research layer.'
+    : 'Bibliographic metadata record. Detailed extraction has not yet been published for this entry.';
+  const role = corpusTrack(paper);
+  const sourceStatus = paper.localPdf
+    ? (paper.sharedSource ? 'Shared source PDF' : 'Distinct source PDF')
+    : 'Source file unresolved';
   return `
     <article class="corpus-paper-card" data-paper-id="${escapeHtml(paper.id)}">
       <div class="corpus-paper-topline">
-        <h5><a href="#paper/${encodeURIComponent(paper.id)}">${escapeHtml(paper.title || paper.id)}</a></h5>
+        <h5>${escapeHtml(paper.title || paper.id)}</h5>
         <span class="corpus-paper-year">${year || 'Year unrecorded'}</span>
       </div>
       <p class="corpus-paper-authors">${escapeHtml(authors.join(', ') || 'Author metadata unrecorded')}</p>
@@ -400,7 +433,8 @@ function getCorpusPaperCard(paper) {
       <div class="corpus-paper-meta">
         <span class="corpus-pill">${escapeHtml(role)}</span>
         ${concepts.map(concept => `<span class="corpus-pill corpus-pill-concept">${escapeHtml(concept)}</span>`).join('')}
-        <a class="corpus-record-link" href="#paper/${encodeURIComponent(paper.id)}">Open record →</a>
+        <span class="corpus-record-status ${paper.processed ? 'is-processed' : 'is-metadata'}">${paper.processed ? 'Processed' : 'Metadata only'}</span>
+        <span class="corpus-record-status ${paper.localPdf ? 'is-source-present' : 'is-source-unresolved'}">${sourceStatus}</span>
       </div>
     </article>
   `;
@@ -419,9 +453,9 @@ function setupCorpusExplorer(papers) {
   function applyFilters() {
     const query = search.value.trim().toLowerCase();
     const filtered = papers.filter(paper => {
-      const matchesTrack = !track.value || paper.role_in_project === track.value;
+      const matchesTrack = !track.value || corpusTrack(paper) === track.value;
       const matchesYear = !year.value || String(corpusYear(paper) || '') === year.value;
-      const searchable = [paper.title, ...corpusAuthorNames(paper), ...corpusConceptNames(paper), ...(paper.key_novelties || [])]
+      const searchable = [paper.title, ...corpusAuthorNames(paper), ...corpusConceptNames(paper), paper.journal, paper.doi, paper.arxivId]
         .join(' ').toLowerCase();
       return matchesTrack && matchesYear && (!query || searchable.includes(query));
     });
@@ -433,7 +467,8 @@ function setupCorpusExplorer(papers) {
     const visibleIds = new Set(filtered.map(paper => paper.id));
     cards.forEach((card, paperId) => { card.hidden = !visibleIds.has(paperId); });
     filtered.forEach(paper => list.append(cards.get(paper.id)));
-    resultCount.textContent = `${filtered.length} of ${papers.length} catalogue records`;
+    const processed = filtered.filter(paper => paper.processed).length;
+    resultCount.textContent = `${filtered.length} of ${papers.length} metadata records · ${processed} processed`;
     empty.hidden = filtered.length > 0;
   }
 
@@ -444,46 +479,61 @@ function setupCorpusExplorer(papers) {
 }
 
 function renderCorpusDataset() {
-  const papers = Object.values(STATE.db.papers || {});
+  const inventory = STATE.corpusInventory;
+  const papers = inventory?.records || Object.values(STATE.db.papers || {}).map(paper => ({
+    ...paper,
+    role: paper.role_in_project,
+    processed: true,
+    localPdf: false,
+    sharedSource: false
+  }));
+  const summary = inventory?.summary || {
+    metadataRecords: papers.length,
+    processedRecords: papers.length,
+    referencedSourcePdfs: '—',
+    duplicateMetadataEntries: '—',
+    unindexedPdfFiles: '—'
+  };
   const years = papers.map(corpusYear).filter(Boolean);
-  const tracks = [...new Set(papers.map(paper => paper.role_in_project).filter(Boolean))].sort();
-  const authors = new Set(papers.flatMap(corpusAuthorNames));
-  const earliestYear = years.length ? Math.min(...years) : '—';
-  const latestYear = years.length ? Math.max(...years) : '—';
+  const tracks = [...new Set(papers.map(corpusTrack).filter(Boolean))].sort();
   const yearOptions = [...new Set(years)].sort((a, b) => b - a)
     .map(year => `<option value="${year}">${year}</option>`).join('');
   const trackOptions = tracks.map(track => `<option value="${escapeHtml(track)}">${escapeHtml(track)}</option>`).join('');
+  const reconciliationNote = inventory
+    ? `${summary.duplicateMetadataEntries} metadata entries share a source PDF with another entry; the local archive also contains ${summary.unindexedPdfFiles} PDF not yet represented by a complete metadata record.`
+    : 'The complete inventory could not be loaded, so this page is showing only the processed subset.';
 
   const html = `
     <section class="view-section active">
       <div class="corpus-hero">
         <p class="corpus-eyebrow">Structured research catalogue</p>
         <h2>Corpus &amp; Dataset</h2>
-        <p>Explore the project’s processed literature catalogue, extracted concepts, and formalization-oriented research notes. The compact cards below make the collection searchable without treating extracted metadata as a substitute for the original sources.</p>
+        <p>This public index contains the complete 78-entry corpus metadata inventory. Thirty entries have a separate processed research layer; the rest remain source-level catalogue records. The page distinguishes catalogue entries from distinct source files so that the collection’s current state is visible rather than implied.</p>
       </div>
 
       <div class="corpus-metrics" aria-label="Corpus summary">
-        <article class="corpus-metric"><span class="corpus-metric-value">${papers.length}</span><span class="corpus-metric-label">catalogue records</span></article>
-        <article class="corpus-metric"><span class="corpus-metric-value">${earliestYear}–${latestYear}</span><span class="corpus-metric-label">recorded publication years</span></article>
-        <article class="corpus-metric"><span class="corpus-metric-value">${authors.size}</span><span class="corpus-metric-label">named author records</span></article>
-        <article class="corpus-metric"><span class="corpus-metric-value">${tracks.length}</span><span class="corpus-metric-label">project tracks</span></article>
+        <article class="corpus-metric"><span class="corpus-metric-value">${summary.metadataRecords}</span><span class="corpus-metric-label">metadata entries</span></article>
+        <article class="corpus-metric"><span class="corpus-metric-value">${summary.processedRecords}</span><span class="corpus-metric-label">processed research records</span></article>
+        <article class="corpus-metric"><span class="corpus-metric-value">${summary.referencedSourcePdfs}</span><span class="corpus-metric-label">distinct linked source PDFs</span></article>
+        <article class="corpus-metric corpus-metric-warning"><span class="corpus-metric-value">${summary.duplicateMetadataEntries}</span><span class="corpus-metric-label">entries sharing a PDF source</span></article>
       </div>
+      <p class="corpus-inventory-note">${escapeHtml(reconciliationNote)}</p>
 
       <div class="corpus-section-heading">
         <p class="corpus-eyebrow">Data access</p>
         <h3>Download or inspect the underlying records</h3>
-        <p>The public corpus bundle and the versioned Artifact Database serve different purposes: broad extracted context versus source-linked research provenance.</p>
+        <p>The complete metadata index is the right starting point for corpus-wide work. The older Dataset v1 remains available as a 14-record legacy export; it is not the complete corpus.</p>
       </div>
       <div class="corpus-access-grid">
         <article class="corpus-access-card">
-          <h3>Dataset v1</h3>
-          <p>Structured corpus export with papers, concepts, extracted observations, and formalization metadata.</p>
-          <a class="corpus-button" href="downloads/dataset_v1.json" download>Download Dataset v1</a>
+          <h3>Complete metadata index</h3>
+          <p>All 78 source metadata entries, with processing status and a transparent source-PDF relationship field.</p>
+          <a class="corpus-button" href="data/corpus-inventory.json" download>Download 78-entry index</a>
         </article>
         <article class="corpus-access-card">
-          <h3>Research notebooks</h3>
-          <p>Notebooks used for corpus ingestion, extraction experiments, and formalization-oriented analysis.</p>
-          <a class="corpus-button" href="downloads/notebooks.zip" download>Download notebooks</a>
+          <h3>Legacy Dataset v1</h3>
+          <p>The original 14-record release is retained for reproducibility. Use the complete index above for corpus-wide analysis.</p>
+          <a class="corpus-button" href="downloads/dataset_v1.json" download>Download legacy subset</a>
         </article>
         <article class="corpus-access-card">
           <h3>Artifact Database</h3>
@@ -494,12 +544,12 @@ function renderCorpusDataset() {
 
       <div class="corpus-section-heading">
         <p class="corpus-eyebrow">Browse</p>
-        <h3>Processed literature catalogue</h3>
-        <p>Filter by project track or year, then open a record for its connected authors, concepts, and related papers.</p>
+        <h3>Complete metadata inventory</h3>
+        <p>Filter the 78 catalogue entries by project track or year. Status pills identify processed entries and records that share a source file.</p>
       </div>
       <div class="corpus-catalogue">
         <div class="corpus-filters" role="search">
-          <label class="corpus-filter-label" for="corpus-search">Search title, author, concept, or extracted note
+          <label class="corpus-filter-label" for="corpus-search">Search title, author, tag, journal, DOI, or arXiv ID
             <input id="corpus-search" type="search" placeholder="e.g. cotangent sums, Nyman, Mellin" autocomplete="off">
           </label>
           <label class="corpus-filter-label" for="corpus-track">Project track
@@ -512,7 +562,7 @@ function renderCorpusDataset() {
             <select id="corpus-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select>
           </label>
         </div>
-        <div class="corpus-results-bar"><h4>Catalogue records</h4><p id="corpus-result-count" class="corpus-result-count" aria-live="polite">Loading…</p></div>
+        <div class="corpus-results-bar"><h4>Metadata entries</h4><p id="corpus-result-count" class="corpus-result-count" aria-live="polite">Loading…</p></div>
         <div id="corpus-paper-list" class="corpus-paper-list">${papers.map(getCorpusPaperCard).join('')}</div>
         <p id="corpus-empty" class="corpus-empty" hidden>No corpus records match these filters.</p>
       </div>
@@ -894,7 +944,7 @@ function renderFormalizationArchive() {
         </p>
       </div>
       <p style="font-size: 1.05rem; color: #475569; margin-bottom: 2rem; font-weight: 500;">
-        <strong>Exploratory formalization based on corpus analysis and LLM guidance.</strong> Using dataset extraction and large language model-assisted analysis of 78 research papers and historical intuitions, we selected multiple formalization routes (Nyman-Beurling, Báez-Duarte, BCF). The Lean 4 formalizations below represent explorations of these classical strategies, informed by the corpus and guided by mathematics. <strong>Expert consultation and discussion are welcome</strong>—this is a digital humanities investigation, not original mathematical proof.
+        <strong>Exploratory formalization based on corpus analysis and LLM guidance.</strong> Using a 78-entry corpus metadata inventory and historical intuitions, we selected multiple formalization routes (Nyman-Beurling, Báez-Duarte, BCF). The Lean 4 formalizations below represent explorations of these classical strategies, informed by the corpus and guided by mathematics. <strong>Expert consultation and discussion are welcome</strong>—this is a digital humanities investigation, not original mathematical proof.
       </p>
       <p style="font-size: 1rem; color: #475569; margin-bottom: 2rem; line-height: 1.7;">
         The verified components include: <strong>H13</strong> (Vasyunin–BBLS local kernel identities), <strong>H14</strong> (quantitative analytic framework for linear Möbius bounds), <strong>Phase NB</strong> (Nyman–Beurling functional-analytic bridge), and <strong>H15</strong> (quadratic interaction reduction and conditional asymptotic assembly). All Lean code builds successfully with zero new axioms and zero hidden sorry dependencies. The remaining work is now isolated into three named analytic theorem packages:

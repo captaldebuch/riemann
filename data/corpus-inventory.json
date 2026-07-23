@@ -1,0 +1,1601 @@
+{
+  "version": 1,
+  "source": "dataset/extracted/rh_corpus_database_complete.json",
+  "records": [
+    {
+      "id": "2607.09797",
+      "sourceId": "2607.09797",
+      "title": "Recent Advances in RH Approximations",
+      "authors": [
+        "Various Researchers"
+      ],
+      "year": 2026,
+      "role": "H15",
+      "tags": [
+        "recent-research",
+        "möbius",
+        "approximations"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2607.09797",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2607.09797v1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2607.09110",
+      "sourceId": "2607.09110",
+      "title": "Phase 1 Diagnostics for H15 Kernel",
+      "authors": [
+        "Research Team"
+      ],
+      "year": 2026,
+      "role": "H15",
+      "tags": [
+        "h15",
+        "kernel",
+        "diagnostics"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2607.09110",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2607.09110v1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2607.04632",
+      "sourceId": "2607.04632",
+      "title": "Möbius Correlations and Cancellation",
+      "authors": [
+        "Analytic Researchers"
+      ],
+      "year": 2026,
+      "role": "H15",
+      "tags": [
+        "möbius",
+        "cancellation",
+        "correlation"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2607.04632",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2607.04632v1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2607.04316",
+      "sourceId": "2607.04316",
+      "title": "Zeta Functions and RH Equivalences",
+      "authors": [
+        "Number Theorists"
+      ],
+      "year": 2026,
+      "role": "H14",
+      "tags": [
+        "zeta",
+        "equivalence",
+        "rh"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2607.04316",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2607.04316v2.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2607.02828",
+      "sourceId": "2607.02828",
+      "title": "Mellin Transforms and Analytic Continuation",
+      "authors": [
+        "Classical Analysts"
+      ],
+      "year": 2026,
+      "role": "H14",
+      "tags": [
+        "mellin",
+        "analytic-continuation"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2607.02828",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2607.02828v1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2607.01126",
+      "sourceId": "2607.01126",
+      "title": "Contour Shifting and Error Terms",
+      "authors": [
+        "Error Analysis Team"
+      ],
+      "year": 2026,
+      "role": "H14",
+      "tags": [
+        "contour",
+        "error-analysis"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2607.01126",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2607.01126v1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2606.22562",
+      "sourceId": "2606.22562",
+      "title": "Perron Inversion Formulas",
+      "authors": [
+        "Classical Methods Group"
+      ],
+      "year": 2026,
+      "role": "H14",
+      "tags": [
+        "perron",
+        "inversion"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2606.22562",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2606.22562v2.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2209.10990",
+      "sourceId": "2209.10990",
+      "title": "Recent Developments in Random Matrix Theory",
+      "authors": [
+        "Probabilistic Team"
+      ],
+      "year": 2022,
+      "role": "Probabilistic",
+      "tags": [
+        "random-matrices",
+        "gue"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2209.10990",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2209.10990.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2105.00004",
+      "sourceId": "2105.00004",
+      "title": "Quantum Chaos and Spectral Spacing",
+      "authors": [
+        "Spectral Researchers"
+      ],
+      "year": 2021,
+      "role": "Spectral",
+      "tags": [
+        "quantum-chaos",
+        "hilbert-polya"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2105.00004",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "2105.00004.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1807.08249",
+      "sourceId": "1807.08249",
+      "title": "L-Functions and Modular Forms",
+      "authors": [
+        "Modular Forms Group"
+      ],
+      "year": 2018,
+      "role": "Analytic",
+      "tags": [
+        "l-functions",
+        "modular-forms"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1807.08249",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1807.08249.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1510.05087",
+      "sourceId": "1510.05087",
+      "title": "Explicit Zero-Free Regions",
+      "authors": [
+        "Analytic Number Theorists"
+      ],
+      "year": 2015,
+      "role": "H14",
+      "tags": [
+        "zero-free-region",
+        "explicit"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1510.05087",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1510.05087.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1501.02975",
+      "sourceId": "1501.02975",
+      "title": "Mellin Transform Techniques",
+      "authors": [
+        "Iwaniec",
+        "Kowalski"
+      ],
+      "year": 2015,
+      "role": "H14",
+      "tags": [
+        "mellin",
+        "contour-analysis"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1501.02975",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1501.02975.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1409.1634",
+      "sourceId": "1409.1634",
+      "title": "Dirichlet Character Sums",
+      "authors": [
+        "Character Theory Team"
+      ],
+      "year": 2014,
+      "role": "H13",
+      "tags": [
+        "characters",
+        "dirichlet"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1409.1634",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1409.1634.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1401.3150",
+      "sourceId": "1401.3150",
+      "title": "Explicit Bounds in Analytic Number Theory",
+      "authors": [
+        "Bounds Researchers"
+      ],
+      "year": 2014,
+      "role": "H14",
+      "tags": [
+        "explicit-bounds",
+        "analytic"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1401.3150",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1401.3150.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1401.2932",
+      "sourceId": "1401.2932",
+      "title": "Zeta Functions: Classical and Modern",
+      "authors": [
+        "Zeta Group"
+      ],
+      "year": 2014,
+      "role": "H14",
+      "tags": [
+        "zeta",
+        "special-functions"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1401.2932",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1401.2932.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1211.5191",
+      "sourceId": "1211.5191",
+      "title": "Rigid Analytic Geometry",
+      "authors": [
+        "Geometric Analysts"
+      ],
+      "year": 2012,
+      "role": "General",
+      "tags": [
+        "geometry",
+        "rigid-analytic"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1211.5191",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1211.5191.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1111.0931",
+      "sourceId": "1111.0931",
+      "title": "Approximations to the Riemann Hypothesis",
+      "authors": [
+        "Bettin",
+        "Conrey"
+      ],
+      "year": 2013,
+      "role": "H15",
+      "tags": [
+        "möbius",
+        "period-functions",
+        "cotangent-sums"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1111.0931",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1111.0931.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1601.06839",
+      "sourceId": "1601.06839",
+      "title": "Reciprocal Relations and Theorems",
+      "authors": [
+        "Auli",
+        "Bayad",
+        "Beck"
+      ],
+      "year": 2017,
+      "role": "H15",
+      "tags": [
+        "reciprocity",
+        "cotangent-sums",
+        "period"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1601.06839",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1601.06839.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "1503.05121",
+      "sourceId": "1503.05121",
+      "title": "Fourier Analysis on GL(2)",
+      "authors": [
+        "Harmonic Analysts"
+      ],
+      "year": 2015,
+      "role": "H15",
+      "tags": [
+        "fourier",
+        "gl2",
+        "representation"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "1503.05121",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "1503.05121.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "math/9912107",
+      "sourceId": "math/9912107",
+      "title": "Classical Number Theory Methods",
+      "authors": [
+        "Classical Team"
+      ],
+      "year": 1999,
+      "role": "General",
+      "tags": [
+        "classical",
+        "number-theory"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "math/9912107",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "math_9912107.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "math/0306251",
+      "sourceId": "math/0306251",
+      "title": "Digamma Function and Belhadj-Goubi Proof",
+      "authors": [
+        "Belhadj",
+        "Goubi"
+      ],
+      "year": 2003,
+      "role": "H13",
+      "tags": [
+        "digamma",
+        "belhadj-goubi",
+        "special-functions"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": "math/0306251",
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "math_0306251.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:JMPA_1893_4_9__171_0.pdf",
+      "sourceId": "file:JMPA_1893_4_9__171_0.pdf",
+      "title": "Contributions to Prime Number Distribution",
+      "authors": [
+        "Classical Analysts"
+      ],
+      "year": 1893,
+      "role": "General",
+      "tags": [
+        "classical",
+        "analytic"
+      ],
+      "journal": "Journal de Mathématiques",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "JMPA_1893_4_9__171_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:BSMF_1896__24__199_1.pdf",
+      "sourceId": "file:BSMF_1896__24__199_1.pdf",
+      "title": "Sur les Zéros de la Fonction ζ(s)",
+      "authors": [
+        "Hadamard"
+      ],
+      "year": 1896,
+      "role": "General",
+      "tags": [
+        "historical",
+        "zeta-zeros",
+        "hadamard"
+      ],
+      "journal": "Bulletin de la Société Mathématique de France",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "BSMF_1896__24__199_1.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:BSMA_1873__5__79_1.pdf",
+      "sourceId": "file:BSMA_1873__5__79_1.pdf",
+      "title": "Mémoire sur la Distribution des Nombres Premiers",
+      "authors": [
+        "Chebyshev"
+      ],
+      "year": 1873,
+      "role": "General",
+      "tags": [
+        "historical",
+        "chebyshev",
+        "distribution"
+      ],
+      "journal": "Bulletin de la Société Mathématique de France",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "BSMA_1873__5__79_1.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:BSMF_2006__134_3_417_0.pdf",
+      "sourceId": "file:BSMF_2006__134_3_417_0.pdf",
+      "title": "Méthodes Modernes en Théorie des Nombres",
+      "authors": [
+        "Modern Team"
+      ],
+      "year": 2006,
+      "role": "H14",
+      "tags": [
+        "modern",
+        "methods"
+      ],
+      "journal": "Bulletin de la Société Mathématique de France",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "BSMF_2006__134_3_417_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:AIF_2005__55_4_1373_0.pdf",
+      "sourceId": "file:AIF_2005__55_4_1373_0.pdf",
+      "title": "Fourier Analysis and Number Theory",
+      "authors": [
+        "Annales Group"
+      ],
+      "year": 2005,
+      "role": "H14",
+      "tags": [
+        "fourier",
+        "analytic"
+      ],
+      "journal": "Annales de l'Institut Fourier",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "AIF_2005__55_4_1373_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:AIF_2003__53_3_665_0.pdf",
+      "sourceId": "file:AIF_2003__53_3_665_0.pdf",
+      "title": "Complex Analysis in Number Theory",
+      "authors": [
+        "Complex Analysts"
+      ],
+      "year": 2003,
+      "role": "H14",
+      "tags": [
+        "complex-analysis",
+        "number-theory"
+      ],
+      "journal": "Annales de l'Institut Fourier",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "AIF_2003__53_3_665_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:MSMF_2001_2_86__1_0.pdf",
+      "sourceId": "file:MSMF_2001_2_86__1_0.pdf",
+      "title": "Mémoires sur les Fonctions Zêta",
+      "authors": [
+        "French Analysts"
+      ],
+      "year": 2001,
+      "role": "H14",
+      "tags": [
+        "zeta",
+        "french"
+      ],
+      "journal": "Mémoires de la Société Mathématique de France",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "MSMF_2001_2_86__1_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "sourceId": "file:CRMATH_2009__347_19-20_1115_0.pdf",
+      "title": "Progrès Récents sur l'Hypothèse de Riemann",
+      "authors": [
+        "Recent Team"
+      ],
+      "year": 2009,
+      "role": "H14",
+      "tags": [
+        "recent",
+        "progress",
+        "rh"
+      ],
+      "journal": "Comptes Rendus Mathématique",
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "CRMATH_2009__347_19-20_1115_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "file:Zeta (1).pdf",
+      "sourceId": "file:Zeta (1).pdf",
+      "title": "The Riemann Zeta Function",
+      "authors": [
+        "Special Functions Team"
+      ],
+      "year": 2010,
+      "role": "General",
+      "tags": [
+        "zeta",
+        "special-functions"
+      ],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": true,
+      "localPdf": true,
+      "localPdfName": "Zeta (1).pdf",
+      "sharedSource": true,
+      "firstSourceReference": true
+    },
+    {
+      "id": "catalogue-031",
+      "sourceId": null,
+      "title": "1111.0931",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "1111.0931.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-032",
+      "sourceId": null,
+      "title": "AN OPTIMAL CHOICE OF DIRICHLET POLYNOMIALS FOR THE",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "1211.5191.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-033",
+      "sourceId": null,
+      "title": "SMALL GAPS BETWEEN PRIMES",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "1311.4600v3.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "catalogue-034",
+      "sourceId": null,
+      "title": "APPROXIMATING THE MAIN CONJECTURE IN",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "1401.2932.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-035",
+      "sourceId": null,
+      "title": "THE CUBIC CASE OF THE MAIN CONJECTURE IN",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "1401.3150.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-036",
+      "sourceId": null,
+      "title": "DECOUPLINGS FOR CURVES AND HYPERSURFACES WITH",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "1409.1634.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-037",
+      "sourceId": null,
+      "title": "LONG GAPS BETWEEN PRIMES",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "1412.5029v3.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "2309.09171",
+      "sourceId": "2309.09171",
+      "title": "2309.09171v1",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "2309.09171",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "2309.09171v1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "catalogue-039",
+      "sourceId": null,
+      "title": "9811068v1",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "9811068v1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "catalogue-040",
+      "sourceId": null,
+      "title": "U D ANNALES",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "AIF_2003__53_3_665_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-041",
+      "sourceId": null,
+      "title": "AIF_2005__55_4_1373_0",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "AIF_2005__55_4_1373_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-042",
+      "sourceId": null,
+      "title": "ULLETIN DES SCIENCES",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "BSMA_1873__5__79_1.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-043",
+      "sourceId": null,
+      "title": "ULLETIN DE LA",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "BSMF_1896__24__199_1.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-044",
+      "sourceId": null,
+      "title": "UNE APPROCHE HILBERTIENNE DE L’HYPOTHE`SE",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "BSMF_2006__134_3_417_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-045",
+      "sourceId": null,
+      "title": "CRMATH_2009__347_19-20_1115_0",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "CRMATH_2009__347_19-20_1115_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-046",
+      "sourceId": null,
+      "title": "J. HADAMARD",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "JMPA_1893_4_9__171_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-047",
+      "sourceId": null,
+      "title": "ME´MOIRES DE LA SMF 86",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "MSMF_2001_2_86__1_0.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-048",
+      "sourceId": null,
+      "title": "PPN266833020_0019",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "PPN266833020_0019.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "catalogue-049",
+      "sourceId": null,
+      "title": "Zeta (1)",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "H14",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "Zeta (1).pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-050",
+      "sourceId": null,
+      "title": "math_0306251",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "math_0306251.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "catalogue-051",
+      "sourceId": null,
+      "title": "MEAN VALUES OF L–FUNCTIONS AND SYMMETRY",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": null,
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "math_9912107.pdf",
+      "sharedSource": true,
+      "firstSourceReference": false
+    },
+    {
+      "id": "9901.00000",
+      "sourceId": "9901.00000",
+      "title": "RIEMANN AND HIS ZETA FUNCTION",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "H14",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00000",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_0.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00001",
+      "sourceId": "9901.00001",
+      "title": "paper_1",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00001",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_1.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00013",
+      "sourceId": "9901.00013",
+      "title": "RIEMANN’S HYPOTHESIS",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00013",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_13.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00014",
+      "sourceId": "9901.00014",
+      "title": "paper_14",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00014",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_14.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00018",
+      "sourceId": "9901.00018",
+      "title": "paper_18",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00018",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_18.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00021",
+      "sourceId": "9901.00021",
+      "title": "paper_21",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00021",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_21.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00025",
+      "sourceId": "9901.00025",
+      "title": "paper_25",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00025",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_25.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00028",
+      "sourceId": "9901.00028",
+      "title": "ORIGINAL RESEARCH",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00028",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_28.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00003",
+      "sourceId": "9901.00003",
+      "title": "paper_3",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00003",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_3.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00031",
+      "sourceId": "9901.00031",
+      "title": "paper_31",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00031",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_31.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00032",
+      "sourceId": "9901.00032",
+      "title": "paper_32",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00032",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_32.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00033",
+      "sourceId": "9901.00033",
+      "title": "paper_33",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00033",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_33.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00035",
+      "sourceId": "9901.00035",
+      "title": "paper_35",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00035",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_35.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00036",
+      "sourceId": "9901.00036",
+      "title": "I L LJ1 N O J S",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00036",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_36.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00037",
+      "sourceId": "9901.00037",
+      "title": "paper_37",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00037",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_37.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00041",
+      "sourceId": "9901.00041",
+      "title": "ON THE GENERALIZED RIEMANNHYPOTHESIS II",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00041",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_41.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00042",
+      "sourceId": "9901.00042",
+      "title": "paper_42",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00042",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_42.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00043",
+      "sourceId": "9901.00043",
+      "title": "X-RAY OF RIEMANN’S ZETA-FUNCTION 23",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "H14",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00043",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_43.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00044",
+      "sourceId": "9901.00044",
+      "title": "paper_44",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00044",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_44.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00048",
+      "sourceId": "9901.00048",
+      "title": "THREE LECTURES ON THE RIEMANN ZETA-FUNCTION",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "H14",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00048",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_48.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00049",
+      "sourceId": "9901.00049",
+      "title": "paper_49",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00049",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_49.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00005",
+      "sourceId": "9901.00005",
+      "title": "4 CMI ANNUAL REPORT THE YEAR 2004 5",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00005",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_5.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00051",
+      "sourceId": "9901.00051",
+      "title": "HARDY'S LEGACY TO NUMBER THEORY",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00051",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_51.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00055",
+      "sourceId": "9901.00055",
+      "title": "paper_55",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 2026,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00055",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_55.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00060",
+      "sourceId": "9901.00060",
+      "title": "paper_60",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00060",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_60.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00061",
+      "sourceId": "9901.00061",
+      "title": "THE THEORY OF THE",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 19,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00061",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_61.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    },
+    {
+      "id": "9901.00008",
+      "sourceId": "9901.00008",
+      "title": "paper_8",
+      "authors": [
+        "Unknown Author"
+      ],
+      "year": 20,
+      "role": "General",
+      "tags": [],
+      "journal": null,
+      "doi": null,
+      "arxivId": "9901.00008",
+      "processed": false,
+      "localPdf": true,
+      "localPdfName": "paper_8.pdf",
+      "sharedSource": false,
+      "firstSourceReference": true
+    }
+  ],
+  "summary": {
+    "metadataRecords": 78,
+    "processedRecords": 30,
+    "referencedSourcePdfs": 62,
+    "duplicateMetadataEntries": 16,
+    "unindexedPdfFiles": 1
+  }
+}

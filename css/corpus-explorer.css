@@ -59,6 +59,8 @@
   padding: 1.15rem;
 }
 
+.corpus-metric-warning { border-top-color: #b45309; }
+
 .corpus-metric-value {
   color: #0f172a;
   display: block;
@@ -123,6 +125,16 @@
   color: #64748b;
   margin: 0;
   max-width: 48rem;
+}
+
+.corpus-inventory-note {
+  background: #fff7ed;
+  border-left: 3px solid #b45309;
+  color: #78350f;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: -1.65rem 0 2.5rem;
+  padding: 0.85rem 1rem;
 }
 
 .corpus-catalogue {
@@ -257,6 +269,19 @@
 }
 
 .corpus-pill-concept { background: #f1f5f9; color: #475569; font-weight: 600; }
+
+.corpus-record-status {
+  border-radius: 999px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.22rem 0.5rem;
+}
+
+.corpus-record-status.is-processed { background: #dcfce7; color: #166534; }
+.corpus-record-status.is-metadata { background: #f1f5f9; color: #475569; }
+.corpus-record-status.is-source-present { background: #eef2ff; color: #3730a3; }
+.corpus-record-status.is-source-unresolved { background: #fff7ed; color: #9a3412; }
 
 .corpus-record-link {
   color: #3730a3;
