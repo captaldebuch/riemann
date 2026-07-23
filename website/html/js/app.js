@@ -874,7 +874,9 @@ function renderIntuitions() {
   `;
 }
 
-function renderFormalizationEssay() {
+// Retained as an internal technical ledger. The public Exploration route uses
+// the shorter narrative rendered below, where proof status is easier to audit.
+function renderFormalizationArchive() {
   let essayHtml = `
     <section class="view-section active">
       <h2>Exploration</h2>
@@ -1311,6 +1313,133 @@ function renderFormalizationEssay() {
   `;
 
   return essayHtml + reportsHtml;
+}
+
+function renderFormalizationEssay() {
+  return `
+    <section class="view-section active exploration-view">
+      <div class="exploration-hero">
+        <p class="exploration-eyebrow">Research narrative</p>
+        <h2>Exploration: from a corpus to an auditable proof map</h2>
+        <p>This project began by reading classical and modern routes around the Riemann Hypothesis as a connected research corpus. The work then turned those routes into Lean 4 objects: definitions, exact transformations, contour interfaces, and carefully named analytic targets. The result is not a proof of RH; it is a more precise map of what has been formalized, what has only been reduced, and where the mathematics remains open.</p>
+        <div class="exploration-actions">
+          <a class="exploration-action" href="artifact-explorer.html?type=LeanDeclaration">Inspect formal artifacts</a>
+          <a class="exploration-action exploration-action-secondary" href="artifact-explorer.html?type=SourcePaper">Browse source papers</a>
+        </div>
+      </div>
+
+      <aside class="exploration-boundary" aria-label="Scope of the project">
+        <h3>The claim boundary</h3>
+        <p>The formal development contains verified implications and reusable analytic infrastructure. Its final BCF endpoint remains conditional on explicit analytic inputs; none of those inputs is silently treated as a proof of the Riemann Hypothesis. In particular, a cancellation estimate that would establish the decisive unconditional conclusion is RH-strength mathematics, not a routine implementation detail.</p>
+      </aside>
+
+      <div class="exploration-section-heading">
+        <p class="exploration-eyebrow">The journey so far</p>
+        <h3>Three shifts in the research</h3>
+      </div>
+      <ol class="exploration-timeline">
+        <li class="exploration-step">
+          <span class="exploration-step-number">01</span>
+          <div>
+            <h3>Read the routes as a connected corpus</h3>
+            <p>We linked Riemann’s zeta-function programme to the Nyman–Beurling closure criterion, the Báez-Duarte refinements, and cotangent/period-function work associated with Bettin and Conrey. This made it possible to compare approaches by the mathematical transformations they share, rather than by their historical labels alone.</p>
+          </div>
+        </li>
+        <li class="exploration-step">
+          <span class="exploration-step-number">02</span>
+          <div>
+            <h3>Formalize the recurring moves</h3>
+            <p>The Lean work isolates the moves that repeatedly carry the argument: Mellin transforms, functional-equation reflection, finite zero truncations, residue bookkeeping, and limit passage. The deleted-rectangle contour work is particularly useful because it makes the usually implicit geometry of multiple poles explicit.</p>
+          </div>
+        </li>
+        <li class="exploration-step">
+          <span class="exploration-step-number">03</span>
+          <div>
+            <h3>Let formal verification expose the real gates</h3>
+            <p>Formalization separated genuine results from attractive but insufficient estimates. It revealed, for example, that distinct and multiplicity-weighted zero sums must be kept separate, and that pointwise zeta bounds do not supply the coupled cancellation needed by the BCF energy argument.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="exploration-section-heading">
+        <p class="exploration-eyebrow">What is in hand</p>
+        <h3>Formal infrastructure with a clear role</h3>
+        <p>These components are useful whether or not the final RH-strength estimates are eventually available.</p>
+      </div>
+      <div class="exploration-grid">
+        <article class="exploration-card">
+          <span class="exploration-status exploration-status-foundation">Classical routes</span>
+          <h3>H13 and H14</h3>
+          <p>Formal reductions organize the Vasyunin–Báez-Duarte–Balazard–Landreau–Saias period-function route and a de la Vallée Poussin/Perron-style analytic route. Their value here is structural: the assumptions, transforms, and recovery steps are visible at theorem boundaries.</p>
+        </article>
+        <article class="exploration-card">
+          <span class="exploration-status exploration-status-foundation">Functional bridge</span>
+          <h3>Nyman–Beurling</h3>
+          <p>The Mellin and functional-equation components articulate the passage between closure questions in a Hilbert-space setting and zero detection in the critical strip. This gives the project an independent way to state why the final analytic questions matter.</p>
+        </article>
+        <article class="exploration-card">
+          <span class="exploration-status exploration-status-foundation">Conditional assembly</span>
+          <h3>H15 / BCF</h3>
+          <p>The logarithmically tapered BCF route has formal definitions, Mellin–Plancherel reduction, finite residue and deleted-disk machinery, genus-one product interfaces, and a final conditional assembly. The remaining hypotheses are stated at the endpoint rather than hidden inside the implementation.</p>
+        </article>
+      </div>
+
+      <div class="exploration-section-heading">
+        <p class="exploration-eyebrow">What remains open</p>
+        <h3>Three analytic inputs, and one unconditional research frontier</h3>
+        <p>The conditional BCF assembly makes the next obligations concrete. They should be read as research problems, not as promises that they have already been proved.</p>
+      </div>
+      <div class="exploration-open-grid">
+        <article class="exploration-open-card">
+          <span class="exploration-open-number">A</span>
+          <h3>Zero counts and canonical-product control</h3>
+          <p>Riemann–von Mangoldt-strength information must yield compact, summable majorants for the genus-one product factors. This is the analytic bridge from finite zero data to a controlled infinite product.</p>
+        </article>
+        <article class="exploration-open-card">
+          <span class="exploration-open-number">B</span>
+          <h3>Identify the completed ξ-product</h3>
+          <p>The infinite product must be identified with the completed zeta function, including the correct exponential prefactor and convergence of height-truncated logarithmic derivatives at the relevant endpoints.</p>
+        </article>
+        <article class="exploration-open-card">
+          <span class="exploration-open-number">C</span>
+          <h3>Prove integrated BCF cancellation</h3>
+          <p>The decisive estimate concerns the integrated, fully coupled error in <span class="exploration-math">1 − ζ(1/2 + it)Vₙ(1/2 + it)</span>. It cannot be replaced by isolated residue estimates or generic pointwise bounds.</p>
+        </article>
+      </div>
+
+      <div class="exploration-discovery">
+        <h3>Why the final gate matters</h3>
+        <p>The BCF route is valuable precisely because it records the cancellation problem in a form that can be attacked, tested, and audited. But an unconditional solution of the coupled estimate must not assume RH, zero simplicity, or a reciprocal-derivative moment bound; otherwise it only repackages the conclusion. Establishing such cancellation would be a substantial advance in analytic number theory.</p>
+      </div>
+
+      <div class="exploration-section-heading">
+        <p class="exploration-eyebrow">Reference lineage</p>
+        <h3>Sources that frame the exploration</h3>
+      </div>
+      <div class="exploration-reference-grid">
+        <article class="exploration-reference-card">
+          <p class="exploration-reference-year">1859</p>
+          <h3>Bernhard Riemann</h3>
+          <p><a href="https://www.claymath.org/collections/riemanns-1859-manuscript/" target="_blank" rel="noreferrer"><em>Über die Anzahl der Primzahlen unter einer gegebenen Grösse</em></a></p>
+        </article>
+        <article class="exploration-reference-card">
+          <p class="exploration-reference-year">1950–1955</p>
+          <h3>Bertil Nyman &amp; Arne Beurling</h3>
+          <p>Nyman’s translation-group work and Beurling’s <a href="https://doi.org/10.1073/pnas.41.5.312" target="_blank" rel="noreferrer"><em>A closure problem related to the Riemann zeta-function</em></a>.</p>
+        </article>
+        <article class="exploration-reference-card">
+          <p class="exploration-reference-year">2002</p>
+          <h3>Luis Báez-Duarte</h3>
+          <p><a href="https://arxiv.org/abs/math/0202141" target="_blank" rel="noreferrer"><em>A strengthening of the Nyman–Beurling criterion for the Riemann Hypothesis</em></a>.</p>
+        </article>
+        <article class="exploration-reference-card">
+          <p class="exploration-reference-year">2013</p>
+          <h3>Sandro Bettin &amp; Brian Conrey</h3>
+          <p><a href="https://arxiv.org/abs/1111.0931" target="_blank" rel="noreferrer"><em>Period functions and cotangent sums</em></a>, a key source for the period-function side of the corpus.</p>
+        </article>
+      </div>
+    </section>
+  `;
 }
 
 function viewArchivePaper(reportId) {
