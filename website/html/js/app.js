@@ -708,6 +708,75 @@ function renderConceptDetail(conceptId) {
   `;
 }
 
+function artifactExplorerLink(query, label) {
+  return `<a class="intuition-lean-link" href="artifact-explorer.html?query=${encodeURIComponent(query)}">${label}</a>`;
+}
+
+function renderIntuitionLeanConnections() {
+  const connections = [
+    {
+      intuition: 'Nyman–Beurling generators as a Mellin bridge',
+      explanation: 'Fractional-part generators become exact Mellin formulas on the critical strip: this is the formal entry point from Hilbert-space approximation to zeta-function information.',
+      status: 'Proved Lean layer',
+      links: [
+        artifactExplorerLink('mellin_rhoBD', 'NB2BaseMellin.lean — zero-based generator formula'),
+        artifactExplorerLink('mellin_chi01', 'NB2Mellin.lean — χ(0,1] transform'),
+      ],
+    },
+    {
+      intuition: 'Báez–Duarte discretisation and reciprocal tails',
+      explanation: 'A finite zero-based approximation has an exact reciprocal tail. This makes the residual term visible and lets the approximation error control Mellin evaluation inside the strip.',
+      status: 'Proved Lean layer',
+      links: [
+        artifactExplorerLink('chi_sub_bdApprox_eq_tail_of_one_lt', 'BaezDuarteTail.lean — exact tail identity'),
+        artifactExplorerLink('mellin_evaluation_continuous_on_critical_strip', 'NB3MellinContinuity.lean — critical-strip continuity'),
+      ],
+    },
+    {
+      intuition: 'Critical-line symmetry as zero detection',
+      explanation: 'The finite approximation criterion excludes zeros first in the right half of the critical strip; the zeta functional equation is then used to reflect the conclusion across the critical line.',
+      status: 'Proved conditional implication',
+      links: [
+        artifactExplorerLink('riemannZeta_ne_zero_of_nymanBeurlingCriterion', 'NB4ZeroDetection.lean — right-half zero exclusion'),
+        artifactExplorerLink('criticalStripRiemannHypothesis_of_nymanBeurlingCriterion', 'NB5FunctionalEquationClosure.lean — critical-strip closure'),
+      ],
+    },
+    {
+      intuition: 'Cotangent sums and reciprocal-phase cancellation',
+      explanation: 'The H15 route records the planned period-function and contour strategy. Its decisive analytic estimates are still research gates, not completed theorems.',
+      status: 'Unresolved research gate',
+      links: [
+        artifactExplorerLink('H15_RouteA', 'H15_RouteA.lean — audited open assumptions'),
+      ],
+    },
+  ];
+
+  return `
+    <section class="intuition-lean-bridge" aria-labelledby="intuition-lean-title">
+      <div class="intuition-lean-heading">
+        <p class="intuition-lean-kicker">Formal traces</p>
+        <h3 id="intuition-lean-title">Where an intuition enters Lean</h3>
+        <p>These links open the relevant declarations in the Artifact Database. “Proved” describes the specific Lean result displayed there; it never claims that the Riemann Hypothesis itself has been proved.</p>
+      </div>
+      <div class="intuition-lean-grid">
+        ${connections.map((connection) => {
+          const statusClass = connection.status === 'Unresolved research gate'
+            ? ' is-open'
+            : connection.status === 'Proved conditional implication' ? ' is-conditional' : '';
+          return `
+            <article class="intuition-lean-card">
+              <div class="intuition-lean-card-topline">
+                <h4>${connection.intuition}</h4>
+                <span class="intuition-lean-status${statusClass}">${connection.status}</span>
+              </div>
+              <p>${connection.explanation}</p>
+              <ul>${connection.links.map((link) => `<li>${link}</li>`).join('')}</ul>
+            </article>`;
+        }).join('')}
+      </div>
+    </section>`;
+}
+
 function renderIntuitions() {
   return `
     <section class="view-section active">
@@ -722,6 +791,8 @@ function renderIntuitions() {
           Why did we choose the <strong>Nyman–Beurling / Báez-Duarte</strong> strategy for our Lean 4 formalization? As the timeline below illustrates, classical analytic and spectral routes often require highly complex bounding and uncomputable physical operators. The functional analysis route (pioneered by Nyman, Beurling, and Báez-Duarte) translates the Riemann Hypothesis into a <em>density problem in a Hilbert space</em>. This allowed us to map the hypothesis onto discrete step functions, replacing infinite analytic continuation with computable, algebraic closure properties—making it the ideal algorithmic structure for rigorous formal verification.
         </p>
       </div>
+
+      ${renderIntuitionLeanConnections()}
 
       <div class="timeline" style="border-left: 3px solid #cbd5e1; margin-left: 1rem; padding-left: 2rem; position: relative;">
 
