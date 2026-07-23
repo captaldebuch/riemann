@@ -363,77 +363,162 @@ function renderHome() {
   `;
 }
 
-function renderCorpusDataset() {
-  const papers = Object.keys(STATE.db.papers);
-  const totalPapers = papers.length;
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>'"]/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[character]));
+}
 
-  // Count papers by year
-  const yearCounts = {};
-  papers.forEach(pId => {
-    const year = STATE.db.papers[pId].year;
-    yearCounts[year] = (yearCounts[year] || 0) + 1;
-  });
-  const earliestYear = Math.min(...Object.keys(yearCounts).map(Number));
-  const latestYear = Math.max(...Object.keys(yearCounts).map(Number));
+function corpusYear(paper) {
+  const year = Number(paper.year);
+  return Number.isInteger(year) && year >= 1800 && year <= new Date().getFullYear() + 1 ? year : null;
+}
 
-  let html = `
-    <section class="view-section active">
-      <h2>Corpus & Dataset</h2>
-      <p style="font-size:1.05rem; color:#475569; margin-bottom:2rem;">
-        Our distant reading workflow processed ${totalPapers} papers spanning ${earliestYear}–${latestYear}. Here we present the datasets and computational notebooks that bridge classical literature with LLM-assisted analysis.
-      </p>
+function corpusAuthorNames(paper) {
+  const authors = paper.authors || [];
+  return authors.map(authorId => STATE.db.authors[authorId]?.name || String(authorId).replace(/^author:/, '').replace(/-/g, ' '));
+}
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:3rem;">
-        <div class="glass-card" style="padding:2rem;">
-          <h3 style="color:#2563eb; margin-top:0;">Dataset v1</h3>
-          <p>The first public release of the structured Knowledge Graph extracted from the Riemann corpus.</p>
-          <p><strong>Format:</strong> JSON-LD, RDF (Turtle)</p>
-          <p><strong>Contains:</strong> Extracted concepts, auto-formalization readiness scores, mathematical intuitions, and citation lineages.</p>
-          <a href="./downloads/dataset_v1.json" target="_blank" style="display:inline-block; margin-top:1rem; padding:0.75rem 1.5rem; background:#2563eb; color:white; border-radius:4px; text-decoration:none; font-weight:600;">Download Dataset v1</a>
-        </div>
-        <div class="glass-card" style="padding:2rem;">
-          <h3 style="color:#10b981; margin-top:0;">Jupyter Notebooks</h3>
-          <p>Explore the distant reading pipeline used to query LLMs and extract intuitions from the raw texts.</p>
-          <ul style="margin:1rem 0; padding-left:1.5rem;">
-            <li><code>01_corpus_ingestion.ipynb</code></li>
-            <li><code>02_llm_insight_extraction.ipynb</code></li>
-            <li><code>03_auto_formalization_eval.ipynb</code></li>
-          </ul>
-          <a href="./downloads/notebooks.zip" target="_blank" style="display:inline-block; margin-top:0.5rem; padding:0.75rem 1.5rem; background:#10b981; color:white; border-radius:4px; text-decoration:none; font-weight:600;">View Notebooks</a>
-        </div>
+function corpusConceptNames(paper) {
+  return (paper.concepts || []).map(conceptId => STATE.db.concepts[conceptId]?.name || String(conceptId).replace(/^concept:/, '').replace(/-/g, ' '));
+}
+
+function getCorpusPaperCard(paper) {
+  const authors = corpusAuthorNames(paper);
+  const concepts = corpusConceptNames(paper).slice(0, 3);
+  const year = corpusYear(paper);
+  const note = (paper.key_novelties || [])[0] || paper.intuitions || 'No extracted note is recorded for this item.';
+  const role = paper.role_in_project || 'Unclassified';
+  return `
+    <article class="corpus-paper-card" data-paper-id="${escapeHtml(paper.id)}">
+      <div class="corpus-paper-topline">
+        <h5><a href="#paper/${encodeURIComponent(paper.id)}">${escapeHtml(paper.title || paper.id)}</a></h5>
+        <span class="corpus-paper-year">${year || 'Year unrecorded'}</span>
       </div>
-
-      <h3>Processed Archive</h3>
-      <p>Browse the individual papers analyzed in this dataset.</p>
-      
-      <!-- Search Input -->
-      <div style="margin-bottom:2rem;">
-        <input type="text" id="corpus-search" placeholder="Search by title or author..." style="width:100%; padding:0.75rem; border:1px solid #e5e7eb; border-radius:6px; font-size:1rem;" />
+      <p class="corpus-paper-authors">${escapeHtml(authors.join(', ') || 'Author metadata unrecorded')}</p>
+      <p class="corpus-paper-note">${escapeHtml(note)}</p>
+      <div class="corpus-paper-meta">
+        <span class="corpus-pill">${escapeHtml(role)}</span>
+        ${concepts.map(concept => `<span class="corpus-pill corpus-pill-concept">${escapeHtml(concept)}</span>`).join('')}
+        <a class="corpus-record-link" href="#paper/${encodeURIComponent(paper.id)}">Open record →</a>
       </div>
-
-      <div class="space-y-lg" style="display:grid; gap:1rem;">
+    </article>
   `;
+}
 
-  papers.forEach(pId => {
-    html += getPaperCard(pId);
+function setupCorpusExplorer(papers) {
+  const search = document.getElementById('corpus-search');
+  const track = document.getElementById('corpus-track');
+  const year = document.getElementById('corpus-year');
+  const sort = document.getElementById('corpus-sort');
+  const resultCount = document.getElementById('corpus-result-count');
+  const list = document.getElementById('corpus-paper-list');
+  const empty = document.getElementById('corpus-empty');
+  const cards = new Map(Array.from(list.querySelectorAll('.corpus-paper-card')).map(card => [card.dataset.paperId, card]));
+
+  function applyFilters() {
+    const query = search.value.trim().toLowerCase();
+    const filtered = papers.filter(paper => {
+      const matchesTrack = !track.value || paper.role_in_project === track.value;
+      const matchesYear = !year.value || String(corpusYear(paper) || '') === year.value;
+      const searchable = [paper.title, ...corpusAuthorNames(paper), ...corpusConceptNames(paper), ...(paper.key_novelties || [])]
+        .join(' ').toLowerCase();
+      return matchesTrack && matchesYear && (!query || searchable.includes(query));
+    });
+    filtered.sort((left, right) => {
+      if (sort.value === 'title') return (left.title || '').localeCompare(right.title || '');
+      if (sort.value === 'oldest') return (corpusYear(left) || Infinity) - (corpusYear(right) || Infinity);
+      return (corpusYear(right) || -Infinity) - (corpusYear(left) || -Infinity) || (left.title || '').localeCompare(right.title || '');
+    });
+    const visibleIds = new Set(filtered.map(paper => paper.id));
+    cards.forEach((card, paperId) => { card.hidden = !visibleIds.has(paperId); });
+    filtered.forEach(paper => list.append(cards.get(paper.id)));
+    resultCount.textContent = `${filtered.length} of ${papers.length} catalogue records`;
+    empty.hidden = filtered.length > 0;
+  }
+
+  [search, track, year, sort].forEach(control => {
+    control.addEventListener(control === search ? 'input' : 'change', applyFilters);
   });
+  applyFilters();
+}
 
-  html += `</div></section>`;
+function renderCorpusDataset() {
+  const papers = Object.values(STATE.db.papers || {});
+  const years = papers.map(corpusYear).filter(Boolean);
+  const tracks = [...new Set(papers.map(paper => paper.role_in_project).filter(Boolean))].sort();
+  const authors = new Set(papers.flatMap(corpusAuthorNames));
+  const earliestYear = years.length ? Math.min(...years) : '—';
+  const latestYear = years.length ? Math.max(...years) : '—';
+  const yearOptions = [...new Set(years)].sort((a, b) => b - a)
+    .map(year => `<option value="${year}">${year}</option>`).join('');
+  const trackOptions = tracks.map(track => `<option value="${escapeHtml(track)}">${escapeHtml(track)}</option>`).join('');
 
-  // Search logic
-  setTimeout(() => {
-    const searchInput = document.getElementById('corpus-search');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        document.querySelectorAll('.glass-card').forEach(card => {
-          const text = card.textContent.toLowerCase();
-          card.style.display = text.includes(query) ? 'block' : 'none';
-        });
-      });
-    }
-  }, 100);
+  const html = `
+    <section class="view-section active">
+      <div class="corpus-hero">
+        <p class="corpus-eyebrow">Structured research catalogue</p>
+        <h2>Corpus &amp; Dataset</h2>
+        <p>Explore the project’s processed literature catalogue, extracted concepts, and formalization-oriented research notes. The compact cards below make the collection searchable without treating extracted metadata as a substitute for the original sources.</p>
+      </div>
 
+      <div class="corpus-metrics" aria-label="Corpus summary">
+        <article class="corpus-metric"><span class="corpus-metric-value">${papers.length}</span><span class="corpus-metric-label">catalogue records</span></article>
+        <article class="corpus-metric"><span class="corpus-metric-value">${earliestYear}–${latestYear}</span><span class="corpus-metric-label">recorded publication years</span></article>
+        <article class="corpus-metric"><span class="corpus-metric-value">${authors.size}</span><span class="corpus-metric-label">named author records</span></article>
+        <article class="corpus-metric"><span class="corpus-metric-value">${tracks.length}</span><span class="corpus-metric-label">project tracks</span></article>
+      </div>
+
+      <div class="corpus-section-heading">
+        <p class="corpus-eyebrow">Data access</p>
+        <h3>Download or inspect the underlying records</h3>
+        <p>The public corpus bundle and the versioned Artifact Database serve different purposes: broad extracted context versus source-linked research provenance.</p>
+      </div>
+      <div class="corpus-access-grid">
+        <article class="corpus-access-card">
+          <h3>Dataset v1</h3>
+          <p>Structured corpus export with papers, concepts, extracted observations, and formalization metadata.</p>
+          <a class="corpus-button" href="downloads/dataset_v1.json" download>Download Dataset v1</a>
+        </article>
+        <article class="corpus-access-card">
+          <h3>Research notebooks</h3>
+          <p>Notebooks used for corpus ingestion, extraction experiments, and formalization-oriented analysis.</p>
+          <a class="corpus-button" href="downloads/notebooks.zip" download>Download notebooks</a>
+        </article>
+        <article class="corpus-access-card">
+          <h3>Artifact Database</h3>
+          <p>Versioned source-paper, Lean-declaration, and reference records with explicit proof-status labels.</p>
+          <a class="corpus-button" href="artifact-explorer.html?type=SourcePaper">Browse source records</a>
+        </article>
+      </div>
+
+      <div class="corpus-section-heading">
+        <p class="corpus-eyebrow">Browse</p>
+        <h3>Processed literature catalogue</h3>
+        <p>Filter by project track or year, then open a record for its connected authors, concepts, and related papers.</p>
+      </div>
+      <div class="corpus-catalogue">
+        <div class="corpus-filters" role="search">
+          <label class="corpus-filter-label" for="corpus-search">Search title, author, concept, or extracted note
+            <input id="corpus-search" type="search" placeholder="e.g. cotangent sums, Nyman, Mellin" autocomplete="off">
+          </label>
+          <label class="corpus-filter-label" for="corpus-track">Project track
+            <select id="corpus-track"><option value="">All tracks</option>${trackOptions}</select>
+          </label>
+          <label class="corpus-filter-label" for="corpus-year">Year
+            <select id="corpus-year"><option value="">All years</option>${yearOptions}</select>
+          </label>
+          <label class="corpus-filter-label" for="corpus-sort">Sort by
+            <select id="corpus-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select>
+          </label>
+        </div>
+        <div class="corpus-results-bar"><h4>Catalogue records</h4><p id="corpus-result-count" class="corpus-result-count" aria-live="polite">Loading…</p></div>
+        <div id="corpus-paper-list" class="corpus-paper-list">${papers.map(getCorpusPaperCard).join('')}</div>
+        <p id="corpus-empty" class="corpus-empty" hidden>No corpus records match these filters.</p>
+      </div>
+    </section>`;
+
+  setTimeout(() => setupCorpusExplorer(papers), 0);
   return html;
 }
 
@@ -457,7 +542,7 @@ function renderPaperDetail(paperId) {
   
   return `
     <section class="view-section active">
-      <a href="#corpus" style="color:#64748b;text-decoration:none;">← Back to Corpus</a>
+      <a href="#corpus-dataset" style="color:#64748b;text-decoration:none;">← Back to Corpus &amp; Dataset</a>
       <h2 style="margin-bottom:0.5rem;">${paper.title}</h2>
       <p class="text-muted" style="font-size:1.1rem; margin-top:0;">Published: ${paper.year} | arXiv:${paper.id}</p>
       
