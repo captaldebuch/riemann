@@ -1,12 +1,12 @@
 # The Riemann Hypothesis Corpus: Formalization & Digital Humanities
 
-A comprehensive digital humanities resource combining formal verification in Lean 4 with a curated corpus of 78 papers spanning 160+ years of Riemann Hypothesis research.
+A digital humanities resource combining formal verification in Lean 4 with a curated corpus inventory spanning 160+ years of Riemann Hypothesis research. The current audited inventory contains 78 metadata entries, resolving to 62 distinct linked source PDFs; 30 entries also have a separate processed research layer.
 
 ## Quick Links
 
 - **[Website](website/)** — Interactive corpus explorer, intuitions map, technical reports
 - **[Proofs](proofs/)** — Lean 4 formal verification (H13, H14, Phase NB, H15 Phase 7b)
-- **[Dataset](dataset/)** — 78 papers + extracted knowledge graphs
+- **[Dataset](dataset/)** — 78-entry metadata inventory + extracted knowledge graphs
 - **[Reports](reports/)** — Technical reports on each formalization phase
 - **[Notebooks](notebooks/)** — Jupyter analysis of corpus and intuitions
 
@@ -62,7 +62,7 @@ jupyter notebook
 ```bash
 # Extract for separate publication
 tar -czf riemann-dataset.tar.gz dataset/ notebooks/
-# Includes: 78 papers, extracted knowledge graphs, analysis scripts
+# Includes: 78 metadata entries, linked source PDFs, extracted knowledge graphs, analysis scripts
 ```
 
 ### 2. Riemann Proofs
@@ -101,7 +101,8 @@ tar -czf riemann-reports.tar.gz reports/
 - **Three classical analytic theorems remain** (Riemann–von Mangoldt bounds, logarithmic-derivative convergence, integrated BCF cancellation)
 
 ### Digital Humanities
-- **78 papers analyzed** across analytic, spectral, probabilistic, and functional routes
+- **78 metadata entries** across analytic, spectral, probabilistic, and functional routes
+- **62 distinct linked PDFs** in the audited inventory; 16 entries share an already-linked source PDF
 - **Knowledge graphs extracted** (160+ mathematicians, 260+ concepts, 400+ intuitions)
 - **Interactive explorer** mapping historical development and proof strategies
 

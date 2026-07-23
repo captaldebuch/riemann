@@ -1,10 +1,19 @@
 # The Riemann Hypothesis Corpus Dataset
 
-A comprehensive collection of 78 research papers spanning 160+ years of Riemann Hypothesis investigations, with extracted metadata and knowledge graphs.
+A curated 78-entry metadata inventory spanning 160+ years of Riemann Hypothesis investigations, with extracted metadata and knowledge graphs.
+
+## Current inventory audit
+
+- **78 metadata entries** are present in `extracted/rh_corpus_database_complete.json`.
+- They resolve to **62 distinct linked PDF files** in `corpus/`; **16 entries share** an already-linked source PDF.
+- The archive holds **one additional PDF** that has not yet been assigned a complete metadata entry.
+- **30 entries** have a separate processed research layer. The remaining entries are source-level metadata records.
+
+The catalogue therefore distinguishes metadata entries from unique physical source files. It does not claim that all 78 entries are already independent, source-verified bibliographic records.
 
 ## Overview
 
-- **78 Papers** — From classical analysis to modern spectral and probabilistic approaches
+- **78 Metadata Entries** — From classical analysis to modern spectral and probabilistic approaches
 - **26 Key Mathematicians** — Detailed profiles and contributions
 - **260+ Mathematical Concepts** — Keywords, intuitions, and formalizable elements
 - **400+ Extracted Insights** — Historical development and proof strategies
@@ -12,7 +21,9 @@ A comprehensive collection of 78 research papers spanning 160+ years of Riemann 
 ## Contents
 
 ### `corpus/`
-**Original Research Papers (PDF)**
+**Source PDF archive**
+
+The archive contains 63 PDF files, 62 of which are currently linked from the 78-entry metadata inventory. The route breakdown below is historic planning metadata and should not be read as an independently audited count of unique PDFs.
 
 Organized by mathematical route:
 
@@ -224,7 +235,7 @@ If you use this dataset in research:
 ```bibtex
 @dataset{fresquet2026riemann,
   author = {Fresquet, Xavier},
-  title = {The Riemann Hypothesis Corpus: 78 Papers with Metadata},
+  title = {The Riemann Hypothesis Corpus: 78-Entry Metadata Inventory},
   year = {2026},
   note = {CC0 1.0 Universal}
 }

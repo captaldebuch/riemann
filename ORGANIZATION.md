@@ -41,7 +41,7 @@ lake build NBMellinTools
 
 ```
 dataset/
-├── corpus/                  # 78 research papers (PDF)
+├── corpus/                  # 63 local PDF files; 62 linked by the 78-entry metadata inventory
 │   ├── analytic/           # Classical analysis papers
 │   ├── spectral/           # Spectral/Hilbert-Pólya
 │   ├── probabilistic/      # Random matrices, GUE
@@ -89,7 +89,7 @@ website/
 
 **Pages:**
 - **Home** — Overview, current efforts, milestones
-- **Corpus & Dataset** — 78 papers, search, metadata
+- **Corpus & Dataset** — 78 metadata entries, search, and source-status labels
 - **Intuitions & Strategies** — Historical timeline, mathematician profiles
 - **Current Efforts** — H13, H14, Phase NB, H15 status
 - **Technical Reports** — 2-page scientific papers on each phase
@@ -176,7 +176,7 @@ jupyter notebook
 ### 1. **Riemann Dataset**
 ```bash
 tar -czf riemann-dataset.tar.gz dataset/ notebooks/README.md
-# Contents: 78 papers + JSON metadata + license
+# Contents: 78 metadata entries + linked PDF archive + JSON metadata + license
 ```
 
 **For publication to:**
