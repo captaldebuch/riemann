@@ -4,7 +4,9 @@
 The source metadata under ``dataset/extracted`` contains all 78 intended
 corpus entries.  The website receives a normalized copy with stable IDs for
 records whose original identifier is absent, plus a truthful local-PDF status.
-It deliberately does not manufacture author names, abstracts, or file links.
+Bibliographic corrections are sourced from a small, reviewable transcription
+map created from the title-bearing pages of the local PDFs.  It deliberately
+does not manufacture author names, abstracts, or file links.
 """
 
 from __future__ import annotations
@@ -19,6 +21,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = Path("dataset/extracted/rh_corpus_database_complete.json")
 DEFAULT_PROCESSED = Path("website/html/rh_corpus_database.json")
 DEFAULT_PDF_DIRECTORY = Path("dataset/corpus")
+DEFAULT_BIBLIOGRAPHY = Path("dataset/extracted/corpus_pdf_bibliography.json")
 DEFAULT_DESTINATION = Path("website/html/data/corpus-inventory.json")
 
 
@@ -55,8 +58,44 @@ def validate_payload(payload: dict[str, object]) -> tuple[list[dict[str, object]
     return articles, len(articles)
 
 
+def load_bibliography(source: Path, referenced_pdfs: set[str]) -> dict[str, dict[str, object]]:
+    """Load only explicit, source-reviewable PDF title-page transcriptions."""
+    with source.open(encoding="utf-8") as handle:
+        payload = json.load(handle)
+    entries = payload.get("byPdf")
+    if not isinstance(entries, dict):
+        raise ValueError("bibliography payload must contain an object-valued byPdf field")
+
+    normalized: dict[str, dict[str, object]] = {}
+    for pdf_name, entry in entries.items():
+        if not isinstance(pdf_name, str) or not isinstance(entry, dict):
+            raise ValueError("bibliography entries must map PDF filenames to objects")
+        title = entry.get("title")
+        authors = entry.get("authors")
+        status = entry.get("status", "transcribed")
+        if not isinstance(title, str) or not title.strip():
+            raise ValueError(f"bibliography entry for {pdf_name!r} has no title")
+        if not isinstance(authors, list) or not all(isinstance(author, str) and author.strip() for author in authors):
+            raise ValueError(f"bibliography entry for {pdf_name!r} has invalid authors")
+        if status not in {"transcribed", "needs-review"}:
+            raise ValueError(f"bibliography entry for {pdf_name!r} has an invalid status")
+        normalized[pdf_name] = {
+            "title": title.strip(),
+            "authors": [author.strip() for author in authors],
+            "status": status,
+        }
+
+    missing = referenced_pdfs - set(normalized)
+    if missing:
+        raise ValueError("bibliography map is missing source PDFs: " + ", ".join(sorted(missing)))
+    extra = set(normalized) - referenced_pdfs
+    if extra:
+        raise ValueError("bibliography map contains unreferenced PDFs: " + ", ".join(sorted(extra)))
+    return normalized
+
+
 def build_inventory(
-    source: Path, processed: Path, pdf_directory: Path
+    source: Path, processed: Path, pdf_directory: Path, bibliography: Path
 ) -> dict[str, object]:
     with source.open(encoding="utf-8") as handle:
         articles, total = validate_payload(json.load(handle))
@@ -74,6 +113,7 @@ def build_inventory(
         if isinstance(article.get("local_pdf_path"), str)
         and (pdf_directory / str(article["local_pdf_path"])).is_file()
     )
+    bibliography_by_pdf = load_bibliography(bibliography, set(pdf_references))
     stored_pdf_files = {
         path.name
         for path in pdf_directory.rglob("*")
@@ -93,12 +133,27 @@ def build_inventory(
         first_reference = not pdf_name_text or pdf_name_text not in seen_pdf_references
         if pdf_name_text:
             seen_pdf_references.add(pdf_name_text)
+        bibliographic_entry = bibliography_by_pdf.get(pdf_name_text) if pdf_name_text else None
+        if bibliographic_entry:
+            bibliographic_status = str(bibliographic_entry["status"])
+            bibliography_source = (
+                "PDF title page"
+                if bibliographic_status == "transcribed"
+                else "Archive scan — author attribution needs review"
+            )
+            title = bibliographic_entry["title"]
+            authors = bibliographic_entry["authors"]
+        else:
+            bibliographic_status = "catalogue-metadata"
+            bibliography_source = "Catalogue metadata"
+            title = article.get("title") or "Untitled corpus record"
+            authors = author_names(article)
         records.append(
             {
                 "id": article_id(article, position, used_ids),
                 "sourceId": source_id_text,
-                "title": article.get("title") or "Untitled corpus record",
-                "authors": author_names(article),
+                "title": title,
+                "authors": authors,
                 "year": article.get("year"),
                 "role": article.get("role_in_project") or "Unclassified",
                 "tags": article.get("tags") if isinstance(article.get("tags"), list) else [],
@@ -110,14 +165,17 @@ def build_inventory(
                 "localPdfName": pdf_name_text,
                 "sharedSource": shared_source,
                 "firstSourceReference": first_reference,
+                "bibliographySource": bibliography_source,
+                "bibliographyStatus": bibliographic_status,
             }
         )
 
     referenced_pdfs = set(pdf_references)
     processed_records = sum(record["processed"] for record in records)
     return {
-        "version": 1,
+        "version": 2,
         "source": "dataset/extracted/rh_corpus_database_complete.json",
+        "bibliography": "dataset/extracted/corpus_pdf_bibliography.json",
         "records": records,
         "summary": {
             "metadataRecords": total,
@@ -135,6 +193,7 @@ def main() -> int:
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--processed", type=Path, default=DEFAULT_PROCESSED)
     parser.add_argument("--pdf-directory", type=Path, default=DEFAULT_PDF_DIRECTORY)
+    parser.add_argument("--bibliography", type=Path, default=DEFAULT_BIBLIOGRAPHY)
     parser.add_argument("--destination", type=Path, default=DEFAULT_DESTINATION)
     parser.add_argument("--check", action="store_true", help="verify the published inventory is current")
     args = parser.parse_args()
@@ -144,6 +203,7 @@ def main() -> int:
         (root / args.source).resolve(),
         (root / args.processed).resolve(),
         (root / args.pdf_directory).resolve(),
+        (root / args.bibliography).resolve(),
     )
     rendered = json.dumps(inventory, ensure_ascii=False, indent=2) + "\n"
     destination = (root / args.destination).resolve()
