@@ -1,0 +1,19 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:math/0509480",
+  "@type": "SourcePaper",
+  "name": "Applications of the L-functions ratios conjectures",
+  "title": "Applications of the L-functions ratios conjectures",
+  "arxivId": "math/0509480",
+  "year": 2005,
+  "authors": ["J. B. Conrey", "Nina C. Snaith"],
+  "referenceUrl": "https://arxiv.org/abs/math/0509480",
+  "journal": "Proceedings of the London Mathematical Society 93 (2007), no. 3, 594–646",
+  "pdfLocal": "papers/0509480.pdf",
+  "abstract": "Develops applications of conjectural L-function ratio formulae, including zero statistics and mollified moments.",
+  "keywords": ["l-functions", "ratios-conjecture", "mollified-moments", "zero-statistics"],
+  "rolesInH15": ["mollified-moments comparison", "negative applicability result"],
+  "auditStatus": "rejected",
+  "findings": "The manifest marks the ratios-conjecture/mollified-moment route as unsuitable for an unconditional H15 proof; retained as a documented comparison source.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

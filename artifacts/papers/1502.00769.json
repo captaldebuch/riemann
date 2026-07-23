@@ -1,0 +1,19 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:1502.00769",
+  "@type": "SourcePaper",
+  "name": "Trilinear forms with Kloosterman fractions",
+  "title": "Trilinear forms with Kloosterman fractions",
+  "arxivId": "1502.00769",
+  "year": 2015,
+  "authors": ["Sandro Bettin", "Vorrapan Chandee"],
+  "referenceUrl": "https://arxiv.org/abs/1502.00769",
+  "journal": "Advances in Mathematics 328 (2018), 1234–1262",
+  "pdfLocal": "papers/1502.00769.pdf",
+  "abstract": "Provides bounds for trilinear forms with Kloosterman fractions, improving a Duke–Friedlander–Iwaniec result.",
+  "keywords": ["kloosterman-fractions", "trilinear-forms", "dfi", "reciprocal-phases"],
+  "rolesInH15": ["alternative after phase conversion", "candidate DFI-type bound"],
+  "auditStatus": "pending",
+  "findings": "Downloaded as the principal DFI-style comparison source. The remaining question is whether the H15 centered phase can be converted to this Kloosterman-fraction form without losing cancellation.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

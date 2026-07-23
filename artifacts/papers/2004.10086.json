@@ -1,0 +1,18 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:2004.10086",
+  "@type": "SourcePaper",
+  "name": "An exponentially averaged Vasyunin formula",
+  "title": "An exponentially averaged Vasyunin formula",
+  "arxivId": "2004.10086",
+  "year": 2020,
+  "authors": ["Sébastien Darses", "Erwan Hillion"],
+  "referenceUrl": "https://arxiv.org/abs/2004.10086",
+  "pdfLocal": "papers/2004.10086.pdf",
+  "abstract": "Proves a Vasyunin-type formula for an autocorrelation function in a probabilistic Nyman–Beurling setting, also interpretable as a cotangent-sum reciprocity formula.",
+  "keywords": ["vasyunin", "nyman-beurling", "cotangent-sums", "reciprocity"],
+  "rolesInH15": ["alternative classical route", "period-function comparison"],
+  "auditStatus": "pending",
+  "findings": "Downloaded as an alternative classical route. Its exponentially averaged formula should be compared with the BCF taper before any Lean formalization is planned.",
+  "relatedArtifacts": ["module:NBMellinTools.H15_RouteA"]
+}

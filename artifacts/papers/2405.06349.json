@@ -1,0 +1,18 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:2405.06349",
+  "@type": "SourcePaper",
+  "name": "On certain Gram matrices and their associated series",
+  "title": "On certain Gram matrices and their associated series",
+  "arxivId": "2405.06349",
+  "year": 2024,
+  "authors": ["Werner Ehm"],
+  "referenceUrl": "https://arxiv.org/abs/2405.06349",
+  "pdfLocal": "papers/2405.06349.pdf",
+  "abstract": "Studies Gram matrices in the Nyman–Beurling reformulation, associated series and reciprocity relations, and decompositions of their quadratic forms.",
+  "keywords": ["nyman-beurling", "gram-matrices", "reciprocity", "quadratic-forms"],
+  "rolesInH15": ["context for the Nyman–Beurling Gram-matrix formulation", "candidate source for quadratic-form and reciprocity analysis"],
+  "auditStatus": "pending",
+  "findings": "Downloaded and bibliographically verified. The manifest’s earlier title was inaccurate; applicability to the H15 BCF kernel remains to be assessed.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

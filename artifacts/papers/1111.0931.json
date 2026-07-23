@@ -1,0 +1,20 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:1111.0931",
+  "@type": "SourcePaper",
+  "name": "Period functions and cotangent sums",
+  "title": "Period functions and cotangent sums",
+  "arxivId": "1111.0931",
+  "year": 2011,
+  "authors": ["Sandro Bettin", "Brian Conrey"],
+  "referenceUrl": "https://arxiv.org/abs/1111.0931",
+  "doi": "10.2140/ant.2013.7.215",
+  "journal": "Algebra & Number Theory 7 (2013), no. 1, 215–242",
+  "pdfLocal": "papers/1111.0931.pdf",
+  "abstract": "Introduces cotangent sums with reciprocity formulae and studies a period function related to divisor sums and zeta second moments.",
+  "keywords": ["cotangent-sums", "period-functions", "reciprocity", "vasyunin-sum"],
+  "rolesInH15": ["background for cotangent-sum and period-function structures", "source for a reciprocity route"],
+  "auditStatus": "reviewed",
+  "findings": "Already present locally. Verified as a Bettin–Conrey paper on period functions and cotangent sums; it is not the Bettin–Conrey–Farmer BCF-asymptotic source described in the earlier manifest.",
+  "relatedArtifacts": ["module:NBMellinTools.H15_RouteA"]
+}

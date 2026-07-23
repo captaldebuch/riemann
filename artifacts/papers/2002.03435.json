@@ -1,0 +1,18 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:2002.03435",
+  "@type": "SourcePaper",
+  "name": "Burgess bounds for short character sums evaluated at forms II: the mixed case",
+  "title": "Burgess bounds for short character sums evaluated at forms II: the mixed case",
+  "arxivId": "2002.03435",
+  "year": 2020,
+  "authors": ["Lillian B. Pierce"],
+  "referenceUrl": "https://arxiv.org/abs/2002.03435",
+  "pdfLocal": "papers/2002.03435.pdf",
+  "abstract": "Proves a Burgess bound for multidimensional mixed character sums with multiplicative characters evaluated at admissible forms and additive characters at polynomials.",
+  "keywords": ["burgess-bound", "mixed-character-sums", "additive-characters"],
+  "rolesInH15": ["Burgess-comparison audit", "candidate for mixed-phase matching"],
+  "auditStatus": "pending",
+  "findings": "Downloaded for comparison. A direct match between its admissible-form setting and the H15 reciprocal phase has not been established.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

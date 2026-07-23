@@ -1,0 +1,18 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:2001.05114",
+  "@type": "SourcePaper",
+  "name": "Partial Gaussian sums and the Pólya--Vinogradov inequality for primitive characters",
+  "title": "Partial Gaussian sums and the Pólya--Vinogradov inequality for primitive characters",
+  "arxivId": "2001.05114",
+  "year": 2020,
+  "authors": ["Matteo Bordignon"],
+  "referenceUrl": "https://arxiv.org/abs/2001.05114",
+  "pdfLocal": "papers/2001.05114.pdf",
+  "abstract": "Gives explicit Pólya–Vinogradov constants for primitive characters via partial Gaussian sums and a Burgess-like convolution estimate.",
+  "keywords": ["polya-vinogradov", "gaussian-sums", "character-sums", "dispersion"],
+  "rolesInH15": ["dispersion and character-sum comparison", "supporting literature"],
+  "auditStatus": "pending",
+  "findings": "Downloaded for the character-sum comparison. Its applicability to the centered reciprocal phase has not yet been determined.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

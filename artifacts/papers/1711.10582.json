@@ -1,0 +1,18 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:1711.10582",
+  "@type": "SourcePaper",
+  "name": "A refinement of the Burgess bound for character sums",
+  "title": "A refinement of the Burgess bound for character sums",
+  "arxivId": "1711.10582",
+  "year": 2017,
+  "authors": ["Bryce Kerr", "Igor E. Shparlinski", "Kam Hung Yau"],
+  "referenceUrl": "https://arxiv.org/abs/1711.10582",
+  "pdfLocal": "papers/1711.10582.pdf",
+  "abstract": "Refines the Burgess estimate for short multiplicative character sums modulo a prime by a logarithmic factor.",
+  "keywords": ["burgess-bound", "character-sums", "multiplicative-characters"],
+  "rolesInH15": ["Burgess-comparison audit", "negative applicability result"],
+  "auditStatus": "rejected",
+  "findings": "The manifest records this route as inapplicable: its one-dimensional multiplicative-character estimate does not supply the required reciprocal-phase cancellation.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

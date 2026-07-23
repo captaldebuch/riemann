@@ -2,23 +2,23 @@
   "version": 1,
   "description": "Small, source-verified bibliographic corrections used by the public artifact explorer. Placeholder and collective corpus authors are deliberately not promoted as named mathematicians.",
   "overrides": {
-    "mathematician:bettin": {
+    "mathematician:sandro-bettin": {
       "name": "Sandro Bettin",
       "identityStatus": "source-verified"
     },
-    "mathematician:conrey": {
+    "mathematician:brian-conrey": {
       "name": "Brian Conrey",
       "identityStatus": "source-verified"
     },
-    "mathematician:auli": {
+    "mathematician:juan-s-auli": {
       "name": "Juan S. Auli",
       "identityStatus": "source-verified"
     },
-    "mathematician:bayad": {
+    "mathematician:abdelmejid-bayad": {
       "name": "Abdelmejid Bayad",
       "identityStatus": "source-verified"
     },
-    "mathematician:beck": {
+    "mathematician:matthias-beck": {
       "name": "Matthias Beck",
       "identityStatus": "source-verified"
     },

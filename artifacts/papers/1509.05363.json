@@ -1,0 +1,19 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:1509.05363",
+  "@type": "SourcePaper",
+  "name": "The Erdos discrepancy problem",
+  "title": "The Erdos discrepancy problem",
+  "arxivId": "1509.05363",
+  "year": 2015,
+  "authors": ["Terence Tao"],
+  "referenceUrl": "https://arxiv.org/abs/1509.05363",
+  "journal": "Discrete Analysis 2016:1",
+  "pdfLocal": "papers/1509.05363.pdf",
+  "abstract": "Proves that every ±1 sequence has unbounded homogeneous discrepancy, using reductions involving completely multiplicative functions and logarithmically averaged Elliott-type input.",
+  "keywords": ["discrepancy", "multiplicative-functions", "elliott-conjecture"],
+  "rolesInH15": ["bounded-phase analogue", "supporting literature"],
+  "auditStatus": "pending",
+  "findings": "Downloaded as a conceptual comparison for bounded-phase cancellation; it is not a direct proof route for the H15 energy estimate.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

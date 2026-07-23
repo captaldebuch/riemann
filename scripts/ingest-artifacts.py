@@ -25,6 +25,7 @@ DEFAULT_CORPUS = Path("dataset/extracted/rh_corpus_database_complete.json")
 DEFAULT_LEAN_ROOT = Path("proofs")
 DEFAULT_ROADMAP = Path("ARTIFACT_DATABASE_ROADMAP.md")
 DEFAULT_CURATION = Path("artifacts/curation.json")
+DEFAULT_PAPER_ROOT = Path("artifacts/papers")
 DEFAULT_OUTPUT = Path("artifacts/registry.jsonld")
 
 CONTEXT = {
@@ -302,6 +303,74 @@ def load_curation(path: Path) -> dict[str, Any]:
     return data
 
 
+def load_paper_artifacts(paper_root: Path, root: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Load source-reviewed H15 paper records and their explicit audit links.
+
+    Each JSON file is intentionally a small, reviewable bibliographic record.
+    It may add an audit finding, but never upgrades a research paper into a
+    formal proof. The corresponding relationships are labelled ``informs`` so
+    the public graph records relevance without claiming derivation.
+    """
+    if not paper_root.exists():
+        return [], []
+
+    artifacts: list[dict[str, Any]] = []
+    relationships: list[dict[str, Any]] = []
+    for path in sorted(paper_root.glob("*.json")):
+        with path.open(encoding="utf-8") as handle:
+            paper = json.load(handle)
+        if not isinstance(paper, dict):
+            raise ValueError(f"paper metadata is not an object: {repo_relative(path, root)}")
+        paper_id = paper.get("@id")
+        title = paper.get("title") or paper.get("name")
+        if not isinstance(paper_id, str) or not paper_id.startswith("paper:"):
+            raise ValueError(f"paper metadata needs a paper: @id: {repo_relative(path, root)}")
+        if paper.get("@type") != "SourcePaper" or not isinstance(title, str) or not title.strip():
+            raise ValueError(f"paper metadata needs a SourcePaper title: {repo_relative(path, root)}")
+        authors = paper.get("authors", [])
+        keywords = paper.get("keywords", [])
+        related = paper.get("relatedArtifacts", [])
+        if not isinstance(authors, list) or not all(isinstance(author, str) and author.strip() for author in authors):
+            raise ValueError(f"paper metadata has invalid authors: {repo_relative(path, root)}")
+        if not isinstance(keywords, list) or not all(isinstance(keyword, str) for keyword in keywords):
+            raise ValueError(f"paper metadata has invalid keywords: {repo_relative(path, root)}")
+        if not isinstance(related, list) or not all(isinstance(target, str) and target for target in related):
+            raise ValueError(f"paper metadata has invalid relatedArtifacts: {repo_relative(path, root)}")
+
+        artifact = dict(paper)
+        artifact["name"] = title.strip()
+        artifact["source"] = {"file": repo_relative(path, root), "line": 1}
+        artifact["localPdf"] = paper.get("pdfLocal")
+        artifact["tags"] = sorted({*paper.get("tags", []), *keywords})
+        if paper.get("abstract") and not paper.get("summary"):
+            artifact["summary"] = paper["abstract"]
+        artifacts.append(artifact)
+
+        for author in authors:
+            author_id = f"mathematician:{slug(author)}"
+            artifacts.append({"@id": author_id, "@type": "Mathematician", "name": author})
+            relationships.append(
+                {
+                    "source": paper_id,
+                    "predicate": "authoredBy",
+                    "target": author_id,
+                    "confidence": 1.0,
+                    "note": "Author attribution recorded in the audited paper metadata.",
+                }
+            )
+        for target in related:
+            relationships.append(
+                {
+                    "source": paper_id,
+                    "predicate": "informs",
+                    "target": target,
+                    "confidence": 0.8,
+                    "note": "Recorded H15 research relevance; not a claim that the paper proves this artifact.",
+                }
+            )
+    return artifacts, relationships
+
+
 def extract_corpus_artifacts(corpus: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     artifacts: list[dict[str, Any]] = []
     relationships: list[dict[str, Any]] = []
@@ -440,7 +509,13 @@ def build_registry(args: argparse.Namespace) -> dict[str, Any]:
     root = args.repo_root.resolve()
     corpus = load_corpus((root / args.corpus).resolve())
     corpus_artifacts, corpus_relationships = extract_corpus_artifacts(corpus)
+    paper_artifacts, paper_relationships = load_paper_artifacts((root / args.paper_root).resolve(), root)
     known_papers = {str(article["id"]) for article in corpus.get("articles", []) if article.get("id")}
+    known_papers.update(
+        str(artifact.get("arxivId"))
+        for artifact in paper_artifacts
+        if artifact.get("@type") == "SourcePaper" and artifact.get("arxivId")
+    )
     lean_artifacts, lean_relationships = extract_lean_artifacts(
         (root / args.lean_root).resolve(), root, known_papers
     )
@@ -448,6 +523,11 @@ def build_registry(args: argparse.Namespace) -> dict[str, Any]:
     artifacts = unique_by_id([*corpus_artifacts, *lean_artifacts, *roadmap_artifacts])
     relationships = unique_relationships([*corpus_relationships, *lean_relationships])
     curation = load_curation((root / args.curation).resolve())
+    curation = {
+        **curation,
+        "artifacts": [*curation.get("artifacts", []), *paper_artifacts],
+        "relationships": [*curation.get("relationships", []), *paper_relationships],
+    }
     artifacts, relationships = apply_curation(artifacts, relationships, curation)
     return {
         "@context": CONTEXT,
@@ -469,6 +549,7 @@ def main() -> int:
     parser.add_argument("--corpus", type=Path, default=DEFAULT_CORPUS)
     parser.add_argument("--roadmap", type=Path, default=DEFAULT_ROADMAP)
     parser.add_argument("--curation", type=Path, default=DEFAULT_CURATION)
+    parser.add_argument("--paper-root", type=Path, default=DEFAULT_PAPER_ROOT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--check", action="store_true", help="fail if the output would change")
     args = parser.parse_args()

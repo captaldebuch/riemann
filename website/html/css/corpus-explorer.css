@@ -43,7 +43,7 @@
 }
 
 .corpus-access-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .corpus-metric,
@@ -315,7 +315,7 @@
 
 @media (max-width: 980px) {
   .corpus-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .corpus-access-grid { grid-template-columns: 1fr; }
+  .corpus-access-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .corpus-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

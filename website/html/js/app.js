@@ -549,6 +549,11 @@ function renderCorpusDataset() {
           <p>Versioned source-paper, Lean-declaration, and reference records with explicit proof-status labels.</p>
           <a class="corpus-button" href="artifact-explorer.html?type=SourcePaper">Browse source records</a>
         </article>
+        <article class="corpus-access-card">
+          <h3>H15 paper audit</h3>
+          <p>Inspect the acquired H15 literature set: its roles, audit findings, and explicit links to the current research gate.</p>
+          <a class="corpus-button" href="artifact-explorer.html?audit=h15">Open H15 audit</a>
+        </article>
       </div>
 
       <div class="corpus-section-heading">

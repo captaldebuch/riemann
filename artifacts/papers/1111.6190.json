@@ -1,0 +1,18 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:1111.6190",
+  "@type": "SourcePaper",
+  "name": "A Variational Barban-Davenport-Halberstam Theorem",
+  "title": "A Variational Barban-Davenport-Halberstam Theorem",
+  "arxivId": "1111.6190",
+  "year": 2011,
+  "authors": ["Allison Lewko", "Mark Lewko"],
+  "referenceUrl": "https://arxiv.org/abs/1111.6190",
+  "pdfLocal": "papers/1111.6190.pdf",
+  "abstract": "Develops variational forms of the Barban–Davenport–Halberstam theorem and the large sieve inequality.",
+  "keywords": ["large-sieve", "barban-davenport-halberstam", "arithmetic-progressions"],
+  "rolesInH15": ["additive-sieve comparison", "negative applicability result"],
+  "auditStatus": "rejected",
+  "findings": "The manifest records the additive-sieve route as rejected for H15; the required reciprocal-phase structure is not controlled by this large-sieve input.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}

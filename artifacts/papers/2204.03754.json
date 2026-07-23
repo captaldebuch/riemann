@@ -1,0 +1,20 @@
+{
+  "@context": "https://riemann-hypothesis.github.io/artifacts#",
+  "@id": "paper:2204.03754",
+  "@type": "SourcePaper",
+  "name": "Higher uniformity of arithmetic functions in short intervals I. All intervals",
+  "title": "Higher uniformity of arithmetic functions in short intervals I. All intervals",
+  "arxivId": "2204.03754",
+  "year": 2022,
+  "authors": ["Kaisa Matomäki", "Xuancheng Shao", "Terence Tao", "Joni Teräväinen"],
+  "referenceUrl": "https://arxiv.org/abs/2204.03754",
+  "doi": "10.1017/fmp.2023.28",
+  "journal": "Forum of Mathematics, Pi 11 (2023), e29",
+  "pdfLocal": "papers/2204.03754.pdf",
+  "abstract": "Establishes higher-uniformity estimates for the Möbius, von Mangoldt, and divisor functions on short intervals, including nilsequence correlations.",
+  "keywords": ["mobius-function", "short-intervals", "uniformity", "nilsequences"],
+  "rolesInH15": ["candidate tool for low-product rows", "supporting cancellation literature"],
+  "auditStatus": "pending",
+  "findings": "Downloaded and bibliographically verified. The manifest’s former title was inaccurate; whether its short-interval uniformity estimates match the H15 phase is open.",
+  "relatedArtifacts": ["axiom:NBMellinTools.h15_reciprocal_phase_möbius_bound"]
+}
