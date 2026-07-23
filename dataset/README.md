@@ -8,6 +8,7 @@ A curated 78-entry metadata inventory spanning 160+ years of Riemann Hypothesis 
 - They resolve to **62 distinct linked PDF files** in `corpus/`; **16 entries share** an already-linked source PDF.
 - The archive holds **one additional PDF** that has not yet been assigned a complete metadata entry.
 - **30 entries** have a separate processed research layer. The remaining entries are source-level metadata records.
+- **75 entries** have titles and personal-name attributions transcribed from their linked PDF title pages; **3 entries** retain a recovered title but explicitly require author-attribution review because the archival scan does not support a reliable transcription.
 
 The catalogue therefore distinguishes metadata entries from unique physical source files. It does not claim that all 78 entries are already independent, source-verified bibliographic records.
 
@@ -87,12 +88,26 @@ Organized by mathematical route:
 ```
 
 **Fields:**
-- `title`, `authors`, `year` — Paper metadata
+- `title`, `authors`, `year` — Paper metadata; title and author values are synchronized from the reviewed PDF-title-page map where a linked local PDF exists
+- `bibliography_source`, `bibliography_status` — Evidence and review status for the title/author transcription (`PDF title page`, or an explicitly marked archival-review case)
 - `category` — One of: analytic, spectral, probabilistic, functional
 - `key_novelties` — Main contributions
 - `formalizable_elements` — What could be formalized in Lean
 - `concepts` — Mathematical concepts (keywords)
 - `intuitions` — Extracted mathematical insights
+
+#### `corpus_pdf_bibliography.json`
+
+**Reviewed title/author transcription map**
+
+Maps each linked local PDF filename to its source-supported title and author list. It is the auditable bibliography layer used to synchronize the canonical 78-entry dataset, processed website export, legacy Dataset v1 downloads, and the public corpus inventory. Run:
+
+```bash
+python3 scripts/sync-corpus-bibliography.py --check
+python3 scripts/export-corpus-inventory.py --check
+```
+
+to verify that those exports remain consistent.
 
 #### `rh_corpus_knowledge_graphs.json`
 **RDF-style knowledge graph format:**

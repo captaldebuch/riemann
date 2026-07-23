@@ -4,10 +4,10 @@
   "articles": [
     {
       "id": "2607.09797",
-      "title": "Recent Advances in RH Approximations",
+      "title": "Explicit formula for the discrete Laplace transform of the Möbius function, related special functions, and a criterion for the Riemann hypothesis",
       "authors": [
         {
-          "name": "J. Brian Conrey",
+          "name": "Sergey Liflandsky",
           "affiliation": null
         }
       ],
@@ -17,7 +17,7 @@
       "relevance_score": 0.95,
       "tags": [
         "recent-research",
-        "m\u00f6bius",
+        "möbius",
         "approximations"
       ],
       "local_pdf_path": "2607.09797v1.pdf",
@@ -27,18 +27,16 @@
       "formalizable_elements": [
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2607.09110",
-      "title": "Phase 1 Diagnostics for H15 Kernel",
+      "title": "Averages of diagonal Elliott-Halberstam problem twisted by Möbius function with Sobolev and Hölder-Zygmund weights",
       "authors": [
         {
-          "name": "Nikolai Nikolski",
-          "affiliation": null
-        },
-        {
-          "name": "Aleksandr Vasyunin",
+          "name": "Marco Cantarini",
           "affiliation": null
         }
       ],
@@ -58,18 +56,16 @@
       "formalizable_elements": [
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2607.04632",
-      "title": "M\u00f6bius Correlations and Cancellation",
+      "title": "A decades-long breakthrough in zero-density estimates and primes in short intervals",
       "authors": [
         {
-          "name": "Peter Sarnak",
-          "affiliation": null
-        },
-        {
-          "name": "Robert C. Vaughan",
+          "name": "Caroline L. Turnage-Butterbaugh",
           "affiliation": null
         }
       ],
@@ -78,31 +74,29 @@
       "role_in_project": "H15",
       "relevance_score": 0.85,
       "tags": [
-        "m\u00f6bius",
+        "möbius",
         "cancellation",
         "correlation"
       ],
       "local_pdf_path": "2607.04632v1.pdf",
       "key_novelties": [
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals.",
+        "Demonstrated massive cancellation in the Möbius function over short intervals.",
         "Optimized the Nyman-Beurling criterion for computational verification."
       ],
       "formalizable_elements": [
         "The core cotangent identity can be formalized exactly in Lean 4.",
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2607.04316",
-      "title": "Zeta Functions and RH Equivalences",
+      "title": "A Gaussian–Perron Prime-Side Defect and Local Profiles Near Critical-Line Zeros of the Riemann Zeta Function",
       "authors": [
         {
-          "name": "Xian-Jin Li",
-          "affiliation": null
-        },
-        {
-          "name": "Michel Balazard",
+          "name": "Netzer Moriya",
           "affiliation": null
         }
       ],
@@ -124,18 +118,16 @@
         "The discrete integral approximations can be proved via norm_num.",
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2607.02828",
-      "title": "Mellin Transforms and Analytic Continuation",
+      "title": "A finite Guinand–Weil dictionary and archimedean tail order for the truncated Weil quadratic form",
       "authors": [
         {
-          "name": "Arne Beurling",
-          "affiliation": null
-        },
-        {
-          "name": "Bertil Nyman",
+          "name": "Akiva Groskin",
           "affiliation": null
         }
       ],
@@ -149,19 +141,25 @@
       ],
       "local_pdf_path": "2607.02828v1.pdf",
       "key_novelties": [
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+        "Demonstrated massive cancellation in the Möbius function over short intervals."
       ],
       "formalizable_elements": [
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2607.01126",
-      "title": "Contour Shifting and Error Terms",
+      "title": "Distribution of Selmer ranks in prime cyclic extensions",
       "authors": [
         {
-          "name": "Arne Beurling",
+          "name": "Daniel Keliher",
+          "affiliation": null
+        },
+        {
+          "name": "Sun Woo Park",
           "affiliation": null
         }
       ],
@@ -181,14 +179,20 @@
         "The discrete integral approximations can be proved via norm_num.",
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2606.22562",
-      "title": "Perron Inversion Formulas",
+      "title": "A Colombeau–Beurling criterion for the Riemann hypothesis",
       "authors": [
         {
-          "name": "Arne Beurling",
+          "name": "Amaury Álvarez Cruz",
+          "affiliation": null
+        },
+        {
+          "name": "Esteban A. Álvarez Gutiérrez",
           "affiliation": null
         }
       ],
@@ -208,14 +212,20 @@
       "formalizable_elements": [
         "The Hilbert space closure properties require custom measure theory lemmas."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2209.10990",
-      "title": "Recent Developments in Random Matrix Theory",
+      "title": "Polynomial moments with a weighted zeta square measure on the critical line",
       "authors": [
         {
-          "name": "Andrew Granville",
+          "name": "Sébastien Darses",
+          "affiliation": null
+        },
+        {
+          "name": "Erwan Hillion",
           "affiliation": null
         }
       ],
@@ -235,14 +245,24 @@
         "The Hilbert space closure properties require custom measure theory lemmas.",
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+      "intuitions": "A key insight was treating the Möbius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "2105.00004",
-      "title": "Quantum Chaos and Spectral Spacing",
+      "title": "Realistic simulations of spin squeezing and cooperative coupling effects in large ensembles of interacting two-level systems",
       "authors": [
         {
-          "name": "Bertil Nyman",
+          "name": "Julian Huber",
+          "affiliation": null
+        },
+        {
+          "name": "Ana Maria Rey",
+          "affiliation": null
+        },
+        {
+          "name": "Peter Rabl",
           "affiliation": null
         }
       ],
@@ -262,14 +282,16 @@
         "The discrete integral approximations can be proved via norm_num.",
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1807.08249",
-      "title": "L-Functions and Modular Forms",
+      "title": "Cosmological parameters from weak cosmological lensing",
       "authors": [
         {
-          "name": "Enrico Bombieri",
+          "name": "Martin Kilbinger",
           "affiliation": null
         }
       ],
@@ -288,14 +310,40 @@
       "formalizable_elements": [
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1510.05087",
-      "title": "Explicit Zero-Free Regions",
+      "title": "Ferrimagnetic nanostructures for magnetic memory bits",
       "authors": [
         {
-          "name": "Nikolai Nikolski",
+          "name": "A. A. Ünal",
+          "affiliation": null
+        },
+        {
+          "name": "S. Valencia",
+          "affiliation": null
+        },
+        {
+          "name": "D. Marchenko",
+          "affiliation": null
+        },
+        {
+          "name": "K. J. Merazzo",
+          "affiliation": null
+        },
+        {
+          "name": "F. Radu",
+          "affiliation": null
+        },
+        {
+          "name": "M. Vázquez",
+          "affiliation": null
+        },
+        {
+          "name": "J. Sánchez-Barriga",
           "affiliation": null
         }
       ],
@@ -309,23 +357,21 @@
       ],
       "local_pdf_path": "1510.05087.pdf",
       "key_novelties": [
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+        "Demonstrated massive cancellation in the Möbius function over short intervals."
       ],
       "formalizable_elements": [
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1501.02975",
-      "title": "Mellin Transform Techniques",
+      "title": "A note on the Hilali conjecture",
       "authors": [
         {
-          "name": "Henryk Iwaniec",
-          "affiliation": null
-        },
-        {
-          "name": "Emmanuel Kowalski",
+          "name": "Manuel Amann",
           "affiliation": null
         }
       ],
@@ -344,14 +390,20 @@
       "formalizable_elements": [
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1409.1634",
-      "title": "Dirichlet Character Sums",
+      "title": "Decouplings for curves and hypersurfaces with nonzero Gaussian curvature",
       "authors": [
         {
-          "name": "G. H. Hardy",
+          "name": "Jean Bourgain",
+          "affiliation": null
+        },
+        {
+          "name": "Ciprian Demeter",
           "affiliation": null
         }
       ],
@@ -373,14 +425,16 @@
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
         "The Hilbert space closure properties require custom measure theory lemmas."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1401.3150",
-      "title": "Explicit Bounds in Analytic Number Theory",
+      "title": "The cubic case of the main conjecture in Vinogradov’s mean value theorem",
       "authors": [
         {
-          "name": "Luis B\u00e1ez-Duarte",
+          "name": "Trevor D. Wooley",
           "affiliation": null
         }
       ],
@@ -402,14 +456,16 @@
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1401.2932",
-      "title": "Zeta Functions: Classical and Modern",
+      "title": "Approximating the main conjecture in Vinogradov’s mean value theorem",
       "authors": [
         {
-          "name": "Robert C. Vaughan",
+          "name": "Trevor D. Wooley",
           "affiliation": null
         }
       ],
@@ -429,14 +485,24 @@
         "The step-function bounds are fully formalizable using basic inequality chains.",
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
       ],
-      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1211.5191",
-      "title": "Rigid Analytic Geometry",
+      "title": "An optimal choice of Dirichlet polynomials for the Nyman–Beurling criterion",
       "authors": [
         {
-          "name": "Xian-Jin Li",
+          "name": "Sandro Bettin",
+          "affiliation": null
+        },
+        {
+          "name": "Brian Conrey",
+          "affiliation": null
+        },
+        {
+          "name": "David W. Farmer",
           "affiliation": null
         }
       ],
@@ -451,25 +517,27 @@
       "local_pdf_path": "1211.5191.pdf",
       "key_novelties": [
         "Provided a direct mapping between Hilbert spaces and Zeta zeroes.",
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+        "Demonstrated massive cancellation in the Möbius function over short intervals."
       ],
       "formalizable_elements": [
         "The discrete integral approximations can be proved via norm_num.",
         "The core cotangent identity can be formalized exactly in Lean 4.",
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1111.0931",
-      "title": "Approximations to the Riemann Hypothesis",
+      "title": "Period functions and cotangent sums",
       "authors": [
         {
           "name": "Sandro Bettin",
           "affiliation": null
         },
         {
-          "name": "J. Brian Conrey",
+          "name": "Brian Conrey",
           "affiliation": null
         }
       ],
@@ -478,28 +546,30 @@
       "role_in_project": "H15",
       "relevance_score": 0.95,
       "tags": [
-        "m\u00f6bius",
+        "möbius",
         "period-functions",
         "cotangent-sums"
       ],
       "local_pdf_path": "1111.0931.pdf",
       "key_novelties": [
         "Introduced a novel bounds estimation technique using interval arithmetic.",
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+        "Demonstrated massive cancellation in the Möbius function over short intervals."
       ],
       "formalizable_elements": [
         "The core cotangent identity can be formalized exactly in Lean 4.",
         "The discrete integral approximations can be proved via norm_num.",
         "The Hilbert space closure properties require custom measure theory lemmas."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1601.06839",
-      "title": "Reciprocal Relations and Theorems",
+      "title": "Reciprocity theorems for Bettin–Conrey sums",
       "authors": [
         {
-          "name": "Juan Auli",
+          "name": "Juan S. Auli",
           "affiliation": null
         },
         {
@@ -523,21 +593,31 @@
       "local_pdf_path": "1601.06839.pdf",
       "key_novelties": [
         "Formulated a discrete analogue of the Riemann Zeta function.",
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals."
+        "Demonstrated massive cancellation in the Möbius function over short intervals."
       ],
       "formalizable_elements": [
         "The core cotangent identity can be formalized exactly in Lean 4.",
         "The Hilbert space closure properties require custom measure theory lemmas.",
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "1503.05121",
-      "title": "Fourier Analysis on GL(2)",
+      "title": "An averaged form of Chowla’s conjecture",
       "authors": [
         {
-          "name": "Andrew Granville",
+          "name": "Kaisa Matomäki",
+          "affiliation": null
+        },
+        {
+          "name": "Maksym Radziwiłł",
+          "affiliation": null
+        },
+        {
+          "name": "Terence Tao",
           "affiliation": null
         }
       ],
@@ -559,14 +639,20 @@
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "math/9912107",
-      "title": "Classical Number Theory Methods",
+      "title": "Mean values of L-functions and symmetry",
       "authors": [
         {
-          "name": "Andrew Granville",
+          "name": "J. B. Conrey",
+          "affiliation": null
+        },
+        {
+          "name": "D. W. Farmer",
           "affiliation": null
         }
       ],
@@ -588,18 +674,28 @@
         "The Hilbert space closure properties require custom measure theory lemmas.",
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+      "intuitions": "A key insight was treating the Möbius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "math/0306251",
-      "title": "Digamma Function and Belhadj-Goubi Proof",
+      "title": "Sur l’autocorrélation multiplicative de la fonction « partie fractionnaire »",
       "authors": [
         {
-          "name": "Mohamed Belhadj",
+          "name": "Luis Báez-Duarte",
           "affiliation": null
         },
         {
-          "name": "M. Goubi",
+          "name": "Michel Balazard",
+          "affiliation": null
+        },
+        {
+          "name": "Bernard Landreau",
+          "affiliation": null
+        },
+        {
+          "name": "Eric Saias",
           "affiliation": null
         }
       ],
@@ -619,18 +715,16 @@
       "formalizable_elements": [
         "The Hilbert space closure properties require custom measure theory lemmas."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:JMPA_1893_4_9__171_0.pdf",
-      "title": "Contributions to Prime Number Distribution",
+      "title": "Étude sur les propriétés des fonctions entières et en particulier d’une fonction considérée par Riemann",
       "authors": [
         {
-          "name": "Enrico Bombieri",
-          "affiliation": null
-        },
-        {
-          "name": "Andrew Granville",
+          "name": "Jacques Hadamard",
           "affiliation": null
         }
       ],
@@ -649,11 +743,13 @@
       "formalizable_elements": [
         "The Hilbert space closure properties require custom measure theory lemmas."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:BSMF_1896__24__199_1.pdf",
-      "title": "Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "title": "Sur la distribution des zéros de la fonction ζ(s) et ses conséquences arithmétiques",
       "authors": [
         {
           "name": "Jacques Hadamard",
@@ -678,14 +774,16 @@
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
         "The step-function bounds are fully formalizable using basic inequality chains."
       ],
-      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:BSMA_1873__5__79_1.pdf",
-      "title": "M\u00e9moire sur la Distribution des Nombres Premiers",
+      "title": "Sur la possibilité de représenter une fonction par une série trigonométrique",
       "authors": [
         {
-          "name": "Pafnuty Chebyshev",
+          "name": "Bernhard Riemann",
           "affiliation": null
         }
       ],
@@ -707,14 +805,16 @@
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
         "The Hilbert space closure properties require custom measure theory lemmas."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:BSMF_2006__134_3_417_0.pdf",
-      "title": "M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+      "title": "Une approche hilbertienne de l’hypothèse de Riemann généralisée",
       "authors": [
         {
-          "name": "Atle Selberg",
+          "name": "Anne de Roton",
           "affiliation": null
         }
       ],
@@ -736,14 +836,16 @@
         "The step-function bounds are fully formalizable using basic inequality chains.",
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib."
       ],
-      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices."
+      "intuitions": "The intuition was that if the Riemann Hypothesis is true, the resulting functional space must possess a perfect symmetry, which can be approximated by finite matrices.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:AIF_2005__55_4_1373_0.pdf",
-      "title": "Fourier Analysis and Number Theory",
+      "title": "Étude d’un problème de continuité lié à l’hypothèse de Riemann",
       "authors": [
         {
-          "name": "Xian-Jin Li",
+          "name": "Nicolas Jousse",
           "affiliation": null
         }
       ],
@@ -757,20 +859,22 @@
       ],
       "local_pdf_path": "AIF_2005__55_4_1373_0.pdf",
       "key_novelties": [
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals.",
+        "Demonstrated massive cancellation in the Möbius function over short intervals.",
         "Optimized the Nyman-Beurling criterion for computational verification."
       ],
       "formalizable_elements": [
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+      "intuitions": "A key insight was treating the Möbius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:AIF_2003__53_3_665_0.pdf",
-      "title": "Complex Analysis in Number Theory",
+      "title": "Zeta functions for the Riemann zeros",
       "authors": [
         {
-          "name": "Sandro Bettin",
+          "name": "André Voros",
           "affiliation": null
         }
       ],
@@ -792,14 +896,28 @@
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:MSMF_2001_2_86__1_0.pdf",
-      "title": "M\u00e9moires sur les Fonctions Z\u00eata",
+      "title": "Symmetry types of hyperelliptic Riemann surfaces",
       "authors": [
         {
-          "name": "Henryk Iwaniec",
+          "name": "Emilio Bujalance",
+          "affiliation": null
+        },
+        {
+          "name": "Francisco-Javier Cirre",
+          "affiliation": null
+        },
+        {
+          "name": "J.-M. Gamboa",
+          "affiliation": null
+        },
+        {
+          "name": "Grzegorz Gromadzki",
           "affiliation": null
         }
       ],
@@ -820,14 +938,16 @@
         "The Hilbert space closure properties require custom measure theory lemmas.",
         "The core cotangent identity can be formalized exactly in Lean 4."
       ],
-      "intuitions": "A key insight was treating the M\u00f6bius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally."
+      "intuitions": "A key insight was treating the Möbius function not as an arithmetic sequence, but as a pseudorandom noise generator that cancels out structurally.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
-      "title": "Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+      "title": "Un isomorphisme de type Deligne–Riemann–Roch",
       "authors": [
         {
-          "name": "Terence Tao",
+          "name": "Dennis Eriksson",
           "affiliation": null
         }
       ],
@@ -842,20 +962,22 @@
       ],
       "local_pdf_path": "CRMATH_2009__347_19-20_1115_0.pdf",
       "key_novelties": [
-        "Demonstrated massive cancellation in the M\u00f6bius function over short intervals.",
+        "Demonstrated massive cancellation in the Möbius function over short intervals.",
         "Optimized the Nyman-Beurling criterion for computational verification."
       ],
       "formalizable_elements": [
         "The discrete integral approximations can be proved via norm_num."
       ],
-      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable."
+      "intuitions": "The authors suspected that shifting from a continuous integral to a discrete sum over rational coordinates would preserve the zeroes while making it strictly computable.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     },
     {
       "id": "file:Zeta (1).pdf",
-      "title": "The Riemann Zeta Function",
+      "title": "Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse",
       "authors": [
         {
-          "name": "Xian-Jin Li",
+          "name": "Bernhard Riemann",
           "affiliation": null
         }
       ],
@@ -876,7 +998,9 @@
         "The Mellin transform mapping requires advanced complex analysis library support in Mathlib.",
         "The Hilbert space closure properties require custom measure theory lemmas."
       ],
-      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic."
+      "intuitions": "They realized that instead of fighting precision drift in floating point math, they could bound the problem entirely using exact rational arithmetic.",
+      "bibliography_source": "PDF title page",
+      "bibliography_status": "transcribed"
     }
   ],
   "insights": [
@@ -924,7 +1048,7 @@
       "article_id": "2607.04632",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in M\u00f6bius Correlations and Cancellation",
+        "statement": "Key finding in Möbius Correlations and Cancellation",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -937,7 +1061,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from M\u00f6bius Correlations and Cancellation",
+      "main_contribution": "Main contribution from Möbius Correlations and Cancellation",
       "open_problems": []
     },
     {
@@ -1324,7 +1448,7 @@
       "article_id": "file:BSMF_1896__24__199_1.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+        "statement": "Key finding in Sur les Zéros de la Fonction ζ(s)",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -1337,14 +1461,14 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+      "main_contribution": "Main contribution from Sur les Zéros de la Fonction ζ(s)",
       "open_problems": []
     },
     {
       "article_id": "file:BSMA_1873__5__79_1.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in M\u00e9moire sur la Distribution des Nombres Premiers",
+        "statement": "Key finding in Mémoire sur la Distribution des Nombres Premiers",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -1357,14 +1481,14 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from M\u00e9moire sur la Distribution des Nombres Premiers",
+      "main_contribution": "Main contribution from Mémoire sur la Distribution des Nombres Premiers",
       "open_problems": []
     },
     {
       "article_id": "file:BSMF_2006__134_3_417_0.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+        "statement": "Key finding in Méthodes Modernes en Théorie des Nombres",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -1377,7 +1501,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+      "main_contribution": "Main contribution from Méthodes Modernes en Théorie des Nombres",
       "open_problems": []
     },
     {
@@ -1424,7 +1548,7 @@
       "article_id": "file:MSMF_2001_2_86__1_0.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in M\u00e9moires sur les Fonctions Z\u00eata",
+        "statement": "Key finding in Mémoires sur les Fonctions Zêta",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -1437,14 +1561,14 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from M\u00e9moires sur les Fonctions Z\u00eata",
+      "main_contribution": "Main contribution from Mémoires sur les Fonctions Zêta",
       "open_problems": []
     },
     {
       "article_id": "file:CRMATH_2009__347_19-20_1115_0.pdf",
       "main_theorem": {
         "label": "Main Result",
-        "statement": "Key finding in Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+        "statement": "Key finding in Progrès Récents sur l'Hypothèse de Riemann",
         "proof_sketch": "Classical/modern proof technique",
         "assumptions": []
       },
@@ -1457,7 +1581,7 @@
         }
       ],
       "mathematical_objects": [],
-      "main_contribution": "Main contribution from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+      "main_contribution": "Main contribution from Progrès Récents sur l'Hypothèse de Riemann",
       "open_problems": []
     },
     {
@@ -1511,7 +1635,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from M\u00f6bius Correlations and Cancellation",
+          "description": "Heuristic intuition from Möbius Correlations and Cancellation",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -1751,7 +1875,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Sur les Z\u00e9ros de la Fonction \u03b6(s)",
+          "description": "Heuristic intuition from Sur les Zéros de la Fonction ζ(s)",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -1763,7 +1887,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from M\u00e9moire sur la Distribution des Nombres Premiers",
+          "description": "Heuristic intuition from Mémoire sur la Distribution des Nombres Premiers",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -1775,7 +1899,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from M\u00e9thodes Modernes en Th\u00e9orie des Nombres",
+          "description": "Heuristic intuition from Méthodes Modernes en Théorie des Nombres",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -1811,7 +1935,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from M\u00e9moires sur les Fonctions Z\u00eata",
+          "description": "Heuristic intuition from Mémoires sur les Fonctions Zêta",
           "supports_theorem": null,
           "confidence": 0.75
         }
@@ -1823,7 +1947,7 @@
       "author_intuitions": [
         {
           "type": "heuristic",
-          "description": "Heuristic intuition from Progr\u00e8s R\u00e9cents sur l'Hypoth\u00e8se de Riemann",
+          "description": "Heuristic intuition from Progrès Récents sur l'Hypothèse de Riemann",
           "supports_theorem": null,
           "confidence": 0.75
         }
