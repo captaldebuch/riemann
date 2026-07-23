@@ -237,8 +237,11 @@ function renderHome() {
       <!-- DH Approach Section -->
       <div style="margin-bottom:3rem;">
         <h3 style="color:#1f2937; font-size:1.2rem; margin-bottom:1rem;">A Digital Humanities Approach</h3>
-        <p class="math-text"><strong>We treat 160+ years of published mathematics as interconnected knowledge objects</strong>—not just facts to digest, but a living network of intuitions, proof strategies, and intellectual lineage. <strong>Based entirely on corpus data, dataset extraction, and LLM-guided analysis</strong>, this project introduces a Digital Humanities (DH) approach to the Riemann Hypothesis.</p>
-        <p class="math-text mt-lg">By applying "distant reading" methodologies, we use LLMs to process the corpus and extract datasets that map the insights, novelties, and intuitions of mathematicians over time. All exploratory formalization presented here is derived from this LLM-guided analysis of the corpus. This repository asks: <em>What structures underlie a proof? How do mathematical ideas flow from person to person across generations? Can formal verification reveal gaps that human insight misses?</em></p>
+        <p class="math-text"><strong>We treat 160+ years of published mathematics as interconnected knowledge objects</strong>—not just facts to digest, but a living network of intuitions, proof strategies, and intellectual lineage. The method combines <strong>distant reading</strong> across the corpus with <strong>LLM-guided close reading</strong> of particular arguments, definitions, and proof bottlenecks.</p>
+        <p class="math-text mt-lg">This is also a methodological experiment: can language models recover mathematical structure, suggest useful questions, and help compare strategies without being mistaken for mathematical authorities? The project uses the models to propose, challenge, and revise interpretations; primary sources, explicit calculations, expert criticism, and Lean’s kernel remain the validation layer. This repository asks: <em>What structures underlie a proof? How do mathematical ideas flow from person to person across generations? Which apparent shortcuts fail when their assumptions are made explicit?</em></p>
+        <div style="margin-top:1.25rem; padding:1.1rem 1.25rem; background:#f5f3ff; border-left:3px solid #7c3aed; border-radius:4px;">
+          <p style="color:#4c1d95; font-size:0.92rem; line-height:1.65; margin:0;"><strong>A parliament of LLMs:</strong> Claude, Gemini, Codex, and DeepSeek are used as a dialogue rather than a single voice. A model may draft an interpretation, another may look for a missing hypothesis or counterexample, and a third may propose a revision. Agreement is not treated as proof; the dialogue produces an auditable research question or a candidate formal step to check against sources and Lean.</p>
+        </div>
       </div>
 
       <div class="bento-grid mt-lg">
@@ -508,7 +511,7 @@ function renderCorpusDataset() {
       <div class="corpus-hero">
         <p class="corpus-eyebrow">Structured research catalogue</p>
         <h2>Corpus &amp; Dataset</h2>
-        <p>This public index contains the complete 78-entry corpus metadata inventory. Thirty entries have a separate processed research layer; the rest remain source-level catalogue records. The page distinguishes catalogue entries from distinct source files so that the collection’s current state is visible rather than implied.</p>
+        <p>This public index contains the complete 78-entry corpus metadata inventory. Thirty entries have a separate processed research layer; the rest remain source-level catalogue records. It supports both distant reading across the collection and LLM-guided close reading of particular arguments, while keeping source status and uncertainty visible rather than implied.</p>
       </div>
 
       <div class="corpus-metrics" aria-label="Corpus summary">
@@ -1382,6 +1385,13 @@ function renderFormalizationEssay() {
         <h3>The claim boundary</h3>
         <p>The formal development contains verified implications and reusable analytic infrastructure. Its final BCF endpoint remains conditional on explicit analytic inputs; none of those inputs is silently treated as a proof of the Riemann Hypothesis. In particular, a cancellation estimate that would establish the decisive unconditional conclusion is RH-strength mathematics, not a routine implementation detail.</p>
       </aside>
+
+      <div class="exploration-dialogue">
+        <p class="exploration-eyebrow">Method in question</p>
+        <h3>Distant reading, LLM-guided close reading, and model dialogue</h3>
+        <p>The corpus is read at two scales. Distant reading traces repeated concepts, citations, transformations, and proof families across many records. LLM-guided close reading then works on specific passages, definitions, and formalization obstacles. A further aim of the project is methodological: to test whether language models can surface mathematically useful insights and strategies while making their limitations visible.</p>
+        <p>The working practice is a “parliament of LLMs”: Claude, Gemini, Codex, and DeepSeek are invited to challenge, check, or modify one another’s proposals. Their dialogue is treated as a generator of hypotheses and review prompts, never as mathematical certification. Source texts, explicit derivations, specialist feedback, and Lean’s kernel decide what survives.</p>
+      </div>
 
       <div class="exploration-section-heading">
         <p class="exploration-eyebrow">The journey so far</p>
